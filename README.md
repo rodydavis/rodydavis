@@ -1,16 +1,12 @@
-### Hi there 👋
+[![Buy Me A Coffee](https://img.shields.io/badge/Donate-Buy%20Me%20A%20Coffee-yellow.svg)](https://www.buymeacoffee.com/rodydavis)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSH3GVC49GNNJ)
 
-<!--
-**rodydavis/rodydavis** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+### Rody Davis Jr.
 
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+- Facinated by VR/AR
+- Working on [Web Componenets](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
+- Advocate for @material-components
+- Musician 👀 [SoundCloud](https://soundcloud.com/theonlysounddr) [Spotify](https://open.spotify.com/artist/5HBkYdhRZn1aOq40T2A7Eg)
+- Podcast "Creative Engineering" [Apple Podcasts](https://podcasts.apple.com/us/podcast/creative-engineering/id1507852833) [Google Podcasts](https://podcasts.google.com/feed/aHR0cHM6Ly9yb2R5ZGF2aXMuZ2l0aHViLmlvL2NyZWF0aXZlX2VuZ2luZWVyaW5nL2ZlZWQueG1s?ved=2ahUKEwiw5anO0dLqAhU2lZ4KHR3FDtcQ4aUDegQIARAC&hl=en-GB) [Spotify Podcasts](https://open.spotify.com/show/3UTiK34aDOOSHFpGQ0RglN)
+- Creator of [Widget Studio](https://widget.studio/)
+- Dart/Flutter [Packages](https://pub.dev/publishers/rodydavis.com/packages) on [pub.dev](https://pub.dev)
