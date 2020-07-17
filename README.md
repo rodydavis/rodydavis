@@ -3,7 +3,7 @@
 
 ### Rody Davis Jr.
 
-- Facinated by VR/AR
+- Facinated by [VR/AR](https://aframe.io/)
 - Working on [Web Componenets](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
 - Developer Advocate for [@material-components](https://github.com/material-components)
 - Musician 👀 [SoundCloud](https://soundcloud.com/theonlysounddr), [Spotify](https://open.spotify.com/artist/5HBkYdhRZn1aOq40T2A7Eg)
