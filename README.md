@@ -11,3 +11,4 @@
 - ⚒️ Creator of [Widget Studio](https://widget.studio/)
 - 📦 Dart/Flutter [Packages](https://pub.dev/publishers/rodydavis.com/packages) on [pub.dev](https://pub.dev)
 - 😎 Find me on [Glitch](https://glitch.com/@rodydavis)
+- 🗣 Follow me on [Twitter](https://twitter.com/rodydavis)
