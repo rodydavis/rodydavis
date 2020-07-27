@@ -12,3 +12,4 @@
 - 📦 Dart/Flutter [Packages](https://pub.dev/publishers/rodydavis.com/packages) on [pub.dev](https://pub.dev)
 - 😎 Find me on [Glitch](https://glitch.com/@rodydavis)
 - 🗣 Follow me on [Twitter](https://twitter.com/rodydavis)
+- 📹 Subscribe on [YouTube](https://www.youtube.com/rodydavis)
