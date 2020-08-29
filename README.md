@@ -1,8 +1,6 @@
 <!-- [![Buy Me A Coffee](https://img.shields.io/badge/Donate-Buy%20Me%20A%20Coffee-yellow.svg)](https://www.buymeacoffee.com/rodydavis)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSH3GVC49GNNJ) -->
 
-### Rody Davis Jr.
-
 - 🕹 Facinated by [VR/AR](https://aframe.io/)
 - 🤓 Working on [Web Componenets](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
 - 🥳 Developer Advocate for [@material-components](https://github.com/material-components)
