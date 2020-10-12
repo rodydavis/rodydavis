@@ -2,7 +2,7 @@
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSH3GVC49GNNJ) -->
 ![](https://github-readme-stats.vercel.app/api?username=rodydavis&count_private=true&theme=default&show_icons=true)
 
-- 🕹 Facinated by [VR/AR](https://aframe.io/)
+- 🕹 Fascinated by [VR/AR](https://aframe.io/)
 - 🤓 Working on [Web Componenets](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
 - 🥳 Developer Advocate for [@material-components](https://github.com/material-components)
 - 🎹 Musician [SoundCloud](https://soundcloud.com/theonlysounddr), [Spotify](https://open.spotify.com/artist/5HBkYdhRZn1aOq40T2A7Eg)
