@@ -66,6 +66,11 @@ export class MainApp extends LitElement {
     .social-link {
       text-decoration: none;
     }
+    .social-icons {
+      width: 100%;
+      text-align: center;
+      padding-right: 10px;
+    }
     @media screen and (max-width: 600px) {
       #tabs {
         display: none;
@@ -243,6 +248,7 @@ export class MainApp extends LitElement {
             ${this._drawerItem("list", "Stories", "/stories")}
             ${this._drawerItem("insights", "Graph", "/graph")}
           </mwc-list>
+          ${this.buildSocial()}
         </div>
         <div slot="appContent">
           <mwc-top-app-bar-fixed>
@@ -286,9 +292,11 @@ export class MainApp extends LitElement {
     content: TemplateResult,
     options: { tabBar: boolean; footer: boolean }
   ): TemplateResult {
-    return html` ${options.tabBar ? this.buildTabBar() : nothing}
+    return html`
+      ${options.tabBar ? this.buildTabBar() : nothing}
       <div class="content">${content}</div>
-      ${options.footer ? this.buildFooter() : nothing}`;
+      <!-- ${options.footer ? this.buildFooter() : nothing} -->
+    `;
   }
 
   activeIndex: number = 0;
@@ -321,23 +329,24 @@ export class MainApp extends LitElement {
 
   buildFooter(): TemplateResult {
     return html` <footer>
-      <div class="social-icons">
-        ${this._socialIcon("github", "https://github.com/rodydavis")}
-        ${this._socialIcon("twitter", "https://twitter.com/rodydavis")}
-        ${this._socialIcon("youtube", "https://youtube.com/rodydavis")}
-        ${this._socialIcon("instagram", "https://instagram.com/rodydavisjr")}
-        ${this._socialIcon(
-          "facebook",
-          "https://facebook.com/rodydavisjr"
-        )}${this._socialIcon(
-          "linkedin",
-          "https://www.linkedin.com/in/rodydavis"
-        )}
-        ${this._socialIcon("tiktok", "https://tiktok.com/@rodydavisjr")}
-        ${this._socialIcon("email", "mailto:rody.davis.jr@gmail.com")}
-      </div>
+      ${this.buildSocial()}
 
-      <!-- <p>Copyright 2020 Rody Davis</p> -->
+      <p>Copyright 2020 Rody Davis</p>
     </footer>`;
+  }
+
+  buildSocial(): TemplateResult {
+    return html` <div class="social-icons">
+      ${this._socialIcon("github", "https://github.com/rodydavis")}
+      ${this._socialIcon("twitter", "https://twitter.com/rodydavis")}
+      ${this._socialIcon("youtube", "https://youtube.com/rodydavis")}
+      ${this._socialIcon("instagram", "https://instagram.com/rodydavisjr")}
+      ${this._socialIcon(
+        "facebook",
+        "https://facebook.com/rodydavisjr"
+      )}${this._socialIcon("linkedin", "https://www.linkedin.com/in/rodydavis")}
+      ${this._socialIcon("tiktok", "https://tiktok.com/@rodydavisjr")}
+      ${this._socialIcon("email", "mailto:rody.davis.jr@gmail.com")}
+    </div>`;
   }
 }

@@ -35,4 +35,9 @@ function buildMeta(path: string, name: string) {
   );
 }
 
+function copyFile(path: string, output: string) {
+  const file = fs.readFileSync(path);
+  fs.writeFileSync(`assets/${output}`, file);
+}
+
 build();

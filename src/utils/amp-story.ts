@@ -1,7 +1,3 @@
-import { html, TemplateResult } from "lit-html";
-import { type } from "os";
-import { getPostFromMeta, PostMeta } from "./meta";
-
 export function md2ampstory(src: string, meta: AmpMeta): string {
   const story: AmpStory = {
     title: meta.title,
@@ -210,10 +206,10 @@ function renderStory(story: AmpStory): string {
     result.push(`</amp-story-page>`);
   }
   result.push(
-    html`
-</amp-story>
-</body>
-</html>`.getHTML()
+    `</amp-story>
+    </body>
+  </html>
+`
   );
   return result.join("");
 }
