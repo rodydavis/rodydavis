@@ -35,16 +35,16 @@ export class MDView extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     if (this.comments) {
-      this._script = buildCommentsScript();
-      document.body.appendChild(this._script);
+      // this._script = buildCommentsScript();
+      // document.body.appendChild(this._script);
     }
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     if (this.comments) {
-      const _comments = document.body.querySelector(".utterances");
-      document.body.removeChild(_comments);
+      // const _comments = document.body.querySelector(".utterances");
+      // document.body.removeChild(_comments);
     }
   }
 
