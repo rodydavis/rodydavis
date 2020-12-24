@@ -4,6 +4,7 @@ title:  "How to use plugins from mobile and web in a Flutter project"
 date:   2019-09-06
 categories: [flutter, ios, android]
 tags: [flutter, ios, android, crossplatform, web]
+hasComments: 'true'
 ---
 
 # How to build a native cross platform project with Flutter
