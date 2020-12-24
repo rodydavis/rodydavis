@@ -61,6 +61,14 @@ export class AppRoot extends LitElement {
         transform: translate(-50%, -50%);
         color: white;
       }
+      .social-link {
+        text-decoration: none;
+      }
+      .social-icons {
+        width: 100%;
+        text-align: center;
+        padding-top: 10px;
+      }
     `;
   }
 
@@ -80,7 +88,36 @@ export class AppRoot extends LitElement {
           </p>
           <p>- Steve Jobs</p>
         </section>
+        ${this.buildSocial()}
       </nav-wrapper>
     `;
+  }
+
+  private buildSocial(): TemplateResult {
+    return html` <div class="social-icons">
+      ${this._socialIcon('github', 'https://github.com/rodydavis')}
+      ${this._socialIcon('twitter', 'https://twitter.com/rodydavis')}
+      ${this._socialIcon('youtube', 'https://youtube.com/rodydavis')}
+      ${this._socialIcon('instagram', 'https://instagram.com/rodydavisjr')}
+      ${this._socialIcon(
+        'facebook',
+        'https://facebook.com/rodydavisjr',
+      )}${this._socialIcon('linkedin', 'https://www.linkedin.com/in/rodydavis')}
+      ${this._socialIcon('tiktok', 'https://tiktok.com/@rodydavisjr')}
+      ${this._socialIcon('email', 'mailto:rody.davis.jr@gmail.com')}
+    </div>`;
+  }
+
+  private _socialIcon(icon: string, link: string): TemplateResult {
+    const size = 25;
+    return html` <a class="social-link" href="${link}" target="_blank">
+      <img
+        width="${size}"
+        height="${size}"
+        slot="actionItems"
+        src="/images/social/${icon}.svg"
+        slot="onIcon"
+      />
+    </a>`;
   }
 }

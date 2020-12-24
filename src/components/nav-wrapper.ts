@@ -50,13 +50,10 @@ export class NavWrapper extends LitElement {
         color: var(--mdc-theme-on-primary);
         font-size: 16px;
       }
-      .social-link {
-        text-decoration: none;
-      }
-      .social-icons {
-        width: 100%;
-        text-align: center;
-        padding-right: 10px;
+      @media screen and (max-width: 400px) {
+        .action-menu {
+          display: none;
+        }
       }
     `;
   }
@@ -92,7 +89,6 @@ export class NavWrapper extends LitElement {
               ${this._drawerItem('list', 'Stories', '/stories')}
               ${this._drawerItem('info', 'About', '/about')}
             </mwc-list>
-            ${this.buildSocial()}
           </div>
           <div slot="appContent">
             <mwc-top-app-bar-fixed>
@@ -123,45 +119,11 @@ export class NavWrapper extends LitElement {
   private appBarMenuItem(route: string, label: string): TemplateResult {
     return html` <button
       slot="actionItems"
-      class="action"
+      class="action action-menu"
       @click=${() => this.navigate(route)}
     >
       ${label}
     </button>`;
-  }
-
-  private buildSocial(): TemplateResult {
-    return html` <div class="social-icons">
-      ${this._socialIcon('github', 'https://github.com/rodydavis')}
-      ${this._socialIcon('twitter', 'https://twitter.com/rodydavis')}
-      ${this._socialIcon('youtube', 'https://youtube.com/rodydavis')}
-      ${this._socialIcon('instagram', 'https://instagram.com/rodydavisjr')}
-      ${this._socialIcon(
-        'facebook',
-        'https://facebook.com/rodydavisjr',
-      )}${this._socialIcon('linkedin', 'https://www.linkedin.com/in/rodydavis')}
-      ${this._socialIcon('tiktok', 'https://tiktok.com/@rodydavisjr')}
-      ${this._socialIcon('email', 'mailto:rody.davis.jr@gmail.com')}
-    </div>`;
-  }
-
-  private menuItem(label: string, route: string): TemplateResult {
-    return html` <button @click=${() => (window.location.href = route)}>
-      ${label}
-    </button>`;
-  }
-
-  private _socialIcon(icon: string, link: string): TemplateResult {
-    const size = 25;
-    return html` <a class="social-link" href="${link}" target="_blank">
-      <img
-        width="${size}"
-        height="${size}"
-        slot="actionItems"
-        src="/images/social/${icon}.svg"
-        slot="onIcon"
-      />
-    </a>`;
   }
 
   private _drawerItem(
