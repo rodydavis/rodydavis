@@ -9,7 +9,7 @@
       content="Web site created using create-snowpack-app"
     />
     <link rel="stylesheet" type="text/css" href="/index.css" />
-    <title>Snowpack Static Starter App</title>
+    <title>Rody Davis</title>
     <link
       href="https://fonts.googleapis.com/css?family=Material+Icons&display=block"
       rel="stylesheet"
@@ -30,5 +30,12 @@
       data-x_margin="18"
       data-y_margin="18"
     ></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js');
+        });
+      }
+    </script>
   </body>
 </html>

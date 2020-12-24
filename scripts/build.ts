@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import * as fs from 'fs-extra';
 import { getPostFromMeta, mdWithoutMeta } from './meta';
 import { writeRssFile } from './rss';
 import { Converter } from 'showdown';
@@ -29,7 +29,6 @@ function buildMeta(path: string, name: string, outDir: string) {
     // const postMeta = copyMarkdownFile(`${path}/${id}.md`, `${outDir}/${name}`);
     const id = file.replace('.md', '');
     const filePath = `${path}/${id}.md`;
-    const src = fs.readFileSync(filePath).toString();
     // items.push(getPostFromMeta(src, filePath, id));
     items.push(copyMarkdownFile(filePath, file, `${outDir}/${name}`));
   }
@@ -92,6 +91,13 @@ function copyMarkdownFile(filePath: string, name: string, outputDir: string) {
   `;
     }
     result += `
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js');
+        });
+      }
+    </script>
     </body>
   </html>`;
   }
