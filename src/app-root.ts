@@ -75,9 +75,9 @@ export class AppRoot extends LitElement {
   render() {
     return html`
       <nav-wrapper>
-        <div class="hero-image">
+        <section class="hero-image">
           <div class="hero-text"></div>
-        </div>
+        </section>
         <section class="dark">
           <p>
             "Your work is going to fill a large part of your life, and the only
@@ -88,7 +88,7 @@ export class AppRoot extends LitElement {
           </p>
           <p>- Steve Jobs</p>
         </section>
-        ${this.buildSocial()}
+        <section>${this.buildSocial()}</section>
       </nav-wrapper>
     `;
   }
@@ -105,6 +105,7 @@ export class AppRoot extends LitElement {
       )}${this._socialIcon('linkedin', 'https://www.linkedin.com/in/rodydavis')}
       ${this._socialIcon('tiktok', 'https://tiktok.com/@rodydavisjr')}
       ${this._socialIcon('email', 'mailto:rody.davis.jr@gmail.com')}
+      ${this._socialIcon('rss', '/feed.xml')}
     </div>`;
   }
 
