@@ -4,7 +4,7 @@
         <title>Rody Davis Blog Feed</title>
         <link>https://rodydavis.com/</link>
         <description>This is my personal feed!</description>
-        <lastBuildDate>Thu, 24 Dec 2020 08:31:11 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 24 Dec 2020 22:13:29 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,9 +16,763 @@
         <copyright>All rights reserved 2020, Rody Davis</copyright>
         <category>Technology</category>
         <item>
+            <title><![CDATA["Automate Flutter App Releases"]]></title>
+            <link>https://rodydavis.com/#/blog/assets/blog/automate-flutter-apps</link>
+            <guid>assets/blog/automate-flutter-apps</guid>
+            <pubDate>Fri, 15 Mar 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[
+layout: post
+title: "Automate Flutter App Releases"
+date: 2019-03-15
+categories: [flutter, apps, ci, automation]
+hasComments: 'true'
+]]></description>
+            <content:encoded><![CDATA[
+
+# Automate Flutter App Releases
+
+## TLDR
+
+You can find the script [here](https://gist.github.com/rodydavis/774b36e32d7efa882cca8dd16da6e74c).
+
+<script src="https://gist.github.com/rodydavis/774b36e32d7efa882cca8dd16da6e74c.js"></script>
+
+Make your life easier and automate your builds to beta and production!
+
+## What you need
+
+- [Fastlane](https://fastlane.tools/) setup in each directory
+- [build_runner](https://pub.dartlang.org/packages/build_runner) as a dependency
+- Git Project in VCS
+
+## Initial Setup
+
+- Download [this file](https://gist.github.com/rodydavis/774b36e32d7efa882cca8dd16da6e74c)
+- Put it at the root level of your flutter project
+- Open the terminal and navigate to your project location
+- Enter this command: chmod +x release.sh
+
+## Usage
+
+Now you can call this script!
+
+- For beta: `./release.sh beta`
+- For production: `./release.sh release`
+
+## Overview
+
+- Bump the version numbers if you are using the version in the pubspec.yaml
+- Release the apps with Fastlane
+- Format all Dart Files
+- Clean Project
+- Rebuild classes
+- Add commit messages
+- Updates Cocoa Pods
+]]></content:encoded>
+            <category>automate-flutter-apps.md</category>
+            <enclosure url="https://rodydavis.com" length="0" type="image//"/>
+        </item>
+        <item>
+            <title><![CDATA["How to use plugins from mobile and web in a Flutter project"]]></title>
+            <link>https://rodydavis.com/#/blog/assets/blog/codebase-many-places</link>
+            <guid>assets/blog/codebase-many-places</guid>
+            <pubDate>Fri, 06 Sep 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[
+layout: post
+title:  "How to use plugins from mobile and web in a Flutter project"
+date:   2019-09-06
+categories: [flutter, ios, android]
+tags: [flutter, ios, android, crossplatform, web]
+hasComments: 'true'
+]]></description>
+            <content:encoded><![CDATA[
+
+# How to build a native cross platform project with Flutter
+
+You can find the final project [here](https://github.com/rodydavis/flutter_x/tree/finish).
+
+Up to now you have been able to create projects with Flutter that run on iOS/Android, Web and Desktop but only sharing pure dart plugins.
+Flutter launched Flutter for web at Google I/O and was a temporary fork that required you to change imports from `import 'package:flutter/material.dart';` to `import 'package:flutter_web/material.dart';`. As you can image this was really difficult for a code base as you had to create a fork and change the imports. This also meant that you could not import any package that needed on a path or depended on flutter. The time as come and the merge is complete. Now you no longer need to change the imports!
+
+![icon](/images/gifs/yes_yes_yes.gif)
+
+You can use any plugin now, have a debugger, create new flutter projects with the web folder added, web plugins, and so much more..
+
+### Disclaimer
+
+You will need to be on the latest flutter for this to work.
+
+## 1. Install Flutter
+
+[Download Flutter](https://flutter.io/get-started/install/)
+
+![flutter](/images/flutter/logo.jpg)
+
+## 2. Create new Flutter Project
+
+If you are pretty new to Flutter you can check out [this useful guide](https://flutter.io/get-started/codelab/) on how to create a new project step by step. 
+
+![cross-platform](/images/flutter/cross-platform.jpg)
+
+Create a new project named `flutter_x` and it should look like this:
+
+![flutter](/images/flutter_x/new_project.png)
+
+You can also down the starter project [here](https://github.com/rodydavis/flutter_x/tree/starter).
+
+Your code should look like this:
+
+```dart
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        // This is the theme of your application.
+        //
+        // Try running your application with "flutter run". You'll see the
+        // application has a blue toolbar. Then, without quitting the app, try
+        // changing the primarySwatch below to Colors.green and then invoke
+        // "hot reload" (press "r" in the console where you ran "flutter run",
+        // or simply save your changes to "hot reload" in a Flutter IDE).
+        // Notice that the counter didn't reset back to zero; the application
+        // is not restarted.
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  // This widget is the home page of your application. It is stateful, meaning
+  // that it has a State object (defined below) that contains fields that affect
+  // how it looks.
+
+  // This class is the configuration for the state. It holds the values (in this
+  // case the title) provided by the parent (in this case the App widget) and
+  // used by the build method of the State. Fields in a Widget subclass are
+  // always marked "final".
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // This method is rerun every time setState is called, for instance as done
+    // by the _incrementCounter method above.
+    //
+    // The Flutter framework has been optimized to make rerunning build methods
+    // fast, so that you can just rebuild anything that needs updating rather
+    // than having to individually change instances of widgets.
+    return Scaffold(
+      appBar: AppBar(
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: Text(widget.title),
+      ),
+      body: Center(
+        // Center is a layout widget. It takes a single child and positions it
+        // in the middle of the parent.
+        child: Column(
+          // Column is also a layout widget. It takes a list of children and
+          // arranges them vertically. By default, it sizes itself to fit its
+          // children horizontally, and tries to be as tall as its parent.
+          //
+          // Invoke "debug painting" (press "p" in the console, choose the
+          // "Toggle Debug Paint" action from the Flutter Inspector in Android
+          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+          // to see the wireframe for each widget.
+          //
+          // Column has various properties to control how it sizes itself and
+          // how it positions its children. Here we use mainAxisAlignment to
+          // center the children vertically; the main axis here is the vertical
+          // axis because Columns are vertical (the cross axis would be
+          // horizontal).
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'You have pushed the button this many times:',
+            ),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.display1,
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: Icon(Icons.add),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+```
+
+## 3. Run your project
+
+Just to make sure everything is working go ahead and run the project on iOS/Android.
+
+![flutter](/images/flutter_x/starter_ipad.png)
+
+You should have the counter application running and working correctly. Now quit and run on Chrome. It should be listed as a device. You can also run from the command line `flutter run -d chrome`.
+
+![flutter](/images/flutter_x/starter_web.png)
+
+>You do not get hot reload yet on web so be aware of that.
+
+## 4. Set up project structure
+
+>This is optional but I use this structure in all my apps
+
+```auto
+/lib
+    /ui
+        /common
+        /screen
+    /data
+        /classes
+        /models
+        /blocs
+        /abstract
+        /services
+        /database
+        /utils
+    /plugins
+```
+
+![flutter](/images/flutter_x/structure.png)
+
+Your project should now look like this.
+
+## 5. Import Plugins
+
+Open your `pubspec.yaml` and import the following packages.
+
+```yaml
+universal_html:
+url_launcher:
+```
+
+> You can also remove the comments generated in the pubspec.yaml
+
+Your pubspec.yaml will now read like this:
+
+```yaml
+name: flutter_x
+description: A new Flutter project.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^0.1.2
+  universal_html: ^1.1.0
+  url_launcher: ^5.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
+
+```
+
+## 6. Setup the plugin implementation
+
+By default if you were to check if the device was mobile or web you will get an error at compile time when trying to import a plugin that is not meant for the platform. To get around this we will use dynamic imports.
+
+![flutter](/images/flutter_x/url_launcher.png)
+
+Create a url_launcher folder and file `url_launcher.dart`, `mobile.dart`, `web.dart`, `unsupported.dart` inside the plugins folder.
+
+## 7: Dynamic Imports
+
+In the file `url_launcher.dart` add the following:
+
+```dart
+export 'unsupported.dart'
+    if (dart.library.html) 'web.dart'
+    if (dart.library.io) 'mobile.dart';
+```
+
+This will pick the correct file at runtime and give a fallback if it is not supported.
+
+## 8: Fallback for Plugin
+
+To protect against edge cases you will need to set up a fallback for the import. In `unsupported.dart` add the following:
+
+```dart
+class UrlUtils {
+  UrlUtils._();
+
+  static void open(String url, {String name}) {
+    throw 'Platform Not Supported';
+  }
+}
+```
+
+The class `UrlUtils` and the public methods have to match all three files for this to work correctly. Always set up the unsupported first then copy the file into `mobile.dart` and `web.dart` to ensure no typos.
+
+You should now have 3 files with the above code in each class.
+
+## 9: Mobile Side
+
+In `mobile.dart` add the following:
+
+```dart
+import 'package:url_launcher/url_launcher.dart';
+
+class UrlUtils {
+  UrlUtils._();
+
+  static void open(String url, {String name}) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    }
+  }
+}
+```
+
+This will open the link in safari view controller or android's default browser respectively.
+
+## 10: Web Side
+
+In `web.dart` add the following:
+
+```dart
+import 'package:universal_html/prefer_universal/html.dart' as html;
+
+class UrlUtils {
+  UrlUtils._();
+
+  static void open(String url, {String name}) {
+    html.window.open(url, name);
+  }
+}
+```
+
+This will open up a new window in the browser with the specified link.
+
+## 11: Connect the UI
+
+Add a button to the center of the screen. The `ui/home/screen.dart` should read the following:
+
+```dart
+import 'package:flutter/material.dart';
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
+          child: RaisedButton(
+        child: Text('Open Flutter.dev'),
+        onPressed: () {},
+      )),
+    );
+  }
+}
+```
+
+Update the `onPressed` to the following:
+
+```dart
+onPressed: () {
+    try {
+        UrlUtils.open('https://flutter.dev');
+    } catch (e) {
+        print('Error -> $e');
+    }
+},
+```
+
+Now when you go to import the `UrlUtils` it is important to import the correct URI.
+
+![flutter](/images/flutter_x/import.png)
+
+Make sure to import `import 'package:flutter_x/plugins/url_launcher/url_launcher.dart';` only.
+
+> You can use the relative import if you wish.
+
+## 12: Double Check
+
+You UI code will now read the following:
+
+```dart
+import 'package:flutter/material.dart';
+
+import '../../plugins/url_launcher/url_launcher.dart';
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
+          child: RaisedButton(
+        child: Text('Open Flutter.dev'),
+        onPressed: () {
+          try {
+            UrlUtils.open('https://flutter.dev');
+          } catch (e) {
+            print('Error -> $e');
+          }
+        },
+      )),
+    );
+  }
+}
+```
+
+## 13: Run Your App
+
+Your app on the web should look like this:
+
+![flutter](/images/flutter_x/web_1.png)
+
+And when you tap the button..
+
+![flutter](/images/flutter_x/web_2.png)
+
+And when you run it on iOS/Android it should look like this:
+
+![flutter](/images/flutter_x/mobile_1.png)
+
+And when you tap the button..
+
+![flutter](/images/flutter_x/mobile_2.png)
+
+## Conclusion
+
+Congratulations! You made it :)
+
+![flutter](/images/gifs/congratulations.gif)
+
+Here is the final project located [here](https://github.com/rodydavis/flutter_x/tree/finish).
+
+Please reach out if you have any questions!
+]]></content:encoded>
+            <category>codebase-many-places.md</category>
+            <enclosure url="https://rodydavis.com/images/gifs/yes_yes_yes.gif" length="0" type="image/gif"/>
+        </item>
+        <item>
+            <title><![CDATA["Flutter + Fastlane (One Click Beta)"]]></title>
+            <link>https://rodydavis.com/#/blog/assets/blog/flutter-one-click-release</link>
+            <guid>assets/blog/flutter-one-click-release</guid>
+            <pubDate>Mon, 11 Mar 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[
+layout: post
+title:  "Flutter + Fastlane (One Click Beta)"
+date:   2019-03-11
+categories: [flutter, ios, android]
+tags: [flutter, ci/cd, automation, fastlane, AppStore, Google Play]
+hasComments: 'true'
+]]></description>
+            <content:encoded><![CDATA[
+
+# Flutter + Fastlane (One Click Beta)
+
+## 1. Install Flutter
+
+[Download Flutter](https://flutter.io/get-started/install/)
+
+![flutter](/images/flutter/logo.jpg)
+
+## 2. Create new Flutter Project
+
+If you are pretty new to Flutter you can check out [this useful guide](https://flutter.io/get-started/codelab/) on how to create a new project step by step. 
+
+![cross-platform](/images/flutter/cross-platform.jpg)
+
+## 3. Create App in iTunes Connect
+
+If you are not familiar with iTunes Connect, check out [this article](https://clearbridgemobile.com/how-to-submit-an-app-to-the-app-store/) for getting started and setting up your first app for the App Store. 
+
+
+## 4. Create App in Google Play
+
+Setting up an app in the Google Play Console can be tricky, make sure to check out the [official reference](https://support.google.com/googleplay/android-developer/answer/113469?hl=en-GB) and [this guide](https://medium.com/mindorks/upload-your-first-android-app-on-play-store-step-by-step-ee0de9123ac0) if you are having trouble. 
+
+![fastlane](/images/flutter/fastlane.jpg)
+
+## 5. Navigate to Project > ios and Setup Fastlane
+
+[Reference](https://docs.fastlane.tools/getting-started/ios/setup/)
+
+
+## 6. Navigate to Project > android and Setup Fastlane
+
+[Reference](https://docs.fastlane.tools/getting-started/android/setup/)
+
+
+## 7. Update Fastlane Fastfiles for iOS and Android and Change accordingly for each platform
+
+- Make sure to change <YOUR PROJECT PATH> to the path to your project in Finder.
+
+- Only copy the correct platform code for each Fastfile. For example, `default_platform(:ios)` for iOS and `default_platform(:android)1st for Android.
+
+``` ruby
+update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Push a new beta build to TestFlight"
+  lane :beta do
+    increment_build_number(xcodeproj: "Runner.xcodeproj")
+    build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
+    upload_to_testflight(skip_waiting_for_build_processing: true)
+  end
+  desc "Push a new release build to the App Store"
+  lane :release do  
+    increment_build_number(xcodeproj: "Runner.xcodeproj")
+    build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
+    upload_to_app_store(submit_for_review: true,
+                            automatic_release: true,
+                            skip_screenshots: true,
+                            force: true,
+                            skip_waiting_for_build_processing: true)
+  end
+end
+
+
+  
+//<YOUR PROJECT PATH> > android > fastlane > Fastfile
+default_platform(:android)
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Submit a new Build to Beta"
+  lane :beta do
+    gradle(task: 'clean')
+    increment_version_code
+    sh "cd <YOUR PROJECT PATH> && flutter build apk"
+    upload_to_play_store(
+      track: 'beta',
+      apk: '../build/app/outputs/apk/release/app-release.apk',
+      skip_upload_screenshots: true,
+      skip_upload_images: true
+    )
+    # crashlytics
+  end
+
+  desc "Deploy a new version to the Google Play"
+  lane :deploy do
+    gradle(task: 'clean')
+    increment_version_code
+    sh "cd <YOUR PROJECT PATH> && flutter build apk"
+    upload_to_play_store(
+      track: 'production',
+      apk: '../build/app/outputs/apk/release/app-release.apk',
+      skip_upload_screenshots: true,
+      skip_upload_images: true
+    )
+  end
+end
+```
+
+- For Android `increment_version_code` install here.  
+
+Sometimes it will fail and you will need to run:
+
+`bundle exec fastlane add_plugin increment_version_code`
+ 
+
+- For iOS `increment_build_number` set up Generic Versioning by enabling the agvtool. 
+
+![version-bump](/images/flutter/version-bump.gif)
+[Source](https://medium.com/xcblog/agvtool-automating-ios-build-and-version-numbers-454cab6f1bbe)
+
+## 8. Metadata (Optional)
+
+- For iOS you can have Fastlane download all your apps existing metadata including screenshots from iTunes Connect. In terminal navigate to the project and run.
+
+`fastlane deliver download_metadata && fastlane deliver download_screenshots`
+
+- For Android you can use [Fastlane Supply](https://docs.fastlane.tools/actions/supply/). 
+
+## 9. Open Automator
+
+Right now everything is working just by the command line. If you navigate to your project in terminal by adding "cd " and dragging in the project folder and hitting Enter, you can type "cd ios && fastlane beta" or "cd android && fastlane beta" and both will run fastlane.
+
+![terminal](/images/flutter/terminal-drag.gif)
+
+If you want to be able to submit your app to Google Play and the App Store with one click we will be using [Automator](http://www.applegazette.com/os-x/getting-started-automator-workflows-mac/). Create a new Automator Application. And Search for "Ask for Confirmation" and "Run AppleScript" and drag in.
+
+![fastlane](/images/flutter/automator.jpg)
+
+Here is the Script for beta and release. You will need to create a Automator Application for both Beta and Release for each app you want automated. Save it where ever you want and create an Alias to be but on the Desktop.
+
+- Make sure to change <YOUR PROJECT PATH> to the path to your project in Finder
+
+Hint: I have my automator application save in the Github Repo of my project for versioning and easy access for different projects. 
+
+``` ruby
+//Beta
+on run {input, parameters}
+	tell application "Terminal"
+		activate
+		do script "cd <YOUR PROJECT PATH>/android && fastlane beta && cd <YOUR PROJECT PATH>/ios && fastlane beta"
+	end tell
+	tell application "System Events"
+		try
+			set visible of application process "Terminal" to false
+		end try
+	end tell
+end run
+
+//Release
+on run {input, parameters}
+	tell application "Terminal"
+		activate
+		do script "cd <YOUR PROJECT PATH>/android && fastlane deploy && cd <YOUR PROJECT PATH>/ios && fastlane release"
+	end tell
+	tell application "System Events"
+		try
+			set visible of application process "Terminal" to false
+		end try
+	end tell
+end run
+```
+
+## 10. Try It Out!
+
+Everything should be working now. If you double click on the automator application you should get a confirmation pop up to release the app. The Script will run terminal in the background and you can stay focused on developing awesome flutter applications. If you want to see the progress on fastlane uploading your apps you can click on the terminal icon and the terminal window will reappear. Thanks for reading and please reach out for any questions you have!
+]]></content:encoded>
+            <category>flutter-one-click-release.md</category>
+            <enclosure url="https://rodydavis.com/images/flutter/logo.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA["Launching... Space Curiosity"]]></title>
+            <link>https://rodydavis.com/#/blog/assets/blog/launch-space-curiosity</link>
+            <guid>assets/blog/launch-space-curiosity</guid>
+            <pubDate>Sun, 10 Mar 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[
+layout: post
+title:  "Launching... Space Curiosity"
+date:   2019-03-10
+categories: [flutter, ios, android]
+tags: [flutter, SpaceX, nasa, iss, planets, space]
+hasComments: 'true'
+]]></description>
+            <content:encoded><![CDATA[
+
+# Launching… Space Curiosity!
+A brief overview of a new app built with [Flutter](https://Flutter.io) by Rody Davis and Jesus Rodriguez.
+
+![icon](/images/space-curiosity/icon.png)
+
+## Background
+
+About 6 months ago Jesus Rodriguez launched his app "SpaceX GO!" On Reddit and I had just recently had launched my app "Daily NASA". I messaged him because not many people were building production apps with Flutter yet. I wasn't to see what he thought about collaboration. Over the next 6 months, we would brainstorm and design an app together in Flutter that could reach a larger audience. Him being an Android Dev took Google Play and me being iOS Dev I took the App Store.
+
+![space-x-section](/images/space-curiosity/space-x.PNG)
+
+## Development
+
+What was so amazing about Flutter is that for the first time an iOS Dev and Android Dev could collaborate to design an app together that targeted both audiences. In our app, we decided to not go with material design or Cupertino style. 
+With GitHub, it made it so easy to do Pull Requests and pitch and refactor the app without messing up the other. Aside from the occasional merge conflict. Most of the issues were due to Flutter and Dart evolving so fast and lots of hacks or struggles would be solved with an update.
+
+![nasa-images](/images/space-curiosity/nasa-images.PNG)
+
+One great thing about the Flutter plugin system is that if you find a plugin that does almost what you need but not all, you can fork the source and override the dependency in your `pubspec.yaml`. This was extremely useful when we had to update all of our plugins to support AndroidX.
+
+![iss-section](/images/space-curiosity/iss.PNG)
+
+When Flare by 2Dimensions came out, I was so inspired and created the "Weight Calculators" as you see in the app. All the 60fps animations are done in the app. This is the first product that allows the designer and developer to work together without messing up each other's workflow. You can view the animation here.
+
+![calc-section](/images/space-curiosity/calc.PNG)
+
+For the other parts of the app, we combined what we were working on individually. Jesus brought in and modified SpaceX Go!, and I did the same for daily NASA. Once we had a working prototype it was just a matter of writing a list of features and tackle them 1 by 1.
+
+![news-section](/images/space-curiosity/news.PNG)
+
+## Release
+
+All this work would not be possible without the incredible community behind Flutter, and the tools at our disposal. Because we love you guys so much we are making the app free and open source. If there is a feature we do not have yet, feel free to dive into the code and make a Pull Request! We have a lot more to add and you can expect some pretty cool updated coming soon.
+
+## Download Now (Beta)
+
+[Source](https://github.com/jesusrp98/space-curiosity)
+
+[TestFlight](https://testflight.apple.com/join/uIwSD3Rj)
+
+<a href='https://play.google.com/store/apps/details?id=com.chechu.curiosity&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="200"/></a>
+
+## Other
+
+Big thanks to Jesus Rodriguez to the awesome collaboration and ideas set forth.
+You can find [Rody Davis](https://www.github.com/rodydavis) and [Jesus Rodriguez](https://www.github.com/jesusrp98) on Github.
+]]></content:encoded>
+            <category>launch-space-curiosity.md</category>
+            <enclosure url="https://rodydavis.com/images/space-curiosity/icon.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA["Building A Piano with Flutter"]]></title>
-            <link>https://rodydavis.com/#/blog/making-a-piano.md</link>
-            <guid>making-a-piano.md</guid>
+            <link>https://rodydavis.com/#/blog/assets/blog/making-a-piano</link>
+            <guid>assets/blog/making-a-piano</guid>
             <pubDate>Tue, 12 Mar 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[
 layout: post
@@ -1080,762 +1834,8 @@ Now we have a fully functional piano that you can play with and enjoy on iOS and
 I was really inspired when creating this for the [Flutter Create](https://flutter.dev/create) contest.
 
 Hope you learned something, if you have any questions you can always read out to me. This is an open source piano and would love PRs on the main project [here](https://github.com/rodydavis/flutter_piano)!]]></content:encoded>
-            <author>rody.davis.jr@gmail.com (Rody Davis)</author>
+            <category>making-a-piano.md</category>
             <enclosure url="https://rodydavis.com/images/flutter_piano/starter.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA["How to use plugins from mobile and web in a Flutter project"]]></title>
-            <link>https://rodydavis.com/#/blog/codebase-many-places.md</link>
-            <guid>codebase-many-places.md</guid>
-            <pubDate>Fri, 06 Sep 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[
-layout: post
-title:  "How to use plugins from mobile and web in a Flutter project"
-date:   2019-09-06
-categories: [flutter, ios, android]
-tags: [flutter, ios, android, crossplatform, web]
-hasComments: 'true'
-]]></description>
-            <content:encoded><![CDATA[
-
-# How to build a native cross platform project with Flutter
-
-You can find the final project [here](https://github.com/rodydavis/flutter_x/tree/finish).
-
-Up to now you have been able to create projects with Flutter that run on iOS/Android, Web and Desktop but only sharing pure dart plugins.
-Flutter launched Flutter for web at Google I/O and was a temporary fork that required you to change imports from `import 'package:flutter/material.dart';` to `import 'package:flutter_web/material.dart';`. As you can image this was really difficult for a code base as you had to create a fork and change the imports. This also meant that you could not import any package that needed on a path or depended on flutter. The time as come and the merge is complete. Now you no longer need to change the imports!
-
-![icon](/images/gifs/yes_yes_yes.gif)
-
-You can use any plugin now, have a debugger, create new flutter projects with the web folder added, web plugins, and so much more..
-
-### Disclaimer
-
-You will need to be on the latest flutter for this to work.
-
-## 1. Install Flutter
-
-[Download Flutter](https://flutter.io/get-started/install/)
-
-![flutter](/images/flutter/logo.jpg)
-
-## 2. Create new Flutter Project
-
-If you are pretty new to Flutter you can check out [this useful guide](https://flutter.io/get-started/codelab/) on how to create a new project step by step. 
-
-![cross-platform](/images/flutter/cross-platform.jpg)
-
-Create a new project named `flutter_x` and it should look like this:
-
-![flutter](/images/flutter_x/new_project.png)
-
-You can also down the starter project [here](https://github.com/rodydavis/flutter_x/tree/starter).
-
-Your code should look like this:
-
-```dart
-import 'package:flutter/material.dart';
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-}
-```
-
-## 3. Run your project
-
-Just to make sure everything is working go ahead and run the project on iOS/Android.
-
-![flutter](/images/flutter_x/starter_ipad.png)
-
-You should have the counter application running and working correctly. Now quit and run on Chrome. It should be listed as a device. You can also run from the command line `flutter run -d chrome`.
-
-![flutter](/images/flutter_x/starter_web.png)
-
->You do not get hot reload yet on web so be aware of that.
-
-## 4. Set up project structure
-
->This is optional but I use this structure in all my apps
-
-```auto
-/lib
-    /ui
-        /common
-        /screen
-    /data
-        /classes
-        /models
-        /blocs
-        /abstract
-        /services
-        /database
-        /utils
-    /plugins
-```
-
-![flutter](/images/flutter_x/structure.png)
-
-Your project should now look like this.
-
-## 5. Import Plugins
-
-Open your `pubspec.yaml` and import the following packages.
-
-```yaml
-universal_html:
-url_launcher:
-```
-
-> You can also remove the comments generated in the pubspec.yaml
-
-Your pubspec.yaml will now read like this:
-
-```yaml
-name: flutter_x
-description: A new Flutter project.
-
-version: 1.0.0+1
-
-environment:
-  sdk: ">=2.1.0 <3.0.0"
-
-dependencies:
-  flutter:
-    sdk: flutter
-
-  cupertino_icons: ^0.1.2
-  universal_html: ^1.1.0
-  url_launcher: ^5.1.2
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-
-flutter:
-
-  uses-material-design: true
-
-```
-
-## 6. Setup the plugin implementation
-
-By default if you were to check if the device was mobile or web you will get an error at compile time when trying to import a plugin that is not meant for the platform. To get around this we will use dynamic imports.
-
-![flutter](/images/flutter_x/url_launcher.png)
-
-Create a url_launcher folder and file `url_launcher.dart`, `mobile.dart`, `web.dart`, `unsupported.dart` inside the plugins folder.
-
-## 7: Dynamic Imports
-
-In the file `url_launcher.dart` add the following:
-
-```dart
-export 'unsupported.dart'
-    if (dart.library.html) 'web.dart'
-    if (dart.library.io) 'mobile.dart';
-```
-
-This will pick the correct file at runtime and give a fallback if it is not supported.
-
-## 8: Fallback for Plugin
-
-To protect against edge cases you will need to set up a fallback for the import. In `unsupported.dart` add the following:
-
-```dart
-class UrlUtils {
-  UrlUtils._();
-
-  static void open(String url, {String name}) {
-    throw 'Platform Not Supported';
-  }
-}
-```
-
-The class `UrlUtils` and the public methods have to match all three files for this to work correctly. Always set up the unsupported first then copy the file into `mobile.dart` and `web.dart` to ensure no typos.
-
-You should now have 3 files with the above code in each class.
-
-## 9: Mobile Side
-
-In `mobile.dart` add the following:
-
-```dart
-import 'package:url_launcher/url_launcher.dart';
-
-class UrlUtils {
-  UrlUtils._();
-
-  static void open(String url, {String name}) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    }
-  }
-}
-```
-
-This will open the link in safari view controller or android's default browser respectively.
-
-## 10: Web Side
-
-In `web.dart` add the following:
-
-```dart
-import 'package:universal_html/prefer_universal/html.dart' as html;
-
-class UrlUtils {
-  UrlUtils._();
-
-  static void open(String url, {String name}) {
-    html.window.open(url, name);
-  }
-}
-```
-
-This will open up a new window in the browser with the specified link.
-
-## 11: Connect the UI
-
-Add a button to the center of the screen. The `ui/home/screen.dart` should read the following:
-
-```dart
-import 'package:flutter/material.dart';
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-          child: RaisedButton(
-        child: Text('Open Flutter.dev'),
-        onPressed: () {},
-      )),
-    );
-  }
-}
-```
-
-Update the `onPressed` to the following:
-
-```dart
-onPressed: () {
-    try {
-        UrlUtils.open('https://flutter.dev');
-    } catch (e) {
-        print('Error -> $e');
-    }
-},
-```
-
-Now when you go to import the `UrlUtils` it is important to import the correct URI.
-
-![flutter](/images/flutter_x/import.png)
-
-Make sure to import `import 'package:flutter_x/plugins/url_launcher/url_launcher.dart';` only.
-
-> You can use the relative import if you wish.
-
-## 12: Double Check
-
-You UI code will now read the following:
-
-```dart
-import 'package:flutter/material.dart';
-
-import '../../plugins/url_launcher/url_launcher.dart';
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-          child: RaisedButton(
-        child: Text('Open Flutter.dev'),
-        onPressed: () {
-          try {
-            UrlUtils.open('https://flutter.dev');
-          } catch (e) {
-            print('Error -> $e');
-          }
-        },
-      )),
-    );
-  }
-}
-```
-
-## 13: Run Your App
-
-Your app on the web should look like this:
-
-![flutter](/images/flutter_x/web_1.png)
-
-And when you tap the button..
-
-![flutter](/images/flutter_x/web_2.png)
-
-And when you run it on iOS/Android it should look like this:
-
-![flutter](/images/flutter_x/mobile_1.png)
-
-And when you tap the button..
-
-![flutter](/images/flutter_x/mobile_2.png)
-
-## Conclusion
-
-Congratulations! You made it :)
-
-![flutter](/images/gifs/congratulations.gif)
-
-Here is the final project located [here](https://github.com/rodydavis/flutter_x/tree/finish).
-
-Please reach out if you have any questions!
-]]></content:encoded>
-            <author>rody.davis.jr@gmail.com (Rody Davis)</author>
-            <enclosure url="https://rodydavis.com/images/gifs/yes_yes_yes.gif" length="0" type="image/gif"/>
-        </item>
-        <item>
-            <title><![CDATA["Flutter + Fastlane (One Click Beta)"]]></title>
-            <link>https://rodydavis.com/#/blog/flutter-one-click-release.md</link>
-            <guid>flutter-one-click-release.md</guid>
-            <pubDate>Mon, 11 Mar 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[
-layout: post
-title:  "Flutter + Fastlane (One Click Beta)"
-date:   2019-03-11
-categories: [flutter, ios, android]
-tags: [flutter, ci/cd, automation, fastlane, AppStore, Google Play]
-hasComments: 'true'
-]]></description>
-            <content:encoded><![CDATA[
-
-# Flutter + Fastlane (One Click Beta)
-
-## 1. Install Flutter
-
-[Download Flutter](https://flutter.io/get-started/install/)
-
-![flutter](/images/flutter/logo.jpg)
-
-## 2. Create new Flutter Project
-
-If you are pretty new to Flutter you can check out [this useful guide](https://flutter.io/get-started/codelab/) on how to create a new project step by step. 
-
-![cross-platform](/images/flutter/cross-platform.jpg)
-
-## 3. Create App in iTunes Connect
-
-If you are not familiar with iTunes Connect, check out [this article](https://clearbridgemobile.com/how-to-submit-an-app-to-the-app-store/) for getting started and setting up your first app for the App Store. 
-
-
-## 4. Create App in Google Play
-
-Setting up an app in the Google Play Console can be tricky, make sure to check out the [official reference](https://support.google.com/googleplay/android-developer/answer/113469?hl=en-GB) and [this guide](https://medium.com/mindorks/upload-your-first-android-app-on-play-store-step-by-step-ee0de9123ac0) if you are having trouble. 
-
-![fastlane](/images/flutter/fastlane.jpg)
-
-## 5. Navigate to Project > ios and Setup Fastlane
-
-[Reference](https://docs.fastlane.tools/getting-started/ios/setup/)
-
-
-## 6. Navigate to Project > android and Setup Fastlane
-
-[Reference](https://docs.fastlane.tools/getting-started/android/setup/)
-
-
-## 7. Update Fastlane Fastfiles for iOS and Android and Change accordingly for each platform
-
-- Make sure to change <YOUR PROJECT PATH> to the path to your project in Finder.
-
-- Only copy the correct platform code for each Fastfile. For example, `default_platform(:ios)` for iOS and `default_platform(:android)1st for Android.
-
-``` ruby
-update_fastlane
-
-default_platform(:ios)
-
-platform :ios do
-  desc "Push a new beta build to TestFlight"
-  lane :beta do
-    increment_build_number(xcodeproj: "Runner.xcodeproj")
-    build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
-    upload_to_testflight(skip_waiting_for_build_processing: true)
-  end
-  desc "Push a new release build to the App Store"
-  lane :release do  
-    increment_build_number(xcodeproj: "Runner.xcodeproj")
-    build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
-    upload_to_app_store(submit_for_review: true,
-                            automatic_release: true,
-                            skip_screenshots: true,
-                            force: true,
-                            skip_waiting_for_build_processing: true)
-  end
-end
-
-
-  
-//<YOUR PROJECT PATH> > android > fastlane > Fastfile
-default_platform(:android)
-
-platform :android do
-  desc "Runs all the tests"
-  lane :test do
-    gradle(task: "test")
-  end
-
-  desc "Submit a new Build to Beta"
-  lane :beta do
-    gradle(task: 'clean')
-    increment_version_code
-    sh "cd <YOUR PROJECT PATH> && flutter build apk"
-    upload_to_play_store(
-      track: 'beta',
-      apk: '../build/app/outputs/apk/release/app-release.apk',
-      skip_upload_screenshots: true,
-      skip_upload_images: true
-    )
-    # crashlytics
-  end
-
-  desc "Deploy a new version to the Google Play"
-  lane :deploy do
-    gradle(task: 'clean')
-    increment_version_code
-    sh "cd <YOUR PROJECT PATH> && flutter build apk"
-    upload_to_play_store(
-      track: 'production',
-      apk: '../build/app/outputs/apk/release/app-release.apk',
-      skip_upload_screenshots: true,
-      skip_upload_images: true
-    )
-  end
-end
-```
-
-- For Android `increment_version_code` install here.  
-
-Sometimes it will fail and you will need to run:
-
-`bundle exec fastlane add_plugin increment_version_code`
- 
-
-- For iOS `increment_build_number` set up Generic Versioning by enabling the agvtool. 
-
-![version-bump](/images/flutter/version-bump.gif)
-[Source](https://medium.com/xcblog/agvtool-automating-ios-build-and-version-numbers-454cab6f1bbe)
-
-## 8. Metadata (Optional)
-
-- For iOS you can have Fastlane download all your apps existing metadata including screenshots from iTunes Connect. In terminal navigate to the project and run.
-
-`fastlane deliver download_metadata && fastlane deliver download_screenshots`
-
-- For Android you can use [Fastlane Supply](https://docs.fastlane.tools/actions/supply/). 
-
-## 9. Open Automator
-
-Right now everything is working just by the command line. If you navigate to your project in terminal by adding "cd " and dragging in the project folder and hitting Enter, you can type "cd ios && fastlane beta" or "cd android && fastlane beta" and both will run fastlane.
-
-![terminal](/images/flutter/terminal-drag.gif)
-
-If you want to be able to submit your app to Google Play and the App Store with one click we will be using [Automator](http://www.applegazette.com/os-x/getting-started-automator-workflows-mac/). Create a new Automator Application. And Search for "Ask for Confirmation" and "Run AppleScript" and drag in.
-
-![fastlane](/images/flutter/automator.jpg)
-
-Here is the Script for beta and release. You will need to create a Automator Application for both Beta and Release for each app you want automated. Save it where ever you want and create an Alias to be but on the Desktop.
-
-- Make sure to change <YOUR PROJECT PATH> to the path to your project in Finder
-
-Hint: I have my automator application save in the Github Repo of my project for versioning and easy access for different projects. 
-
-``` ruby
-//Beta
-on run {input, parameters}
-	tell application "Terminal"
-		activate
-		do script "cd <YOUR PROJECT PATH>/android && fastlane beta && cd <YOUR PROJECT PATH>/ios && fastlane beta"
-	end tell
-	tell application "System Events"
-		try
-			set visible of application process "Terminal" to false
-		end try
-	end tell
-end run
-
-//Release
-on run {input, parameters}
-	tell application "Terminal"
-		activate
-		do script "cd <YOUR PROJECT PATH>/android && fastlane deploy && cd <YOUR PROJECT PATH>/ios && fastlane release"
-	end tell
-	tell application "System Events"
-		try
-			set visible of application process "Terminal" to false
-		end try
-	end tell
-end run
-```
-
-## 10. Try It Out!
-
-Everything should be working now. If you double click on the automator application you should get a confirmation pop up to release the app. The Script will run terminal in the background and you can stay focused on developing awesome flutter applications. If you want to see the progress on fastlane uploading your apps you can click on the terminal icon and the terminal window will reappear. Thanks for reading and please reach out for any questions you have!
-]]></content:encoded>
-            <author>rody.davis.jr@gmail.com (Rody Davis)</author>
-            <enclosure url="https://rodydavis.com/images/flutter/logo.jpg" length="0" type="image/jpg"/>
-        </item>
-        <item>
-            <title><![CDATA["Automate Flutter App Releases"]]></title>
-            <link>https://rodydavis.com/#/blog/automate-flutter-apps.md</link>
-            <guid>automate-flutter-apps.md</guid>
-            <pubDate>Fri, 15 Mar 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[
-layout: post
-title: "Automate Flutter App Releases"
-date: 2019-03-15
-categories: [flutter, apps, ci, automation]
-hasComments: 'true'
-]]></description>
-            <content:encoded><![CDATA[
-
-# Automate Flutter App Releases
-
-## TLDR
-
-You can find the script [here](https://gist.github.com/rodydavis/774b36e32d7efa882cca8dd16da6e74c).
-
-<script src="https://gist.github.com/rodydavis/774b36e32d7efa882cca8dd16da6e74c.js"></script>
-
-Make your life easier and automate your builds to beta and production!
-
-## What you need
-
-- [Fastlane](https://fastlane.tools/) setup in each directory
-- [build_runner](https://pub.dartlang.org/packages/build_runner) as a dependency
-- Git Project in VCS
-
-## Initial Setup
-
-- Download [this file](https://gist.github.com/rodydavis/774b36e32d7efa882cca8dd16da6e74c)
-- Put it at the root level of your flutter project
-- Open the terminal and navigate to your project location
-- Enter this command: chmod +x release.sh
-
-## Usage
-
-Now you can call this script!
-
-- For beta: `./release.sh beta`
-- For production: `./release.sh release`
-
-## Overview
-
-- Bump the version numbers if you are using the version in the pubspec.yaml
-- Release the apps with Fastlane
-- Format all Dart Files
-- Clean Project
-- Rebuild classes
-- Add commit messages
-- Updates Cocoa Pods
-]]></content:encoded>
-            <author>rody.davis.jr@gmail.com (Rody Davis)</author>
-            <enclosure url="https://rodydavis.com" length="0" type="image//"/>
-        </item>
-        <item>
-            <title><![CDATA["Launching... Space Curiosity"]]></title>
-            <link>https://rodydavis.com/#/blog/launch-space-curiosity.md</link>
-            <guid>launch-space-curiosity.md</guid>
-            <pubDate>Sun, 10 Mar 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[
-layout: post
-title:  "Launching... Space Curiosity"
-date:   2019-03-10
-categories: [flutter, ios, android]
-tags: [flutter, SpaceX, nasa, iss, planets, space]
-hasComments: 'true'
-]]></description>
-            <content:encoded><![CDATA[
-
-# Launching… Space Curiosity!
-A brief overview of a new app built with [Flutter](https://Flutter.io) by Rody Davis and Jesus Rodriguez.
-
-![icon](/images/space-curiosity/icon.png)
-
-## Background
-
-About 6 months ago Jesus Rodriguez launched his app "SpaceX GO!" On Reddit and I had just recently had launched my app "Daily NASA". I messaged him because not many people were building production apps with Flutter yet. I wasn't to see what he thought about collaboration. Over the next 6 months, we would brainstorm and design an app together in Flutter that could reach a larger audience. Him being an Android Dev took Google Play and me being iOS Dev I took the App Store.
-
-![space-x-section](/images/space-curiosity/space-x.PNG)
-
-## Development
-
-What was so amazing about Flutter is that for the first time an iOS Dev and Android Dev could collaborate to design an app together that targeted both audiences. In our app, we decided to not go with material design or Cupertino style. 
-With GitHub, it made it so easy to do Pull Requests and pitch and refactor the app without messing up the other. Aside from the occasional merge conflict. Most of the issues were due to Flutter and Dart evolving so fast and lots of hacks or struggles would be solved with an update.
-
-![nasa-images](/images/space-curiosity/nasa-images.PNG)
-
-One great thing about the Flutter plugin system is that if you find a plugin that does almost what you need but not all, you can fork the source and override the dependency in your `pubspec.yaml`. This was extremely useful when we had to update all of our plugins to support AndroidX.
-
-![iss-section](/images/space-curiosity/iss.PNG)
-
-When Flare by 2Dimensions came out, I was so inspired and created the "Weight Calculators" as you see in the app. All the 60fps animations are done in the app. This is the first product that allows the designer and developer to work together without messing up each other's workflow. You can view the animation here.
-
-![calc-section](/images/space-curiosity/calc.PNG)
-
-For the other parts of the app, we combined what we were working on individually. Jesus brought in and modified SpaceX Go!, and I did the same for daily NASA. Once we had a working prototype it was just a matter of writing a list of features and tackle them 1 by 1.
-
-![news-section](/images/space-curiosity/news.PNG)
-
-## Release
-
-All this work would not be possible without the incredible community behind Flutter, and the tools at our disposal. Because we love you guys so much we are making the app free and open source. If there is a feature we do not have yet, feel free to dive into the code and make a Pull Request! We have a lot more to add and you can expect some pretty cool updated coming soon.
-
-## Download Now (Beta)
-
-[Source](https://github.com/jesusrp98/space-curiosity)
-
-[TestFlight](https://testflight.apple.com/join/uIwSD3Rj)
-
-<a href='https://play.google.com/store/apps/details?id=com.chechu.curiosity&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="200"/></a>
-
-## Other
-
-Big thanks to Jesus Rodriguez to the awesome collaboration and ideas set forth.
-You can find [Rody Davis](https://www.github.com/rodydavis) and [Jesus Rodriguez](https://www.github.com/jesusrp98) on Github.
-]]></content:encoded>
-            <author>rody.davis.jr@gmail.com (Rody Davis)</author>
-            <enclosure url="https://rodydavis.com/images/space-curiosity/icon.png" length="0" type="image/png"/>
         </item>
     </channel>
 </rss>

@@ -2,49 +2,103 @@ import * as fs from 'fs-extra';
 import { getPostFromMeta, mdWithoutMeta } from './meta';
 import { writeRssFile } from './rss';
 import { Converter } from 'showdown';
-// import prettify from 'html-prettify';
 import { md2ampstory } from './amp-story';
+import type { PostMeta } from 'src/utils/meta';
 
-export async function build() {
-  const outDir = 'public';
-  const inputDir = 'assets';
+export async function build(inputDir: string, outputDir: string) {
   const files = fs.readdirSync(inputDir);
   for (const path of files) {
+    checkFile(inputDir, outputDir, path);
+  }
+  const rss = await writeRssFile('assets/blog').catch(console.error);
+  if (rss) fs.writeFileSync(`${outputDir}/feed.xml`, rss);
+}
+
+function checkFile(
+  inputDir: string,
+  outputDir: string,
+  path: string,
+): PostMeta | undefined {
+  const localPath = `${inputDir}/${path}`;
+  const stat = fs.statSync(localPath);
+  if (stat.isDirectory()) {
+    scanDir(inputDir, outputDir, path);
+  } else if (stat.isFile()) {
     if (path.endsWith('.md')) {
-      copyMarkdownFile(`${inputDir}/${path}`, path, outDir);
+      return copyMarkdownFile(inputDir, outputDir, path);
     }
   }
-  buildMeta('assets/apps', 'apps', outDir);
-  buildMeta('assets/blog', 'blog', outDir);
-  const rss = await writeRssFile('assets/blog').catch(console.error);
-  if (rss) fs.writeFileSync(`${outDir}/feed.xml`, rss);
-  buildMeta('assets/stories', 'stories', outDir);
 }
 
-function buildMeta(path: string, name: string, outDir: string) {
-  const files = fs.readdirSync(path);
-  const items = [];
-  for (const file of files) {
-    if (!file.match('.md')) continue;
-    // const postMeta = copyMarkdownFile(`${path}/${id}.md`, `${outDir}/${name}`);
-    const id = file.replace('.md', '');
-    const filePath = `${path}/${id}.md`;
-    // items.push(getPostFromMeta(src, filePath, id));
-    items.push(copyMarkdownFile(filePath, file, `${outDir}/${name}`));
+function scanDir(inputDir: string, outputDir: string, subPath: string) {
+  const folderPath = `${inputDir}/${subPath}`;
+  const files = fs.readdirSync(folderPath);
+  const items: PostMeta[] = [];
+  const folders: string[] = [];
+  for (const path of files) {
+    const meta = checkFile(inputDir, outputDir, `${subPath}/${path}`);
+    if (meta) {
+      items.push(meta);
+    } else {
+      folders.push(path);
+    }
   }
-  fs.writeFileSync(
-    `${outDir}/${name}/info.json`,
-    JSON.stringify({
-      updated: Date.now(),
-      items,
-    }),
+  const parts = subPath.split('/');
+  const name = parts[parts.length - 1].replace('.md', '');
+  const result = buildDirHtml(
+    name.charAt(0).toUpperCase() + name.slice(1),
+    subPath,
   );
+  const dirPath = `${outputDir}/${subPath}`;
+  checkDir(dirPath);
+  fs.writeFileSync(`${dirPath}/index.html`, result);
+  const jsonResult = JSON.stringify({
+    updated: Date.now(),
+    items,
+    folders,
+  });
+  fs.writeFileSync(`${dirPath}/info.json`, jsonResult);
 }
 
-function copyMarkdownFile(filePath: string, name: string, outputDir: string) {
-  const id = name.replace('.md', '');
-  const content = fs.readFileSync(filePath).toString();
-  const meta = getPostFromMeta(content, filePath, id);
+function buildDirHtml(title: string, folder: string): string {
+  let result = '';
+  result += `
+  <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="/">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>${title}</title>
+    <link rel="stylesheet" type="text/css" href="/index.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons&display=block"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav-wrapper title="${title}"
+      ><meta-list folder="${folder}"></meta-list
+    ></nav-wrapper>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script type="module" src="/dist/components/nav-wrapper.js"></script>
+    <script type="module" src="/dist/components/meta-list.js"></script>
+  </body>
+</html>
+  `;
+  return result;
+}
+
+function copyMarkdownFile(
+  inputDir: string,
+  outputDir: string,
+  subPath: string,
+) {
+  const localPath = `${inputDir}/${subPath}`;
+  const parts = subPath.split('/');
+  const name = parts[parts.length - 1].replace('.md', '');
+  const content = fs.readFileSync(localPath).toString();
+  const meta = getPostFromMeta(content, localPath, name);
   const title = meta?.title || name;
   let result = '';
   if (meta?.layout == 'story') {
@@ -101,10 +155,20 @@ function copyMarkdownFile(filePath: string, name: string, outputDir: string) {
     </body>
   </html>`;
   }
-  checkDir(outputDir);
-  checkDir(`${outputDir}/${id}`);
-  fs.writeFileSync(`${outputDir}/${id}/index.html`, result);
+  const subPathName = subPath.replace('.md', '');
+  checkPath(outputDir, subPathName);
+  fs.writeFileSync(`${outputDir}/${subPathName}/index.html`, result);
   return meta;
+}
+
+function checkPath(outputDir: string, path: string) {
+  const parts = path.split('/');
+  let subPath = '';
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i];
+    subPath += `/${part}`;
+    checkDir(`${outputDir}/${subPath}`);
+  }
 }
 
 function md2Html(text: string) {
@@ -138,4 +202,4 @@ function checkDir(dir: string) {
   }
 }
 
-build();
+build('assets', 'public');

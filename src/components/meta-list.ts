@@ -1,13 +1,16 @@
 import { css, customElement, html, LitElement, property } from 'lit-element';
+import { nothing } from 'lit-html';
 import type { PostMeta } from 'src/utils/meta';
+import './mwc-chip';
 
 @customElement('meta-list')
 export class MetaList extends LitElement {
   @property() folder: string = 'blog';
 
-  private _posts:
+  private _meta:
     | {
         items: PostMeta[];
+        folders: string[];
       }
     | undefined;
 
@@ -15,14 +18,17 @@ export class MetaList extends LitElement {
     .privacy-policy {
       padding: 10px;
     }
+    .md-chips {
+      padding-bottom: 2px;
+    }
     .cards {
+      width: calc(100% - 40px);
       padding: 20px;
       display: grid;
       grid-template-columns: repeat(1, 1fr);
       grid-auto-rows: auto;
       grid-gap: 1rem;
     }
-
     .card {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
       transition: 0.3s;
@@ -34,11 +40,15 @@ export class MetaList extends LitElement {
       height: 200px;
       object-fit: cover;
     }
-
     .card:hover {
       box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     }
-
+    .filters {
+      width: calc(100% - 40px);
+      overflow-x: scroll;
+      padding-left: 20px;
+      padding-top: 10px;
+    }
     .container {
       flex: 1fr;
       padding: 2px 16px;
@@ -64,21 +74,73 @@ export class MetaList extends LitElement {
       }
     }
   `;
+  allFilters: string[] = [];
+  filters: string[] = [];
 
   render() {
-    if (!this._posts) {
+    if (!this._meta) {
       fetch(`./${this.folder}/info.json`)
         .then((res) => res.text())
         .then((data) => {
-          this._posts = JSON.parse(data);
+          this._meta = JSON.parse(data);
+          this.allFilters = [];
+          if (this._meta?.items) {
+            for (const post of this._meta.items) {
+              if (post.categories) {
+                for (const tag of post.categories) {
+                  if (!this.allFilters.includes(tag)) {
+                    this.allFilters.push(tag);
+                  }
+                }
+              }
+            }
+          }
           this.requestUpdate();
         });
     }
+    const filteredPosts: PostMeta[] = [];
+    if (this._meta) {
+      if (this.filters.length > 0) {
+        for (const item of this._meta.items) {
+          if (item.categories) {
+            for (const cat of item.categories) {
+              if (this.filters.includes(cat)) {
+                if (!filteredPosts.includes(item)) {
+                  filteredPosts.push(item);
+                }
+              }
+            }
+          }
+        }
+      } else {
+        for (const item of this._meta.items) {
+          filteredPosts.push(item);
+        }
+      }
+    }
     return html`
-      ${this._posts
+      ${this._meta
         ? html`
+            <div class="filters">
+              ${this.allFilters.map(
+                (item) => html`<mwc-chip
+                  label=${item}
+                  clickable
+                  ?selected=${this.filters.includes(item)}
+                  @click=${() => {
+                    if (this.filters.includes(item)) {
+                      const index = this.filters.indexOf(item);
+                      if (index > -1) this.filters.splice(index, 1);
+                    } else {
+                      this.filters.push(item);
+                    }
+                    this.requestUpdate();
+                  }}
+                ></mwc-chip>`,
+              )}
+            </div>
             <div class="cards">
-              ${this._posts.items
+              ${filteredPosts
                 .sort((a, b) => {
                   if (a.date && b.date) {
                     if (a.date > b.date) return -1;
@@ -104,6 +166,18 @@ export class MetaList extends LitElement {
                     </div>
                   </div>`,
                 )}
+              ${this._meta.folders.map(
+                (p) => html`<div
+                  class="card"
+                  @click=${() => {
+                    window.location.assign(`/${this.folder}/${p}`);
+                  }}
+                >
+                  <div class="container">
+                    <h4><b>${p}</b></h4>
+                  </div>
+                </div>`,
+              )}
             </div>
           `
         : html`<mwc-circular-progress indeterminate></mwc-circular-progress>`}
