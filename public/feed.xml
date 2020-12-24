@@ -4,7 +4,7 @@
         <title>Rody Davis Blog Feed</title>
         <link>https://rodydavis.com/</link>
         <description>This is my personal feed!</description>
-        <lastBuildDate>Mon, 21 Dec 2020 17:38:23 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 24 Dec 2020 07:14:11 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -25,6 +25,7 @@ layout: post
 title:  "Building A Piano with Flutter"
 date:   2019-03-12
 categories: [flutter, music, ios, android]
+hasComments: 'true'
 ]]></description>
             <content:encoded><![CDATA[
 
@@ -1093,6 +1094,7 @@ title:  "How to use plugins from mobile and web in a Flutter project"
 date:   2019-09-06
 categories: [flutter, ios, android]
 tags: [flutter, ios, android, crossplatform, web]
+hasComments: 'true'
 ]]></description>
             <content:encoded><![CDATA[
 
@@ -1533,6 +1535,7 @@ title:  "Flutter + Fastlane (One Click Beta)"
 date:   2019-03-11
 categories: [flutter, ios, android]
 tags: [flutter, ci/cd, automation, fastlane, AppStore, Google Play]
+hasComments: 'true'
 ]]></description>
             <content:encoded><![CDATA[
 
@@ -1722,6 +1725,7 @@ layout: post
 title: "Automate Flutter App Releases"
 date: 2019-03-15
 categories: [flutter, apps, ci, automation]
+hasComments: 'true'
 ]]></description>
             <content:encoded><![CDATA[
 
@@ -1779,6 +1783,7 @@ title:  "Launching... Space Curiosity"
 date:   2019-03-10
 categories: [flutter, ios, android]
 tags: [flutter, SpaceX, nasa, iss, planets, space]
+hasComments: 'true'
 ]]></description>
             <content:encoded><![CDATA[
 
