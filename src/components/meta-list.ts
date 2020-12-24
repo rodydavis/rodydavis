@@ -1,16 +1,9 @@
-import { css, customElement, html, LitElement, property } from "lit-element";
-import { PostMeta } from "../utils/meta";
-import "./md-view";
+import { css, customElement, html, LitElement, property } from 'lit-element';
+import type { PostMeta } from 'src/utils/meta';
 
-@customElement("meta-list")
+@customElement('meta-list')
 export class MetaList extends LitElement {
-  constructor() {
-    super();
-  }
-
-  @property() id: string | undefined = undefined;
-  @property({ type: Boolean }) comments = false;
-  @property() folder: string = "posts";
+  @property() folder: string = 'blog';
 
   private _posts:
     | {
@@ -73,12 +66,6 @@ export class MetaList extends LitElement {
   `;
 
   render() {
-    if (this.id) {
-      return html` <md-view
-        ?comments=${this.comments}
-        src="./${this.folder}/${this.id}.md"
-      ></md-view>`;
-    }
     if (!this._posts) {
       fetch(`./${this.folder}/info.json`)
         .then((res) => res.text())
@@ -93,15 +80,17 @@ export class MetaList extends LitElement {
             <div class="cards">
               ${this._posts.items
                 .sort((a, b) => {
-                  if (a.date > b.date) return -1;
-                  if (a.date > b.date) return 1;
+                  if (a.date && b.date) {
+                    if (a.date > b.date) return -1;
+                    if (a.date > b.date) return 1;
+                  }
                   return 0;
                 })
                 .map(
                   (p) => html`<div
                     class="card"
                     @click=${() => {
-                      window.location.assign(`/#/${this.folder}/${p.id}`);
+                      window.location.assign(`/${this.folder}/${p.id}`);
                     }}
                   >
                     <img
@@ -111,9 +100,9 @@ export class MetaList extends LitElement {
                     />
                     <div class="container">
                       <h4><b>${p.title || p.id}</b></h4>
-                      <p>${p.date || "unknown"}</p>
+                      <p>${p.date || 'unknown'}</p>
                     </div>
-                  </div>`
+                  </div>`,
                 )}
             </div>
           `

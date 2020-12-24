@@ -13,6 +13,6 @@ categories: [flutter, apps, ci, automation]
 
 ## Welcome to my site
 
-This is built with Lit-Element, Parcel and Web Components!
+This is built with Lit-Element, Snowpack and Web Components!
 
 

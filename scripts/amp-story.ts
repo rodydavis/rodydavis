@@ -4,18 +4,18 @@ export function md2ampstory(src: string, meta: AmpMeta): string {
     pages: [],
   };
   // Create Story
-  const sections = src.split("---");
+  const sections = src.split('---');
   for (let i = 0; i < sections.length; i++) {
     const section = sections[i];
     if (section.trim().length < 1) continue;
     const layers: AmpLayer[] = [];
-    let layer: AmpVerticalLayer;
-    for (const line of section.split("\n")) {
+    let layer: AmpVerticalLayer | undefined;
+    for (const line of section.split('\n')) {
       if (line.trim().length < 1) continue;
-      if (line.match(".background")) {
+      if (line.match('.background')) {
         const element = elementMap(line);
-        if (element.kind === "image") {
-          const _layer: AmpLayer = { kind: "fill", element: element };
+        if (element.kind === 'image') {
+          const _layer: AmpLayer = { kind: 'fill', element: element };
           if (layer != null) {
             layers.push(layer);
           }
@@ -24,16 +24,16 @@ export function md2ampstory(src: string, meta: AmpMeta): string {
           continue;
         }
       } else {
-        if (layer == null) {
-          layer = { kind: "vertical", elements: [] };
+        if (layer == undefined) {
+          layer = { kind: 'vertical', elements: [] };
         }
         const element = elementMap(line);
         layer.elements.push(element);
       }
     }
-    if (layer != null) {
+    if (layer != undefined) {
       layers.push(layer);
-      layer = null;
+      layer = undefined;
     }
     story.pages.push({ id: `page_${i}`, layers: layers });
   }
@@ -47,6 +47,7 @@ function renderStory(story: AmpStory): string {
     `<!DOCTYPE html>
       <html ⚡>
       <head>
+        <base href="/">
         <meta charset="utf-8" />
         <title>${story.title}</title>
         <link rel="canonical" href="pets.html" />
@@ -187,18 +188,18 @@ function renderStory(story: AmpStory): string {
             poster-portrait-src="images/banner.jpg"
           >
      
-    `
+    `,
   );
   for (const page of story.pages) {
     result.push(`<amp-story-page id=${page.id}>`);
     for (let i = 0; i < page.layers.length; i++) {
       const layer = page.layers[i];
       result.push(`<amp-story-grid-layer template="${layer.kind}">`);
-      if (layer.kind == "vertical" || layer.kind == "horizontal") {
+      if (layer.kind == 'vertical' || layer.kind == 'horizontal') {
         for (const element of layer.elements) {
           addElement(element, result);
         }
-      } else if (layer.kind == "fill") {
+      } else if (layer.kind == 'fill') {
         addElement(layer.element, result);
       }
       result.push(`</amp-story-grid-layer>`);
@@ -209,16 +210,16 @@ function renderStory(story: AmpStory): string {
     `</amp-story>
     </body>
   </html>
-`
+`,
   );
-  return result.join("");
+  return result.join('');
 }
 
 function addElement(element: AmpElement, result: string[]) {
-  if (element.kind == "text") {
+  if (element.kind == 'text') {
     result.push(`<${element.tag}>${element.data}</${element.tag}>`);
   }
-  if (element.kind == "image") {
+  if (element.kind == 'image') {
     result.push(`<amp-img
           src="${element.src}"
           width="${element.width}"
@@ -232,40 +233,40 @@ function elementMap(line: string): AmpElement {
   line = line.trimLeft();
 
   // Heading
-  if (line.startsWith("# ")) {
-    return { kind: "text", data: line.replace("# ", ""), tag: "h1" };
+  if (line.startsWith('# ')) {
+    return { kind: 'text', data: line.replace('# ', ''), tag: 'h1' };
   }
-  if (line.startsWith("## ")) {
-    return { kind: "text", data: line.replace("## ", ""), tag: "h2" };
+  if (line.startsWith('## ')) {
+    return { kind: 'text', data: line.replace('## ', ''), tag: 'h2' };
   }
-  if (line.startsWith("### ")) {
-    return { kind: "text", data: line.replace("### ", ""), tag: "h3" };
+  if (line.startsWith('### ')) {
+    return { kind: 'text', data: line.replace('### ', ''), tag: 'h3' };
   }
-  if (line.startsWith("#### ")) {
-    return { kind: "text", data: line.replace("#### ", ""), tag: "h4" };
+  if (line.startsWith('#### ')) {
+    return { kind: 'text', data: line.replace('#### ', ''), tag: 'h4' };
   }
-  if (line.startsWith("##### ")) {
-    return { kind: "text", data: line.replace("##### ", ""), tag: "h5" };
+  if (line.startsWith('##### ')) {
+    return { kind: 'text', data: line.replace('##### ', ''), tag: 'h5' };
   }
-  if (line.startsWith("###### ")) {
-    return { kind: "text", data: line.replace("##### ", ""), tag: "h6" };
+  if (line.startsWith('###### ')) {
+    return { kind: 'text', data: line.replace('##### ', ''), tag: 'h6' };
   }
 
   // Image
-  if (line.startsWith("![")) {
-    let start: number, end: number;
+  if (line.startsWith('![')) {
+    let start: number | undefined, end: number | undefined;
     for (let i = 0; i < line.length; i++) {
       const char = line[i];
-      if (char == "(") {
+      if (char == '(') {
         start = i + 1;
       }
-      if (char == ")") {
+      if (char == ')') {
         end = i;
       }
     }
     if (start != undefined && end != undefined) {
       return {
-        kind: "image",
+        kind: 'image',
         src: `${line.substring(start, end)}`,
         width: 720,
         height: 1280,
@@ -273,7 +274,7 @@ function elementMap(line: string): AmpElement {
     }
   }
   // Fallback to Regular Text
-  return { kind: "text", data: line, tag: "p" };
+  return { kind: 'text', data: line, tag: 'p' };
 }
 
 export interface AmpMeta {
@@ -297,22 +298,22 @@ type AmpLayer =
   | AmpThirdsLayer;
 
 interface AmpVerticalLayer {
-  kind: "vertical";
+  kind: 'vertical';
   elements: AmpElement[];
 }
 
 interface AmpHorizontalLayer {
-  kind: "horizontal";
+  kind: 'horizontal';
   elements: AmpElement[];
 }
 
 interface AmpFillLayer {
-  kind: "fill";
+  kind: 'fill';
   element: AmpImageElement;
 }
 
 interface AmpThirdsLayer {
-  kind: "thirds";
+  kind: 'thirds';
   upper: AmpElement[];
   middle: AmpElement[];
   lower: AmpElement[];
@@ -321,13 +322,13 @@ interface AmpThirdsLayer {
 type AmpElement = AmpTextElement | AmpImageElement;
 
 interface AmpTextElement {
-  kind: "text";
+  kind: 'text';
   tag: string;
   data: string;
 }
 
 interface AmpImageElement {
-  kind: "image";
+  kind: 'image';
   src: string;
   width: number;
   height: number;

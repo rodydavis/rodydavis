@@ -1,16 +1,16 @@
 {
   "hosting": {
-    "public": "dist",
+    "public": "build",
     "ignore": [
+      "readme.md",
+      "LICENSE",
       "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
+      "package.json",
+      "package-lock.json",
+      "tsconfig.json",
+      "**/node_modules/**",
+      "**/.*"
     ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
+    "rewrites": []
   }
 }
