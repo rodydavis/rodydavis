@@ -4,6 +4,7 @@ title:  "Launching... Space Curiosity"
 date:   2019-03-10
 categories: [flutter, ios, android]
 tags: [flutter, SpaceX, nasa, iss, planets, space]
+hasComments: 'true'
 ---
 
 # Launching… Space Curiosity!

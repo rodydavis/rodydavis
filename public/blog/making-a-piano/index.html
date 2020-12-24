@@ -1,0 +1,198 @@
+                                                                      <!DOCTYPE html>
+                                                                      <html lang="en">
+                                                                      <head>
+                                                                        <base href="/">
+                                                                        <meta charset="UTF-8" />
+                                                                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                                                                        <title>Building A Piano with Flutter</title>
+                                                                        <link rel="stylesheet" type="text/css" href="/index.css" />
+                                                                        <link rel="stylesheet" type="text/css" href="/article.css" />
+                                                                        <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet" />
+                                                                        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+                                                                        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+                                                                      </head>
+                                                                      <body>
+                                                                      <nav-wrapper title="Building A Piano with Flutter">
+                                                                      <article>
+                                                                      <h1 id="buildingapianowithflutter">Building A Piano with Flutter</h1>
+                                                                      <h2 id="tldr">TLDR</h2>
+                                                                      <p>You can find the final source code <a href="https://github.com/rodydavis/flutter_piano/tree/5k">here</a>.</p>
+                                                                      <p>This piano uses only <code>5032</code> bytes of Dart Code!</p>
+                                                                      <p>Winner of the <a href="https://flutter.dev/create">Flutter Create Contest</a> and you can see the certificate <a href="https://www.credential.net/exbvca0q?key=8be94f32ad2f56882045e013e960fa888afa4edd52edb963c48df351c7d1e443">here</a>!</p>
+                                                                      <h2 id="whatyouwilllearn">What you will learn</h2>
+                                                                      <ul>
+                                                                        <li>Working with Dark Mode</li>
+                                                                        <li>Forcing app to be in landscape</li>
+                                                                        <li>Working with custom files bundled with the app</li>
+                                                                        <li>Working with midi and sounds in flutter</li>
+                                                                        <li>Working with <code>StatefulWidget</code></li>
+                                                                        <li>Using <code>SafeArea</code> and <code>Semantics</code></li>
+                                                                        <li>Building an app with minimal code</li>
+                                                                      </ul>
+                                                                      <h2 id="whatyouneed">What you need</h2>
+                                                                      <ul>
+                                                                        <li><a href="https://flutter.dev/docs/get-started/install">Flutter SDK</a> Installed (<a href="https://flutter.dev/docs/get-started/codelab">More Info</a>)</li>
+                                                                        <li>A <code>.sf2</code> SoundFont File like <a href="https://github.com/rodydavis/flutter_piano/blob/5k/assets/sounds/Piano.sf2">this one</a></li>
+                                                                        <li>Physical iOS device (iOS Simulator does not work with this plugin for playing the sounds) or Android Emulator/Device</li>
+                                                                      </ul>
+                                                                      <h2 id="settingup">Setting Up</h2>
+                                                                      <p>You can either create a new project with Android Studio or VSCode using the GUI or navigate to the location you want your project and using this command in the terminal: <code>lutter create -i swift -a kotlin flutter_piano</code>. Make sure to include Swift and Kotlin Support!</p>
+                                                                      <p>Now that you have your project created it should look like this.</p>
+                                                                      <p><img src="/images/flutter_piano/starter.png" alt="app-icon" /></p>
+                                                                      <p>Let's start by adding some dependencies to our `pubspec.yaml'</p>
+                                                                      <pre><code class="yaml language-yaml">dependencies: flutter: sdk: flutter tonic: ^0.2.3 flutter_midi: ^0.1.1+3 cupertino_icons: ^0.1.2
+                                                                    </code></pre>
+                                                                    <p>and add the .sf2 file</p>
+                                                                    <pre><code class="yaml language-yaml"> assets: - assets/sounds/Piano.sf2
+                                                                  </code></pre>
+                                                                  <p>If you haven't already create a new folder at the top of your project call <code>assets</code> and a subfolder called <code>sounds</code> and place the .sf2 file there and make sure it is named <code>Piano.sf2</code></p>
+                                                                  <p>Because our app will only work in landscape we need to update those settings as well.</p>
+                                                                  <p>navigate to the <code>/android/app/src/main/AndroidManifest.xml</code> and add this line inside <code>&lt;activity</code> in the <code>&lt;application</code>:</p>
+                                                                  <pre><code>android:screenOrientation="landscape"
+                                                                </code></pre>
+                                                                <p>Example:</p>
+                                                                <pre><code class="xml language-xml">&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.rodydavis.flutter_piano"&gt; &lt;!-- io.flutter.app.FlutterApplication is an android.app.Application that calls FlutterMain.startInitialization(this); in its onCreate method. In most cases you can leave this as-is, but you if you want to provide additional functionality it is fine to subclass or reimplement FlutterApplication and put your custom class here. --&gt; &lt;application android:name="io.flutter.app.FlutterApplication" android:label="flutter_piano" android:icon="@mipmap/ic_launcher"&gt; &lt;activity android:name=".MainActivity" android:launchMode="singleTop" android:theme="@style/LaunchTheme" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:hardwareAccelerated="true" android:screenOrientation="landscape" android:windowSoftInputMode="adjustResize"&gt; &lt;!-- This keeps the window background of the activity showing until Flutter renders its first frame. It can be removed if there is no splash screen (such as the default splash screen defined in @style/LaunchTheme). --&gt; &lt;meta-data android:name="io.flutter.app.android.SplashScreenUntilFirstFrame" android:value="true" /&gt; &lt;intent-filter&gt; &lt;action android:name="android.intent.action.MAIN"/&gt; &lt;category android:name="android.intent.category.LAUNCHER"/&gt; &lt;/intent-filter&gt; &lt;/activity&gt; &lt;/application&gt; &lt;/manifest&gt;
+                                                              </code></pre>
+                                                              <p>navigate to <code>/ios/Runner/info.plist</code> and change:</p>
+                                                              <pre><code>&lt;key&gt;UISupportedInterfaceOrientations&lt;/key&gt; &lt;array&gt; &lt;string&gt;UIInterfaceOrientationLandscapeLeft&lt;/string&gt; &lt;string&gt;UIInterfaceOrientationLandscapeRight&lt;/string&gt; &lt;/array&gt;
+                                                            </code></pre>
+                                                            <p>Now we can start with the UI! When you run the application now it should start in landscape!</p>
+                                                            <p><img src="/images/flutter_piano/landscape.png" alt="landscape" /></p>
+                                                            <h2 id="step1">Step 1</h2>
+                                                            <p>To make it eaiser to read lets remove the comments. Use "find and replace" and search for <code>\/\/.*</code></p>
+                                                            <p><img src="/images/flutter_piano/comments.png" alt="comments" /></p>
+                                                            <p>choose the "select all occurrances" button and hit <code>backspace</code> to delete.</p>
+                                                            <p><img src="/images/flutter_piano/selectall.png" alt="select all" /></p>
+                                                            <p>Hit save and you should see the code format for you.</p>
+                                                            <p>The 'main.dart' file should look like this:</p>
+                                                            <pre><code class="dart language-dart">import 'package:flutter/material.dart'; void main() =&gt; runApp(MyApp()); class MyApp extends StatelessWidget { @override Widget build(BuildContext context) { return MaterialApp( title: 'Flutter Demo', theme: ThemeData( primarySwatch: Colors.blue, ), home: MyHomePage(title: 'Flutter Demo Home Page'), ); } } class MyHomePage extends StatefulWidget { MyHomePage({Key key, this.title}) : super(key: key); final String title; @override _MyHomePageState createState() =&gt; _MyHomePageState(); } class _MyHomePageState extends State&lt;MyHomePage&gt; { int _counter = 0; void _incrementCounter() { setState(() { _counter++; }); } @override Widget build(BuildContext context) { return Scaffold( appBar: AppBar( title: Text(widget.title), ), body: Center( child: Column( mainAxisAlignment: MainAxisAlignment.center, children: &lt;Widget&gt;[ Text( 'You have pushed the button this many times:', ), Text( '$_counter', style: Theme.of(context).textTheme.display1, ), ], ), ), floatingActionButton: FloatingActionButton( onPressed: _incrementCounter, tooltip: 'Increment', child: Icon(Icons.add), ), ); } }
+                                                          </code></pre>
+                                                          <h2 id="step2">Step 2</h2>
+                                                          <p>Delete the <code>MyHomePage</code> widget so you are left with this.</p>
+                                                          <pre><code class="dart language-dart">import 'package:flutter/material.dart'; void main() =&gt; runApp(MyApp()); class MyApp extends StatelessWidget { @override Widget build(BuildContext context) { return MaterialApp( title: 'Flutter Demo', theme: ThemeData( primarySwatch: Colors.blue, ), home: MyHomePage(title: 'Flutter Demo Home Page'), ); } }
+                                                        </code></pre>
+                                                        <p>You should get an error and thats ok, we will fix that next.</p>
+                                                        <p>Replace <code>MyHomePage(title: 'Flutter Demo Home Page')</code> with a <code>Scaffold()</code></p>
+                                                        <pre><code class="dart language-dart">import 'package:flutter/material.dart'; void main() =&gt; runApp(MyApp()); class MyApp extends StatelessWidget { @override Widget build(BuildContext context) { return MaterialApp( title: 'Flutter Demo', theme: ThemeData( primarySwatch: Colors.blue, ), home: Scaffold(), ); } }
+                                                      </code></pre>
+                                                      <h2 id="step3">Step 3</h2>
+                                                      <p>Change <code>MyApp</code> to a <code>StatefulWidget</code>. You can do this quickly by selecting <code>MyApp</code> and choose "Convert to StatefulWidget" with the helper.</p>
+                                                      <p><img src="/images/flutter_piano/convert.png" alt="convert" /></p>
+                                                      <p>It should look like this now:</p>
+                                                      <pre><code class="dart language-dart">import 'package:flutter/material.dart'; void main() =&gt; runApp(MyApp()); class MyApp extends StatefulWidget { @override _MyAppState createState() =&gt; _MyAppState(); } class _MyAppState extends State&lt;MyApp&gt; { @override Widget build(BuildContext context) { return MaterialApp( title: 'Flutter Demo', theme: ThemeData( primarySwatch: Colors.blue, ), home: Scaffold(), ); } }
+                                                    </code></pre>
+                                                    <h1 id="step4">Step 4</h1>
+                                                    <p>Change the theme to dark. You can do this by setting the <code>ThemeData</code> in <code>MaterialApp</code></p>
+                                                    <p>change:</p>
+                                                    <pre><code class="dart language-dart">theme: ThemeData( primarySwatch: Colors.blue, ),
+                                                  </code></pre>
+                                                  <p> to this</p>
+                                                  <pre><code class="dart language-dart">theme: ThemeData.dark(),
+                                                </code></pre>
+                                                <p>Add and <code>AppBar</code> to the <code>Scaffold</code></p>
+                                                <p><code>appBar: AppBar(title: Text("Flutter Piano")),</code></p>
+                                                <pre><code class="dart language-dart">import 'package:flutter/material.dart'; void main() =&gt; runApp(MyApp()); class MyApp extends StatefulWidget { @override _MyAppState createState() =&gt; _MyAppState(); } class _MyAppState extends State&lt;MyApp&gt; { @override Widget build(BuildContext context) { return MaterialApp( title: 'Flutter Demo', theme: ThemeData.dark(), home: Scaffold( appBar: AppBar(title: Text("Flutter Piano")), ), ); } }
+                                              </code></pre>
+                                              <p>Now build and run your app, it should look like this.</p>
+                                              <p><img src="/images/flutter_piano/darkmode.png" alt="dark-mode" /></p>
+                                              <h2 id="step5">Step 5</h2>
+                                              <p>We need to add some imports to the top:</p>
+                                              <pre><code class="dart language-dart">import 'package:flutter/services.dart'; import 'package:flutter_midi/flutter_midi.dart';
+                                            </code></pre>
+                                            <p>If you get an error make sure they are added in the <code>pubspec.yaml</code> from earlier, then restart the app. Be sure to run <code>flutter packages get</code> everytime you add a dependency.</p>
+                                            <p>Now we can add out <code>initState()</code> to our app.</p>
+                                            <pre><code class="dart language-dart"> @override initState() { FlutterMidi.unmute(); rootBundle.load("assets/sounds/Piano.sf2").then((sf2) { FlutterMidi.prepare(sf2: sf2, name: "Piano.sf2"); }); super.initState(); }
+                                          </code></pre>
+                                          <p>Run the app and make sure you do not get any errors. If you are running this on the iOS Simulator you will get the following error:</p>
+                                          <p><code>Could Not Load Midi on this Device. (Cannot run on simulator), have you included the sound font?</code></p>
+                                          <p>It is ok for developing the UI but once we start with the midi you will need to plug in a real device.</p>
+                                          <p>Your code so far should look like this:</p>
+                                          <pre><code class="dart language-dart">import 'package:flutter/material.dart'; import 'package:flutter/services.dart'; import 'package:flutter_midi/flutter_midi.dart'; void main() =&gt; runApp(MyApp()); class MyApp extends StatefulWidget { @override _MyAppState createState() =&gt; _MyAppState(); } class _MyAppState extends State&lt;MyApp&gt; { @override initState() { FlutterMidi.unmute(); rootBundle.load("assets/sounds/Piano.sf2").then((sf2) { FlutterMidi.prepare(sf2: sf2, name: "Piano.sf2"); }); super.initState(); } @override Widget build(BuildContext context) { return MaterialApp( title: 'Flutter Demo', theme: ThemeData.dark(), home: Scaffold( appBar: AppBar(title: Text("Flutter Piano")), ), ); } }
+                                        </code></pre>
+                                        <h2 id="step6">Step 6</h2>
+                                        <p>To make Flutter development faster we start with containers and colors so we can make sure everything is the right size.</p>
+                                        <p>Lets start by adding a <code>Drawer</code> with a <code>ListView</code> to our <code>Scaffold</code>.</p>
+                                        <pre><code class="dart language-dart"> home: Scaffold( appBar: AppBar(title: Text("Flutter Piano")), drawer: Drawer(child: SafeArea(child: ListView(children: &lt;Widget&gt;[]))), ),
+                                      </code></pre>
+                                      <p>You should now get a menu icon that when you press looks like this.</p>
+                                      <p><img src="/images/flutter_piano/menu.png" alt="menu" /></p>
+                                      <p>Now lets add a ListView that scrolls Horizontially to the body of the <code>Scaffold</code></p>
+                                      <pre><code class="dart language-dart"> body: ListView.builder( itemCount: 7, scrollDirection: Axis.horizontal, itemBuilder: (BuildContext context, int index) { return Container(); }, )
+                                    </code></pre>
+                                    <p>We need 7 <code>itemCount</code> for 7 octaves on the Piano.</p>
+                                    <pre><code class="dart language-dart">import 'package:flutter/material.dart'; import 'package:flutter/services.dart'; import 'package:flutter_midi/flutter_midi.dart'; void main() =&gt; runApp(MyApp()); class MyApp extends StatefulWidget { @override _MyAppState createState() =&gt; _MyAppState(); } class _MyAppState extends State&lt;MyApp&gt; { @override initState() { FlutterMidi.unmute(); rootBundle.load("assets/sounds/Piano.sf2").then((sf2) { FlutterMidi.prepare(sf2: sf2, name: "Piano.sf2"); }); super.initState(); } @override Widget build(BuildContext context) { return MaterialApp( title: 'Flutter Demo', theme: ThemeData.dark(), home: Scaffold( appBar: AppBar(title: Text("Flutter Piano")), drawer: Drawer(child: SafeArea(child: ListView(children: &lt;Widget&gt;[]))), body: ListView.builder( itemCount: 7, scrollDirection: Axis.horizontal, itemBuilder: (BuildContext context, int index) { return Container(); }, )), ); } }
+                                  </code></pre>
+                                  <h2 id="step7">Step 7</h2>
+                                  <p>Now we need to build the octave section that will be repeated. Since every octave is identical we can repeat the octaves with minor adjustments.</p>
+                                  <p>Lets add some parameters for use to define for our UI. Add these underneath the initState function.</p>
+                                  <pre><code class="dart language-dart">double get keyWidth =&gt; 80 + (80 * _widthRatio); double _widthRatio = 0.0; bool _showLabels = true;
+                                </code></pre>
+                                <p>We will use these to dynamily update the keys.</p>
+                                <p>Under the <code>itemBuilder</code> lets define which octave we are working with by adding:
+                                <code>final int i = index * 12;</code></p>
+                                <p>Our code should look like this now:</p>
+                                <pre><code class="dart language-dart">import 'package:flutter/material.dart'; import 'package:flutter/services.dart'; import 'package:flutter_midi/flutter_midi.dart'; void main() =&gt; runApp(MyApp()); class MyApp extends StatefulWidget { @override _MyAppState createState() =&gt; _MyAppState(); } class _MyAppState extends State&lt;MyApp&gt; { @override initState() { FlutterMidi.unmute(); rootBundle.load("assets/sounds/Piano.sf2").then((sf2) { FlutterMidi.prepare(sf2: sf2, name: "Piano.sf2"); }); super.initState(); } double get keyWidth =&gt; 80 + (80 * _widthRatio); double _widthRatio = 0.0; bool _showLabels = true; @override Widget build(BuildContext context) { return MaterialApp( title: 'Flutter Demo', theme: ThemeData.dark(), home: Scaffold( appBar: AppBar(title: Text("Flutter Piano")), drawer: Drawer(child: SafeArea(child: ListView(children: &lt;Widget&gt;[]))), body: ListView.builder( itemCount: 7, scrollDirection: Axis.horizontal, itemBuilder: (BuildContext context, int index) { final int i = index * 12; return Container(); }, )), ); } }
+                              </code></pre>
+                              <h2 id="step8">Step 8</h2>
+                              <p>Now we need to add a <code>Stack</code> for our octave:</p>
+                              <pre><code class="dart language-dart"> return SafeArea( child: Stack(children: &lt;Widget&gt;[ Row(mainAxisSize: MainAxisSize.min, children: &lt;Widget&gt;[ _buildKey(24 + i, false), _buildKey(26 + i, false), _buildKey(28 + i, false), _buildKey(29 + i, false), _buildKey(31 + i, false), _buildKey(33 + i, false), _buildKey(35 + i, false), ]), Positioned( left: 0.0, right: 0.0, bottom: 100, top: 0.0, child: Row( mainAxisAlignment: MainAxisAlignment.spaceBetween, mainAxisSize: MainAxisSize.min, children: &lt;Widget&gt;[ Container(width: keyWidth * .5), _buildKey(25 + i, true), _buildKey(27 + i, true), Container(width: keyWidth), _buildKey(30 + i, true), _buildKey(32 + i, true), _buildKey(34 + i, true), Container(width: keyWidth * .5), ])), ]), );
+                            </code></pre>
+                            <p>Here we have defined which midi notes are played for each octave.</p>
+                            <p>Now add the function <code>_buildKey</code> underneath our <code>build</code> function.</p>
+                            <pre><code class="dart language-dart"> Widget _buildKey(int midi, bool accidental) { if (accidental) { return Container( width: keyWidth, color: Colors.black, margin: EdgeInsets.symmetric(horizontal: 2.0), padding: EdgeInsets.symmetric(horizontal: keyWidth * .1), child: Material( elevation: 6.0, borderRadius: borderRadius, shadowColor: Color(0x802196F3), )); } return Container( width: keyWidth, color: Colors.white, margin: EdgeInsets.symmetric(horizontal: 2.0)); }
+                          </code></pre>
+                          <p>Also add <code>borderRadius</code> to the bottom of <code>main.dart</code></p>
+                          <pre><code class="dart language-dart">const BorderRadiusGeometry borderRadius = BorderRadius.only( bottomLeft: Radius.circular(10.0), bottomRight: Radius.circular(10.0));
+                        </code></pre>
+                        <p>Your app should look like this:</p>
+                        <p><img src="/images/flutter_piano/keys.png" alt="keys" /></p>
+                        <p>Your code should look like this:</p>
+                        <pre><code class="dart language-dart">import 'package:flutter/material.dart'; import 'package:flutter/services.dart'; import 'package:flutter_midi/flutter_midi.dart'; void main() =&gt; runApp(MyApp()); class MyApp extends StatefulWidget { @override _MyAppState createState() =&gt; _MyAppState(); } class _MyAppState extends State&lt;MyApp&gt; { @override initState() { FlutterMidi.unmute(); rootBundle.load("assets/sounds/Piano.sf2").then((sf2) { FlutterMidi.prepare(sf2: sf2, name: "Piano.sf2"); }); super.initState(); } double get keyWidth =&gt; 80 + (80 * _widthRatio); double _widthRatio = 0.0; bool _showLabels = true; @override Widget build(BuildContext context) { return MaterialApp( title: 'Flutter Demo', theme: ThemeData.dark(), home: Scaffold( appBar: AppBar(title: Text("Flutter Piano")), drawer: Drawer(child: SafeArea(child: ListView(children: &lt;Widget&gt;[]))), body: ListView.builder( itemCount: 7, scrollDirection: Axis.horizontal, itemBuilder: (BuildContext context, int index) { final int i = index * 12; return SafeArea( child: Stack(children: &lt;Widget&gt;[ Row(mainAxisSize: MainAxisSize.min, children: &lt;Widget&gt;[ _buildKey(24 + i, false), _buildKey(26 + i, false), _buildKey(28 + i, false), _buildKey(29 + i, false), _buildKey(31 + i, false), _buildKey(33 + i, false), _buildKey(35 + i, false), ]), Positioned( left: 0.0, right: 0.0, bottom: 100, top: 0.0, child: Row( mainAxisAlignment: MainAxisAlignment.spaceBetween, mainAxisSize: MainAxisSize.min, children: &lt;Widget&gt;[ Container(width: keyWidth * .5), _buildKey(25 + i, true), _buildKey(27 + i, true), Container(width: keyWidth), _buildKey(30 + i, true), _buildKey(32 + i, true), _buildKey(34 + i, true), Container(width: keyWidth * .5), ])), ]), ); }, )), ); } Widget _buildKey(int midi, bool accidental) { if (accidental) { return Container( width: keyWidth, color: Colors.black, margin: EdgeInsets.symmetric(horizontal: 2.0), padding: EdgeInsets.symmetric(horizontal: keyWidth * .1), child: Material( elevation: 6.0, borderRadius: borderRadius, shadowColor: Color(0x802196F3), )); } return Container( width: keyWidth, color: Colors.white, margin: EdgeInsets.symmetric(horizontal: 2.0)); } } const BorderRadiusGeometry borderRadius = BorderRadius.only( bottomLeft: Radius.circular(10.0), bottomRight: Radius.circular(10.0));
+                      </code></pre>
+                      <h2 id="step9">Step 9</h2>
+                      <p>Time to add midi by adding the following import to the top of the file:</p>
+                      <pre><code class="dart language-dart">import 'package:tonic/tonic.dart';
+                    </code></pre>
+                    <p>In the <code>-buildKey</code> function you can add this line:</p>
+                    <pre><code class="dart language-dart"> final pitchName = Pitch.fromMidiNumber(midi).toString();
+                  </code></pre>
+                  <p>We can also create the piano key itself underneath it:</p>
+                  <pre><code class="dart language-dart"> final pianoKey = Stack( children: &lt;Widget&gt;[ Semantics( button: true, hint: pitchName, child: Material( borderRadius: borderRadius, color: accidental ? Colors.black : Colors.white, child: InkWell( borderRadius: borderRadius, highlightColor: Colors.grey, onTap: () {}, onTapDown: (_) =&gt; FlutterMidi.playMidiNote(midi: midi), ))), Positioned( left: 0.0, right: 0.0, bottom: 20.0, child: _showLabels ? Text(pitchName, textAlign: TextAlign.center, style: TextStyle( color: !accidental ? Colors.black : Colors.white)) : Container()), ], );
+                </code></pre>
+                <p>Remove the color from the container and replace it with <code>child: pianoKey,</code></p>
+                <pre><code class="dart language-dart"> if (accidental) { return Container( width: keyWidth, margin: EdgeInsets.symmetric(horizontal: 2.0), padding: EdgeInsets.symmetric(horizontal: keyWidth * .1), child: Material( elevation: 6.0, borderRadius: borderRadius, shadowColor: Color(0x802196F3), child: pianoKey)); } return Container( width: keyWidth, child: pianoKey, margin: EdgeInsets.symmetric(horizontal: 2.0));
+              </code></pre>
+              <p>The complete function should look like this:</p>
+              <pre><code class="dart language-dart"> Widget _buildKey(int midi, bool accidental) { final pitchName = Pitch.fromMidiNumber(midi).toString(); final pianoKey = Stack( children: &lt;Widget&gt;[ Semantics( button: true, hint: pitchName, child: Material( borderRadius: borderRadius, color: accidental ? Colors.black : Colors.white, child: InkWell( borderRadius: borderRadius, highlightColor: Colors.grey, onTap: () {}, onTapDown: (_) =&gt; FlutterMidi.playMidiNote(midi: midi), ))), Positioned( left: 0.0, right: 0.0, bottom: 20.0, child: _showLabels ? Text(pitchName, textAlign: TextAlign.center, style: TextStyle( color: !accidental ? Colors.black : Colors.white)) : Container()), ], ); if (accidental) { return Container( width: keyWidth, margin: EdgeInsets.symmetric(horizontal: 2.0), padding: EdgeInsets.symmetric(horizontal: keyWidth * .1), child: Material( elevation: 6.0, borderRadius: borderRadius, shadowColor: Color(0x802196F3), child: pianoKey)); } return Container( width: keyWidth, child: pianoKey, margin: EdgeInsets.symmetric(horizontal: 2.0)); }
+            </code></pre>
+            <p>Now when you run the app it should look like this:</p>
+            <p><img src="/images/flutter_piano/labels.png" alt="labels" /></p>
+            <p>Almost there! Now let's give our user some control.</p>
+            <h2 id="step10">Step 10</h2>
+            <p>Add these settings to the <code>Drawer</code></p>
+            <pre><code class="dart language-dart">Container(height: 20.0), ListTile(title: Text("Change Width")), Slider( activeColor: Colors.redAccent, inactiveColor: Colors.white, min: 0.0, max: 1.0, value: _widthRatio, onChanged: (double value) =&gt; setState(() =&gt; _widthRatio = value)), Divider(), ListTile( title: Text("Show Labels"), trailing: Switch( value: _showLabels, onChanged: (bool value) =&gt; setState(() =&gt; _showLabels = value))), Divider(),
+          </code></pre>
+          <p>Now you should see this:</p>
+          <p><img src="/images/flutter_piano/settings.png" alt="settings" /></p>
+          <h2 id="step11">Step 11</h2>
+          <p>To start with <code>Middle C</code> lets add an inital scroll offset to the <code>ListView</code></p>
+          <p><code>controller: ScrollController(initialScrollOffset: 1500.0),</code></p>
+          <p>Now when we start the app it should co to C4.</p>
+          <p>The final App should look like this:</p>
+          <p><img src="/images/flutter_piano/final.png" alt="final" /></p>
+          <p>The final code should look like this:</p>
+          <pre><code class="dart language-dart">import 'package:flutter/material.dart'; import 'package:flutter/services.dart'; import 'package:flutter_midi/flutter_midi.dart'; import 'package:tonic/tonic.dart'; void main() =&gt; runApp(MyApp()); class MyApp extends StatefulWidget { @override _MyAppState createState() =&gt; _MyAppState(); } class _MyAppState extends State&lt;MyApp&gt; { @override initState() { FlutterMidi.unmute(); rootBundle.load("assets/sounds/Piano.sf2").then((sf2) { FlutterMidi.prepare(sf2: sf2, name: "Piano.sf2"); }); super.initState(); } double get keyWidth =&gt; 80 + (80 * _widthRatio); double _widthRatio = 0.0; bool _showLabels = true; @override Widget build(BuildContext context) { return MaterialApp( title: 'Flutter Demo', theme: ThemeData.dark(), home: Scaffold( appBar: AppBar(title: Text("Flutter Piano")), drawer: Drawer( child: SafeArea( child: ListView(children: &lt;Widget&gt;[ Container(height: 20.0), ListTile(title: Text("Change Width")), Slider( activeColor: Colors.redAccent, inactiveColor: Colors.white, min: 0.0, max: 1.0, value: _widthRatio, onChanged: (double value) =&gt; setState(() =&gt; _widthRatio = value)), Divider(), ListTile( title: Text("Show Labels"), trailing: Switch( value: _showLabels, onChanged: (bool value) =&gt; setState(() =&gt; _showLabels = value))), Divider(), ]))), body: ListView.builder( itemCount: 7, scrollDirection: Axis.horizontal, controller: ScrollController(initialScrollOffset: 1500.0), itemBuilder: (BuildContext context, int index) { final int i = index * 12; return SafeArea( child: Stack(children: &lt;Widget&gt;[ Row(mainAxisSize: MainAxisSize.min, children: &lt;Widget&gt;[ _buildKey(24 + i, false), _buildKey(26 + i, false), _buildKey(28 + i, false), _buildKey(29 + i, false), _buildKey(31 + i, false), _buildKey(33 + i, false), _buildKey(35 + i, false), ]), Positioned( left: 0.0, right: 0.0, bottom: 100, top: 0.0, child: Row( mainAxisAlignment: MainAxisAlignment.spaceBetween, mainAxisSize: MainAxisSize.min, children: &lt;Widget&gt;[ Container(width: keyWidth * .5), _buildKey(25 + i, true), _buildKey(27 + i, true), Container(width: keyWidth), _buildKey(30 + i, true), _buildKey(32 + i, true), _buildKey(34 + i, true), Container(width: keyWidth * .5), ])), ]), ); }, )), ); } Widget _buildKey(int midi, bool accidental) { final pitchName = Pitch.fromMidiNumber(midi).toString(); final pianoKey = Stack( children: &lt;Widget&gt;[ Semantics( button: true, hint: pitchName, child: Material( borderRadius: borderRadius, color: accidental ? Colors.black : Colors.white, child: InkWell( borderRadius: borderRadius, highlightColor: Colors.grey, onTap: () {}, onTapDown: (_) =&gt; FlutterMidi.playMidiNote(midi: midi), ))), Positioned( left: 0.0, right: 0.0, bottom: 20.0, child: _showLabels ? Text(pitchName, textAlign: TextAlign.center, style: TextStyle( color: !accidental ? Colors.black : Colors.white)) : Container()), ], ); if (accidental) { return Container( width: keyWidth, margin: EdgeInsets.symmetric(horizontal: 2.0), padding: EdgeInsets.symmetric(horizontal: keyWidth * .1), child: Material( elevation: 6.0, borderRadius: borderRadius, shadowColor: Color(0x802196F3), child: pianoKey)); } return Container( width: keyWidth, child: pianoKey, margin: EdgeInsets.symmetric(horizontal: 2.0)); } } const BorderRadiusGeometry borderRadius = BorderRadius.only( bottomLeft: Radius.circular(10.0), bottomRight: Radius.circular(10.0));
+        </code></pre>
+        <h1 id="conclusion">Conclusion</h1>
+        <p>If you delete <code>tests/</code> and run <code>find . -name "*.dart" | xargs cat | wc -c</code> you will see that the dart code only uses <code>5032</code> bytes of space! </p>
+        <p>Now we have a fully functional piano that you can play with and enjoy on iOS and Android.</p>
+        <p>I was really inspired when creating this for the <a href="https://flutter.dev/create">Flutter Create</a> contest.</p>
+        <p>Hope you learned something, if you have any questions you can always read out to me. This is an open source piano and would love PRs on the main project <a href="https://github.com/rodydavis/flutter_piano">here</a>!</p>
+      </article>
+    </nav-wrapper>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script type="module" src="/dist/components/nav-wrapper.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://utteranc.es/client.js" repo="rodydavis/rodydavis" issue-term="pathname" theme="github-light" crossorigin="anonymous" async ></script>
+  </body>
+</html>

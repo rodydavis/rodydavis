@@ -1,21 +1,37 @@
 {
+  "ts-node": {
     "compilerOptions": {
-        "target": "es2020",
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "experimentalDecorators": true,
-        "plugins": [
-            {
-                "name": "ts-lit-plugin",
-                "strict": true
-            }
-        ]
-    },
-    "include": [
-        "app.ts",
-        "src/**/*.ts"
-    ],
-    "exclude": [
-        "node_modules"
-    ]
+      "module": "commonjs"
+    }
+  },
+  "include": [
+    "src",
+    "types",
+    "scripts"
+  ],
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "baseUrl": "./",
+    /* paths - If you configure Snowpack import aliases, add them here. */
+    "paths": {},
+    /* noEmit - Snowpack builds (emits) files, not tsc. */
+    "noEmit": true,
+    /* LitElement - Add decorator support! */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    /* Additional Options */
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "importsNotUsedAsValues": "error",
+    "esModuleInterop": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
