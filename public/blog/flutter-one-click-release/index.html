@@ -1,81 +1,181 @@
-            <!DOCTYPE html>
-            <html lang="en">
-            <head>
-              <base href="/">
-              <meta charset="UTF-8" />
-              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-              <title>Flutter + Fastlane (One Click Beta)</title>
-              <link rel="stylesheet" type="text/css" href="/index.css" />
-              <link rel="stylesheet" type="text/css" href="/article.css" />
-              <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet" />
-              <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
-              <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-            </head>
-            <body>
-            <nav-wrapper title="Flutter + Fastlane (One Click Beta)">
-            <article>
-            <h1 id="flutterfastlaneoneclickbeta">Flutter + Fastlane (One Click Beta)</h1>
-            <h2 id="1installflutter">1. Install Flutter</h2>
-            <p><a href="https://flutter.io/get-started/install/">Download Flutter</a></p>
-            <p><img src="/images/flutter/logo.jpg" alt="flutter" /></p>
-            <h2 id="2createnewflutterproject">2. Create new Flutter Project</h2>
-            <p>If you are pretty new to Flutter you can check out <a href="https://flutter.io/get-started/codelab/">this useful guide</a> on how to create a new project step by step. </p>
-            <p><img src="/images/flutter/cross-platform.jpg" alt="cross-platform" /></p>
-            <h2 id="3createappinitunesconnect">3. Create App in iTunes Connect</h2>
-            <p>If you are not familiar with iTunes Connect, check out <a href="https://clearbridgemobile.com/how-to-submit-an-app-to-the-app-store/">this article</a> for getting started and setting up your first app for the App Store. </p>
-            <h2 id="4createappingoogleplay">4. Create App in Google Play</h2>
-            <p>Setting up an app in the Google Play Console can be tricky, make sure to check out the <a href="https://support.google.com/googleplay/android-developer/answer/113469?hl=en-GB">official reference</a> and <a href="https://medium.com/mindorks/upload-your-first-android-app-on-play-store-step-by-step-ee0de9123ac0">this guide</a> if you are having trouble. </p>
-            <p><img src="/images/flutter/fastlane.jpg" alt="fastlane" /></p>
-            <h2 id="5navigatetoprojectiosandsetupfastlane">5. Navigate to Project &gt; ios and Setup Fastlane</h2>
-            <p><a href="https://docs.fastlane.tools/getting-started/ios/setup/">Reference</a></p>
-            <h2 id="6navigatetoprojectandroidandsetupfastlane">6. Navigate to Project &gt; android and Setup Fastlane</h2>
-            <p><a href="https://docs.fastlane.tools/getting-started/android/setup/">Reference</a></p>
-            <h2 id="7updatefastlanefastfilesforiosandandroidandchangeaccordinglyforeachplatform">7. Update Fastlane Fastfiles for iOS and Android and Change accordingly for each platform</h2>
-            <ul>
-              <li><p>Make sure to change <YOUR PROJECT PATH> to the path to your project in Finder.</p></li>
-              <li><p>Only copy the correct platform code for each Fastfile. For example, <code>default_platform(:ios)</code> for iOS and `default_platform(:android)1st for Android.</p></li>
-            </ul>
-            <pre><code class="ruby language-ruby">update_fastlane default_platform(:ios) platform :ios do desc "Push a new beta build to TestFlight" lane :beta do increment_build_number(xcodeproj: "Runner.xcodeproj") build_app(workspace: "Runner.xcworkspace", scheme: "Runner") upload_to_testflight(skip_waiting_for_build_processing: true) end desc "Push a new release build to the App Store" lane :release do increment_build_number(xcodeproj: "Runner.xcodeproj") build_app(workspace: "Runner.xcworkspace", scheme: "Runner") upload_to_app_store(submit_for_review: true, automatic_release: true, skip_screenshots: true, force: true, skip_waiting_for_build_processing: true) end end //&lt;YOUR PROJECT PATH&gt; &gt; android &gt; fastlane &gt; Fastfile default_platform(:android) platform :android do desc "Runs all the tests" lane :test do gradle(task: "test") end desc "Submit a new Build to Beta" lane :beta do gradle(task: 'clean') increment_version_code sh "cd &lt;YOUR PROJECT PATH&gt; &amp;&amp; flutter build apk" upload_to_play_store( track: 'beta', apk: '../build/app/outputs/apk/release/app-release.apk', skip_upload_screenshots: true, skip_upload_images: true ) # crashlytics end desc "Deploy a new version to the Google Play" lane :deploy do gradle(task: 'clean') increment_version_code sh "cd &lt;YOUR PROJECT PATH&gt; &amp;&amp; flutter build apk" upload_to_play_store( track: 'production', apk: '../build/app/outputs/apk/release/app-release.apk', skip_upload_screenshots: true, skip_upload_images: true ) end end
-          </code></pre>
-          <ul>
-            <li>For Android <code>increment_version_code</code> install here.  </li>
-          </ul>
-          <p>Sometimes it will fail and you will need to run:</p>
-          <p><code>bundle exec fastlane add_plugin increment_version_code</code></p>
-          <ul>
-            <li>For iOS <code>increment_build_number</code> set up Generic Versioning by enabling the agvtool. </li>
-          </ul>
-          <p><img src="/images/flutter/version-bump.gif" alt="version-bump" />
-          <a href="https://medium.com/xcblog/agvtool-automating-ios-build-and-version-numbers-454cab6f1bbe">Source</a></p>
-          <h2 id="8metadataoptional">8. Metadata (Optional)</h2>
-          <ul>
-            <li>For iOS you can have Fastlane download all your apps existing metadata including screenshots from iTunes Connect. In terminal navigate to the project and run.</li>
-          </ul>
-          <p><code>fastlane deliver download_metadata &amp;&amp; fastlane deliver download_screenshots</code></p>
-          <ul>
-            <li>For Android you can use <a href="https://docs.fastlane.tools/actions/supply/">Fastlane Supply</a>. </li>
-          </ul>
-          <h2 id="9openautomator">9. Open Automator</h2>
-          <p>Right now everything is working just by the command line. If you navigate to your project in terminal by adding "cd " and dragging in the project folder and hitting Enter, you can type "cd ios &amp;&amp; fastlane beta" or "cd android &amp;&amp; fastlane beta" and both will run fastlane.</p>
-          <p><img src="/images/flutter/terminal-drag.gif" alt="terminal" /></p>
-          <p>If you want to be able to submit your app to Google Play and the App Store with one click we will be using <a href="http://www.applegazette.com/os-x/getting-started-automator-workflows-mac/">Automator</a>. Create a new Automator Application. And Search for "Ask for Confirmation" and "Run AppleScript" and drag in.</p>
-          <p><img src="/images/flutter/automator.jpg" alt="fastlane" /></p>
-          <p>Here is the Script for beta and release. You will need to create a Automator Application for both Beta and Release for each app you want automated. Save it where ever you want and create an Alias to be but on the Desktop.</p>
-          <ul>
-            <li>Make sure to change <YOUR PROJECT PATH> to the path to your project in Finder</li>
-          </ul>
-          <p>Hint: I have my automator application save in the Github Repo of my project for versioning and easy access for different projects. </p>
-          <pre><code class="ruby language-ruby">//Beta on run {input, parameters} tell application "Terminal" activate do script "cd &lt;YOUR PROJECT PATH&gt;/android &amp;&amp; fastlane beta &amp;&amp; cd &lt;YOUR PROJECT PATH&gt;/ios &amp;&amp; fastlane beta" end tell tell application "System Events" try set visible of application process "Terminal" to false end try end tell end run //Release on run {input, parameters} tell application "Terminal" activate do script "cd &lt;YOUR PROJECT PATH&gt;/android &amp;&amp; fastlane deploy &amp;&amp; cd &lt;YOUR PROJECT PATH&gt;/ios &amp;&amp; fastlane release" end tell tell application "System Events" try set visible of application process "Terminal" to false end try end tell end run
-        </code></pre>
-        <h2 id="10tryitout">10. Try It Out!</h2>
-        <p>Everything should be working now. If you double click on the automator application you should get a confirmation pop up to release the app. The Script will run terminal in the background and you can stay focused on developing awesome flutter applications. If you want to see the progress on fastlane uploading your apps you can click on the terminal icon and the terminal window will reappear. Thanks for reading and please reach out for any questions you have!</p>
-      </article>
-    </nav-wrapper>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <script type="module" src="/dist/components/nav-wrapper.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://utteranc.es/client.js" repo="rodydavis/rodydavis" issue-term="pathname" theme="github-light" crossorigin="anonymous" async ></script>
-    <script> if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navigator.serviceWorker.register('/sw.js'); }); }
+
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <base href="/">
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Flutter + Fastlane (One Click Beta)</title>
+      <link rel="stylesheet" type="text/css" href="/index.css" />
+      <link rel="stylesheet" type="text/css" href="/article.css" />
+      <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons&display=block"
+        rel="stylesheet"
+      />
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+    </head>
+    <body>
+      <nav-wrapper title="Flutter + Fastlane (One Click Beta)">
+        <article>
+         <h3 id="flutter--fastlane-one-click-beta">Flutter + Fastlane (One Click Beta)</h3>
+<h4 id="1-install-flutter">1. Install Flutter</h4>
+<p><a href="https://flutter.io/get-started/install/" rel="noopener noreferrer" target="_blank">Download Flutter</a></p>
+<p><img src="/images/flutter/logo.jpg" alt="flutter" /></p>
+<h4 id="2-create-new-flutter-project">2. Create new Flutter Project</h4>
+<p>If you are pretty new to Flutter you can check out <a href="https://flutter.io/get-started/codelab/" rel="noopener noreferrer" target="_blank">this useful guide</a> on how to create a new project step by step. </p>
+<p><img src="/images/flutter/cross-platform.jpg" alt="cross-platform" /></p>
+<h4 id="3-create-app-in-itunes-connect">3. Create App in iTunes Connect</h4>
+<p>If you are not familiar with iTunes Connect, check out <a href="https://clearbridgemobile.com/how-to-submit-an-app-to-the-app-store/" rel="noopener noreferrer" target="_blank">this article</a> for getting started and setting up your first app for the App Store. </p>
+<h4 id="4-create-app-in-google-play">4. Create App in Google Play</h4>
+<p>Setting up an app in the Google Play Console can be tricky, make sure to check out the <a href="https://support.google.com/googleplay/android-developer/answer/113469?hl=en-GB" rel="noopener noreferrer" target="_blank">official reference</a> and <a href="https://medium.com/mindorks/upload-your-first-android-app-on-play-store-step-by-step-ee0de9123ac0" rel="noopener noreferrer" target="_blank">this guide</a> if you are having trouble. </p>
+<p><img src="/images/flutter/fastlane.jpg" alt="fastlane" /></p>
+<h4 id="5-navigate-to-project--ios-and-setup-fastlane">5. Navigate to Project &gt; ios and Setup Fastlane</h4>
+<p><a href="https://docs.fastlane.tools/getting-started/ios/setup/" rel="noopener noreferrer" target="_blank">Reference</a></p>
+<h4 id="6-navigate-to-project--android-and-setup-fastlane">6. Navigate to Project &gt; android and Setup Fastlane</h4>
+<p><a href="https://docs.fastlane.tools/getting-started/android/setup/" rel="noopener noreferrer" target="_blank">Reference</a></p>
+<h4 id="7-update-fastlane-fastfiles-for-ios-and-android-and-change-accordingly-for-each-platform">7. Update Fastlane Fastfiles for iOS and Android and Change accordingly for each platform</h4>
+<ul>
+<li><p>Make sure to change <YOUR PROJECT PATH> to the path to your project in Finder.</p></li>
+<li><p>Only copy the correct platform code for each Fastfile. For example, <code>default_platform(:ios)</code> for iOS and `default_platform(:android)1st for Android.</p></li>
+</ul>
+<pre><code class="ruby language-ruby">update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Push a new beta build to TestFlight"
+  lane :beta do
+    increment_build_number(xcodeproj: "Runner.xcodeproj")
+    build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
+    upload_to_testflight(skip_waiting_for_build_processing: true)
+  end
+  desc "Push a new release build to the App Store"
+  lane :release do  
+    increment_build_number(xcodeproj: "Runner.xcodeproj")
+    build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
+    upload_to_app_store(submit_for_review: true,
+                            automatic_release: true,
+                            skip_screenshots: true,
+                            force: true,
+                            skip_waiting_for_build_processing: true)
+  end
+end
+
+
+
+//&lt;YOUR PROJECT PATH&gt; &gt; android &gt; fastlane &gt; Fastfile
+default_platform(:android)
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Submit a new Build to Beta"
+  lane :beta do
+    gradle(task: 'clean')
+    increment_version_code
+    sh "cd &lt;YOUR PROJECT PATH&gt; &amp;&amp; flutter build apk"
+    upload_to_play_store(
+      track: 'beta',
+      apk: '../build/app/outputs/apk/release/app-release.apk',
+      skip_upload_screenshots: true,
+      skip_upload_images: true
+    )
+    # crashlytics
+  end
+
+  desc "Deploy a new version to the Google Play"
+  lane :deploy do
+    gradle(task: 'clean')
+    increment_version_code
+    sh "cd &lt;YOUR PROJECT PATH&gt; &amp;&amp; flutter build apk"
+    upload_to_play_store(
+      track: 'production',
+      apk: '../build/app/outputs/apk/release/app-release.apk',
+      skip_upload_screenshots: true,
+      skip_upload_images: true
+    )
+  end
+end</code></pre>
+<ul>
+<li>For Android <code>increment_version_code</code> install here.  </li>
+</ul>
+<p>Sometimes it will fail and you will need to run:</p>
+<p><code>bundle exec fastlane add_plugin increment_version_code</code></p>
+<ul>
+<li>For iOS <code>increment_build_number</code> set up Generic Versioning by enabling the agvtool. </li>
+</ul>
+<p><img src="/images/flutter/version-bump.gif" alt="version-bump" /><br />
+<a href="https://medium.com/xcblog/agvtool-automating-ios-build-and-version-numbers-454cab6f1bbe" rel="noopener noreferrer" target="_blank">Source</a></p>
+<h4 id="8-metadata-optional">8. Metadata (Optional)</h4>
+<ul>
+<li>For iOS you can have Fastlane download all your apps existing metadata including screenshots from iTunes Connect. In terminal navigate to the project and run.</li>
+</ul>
+<p><code>fastlane deliver download_metadata &amp;&amp; fastlane deliver download_screenshots</code></p>
+<ul>
+<li>For Android you can use <a href="https://docs.fastlane.tools/actions/supply/" rel="noopener noreferrer" target="_blank">Fastlane Supply</a>. </li>
+</ul>
+<h4 id="9-open-automator">9. Open Automator</h4>
+<p>Right now everything is working just by the command line. If you navigate to your project in terminal by adding "cd " and dragging in the project folder and hitting Enter, you can type "cd ios &amp;&amp; fastlane beta" or "cd android &amp;&amp; fastlane beta" and both will run fastlane.</p>
+<p><img src="/images/flutter/terminal-drag.gif" alt="terminal" /></p>
+<p>If you want to be able to submit your app to Google Play and the App Store with one click we will be using <a href="http://www.applegazette.com/os-x/getting-started-automator-workflows-mac/" rel="noopener noreferrer" target="_blank">Automator</a>. Create a new Automator Application. And Search for "Ask for Confirmation" and "Run AppleScript" and drag in.</p>
+<p><img src="/images/flutter/automator.jpg" alt="fastlane" /></p>
+<p>Here is the Script for beta and release. You will need to create a Automator Application for both Beta and Release for each app you want automated. Save it where ever you want and create an Alias to be but on the Desktop.</p>
+<ul>
+<li>Make sure to change <YOUR PROJECT PATH> to the path to your project in Finder</li>
+</ul>
+<p>Hint: I have my automator application save in the Github Repo of my project for versioning and easy access for different projects. </p>
+<pre><code class="ruby language-ruby">//Beta
+on run {input, parameters}
+    tell application "Terminal"
+        activate
+        do script "cd &lt;YOUR PROJECT PATH&gt;/android &amp;&amp; fastlane beta &amp;&amp; cd &lt;YOUR PROJECT PATH&gt;/ios &amp;&amp; fastlane beta"
+    end tell
+    tell application "System Events"
+        try
+            set visible of application process "Terminal" to false
+        end try
+    end tell
+end run
+
+//Release
+on run {input, parameters}
+    tell application "Terminal"
+        activate
+        do script "cd &lt;YOUR PROJECT PATH&gt;/android &amp;&amp; fastlane deploy &amp;&amp; cd &lt;YOUR PROJECT PATH&gt;/ios &amp;&amp; fastlane release"
+    end tell
+    tell application "System Events"
+        try
+            set visible of application process "Terminal" to false
+        end try
+    end tell
+end run</code></pre>
+<h4 id="10-try-it-out">10. Try It Out!</h4>
+<p>Everything should be working now. If you double click on the automator application you should get a confirmation pop up to release the app. The Script will run terminal in the background and you can stay focused on developing awesome flutter applications. If you want to see the progress on fastlane uploading your apps you can click on the terminal icon and the terminal window will reappear. Thanks for reading and please reach out for any questions you have!</p>
+        </article>
+      </nav-wrapper>
+      <noscript>You need to enable JavaScript to run this app.</noscript>
+      <script type="module" src="/dist/components/nav-wrapper.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
+  
+  <script
+    src="https://utteranc.es/client.js"
+    repo="rodydavis/rodydavis"
+    issue-term="pathname"
+    theme="github-light"
+    crossorigin="anonymous"
+    async
+  ></script>
+  
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js');
+        });
+      }
     </script>
-  </body>
-</html>
+    </body>
+  </html>

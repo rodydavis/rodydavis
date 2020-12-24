@@ -2,7 +2,7 @@ import * as fs from 'fs-extra';
 import { getPostFromMeta, mdWithoutMeta } from './meta';
 import { writeRssFile } from './rss';
 import { Converter } from 'showdown';
-import prettify from 'html-prettify';
+// import prettify from 'html-prettify';
 import { md2ampstory } from './amp-story';
 
 export async function build() {
@@ -103,12 +103,31 @@ function copyMarkdownFile(filePath: string, name: string, outputDir: string) {
   }
   checkDir(outputDir);
   checkDir(`${outputDir}/${id}`);
-  fs.writeFileSync(`${outputDir}/${id}/index.html`, prettify(result));
+  fs.writeFileSync(`${outputDir}/${id}/index.html`, result);
   return meta;
 }
 
 function md2Html(text: string) {
-  const converter = new Converter();
+  const converter = new Converter({
+    tables: true,
+    omitExtraWLInCodeBlocks: true,
+    ghCompatibleHeaderId: true,
+    headerLevelStart: 3,
+    simplifiedAutoLink: true,
+    excludeTrailingPunctuationFromURLs: true,
+    tablesHeaderId: true,
+    tasklists: true,
+    ghMentions: true,
+    simpleLineBreaks: true,
+    requireSpaceBeforeHeadingText: true,
+    openLinksInNewWindow: true,
+    encodeEmails: true,
+    emoji: true,
+    parseImgDimensions: true,
+    literalMidWordUnderscores: true,
+    strikethrough: true,
+    smoothLivePreview: true,
+  });
   const result = converter.makeHtml(text);
   return result;
 }
