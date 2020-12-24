@@ -194,5 +194,7 @@
     <script type="module" src="/dist/components/nav-wrapper.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <script src="https://utteranc.es/client.js" repo="rodydavis/rodydavis" issue-term="pathname" theme="github-light" crossorigin="anonymous" async ></script>
+    <script> if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navigator.serviceWorker.register('/sw.js'); }); }
+    </script>
   </body>
 </html>

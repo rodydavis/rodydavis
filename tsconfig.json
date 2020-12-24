@@ -6,8 +6,7 @@
   },
   "include": [
     "src",
-    "types",
-    "scripts"
+    "types"
   ],
   "compilerOptions": {
     "module": "esnext",
@@ -32,6 +31,7 @@
     "esModuleInterop": true
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "scripts"
   ]
 }
