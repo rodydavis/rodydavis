@@ -86,7 +86,7 @@ export class NavWrapper extends LitElement {
               ${this._drawerItem('home', 'Home', '/')}
               ${this._drawerItem('import_contacts', 'Blog', '/blog')}
               ${this._drawerItem('grid_on', 'Apps', '/apps')}
-              ${this._drawerItem('list', 'Stories', '/stories')}
+              ${this._drawerItem('view_carousel', 'Stories', '/stories')}
               ${this._drawerItem('info', 'About', '/about')}
             </mwc-list>
           </div>

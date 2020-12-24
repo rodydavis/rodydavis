@@ -1,38 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Rody Davis Blog Feed</title>
-    <link>https://rodydavis.com/</link>
-    <description>This is my personal feed!</description>
-    <lastBuildDate>Thu, 24 Dec 2020 22:53:35 GMT</lastBuildDate>
-    <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <language>en</language>
-    <image>
-      <title>Rody Davis Blog Feed</title>
-      <url>https://rodydavis.com/assets/icons/icon_512.png</url>
-      <link>https://rodydavis.com/</link>
-    </image>
-    <copyright>All rights reserved 2020, Rody Davis</copyright>
-    <category>Technology</category>
-    <item>
-      <title>
-        <![CDATA["Automate Flutter App Releases"]]>
-      </title>
-      <link>https://rodydavis.com/#/blog/assets/blog/automate-flutter-apps</link>
-      <guid>assets/blog/automate-flutter-apps</guid>
-      <pubDate>Fri, 15 Mar 2019 00:00:00 GMT</pubDate>
-      <description>
-        <![CDATA[
+    <channel>
+        <title>Rody Davis Blog Feed</title>
+        <link>https://rodydavis.com/</link>
+        <description>This is my personal feed!</description>
+        <lastBuildDate>Thu, 24 Dec 2020 23:48:47 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <image>
+            <title>Rody Davis Blog Feed</title>
+            <url>https://rodydavis.com/assets/icons/icon_512.png</url>
+            <link>https://rodydavis.com/</link>
+        </image>
+        <copyright>All rights reserved 2020, Rody Davis</copyright>
+        <category>Technology</category>
+        <item>
+            <title><![CDATA["Automate Flutter App Releases"]]></title>
+            <link>https://rodydavis.com/#/blog/assets/blog/automate-flutter-apps</link>
+            <guid>assets/blog/automate-flutter-apps</guid>
+            <pubDate>Fri, 15 Mar 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[
 layout: post
 title: "Automate Flutter App Releases"
 date: 2019-03-15
 categories: [flutter, apps, ci, automation]
 hasComments: 'true'
-]]>
-      </description>
-      <content:encoded>
-        <![CDATA[
+]]></description>
+            <content:encoded><![CDATA[
 
 # Automate Flutter App Releases
 
@@ -73,30 +68,24 @@ Now you can call this script!
 - Rebuild classes
 - Add commit messages
 - Updates Cocoa Pods
-]]>
-      </content:encoded>
-      <category>automate-flutter-apps.md</category>
-      <enclosure url="https://rodydavis.com" length="0" type="image//" />
-    </item>
-    <item>
-      <title>
-        <![CDATA["How to use plugins from mobile and web in a Flutter project"]]>
-      </title>
-      <link>https://rodydavis.com/#/blog/assets/blog/codebase-many-places</link>
-      <guid>assets/blog/codebase-many-places</guid>
-      <pubDate>Fri, 06 Sep 2019 00:00:00 GMT</pubDate>
-      <description>
-        <![CDATA[
+]]></content:encoded>
+            <category>automate-flutter-apps.md</category>
+            <enclosure url="https://rodydavis.com" length="0" type="image//"/>
+        </item>
+        <item>
+            <title><![CDATA["How to use plugins from mobile and web in a Flutter project"]]></title>
+            <link>https://rodydavis.com/#/blog/assets/blog/codebase-many-places</link>
+            <guid>assets/blog/codebase-many-places</guid>
+            <pubDate>Fri, 06 Sep 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[
 layout: post
 title:  "How to use plugins from mobile and web in a Flutter project"
 date:   2019-09-06
 categories: [flutter, ios, android]
 tags: [flutter, ios, android, crossplatform, web]
 hasComments: 'true'
-]]>
-      </description>
-      <content:encoded>
-        <![CDATA[
+]]></description>
+            <content:encoded><![CDATA[
 
 # How to build a native cross platform project with Flutter
 
@@ -520,30 +509,24 @@ Congratulations! You made it :)
 Here is the final project located [here](https://github.com/rodydavis/flutter_x/tree/finish).
 
 Please reach out if you have any questions!
-]]>
-      </content:encoded>
-      <category>codebase-many-places.md</category>
-      <enclosure url="https://rodydavis.com/images/gifs/yes_yes_yes.gif" length="0" type="image/gif" />
-    </item>
-    <item>
-      <title>
-        <![CDATA["Flutter + Fastlane (One Click Beta)"]]>
-      </title>
-      <link>https://rodydavis.com/#/blog/assets/blog/flutter-one-click-release</link>
-      <guid>assets/blog/flutter-one-click-release</guid>
-      <pubDate>Mon, 11 Mar 2019 00:00:00 GMT</pubDate>
-      <description>
-        <![CDATA[
+]]></content:encoded>
+            <category>codebase-many-places.md</category>
+            <enclosure url="https://rodydavis.com/images/gifs/yes_yes_yes.gif" length="0" type="image/gif"/>
+        </item>
+        <item>
+            <title><![CDATA["Flutter + Fastlane (One Click Beta)"]]></title>
+            <link>https://rodydavis.com/#/blog/assets/blog/flutter-one-click-release</link>
+            <guid>assets/blog/flutter-one-click-release</guid>
+            <pubDate>Mon, 11 Mar 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[
 layout: post
 title:  "Flutter + Fastlane (One Click Beta)"
 date:   2019-03-11
 categories: [flutter, ios, android]
 tags: [flutter, ci/cd, automation, fastlane, AppStore, Google Play]
 hasComments: 'true'
-]]>
-      </description>
-      <content:encoded>
-        <![CDATA[
+]]></description>
+            <content:encoded><![CDATA[
 
 # Flutter + Fastlane (One Click Beta)
 
@@ -717,30 +700,24 @@ end run
 ## 10. Try It Out!
 
 Everything should be working now. If you double click on the automator application you should get a confirmation pop up to release the app. The Script will run terminal in the background and you can stay focused on developing awesome flutter applications. If you want to see the progress on fastlane uploading your apps you can click on the terminal icon and the terminal window will reappear. Thanks for reading and please reach out for any questions you have!
-]]>
-      </content:encoded>
-      <category>flutter-one-click-release.md</category>
-      <enclosure url="https://rodydavis.com/images/flutter/logo.jpg" length="0" type="image/jpg" />
-    </item>
-    <item>
-      <title>
-        <![CDATA["Launching... Space Curiosity"]]>
-      </title>
-      <link>https://rodydavis.com/#/blog/assets/blog/launch-space-curiosity</link>
-      <guid>assets/blog/launch-space-curiosity</guid>
-      <pubDate>Sun, 10 Mar 2019 00:00:00 GMT</pubDate>
-      <description>
-        <![CDATA[
+]]></content:encoded>
+            <category>flutter-one-click-release.md</category>
+            <enclosure url="https://rodydavis.com/images/flutter/logo.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA["Launching... Space Curiosity"]]></title>
+            <link>https://rodydavis.com/#/blog/assets/blog/launch-space-curiosity</link>
+            <guid>assets/blog/launch-space-curiosity</guid>
+            <pubDate>Sun, 10 Mar 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[
 layout: post
 title:  "Launching... Space Curiosity"
 date:   2019-03-10
 categories: [flutter, ios, android]
 tags: [flutter, SpaceX, nasa, iss, planets, space]
 hasComments: 'true'
-]]>
-      </description>
-      <content:encoded>
-        <![CDATA[
+]]></description>
+            <content:encoded><![CDATA[
 
 # Launching… Space Curiosity!
 A brief overview of a new app built with [Flutter](https://Flutter.io) by Rody Davis and Jesus Rodriguez.
@@ -788,29 +765,23 @@ All this work would not be possible without the incredible community behind Flut
 
 Big thanks to Jesus Rodriguez to the awesome collaboration and ideas set forth.
 You can find [Rody Davis](https://www.github.com/rodydavis) and [Jesus Rodriguez](https://www.github.com/jesusrp98) on Github.
-]]>
-      </content:encoded>
-      <category>launch-space-curiosity.md</category>
-      <enclosure url="https://rodydavis.com/images/space-curiosity/icon.png" length="0" type="image/png" />
-    </item>
-    <item>
-      <title>
-        <![CDATA["Building A Piano with Flutter"]]>
-      </title>
-      <link>https://rodydavis.com/#/blog/assets/blog/making-a-piano</link>
-      <guid>assets/blog/making-a-piano</guid>
-      <pubDate>Tue, 12 Mar 2019 00:00:00 GMT</pubDate>
-      <description>
-        <![CDATA[
+]]></content:encoded>
+            <category>launch-space-curiosity.md</category>
+            <enclosure url="https://rodydavis.com/images/space-curiosity/icon.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA["Building A Piano with Flutter"]]></title>
+            <link>https://rodydavis.com/#/blog/assets/blog/making-a-piano</link>
+            <guid>assets/blog/making-a-piano</guid>
+            <pubDate>Tue, 12 Mar 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[
 layout: post
 title:  "Building A Piano with Flutter"
 date:   2019-03-12
 categories: [flutter, music, ios, android]
 hasComments: 'true'
-]]>
-      </description>
-      <content:encoded>
-        <![CDATA[
+]]></description>
+            <content:encoded><![CDATA[
 
 # Building A Piano with Flutter
 
@@ -1862,10 +1833,9 @@ Now we have a fully functional piano that you can play with and enjoy on iOS and
 
 I was really inspired when creating this for the [Flutter Create](https://flutter.dev/create) contest.
 
-Hope you learned something, if you have any questions you can always read out to me. This is an open source piano and would love PRs on the main project [here](https://github.com/rodydavis/flutter_piano)!]]>
-      </content:encoded>
-      <category>making-a-piano.md</category>
-      <enclosure url="https://rodydavis.com/images/flutter_piano/starter.png" length="0" type="image/png" />
-    </item>
-  </channel>
+Hope you learned something, if you have any questions you can always read out to me. This is an open source piano and would love PRs on the main project [here](https://github.com/rodydavis/flutter_piano)!]]></content:encoded>
+            <category>making-a-piano.md</category>
+            <enclosure url="https://rodydavis.com/images/flutter_piano/starter.png" length="0" type="image/png"/>
+        </item>
+    </channel>
 </rss>

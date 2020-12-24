@@ -6,8 +6,8 @@ permalink: /privacy/
 
 # Privacy Policy
 
-Welcome to our Privacy Policy
--- Your privacy is critically important to us.
+Your privacy is critically important to us.
+
 Rody Davis Productions is located at:
 
 Rody Davis Productions
