@@ -204,7 +204,7 @@ function checkPath(outputDir: string, path: string) {
   }
 }
 
-function md2Html(text: string) {
+export function md2Html(text: string) {
   const converter = new Converter({
     tables: true,
     omitExtraWLInCodeBlocks: true,

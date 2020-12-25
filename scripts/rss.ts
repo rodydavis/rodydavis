@@ -2,7 +2,13 @@
 import * as rss from 'feed';
 import type { Item } from 'feed/lib/typings';
 import * as fs from 'fs';
+import {
+  extractImageUrlFromMarkdown,
+  getPostFromMeta,
+  mdWithoutMeta,
+} from '../src/utils/meta';
 import escape from 'xml-escape';
+import { md2Html } from './build';
 
 export async function writeRssFile(input: string) {
   const author = {
@@ -54,23 +60,15 @@ function checkPath(
 
 function addPost(path: string, category: string | undefined): Item | undefined {
   const name = path.replace('.md', '');
-  const content = fs.readFileSync(path).toString();
-  const sections = content.split('---');
-  let meta = '';
-  let _content = content;
+  const rawMd = fs.readFileSync(path).toString();
+  const meta = getPostFromMeta(rawMd, path, name);
   const now = new Date(Date.parse(Date.now().toLocaleString()));
-  if (content.match('---')) {
-    // eslint-disable-next-line prefer-destructuring
-    meta = sections[1];
-    // eslint-disable-next-line prefer-destructuring
-    _content = sections[2];
-  }
-  if (meta !== '') {
+  if (meta) {
     const post: Item = {
       id: name,
       link: `https://rodydavis.com/#/blog/${name}`,
-      description: meta,
-      content: _content,
+      description: meta.timeToRead,
+      content: md2Html(mdWithoutMeta(rawMd)),
       image: '',
       author: [{ name: 'Rody Davis' }],
       title: '',
@@ -83,23 +81,17 @@ function addPost(path: string, category: string | undefined): Item | undefined {
         },
       ];
     }
-    const lines = meta.split('\n');
-    for (const line of lines) {
-      if (line.match('title')) {
-        post.title = line.split(': ')[1].trim();
-      }
-      if (line.match('date')) {
-        const _date = new Date(Date.parse(line.split(': ')[1].trim()));
-        post.date = _date;
-      }
+    if (meta.title) {
+      post.title = meta.title;
     }
-    if (_content.indexOf('![') !== -1) {
-      const index = _content.indexOf('![');
-      const imgStart = _content.indexOf('](', index);
-      const imgEnd = _content.indexOf(')', index);
-      post.image = _content.substring(imgStart + 2, imgEnd);
+    if (meta.date) {
+      const _date = new Date(Date.parse(meta.date));
+      post.date = _date;
     }
-    post.image = escape(`https://rodydavis.com${post.image}`);
+    post.image = extractImageUrlFromMarkdown(rawMd);
+    if (post.image?.startsWith('/')) {
+      post.image = escape(`https://rodydavis.com${post.image}`);
+    }
     return post;
   }
 }
