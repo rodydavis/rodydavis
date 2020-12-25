@@ -162,7 +162,8 @@ export class MetaList extends LitElement {
                     />
                     <div class="container">
                       <h4><b>${p.title || p.id}</b></h4>
-                      <p>${p.date || 'unknown'}</p>
+                      <!-- <p>${p.date || 'unknown'}</p> -->
+                      ${p.timeToRead ? html`<p>${p.timeToRead}</p>` : nothing}
                     </div>
                   </div>`,
                 )}

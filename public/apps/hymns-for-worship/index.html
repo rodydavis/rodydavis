@@ -58,16 +58,13 @@ font-size: 16px;
       <script type="module" src="/dist/components/nav-wrapper.js"></script>
       <script>hljs.initHighlightingOnLoad();</script>
   
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js');
-        });
-      }
-    </script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
     <script>
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js');
+      });
+
       const firebaseConfig = {
         apiKey: 'AIzaSyCfbxrJWY2QgbSJrCnS3jZ8mfBwvQrqII0',
         authDomain: 'development-267918.firebaseapp.com',
@@ -81,6 +78,6 @@ font-size: 16px;
       firebase.initializeApp(firebaseConfig);
       firebase.analytics();
     </script>
-
+    
     </body>
   </html>

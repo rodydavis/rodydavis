@@ -1,9 +1,8 @@
 import * as fs from 'fs-extra';
-import { getPostFromMeta, mdWithoutMeta } from './meta';
 import { writeRssFile } from './rss';
 import { Converter } from 'showdown';
 import { md2ampstory } from './amp-story';
-import type { PostMeta } from 'src/utils/meta';
+import { getPostFromMeta, mdWithoutMeta, PostMeta } from '../src/utils/meta';
 
 export async function build(inputDir: string, outputDir: string) {
   const files = fs.readdirSync(inputDir);
@@ -145,17 +144,13 @@ function copyMarkdownFile(
   `;
     }
     result += `
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js');
-        });
-      }
-    </script>`;
-    result += `
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
     <script>
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js');
+      });
+
       const firebaseConfig = {
         apiKey: 'AIzaSyCfbxrJWY2QgbSJrCnS3jZ8mfBwvQrqII0',
         authDomain: 'development-267918.firebaseapp.com',
@@ -169,7 +164,25 @@ function copyMarkdownFile(
       firebase.initializeApp(firebaseConfig);
       firebase.analytics();
     </script>
-`;
+    `;
+    //     result += `
+    //     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    //     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+    //     <script>
+    //       const firebaseConfig = {
+    //         apiKey: 'AIzaSyCfbxrJWY2QgbSJrCnS3jZ8mfBwvQrqII0',
+    //         authDomain: 'development-267918.firebaseapp.com',
+    //         databaseURL: 'https://development-267918.firebaseio.com',
+    //         projectId: 'development-267918',
+    //         storageBucket: 'development-267918.appspot.com',
+    //         messagingSenderId: '700791912456',
+    //         appId: '1:700791912456:web:0b4947c995cec6c38bb9bd',
+    //         measurementId: 'G-JQNPVBL9DR',
+    //       };
+    //       firebase.initializeApp(firebaseConfig);
+    //       firebase.analytics();
+    //     </script>
+    // `;
 
     result += `
     </body>
