@@ -2,7 +2,7 @@
 layout: post
 title:  "Flutter + Fastlane (One Click Beta)"
 date:   2019-03-11
-categories: [flutter, ios, android]
+categories: [flutter, scripting]
 tags: [flutter, ci/cd, automation, fastlane, AppStore, Google Play]
 hasComments: 'true'
 ---

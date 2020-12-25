@@ -5,7 +5,7 @@
       <base href="/">
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Automate Flutter App Releases</title>
+      <title>Using Fastlane in Flutter and CI</title>
       <link rel="stylesheet" type="text/css" href="/index.css" />
       <link rel="stylesheet" type="text/css" href="/article.css" />
       <link
@@ -16,42 +16,38 @@
       <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
     </head>
     <body>
-      <nav-wrapper title="Automate Flutter App Releases">
+      <nav-wrapper title="Using Fastlane in Flutter and CI">
         <article>
-         <h3 id="automate-flutter-app-releases">Automate Flutter App Releases</h3>
-<h4 id="tldr">TLDR</h4>
-<p>You can find the script <a href="https://gist.github.com/rodydavis/774b36e32d7efa882cca8dd16da6e74c" rel="noopener noreferrer" target="_blank">here</a>.</p>
-<script src="https://gist.github.com/rodydavis/774b36e32d7efa882cca8dd16da6e74c.js"></script>
-<p>Make your life easier and automate your builds to beta and production!</p>
-<h4 id="what-you-need">What you need</h4>
+         <h3 id="using-fastlane-in-flutter-and-ci">Using Fastlane in Flutter and CI</h3>
+<p>Prerequisites :</p>
 <ul>
-<li><a href="https://fastlane.tools/" rel="noopener noreferrer" target="_blank">Fastlane</a> setup in each directory</li>
-<li><a href="https://pub.dartlang.org/packages/build_runner" rel="noopener noreferrer" target="_blank">build_runner</a> as a dependency</li>
-<li>Git Project in VCS</li>
+<li><p>Understand what <a href="https://fastlane.tools/" rel="noopener noreferrer" target="_blank">Fastlane</a> is and how it works</p></li>
+<li><p>Project builds correctly following these <a href="https://flutter.dev/docs/deployment/cd" rel="noopener noreferrer" target="_blank">docs</a></p></li>
+<li><p>Android app setup in <a href="https://developer.android.com/distribute/console" rel="noopener noreferrer" target="_blank">Google Play Console</a></p></li>
+<li><p>iOS app setup in <a href="https://appstoreconnect.apple.com/" rel="noopener noreferrer" target="_blank">AppStore Connect</a></p></li>
+<li><p><a href="https://flutter.dev/docs/get-started/install" rel="noopener noreferrer" target="_blank">Flutter is installed</a> and your project is created</p></li>
 </ul>
-<h4 id="initial-setup">Initial Setup</h4>
-<ul>
-<li>Download <a href="https://gist.github.com/rodydavis/774b36e32d7efa882cca8dd16da6e74c" rel="noopener noreferrer" target="_blank">this file</a></li>
-<li>Put it at the root level of your flutter project</li>
-<li>Open the terminal and navigate to your project location</li>
-<li>Enter this command: chmod +x release.sh</li>
-</ul>
-<h4 id="usage">Usage</h4>
-<p>Now you can call this script!</p>
-<ul>
-<li>For beta: <code>./release.sh beta</code></li>
-<li>For production: <code>./release.sh release</code></li>
-</ul>
-<h4 id="overview">Overview</h4>
-<ul>
-<li>Bump the version numbers if you are using the version in the pubspec.yaml</li>
-<li>Release the apps with Fastlane</li>
-<li>Format all Dart Files</li>
-<li>Clean Project</li>
-<li>Rebuild classes</li>
-<li>Add commit messages</li>
-<li>Updates Cocoa Pods</li>
-</ul>
+<ol>
+<li><p>Open your Flutter project</p></li>
+<li><p>Run: cd ios</p></li>
+<li><p>Run: fastlane init and follow the prompts</p></li>
+<li><p>Replace the Fastfile contents with this:</p></li>
+</ol>
+<iframe src="https://medium.com/media/fbfeb5ff49f489283bb93b88172e4a44" frameborder=0></iframe>
+<ol start="5">
+<li><p>Run: cd .. &amp;&amp; cd android</p></li>
+<li><p>Run: fastlane init and follow the prompts</p></li>
+<li><p>Replace the Fastfile contents with this:</p></li>
+</ol>
+<iframe src="https://medium.com/media/ef171e4a2ba0d48a77bcb266754d2886" frameborder=0></iframe>
+<ol start="8">
+<li><p>Run: fastlane add_plugin versioning_android and enter your password if needed</p></li>
+<li><p>Run: cd ..</p></li>
+</ol>
+<p>Now you are ready to launch your app to beta!</p>
+<p>For ios run: cd ios &amp;&amp; fastlane beta</p>
+<p>For android run: cd android &amp;&amp; fastlane beta</p>
+<p>Stay tuned for an article soon where we use these fastlane sub folders for automating the releases on <a href="https://github.com/features/actions" rel="noopener noreferrer" target="_blank">Github Actions</a> CI</p>
         </article>
       </nav-wrapper>
       <noscript>You need to enable JavaScript to run this app.</noscript>

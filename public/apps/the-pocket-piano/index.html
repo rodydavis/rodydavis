@@ -45,5 +45,22 @@ font-size: 16px;
         });
       }
     </script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+    <script>
+      const firebaseConfig = {
+        apiKey: 'AIzaSyCfbxrJWY2QgbSJrCnS3jZ8mfBwvQrqII0',
+        authDomain: 'development-267918.firebaseapp.com',
+        databaseURL: 'https://development-267918.firebaseio.com',
+        projectId: 'development-267918',
+        storageBucket: 'development-267918.appspot.com',
+        messagingSenderId: '700791912456',
+        appId: '1:700791912456:web:0b4947c995cec6c38bb9bd',
+        measurementId: 'G-JQNPVBL9DR',
+      };
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+
     </body>
   </html>

@@ -2,7 +2,7 @@
 layout: post
 title: "Automate Flutter App Releases"
 date: 2019-03-15
-categories: [flutter, apps, ci, automation]
+categories: [flutter, apps]
 hasComments: 'true'
 ---
 
