@@ -1,3 +1,5 @@
+import { readingTime } from 'reading-time-estimator';
+
 export interface PostMeta {
   path: string;
   id: string;
@@ -8,6 +10,7 @@ export interface PostMeta {
   date?: string;
   categories?: string[];
   tags?: string[];
+  timeToRead?: string;
 }
 
 export function buildDonationScript(): HTMLScriptElement {
@@ -42,29 +45,13 @@ export function buildCommentsScript(): HTMLScriptElement {
   return script;
 }
 
-export function getMetaList(meta: string[], key: string): string[] | undefined {
-  return getMetaKey(meta, key)?.replace('[', '')?.replace(']', '')?.split(',');
-}
-
-export function getMetaKey(meta: string[], key: string): string | undefined {
-  const value = meta
-    ?.filter((v) => v.startsWith(`${key}:`))[0]
-    ?.split(':')[1]
-    ?.trim();
-  if (!value) return undefined;
-  if (
-    (value.startsWith('"') && value.endsWith('"')) ||
-    (value.startsWith("'") && value.endsWith("'"))
-  ) {
-    return value.substring(1, value.length - 1);
-  }
-  return value;
-}
-
 export function extractImageUrlFromMarkdown(
   content: string,
 ): string | undefined {
-  return (content.match(/!\[.+?\]\((.*?(?:\.jpe?g|png|gif))\)/i) || [])[1];
+  // return (content.match(/!\[.+?\]\((.*?(?:\.jpe?g|png|gif))\)/i) || [])[1];
+  const result = content.match(/!\[.*?\]\((.*?)\)/);
+  if (result) return result[1];
+  return undefined;
 }
 
 export function getPostFromMeta(
@@ -87,6 +74,7 @@ export function getPostFromMeta(
     return {
       path,
       id,
+      timeToRead: readingTime(rawMd)?.text,
       image: extractImageUrlFromMarkdown(rawMd),
       title: getMetaKey(meta, 'title'),
       layout: getMetaKey(meta, 'layout') || 'post',
@@ -112,4 +100,28 @@ export function mdWithoutMeta(md: string): string {
     return raw.substring(endMetaIndex, raw.length);
   }
   return raw;
+}
+
+export function getMetaList(meta: string[], key: string): string[] | undefined {
+  const items = getMetaKey(meta, key)
+    ?.replace('[', '')
+    ?.replace(']', '')
+    ?.split(',');
+  const list = items?.map((item) => item.trim());
+  return list;
+}
+
+export function getMetaKey(meta: string[], key: string): string | undefined {
+  const value = meta
+    ?.filter((v) => v.startsWith(`${key}:`))[0]
+    ?.split(':')[1]
+    ?.trim();
+  if (!value) return undefined;
+  if (
+    (value.startsWith('"') && value.endsWith('"')) ||
+    (value.startsWith("'") && value.endsWith("'"))
+  ) {
+    return value.substring(1, value.length - 1);
+  }
+  return value;
 }
