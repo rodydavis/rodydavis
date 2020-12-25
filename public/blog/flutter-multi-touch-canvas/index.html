@@ -18,11 +18,11 @@
     <body>
       <nav-wrapper title="Multi-touch Canvas with Flutter">
         <article>
-         <h3 id="multi-touch-canvas-with-flutter">Multi-touch Canvas with Flutter</h3>
+         <h2 id="multi-touch-canvas-with-flutter">Multi-touch Canvas with Flutter</h2>
 <p>If you ever wanted to create a canvas in <a href="https://flutter.dev" rel="noopener noreferrer" target="_blank">Flutter</a> that needs to be panned in any direction and allow zoom then you also probably tried to create a <a href="https://api.flutter.dev/flutter/gestures/MultiDragGestureRecognizer-class.html" rel="noopener noreferrer" target="_blank">MultiGestureRecognizer</a> or under a <a href="https://api.flutter.dev/flutter/widgets/GestureDetector-class.html" rel="noopener noreferrer" target="_blank">GestureDetector</a> added onPanUpdate and onScaleUpdate and received an error because both can not work at the same time. Even if you have to GestureDetectors then you will still find it does not work how you want and one will always win.</p>
 <p>Online demo: <a href="https://rodydavis.github.io/flutter_multi_touch_canvas/" rel="noopener noreferrer" target="_blank">https://rodydavis.github.io/flutter_multi_touch_canvas/</a></p>
 <p>This is the canvas rendering logic used in <a href="https://widget.studio" rel="noopener noreferrer" target="_blank">https://widget.studio</a></p>
-<h4 id="multi-touch-goal">Multi Touch Goal</h4>
+<h3 id="multi-touch-goal">Multi Touch Goal</h3>
 <ul>
 <li>Pan the canvas with two or more fingers</li>
 <li>Zoom the canvas with two fingers only (Pinch/Zoom)</li>
@@ -30,14 +30,14 @@
 <li>Bonus trackpad support with similar results</li>
 </ul>
 <p>In order to achieve this we need to use a Listener for the trackpad events and raw touch interactions and  <a href="https://api.flutter.dev/flutter/widgets/RawKeyboardListener-class.html" rel="noopener noreferrer" target="_blank">RawKeyboardListener</a> for keyboard shortcuts.</p>
-<h4 id="part-1---project-setup">Part 1 - Project Setup</h4>
+<h3 id="part-1---project-setup">Part 1 - Project Setup</h3>
 <p>Open your terminal and type the following:</p>
 <pre><code>mkdir flutter_multi_touch
 cd flutter_multi_touch
 flutter create .
 code .</code></pre>
 <p>The last line is optional and if you have VSCode installed. The command will open the directory inside VSCode.</p>
-<h4 id="part-2---boilerplate">Part 2 - Boilerplate</h4>
+<h3 id="part-2---boilerplate">Part 2 - Boilerplate</h3>
 <ul>
 <li>Remove all comments</li>
 <li>Remove extra empty lines</li>
@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
   }
 }</code></pre>
 <p>You will now have a black screen when you run the application.</p>
-<h4 id="part-3---creating-the-controller">Part 3 - Creating the Controller</h4>
+<h3 id="part-3---creating-the-controller">Part 3 - Creating the Controller</h3>
 <p>Now we want to create a class that will act as our controller on the canvas.<br />
 Create a new file at <code>src/controllers/canvas.dart</code> and add the following to start:</p>
 <pre><code class="dart language-dart">import 'dart:async';
@@ -155,7 +155,7 @@ class _HomeScreenState extends State&lt;HomeScreen&gt; {
   }
 }</code></pre>
 <p>Here we are just adding the basics to rebuild when the controller changes or the screen is finished. We are using a stateful widget here because we want to dispose of the controller and load it only once. We are also using a stack because thats all we need under the hood. After a quick hot restart you should have the following view.</p>
-<h4 id="part-4---adding-canvas-objects">Part 4 - Adding Canvas Objects</h4>
+<h3 id="part-4---adding-canvas-objects">Part 4 - Adding Canvas Objects</h3>
 <p>Now we need to create the class for the objects that will be stored on the canvas. Create a new file at <code>src/classes/canvas_object.dart</code> and add the following:</p>
 <pre><code class="dart language-dart">import 'dart:ui';
 
@@ -317,7 +317,7 @@ class _HomeScreenState extends State&lt;HomeScreen&gt; {
   }
 }</code></pre>
 <p>The UI is thee same as before but now is dynamic and we have access to the Stack children and position of each child.</p>
-<h4 id="part-5---capture-the-input">Part 5 - Capture the Input</h4>
+<h3 id="part-5---capture-the-input">Part 5 - Capture the Input</h3>
 <p>We need to capture the input of the MultiGestureRecognizer, GestureDetector and RawKeyboardListener. Update the canvas controller with the following:</p>
 <pre><code class="dart language-dart">import 'dart:async';
 
@@ -528,7 +528,7 @@ class _HomeScreenState extends State&lt;HomeScreen&gt; {
   }
 }</code></pre>
 <p>All we are doing now is just mapping the inputs of the UI to the actions in the controller. Feel free to look through the comments if you are curious how each one works. Running the application should still just show the red square.</p>
-<h4 id="part-5---canvas-offset-and-scale">Part 5 - Canvas Offset and Scale</h4>
+<h3 id="part-5---canvas-offset-and-scale">Part 5 - Canvas Offset and Scale</h3>
 <p>Now we want to start moving the canvas. Let’s first tackle the offset as scale will take a different approach. Update the home screen with the following:</p>
 <pre><code class="dart language-dart">import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -837,7 +837,7 @@ extension RectUtils on Rect {
                   onPressed: _controller.zoomOut,
                 ),</code></pre>
 <p>Now when you run the application you can easily zoom in/out.</p>
-<h4 id="part-6---keyboard-shortcuts">Part 6 - Keyboard Shortcuts</h4>
+<h3 id="part-6---keyboard-shortcuts">Part 6 - Keyboard Shortcuts</h3>
 <p>Now we need to capture the keyboard events so we can move the canvas with the arrow keys and scale with +/- keys. Update the controller with the following:</p>
 <pre><code class="dart language-dart">import 'dart:async';
 
@@ -1166,7 +1166,7 @@ extension RectUtils on Rect {
 }</code></pre>
 <p>You can zoom and the blocks all scale correctly and pan around.</p>
 <p>Just press the reset button to start over.</p>
-<h4 id="part-7---multi-touch-input">Part 7 - Multi Touch Input</h4>
+<h3 id="part-7---multi-touch-input">Part 7 - Multi Touch Input</h3>
 <p>Now time for the fingers. For this you will need a touchscreen device to test. You can plug in your phone or if you have a touch screen computer you can run the web version. Update the controller with following:</p>
 <pre><code class="dart language-dart">import 'dart:async';
 import 'dart:math' as math;
@@ -1727,7 +1727,7 @@ extension RectUtils on Rect {
   }
 }</code></pre>
 <p>Now you can move any object on the canvas just by clicking and dragging. You can zoom with 2 fingers and pan with 2 or 3 fingers. If you hold down the shift key then you can use a marquee to select multiple and if you hold down the meta/command key then you can select multiple by tapping each. </p>
-<h4 id="conclusion">Conclusion</h4>
+<h3 id="conclusion">Conclusion</h3>
 <p>If you are on a device without a keyboard you can tap the new icons to turn on the keyboard key actions. When the object is selected there is a grey border.</p>
 <p>Now you can add any widget to the canvas and pan and zoom!</p>
         </article>
@@ -1748,9 +1748,9 @@ extension RectUtils on Rect {
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
     <script>
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js');
-      });
+      // window.addEventListener('load', () => {
+      //   navigator.serviceWorker.register('/sw.js');
+      // });
 
       const firebaseConfig = {
         apiKey: 'AIzaSyCfbxrJWY2QgbSJrCnS3jZ8mfBwvQrqII0',

@@ -18,18 +18,18 @@
     <body>
       <nav-wrapper title="Displaying HTML in Flutter">
         <article>
-         <h3 id="displaying-html-in-flutter">Displaying HTML in Flutter</h3>
+         <h2 id="displaying-html-in-flutter">Displaying HTML in Flutter</h2>
 <p>Sometimes you have content in HTML that needs to be displayed and interacted with in Flutter.</p>
 <p>Online Demo:<a href="https://rodydavis.github.io/easy_web_view/#/" rel="noopener noreferrer" target="_blank">https://rodydavis.github.io/easy_web_view/#/</a></p>
 <p><img src="https://cdn-images-1.medium.com/max/4112/1*4vexucSoyjRip7TBQZhkog.png" alt="" /></p>
 <p>For those impatient I created a package for you to get all the following functionally and more here: <a href="https://pub.dev/packages/easy_web_view" rel="noopener noreferrer" target="_blank">https://pub.dev/packages/easy_web_view</a></p>
-<h4 id="getting-started">Getting Started</h4>
+<h3 id="getting-started">Getting Started</h3>
 <p>Create a new flutter project named whatever you want.</p>
 <blockquote>
   <p>If you plan on showing HTML content on iOS/Android you will need to add the following to your pubspec.yaml</p>
 </blockquote>
 <pre><code>webview_flutter: ^0.3.15+1</code></pre>
-<h4 id="web">Web</h4>
+<h3 id="web">Web</h3>
 <p>Reference: <a href="https://github.com/rodydavis/easy_web_view/blob/master/lib/src/web.dart" rel="noopener noreferrer" target="_blank">https://github.com/rodydavis/easy_web_view/blob/master/lib/src/web.dart</a></p>
 <p>To show html on Flutter web we need to use an HTMLElementView. This is a platform view that allows us to display native content.</p>
 <p>We first need to register the Element and add all the options we need. Here we are creating an iFrame element and setting the source based on if it is markdown, html or a url.</p>
@@ -43,7 +43,7 @@
 <p><img src="https://cdn-images-1.medium.com/max/2000/1*4YtrCKZYr6e1bCBZ-aoLZg.png" alt="" /></p>
 <p>You need to use the same viewType string as you registered for “registerViewFactory” method earlier.</p>
 <p>Finally you need to wrap it in a container or sized box with an explicit width and height!</p>
-<h4 id="mobile">Mobile</h4>
+<h3 id="mobile">Mobile</h3>
 <p>Reference: <a href="https://github.com/rodydavis/easy_web_view/blob/master/lib/src/mobile.dart" rel="noopener noreferrer" target="_blank">https://github.com/rodydavis/easy_web_view/blob/master/lib/src/mobile.dart</a></p>
 <p>Mobile setup should be easier. Let’s add a method for updating the url that we will pass to the web view.</p>
 <p><img src="https://cdn-images-1.medium.com/max/2000/1*6xLbxuNL69Xx6XioN56YWA.png" alt="" /></p>
@@ -53,7 +53,7 @@
 <pre><code>_controller.loadUrl(_updateUrl(widget.src), headers: widget.headers);</code></pre>
 <p>Finally lets show the html in the widget tree:</p>
 <p><img src="https://cdn-images-1.medium.com/max/2000/1*uvsRUE_sReCOZhsXOLiLaQ.png" alt="" /></p>
-<h4 id="conclusion">Conclusion</h4>
+<h3 id="conclusion">Conclusion</h3>
 <p>If you want to see a complete example and advanced use case view the source here: <a href="https://github.com/rodydavis/easy_web_view" rel="noopener noreferrer" target="_blank">https://github.com/rodydavis/easy_web_view</a></p>
 <p>And if you just want to have it all done for you use this package: <a href="https://pub.dev/packages/easy_web_view" rel="noopener noreferrer" target="_blank">https://pub.dev/packages/easy_web_view</a></p>
 <p>Feel free to make PRs if you have anything that could help make it better too (Or if you find bugs).</p>
@@ -76,9 +76,9 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
     <script>
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js');
-      });
+      // window.addEventListener('load', () => {
+      //   navigator.serviceWorker.register('/sw.js');
+      // });
 
       const firebaseConfig = {
         apiKey: 'AIzaSyCfbxrJWY2QgbSJrCnS3jZ8mfBwvQrqII0',

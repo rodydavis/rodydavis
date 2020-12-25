@@ -18,12 +18,12 @@
     <body>
       <nav-wrapper title="Building A Piano with Flutter">
         <article>
-         <h3 id="building-a-piano-with-flutter">Building A Piano with Flutter</h3>
-<h4 id="tldr">TLDR</h4>
+         <h2 id="building-a-piano-with-flutter">Building A Piano with Flutter</h2>
+<h3 id="tldr">TLDR</h3>
 <p>You can find the final source code <a href="https://github.com/rodydavis/flutter_piano/tree/5k" rel="noopener noreferrer" target="_blank">here</a>.</p>
 <p>This piano uses only <code>5032</code> bytes of Dart Code!</p>
 <p>Winner of the <a href="https://flutter.dev/create" rel="noopener noreferrer" target="_blank">Flutter Create Contest</a> and you can see the certificate <a href="https://www.credential.net/exbvca0q?key=8be94f32ad2f56882045e013e960fa888afa4edd52edb963c48df351c7d1e443" rel="noopener noreferrer" target="_blank">here</a>!</p>
-<h4 id="what-you-will-learn">What you will learn</h4>
+<h3 id="what-you-will-learn">What you will learn</h3>
 <ul>
 <li>Working with Dark Mode</li>
 <li>Forcing app to be in landscape</li>
@@ -33,13 +33,13 @@
 <li>Using <code>SafeArea</code> and <code>Semantics</code></li>
 <li>Building an app with minimal code</li>
 </ul>
-<h4 id="what-you-need">What you need</h4>
+<h3 id="what-you-need">What you need</h3>
 <ul>
 <li><a href="https://flutter.dev/docs/get-started/install" rel="noopener noreferrer" target="_blank">Flutter SDK</a> Installed (<a href="https://flutter.dev/docs/get-started/codelab" rel="noopener noreferrer" target="_blank">More Info</a>)</li>
 <li>A <code>.sf2</code> SoundFont File like <a href="https://github.com/rodydavis/flutter_piano/blob/5k/assets/sounds/Piano.sf2" rel="noopener noreferrer" target="_blank">this one</a></li>
 <li>Physical iOS device (iOS Simulator does not work with this plugin for playing the sounds) or Android Emulator/Device</li>
 </ul>
-<h4 id="setting-up">Setting Up</h4>
+<h3 id="setting-up">Setting Up</h3>
 <p>You can either create a new project with Android Studio or VSCode using the GUI or navigate to the location you want your project and using this command in the terminal: <code>lutter create -i swift -a kotlin flutter_piano</code>. Make sure to include Swift and Kotlin Support!</p>
 <p>Now that you have your project created it should look like this.</p>
 <p><img src="/images/flutter_piano/starter.png" alt="app-icon" /></p>
@@ -100,7 +100,7 @@
 &lt;/array&gt;</code></pre>
 <p>Now we can start with the UI! When you run the application now it should start in landscape!</p>
 <p><img src="/images/flutter_piano/landscape.png" alt="landscape" /></p>
-<h4 id="step-1">Step 1</h4>
+<h3 id="step-1">Step 1</h3>
 <p>To make it eaiser to read lets remove the comments. Use "find and replace" and search for <code>\/\/.*</code></p>
 <p><img src="/images/flutter_piano/comments.png" alt="comments" /></p>
 <p>choose the "select all occurrances" button and hit <code>backspace</code> to delete.</p>
@@ -170,7 +170,7 @@ class _MyHomePageState extends State&lt;MyHomePage&gt; {
     );
   }
 }</code></pre>
-<h4 id="step-2">Step 2</h4>
+<h3 id="step-2">Step 2</h3>
 <p>Delete the <code>MyHomePage</code> widget so you are left with this.</p>
 <pre><code class="dart language-dart">import 'package:flutter/material.dart';
 
@@ -206,7 +206,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }</code></pre>
-<h4 id="step-3">Step 3</h4>
+<h3 id="step-3">Step 3</h3>
 <p>Change <code>MyApp</code> to a <code>StatefulWidget</code>. You can do this quickly by selecting <code>MyApp</code> and choose "Convert to StatefulWidget" with the helper.</p>
 <p><img src="/images/flutter_piano/convert.png" alt="convert" /></p>
 <p>It should look like this now:</p>
@@ -231,7 +231,7 @@ class _MyAppState extends State&lt;MyApp&gt; {
     );
   }
 }</code></pre>
-<h3 id="step-4">Step 4</h3>
+<h2 id="step-4">Step 4</h2>
 <p>Change the theme to dark. You can do this by setting the <code>ThemeData</code> in <code>MaterialApp</code></p>
 <p>change:</p>
 <pre><code class="dart language-dart">theme: ThemeData(
@@ -265,7 +265,7 @@ class _MyAppState extends State&lt;MyApp&gt; {
 }</code></pre>
 <p>Now build and run your app, it should look like this.</p>
 <p><img src="/images/flutter_piano/darkmode.png" alt="dark-mode" /></p>
-<h4 id="step-5">Step 5</h4>
+<h3 id="step-5">Step 5</h3>
 <p>We need to add some imports to the top:</p>
 <pre><code class="dart language-dart">import 'package:flutter/services.dart';
 import 'package:flutter_midi/flutter_midi.dart';</code></pre>
@@ -315,7 +315,7 @@ class _MyAppState extends State&lt;MyApp&gt; {
     );
   }
 }</code></pre>
-<h4 id="step-6">Step 6</h4>
+<h3 id="step-6">Step 6</h3>
 <p>To make Flutter development faster we start with containers and colors so we can make sure everything is the right size.</p>
 <p>Lets start by adding a <code>Drawer</code> with a <code>ListView</code> to our <code>Scaffold</code>.</p>
 <pre><code class="dart language-dart"> home: Scaffold(
@@ -373,7 +373,7 @@ class _MyAppState extends State&lt;MyApp&gt; {
     );
   }
 }</code></pre>
-<h4 id="step-7">Step 7</h4>
+<h3 id="step-7">Step 7</h3>
 <p>Now we need to build the octave section that will be repeated. Since every octave is identical we can repeat the octaves with minor adjustments.</p>
 <p>Lets add some parameters for use to define for our UI. Add these underneath the initState function.</p>
 <pre><code class="dart language-dart">double get keyWidth =&gt; 80 + (80 * _widthRatio);
@@ -428,7 +428,7 @@ class _MyAppState extends State&lt;MyApp&gt; {
     );
   }
 }</code></pre>
-<h4 id="step-8">Step 8</h4>
+<h3 id="step-8">Step 8</h3>
 <p>Now we need to add a <code>Stack</code> for our octave:</p>
 <pre><code class="dart language-dart"> return SafeArea(
                child: Stack(children: &lt;Widget&gt;[
@@ -584,7 +584,7 @@ class _MyAppState extends State&lt;MyApp&gt; {
 
 const BorderRadiusGeometry borderRadius = BorderRadius.only(
     bottomLeft: Radius.circular(10.0), bottomRight: Radius.circular(10.0));</code></pre>
-<h4 id="step-9">Step 9</h4>
+<h3 id="step-9">Step 9</h3>
 <p>Time to add midi by adding the following import to the top of the file:</p>
 <pre><code class="dart language-dart">import 'package:tonic/tonic.dart';</code></pre>
 <p>In the <code>-buildKey</code> function you can add this line:</p>
@@ -680,7 +680,7 @@ const BorderRadiusGeometry borderRadius = BorderRadius.only(
 <p>Now when you run the app it should look like this:</p>
 <p><img src="/images/flutter_piano/labels.png" alt="labels" /></p>
 <p>Almost there! Now let's give our user some control.</p>
-<h4 id="step-10">Step 10</h4>
+<h3 id="step-10">Step 10</h3>
 <p>Add these settings to the <code>Drawer</code></p>
 <pre><code class="dart language-dart">Container(height: 20.0),
 ListTile(title: Text("Change Width")),
@@ -702,7 +702,7 @@ ListTile(
 Divider(),</code></pre>
 <p>Now you should see this:</p>
 <p><img src="/images/flutter_piano/settings.png" alt="settings" /></p>
-<h4 id="step-11">Step 11</h4>
+<h3 id="step-11">Step 11</h3>
 <p>To start with <code>Middle C</code> lets add an inital scroll offset to the <code>ListView</code></p>
 <p><code>controller: ScrollController(initialScrollOffset: 1500.0),</code></p>
 <p>Now when we start the app it should co to C4.</p>
@@ -854,7 +854,7 @@ class _MyAppState extends State&lt;MyApp&gt; {
 
 const BorderRadiusGeometry borderRadius = BorderRadius.only(
     bottomLeft: Radius.circular(10.0), bottomRight: Radius.circular(10.0));</code></pre>
-<h3 id="conclusion">Conclusion</h3>
+<h2 id="conclusion">Conclusion</h2>
 <p>If you delete <code>tests/</code> and run <code>find . -name "*.dart" | xargs cat | wc -c</code> you will see that the dart code only uses <code>5032</code> bytes of space! </p>
 <p>Now we have a fully functional piano that you can play with and enjoy on iOS and Android.</p>
 <p>I was really inspired when creating this for the <a href="https://flutter.dev/create" rel="noopener noreferrer" target="_blank">Flutter Create</a> contest.</p>
@@ -877,9 +877,9 @@ const BorderRadiusGeometry borderRadius = BorderRadius.only(
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
     <script>
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js');
-      });
+      // window.addEventListener('load', () => {
+      //   navigator.serviceWorker.register('/sw.js');
+      // });
 
       const firebaseConfig = {
         apiKey: 'AIzaSyCfbxrJWY2QgbSJrCnS3jZ8mfBwvQrqII0',

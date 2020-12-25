@@ -147,9 +147,9 @@ function copyMarkdownFile(
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
     <script>
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js');
-      });
+      // window.addEventListener('load', () => {
+      //   navigator.serviceWorker.register('/sw.js');
+      // });
 
       const firebaseConfig = {
         apiKey: 'AIzaSyCfbxrJWY2QgbSJrCnS3jZ8mfBwvQrqII0',
@@ -209,7 +209,7 @@ function md2Html(text: string) {
     tables: true,
     omitExtraWLInCodeBlocks: true,
     ghCompatibleHeaderId: true,
-    headerLevelStart: 3,
+    headerLevelStart: 2,
     simplifiedAutoLink: true,
     excludeTrailingPunctuationFromURLs: true,
     tablesHeaderId: true,

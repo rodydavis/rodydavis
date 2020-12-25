@@ -18,20 +18,20 @@
     <body>
       <nav-wrapper title="Host your Flutter Project as a REST API">
         <article>
-         <h3 id="host-your-flutter-project-as-a-rest-api">Host your Flutter Project as a REST API</h3>
+         <h2 id="host-your-flutter-project-as-a-rest-api">Host your Flutter Project as a REST API</h2>
 <p>After you build your flutter project you may want to reuse the models and business logic from your lib folder. I will show you how to go about setting up the project to have iOS, Android, Web, Windows, MacOS, Linux and a REST API interface with one project. The REST API can also be deploy to Google Cloud Run for Dart everywhere.</p>
 <p><img src="https://cdn-images-1.medium.com/max/2000/1*_pGj3DixmBImxcAl_HWWdA.gif" alt="" /></p>
 <blockquote>
   <p>One Codebase for Client and Sever.</p>
 </blockquote>
 <p>This will allow you to expose your Dart models as a REST API and run your business logic from your lib folder while the application runs the models as they are. <a href="https://github.com/AppleEducate/shared_dart" rel="noopener noreferrer" target="_blank">Here</a> is the final project.</p>
-<h4 id="setting-up">Setting Up</h4>
+<h3 id="setting-up">Setting Up</h3>
 <p>As with any Flutter project I am going to assume that you already have <a href="https://flutter.dev/" rel="noopener noreferrer" target="_blank">Flutter</a> installed on your machine and that you can create a project. This is a intermediate level difficulty so read on if you are up to the challenge. You will also need to know the basics of <a href="https://www.docker.com/" rel="noopener noreferrer" target="_blank">Docker</a>.</p>
-<h4 id="why-one-project">Why one project?</h4>
+<h3 id="why-one-project">Why one project?</h3>
 <p>It may not be obvious but when building complex applications you will at some point have a server and an application that calls that server. <a href="https://firebase.google.com/" rel="noopener noreferrer" target="_blank">Firebase</a> is an excellent option for doing this and I use it in almost all my projects. <a href="https://firebase.google.com/products/functions/" rel="noopener noreferrer" target="_blank">Firebase Functions</a> are really powerful but you are limited by Javascript or Typescript. What if you could use the same packages that you are using in the Flutter project, or better yet what if they both used the same?</p>
 <p><img src="https://cdn-images-1.medium.com/max/2000/1*1xVIzjzgJnmuWTJoaG3kAQ.gif" alt="" /></p>
 <p>When you have a server project and a client project that communicate over a rest api or client sdk like Firebase then you will run into the problem that the server has models of objects stored and the client has models of the objects that are stored. This can lead to a serious mismatch when it changed without you knowing. GraphQL helps a lot with this since you define the model that you recieve. This approach allows your business logic to be always up to date for both the client and server.</p>
-<h4 id="client-setup">Client Setup</h4>
+<h3 id="client-setup">Client Setup</h3>
 <p>The first step is to just build your application. The only difference that we will make is keeping the UI and business logic separate. When starting out with Flutter it can be very easy to throw all the logic into the screen and calling setState when the data changes. Even the application when creating a new Flutter project does this. That's why <a href="https://flutter.dev/docs/development/data-and-backend/state-mgmt/options" rel="noopener noreferrer" target="_blank">choosing a state management solution </a>is so important.</p>
 <iframe src="https://medium.com/media/64311732193c2dd39b2cdbc42965b538" frameborder=0></iframe>
 <p>To make things clean and concise we will make 2 folders in our lib folder.</p>
@@ -108,7 +108,7 @@ class _HomeScreenState extends State&lt;HomeScreen&gt; {
   }
 }</code></pre>
 <p>This is just a basic screen and should look very normal.</p>
-<h5 id="counter-example">Counter Example</h5>
+<h4 id="counter-example">Counter Example</h4>
 <p><img src="https://cdn-images-1.medium.com/max/2336/1*qFZepZBtk0RhEojjGsI85g.png" alt="" /></p>
 <p>Now create a file ui/counter/screen.dart and add the following:</p>
 <pre><code>import 'package:flutter/material.dart';
@@ -201,7 +201,7 @@ void subtract() =&gt; _count--;
 void set(int val) =&gt; _count = val;
 }</code></pre>
 <p>As you can see it is really easy to expose only what we want to while still having complete flexibility. You could use provider here if you choose, or even bloc and/or streams.</p>
-<h5 id="todo-example">Todo Example</h5>
+<h4 id="todo-example">Todo Example</h4>
 <p><img src="https://cdn-images-1.medium.com/max/2336/1*47x4TDkyWCo8-qMCfYaeng.png" alt="" /></p>
 <p>Lets create a file at ui/todos/screen.dart and add the following:</p>
 <pre><code>import 'package:flutter/material.dart';
@@ -328,11 +328,11 @@ Future&lt;t.ToDo&gt; getItem(int id) async {
   }
 }</code></pre>
 <p>Here we just get dummy data from a url that emits json and convert them to our classes. This is an example I want to show with networking. There is only one place that fetches the data.</p>
-<h5 id="run-the-project-web">Run the Project (Web)</h5>
+<h4 id="run-the-project-web">Run the Project (Web)</h4>
 <p><img src="https://cdn-images-1.medium.com/max/5248/1*et2kG6_skauXJ6rogFy_ZQ.png" alt="" /></p>
 <p><img src="https://cdn-images-1.medium.com/max/5248/1*za20ru3G18DUFob07Cjv2A.png" alt="" /></p>
 <p>As you can see when you run your project on chrome you will get the same application that you got on mobile. Even the networking is working in the web. You can call the model and retrieve the list just like you would expect.</p>
-<h4 id="server-setup">Server Setup</h4>
+<h3 id="server-setup">Server Setup</h3>
 <blockquote>
   <p>Now time for the magic..</p>
 </blockquote>
@@ -536,7 +536,7 @@ class TodoController implements ResponseImpl {
 <pre><code>export 'counter.dart';
 export 'todo.dart';</code></pre>
 <p>This will make it easier to import all the controllers.</p>
-<h4 id="run-the-project-server">Run the Project (Server)</h4>
+<h3 id="run-the-project-server">Run the Project (Server)</h3>
 <p>If you are using <a href="https://code.visualstudio.com/" rel="noopener noreferrer" target="_blank">VSCode</a> then you will need to update your launch.json with the following:</p>
 <pre><code>{
     // Use IntelliSense to learn about possible attributes.
@@ -574,7 +574,7 @@ export 'todo.dart';</code></pre>
 <p>As a side benefit we can also run this project on Desktop. Check out the final project for the desktop folders needed from <a href="https://github.com/google/flutter-desktop-embedding" rel="noopener noreferrer" target="_blank">Flutter Desktop Embedding</a>.</p>
 <p><img src="https://cdn-images-1.medium.com/max/3648/1*Mk_6Rlq2qMbpk79OPo_QBw.png" alt="" /></p>
 <p><img src="https://cdn-images-1.medium.com/max/3648/1*hWirIWGRQjN8hVvUZsB2Nw.png" alt="" /></p>
-<h4 id="conclusion">Conclusion</h4>
+<h3 id="conclusion">Conclusion</h3>
 <p>Now if you wanted to deploy the container to Cloud Run you could with the following command:</p>
 <p>gcloud builds submit — tag gcr.io/YOUR_GOOGLE_PROJECT_ID/PROJECT_NAME .</p>
 <p>Replace PROJECT_NAME with your project name, mine is shared-dart for this example.</p>
@@ -598,9 +598,9 @@ export 'todo.dart';</code></pre>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
     <script>
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js');
-      });
+      // window.addEventListener('load', () => {
+      //   navigator.serviceWorker.register('/sw.js');
+      // });
 
       const firebaseConfig = {
         apiKey: 'AIzaSyCfbxrJWY2QgbSJrCnS3jZ8mfBwvQrqII0',
