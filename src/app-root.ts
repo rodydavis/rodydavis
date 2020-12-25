@@ -105,7 +105,7 @@ export class AppRoot extends LitElement {
       )}${this._socialIcon('linkedin', 'https://www.linkedin.com/in/rodydavis')}
       ${this._socialIcon('tiktok', 'https://tiktok.com/@rodydavisjr')}
       ${this._socialIcon('email', 'mailto:rody.davis.jr@gmail.com')}
-      ${this._socialIcon('rss', '/feed.xml')}
+      ${this._socialIcon('rss', `/feed.xml`)}
     </div>`;
   }
 
