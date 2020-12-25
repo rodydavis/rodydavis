@@ -18,31 +18,31 @@
     <body>
       <nav-wrapper title="Automate Flutter App Releases">
         <article>
-         <h3 id="automate-flutter-app-releases">Automate Flutter App Releases</h3>
-<h4 id="tldr">TLDR</h4>
+         <h2 id="automate-flutter-app-releases">Automate Flutter App Releases</h2>
+<h3 id="tldr">TLDR</h3>
 <p>You can find the script <a href="https://gist.github.com/rodydavis/774b36e32d7efa882cca8dd16da6e74c" rel="noopener noreferrer" target="_blank">here</a>.</p>
 <script src="https://gist.github.com/rodydavis/774b36e32d7efa882cca8dd16da6e74c.js"></script>
 <p>Make your life easier and automate your builds to beta and production!</p>
-<h4 id="what-you-need">What you need</h4>
+<h3 id="what-you-need">What you need</h3>
 <ul>
 <li><a href="https://fastlane.tools/" rel="noopener noreferrer" target="_blank">Fastlane</a> setup in each directory</li>
 <li><a href="https://pub.dartlang.org/packages/build_runner" rel="noopener noreferrer" target="_blank">build_runner</a> as a dependency</li>
 <li>Git Project in VCS</li>
 </ul>
-<h4 id="initial-setup">Initial Setup</h4>
+<h3 id="initial-setup">Initial Setup</h3>
 <ul>
 <li>Download <a href="https://gist.github.com/rodydavis/774b36e32d7efa882cca8dd16da6e74c" rel="noopener noreferrer" target="_blank">this file</a></li>
 <li>Put it at the root level of your flutter project</li>
 <li>Open the terminal and navigate to your project location</li>
 <li>Enter this command: chmod +x release.sh</li>
 </ul>
-<h4 id="usage">Usage</h4>
+<h3 id="usage">Usage</h3>
 <p>Now you can call this script!</p>
 <ul>
 <li>For beta: <code>./release.sh beta</code></li>
 <li>For production: <code>./release.sh release</code></li>
 </ul>
-<h4 id="overview">Overview</h4>
+<h3 id="overview">Overview</h3>
 <ul>
 <li>Bump the version numbers if you are using the version in the pubspec.yaml</li>
 <li>Release the apps with Fastlane</li>
@@ -70,9 +70,9 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
     <script>
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js');
-      });
+      // window.addEventListener('load', () => {
+      //   navigator.serviceWorker.register('/sw.js');
+      // });
 
       const firebaseConfig = {
         apiKey: 'AIzaSyCfbxrJWY2QgbSJrCnS3jZ8mfBwvQrqII0',

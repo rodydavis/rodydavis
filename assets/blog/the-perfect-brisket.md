@@ -25,7 +25,7 @@ Be prepared to take 4-6hrs to smoke the meat.
 - Apple Wood Chips
 - Charcoal Briquettes
 - Meat Thermometer
-- Alumunium Foil
+- Aluminum Foil
 
 ![](/images/cook
 ing/brisket-prep.jpeg)
@@ -103,5 +103,3 @@ Regardless of how it turned out it should still smell amazing and taste even bet
 It will be really tempting to eat it right away, but you need to let the meat set for 20 min before eating.
 
 Let me know how it turned out by mentioning me on [twitter](https://twitter.com/rodydavis) or [instagram](https://instagram.com/rodydavisjr).
-
-Enjoy!

@@ -18,20 +18,20 @@
     <body>
       <nav-wrapper title="Deep Linking for Flutter Web">
         <article>
-         <h3 id="deep-linking-for-flutter-web">Deep Linking for Flutter Web</h3>
+         <h2 id="deep-linking-for-flutter-web">Deep Linking for Flutter Web</h2>
 <p>In this article I will show you how to have proper URL navigation for your application. Open links to specific pages, protected routes and custom transitions.</p>
 <p>There is a online demo here:</p>
 <p><a href="https://rodydavis.github.io/flutter_deep_linking/" rel="noopener noreferrer" target="_blank">https://rodydavis.github.io/flutter_deep_linking/</a></p>
 <p>Here is the source code:</p>
 <p><a href="https://github.com/rodydavis/flutter_deep_linking" rel="noopener noreferrer" target="_blank">https://github.com/rodydavis/flutter_deep_linking</a></p>
-<h4 id="setup">Setup</h4>
+<h3 id="setup">Setup</h3>
 <ul>
 <li><p>Create a new flutter project called “flutter_deep_linking”</p></li>
 <li><p>Open that folder up in VSCode</p></li>
 <li><p>Update your “pubspec.yaml” with the following:</p></li>
 </ul>
 <p><img src="https://cdn-images-1.medium.com/max/2000/1*T8p4RgLHWHHaAo1JbhUB-g.png" alt="" /></p>
-<h4 id="step-1">Step 1</h4>
+<h3 id="step-1">Step 1</h3>
 <ul>
 <li>Create a file at “lib/ui/home/screen.dart” and add the following:</li>
 </ul>
@@ -44,7 +44,7 @@
 <li>Run your application and you should see the following:</li>
 </ul>
 <p><img src="https://cdn-images-1.medium.com/max/3468/1*1O9oKvIOSCpgwJ6GekFG4Q.png" alt="" /></p>
-<h4 id="step-2">Step 2</h4>
+<h3 id="step-2">Step 2</h3>
 <p>Now we need to grab the url the user enters into the address bar.</p>
 <ul>
 <li><p>Create a folder at this location “lib/plugins/navigator”</p></li>
@@ -69,7 +69,7 @@
 <ul>
 <li>If you run the app now nothing should change.</li>
 </ul>
-<h4 id="step-3">Step 3</h4>
+<h3 id="step-3">Step 3</h3>
 <p>Now let’s add the proper routing.</p>
 <ul>
 <li>Create a new file “lib/ui/router.dart” and add the following:</li>
@@ -82,7 +82,7 @@
 <blockquote>
   <p>Notice how we removed the “home” field for MaterialApp. This is because the router will handle everything. By default we will go home on “/”</p>
 </blockquote>
-<h4 id="step-4">Step 4</h4>
+<h3 id="step-4">Step 4</h3>
 <p>Now let’s add multiple screens to put this to the test! Add the following folders and files.</p>
 <ul>
 <li>Create a file “lib/ui/account/screen.dart” and add the following:</li>
@@ -104,7 +104,7 @@
 <li>Now when you navigate to /about, /account and /settings you will go to the new pages!</li>
 </ul>
 <p><img src="https://cdn-images-1.medium.com/max/3468/1*5Qtymz13vrEZmCa9zRikWw.png" alt="" /></p>
-<h4 id="step-5">Step 5</h4>
+<h3 id="step-5">Step 5</h3>
 <p>Now let’s tie into the browser navigation buttons! Update “lib/ui/home/screen.dart” with the following:</p>
 <p><img src="https://cdn-images-1.medium.com/max/2516/1*6JTelDsDG6njWK8watZdlQ.png" alt="" /></p>
 <ul>
@@ -112,7 +112,7 @@
 </ul>
 <p><img src="https://cdn-images-1.medium.com/max/3468/1*Fji7xHupcpduXITJ9JmzYw.png" alt="" /></p>
 <p><img src="https://cdn-images-1.medium.com/max/3468/1*8wQrI1MJPi6MGr65jaqjTQ.png" alt="" /></p>
-<h4 id="step-6">Step 6</h4>
+<h3 id="step-6">Step 6</h3>
 <p>These urls are great but what if you want to pass data such as an ID that is not known ahead of time? No worries!</p>
 <ul>
 <li>Update “lib/ui/account/screen.dart” with the following:</li>
@@ -126,7 +126,7 @@
 <li>Now when you run your application and navigate to “/account/40” you will see the following:</li>
 </ul>
 <p><img src="https://cdn-images-1.medium.com/max/3468/1*wKMr8wDsEWKxvrkTVnfKLQ.png" alt="" /></p>
-<h4 id="conclusion">Conclusion</h4>
+<h3 id="conclusion">Conclusion</h3>
 <p>Dynamic routes work great for Flutter web, you just need to know what to tweak! This package uses a forked version of fluro for some fixes I added but once the PRs is merged you can just use the regular package. Let me know what you think below and if there is a better way I am not seeing!</p>
 <p>Here is the final code: <a href="https://github.com/rodydavis/flutter_deep_linking" rel="noopener noreferrer" target="_blank">https://github.com/rodydavis/flutter_deep_linking</a></p>
         </article>
@@ -147,9 +147,9 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
     <script>
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js');
-      });
+      // window.addEventListener('load', () => {
+      //   navigator.serviceWorker.register('/sw.js');
+      // });
 
       const firebaseConfig = {
         apiKey: 'AIzaSyCfbxrJWY2QgbSJrCnS3jZ8mfBwvQrqII0',

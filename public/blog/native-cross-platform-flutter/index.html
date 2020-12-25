@@ -18,13 +18,13 @@
     <body>
       <nav-wrapper title="How to build a native cross platform project with Flutter">
         <article>
-         <h3 id="how-to-build-a-native-cross-platform-project-with-flutter">How to build a native cross platform project with Flutter</h3>
+         <h2 id="how-to-build-a-native-cross-platform-project-with-flutter">How to build a native cross platform project with Flutter</h2>
 <p>Import dart:html and dart:io in the same project!</p>
 <p>You can find the final project <a href="https://github.com/AppleEducate/flutter_x/tree/finish" rel="noopener noreferrer" target="_blank">here</a>.</p>
 <p>Up to now you have been able to create projects with Flutter that run on iOS/Android, Web and Desktop but only sharing pure dart plugins. Flutter launched Flutter for web at Google I/O and was a temporary fork that required you to change imports from import 'package:flutter/material.dart'; to import 'package:flutter_web/material.dart';. As you can image this was really difficult for a code base as you had to create a fork and change the imports. This also meant that you could not import any package that needed on a path or depended on flutter. The time as come and the merge is complete. Now you no longer need to change the imports!</p>
 <p><img src="https://cdn-images-1.medium.com/max/2000/1*epSHkw0msNuaisyHy9yYAA.gif" alt="" /></p>
 <p>You can use any plugin now, have a debugger, create new flutter projects with the web folder added, web plugins, and so much more..</p>
-<h4 id="disclaimer">Disclaimer</h4>
+<h3 id="disclaimer">Disclaimer</h3>
 <p>You will need to be on the latest flutter for this to work.</p>
 <p><a href="https://flutter.io/get-started/install/" rel="noopener noreferrer" target="_blank">Download Flutter</a></p>
 <p><img src="https://cdn-images-1.medium.com/max/2000/1*1PVcOkDgx2p_G3Bou3IFsg.jpeg" alt="" /></p>
@@ -224,9 +224,9 @@ class _MyHomePageState extends State&lt;MyHomePage&gt; {
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
     <script>
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js');
-      });
+      // window.addEventListener('load', () => {
+      //   navigator.serviceWorker.register('/sw.js');
+      // });
 
       const firebaseConfig = {
         apiKey: 'AIzaSyCfbxrJWY2QgbSJrCnS3jZ8mfBwvQrqII0',

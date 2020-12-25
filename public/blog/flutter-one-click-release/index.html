@@ -18,23 +18,23 @@
     <body>
       <nav-wrapper title="Flutter + Fastlane (One Click Beta)">
         <article>
-         <h3 id="flutter--fastlane-one-click-beta">Flutter + Fastlane (One Click Beta)</h3>
-<h4 id="1-install-flutter">1. Install Flutter</h4>
+         <h2 id="flutter--fastlane-one-click-beta">Flutter + Fastlane (One Click Beta)</h2>
+<h3 id="1-install-flutter">1. Install Flutter</h3>
 <p><a href="https://flutter.io/get-started/install/" rel="noopener noreferrer" target="_blank">Download Flutter</a></p>
 <p><img src="/images/flutter/logo.jpg" alt="flutter" /></p>
-<h4 id="2-create-new-flutter-project">2. Create new Flutter Project</h4>
+<h3 id="2-create-new-flutter-project">2. Create new Flutter Project</h3>
 <p>If you are pretty new to Flutter you can check out <a href="https://flutter.io/get-started/codelab/" rel="noopener noreferrer" target="_blank">this useful guide</a> on how to create a new project step by step. </p>
 <p><img src="/images/flutter/cross-platform.jpg" alt="cross-platform" /></p>
-<h4 id="3-create-app-in-itunes-connect">3. Create App in iTunes Connect</h4>
+<h3 id="3-create-app-in-itunes-connect">3. Create App in iTunes Connect</h3>
 <p>If you are not familiar with iTunes Connect, check out <a href="https://clearbridgemobile.com/how-to-submit-an-app-to-the-app-store/" rel="noopener noreferrer" target="_blank">this article</a> for getting started and setting up your first app for the App Store. </p>
-<h4 id="4-create-app-in-google-play">4. Create App in Google Play</h4>
+<h3 id="4-create-app-in-google-play">4. Create App in Google Play</h3>
 <p>Setting up an app in the Google Play Console can be tricky, make sure to check out the <a href="https://support.google.com/googleplay/android-developer/answer/113469?hl=en-GB" rel="noopener noreferrer" target="_blank">official reference</a> and <a href="https://medium.com/mindorks/upload-your-first-android-app-on-play-store-step-by-step-ee0de9123ac0" rel="noopener noreferrer" target="_blank">this guide</a> if you are having trouble. </p>
 <p><img src="/images/flutter/fastlane.jpg" alt="fastlane" /></p>
-<h4 id="5-navigate-to-project--ios-and-setup-fastlane">5. Navigate to Project &gt; ios and Setup Fastlane</h4>
+<h3 id="5-navigate-to-project--ios-and-setup-fastlane">5. Navigate to Project &gt; ios and Setup Fastlane</h3>
 <p><a href="https://docs.fastlane.tools/getting-started/ios/setup/" rel="noopener noreferrer" target="_blank">Reference</a></p>
-<h4 id="6-navigate-to-project--android-and-setup-fastlane">6. Navigate to Project &gt; android and Setup Fastlane</h4>
+<h3 id="6-navigate-to-project--android-and-setup-fastlane">6. Navigate to Project &gt; android and Setup Fastlane</h3>
 <p><a href="https://docs.fastlane.tools/getting-started/android/setup/" rel="noopener noreferrer" target="_blank">Reference</a></p>
-<h4 id="7-update-fastlane-fastfiles-for-ios-and-android-and-change-accordingly-for-each-platform">7. Update Fastlane Fastfiles for iOS and Android and Change accordingly for each platform</h4>
+<h3 id="7-update-fastlane-fastfiles-for-ios-and-android-and-change-accordingly-for-each-platform">7. Update Fastlane Fastfiles for iOS and Android and Change accordingly for each platform</h3>
 <ul>
 <li><p>Make sure to change <YOUR PROJECT PATH> to the path to your project in Finder.</p></li>
 <li><p>Only copy the correct platform code for each Fastfile. For example, <code>default_platform(:ios)</code> for iOS and `default_platform(:android)1st for Android.</p></li>
@@ -110,7 +110,7 @@ end</code></pre>
 </ul>
 <p><img src="/images/flutter/version-bump.gif" alt="version-bump" /><br />
 <a href="https://medium.com/xcblog/agvtool-automating-ios-build-and-version-numbers-454cab6f1bbe" rel="noopener noreferrer" target="_blank">Source</a></p>
-<h4 id="8-metadata-optional">8. Metadata (Optional)</h4>
+<h3 id="8-metadata-optional">8. Metadata (Optional)</h3>
 <ul>
 <li>For iOS you can have Fastlane download all your apps existing metadata including screenshots from iTunes Connect. In terminal navigate to the project and run.</li>
 </ul>
@@ -118,7 +118,7 @@ end</code></pre>
 <ul>
 <li>For Android you can use <a href="https://docs.fastlane.tools/actions/supply/" rel="noopener noreferrer" target="_blank">Fastlane Supply</a>. </li>
 </ul>
-<h4 id="9-open-automator">9. Open Automator</h4>
+<h3 id="9-open-automator">9. Open Automator</h3>
 <p>Right now everything is working just by the command line. If you navigate to your project in terminal by adding "cd " and dragging in the project folder and hitting Enter, you can type "cd ios &amp;&amp; fastlane beta" or "cd android &amp;&amp; fastlane beta" and both will run fastlane.</p>
 <p><img src="/images/flutter/terminal-drag.gif" alt="terminal" /></p>
 <p>If you want to be able to submit your app to Google Play and the App Store with one click we will be using <a href="http://www.applegazette.com/os-x/getting-started-automator-workflows-mac/" rel="noopener noreferrer" target="_blank">Automator</a>. Create a new Automator Application. And Search for "Ask for Confirmation" and "Run AppleScript" and drag in.</p>
@@ -153,7 +153,7 @@ on run {input, parameters}
         end try
     end tell
 end run</code></pre>
-<h4 id="10-try-it-out">10. Try It Out!</h4>
+<h3 id="10-try-it-out">10. Try It Out!</h3>
 <p>Everything should be working now. If you double click on the automator application you should get a confirmation pop up to release the app. The Script will run terminal in the background and you can stay focused on developing awesome flutter applications. If you want to see the progress on fastlane uploading your apps you can click on the terminal icon and the terminal window will reappear. Thanks for reading and please reach out for any questions you have!</p>
         </article>
       </nav-wrapper>
@@ -173,9 +173,9 @@ end run</code></pre>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
     <script>
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js');
-      });
+      // window.addEventListener('load', () => {
+      //   navigator.serviceWorker.register('/sw.js');
+      // });
 
       const firebaseConfig = {
         apiKey: 'AIzaSyCfbxrJWY2QgbSJrCnS3jZ8mfBwvQrqII0',
