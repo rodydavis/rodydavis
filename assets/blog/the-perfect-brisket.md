@@ -48,13 +48,13 @@ You shouldn't have to trim that much unless you are preparing for a competition 
 
 ## Season The Meat
 
-With the meat trimmed it is now time to put the dry rub on the brisket. You will need to grab the mustard and whichever seasoning you chose. Be prepared to get very messy at this step, and you have a helping hand that would be even better. 
+With the meat trimmed it is now time to put the dry rub on the brisket. You will need to grab the mustard and whichever seasoning you chose. Be prepared to get very messy at this step, and id you have a helping hand that would be even better (Gloves also work). 
 
 Start of with lines of mustard on the meat so that you have a nice even coat to rub in. Don't worry if you do not like mustard like myself, it will cook out and is only used to keep the seasoning on the meat.
 
 ![](/images/cooking/brisket-mustard.jpeg)
 
-Now add the seasoning and rub it in with your hands or barbeque brush and repeat on the opposite side. You want to get a nice thick coat.
+Now add the seasoning and rub it in with your hands or barbecue brush and repeat on the opposite side. You want to get a nice thick coat.
 
 ![](/images/cooking/brisket-rub.jpeg)
 
@@ -66,11 +66,11 @@ While the prepared meat is sitting you will need to prepare the grill. You need 
 
 ![](/images/cooking/brisket-grill.jpeg)
 
-Another thing I like to use is a diffuer to provide indirect heat and allow just the smoke to cook it. If you do not have this it is not a problem. You can also add the maple wood chips inside a aluminium pouch at this time.
+Another thing I like to use is a diffuser to provide indirect heat and allow just the smoke to cook it. If you do not have this it is not a problem. You can also add the apple wood chips inside a aluminum pouch at this time.
 
 ![](/images/cooking/brisket-diffuse.jpeg)
 
-This may take about 20-30 min to bring the grill up to the right maple before putting the meat on.
+This may take about 20-30 min to bring the grill up to the right temperature before putting the meat on.
 
 ## Cook the Meat
 
@@ -78,15 +78,15 @@ Now that the meat is room temperature and the grill is warm or close to the righ
 
 ![](/images/cooking/brisket-smoker.jpeg)
 
-Once you have placed the meat on the grate you can put in the temperature sideways in the thickest side of the meat.
+Once you have placed the meat on the grate you can put in the temperature sensor sideways in the thickest side of the meat.
 
 ![](/images/cooking/brisket-temperature.jpeg)
 
-Now comes the fun part... waiting. You will need to come out every 30-60 min to make sure the meat is not getting to hot/cold and make micro adjustments to the vents.
+Now comes the fun part... waiting. You will need to come out every 30-60 min to make sure the meat is not getting too hot/cold and make micro adjustments to the vents.
 
 ![](/images/cooking/brisket-closed.jpeg)
 
-The internal temperature you are shooting for is 190F and it will take awhile for it to come up. When the meat is at 150F or its been 3 hours and the skin is getting brown, you can wrap the meat in foil to lock in the juices.
+The internal temperature you are shooting for is 190F and it will take awhile for it to come up. When the meat is at 150F or it's been 3 hours and the skin is getting brown, you can wrap the meat in foil to lock in the juices.
 
 ![](/images/cooking/brisket-mid.jpeg)
 
@@ -96,10 +96,10 @@ The foil should cover all sides of the meat, and around this time you can add mo
 
 ## Enjoy
 
-Regardless of how it turned out it should still smell amazing and taste even better. If you made sure to come check on it ofter and not let it get to hot it should still be nice and juciy.
+Regardless of how it turned out it should still smell amazing and taste even better. If you made sure to come check on it often and not let it get to hot it should still be nice and juicy.
 
 ![](/images/cooking/brisket-done.jpeg)
 
-It will be really tempting to eat it right away, but you need to let the meat set for 20 min before eating.
+It will be really tempting to eat it right away, but you need to let the meat rest for 20 min before eating.
 
 Let me know how it turned out by mentioning me on [twitter](https://twitter.com/rodydavis) or [instagram](https://instagram.com/rodydavisjr).
