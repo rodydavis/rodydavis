@@ -50,7 +50,7 @@ export class NavWrapper extends LitElement {
         color: var(--mdc-theme-on-primary);
         font-size: 16px;
       }
-      @media screen and (max-width: 300px) {
+      @media screen and (max-width: 350px) {
         .action-menu {
           display: none;
         }

@@ -67,7 +67,13 @@ export class AppRoot extends LitElement {
       .social-icons {
         width: 100%;
         text-align: center;
-        padding-top: 10px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+      @media screen and (max-width: 300px) {
+        .social-icons {
+          padding-bottom: 100px;
+        }
       }
     `;
   }
