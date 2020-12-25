@@ -4,7 +4,7 @@
         <title>Rody Davis Blog Feed</title>
         <link>https://rodydavis.com/</link>
         <description>This is my personal feed!</description>
-        <lastBuildDate>Thu, 24 Dec 2020 23:48:47 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 25 Dec 2020 03:42:44 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -24,7 +24,7 @@
 layout: post
 title: "Automate Flutter App Releases"
 date: 2019-03-15
-categories: [flutter, apps, ci, automation]
+categories: [flutter, apps]
 hasComments: 'true'
 ]]></description>
             <content:encoded><![CDATA[
@@ -73,445 +73,2367 @@ Now you can call this script!
             <enclosure url="https://rodydavis.com" length="0" type="image//"/>
         </item>
         <item>
-            <title><![CDATA["How to use plugins from mobile and web in a Flutter project"]]></title>
-            <link>https://rodydavis.com/#/blog/assets/blog/codebase-many-places</link>
-            <guid>assets/blog/codebase-many-places</guid>
-            <pubDate>Fri, 06 Sep 2019 00:00:00 GMT</pubDate>
+            <title><![CDATA["Deep Linking for Flutter Web"]]></title>
+            <link>https://rodydavis.com/#/blog/assets/blog/deep-linking-flutter-web</link>
+            <guid>assets/blog/deep-linking-flutter-web</guid>
+            <pubDate>Wed, 11 Mar 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[
 layout: post
-title:  "How to use plugins from mobile and web in a Flutter project"
-date:   2019-09-06
-categories: [flutter, ios, android]
-tags: [flutter, ios, android, crossplatform, web]
+title: "Deep Linking for Flutter Web"
+date: 2020-03-11
+categories: [flutter, web]
 hasComments: 'true'
 ]]></description>
             <content:encoded><![CDATA[
 
-# How to build a native cross platform project with Flutter
+# Deep Linking for Flutter Web
 
-You can find the final project [here](https://github.com/rodydavis/flutter_x/tree/finish).
+In this article I will show you how to have proper URL navigation for your application. Open links to specific pages, protected routes and custom transitions.
 
-Up to now you have been able to create projects with Flutter that run on iOS/Android, Web and Desktop but only sharing pure dart plugins.
-Flutter launched Flutter for web at Google I/O and was a temporary fork that required you to change imports from `import 'package:flutter/material.dart';` to `import 'package:flutter_web/material.dart';`. As you can image this was really difficult for a code base as you had to create a fork and change the imports. This also meant that you could not import any package that needed on a path or depended on flutter. The time as come and the merge is complete. Now you no longer need to change the imports!
+There is a online demo here:
 
-![icon](/images/gifs/yes_yes_yes.gif)
+[https://rodydavis.github.io/flutter_deep_linking/](https://rodydavis.github.io/flutter_deep_linking/)
 
-You can use any plugin now, have a debugger, create new flutter projects with the web folder added, web plugins, and so much more..
+Here is the source code:
 
-### Disclaimer
+[https://github.com/rodydavis/flutter_deep_linking](https://github.com/rodydavis/flutter_deep_linking)
 
-You will need to be on the latest flutter for this to work.
+## Setup
 
-## 1. Install Flutter
+* Create a new flutter project called “flutter_deep_linking”
 
-[Download Flutter](https://flutter.io/get-started/install/)
+* Open that folder up in VSCode
 
-![flutter](/images/flutter/logo.jpg)
+* Update your “pubspec.yaml” with the following:
 
-## 2. Create new Flutter Project
+![](https://cdn-images-1.medium.com/max/2000/1*T8p4RgLHWHHaAo1JbhUB-g.png)
 
-If you are pretty new to Flutter you can check out [this useful guide](https://flutter.io/get-started/codelab/) on how to create a new project step by step. 
+## Step 1
 
-![cross-platform](/images/flutter/cross-platform.jpg)
+* Create a file at “lib/ui/home/screen.dart” and add the following:
 
-Create a new project named `flutter_x` and it should look like this:
+![](https://cdn-images-1.medium.com/max/2000/1*1qTWt0lGfSQeUwoTjzbFuA.png)
 
-![flutter](/images/flutter_x/new_project.png)
+* Update your “lib/main.dart” with the following:
 
-You can also down the starter project [here](https://github.com/rodydavis/flutter_x/tree/starter).
+![](https://cdn-images-1.medium.com/max/2000/1*Vo3FEkRX_to3SbYsUQ8a5Q.png)
 
-Your code should look like this:
+* Run your application and you should see the following:
+
+![](https://cdn-images-1.medium.com/max/3468/1*1O9oKvIOSCpgwJ6GekFG4Q.png)
+
+## Step 2
+
+Now we need to grab the url the user enters into the address bar.
+
+* Create a folder at this location “lib/plugins/navigator”
+
+* Create a file inside named: “web.dart” with the following:
+
+![](https://cdn-images-1.medium.com/max/2072/1*hkuI9pfODs-yewfNUPMbTw.png)
+
+* Create a file inside named: “unsupported.dart” with the following:
+
+![](https://cdn-images-1.medium.com/max/2000/1*u2BPO9L2w9ci-RI9dOi43Q.png)
+
+* Create a file inside named: “navigator.dart” with the following:
+
+![](https://cdn-images-1.medium.com/max/2032/1*-QnmWVuypD4z58ZXLircaA.png)
+
+* Now go back to your “lib/main.dart” file and add the navigator:
+
+![](https://cdn-images-1.medium.com/max/2080/1*UN0nQy8wcXELNBzfIMqNZA.png)
+> It’s important to import the navigator as shown as this will have the conditional import for web compiling.
+
+* If you run the app now nothing should change.
+
+## Step 3
+
+Now let’s add the proper routing.
+
+* Create a new file “lib/ui/router.dart” and add the following:
+
+![](https://cdn-images-1.medium.com/max/2404/1*JpwIDmcnQMzxTdSr0OQWfQ.png)
+
+* Also update “lib/main.dart” with the following:
+
+![](https://cdn-images-1.medium.com/max/2120/1*4e_oz-ENDkaBS35ZoEZQMA.png)
+> Notice how we removed the “home” field for MaterialApp. This is because the router will handle everything. By default we will go home on “/”
+
+## Step 4
+
+Now let’s add multiple screens to put this to the test! Add the following folders and files.
+
+* Create a file “lib/ui/account/screen.dart” and add the following:
+
+![](https://cdn-images-1.medium.com/max/2056/1*vRXbGfLK-D1827s2C57aEQ.png)
+
+* Create a file “lib/ui/settings/screen.dart” and add the following:
+
+![](https://cdn-images-1.medium.com/max/2000/1*FJK7a8eeOyVFbAcULxo_Gw.png)
+
+* Create a file “lib/ui/about/screen.dart” and add the following:
+
+![](https://cdn-images-1.medium.com/max/2000/1*A9CJ8-bGCv2Np6ZLS9l5oA.png)
+
+* Add the following to “lib/ui/router.dart”:
+
+![](https://cdn-images-1.medium.com/max/2332/1*kKTHn14JH6AXhkbuLUCnFA.png)
+
+* Now when you navigate to /about, /account and /settings you will go to the new pages!
+
+![](https://cdn-images-1.medium.com/max/3468/1*5Qtymz13vrEZmCa9zRikWw.png)
+
+## Step 5
+
+Now let’s tie into the browser navigation buttons! Update “lib/ui/home/screen.dart” with the following:
+
+![](https://cdn-images-1.medium.com/max/2516/1*6JTelDsDG6njWK8watZdlQ.png)
+
+* Now when you run the application and click on the settings icon it will launch the new screen as expected. But if you click your browsers back button it will go back to the home screen!
+
+![](https://cdn-images-1.medium.com/max/3468/1*Fji7xHupcpduXITJ9JmzYw.png)
+
+![](https://cdn-images-1.medium.com/max/3468/1*8wQrI1MJPi6MGr65jaqjTQ.png)
+
+## Step 6
+
+These urls are great but what if you want to pass data such as an ID that is not known ahead of time? No worries!
+
+* Update “lib/ui/account/screen.dart” with the following:
+
+![](https://cdn-images-1.medium.com/max/2184/1*yOpcN7lpYP9cc5Mo2dJQwg.png)
+
+* Let’s update our “lib/ui/router.dart” with the following:
+
+![](https://cdn-images-1.medium.com/max/2064/1*izyMARAi5g8GrV3q-qwUcw.png)
+
+* Now when you run your application and navigate to “/account/40” you will see the following:
+
+![](https://cdn-images-1.medium.com/max/3468/1*wKMr8wDsEWKxvrkTVnfKLQ.png)
+
+## Conclusion
+
+Dynamic routes work great for Flutter web, you just need to know what to tweak! This package uses a forked version of fluro for some fixes I added but once the PRs is merged you can just use the regular package. Let me know what you think below and if there is a better way I am not seeing!
+
+Here is the final code: [https://github.com/rodydavis/flutter_deep_linking](https://github.com/rodydavis/flutter_deep_linking)
+]]></content:encoded>
+            <category>deep-linking-flutter-web.md</category>
+            <enclosure url="https://rodydavis.comhttps://cdn-images-1.medium.com/max/2000/1*T8p4RgLHWHHaAo1JbhUB-g.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA["Displaying HTML in Flutter"]]></title>
+            <link>https://rodydavis.com/#/blog/assets/blog/display-html-in-flutter</link>
+            <guid>assets/blog/display-html-in-flutter</guid>
+            <pubDate>Tue, 10 Mar 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[
+layout: post
+title: "Displaying HTML in Flutter"
+date: 2020-03-10
+categories: [flutter, web]
+hasComments: 'true'
+]]></description>
+            <content:encoded><![CDATA[
+
+# Displaying HTML in Flutter
+
+Sometimes you have content in HTML that needs to be displayed and interacted with in Flutter.
+
+Online Demo:[https://rodydavis.github.io/easy_web_view/#/](https://rodydavis.github.io/easy_web_view/#/)
+
+![](https://cdn-images-1.medium.com/max/4112/1*4vexucSoyjRip7TBQZhkog.png)
+
+For those impatient I created a package for you to get all the following functionally and more here: [https://pub.dev/packages/easy_web_view](https://pub.dev/packages/easy_web_view)
+
+## Getting Started
+
+Create a new flutter project named whatever you want.
+> If you plan on showing HTML content on iOS/Android you will need to add the following to your pubspec.yaml
+
+    webview_flutter: ^0.3.15+1
+
+## Web
+
+Reference: [https://github.com/rodydavis/easy_web_view/blob/master/lib/src/web.dart](https://github.com/rodydavis/easy_web_view/blob/master/lib/src/web.dart)
+
+To show html on Flutter web we need to use an HTMLElementView. This is a platform view that allows us to display native content.
+
+We first need to register the Element and add all the options we need. Here we are creating an iFrame element and setting the source based on if it is markdown, html or a url.
+
+![](https://cdn-images-1.medium.com/max/2000/1*NRDDwVIppMFu1MHpPNHYmA.png)
+
+To display valid HTML you can set the src field to the following:
+
+    _src = "data:text/html;charset=utf-8," + Uri.encodeComponent("HTML_CONTENT_HERE");
+> For the package you can also pass markdown to the src and it will convert it for you.
+
+After you call the setup method it is now time to display your new platform view:
+
+![](https://cdn-images-1.medium.com/max/2000/1*4YtrCKZYr6e1bCBZ-aoLZg.png)
+
+You need to use the same viewType string as you registered for “registerViewFactory” method earlier.
+
+Finally you need to wrap it in a container or sized box with an explicit width and height!
+
+## Mobile
+
+Reference: [https://github.com/rodydavis/easy_web_view/blob/master/lib/src/mobile.dart](https://github.com/rodydavis/easy_web_view/blob/master/lib/src/mobile.dart)
+
+Mobile setup should be easier. Let’s add a method for updating the url that we will pass to the web view.
+
+![](https://cdn-images-1.medium.com/max/2000/1*6xLbxuNL69Xx6XioN56YWA.png)
+
+Create the controller:
+
+    WebViewController _controller;
+
+And when ever the src changes call this method:
+
+    _controller.loadUrl(_updateUrl(widget.src), headers: widget.headers);
+
+Finally lets show the html in the widget tree:
+
+![](https://cdn-images-1.medium.com/max/2000/1*uvsRUE_sReCOZhsXOLiLaQ.png)
+
+## Conclusion
+
+If you want to see a complete example and advanced use case view the source here: [https://github.com/rodydavis/easy_web_view](https://github.com/rodydavis/easy_web_view)
+
+And if you just want to have it all done for you use this package: [https://pub.dev/packages/easy_web_view](https://pub.dev/packages/easy_web_view)
+
+Feel free to make PRs if you have anything that could help make it better too (Or if you find bugs).
+
+When you show HTML this way you will find that you can interact, select text and work with it just like you would it it were a regular web page. If you are using the package you can also just pass embedded content or html elements too without needing a full html valid file (YouTube video for example).
+]]></content:encoded>
+            <category>display-html-in-flutter.md</category>
+            <enclosure url="https://rodydavis.comhttps://cdn-images-1.medium.com/max/4112/1*4vexucSoyjRip7TBQZhkog.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA["Using Fastlane in Flutter and CI"]]></title>
+            <link>https://rodydavis.com/#/blog/assets/blog/fastlane-and-flutter</link>
+            <guid>assets/blog/fastlane-and-flutter</guid>
+            <pubDate>Wed, 16 Oct 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[
+layout: post
+title: "Using Fastlane in Flutter and CI"
+date: 2019-10-16
+categories: [flutter, ci]
+hasComments: 'true'
+]]></description>
+            <content:encoded><![CDATA[
+
+# Using Fastlane in Flutter and CI
+
+Prerequisites :
+
+* Understand what [Fastlane](https://fastlane.tools/) is and how it works
+
+* Project builds correctly following these [docs](https://flutter.dev/docs/deployment/cd)
+
+* Android app setup in [Google Play Console](https://developer.android.com/distribute/console)
+
+* iOS app setup in [AppStore Connect](https://appstoreconnect.apple.com/)
+
+* [Flutter is installed](https://flutter.dev/docs/get-started/install) and your project is created
+
+1. Open your Flutter project
+
+1. Run: cd ios
+
+1. Run: fastlane init and follow the prompts
+
+1. Replace the Fastfile contents with this:
+
+<iframe src="https://medium.com/media/fbfeb5ff49f489283bb93b88172e4a44" frameborder=0></iframe>
+
+5. Run: cd .. && cd android
+
+6. Run: fastlane init and follow the prompts
+
+7. Replace the Fastfile contents with this:
+
+<iframe src="https://medium.com/media/ef171e4a2ba0d48a77bcb266754d2886" frameborder=0></iframe>
+
+8. Run: fastlane add_plugin versioning_android and enter your password if needed
+
+9. Run: cd ..
+
+Now you are ready to launch your app to beta!
+
+For ios run: cd ios && fastlane beta
+
+For android run: cd android && fastlane beta
+
+Stay tuned for an article soon where we use these fastlane sub folders for automating the releases on [Github Actions](https://github.com/features/actions) CI
+]]></content:encoded>
+            <category>fastlane-and-flutter.md</category>
+            <enclosure url="https://rodydavis.com" length="0" type="image//"/>
+        </item>
+        <item>
+            <title><![CDATA["Creating Your First Flutter Project"]]></title>
+            <link>https://rodydavis.com/#/blog/assets/blog/first-flutter-project</link>
+            <guid>assets/blog/first-flutter-project</guid>
+            <pubDate>Sun, 28 Apr 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[
+layout: post
+title: "Creating Your First Flutter Project"
+date: 2019-04-28
+categories: [flutter]
+hasComments: 'true'
+]]></description>
+            <content:encoded><![CDATA[
+
+# Creating Your First Flutter Project
+
+Flutter is a UI Toolkit from Google allowing you to create expressive and unique experiences unmatched on any platform. You can write your UI once and run it everywhere. Yes everywhere! Web, iOS, Android, Windows, Linux, MacOS, Raspberry PI and much more…
+
+<iframe src="https://medium.com/media/f76ce9fa69d591d191fb2d83334153d7" frameborder=0></iframe>
+
+If you prefer a video you can follow the YouTube series I am doing called “Flutter Take 5” where I explore topics that you encounter when building a Flutter application. I will also give you tips and tricks as I go through the series.
+
+<center><iframe width="560" height="315" src="https://www.youtube.com/embed/rtBkU4pvHcw" frameborder="0" allowfullscreen></iframe></center>
+
+## What is Flutter
+
+Flutter recently crossed React Native on Github and now has more than 2 million developers using Flutter to create applications. There are more than 50,000 apps on Google Play alone published with Flutter.
+[**Flutter - Beautiful native apps in record time**
+*Flutter is Google's UI toolkit for crafting beautiful, natively compiled applications for mobile, web, and desktop from…*flutter.dev](https://flutter.dev/)
+
+## Getting Started
+
+Getting started is very easy once you get the SDK installed. After it is installed creating new applications, plugins and packages is lighting fast. Follow this guide to install Flutter:
+[**Install**
+*How to set up your code editor.*flutter.dev](https://flutter.dev/docs/get-started/install)
+
+One nice thing about Flutter is that it is developed in the open as an open source project that anyone can contribute to. If there is something missing you can easily fork the repo and make a PR for the missing functionality.
+
+<iframe src="https://medium.com/media/8cce835d2d6193d6b3cd27468349b02a" frameborder=0></iframe>
+
+## Create the Project
+
+Now that you have Flutter installed it is time to create your first (Of Many 😉) Flutter project! Open up your terminal and navigate to wherever you want the application folder to be created. Once you “cd” into the directory you can type the following:
+
+    $ flutter create my_awesome_project
+
+You can replace “my_awesome_project” with whatever you want the project to be called. It is important to use snake_case as it is the valid syntax for project names in dart.
+
+<iframe src="https://medium.com/media/e92b75a1454d3a24dda41a5266ee1936" frameborder=0></iframe>
+
+Congratulations you just created your first project!
+
+## Open the Project
+
+So you may be wondering what we just created so let us dive in to the details. You can open up you project in VSCode if you have it installed by typing the following into terminal:
+
+    $ cd my_awesome_project && code .
+
+You can open up the folder in your favorite IDE if you prefer. Two important files to notice are the pubspec.yaml and lib/main.dart
+
+Your UI and Logic is located at “lib/main.dart” and you should see the following:
+
+<iframe src="https://medium.com/media/0e7b12e3b326ec2802a9a5a38d7c39d6" frameborder=0></iframe>
+
+You can define any dependencies and plugins needed for the application at “pubspec.yaml” and you should see the following:
+
+<iframe src="https://medium.com/media/8cbad32b9a14728b5a2dbb1b8d0bcab4" frameborder=0></iframe>
+
+## Running the Project
+
+Running the application is very easy too. While there are buttons in all the IDEs you can also run your project from the command line for quick testing. You can also configure [Flutter for Desktop](https://flutter.dev/desktop) and no need to wait for an emulator to warm up. Open your project and enter the following into terminal:
+
+    $ flutter run -d macos
+
+Notice the “-d macos” as you can customize what device you want to run on. You should see the following in terminal:
+
+    Building macOS application...                                           
+    Syncing files to device macOS...                                   141ms
+
+    Flutter run key commands.
+    r Hot reload. 🔥🔥🔥
+    R Hot restart.
+    h Repeat this help message.
+    d Detach (terminate "flutter run" but leave application running).
+    c Clear the screen
+    q Quit (terminate the application on the device).
+    An Observatory debugger and profiler on macOS is available at: [http://127.0.0.1:58932/f1Mspofty_k=/](http://127.0.0.1:58932/f1Mspofty_k=/)
+    Application finished.
+
+You can also run multiple devices at the same time. You can find more info on the [Flutter Octopus here](https://github.com/flutter/flutter/wiki/Multi-device-debugging-in-VS-Code). If everything went well you should see the following application launch:
+
+![](https://cdn-images-1.medium.com/max/3560/1*O3W-7Ge-qfMk7i4CgqN-oQ.png)
+
+It is a pretty basic application at this point but it is important to show how easy it is to change the state in the application. You can rebuild the UI just by calling “setState()”.
+
+## Testing the Project
+
+Testing is one of the reasons I love Flutter so much and it is dead simple to run and write tests for the project. If you look at the file “test/widget_test.dart” you should see the following:
+
+<iframe src="https://medium.com/media/0906ce21f6d0fc21a4f1c348cb7cd6cd" frameborder=0></iframe>
+
+You can run these tests very easily. Open your project and type the following into the terminal:
+
+    $ flutter test
+    00:07 +1: All tests passed!
+
+Just like that all your tests will run and you can catch any bugs you missed.
+
+<iframe src="https://medium.com/media/2c0ca7eeb14d9eec543125f78fcead9c" frameborder=0></iframe>
+
+You can also generate code coverage for your applications easily by typing the following:
+
+    flutter test --coverage
+
+This will generate a new file at “coverage/lcov.info” and will read the following:
+
+<iframe src="https://medium.com/media/81c45c00e752b960fa4bacaa5d59c718" frameborder=0></iframe>
+
+You can now easily create badges and graphs with the LCOV data. Here is a package that will make that easier:
+[**test_coverage | Dart Package**
+*Command line utility to run tests in Dart VM and collect coverage data.*pub.dev](https://pub.dev/packages/test_coverage)
+
+## Conclusion
+
+Flutter makes it possible to build applications very quickly that do not depend on web or mobile technologies. It can familiar to writing a game as you have to design all your own UI. You can find the final source code here:
+[**rodydavis/flutter_take_5**
+*A new Flutter project. This project is a starting point for a Flutter application. A few resources to get you started…*github.com](https://github.com/rodydavis/flutter_take_5/tree/master/01_your_first_project)
+
+You can also find the Flutter source code here:
+[**flutter/flutter**
+*Flutter makes it easy and fast to build beautiful apps for mobile and beyond. - flutter/flutter*github.com](https://github.com/flutter/flutter)
+]]></content:encoded>
+            <category>first-flutter-project.md</category>
+            <enclosure url="https://rodydavis.comhttps://cdn-images-1.medium.com/max/3560/1*O3W-7Ge-qfMk7i4CgqN-oQ.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA["Flutter Cheat Sheet — Terminal"]]></title>
+            <link>https://rodydavis.com/#/blog/assets/blog/flutter-cheat-sheet</link>
+            <guid>assets/blog/flutter-cheat-sheet</guid>
+            <pubDate>Thu, 05 Mar 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[
+layout: post
+title: "Flutter Cheat Sheet — Terminal"
+date: 2020-03-05
+categories: [flutter, scripting]
+hasComments: 'true'
+]]></description>
+            <content:encoded><![CDATA[
+
+# Flutter Cheat Sheet — Terminal
+
+Run Flutter web with SKIA
+
+    flutter run -d web --release --dart-define=FLUTTER_WEB_USE_SKIA=true
+
+* Run Flutter web with Canvas Kit
+
+    flutter run -d chrome --release --dart-define=FLUTTER_WEB_USE_EXPERIMENTAL_CANVAS_TEXT=true
+
+* Build your Flutter web app to Github Pages to the docs folder
+
+    flutter build web && rm -rf ./docs && mkdir ./docs && cp -a ./build/web/. ./docs/
+
+* Clean rebuild CocoaPods
+
+    cd ios && pod deintegrate && pod cache clean —all && pod install && cd ..
+> Sometimes with firebase you need to run: `pod update Firebase`
+
+* Create Dart package with Example
+
+    flutter create -t plugin . && flutter create -i swift -a kotlin --androidx example
+
+* Watch Build Files
+
+    flutter packages pub run build_runner watch  -—delete-conflicting-outputs
+
+* Generate Build Files
+
+    flutter packages pub run build_runner build  -—delete-conflicting-outputs
+
+* Build Bug Report
+
+    flutter run —bug-report
+
+* Flutter generate test coverage
+
+    flutter test --coverage && genhtml -o coverage coverage/lcov.info
+
+* Rebuild Flutter Cache
+
+    flutter pub pub cache repair
+
+* Conditional Export/Import
+
+    export 'unsupported.dart'
+
+    if (dart.library.html) 'web.dart'
+
+    if (dart.library.io) 'mobile.dart';
+
+* Kill Dart Running
+
+    killall -9 dart
+]]></content:encoded>
+            <category>flutter-cheat-sheet.md</category>
+            <enclosure url="https://rodydavis.com" length="0" type="image//"/>
+        </item>
+        <item>
+            <title><![CDATA["Multi-touch Canvas with Flutter"]]></title>
+            <link>https://rodydavis.com/#/blog/assets/blog/flutter-multi-touch-canvas</link>
+            <guid>assets/blog/flutter-multi-touch-canvas</guid>
+            <pubDate>Wed, 10 Jun 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[
+layout: post
+title: "Multi-touch Canvas with Flutter"
+date: 2020-06-10
+categories: [flutter, graphics]
+hasComments: 'true'
+]]></description>
+            <content:encoded><![CDATA[
+
+# Multi-touch Canvas with Flutter
+
+If you ever wanted to create a canvas in [Flutter](https://flutter.dev) that needs to be panned in any direction and allow zoom then you also probably tried to create a [MultiGestureRecognizer](https://api.flutter.dev/flutter/gestures/MultiDragGestureRecognizer-class.html) or under a [GestureDetector](https://api.flutter.dev/flutter/widgets/GestureDetector-class.html) added onPanUpdate and onScaleUpdate and received an error because both can not work at the same time. Even if you have to GestureDetectors then you will still find it does not work how you want and one will always win.
+
+Online demo: https://rodydavis.github.io/flutter_multi_touch_canvas/
+
+This is the canvas rendering logic used in https://widget.studio
+
+## Multi Touch Goal
+
+* Pan the canvas with two or more fingers
+* Zoom the canvas with two fingers only (Pinch/Zoom)
+* Single finger will interact with canvas object and detect selection
+* Bonus trackpad support with similar results
+
+In order to achieve this we need to use a Listener for the trackpad events and raw touch interactions and  [RawKeyboardListener](https://api.flutter.dev/flutter/widgets/RawKeyboardListener-class.html) for keyboard shortcuts.
+
+## Part 1 - Project Setup
+
+Open your terminal and type the following:
+
+```
+mkdir flutter_multi_touch
+cd flutter_multi_touch
+flutter create .
+code .
+```
+
+The last line is optional and if you have VSCode installed. The command will open the directory inside VSCode.
+
+## Part 2 - Boilerplate
+
+* Remove all comments
+* Remove extra empty lines
+* Update UI
+
+Right now when you run the project you will have this UI.
+
+Create a new file located at `ui/home/screen.dart` and add the following:
 
 ```dart
 import 'package:flutter/material.dart';
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+```
+
+Update `main.dart` with the following:
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'ui/home/screen.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      darkTheme: ThemeData.dark().copyWith(
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: HomeScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-}
 ```
 
-## 3. Run your project
+You will now have a black screen when you run the application.
 
-Just to make sure everything is working go ahead and run the project on iOS/Android.
+## Part 3 - Creating the Controller
 
-![flutter](/images/flutter_x/starter_ipad.png)
-
-You should have the counter application running and working correctly. Now quit and run on Chrome. It should be listed as a device. You can also run from the command line `flutter run -d chrome`.
-
-![flutter](/images/flutter_x/starter_web.png)
-
->You do not get hot reload yet on web so be aware of that.
-
-## 4. Set up project structure
-
->This is optional but I use this structure in all my apps
-
-```auto
-/lib
-    /ui
-        /common
-        /screen
-    /data
-        /classes
-        /models
-        /blocs
-        /abstract
-        /services
-        /database
-        /utils
-    /plugins
-```
-
-![flutter](/images/flutter_x/structure.png)
-
-Your project should now look like this.
-
-## 5. Import Plugins
-
-Open your `pubspec.yaml` and import the following packages.
-
-```yaml
-universal_html:
-url_launcher:
-```
-
-> You can also remove the comments generated in the pubspec.yaml
-
-Your pubspec.yaml will now read like this:
-
-```yaml
-name: flutter_x
-description: A new Flutter project.
-
-version: 1.0.0+1
-
-environment:
-  sdk: ">=2.1.0 <3.0.0"
-
-dependencies:
-  flutter:
-    sdk: flutter
-
-  cupertino_icons: ^0.1.2
-  universal_html: ^1.1.0
-  url_launcher: ^5.1.2
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-
-flutter:
-
-  uses-material-design: true
-
-```
-
-## 6. Setup the plugin implementation
-
-By default if you were to check if the device was mobile or web you will get an error at compile time when trying to import a plugin that is not meant for the platform. To get around this we will use dynamic imports.
-
-![flutter](/images/flutter_x/url_launcher.png)
-
-Create a url_launcher folder and file `url_launcher.dart`, `mobile.dart`, `web.dart`, `unsupported.dart` inside the plugins folder.
-
-## 7: Dynamic Imports
-
-In the file `url_launcher.dart` add the following:
+Now we want to create a class that will act as our controller on the canvas.
+Create a new file at `src/controllers/canvas.dart` and add the following to start:
 
 ```dart
-export 'unsupported.dart'
-    if (dart.library.html) 'web.dart'
-    if (dart.library.io) 'mobile.dart';
-```
+import 'dart:async';
 
-This will pick the correct file at runtime and give a fallback if it is not supported.
-
-## 8: Fallback for Plugin
-
-To protect against edge cases you will need to set up a fallback for the import. In `unsupported.dart` add the following:
-
-```dart
-class UrlUtils {
-  UrlUtils._();
-
-  static void open(String url, {String name}) {
-    throw 'Platform Not Supported';
-  }
+/// Control the canvas and the objects on it
+class CanvasController {
+  // Controller for the stream output
+  final _controller = StreamController<CanvasController>();
+  // Reference to the stream to update the UI
+  Stream<CanvasController> get stream => _controller.stream;
+  // Emit a new event to rebuild the UI
+  void add([CanvasController val]) => _controller.add(val ?? this);
+  // Stop the stream and finish
+  void close() => _controller.close();
+	// Start the stream
+  void init() => add();
 }
+
 ```
 
-The class `UrlUtils` and the public methods have to match all three files for this to work correctly. Always set up the unsupported first then copy the file into `mobile.dart` and `web.dart` to ensure no typos.
-
-You should now have 3 files with the above code in each class.
-
-## 9: Mobile Side
-
-In `mobile.dart` add the following:
-
-```dart
-import 'package:url_launcher/url_launcher.dart';
-
-class UrlUtils {
-  UrlUtils._();
-
-  static void open(String url, {String name}) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    }
-  }
-}
-```
-
-This will open the link in safari view controller or android's default browser respectively.
-
-## 10: Web Side
-
-In `web.dart` add the following:
-
-```dart
-import 'package:universal_html/prefer_universal/html.dart' as html;
-
-class UrlUtils {
-  UrlUtils._();
-
-  static void open(String url, {String name}) {
-    html.window.open(url, name);
-  }
-}
-```
-
-This will open up a new window in the browser with the specified link.
-
-## 11: Connect the UI
-
-Add a button to the center of the screen. The `ui/home/screen.dart` should read the following:
+Update the home screen with the following:
 
 ```dart
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+import '../../src/controllers/canvas.dart';
 
-  final String title;
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomeScreenState extends State<HomeScreen> {
+  final _controller = CanvasController();
+
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-          child: RaisedButton(
-        child: Text('Open Flutter.dev'),
-        onPressed: () {},
-      )),
-    );
+  void initState() {
+    _controller.init();
+    super.initState();
   }
-}
-```
-
-Update the `onPressed` to the following:
-
-```dart
-onPressed: () {
-    try {
-        UrlUtils.open('https://flutter.dev');
-    } catch (e) {
-        print('Error -> $e');
-    }
-},
-```
-
-Now when you go to import the `UrlUtils` it is important to import the correct URI.
-
-![flutter](/images/flutter_x/import.png)
-
-Make sure to import `import 'package:flutter_x/plugins/url_launcher/url_launcher.dart';` only.
-
-> You can use the relative import if you wish.
-
-## 12: Double Check
-
-You UI code will now read the following:
-
-```dart
-import 'package:flutter/material.dart';
-
-import '../../plugins/url_launcher/url_launcher.dart';
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
+  void dispose() {
+    _controller.close();
+    super.dispose();
+  }
 
-class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-          child: RaisedButton(
-        child: Text('Open Flutter.dev'),
-        onPressed: () {
-          try {
-            UrlUtils.open('https://flutter.dev');
-          } catch (e) {
-            print('Error -> $e');
+    return StreamBuilder<CanvasController>(
+        stream: _controller.stream,
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Scaffold(
+              appBar: AppBar(),
+              body: Center(child: CircularProgressIndicator()),
+            );
           }
-        },
-      )),
+          final instance = snapshot.data;
+          return Scaffold(
+            appBar: AppBar(),
+            body: Stack(
+              children: [
+                Positioned(
+                  top: 20,
+                  left: 20,
+                  width: 100,
+                  height: 100,
+                  child: Container(color: Colors.red),
+                )
+              ],
+            ),
+          );
+        });
+  }
+}
+
+```
+
+Here we are just adding the basics to rebuild when the controller changes or the screen is finished. We are using a stateful widget here because we want to dispose of the controller and load it only once. We are also using a stack because thats all we need under the hood. After a quick hot restart you should have the following view.
+
+## Part 4 - Adding Canvas Objects
+
+Now we need to create the class for the objects that will be stored on the canvas. Create a new file at `src/classes/canvas_object.dart` and add the following:
+
+```dart
+import 'dart:ui';
+
+class CanvasObject<T> {
+  final double dx;
+  final double dy;
+  final double width;
+  final double height;
+  final T child;
+
+  CanvasObject({
+    this.dx = 0,
+    this.dy = 0,
+    this.width = 100,
+    this.height = 100,
+    this.child,
+  });
+
+  CanvasObject<T> copyWith({
+    double dx,
+    double dy,
+    double width,
+    double height,
+    T child,
+  }) {
+    return CanvasObject<T>(
+      dx: dx ?? this.dx,
+      dy: dy ?? this.dy,
+      width: width ?? this.width,
+      height: height ?? this.height,
+      child: child ?? this.child,
+    );
+  }
+
+  Size get size => Size(width, height);
+  Offset get offset => Offset(dx, dy);
+  Rect get rect => offset & size;
+}
+
+```
+
+We are using a generic here to not depend on flutter or material in the class. Update the controller with the following:
+
+```dart
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+
+import '../classes/canvas_object.dart';
+
+/// Control the canvas and the objects on it
+class CanvasController {
+  /// Controller for the stream output
+  final _controller = StreamController<CanvasController>();
+
+  /// Reference to the stream to update the UI
+  Stream<CanvasController> get stream => _controller.stream;
+
+  /// Emit a new event to rebuild the UI
+  void add([CanvasController val]) => _controller.add(val ?? this);
+
+  /// Stop the stream and finish
+  void close() => _controller.close();
+
+  /// Start the stream
+  void init() => add();
+
+  // -- Canvas Objects --
+
+  final List<CanvasObject<Widget>> _objects = [];
+
+  /// Current Objects on the canvas
+  List<CanvasObject<Widget>> get objects => _objects;
+
+  /// Add an object to the canvas
+  void addObject(CanvasObject<Widget> value) => _update(() {
+        _objects.add(value);
+      });
+
+  /// Add an object to the canvas
+  void updateObject(int i, CanvasObject<Widget> value) => _update(() {
+        _objects[i] = value;
+      });
+
+  /// Remove an object from the canvas
+  void removeObject(int i) => _update(() {
+        _objects.removeAt(i);
+      });
+
+  void _update(void Function() action) {
+    action();
+    add(this);
+  }
+}
+
+```
+
+We are just adding the objects to the canvas and removing them if needed. Update the home screen with the following to use these new objects:
+
+```dart
+import 'package:flutter/material.dart';
+
+import '../../src/classes/canvas_object.dart';
+import '../../src/controllers/canvas.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key key}) : super(key: key);
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final _controller = CanvasController();
+
+  @override
+  void initState() {
+    _controller.init();
+    _dummyData();
+    super.initState();
+  }
+
+  void _dummyData() {
+    _controller.addObject(
+      CanvasObject(
+        dx: 20,
+        dy: 20,
+        width: 100,
+        height: 100,
+        child: Container(color: Colors.red),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.close();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<CanvasController>(
+        stream: _controller.stream,
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Scaffold(
+              appBar: AppBar(),
+              body: Center(child: CircularProgressIndicator()),
+            );
+          }
+          final instance = snapshot.data;
+          return Scaffold(
+            appBar: AppBar(),
+            body: Stack(
+              children: [
+                for (final object in instance.objects)
+                  Positioned(
+                    top: object.dy,
+                    left: object.dx,
+                    width: object.width,
+                    height: object.height,
+                    child: object.child,
+                  )
+              ],
+            ),
+          );
+        });
+  }
+}
+
+```
+
+The UI is thee same as before but now is dynamic and we have access to the Stack children and position of each child.
+
+## Part 5 - Capture the Input
+We need to capture the input of the MultiGestureRecognizer, GestureDetector and RawKeyboardListener. Update the canvas controller with the following:
+
+```dart
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+
+import '../classes/canvas_object.dart';
+
+/// Control the canvas and the objects on it
+class CanvasController {
+  /// Controller for the stream output
+  final _controller = StreamController<CanvasController>();
+
+  /// Reference to the stream to update the UI
+  Stream<CanvasController> get stream => _controller.stream;
+
+  /// Emit a new event to rebuild the UI
+  void add([CanvasController val]) => _controller.add(val ?? this);
+
+  /// Stop the stream and finish
+  void close() {
+    _controller.close();
+    focusNode.dispose();
+  }
+
+  /// Start the stream
+  void init() => add();
+
+  // -- Canvas Objects --
+
+  final List<CanvasObject<Widget>> _objects = [];
+
+  /// Current Objects on the canvas
+  List<CanvasObject<Widget>> get objects => _objects;
+
+  /// Add an object to the canvas
+  void addObject(CanvasObject<Widget> value) => _update(() {
+        _objects.add(value);
+      });
+
+  /// Add an object to the canvas
+  void updateObject(int i, CanvasObject<Widget> value) => _update(() {
+        _objects[i] = value;
+      });
+
+  /// Remove an object from the canvas
+  void removeObject(int i) => _update(() {
+        _objects.removeAt(i);
+      });
+
+  /// Focus node for listening for keyboard shortcuts
+  final focusNode = FocusNode();
+
+  /// Raw events from keys pressed
+  void rawKeyEvent(BuildContext context, RawKeyEvent key) {}
+
+  /// Called every time a new finger touches the screen
+  void addTouch(int pointer, Offset offsetVal, Offset globalVal) {}
+
+  /// Called when any of the fingers update position
+  void updateTouch(int pointer, Offset offsetVal, Offset globalVal) {}
+
+  /// Called when a finger is removed from the screen
+  void removeTouch(int pointer) {}
+
+  /// Checks if the shift key on the keyboard is pressed
+  bool shiftPressed = false;
+
+  /// Scale of the canvas
+  double get scale => _scale;
+  double _scale = 1;
+  set scale(double value) => _update(() {
+        _scale = value;
+      });
+
+  /// Max possible scale
+  static const double maxScale = 3.0;
+  /// Min possible scale
+  static const double minScale = 0.2;
+  /// How much to scale the canvas in increments
+  static const double scaleAdjust = 0.05;
+
+  /// Current offset of the canvas
+  Offset get offset => _offset;
+  Offset _offset = Offset.zero;
+  set offset(Offset value) => _update(() {
+        _offset = value;
+      });
+
+  void _update(void Function() action) {
+    action();
+    add(this);
+  }
+}
+
+```
+
+Update the home screen with the following:
+
+```dart
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+
+import '../../src/classes/canvas_object.dart';
+import '../../src/controllers/canvas.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key key}) : super(key: key);
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final _controller = CanvasController();
+
+  @override
+  void initState() {
+    _controller.init();
+    _dummyData();
+    super.initState();
+  }
+
+  void _dummyData() {
+    _controller.addObject(
+      CanvasObject(
+        dx: 20,
+        dy: 20,
+        width: 100,
+        height: 100,
+        child: Container(color: Colors.red),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.close();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<CanvasController>(
+        stream: _controller.stream,
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Scaffold(
+              appBar: AppBar(),
+              body: Center(child: CircularProgressIndicator()),
+            );
+          }
+          final instance = snapshot.data;
+          return Scaffold(
+            appBar: AppBar(),
+            body: Listener(
+              behavior: HitTestBehavior.opaque,
+              onPointerSignal: (details) {
+                if (details is PointerScrollEvent) {
+                  GestureBinding.instance.pointerSignalResolver
+                      .register(details, (event) {
+                    if (event is PointerScrollEvent) {
+                      if (_controller.shiftPressed) {
+                        double zoomDelta = (-event.scrollDelta.dy / 300);
+                        _controller.scale = _controller.scale + zoomDelta;
+                      } else {
+                        _controller.offset =
+                            _controller.offset - event.scrollDelta;
+                      }
+                    }
+                  });
+                }
+              },
+              onPointerMove: (details) {
+                _controller.updateTouch(
+                  details.pointer,
+                  details.localPosition,
+                  details.position,
+                );
+              },
+              onPointerDown: (details) {
+                _controller.addTouch(
+                  details.pointer,
+                  details.localPosition,
+                  details.position,
+                );
+              },
+              onPointerUp: (details) {
+                _controller.removeTouch(details.pointer);
+              },
+              onPointerCancel: (details) {
+                _controller.removeTouch(details.pointer);
+              },
+              child: RawKeyboardListener(
+                autofocus: true,
+                focusNode: _controller.focusNode,
+                onKey: (key) => _controller.rawKeyEvent(context, key),
+                child: Stack(
+                  children: [
+                    for (final object in instance.objects)
+                      Positioned(
+                        top: object.dy,
+                        left: object.dx,
+                        width: object.width,
+                        height: object.height,
+                        child: object.child,
+                      )
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
+  }
+}
+
+```
+
+All we are doing now is just mapping the inputs of the UI to the actions in the controller. Feel free to look through the comments if you are curious how each one works. Running the application should still just show the red square.
+
+## Part 5 - Canvas Offset and Scale
+
+Now we want to start moving the canvas. Let’s first tackle the offset as scale will take a different approach. Update the home screen with the following:
+
+```dart
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+
+import '../../src/classes/canvas_object.dart';
+import '../../src/controllers/canvas.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key key}) : super(key: key);
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final _controller = CanvasController();
+
+  @override
+  void initState() {
+    _controller.init();
+    _dummyData();
+    super.initState();
+  }
+
+  void _dummyData() {
+    _controller.addObject(
+      CanvasObject(
+        dx: 20,
+        dy: 20,
+        width: 100,
+        height: 100,
+        child: Container(color: Colors.red),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.close();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<CanvasController>(
+        stream: _controller.stream,
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Scaffold(
+              appBar: AppBar(),
+              body: Center(child: CircularProgressIndicator()),
+            );
+          }
+          final instance = snapshot.data;
+          return Scaffold(
+            appBar: AppBar(),
+            body: Listener(
+              behavior: HitTestBehavior.opaque,
+              onPointerSignal: (details) {
+                if (details is PointerScrollEvent) {
+                  GestureBinding.instance.pointerSignalResolver
+                      .register(details, (event) {
+                    if (event is PointerScrollEvent) {
+                      if (_controller.shiftPressed) {
+                        double zoomDelta = (-event.scrollDelta.dy / 300);
+                        _controller.scale = _controller.scale + zoomDelta;
+                      } else {
+                        _controller.offset =
+                            _controller.offset - event.scrollDelta;
+                      }
+                    }
+                  });
+                }
+              },
+              onPointerMove: (details) {
+                _controller.updateTouch(
+                  details.pointer,
+                  details.localPosition,
+                  details.position,
+                );
+              },
+              onPointerDown: (details) {
+                _controller.addTouch(
+                  details.pointer,
+                  details.localPosition,
+                  details.position,
+                );
+              },
+              onPointerUp: (details) {
+                _controller.removeTouch(details.pointer);
+              },
+              onPointerCancel: (details) {
+                _controller.removeTouch(details.pointer);
+              },
+              child: RawKeyboardListener(
+                autofocus: true,
+                focusNode: _controller.focusNode,
+                onKey: (key) => _controller.rawKeyEvent(context, key),
+                child: SizedBox.expand(
+                  child: Stack(
+                    children: [
+                      for (final object in instance.objects)
+                        AnimatedPositioned.fromRect(
+                          duration: const Duration(milliseconds: 50),
+                          rect: object.rect.adjusted(
+                            _controller.offset,
+                            _controller.scale,
+                          ),
+                          child: FittedBox(
+                            fit: BoxFit.fill,
+                            child: SizedBox.fromSize(
+                              size: object.size,
+                              child: object.child,
+                            ),
+                          ),
+                        )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        });
+  }
+}
+
+extension RectUtils on Rect {
+  Rect adjusted(Offset offset, double scale) {
+    final left = (this.left + offset.dx) * scale;
+    final top = (this.top + offset.dy) * scale;
+    final width = this.width * scale;
+    final height = this.height * scale;
+    return Rect.fromLTWH(left, top, width, height);
+  }
+}
+
+```
+
+Now when you use your trackpad to pan with two fingers you will see the red square move. We now need to add finger support too. You may notice the FittedBox and that will come in as soon as we add scaling.
+
+Now if we move the square off the screen we may need to bring it back. We can add a reset button to the AppBar. Add the following to the canvas controller:
+
+```dart
+  static const double _scaleDefault = 1;
+  static const Offset _offsetDefault = Offset.zero;
+
+  void reset() {
+    scale = _scaleDefault;
+    offset = _offsetDefault;
+  }
+
+```
+
+Update the home screen with the following:
+
+```dart
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+
+import '../../src/classes/canvas_object.dart';
+import '../../src/controllers/canvas.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key key}) : super(key: key);
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final _controller = CanvasController();
+
+  @override
+  void initState() {
+    _controller.init();
+    _dummyData();
+    super.initState();
+  }
+
+  void _dummyData() {
+    _controller.addObject(
+      CanvasObject(
+        dx: 20,
+        dy: 20,
+        width: 100,
+        height: 100,
+        child: Container(color: Colors.red),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.close();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<CanvasController>(
+        stream: _controller.stream,
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Scaffold(
+              appBar: AppBar(),
+              body: Center(child: CircularProgressIndicator()),
+            );
+          }
+          final instance = snapshot.data;
+          return Scaffold(
+            appBar: AppBar(
+              actions: [
+                IconButton(
+                  tooltip: 'Reset the Scale and Offset',
+                  icon: Icon(Icons.restore),
+                  onPressed: _controller.reset,
+                ),
+              ],
+            ),
+            body: Listener(
+              behavior: HitTestBehavior.opaque,
+              onPointerSignal: (details) {
+                if (details is PointerScrollEvent) {
+                  GestureBinding.instance.pointerSignalResolver
+                      .register(details, (event) {
+                    if (event is PointerScrollEvent) {
+                      if (_controller.shiftPressed) {
+                        double zoomDelta = (-event.scrollDelta.dy / 300);
+                        _controller.scale = _controller.scale + zoomDelta;
+                      } else {
+                        _controller.offset =
+                            _controller.offset - event.scrollDelta;
+                      }
+                    }
+                  });
+                }
+              },
+              onPointerMove: (details) {
+                _controller.updateTouch(
+                  details.pointer,
+                  details.localPosition,
+                  details.position,
+                );
+              },
+              onPointerDown: (details) {
+                _controller.addTouch(
+                  details.pointer,
+                  details.localPosition,
+                  details.position,
+                );
+              },
+              onPointerUp: (details) {
+                _controller.removeTouch(details.pointer);
+              },
+              onPointerCancel: (details) {
+                _controller.removeTouch(details.pointer);
+              },
+              child: RawKeyboardListener(
+                autofocus: true,
+                focusNode: _controller.focusNode,
+                onKey: (key) => _controller.rawKeyEvent(context, key),
+                child: SizedBox.expand(
+                  child: Stack(
+                    children: [
+                      for (final object in instance.objects)
+                        AnimatedPositioned.fromRect(
+                          duration: const Duration(milliseconds: 50),
+                          rect: object.rect.adjusted(
+                            _controller.offset,
+                            _controller.scale,
+                          ),
+                          child: FittedBox(
+                            fit: BoxFit.fill,
+                            child: SizedBox.fromSize(
+                              size: object.size,
+                              child: object.child,
+                            ),
+                          ),
+                        )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        });
+  }
+}
+
+extension RectUtils on Rect {
+  Rect adjusted(Offset offset, double scale) {
+    final left = (this.left + offset.dx) * scale;
+    final top = (this.top + offset.dy) * scale;
+    final width = this.width * scale;
+    final height = this.height * scale;
+    return Rect.fromLTWH(left, top, width, height);
+  }
+}
+
+```
+
+Now when you press the reset button the canvas animates back to the default offset and scale.
+
+While we are here we can add actions for zoom in/out and connect them to the controller. Add the following to the canvas controller:
+
+```dart
+  void zoomIn() {
+    scale += scaleAdjust;
+  }
+
+  void zoomOut() {
+    scale -= scaleAdjust;
+  }
+
+```
+
+Add the following to the AppBar actions:
+
+```dart
+				  IconButton(
+                  tooltip: 'Zoom In',
+                  icon: Icon(Icons.zoom_in),
+                  onPressed: _controller.zoomIn,
+                ),
+                IconButton(
+                  tooltip: 'Zoom Out',
+                  icon: Icon(Icons.zoom_out),
+                  onPressed: _controller.zoomOut,
+                ),
+
+```
+
+Now when you run the application you can easily zoom in/out.
+
+## Part 6 - Keyboard Shortcuts
+Now we need to capture the keyboard events so we can move the canvas with the arrow keys and scale with +/- keys. Update the controller with the following:
+
+```dart
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import '../classes/canvas_object.dart';
+
+/// Control the canvas and the objects on it
+class CanvasController {
+  /// Controller for the stream output
+  final _controller = StreamController<CanvasController>();
+
+  /// Reference to the stream to update the UI
+  Stream<CanvasController> get stream => _controller.stream;
+
+  /// Emit a new event to rebuild the UI
+  void add([CanvasController val]) => _controller.add(val ?? this);
+
+  /// Stop the stream and finish
+  void close() {
+    _controller.close();
+    focusNode.dispose();
+  }
+
+  /// Start the stream
+  void init() => add();
+
+  // -- Canvas Objects --
+
+  final List<CanvasObject<Widget>> _objects = [];
+
+  /// Current Objects on the canvas
+  List<CanvasObject<Widget>> get objects => _objects;
+
+  /// Add an object to the canvas
+  void addObject(CanvasObject<Widget> value) => _update(() {
+        _objects.add(value);
+      });
+
+  /// Add an object to the canvas
+  void updateObject(int i, CanvasObject<Widget> value) => _update(() {
+        _objects[i] = value;
+      });
+
+  /// Remove an object from the canvas
+  void removeObject(int i) => _update(() {
+        _objects.removeAt(i);
+      });
+
+  /// Focus node for listening for keyboard shortcuts
+  final focusNode = FocusNode();
+
+  /// Raw events from keys pressed
+  void rawKeyEvent(BuildContext context, RawKeyEvent key) {
+    // Scale keys
+    if (key.isKeyPressed(LogicalKeyboardKey.minus)) {
+      zoomOut();
+    }
+    if (key.isKeyPressed(LogicalKeyboardKey.equal)) {
+      zoomIn();
+    }
+    // Directional Keys
+    if (key.isKeyPressed(LogicalKeyboardKey.arrowLeft)) {
+      offset = offset + Offset(offsetAdjust, 0.0);
+    }
+    if (key.isKeyPressed(LogicalKeyboardKey.arrowRight)) {
+      offset = offset + Offset(-offsetAdjust, 0.0);
+    }
+    if (key.isKeyPressed(LogicalKeyboardKey.arrowUp)) {
+      offset = offset + Offset(0.0, offsetAdjust);
+    }
+    if (key.isKeyPressed(LogicalKeyboardKey.arrowDown)) {
+      offset = offset + Offset(0.0, -offsetAdjust);
+    }
+
+    _shiftPressed = key.isShiftPressed;
+
+    /// Update Controller Instance
+    add(this);
+  }
+
+  /// Called every time a new finger touches the screen
+  void addTouch(int pointer, Offset offsetVal, Offset globalVal) {}
+
+  /// Called when any of the fingers update position
+  void updateTouch(int pointer, Offset offsetVal, Offset globalVal) {}
+
+  /// Called when a finger is removed from the screen
+  void removeTouch(int pointer) {}
+
+  /// Checks if the shift key on the keyboard is pressed
+  bool get shiftPressed => _shiftPressed;
+  bool _shiftPressed = false;
+
+  /// Scale of the canvas
+  double get scale => _scale;
+  double _scale = 1;
+  set scale(double value) => _update(() {
+        _scale = value;
+      });
+
+  /// Max possible scale
+  static const double maxScale = 3.0;
+
+  /// Min possible scale
+  static const double minScale = 0.2;
+
+  /// How much to scale the canvas in increments
+  static const double scaleAdjust = 0.05;
+
+  /// How much to shift the canvas in increments
+  static const double offsetAdjust = 15;
+
+  /// Current offset of the canvas
+  Offset get offset => _offset;
+  Offset _offset = Offset.zero;
+  set offset(Offset value) => _update(() {
+        _offset = value;
+      });
+
+  static const double _scaleDefault = 1;
+  static const Offset _offsetDefault = Offset.zero;
+
+  /// Reset the canvas zoom and offset
+  void reset() {
+    scale = _scaleDefault;
+    offset = _offsetDefault;
+  }
+
+  /// Zoom in the canvas
+  void zoomIn() {
+    scale += scaleAdjust;
+  }
+
+  /// Zoom out the canvas
+  void zoomOut() {
+    scale -= scaleAdjust;
+  }
+
+  void _update(void Function() action) {
+    action();
+    add(this);
+  }
+}
+
+```
+
+Now when you run the application you can control the zoom and pan with just a keyboard. This could be useful for a fallback input that would work on a TV for example…
+
+If you want to see if it is actually scaling proportionally then add the following the home screen:
+
+```dart
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+
+import '../../src/classes/canvas_object.dart';
+import '../../src/controllers/canvas.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key key}) : super(key: key);
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final _controller = CanvasController();
+
+  @override
+  void initState() {
+    _controller.init();
+    _dummyData();
+    super.initState();
+  }
+
+  void _dummyData() {
+    _controller.addObject(
+      CanvasObject(
+        dx: 20,
+        dy: 20,
+        width: 100,
+        height: 100,
+        child: Container(color: Colors.red),
+      ),
+    );
+    _controller.addObject(
+      CanvasObject(
+        dx: 80,
+        dy: 60,
+        width: 100,
+        height: 200,
+        child: Container(color: Colors.green),
+      ),
+    );
+    _controller.addObject(
+      CanvasObject(
+        dx: 100,
+        dy: 40,
+        width: 100,
+        height: 50,
+        child: Container(color: Colors.blue),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.close();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<CanvasController>(
+        stream: _controller.stream,
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Scaffold(
+              appBar: AppBar(),
+              body: Center(child: CircularProgressIndicator()),
+            );
+          }
+          final instance = snapshot.data;
+          return Scaffold(
+            appBar: AppBar(
+              actions: [
+                FocusScope(
+                  canRequestFocus: false,
+                  child: IconButton(
+                    tooltip: 'Zoom In',
+                    icon: Icon(Icons.zoom_in),
+                    onPressed: _controller.zoomIn,
+                  ),
+                ),
+                FocusScope(
+                  canRequestFocus: false,
+                  child: IconButton(
+                    tooltip: 'Zoom Out',
+                    icon: Icon(Icons.zoom_out),
+                    onPressed: _controller.zoomOut,
+                  ),
+                ),
+                FocusScope(
+                  canRequestFocus: false,
+                  child: IconButton(
+                    tooltip: 'Reset the Scale and Offset',
+                    icon: Icon(Icons.restore),
+                    onPressed: _controller.reset,
+                  ),
+                ),
+              ],
+            ),
+            body: Listener(
+              behavior: HitTestBehavior.opaque,
+              onPointerSignal: (details) {
+                if (details is PointerScrollEvent) {
+                  GestureBinding.instance.pointerSignalResolver
+                      .register(details, (event) {
+                    if (event is PointerScrollEvent) {
+                      if (_controller.shiftPressed) {
+                        double zoomDelta = (-event.scrollDelta.dy / 300);
+                        _controller.scale = _controller.scale + zoomDelta;
+                      } else {
+                        _controller.offset =
+                            _controller.offset - event.scrollDelta;
+                      }
+                    }
+                  });
+                }
+              },
+              onPointerMove: (details) {
+                _controller.updateTouch(
+                  details.pointer,
+                  details.localPosition,
+                  details.position,
+                );
+              },
+              onPointerDown: (details) {
+                _controller.addTouch(
+                  details.pointer,
+                  details.localPosition,
+                  details.position,
+                );
+              },
+              onPointerUp: (details) {
+                _controller.removeTouch(details.pointer);
+              },
+              onPointerCancel: (details) {
+                _controller.removeTouch(details.pointer);
+              },
+              child: RawKeyboardListener(
+                autofocus: true,
+                focusNode: _controller.focusNode,
+                onKey: (key) => _controller.rawKeyEvent(context, key),
+                child: SizedBox.expand(
+                  child: Stack(
+                    children: [
+                      for (final object in instance.objects)
+                        AnimatedPositioned.fromRect(
+                          duration: const Duration(milliseconds: 50),
+                          rect: object.rect.adjusted(
+                            _controller.offset,
+                            _controller.scale,
+                          ),
+                          child: FittedBox(
+                            fit: BoxFit.fill,
+                            child: SizedBox.fromSize(
+                              size: object.size,
+                              child: object.child,
+                            ),
+                          ),
+                        )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        });
+  }
+}
+
+extension RectUtils on Rect {
+  Rect adjusted(Offset offset, double scale) {
+    final left = (this.left + offset.dx) * scale;
+    final top = (this.top + offset.dy) * scale;
+    final width = this.width * scale;
+    final height = this.height * scale;
+    return Rect.fromLTWH(left, top, width, height);
+  }
+}
+
+
+```
+
+You can zoom and the blocks all scale correctly and pan around.
+
+Just press the reset button to start over.
+
+## Part 7 - Multi Touch Input
+Now time for the fingers. For this you will need a touchscreen device to test. You can plug in your phone or if you have a touch screen computer you can run the web version. Update the controller with following:
+
+```dart
+import 'dart:async';
+import 'dart:math' as math;
+
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import '../classes/canvas_object.dart';
+import '../classes/rect_points.dart';
+
+/// Control the canvas and the objects on it
+class CanvasController {
+  /// Controller for the stream output
+  final _controller = StreamController<CanvasController>();
+
+  /// Reference to the stream to update the UI
+  Stream<CanvasController> get stream => _controller.stream;
+
+  /// Emit a new event to rebuild the UI
+  void add([CanvasController val]) => _controller.add(val ?? this);
+
+  /// Stop the stream and finish
+  void close() {
+    _controller.close();
+    focusNode.dispose();
+  }
+
+  /// Start the stream
+  void init() => add();
+
+  // -- Canvas Objects --
+
+  final List<CanvasObject<Widget>> _objects = [];
+
+  /// Current Objects on the canvas
+  List<CanvasObject<Widget>> get objects => _objects;
+
+  /// Add an object to the canvas
+  void addObject(CanvasObject<Widget> value) => _update(() {
+        _objects.add(value);
+      });
+
+  /// Add an object to the canvas
+  void updateObject(int i, CanvasObject<Widget> value) => _update(() {
+        _objects[i] = value;
+      });
+
+  /// Remove an object from the canvas
+  void removeObject(int i) => _update(() {
+        _objects.removeAt(i);
+      });
+
+  /// Focus node for listening for keyboard shortcuts
+  final focusNode = FocusNode();
+
+  /// Raw events from keys pressed
+  void rawKeyEvent(BuildContext context, RawKeyEvent key) {
+    // Scale keys
+    if (key.isKeyPressed(LogicalKeyboardKey.minus)) {
+      zoomOut();
+    }
+    if (key.isKeyPressed(LogicalKeyboardKey.equal)) {
+      zoomIn();
+    }
+    // Directional Keys
+    if (key.isKeyPressed(LogicalKeyboardKey.arrowLeft)) {
+      offset = offset + Offset(offsetAdjust, 0.0);
+    }
+    if (key.isKeyPressed(LogicalKeyboardKey.arrowRight)) {
+      offset = offset + Offset(-offsetAdjust, 0.0);
+    }
+    if (key.isKeyPressed(LogicalKeyboardKey.arrowUp)) {
+      offset = offset + Offset(0.0, offsetAdjust);
+    }
+    if (key.isKeyPressed(LogicalKeyboardKey.arrowDown)) {
+      offset = offset + Offset(0.0, -offsetAdjust);
+    }
+
+    _shiftPressed = key.isShiftPressed;
+    _metaPressed = key.isMetaPressed;
+
+    /// Update Controller Instance
+    add(this);
+  }
+
+  /// Trigger Shift Press
+  void shiftSelect() {
+    _shiftPressed = true;
+  }
+
+  /// Trigger Meta Press
+  void metaSelect() {
+    _metaPressed = true;
+  }
+
+  final Map<int, Offset> _pointerMap = {};
+
+  /// Number of inputs currently on the screen
+  int get touchCount => _pointerMap.values.length;
+
+  /// Marquee selection on the canvas
+  RectPoints get marquee => _marquee;
+  RectPoints _marquee;
+
+  /// Dragging a canvas object
+  bool get isMovingCanvasObject => _isMovingCanvasObject;
+  bool _isMovingCanvasObject = false;
+
+  final List<int> _selectedObjects = [];
+  List<int> get selectedObjectsIndices => _selectedObjects;
+  List<CanvasObject<Widget>> get selectedObjects =>
+      _selectedObjects.map((i) => _objects[i]).toList();
+  bool isObjectSelected(int i) => _selectedObjects.contains(i);
+
+  /// Called every time a new input touches the screen
+  void addTouch(int pointer, Offset offsetVal, Offset globalVal) {
+    _pointerMap[pointer] = offsetVal;
+
+    if (shiftPressed) {
+      final pt = (offsetVal / scale) - (offset);
+      _marquee = RectPoints(pt, pt);
+    }
+
+    /// Update Controller Instance
+    add(this);
+  }
+
+  /// Called when any of the inputs update position
+  void updateTouch(int pointer, Offset offsetVal, Offset globalVal) {
+    if (_marquee != null) {
+      // Update New Widget Rect
+      final _pts = _marquee;
+      final a = _pointerMap.values.first;
+      _pointerMap[pointer] = offsetVal;
+      final b = _pointerMap.values.first;
+      final delta = (b - a) / scale;
+      _pts.end = _pts.end + delta;
+      _marquee = _pts;
+      final _rect = Rect.fromPoints(_pts.start, _pts.end);
+      _selectedObjects.clear();
+      for (var i = 0; i < _objects.length; i++) {
+        if (_rect.overlaps(_objects[i].rect)) {
+          _selectedObjects.add(i);
+        }
+      }
+    } else if (touchCount == 1) {
+      // Widget Move
+      _isMovingCanvasObject = true;
+      final a = _pointerMap.values.first;
+      _pointerMap[pointer] = offsetVal;
+      final b = _pointerMap.values.first;
+      if (_selectedObjects.isEmpty) return;
+      for (final idx in _selectedObjects) {
+        final widget = _objects[idx];
+        final delta = (b - a) / scale;
+        final _newOffset = widget.offset + delta;
+        _objects[idx] = widget.copyWith(dx: _newOffset.dx, dy: _newOffset.dy);
+      }
+    } else if (touchCount == 2) {
+      // Scale and Rotate Update
+      _isMovingCanvasObject = false;
+      final _rectA = _getRectFromPoints(_pointerMap.values.toList());
+      _pointerMap[pointer] = offsetVal;
+      final _rectB = _getRectFromPoints(_pointerMap.values.toList());
+      final _delta = _rectB.center - _rectA.center;
+      final _newOffset = offset + (_delta / scale);
+      offset = _newOffset;
+      final aDistance = (_rectA.topLeft - _rectA.bottomRight).distance;
+      final bDistance = (_rectB.topLeft - _rectB.bottomRight).distance;
+      final change = (bDistance / aDistance);
+      scale = scale * change;
+    } else {
+      // Pan Update
+      _isMovingCanvasObject = false;
+      final _rectA = _getRectFromPoints(_pointerMap.values.toList());
+      _pointerMap[pointer] = offsetVal;
+      final _rectB = _getRectFromPoints(_pointerMap.values.toList());
+      final _delta = _rectB.center - _rectA.center;
+      offset = offset + (_delta / scale);
+    }
+    _pointerMap[pointer] = offsetVal;
+
+    /// Update Controller Instance
+    add(this);
+  }
+
+  /// Called when a input is removed from the screen
+  void removeTouch(int pointer) {
+    _pointerMap.remove(pointer);
+
+    if (touchCount < 1) {
+      _isMovingCanvasObject = false;
+    }
+    if (_marquee != null) {
+      _marquee = null;
+      _shiftPressed = false;
+    }
+
+    /// Update Controller Instance
+    add(this);
+  }
+
+  void selectObject(int i) => _update(() {
+        if (!_metaPressed) {
+          _selectedObjects.clear();
+        }
+        _selectedObjects.add(0);
+        final item = _objects.removeAt(i);
+        _objects.insert(0, item);
+      });
+
+  /// Checks if the shift key on the keyboard is pressed
+  bool get shiftPressed => _shiftPressed;
+  bool _shiftPressed = false;
+
+  /// Checks if the meta key on the keyboard is pressed
+  bool get metaPressed => _metaPressed;
+  bool _metaPressed = false;
+
+  /// Scale of the canvas
+  double get scale => _scale;
+  double _scale = 1;
+  set scale(double value) => _update(() {
+        if (value <= minScale) {
+          value = minScale;
+        } else if (value >= maxScale) {
+          value = maxScale;
+        }
+        _scale = value;
+      });
+
+  /// Max possible scale
+  static const double maxScale = 3.0;
+
+  /// Min possible scale
+  static const double minScale = 0.2;
+
+  /// How much to scale the canvas in increments
+  static const double scaleAdjust = 0.05;
+
+  /// How much to shift the canvas in increments
+  static const double offsetAdjust = 15;
+
+  /// Current offset of the canvas
+  Offset get offset => _offset;
+  Offset _offset = Offset.zero;
+  set offset(Offset value) => _update(() {
+        _offset = value;
+      });
+
+  static const double _scaleDefault = 1;
+  static const Offset _offsetDefault = Offset.zero;
+
+  /// Reset the canvas zoom and offset
+  void reset() {
+    scale = _scaleDefault;
+    offset = _offsetDefault;
+  }
+
+  /// Zoom in the canvas
+  void zoomIn() {
+    scale += scaleAdjust;
+  }
+
+  /// Zoom out the canvas
+  void zoomOut() {
+    scale -= scaleAdjust;
+  }
+
+  void _update(void Function() action) {
+    action();
+    add(this);
+  }
+
+  Rect _getRectFromPoints(List<Offset> offsets) {
+    if (offsets.length == 2) {
+      return Rect.fromPoints(offsets.first, offsets.last);
+    }
+    final dxs = offsets.map((e) => e.dx).toList();
+    final dys = offsets.map((e) => e.dy).toList();
+    double left = _minFromList(dxs);
+    double top = _minFromList(dys);
+    double bottom = _maxFromList(dys);
+    double right = _maxFromList(dxs);
+    return Rect.fromLTRB(left, top, right, bottom);
+  }
+
+  double _minFromList(List<double> values) {
+    double value = double.infinity;
+    for (final item in values) {
+      value = math.min(item, value);
+    }
+    return value;
+  }
+
+  double _maxFromList(List<double> values) {
+    double value = -double.infinity;
+    for (final item in values) {
+      value = math.max(item, value);
+    }
+    return value;
+  }
+}
+
+```
+
+Add a new file `src/classes/rect_points.dart` and add the following:
+
+```dart
+import 'dart:ui';
+
+class RectPoints {
+  RectPoints(this.start, this.end);
+
+  Offset start, end;
+
+  Rect get rect => Rect.fromPoints(start, end);
+}
+
+```
+
+Update the `main.dart` with the following:
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'ui/home/screen.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        accentColor: Colors.red,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      darkTheme: ThemeData.dark().copyWith(
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: HomeScreen(),
     );
   }
 }
+
 ```
 
-## 13: Run Your App
+Update the home screen with the following:
 
-Your app on the web should look like this:
+```dart
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 
-![flutter](/images/flutter_x/web_1.png)
+import '../../src/classes/canvas_object.dart';
+import '../../src/controllers/canvas.dart';
 
-And when you tap the button..
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key key}) : super(key: key);
 
-![flutter](/images/flutter_x/web_2.png)
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
 
-And when you run it on iOS/Android it should look like this:
+class _HomeScreenState extends State<HomeScreen> {
+  final _controller = CanvasController();
 
-![flutter](/images/flutter_x/mobile_1.png)
+  @override
+  void initState() {
+    _controller.init();
+    _dummyData();
+    super.initState();
+  }
 
-And when you tap the button..
+  void _dummyData() {
+    _controller.addObject(
+      CanvasObject(
+        dx: 20,
+        dy: 20,
+        width: 100,
+        height: 100,
+        child: Container(color: Colors.red),
+      ),
+    );
+    _controller.addObject(
+      CanvasObject(
+        dx: 80,
+        dy: 60,
+        width: 100,
+        height: 200,
+        child: Container(color: Colors.green),
+      ),
+    );
+    _controller.addObject(
+      CanvasObject(
+        dx: 100,
+        dy: 40,
+        width: 100,
+        height: 50,
+        child: Container(color: Colors.blue),
+      ),
+    );
+  }
 
-![flutter](/images/flutter_x/mobile_2.png)
+  @override
+  void dispose() {
+    _controller.close();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<CanvasController>(
+        stream: _controller.stream,
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Scaffold(
+              appBar: AppBar(),
+              body: Center(child: CircularProgressIndicator()),
+            );
+          }
+          final instance = snapshot.data;
+          return Scaffold(
+            appBar: AppBar(
+              actions: [
+                FocusScope(
+                  canRequestFocus: false,
+                  child: IconButton(
+                    tooltip: 'Selection',
+                    icon: Icon(Icons.select_all),
+                    color: instance.shiftPressed
+                        ? Theme.of(context).accentColor
+                        : null,
+                    onPressed: _controller.shiftSelect,
+                  ),
+                ),
+                FocusScope(
+                  canRequestFocus: false,
+                  child: IconButton(
+                    tooltip: 'Meta Key',
+                    color: instance.metaPressed
+                        ? Theme.of(context).accentColor
+                        : null,
+                    icon: Icon(Icons.category),
+                    onPressed: _controller.metaSelect,
+                  ),
+                ),
+                FocusScope(
+                  canRequestFocus: false,
+                  child: IconButton(
+                    tooltip: 'Zoom In',
+                    icon: Icon(Icons.zoom_in),
+                    onPressed: _controller.zoomIn,
+                  ),
+                ),
+                FocusScope(
+                  canRequestFocus: false,
+                  child: IconButton(
+                    tooltip: 'Zoom Out',
+                    icon: Icon(Icons.zoom_out),
+                    onPressed: _controller.zoomOut,
+                  ),
+                ),
+                FocusScope(
+                  canRequestFocus: false,
+                  child: IconButton(
+                    tooltip: 'Reset the Scale and Offset',
+                    icon: Icon(Icons.restore),
+                    onPressed: _controller.reset,
+                  ),
+                ),
+              ],
+            ),
+            body: Listener(
+              behavior: HitTestBehavior.opaque,
+              onPointerSignal: (details) {
+                if (details is PointerScrollEvent) {
+                  GestureBinding.instance.pointerSignalResolver
+                      .register(details, (event) {
+                    if (event is PointerScrollEvent) {
+                      if (_controller.shiftPressed) {
+                        double zoomDelta = (-event.scrollDelta.dy / 300);
+                        _controller.scale = _controller.scale + zoomDelta;
+                      } else {
+                        _controller.offset =
+                            _controller.offset - event.scrollDelta;
+                      }
+                    }
+                  });
+                }
+              },
+              onPointerMove: (details) {
+                _controller.updateTouch(
+                  details.pointer,
+                  details.localPosition,
+                  details.position,
+                );
+              },
+              onPointerDown: (details) {
+                _controller.addTouch(
+                  details.pointer,
+                  details.localPosition,
+                  details.position,
+                );
+              },
+              onPointerUp: (details) {
+                _controller.removeTouch(details.pointer);
+              },
+              onPointerCancel: (details) {
+                _controller.removeTouch(details.pointer);
+              },
+              child: RawKeyboardListener(
+                autofocus: true,
+                focusNode: _controller.focusNode,
+                onKey: (key) => _controller.rawKeyEvent(context, key),
+                child: SizedBox.expand(
+                  child: Stack(
+                    children: [
+                      for (var i = 0; i < instance.objects.length; i++)
+                        Positioned.fromRect(
+                          rect: instance.objects[i].rect.adjusted(
+                            _controller.offset,
+                            _controller.scale,
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                              color: instance.isObjectSelected(i)
+                                  ? Colors.grey
+                                  : Colors.transparent,
+                            )),
+                            child: GestureDetector(
+                              onTapDown: (_) => _controller.selectObject(i),
+                              child: FittedBox(
+                                fit: BoxFit.fill,
+                                child: SizedBox.fromSize(
+                                  size: instance.objects[i].size,
+                                  child: instance.objects[i].child,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      if (instance?.marquee != null)
+                        Positioned.fromRect(
+                          rect: instance.marquee.rect
+                              .adjusted(instance.offset, instance.scale),
+                          child: Container(
+                            color: Colors.blueAccent.withOpacity(0.3),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        });
+  }
+}
+
+extension RectUtils on Rect {
+  Rect adjusted(Offset offset, double scale) {
+    final left = (this.left + offset.dx) * scale;
+    final top = (this.top + offset.dy) * scale;
+    final width = this.width * scale;
+    final height = this.height * scale;
+    return Rect.fromLTWH(left, top, width, height);
+  }
+}
+
+```
+
+
+Now you can move any object on the canvas just by clicking and dragging. You can zoom with 2 fingers and pan with 2 or 3 fingers. If you hold down the shift key then you can use a marquee to select multiple and if you hold down the meta/command key then you can select multiple by tapping each. 
 
 ## Conclusion
+If you are on a device without a keyboard you can tap the new icons to turn on the keyboard key actions. When the object is selected there is a grey border.
 
-Congratulations! You made it :)
-
-![flutter](/images/gifs/congratulations.gif)
-
-Here is the final project located [here](https://github.com/rodydavis/flutter_x/tree/finish).
-
-Please reach out if you have any questions!
+Now you can add any widget to the canvas and pan and zoom!
 ]]></content:encoded>
-            <category>codebase-many-places.md</category>
-            <enclosure url="https://rodydavis.com/images/gifs/yes_yes_yes.gif" length="0" type="image/gif"/>
+            <category>flutter-multi-touch-canvas.md</category>
+            <enclosure url="https://rodydavis.com" length="0" type="image//"/>
         </item>
         <item>
             <title><![CDATA["Flutter + Fastlane (One Click Beta)"]]></title>
@@ -522,7 +2444,7 @@ Please reach out if you have any questions!
 layout: post
 title:  "Flutter + Fastlane (One Click Beta)"
 date:   2019-03-11
-categories: [flutter, ios, android]
+categories: [flutter, scripting]
 tags: [flutter, ci/cd, automation, fastlane, AppStore, Google Play]
 hasComments: 'true'
 ]]></description>
@@ -705,69 +2627,670 @@ Everything should be working now. If you double click on the automator applicati
             <enclosure url="https://rodydavis.com/images/flutter/logo.jpg" length="0" type="image/jpg"/>
         </item>
         <item>
-            <title><![CDATA["Launching... Space Curiosity"]]></title>
-            <link>https://rodydavis.com/#/blog/assets/blog/launch-space-curiosity</link>
-            <guid>assets/blog/launch-space-curiosity</guid>
-            <pubDate>Sun, 10 Mar 2019 00:00:00 GMT</pubDate>
+            <title><![CDATA["Host your Flutter Project as a REST API"]]></title>
+            <link>https://rodydavis.com/#/blog/assets/blog/host-flutter-rest-api</link>
+            <guid>assets/blog/host-flutter-rest-api</guid>
+            <pubDate>Fri, 18 Oct 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[
 layout: post
-title:  "Launching... Space Curiosity"
-date:   2019-03-10
-categories: [flutter, ios, android]
-tags: [flutter, SpaceX, nasa, iss, planets, space]
+title: "Host your Flutter Project as a REST API"
+date: 2019-10-18
+categories: [flutter, api]
 hasComments: 'true'
 ]]></description>
             <content:encoded><![CDATA[
 
-# Launching… Space Curiosity!
-A brief overview of a new app built with [Flutter](https://Flutter.io) by Rody Davis and Jesus Rodriguez.
+# Host your Flutter Project as a REST API
 
-![icon](/images/space-curiosity/icon.png)
+After you build your flutter project you may want to reuse the models and business logic from your lib folder. I will show you how to go about setting up the project to have iOS, Android, Web, Windows, MacOS, Linux and a REST API interface with one project. The REST API can also be deploy to Google Cloud Run for Dart everywhere.
 
-## Background
+![](https://cdn-images-1.medium.com/max/2000/1*_pGj3DixmBImxcAl_HWWdA.gif)
+> One Codebase for Client and Sever.
 
-About 6 months ago Jesus Rodriguez launched his app "SpaceX GO!" On Reddit and I had just recently had launched my app "Daily NASA". I messaged him because not many people were building production apps with Flutter yet. I wasn't to see what he thought about collaboration. Over the next 6 months, we would brainstorm and design an app together in Flutter that could reach a larger audience. Him being an Android Dev took Google Play and me being iOS Dev I took the App Store.
+This will allow you to expose your Dart models as a REST API and run your business logic from your lib folder while the application runs the models as they are. [Here](https://github.com/AppleEducate/shared_dart) is the final project.
 
-![space-x-section](/images/space-curiosity/space-x.PNG)
+## Setting Up
 
-## Development
+As with any Flutter project I am going to assume that you already have [Flutter](https://flutter.dev/) installed on your machine and that you can create a project. This is a intermediate level difficulty so read on if you are up to the challenge. You will also need to know the basics of [Docker](https://www.docker.com/).
 
-What was so amazing about Flutter is that for the first time an iOS Dev and Android Dev could collaborate to design an app together that targeted both audiences. In our app, we decided to not go with material design or Cupertino style. 
-With GitHub, it made it so easy to do Pull Requests and pitch and refactor the app without messing up the other. Aside from the occasional merge conflict. Most of the issues were due to Flutter and Dart evolving so fast and lots of hacks or struggles would be solved with an update.
+## Why one project?
 
-![nasa-images](/images/space-curiosity/nasa-images.PNG)
+It may not be obvious but when building complex applications you will at some point have a server and an application that calls that server. [Firebase](https://firebase.google.com/) is an excellent option for doing this and I use it in almost all my projects. [Firebase Functions](https://firebase.google.com/products/functions/) are really powerful but you are limited by Javascript or Typescript. What if you could use the same packages that you are using in the Flutter project, or better yet what if they both used the same?
 
-One great thing about the Flutter plugin system is that if you find a plugin that does almost what you need but not all, you can fork the source and override the dependency in your `pubspec.yaml`. This was extremely useful when we had to update all of our plugins to support AndroidX.
+![](https://cdn-images-1.medium.com/max/2000/1*1xVIzjzgJnmuWTJoaG3kAQ.gif)
 
-![iss-section](/images/space-curiosity/iss.PNG)
+When you have a server project and a client project that communicate over a rest api or client sdk like Firebase then you will run into the problem that the server has models of objects stored and the client has models of the objects that are stored. This can lead to a serious mismatch when it changed without you knowing. GraphQL helps a lot with this since you define the model that you recieve. This approach allows your business logic to be always up to date for both the client and server.
 
-When Flare by 2Dimensions came out, I was so inspired and created the "Weight Calculators" as you see in the app. All the 60fps animations are done in the app. This is the first product that allows the designer and developer to work together without messing up each other's workflow. You can view the animation here.
+## Client Setup
 
-![calc-section](/images/space-curiosity/calc.PNG)
+The first step is to just build your application. The only difference that we will make is keeping the UI and business logic separate. When starting out with Flutter it can be very easy to throw all the logic into the screen and calling setState when the data changes. Even the application when creating a new Flutter project does this. That's why [choosing a state management solution ](https://flutter.dev/docs/development/data-and-backend/state-mgmt/options)is so important.
 
-For the other parts of the app, we combined what we were working on individually. Jesus brought in and modified SpaceX Go!, and I did the same for daily NASA. Once we had a working prototype it was just a matter of writing a list of features and tackle them 1 by 1.
+<iframe src="https://medium.com/media/64311732193c2dd39b2cdbc42965b538" frameborder=0></iframe>
 
-![news-section](/images/space-curiosity/news.PNG)
+To make things clean and concise we will make 2 folders in our lib folder.
 
-## Release
+* ui for all Flutter Widgets and Screens
 
-All this work would not be possible without the incredible community behind Flutter, and the tools at our disposal. Because we love you guys so much we are making the app free and open source. If there is a feature we do not have yet, feel free to dive into the code and make a Pull Request! We have a lot more to add and you can expect some pretty cool updated coming soon.
+* src for all business logic, classes, models and utility functions
 
-## Download Now (Beta)
+This will leave us with main.dart being only the entry point into our client application.
 
-[Source](https://github.com/jesusrp98/space-curiosity)
+    import 'package:flutter/material.dart';
 
-[TestFlight](https://testflight.apple.com/join/uIwSD3Rj)
+    import 'plugins/desktop/desktop.dart';
+    import 'ui/home/screen.dart';
 
-<a href='https://play.google.com/store/apps/details?id=com.chechu.curiosity&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="200"/></a>
+    void main() {
+      runApp(MyApp());
+    }
 
-## Other
+    class MyApp extends StatelessWidget {
+      [@override](http://twitter.com/override)
+      Widget build(BuildContext context) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData.light(),
+          darkTheme: ThemeData.dark(),
+          home: HomeScreen(),
+        );
+      }
+    }
 
-Big thanks to Jesus Rodriguez to the awesome collaboration and ideas set forth.
-You can find [Rody Davis](https://www.github.com/rodydavis) and [Jesus Rodriguez](https://www.github.com/jesusrp98) on Github.
+Let’s Start by making a tab bar for the 2 screens. Create a file in the folder ui/home/screen.dart and add the following:
+
+    import 'package:flutter/material.dart';
+
+    import '../counter/screen.dart';
+    import '../todo/screen.dart';
+
+    class HomeScreen extends StatefulWidget {
+      [@override](http://twitter.com/override)
+      _HomeScreenState createState() => _HomeScreenState();
+    }
+
+    class _HomeScreenState extends State<HomeScreen> {
+      int _currentIndex = 0;
+
+    [@override](http://twitter.com/override)
+      Widget build(BuildContext context) {
+        return Scaffold(
+          body: IndexedStack(
+            index: _currentIndex,
+            children: <Widget>[
+              CounterScreen(),
+              TodosScreen(),
+            ],
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: _currentIndex,
+            onTap: (val) {
+              if (mounted)
+                setState(() {
+                  _currentIndex = val;
+                });
+            },
+            type: BottomNavigationBarType.fixed,
+            items: [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.add),
+                title: Text('Counter'),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.list),
+                title: Text('Todos'),
+              ),
+            ],
+          ),
+        );
+      }
+    }
+
+This is just a basic screen and should look very normal.
+
+### Counter Example
+
+![](https://cdn-images-1.medium.com/max/2336/1*qFZepZBtk0RhEojjGsI85g.png)
+
+Now create a file ui/counter/screen.dart and add the following:
+
+    import 'package:flutter/material.dart';
+    import 'package:shared_dart/src/models/counter.dart';
+
+    class CounterScreen extends StatefulWidget {
+      [@override](http://twitter.com/override)
+      _CounterScreenState createState() => _CounterScreenState();
+    }
+
+    class _CounterScreenState extends State<CounterScreen> {
+      CounterModel _counterModel = CounterModel();
+
+    void _incrementCounter() {
+        setState(() {
+          // This call to setState tells the Flutter framework that something has
+          // changed in this State, which causes it to rerun the build method below
+          // so that the display can reflect the updated values. If we changed
+          // _counter without calling setState(), then the build method would not be
+          // called again, and so nothing would appear to happen.
+          _counterModel.add();
+        });
+      }
+
+    [@override](http://twitter.com/override)
+      Widget build(BuildContext context) {
+        // This method is rerun every time setState is called, for instance as done
+        // by the _incrementCounter method above.
+        //
+        // The Flutter framework has been optimized to make rerunning build methods
+        // fast, so that you can just rebuild anything that needs updating rather
+        // than having to individually change instances of widgets.
+        return Scaffold(
+          appBar: AppBar(
+            // Here we take the value from the MyCounterPage object that was created by
+            // the App.build method, and use it to set our appbar title.
+            title: Text('Counter Screen'),
+          ),
+          body: Center(
+            // Center is a layout widget. It takes a single child and positions it
+            // in the middle of the parent.
+            child: Column(
+              // Column is also a layout widget. It takes a list of children and
+              // arranges them vertically. By default, it sizes itself to fit its
+              // children horizontally, and tries to be as tall as its parent.
+              //
+              // Invoke "debug painting" (press "p" in the console, choose the
+              // "Toggle Debug Paint" action from the Flutter Inspector in Android
+              // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+              // to see the wireframe for each widget.
+              //
+              // Column has various properties to control how it sizes itself and
+              // how it positions its children. Here we use mainAxisAlignment to
+              // center the children vertically; the main axis here is the vertical
+              // axis because Columns are vertical (the cross axis would be
+              // horizontal).
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  'You have pushed the button this many times:',
+                ),
+                Text(
+                  '${_counterModel.count}',
+                  style: Theme.of(context).textTheme.display1,
+                ),
+              ],
+            ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: _incrementCounter,
+            tooltip: 'Increment',
+            child: Icon(Icons.add),
+          ), // This trailing comma makes auto-formatting nicer for build methods.
+        );
+      }
+    }
+
+This is the default counter app you get when you create a Flutter application but with one change, it uses `CounterModel` to hold the logic.
+
+Create the counter model at src/models/counter.dart and add the following:
+
+    class CounterModel {
+      CounterModel();
+
+    int _count = 0;
+
+    int get count => _count;
+
+    void add() => _count++;
+
+    void subtract() => _count--;
+
+    void set(int val) => _count = val;
+    }
+
+As you can see it is really easy to expose only what we want to while still having complete flexibility. You could use provider here if you choose, or even bloc and/or streams.
+
+### Todo Example
+
+![](https://cdn-images-1.medium.com/max/2336/1*47x4TDkyWCo8-qMCfYaeng.png)
+
+Lets create a file at ui/todos/screen.dart and add the following:
+
+    import 'package:flutter/material.dart';
+
+    import '../../src/classes/todo.dart';
+    import '../../src/models/todos.dart';
+
+    class TodosScreen extends StatefulWidget {
+      [@override](http://twitter.com/override)
+      _TodosScreenState createState() => _TodosScreenState();
+    }
+
+    class _TodosScreenState extends State<TodosScreen> {
+      final _model = TodosModel();
+      List<ToDo> _todos;
+
+    [@override](http://twitter.com/override)
+      void initState() {
+        _model.getList().then((val) {
+          if (mounted)
+            setState(() {
+              _todos = val;
+            });
+        });
+        super.initState();
+      }
+
+    [@override](http://twitter.com/override)
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('Todos Screen'),
+          ),
+          body: Builder(
+            builder: (_) {
+              if (_todos != null) {
+                return ListView.builder(
+                  itemCount: _todos.length,
+                  itemBuilder: (context, index) {
+                    final _item = _todos[index];
+                    return ListTile(
+                      title: Text(_item.title),
+                      subtitle: Text(_item.completed ? 'Completed' : 'Pending'),
+                    );
+                  },
+                );
+              }
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            },
+          ),
+        );
+      }
+    }
+
+You will see that we have the logic in TodosModel and uses the class ToDo for toJson and fromJson.
+
+Create a file at the location src/classes/todo.dart and add the following:
+
+    // To parse this JSON data, do
+    //
+    //     final toDo = toDoFromJson(jsonString);
+
+    import 'dart:convert';
+
+    List<ToDo> toDoFromJson(String str) => List<ToDo>.from(json.decode(str).map((x) => ToDo.fromJson(x)));
+
+    String toDoToJson(List<ToDo> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+    class ToDo {
+        int userId;
+        int id;
+        String title;
+        bool completed;
+
+    ToDo({
+            this.userId,
+            this.id,
+            this.title,
+            this.completed,
+        });
+
+    factory ToDo.fromJson(Map<String, dynamic> json) => ToDo(
+            userId: json["userId"],
+            id: json["id"],
+            title: json["title"],
+            completed: json["completed"],
+        );
+
+    Map<String, dynamic> toJson() => {
+            "userId": userId,
+            "id": id,
+            "title": title,
+            "completed": completed,
+        };
+    }
+
+and create the model src/models/todo.dart and add the following:
+
+    import 'dart:convert';
+
+    import 'package:http/http.dart' as http;
+    import 'package:shared_dart/src/classes/todo.dart' as t;
+
+    class TodosModel {
+      final kTodosUrl = '[https://jsonplaceholder.typicode.com/todos'](https://jsonplaceholder.typicode.com/todos');
+
+    Future<List<t.ToDo>> getList() async {
+        final _response = await http.get(kTodosUrl);
+        if (_response != null) {
+          final _todos = t.toDoFromJson(_response.body);
+          if (_todos != null) {
+            return _todos;
+          }
+        }
+        return [];
+      }
+
+    Future<t.ToDo> getItem(int id) async {
+        final _response = await http.get('$kTodosUrl/$id');
+        if (_response != null) {
+          final _todo = t.ToDo.fromJson(json.decode(_response.body));
+          if (_todo != null) {
+            return _todo;
+          }
+        }
+        return null;
+      }
+    }
+
+Here we just get dummy data from a url that emits json and convert them to our classes. This is an example I want to show with networking. There is only one place that fetches the data.
+
+### Run the Project (Web)
+
+![](https://cdn-images-1.medium.com/max/5248/1*et2kG6_skauXJ6rogFy_ZQ.png)
+
+![](https://cdn-images-1.medium.com/max/5248/1*za20ru3G18DUFob07Cjv2A.png)
+
+As you can see when you run your project on chrome you will get the same application that you got on mobile. Even the networking is working in the web. You can call the model and retrieve the list just like you would expect.
+
+## Server Setup
+> Now time for the magic..
+
+In the root of the project folder create a file Dockerfile and add the following:
+
+    # Use Google's official Dart image.
+    # [https://hub.docker.com/r/google/dart-runtime/](https://hub.docker.com/r/google/dart-runtime/)
+    FROM google/dart-runtime
+
+Create another file at the root called service.yaml and add the following:
+
+    apiVersion: serving.knative.dev/v1
+    kind: Service
+    metadata:
+      name: PROJECT_NAME
+      namespace: default
+    spec:
+      template:
+        spec:
+          containers:
+            - image: docker.io/YOUR_DOCKER_NAME/PROJECT_NAME
+              env:
+                - name: TARGET
+                  value: "PROJECT_NAME v1"
+
+Replace PROJECT_NAME with your project name, mine is shared-dart for this example.
+
+You will also need to replace YOUR_DOCKER_NAME with your docker username so the container can be deployed correctly.
+
+Update your pubspec.yaml with the following:
+
+    name: shared_dart
+    description: A new Flutter project.
+    publish_to: none
+    version: 1.0.0+1
+
+    environment:
+      sdk: ">=2.1.0 <3.0.0"
+
+    dependencies:
+      flutter:
+        sdk: flutter
+      shelf: ^0.7.3
+      cupertino_icons: ^0.1.2
+      http: ^0.12.0+2
+
+    dev_dependencies:
+      flutter_test:
+        sdk: flutter
+
+    flutter:
+      uses-material-design: true
+
+The important package here is shelf as it allows us to run a http server with dart.
+
+Create a folder in the root of the project called bin then add a file server.dart and replace it with the following:
+
+    import 'dart:io';
+
+    import 'package:shelf/shelf.dart' as shelf;
+    import 'package:shelf/shelf_io.dart' as io;
+
+    import 'src/routing.dart';
+
+    void main() {
+      final handler = const shelf.Pipeline()
+          .addMiddleware(shelf.logRequests())
+          .addHandler(RouteUtils.handler);
+
+    final port = int.tryParse(Platform.environment['PORT'] ?? '8080');
+      final address = InternetAddress.anyIPv4;
+
+    io.serve(handler, address, port).then((server) {
+        server.autoCompress = true;
+        print('Serving at [http://${server.address.host}:${server.port}'](http://${server.address.host}:${server.port}'));
+      });
+    }
+
+This will tell the container what port to listen for and how to handle the requests.
+
+Create a folder src in the bin folder and add a file routing.dart and replace the contents with the following:
+
+    import 'dart:async';
+
+    import 'package:shelf/shelf.dart' as shelf;
+
+    import 'controllers/index.dart';
+    import 'result.dart';
+
+    class RouteUtils {
+      static FutureOr<shelf.Response> handler(shelf.Request request) {
+        var component = request.url.pathSegments.first;
+        var handler = _handlers(request)[component];
+        if (handler == null) return shelf.Response.notFound(null);
+        return handler;
+      }
+
+    static Map<String, FutureOr<shelf.Response>> _handlers(
+          shelf.Request request) {
+        return {
+          'info': ServerResponse('Info', body: {
+            "version": 'v1.0.0',
+            "status": "ok",
+          }).ok(),
+          'counter': CounterController().result(request),
+          'todos': TodoController().result(request),
+        };
+      }
+    }
+
+There is still nothing imported from our main project but you will start to see some similarities. Here we specify controllers for todos and counter url paths.
+
+    'counter': CounterController().result(request),
+    'todos': TodoController().result(request),
+
+that means any url with the following:https://mydomain.com/todos , [https://mydomain.com/todos](https://mydomain.com/todos)/1
+
+will get routed to the TodoController to handle the request.
+> This is also the first time I found out about FutureOr. It allows you to return a sync or async function.
+
+And important part about build a REST API is having a consistent response body, so here we can create a wrapper that adds fields we always want to return, like the status of the call, a message and the body.
+
+Create a file at src/result.dart and add the following:
+
+    import 'dart:convert';
+
+    import 'package:shelf/shelf.dart' as shelf;
+
+    class ServerResponse {
+      final String message;
+      final dynamic body;
+      final StatusType type;
+
+    ServerResponse(
+        this.message, {
+        this.type = StatusType.success,
+        this.body,
+      });
+
+    Map<String, dynamic> toJson() {
+        return {
+          "status": type.toString().replaceAll('StatusType.', ''),
+          "message": message,
+          "body": body ?? '',
+        };
+      }
+
+    String toJsonString() {
+        return json.encode(toJson());
+      }
+
+    shelf.Response ok() {
+        return shelf.Response.ok(
+          toJsonString(),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        );
+      }
+    }
+
+    enum StatusType { success, error }
+
+    abstract class ResponseImpl {
+      Future<shelf.Response> result(shelf.Request request);
+    }
+
+This will always return json and the fields that we want to show. You could also include your paging meta data here.
+
+Create a file in at the location src/controllers/counter.dart and add the following:
+
+    import 'package:shared_dart/src/models/counter.dart';
+    import 'package:shelf/shelf.dart' as shelf;
+
+    import '../result.dart';
+
+    class CounterController implements ResponseImpl {
+      const CounterController();
+
+    [@override](http://twitter.com/override)
+      Future<shelf.Response> result(shelf.Request request) async {
+        final _model = CounterModel();
+        final _params = request.url.queryParameters;
+        if (_params != null) {
+          final _val = int.tryParse(_params['count'] ?? '0');
+          _model.set(_val);
+        } else {
+          _model.add();
+        }
+        return ServerResponse('Info', body: {
+          "counter": _model.count,
+        }).ok();
+      }
+    }
+
+You will see the import to the lib folder of the root project. Since it shares the pubspec.yaml all the packages can be shared. You can import the CounterModel that we created earlier.
+
+Create a file in at the location src/controllers/todos.dart and add the following:
+
+    import 'package:shared_dart/src/models/todos.dart';
+    import 'package:shelf/src/request.dart';
+
+    import 'package:shelf/src/response.dart';
+
+    import '../result.dart';
+
+    class TodoController implements ResponseImpl {
+      [@override](http://twitter.com/override)
+      Future<Response> result(Request request) async {
+        final _model = TodosModel();
+        if (request.url.pathSegments.length > 1) {
+          final _id = int.tryParse(request.url.pathSegments[1] ?? '1');
+          final _todo = await _model.getItem(_id);
+          return ServerResponse('Todo Item', body: _todo).ok();
+        }
+        final _todos = await _model.getList();
+        return ServerResponse(
+          'List Todos',
+          body: _todos.map((t) => t.toJson()).toList(),
+        ).ok();
+      }
+    }
+
+Just like before we are importing the TodosModel model from the lib folder.
+
+For convenience add a file at the location src/controllers/index.dart and add the following:
+
+    export 'counter.dart';
+    export 'todo.dart';
+
+This will make it easier to import all the controllers.
+
+## Run the Project (Server)
+
+If you are using [VSCode](https://code.visualstudio.com/) then you will need to update your launch.json with the following:
+
+    {
+        // Use IntelliSense to learn about possible attributes.
+        // Hover to view descriptions of existing attributes.
+        // For more information, visit: [https://go.microsoft.com/fwlink/?linkid=830387](https://go.microsoft.com/fwlink/?linkid=830387)
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "Client",
+                "request": "launch",
+                "type": "dart",
+                "program": "lib/main.dart"
+            }, 
+             {
+                "name": "Server",
+                "request": "launch",
+                "type": "dart",
+                "program": "bin/server.dart"
+            }
+        ]
+    }
+
+Now when you hit run with Server selected you will see the output:
+
+![](https://cdn-images-1.medium.com/max/2000/1*akfcrkLuxit4vZdtHJty_Q.png)
+
+You can navigate to this in a browser but you can also work with this in [Postman](https://www.getpostman.com/).
+
+![](https://cdn-images-1.medium.com/max/4796/1*zJR2ZNZfCmvLg3y5wByLNA.png)
+
+![](https://cdn-images-1.medium.com/max/4788/1*Z2vnHjHEfYe8yWajGWVLOw.png)
+
+Just by adding to the url todos and todos/1 it will return different responses.
+
+For the counter model we can use query parameters too!
+
+![](https://cdn-images-1.medium.com/max/4768/1*YMwQEOoaCjngYpidKBbADg.png)
+
+![](https://cdn-images-1.medium.com/max/4760/1*vPYs9780bcVrlIPBMjF4eQ.png)
+
+Just by adding ?count=22 it will update the model with the input.
+> Keep in mind this is running your Dart code from you lib folder in your Flutter project without needing the Flutter widgets!
+
+As a side benefit we can also run this project on Desktop. Check out the final project for the desktop folders needed from [Flutter Desktop Embedding](https://github.com/google/flutter-desktop-embedding).
+
+![](https://cdn-images-1.medium.com/max/3648/1*Mk_6Rlq2qMbpk79OPo_QBw.png)
+
+![](https://cdn-images-1.medium.com/max/3648/1*hWirIWGRQjN8hVvUZsB2Nw.png)
+
+## Conclusion
+
+Now if you wanted to deploy the container to Cloud Run you could with the following command:
+
+gcloud builds submit — tag gcr.io/YOUR_GOOGLE_PROJECT_ID/PROJECT_NAME .
+
+Replace PROJECT_NAME with your project name, mine is shared-dart for this example.
+
+You will also need to replace YOUR_GOOGLE_PROJECT_ID with your Google Cloud Project ID. You can create one [here](https://cloud.google.com/cloud-build/docs/quickstart-docker).
+
+Again the final project source code is [here](https://github.com/AppleEducate/shared_dart). Let me know your thoughts!
 ]]></content:encoded>
-            <category>launch-space-curiosity.md</category>
-            <enclosure url="https://rodydavis.com/images/space-curiosity/icon.png" length="0" type="image/png"/>
+            <category>host-flutter-rest-api.md</category>
+            <enclosure url="https://rodydavis.comhttps://cdn-images-1.medium.com/max/2000/1*_pGj3DixmBImxcAl_HWWdA.gif" length="0" type="image/gif"/>
         </item>
         <item>
             <title><![CDATA["Building A Piano with Flutter"]]></title>
@@ -778,7 +3301,7 @@ You can find [Rody Davis](https://www.github.com/rodydavis) and [Jesus Rodriguez
 layout: post
 title:  "Building A Piano with Flutter"
 date:   2019-03-12
-categories: [flutter, music, ios, android]
+categories: [flutter, music]
 hasComments: 'true'
 ]]></description>
             <content:encoded><![CDATA[
@@ -1836,6 +4359,360 @@ I was really inspired when creating this for the [Flutter Create](https://flutte
 Hope you learned something, if you have any questions you can always read out to me. This is an open source piano and would love PRs on the main project [here](https://github.com/rodydavis/flutter_piano)!]]></content:encoded>
             <category>making-a-piano.md</category>
             <enclosure url="https://rodydavis.com/images/flutter_piano/starter.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA["How to build a native cross platform project with Flutter"]]></title>
+            <link>https://rodydavis.com/#/blog/assets/blog/native-cross-platform-flutter</link>
+            <guid>assets/blog/native-cross-platform-flutter</guid>
+            <pubDate>Fri, 06 Sep 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[
+layout: post
+title: "How to build a native cross platform project with Flutter"
+date: 2019-09-06
+categories: [flutter]
+hasComments: 'true'
+]]></description>
+            <content:encoded><![CDATA[
+
+# How to build a native cross platform project with Flutter
+
+Import dart:html and dart:io in the same project!
+
+You can find the final project [here](https://github.com/AppleEducate/flutter_x/tree/finish).
+
+Up to now you have been able to create projects with Flutter that run on iOS/Android, Web and Desktop but only sharing pure dart plugins. Flutter launched Flutter for web at Google I/O and was a temporary fork that required you to change imports from import 'package:flutter/material.dart'; to import 'package:flutter_web/material.dart';. As you can image this was really difficult for a code base as you had to create a fork and change the imports. This also meant that you could not import any package that needed on a path or depended on flutter. The time as come and the merge is complete. Now you no longer need to change the imports!
+
+![](https://cdn-images-1.medium.com/max/2000/1*epSHkw0msNuaisyHy9yYAA.gif)
+
+You can use any plugin now, have a debugger, create new flutter projects with the web folder added, web plugins, and so much more..
+
+## Disclaimer
+
+You will need to be on the latest flutter for this to work.
+
+[Download Flutter](https://flutter.io/get-started/install/)
+
+![](https://cdn-images-1.medium.com/max/2000/1*1PVcOkDgx2p_G3Bou3IFsg.jpeg)
+
+If you are pretty new to Flutter you can check out [this useful guide](https://flutter.io/get-started/codelab/) on how to create a new project step by step.
+
+![](https://cdn-images-1.medium.com/max/2000/1*d6qN8hoGMwldMtIsQYIqrg.jpeg)
+
+Create a new project named flutter_x and it should look like this:
+
+![](https://cdn-images-1.medium.com/max/2628/1*xe6ubLj5psVH4JQd-VqSAQ.png)
+
+You can also down the starter project [here](https://github.com/AppleEducate/flutter_x/tree/starter).
+
+Your code should look like this:
+
+<iframe src="https://medium.com/media/64311732193c2dd39b2cdbc42965b538" frameborder=0></iframe>
+
+Just to make sure everything is working go ahead and run the project on iOS/Android.
+
+![](https://cdn-images-1.medium.com/max/5464/1*teDs_OqHkRdhwyuzyb2rVA.png)
+
+You should have the counter application running and working correctly. Now quit and run on Chrome. It should be listed as a device. You can also run from the command line flutter run -d chrome.
+
+![](https://cdn-images-1.medium.com/max/5248/1*CzZ28crDYxBEMaNVq9CtvQ.png)
+> *You do not get hot reload yet on web so be aware of that.*
+> *This is optional but I use this structure in all my apps*
+
+<iframe src="https://medium.com/media/139a52e7b9117765d41bf34d5813f57c" frameborder=0></iframe>
+
+![](https://cdn-images-1.medium.com/max/2000/1*zr22DdSlEXlluwcki-ahEQ.png)
+
+Your project should now look like this.
+
+Open your pubspec.yaml and import the following packages.
+
+    universal_html:
+    url_launcher:
+> *You can also remove the comments generated in the pubspec.yaml*
+
+Your pubspec.yaml will now read like this:
+
+    name: flutter_x
+    description: A new Flutter project.
+
+    version: 1.0.0+1
+
+    environment:
+      sdk: ">=2.1.0 <3.0.0"
+
+    dependencies:
+      flutter:
+        sdk: flutter
+
+    cupertino_icons: ^0.1.2
+      universal_html: ^1.1.0
+      url_launcher: ^5.1.2
+
+    dev_dependencies:
+      flutter_test:
+        sdk: flutter
+
+    flutter:
+
+    uses-material-design: trueBy default if you were to check if the device was mobile or web you will get an error at compile time when trying to import a plugin that is not meant for the platform. To get around this we will use dynamic imports.
+
+![](https://cdn-images-1.medium.com/max/2000/1*YCLt5ItFmyOmrd-CKgOQFQ.png)
+
+Create a url_launcher folder and file url_launcher.dart, mobile.dart, web.dart, unsupported.dart inside the plugins folder.
+
+In the file url_launcher.dart add the following:
+
+    export 'unsupported.dart'
+        if (dart.library.html) 'web.dart'
+        if (dart.library.io) 'mobile.dart';
+
+This will pick the correct file at runtime and give a fallback if it is not supported.
+
+To protect against edge cases you will need to set up a fallback for the import. In unsupported.dart add the following:
+
+    class UrlUtils {
+      UrlUtils._();
+
+    static void open(String url, {String name}) {
+        throw 'Platform Not Supported';
+      }
+    }
+
+The class UrlUtils and the public methods have to match all three files for this to work correctly. Always set up the unsupported first then copy the file into mobile.dart and web.dart to ensure no typos.
+
+You should now have 3 files with the above code in each class.
+
+In mobile.dart add the following:
+
+    import 'package:url_launcher/url_launcher.dart';
+
+    class UrlUtils {
+      UrlUtils._();
+
+    static void open(String url, {String name}) async {
+        if (await canLaunch(url)) {
+          await launch(url);
+        }
+      }
+    }
+
+This will open the link in safari view controller or android’s default browser respectively.
+
+In web.dart add the following:
+
+    import 'package:universal_html/prefer_universal/html.dart' as html;
+
+    class UrlUtils {
+      UrlUtils._();
+
+    static void open(String url, {String name}) {
+        html.window.open(url, name);
+      }
+    }
+
+This will open up a new window in the browser with the specified link.
+
+Add a button to the center of the screen. The ui/home/screen.dart should read the following:
+
+    import 'package:flutter/material.dart';
+
+    class MyHomePage extends StatefulWidget {
+      MyHomePage({Key key, this.title}) : super(key: key);
+
+    final String title;
+
+    [@override](http://twitter.com/override)
+      _MyHomePageState createState() => _MyHomePageState();
+    }
+
+    class _MyHomePageState extends State<MyHomePage> {
+      [@override](http://twitter.com/override)
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(widget.title),
+          ),
+          body: Center(
+              child: RaisedButton(
+            child: Text('Open Flutter.dev'),
+            onPressed: () {},
+          )),
+        );
+      }
+    }
+
+Update the onPressed to the following:
+
+    onPressed: () {
+        try {
+            UrlUtils.open('[https://flutter.dev'](https://flutter.dev'));
+        } catch (e) {
+            print('Error -> $e');
+        }
+    },
+
+Now when you go to import the UrlUtils it is important to import the correct URI.
+
+![](https://cdn-images-1.medium.com/max/2140/1*7OyxZG6557DYE1XiBscCtA.png)
+
+Make sure to import import 'package:flutter_x/plugins/url_launcher/url_launcher.dart'; only.
+> *You can use the relative import if you wish.*
+
+You UI code will now read the following:
+
+    import 'package:flutter/material.dart';
+
+    import '../../plugins/url_launcher/url_launcher.dart';
+
+    class MyHomePage extends StatefulWidget {
+      MyHomePage({Key key, this.title}) : super(key: key);
+
+    final String title;
+
+    [@override](http://twitter.com/override)
+      _MyHomePageState createState() => _MyHomePageState();
+    }
+
+    class _MyHomePageState extends State<MyHomePage> {
+      [@override](http://twitter.com/override)
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(widget.title),
+          ),
+          body: Center(
+              child: RaisedButton(
+            child: Text('Open Flutter.dev'),
+            onPressed: () {
+              try {
+                UrlUtils.open('[https://flutter.dev'](https://flutter.dev'));
+              } catch (e) {
+                print('Error -> $e');
+              }
+            },
+          )),
+        );
+      }
+    }
+
+Your app on the web should look like this:
+
+![](https://cdn-images-1.medium.com/max/5248/1*6ni24NpLIULqi_Cd5NHh3Q.png)
+
+And when you tap the button..
+
+![](https://cdn-images-1.medium.com/max/5248/1*tgcfnrgu9O4joiPeKFmqKw.png)
+
+And when you run it on iOS/Android it should look like this:
+
+![](https://cdn-images-1.medium.com/max/5036/1*QEFw3xDevKMsjke4Dd06VA.png)
+
+And when you tap the button..
+
+![](https://cdn-images-1.medium.com/max/5036/1*lCvTvAvu0nI_dhgUUFHkWA.png)
+
+Congratulations! You made it :)
+
+![](https://cdn-images-1.medium.com/max/2000/1*KowWujusMfDjlkjeeOFEBg.gif)
+
+Here is the final project located [here](https://github.com/AppleEducate/flutter_x/tree/finish).
+
+Please reach out if you have any questions!
+
+*Originally published at [http://github.com](https://gist.github.com/a2c38b2020d09e718c8d894d048e9c7e).*
+]]></content:encoded>
+            <category>native-cross-platform-flutter.md</category>
+            <enclosure url="https://rodydavis.comhttps://cdn-images-1.medium.com/max/2000/1*epSHkw0msNuaisyHy9yYAA.gif" length="0" type="image/gif"/>
+        </item>
+        <item>
+            <title><![CDATA["How To Send Push Notifications on Flutter Web (FCM)"]]></title>
+            <link>https://rodydavis.com/#/blog/assets/blog/push-notifications-flutter-web</link>
+            <guid>assets/blog/push-notifications-flutter-web</guid>
+            <pubDate>Fri, 01 May 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[
+layout: post
+title: "How To Send Push Notifications on Flutter Web (FCM)"
+date: 2020-05-01
+categories: [flutter, web]
+hasComments: 'true'
+]]></description>
+            <content:encoded><![CDATA[
+
+# How To Send Push Notifications on Flutter Web (FCM)
+
+If you are using Firebase then you are probably familiar with Firebase Cloud Messaging. The setup on Flutter web is very different than mobile and other plugins you are probably used to.
+
+![](https://cdn-images-1.medium.com/max/3200/1*B0Av_NnFrCKsyC7gN94ytg.png)
+
+## Setting Up
+
+Open your web/index.html and look for the following script. If you do not have one you can add it now in the <body> tag.
+
+    <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("/flutter_service_worker.js");
+      });
+    }
+    </script>
+
+We need to modify it to support the FCM service worker. The important thing we need to do is comment out the flutter_service_worker.js so that we will not get 404 errors when registering the FCM service worker.
+
+    <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        // navigator.serviceWorker.register("/flutter_service_worker.js");
+        navigator.serviceWorker.register("/firebase-messaging-sw.js");
+      });
+    }
+    </script>
+
+Now create a new file called firebase-messaging-sw.js in the web folder with the following contents:
+
+<iframe src="https://medium.com/media/455c7a3a979544d73c10a03369d054b4" frameborder=0></iframe>
+
+Make sure to replace the config keys with your firebase keys.
+
+## Helper Methods
+
+Create a new dart file wherever you like named firebase_messaging.dart with the following:
+
+<iframe src="https://medium.com/media/cc60e06d906b5b5d7be89e9479fa37e7" frameborder=0></iframe>
+
+Create a button in the app that will be used to request permissions. While it is possible to request for permission when the app launches this is usually bad practice as the user is unlikely to accept and there is no trust built yet. You can request permissions with the following:
+
+    final _messaging = FBMessaging.instance;
+
+    _messaging.requestPermission().then((_) async {
+
+    final _token = await _messaging.getToken();
+
+    print('Token: $_token');
+
+    });
+
+You can listen to messages with the following:
+
+    final _messaging = FBMessaging.instance;
+
+    _messaging.stream.listen((event) {
+
+    print('New Message: ${event}');
+
+    });
+
+## Testing
+
+Now when you run your application and request permissions you will get a token back. With this token you can open the firebase console and sent a test message to the token.
+
+![](https://cdn-images-1.medium.com/max/2000/1*ZzoPP7kRHOR-yDN6Sv9XjQ.png)
+
+## Conclusion
+
+Now you can send push notifications to Flutter apps! You still need to use conditional imports to support the mobile side as well but stay tuned for an example with that. Let me know your questions and any feedback you may have.
+]]></content:encoded>
+            <category>push-notifications-flutter-web.md</category>
+            <enclosure url="https://rodydavis.comhttps://cdn-images-1.medium.com/max/3200/1*B0Av_NnFrCKsyC7gN94ytg.png" length="0" type="image/png"/>
         </item>
     </channel>
 </rss>

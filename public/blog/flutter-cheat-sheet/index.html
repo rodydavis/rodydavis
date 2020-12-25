@@ -5,7 +5,7 @@
       <base href="/">
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Automate Flutter App Releases</title>
+      <title>Flutter Cheat Sheet — Terminal</title>
       <link rel="stylesheet" type="text/css" href="/index.css" />
       <link rel="stylesheet" type="text/css" href="/article.css" />
       <link
@@ -16,41 +16,41 @@
       <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
     </head>
     <body>
-      <nav-wrapper title="Automate Flutter App Releases">
+      <nav-wrapper title="Flutter Cheat Sheet — Terminal">
         <article>
-         <h3 id="automate-flutter-app-releases">Automate Flutter App Releases</h3>
-<h4 id="tldr">TLDR</h4>
-<p>You can find the script <a href="https://gist.github.com/rodydavis/774b36e32d7efa882cca8dd16da6e74c" rel="noopener noreferrer" target="_blank">here</a>.</p>
-<script src="https://gist.github.com/rodydavis/774b36e32d7efa882cca8dd16da6e74c.js"></script>
-<p>Make your life easier and automate your builds to beta and production!</p>
-<h4 id="what-you-need">What you need</h4>
+         <h3 id="flutter-cheat-sheet — terminal">Flutter Cheat Sheet — Terminal</h3>
+<p>Run Flutter web with SKIA</p>
+<pre><code>flutter run -d web --release --dart-define=FLUTTER_WEB_USE_SKIA=true</code></pre>
 <ul>
-<li><a href="https://fastlane.tools/" rel="noopener noreferrer" target="_blank">Fastlane</a> setup in each directory</li>
-<li><a href="https://pub.dartlang.org/packages/build_runner" rel="noopener noreferrer" target="_blank">build_runner</a> as a dependency</li>
-<li>Git Project in VCS</li>
+<li><p>Run Flutter web with Canvas Kit</p>
+<p>flutter run -d chrome --release --dart-define=FLUTTER_WEB_USE_EXPERIMENTAL_CANVAS_TEXT=true</p></li>
+<li><p>Build your Flutter web app to Github Pages to the docs folder</p>
+<p>flutter build web &amp;&amp; rm -rf ./docs &amp;&amp; mkdir ./docs &amp;&amp; cp -a ./build/web/. ./docs/</p></li>
+<li><p>Clean rebuild CocoaPods</p>
+<p>cd ios &amp;&amp; pod deintegrate &amp;&amp; pod cache clean —all &amp;&amp; pod install &amp;&amp; cd ..</p></li>
 </ul>
-<h4 id="initial-setup">Initial Setup</h4>
+<blockquote>
+  <p>Sometimes with firebase you need to run: <code>pod update Firebase</code></p>
+</blockquote>
 <ul>
-<li>Download <a href="https://gist.github.com/rodydavis/774b36e32d7efa882cca8dd16da6e74c" rel="noopener noreferrer" target="_blank">this file</a></li>
-<li>Put it at the root level of your flutter project</li>
-<li>Open the terminal and navigate to your project location</li>
-<li>Enter this command: chmod +x release.sh</li>
-</ul>
-<h4 id="usage">Usage</h4>
-<p>Now you can call this script!</p>
-<ul>
-<li>For beta: <code>./release.sh beta</code></li>
-<li>For production: <code>./release.sh release</code></li>
-</ul>
-<h4 id="overview">Overview</h4>
-<ul>
-<li>Bump the version numbers if you are using the version in the pubspec.yaml</li>
-<li>Release the apps with Fastlane</li>
-<li>Format all Dart Files</li>
-<li>Clean Project</li>
-<li>Rebuild classes</li>
-<li>Add commit messages</li>
-<li>Updates Cocoa Pods</li>
+<li><p>Create Dart package with Example</p>
+<p>flutter create -t plugin . &amp;&amp; flutter create -i swift -a kotlin --androidx example</p></li>
+<li><p>Watch Build Files</p>
+<p>flutter packages pub run build_runner watch  -—delete-conflicting-outputs</p></li>
+<li><p>Generate Build Files</p>
+<p>flutter packages pub run build_runner build  -—delete-conflicting-outputs</p></li>
+<li><p>Build Bug Report</p>
+<p>flutter run —bug-report</p></li>
+<li><p>Flutter generate test coverage</p>
+<p>flutter test --coverage &amp;&amp; genhtml -o coverage coverage/lcov.info</p></li>
+<li><p>Rebuild Flutter Cache</p>
+<p>flutter pub pub cache repair</p></li>
+<li><p>Conditional Export/Import</p>
+<p>export 'unsupported.dart'</p>
+<p>if (dart.library.html) 'web.dart'</p>
+<p>if (dart.library.io) 'mobile.dart';</p></li>
+<li><p>Kill Dart Running</p>
+<p>killall -9 dart</p></li>
 </ul>
         </article>
       </nav-wrapper>

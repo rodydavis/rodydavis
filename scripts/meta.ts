@@ -45,7 +45,10 @@ export function buildCommentsScript(): HTMLScriptElement {
 export function extractImageUrlFromMarkdown(
   content: string,
 ): string | undefined {
-  return (content.match(/!\[.+?\]\((.*?(?:\.jpe?g|png|gif))\)/i) || [])[1];
+  // return (content.match(/!\[.+?\]\((.*?(?:\.jpe?g|png|gif))\)/i) || [])[1];
+  const result = content.match(/!\[.*?\]\((.*?)\)/);
+  if (result) return result[1];
+  return undefined;
 }
 
 export function getPostFromMeta(

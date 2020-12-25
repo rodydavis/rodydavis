@@ -2,7 +2,7 @@
 layout: post
 title:  "Building A Piano with Flutter"
 date:   2019-03-12
-categories: [flutter, music, ios, android]
+categories: [flutter, music]
 hasComments: 'true'
 ---
 
