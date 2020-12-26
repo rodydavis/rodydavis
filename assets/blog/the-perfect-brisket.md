@@ -27,8 +27,7 @@ Be prepared to take 4-6hrs to smoke the meat.
 - Meat Thermometer
 - Aluminum Foil
 
-![](/images/cook
-ing/brisket-prep.jpeg)
+![](/images/cooking/brisket-prep.jpeg)
 
 First you need to source the brisket. I usually like to go to a local butcher shop and look for some good deals. This last time I went it was at $6.99/lb but I have gotten it as low as $3.99/lb. To cook for a big family and have leftovers you get get a 13-16lb brisket (This is usually what they already have in stock).
 
