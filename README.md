@@ -14,4 +14,4 @@
 - 📹 Subscribe on [YouTube](https://www.youtube.com/rodydavis)
 - 📖 Read on [Medium](https://medium.com/@rody.davis.jr)
 
-![](https://github-readme-stats.vercel.app/api?username=rodydavis&count_private=true&theme=default&show_icons=true)
+ [//]: #  ![](https://github-readme-stats.vercel.app/api?username=rodydavis&count_private=true&theme=default&show_icons=true)
