@@ -50,6 +50,7 @@ function checkPath(
   if (stat.isDirectory()) {
     const files = fs.readdirSync(input);
     for (const path of files) {
+      if (path.startsWith('_')) continue;
       checkPath(`${input}/${path}`, feed, path);
     }
     return;

@@ -1,0 +1,436 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <base href="/">
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Lit Web Component in Flutter</title>
+      <link rel="stylesheet" type="text/css" href="/index.css" />
+      <link rel="stylesheet" type="text/css" href="/article.css" />
+      <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons&display=block"
+        rel="stylesheet"
+      />
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+    </head>
+    <body>
+      <nav-wrapper title="Lit Web Component in Flutter">
+        <article>
+         <h2 id="lit-web-component-in-flutter">Lit Web Component in Flutter</h2>
+<p>In this article I will go over how to set up a lit web component and use it inline in the flutter widget tree.</p>
+<pre><code>TLDR: You can find the final source https://github.com/rodydavis/flutter_hybrid_template.</code></pre>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Flutter SDK</li>
+<li>Xcode and Command Line Tools</li>
+<li>Android SDK</li>
+<li>Vscode</li>
+<li>Node</li>
+<li>Typescript</li>
+</ul>
+<h3 id="getting-started">Getting Started</h3>
+<p>We can start off by creating a empty directory and naming it with <code>snake_case</code> whatever we want.</p>
+<pre><code class="s language-s">$ mkdir flutter_lit_example
+$ cd flutter_lit_example</code></pre>
+<h4 id="web-setup">Web Setup</h4>
+<p>Now we are in the <code>flutter_lit_example</code> directory and can setup flutter and lit. Let's start with node.</p>
+<pre><code class="s language-s">$ npm init -y
+$ npm i --save lit
+$ npm i --save-dev typescript vite @types/node
+$ npm i</code></pre>
+<p>This will setup the basics for a node project and install the packages we need. Now lets add some config files.</p>
+<pre><code class="s language-s">$ touch tsconfig.json
+$ touch vite.config.ts</code></pre>
+<p>This will create 2 files. Now open up <code>tsconfig.json</code> and paste the following:</p>
+<pre><code class="json language-json">{
+  "compilerOptions": {
+    "module": "esnext",
+    "lib": [
+      "es2017",
+      "dom",
+      "dom.iterable"
+    ],
+    "types": [
+      "vite/client"
+    ],
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "./types",
+    "rootDir": "./src",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": []
+}</code></pre>
+<p>This is a basic typescript config. Now open up <code>vite.config,ts</code> and paste the following:</p>
+<pre><code class="js language-js">import { defineConfig } from "vite";
+import { resolve } from "path";
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  base: "/flutter_lit_example/", // TODO: Name of your github repo
+  build: {
+    outDir: "build/web",
+    rollupOptions: {
+      // external: /^lit-element/,
+      output: {
+        entryFileNames: `assets/[name].js`,
+        chunkFileNames: `assets/[name].js`,
+        assetFileNames: `assets/[name].[ext]`,
+      },
+      input: {
+        main: resolve(__dirname, "index.html"),
+        // TODO: Create a new module for each component you want to embed
+      },
+    },
+  },
+});</code></pre>
+<p>Now we need to create our web component:</p>
+<pre><code class="s language-s">$ mkdir src
+$ cd src
+$ touch my-app.ts
+$ cd ..</code></pre>
+<p>Open <code>my-app.ts</code> and paste the following:</p>
+<pre><code class="js language-js">import { html, css, LitElement } from "lit";
+import { customElement, property } from "lit/decorators.js";
+
+@customElement("my-app")
+export class MyApp extends LitElement {
+  static styles = css`
+    p {
+      color: blue;
+    }
+  `;
+
+  @property()
+  name = "Somebody";
+
+  render() {
+    return html`&lt;div&gt;
+      &lt;p&gt;Hello, ${this.name}!&lt;/p&gt;
+      &lt;slot&gt;&lt;/slot&gt;
+    &lt;/div&gt;`;
+  }
+}</code></pre>
+<p>We need to create a <code>index.html</code> for our web app.</p>
+<pre><code class="s language-s">$ touch index.html</code></pre>
+<p>Open <code>index.html</code> and paste the following:</p>
+<pre><code class="html language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;title&gt;Example&lt;/title&gt;
+    &lt;script type="module" src="/src/my-app.ts"&gt;&lt;/script&gt;
+    &lt;style&gt;
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      my-app {
+        width: 100%;
+        height: 100vh;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;my-app&gt;&lt;/my-app&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4 id="flutter-setup">Flutter Setup</h4>
+<p>Now that we have the basics setup for web we can move on to flutter. Let's create the project with the following:</p>
+<pre><code class="s language-s">$ flutter create --platforms=ios,android .
+$ flutter packages get</code></pre>
+<p>Open up <code>pubspec.yaml</code> and update it with the following:</p>
+<pre><code class="yaml language-yaml">name: flutter_lit_example
+description: A hybrid Flutter app.
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: "&gt;=2.7.0 &lt;3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_inappwebview: ^5.3.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true</code></pre>
+<p>Make sure to get the packages again:</p>
+<pre><code class="s language-s">$ flutter packages get</code></pre>
+<p>Now we need to create the file that will wrap the web component.</p>
+<pre><code class="s language-s">$ cd lib
+$ touch web_component.dart
+$ cd ..</code></pre>
+<p>Open <code>web_component.dart</code> and paste the following:</p>
+<pre><code class="dart language-dart">import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+
+class WebComponent extends StatefulWidget {
+  const WebComponent({
+    Key key,
+    @required this.name,
+    @required this.bundle,
+    this.attributes = const {},
+    this.slot = '',
+    this.events = const [],
+  }) : super(key: key);
+  final String name, bundle;
+  final Map&lt;String, String&gt; attributes;
+  final String slot;
+  final List&lt;EventCallback&gt; events;
+
+  @override
+  _WebComponentState createState() =&gt; _WebComponentState();
+}
+
+class _WebComponentState extends State&lt;WebComponent&gt; {
+  InAppWebViewController controller;
+  final Map&lt;String, List&lt;EventCallback&gt;&gt; _events = {};
+
+  String get source {
+    return '''&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;style&gt;
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      ${widget.name} {
+        width: 100%;
+        height: 100vh;
+      }
+    &lt;/style&gt;
+  &lt;script type="module" crossorigin src="${widget.bundle}"&gt;&lt;/script&gt;
+&lt;/head&gt;
+  &lt;body&gt;
+    &lt;${widget.name} ${widget.attributes.entries.map((e) =&gt; '${e.key}="${e.value}"').join(' ')}&gt;
+      ${widget.slot}
+    &lt;/${widget.name}&gt;
+    &lt;script&gt;
+    window.addEventListener("flutterInAppWebViewPlatformReady", (event) =&gt; {
+      ${widget.events.join('\n')}
+    });
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt; 
+''';
+  }
+
+  void _setup(InAppWebViewController controller) {
+    this.controller = controller;
+    this._setupEvents();
+  }
+
+  void _setupEvents() {
+    for (final event in _events.keys) {
+      controller.removeJavaScriptHandler(handlerName: event);
+    }
+    for (final event in widget.events) {
+      _addEvent(event);
+    }
+  }
+
+  void _addEvent(EventCallback event) {
+    controller.addJavaScriptHandler(
+      handlerName: event.query,
+      callback: event.onPressed,
+    );
+    _events[event.event] ??= [];
+    _events[event.event].add(event);
+  }
+
+  @override
+  void didUpdateWidget(covariant WebComponent oldWidget) {
+    if (oldWidget.events != widget.events) {
+      _setupEvents();
+    }
+    if (oldWidget.slot != widget.slot ||
+        oldWidget.bundle != widget.bundle ||
+        oldWidget.name != widget.name) {
+      controller.loadData(data: source);
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return InAppWebView(
+      initialData: InAppWebViewInitialData(data: source),
+      onWebViewCreated: _setup,
+    );
+  }
+}
+
+class EventCallback {
+  EventCallback({
+    @required this.onPressed,
+    @required this.event,
+    this.query,
+  });
+  final String query, event;
+  final dynamic Function(List&lt;dynamic&gt; args) onPressed;
+
+  @override
+  String toString() =&gt; _source;
+
+  String get _prefix =&gt; query != null &amp;&amp; query.isNotEmpty
+      ? 'document.querySelector("$query")'
+      : 'document.body';
+
+  String get _source =&gt; [
+        '$_prefix.addEventListener("$event", (e) =&gt; {',
+        '  window.flutter_inappwebview.callHandler("$query", e);',
+        '}, false);',
+      ].join('\n');
+}</code></pre>
+<p>Open <code>main.dart</code> and paste it with th following:</p>
+<pre><code class="dart language-dart">import 'package:flutter/material.dart';
+
+import 'web_component.dart';
+
+const WEBSITE_URL = 'https://rodydavis.github.io/flutter_lit_example/';
+const BUNDLE_PATH = 'assets/main.js';
+
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  final title = 'Flutter Hybrid App';
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: title,
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: MyHomePage(title: title),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() =&gt; _MyHomePageState();
+}
+
+class _MyHomePageState extends State&lt;MyHomePage&gt; {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Builder(
+        builder: (context) =&gt; WebComponent(
+          name: 'my-app',
+          bundle: '$WEBSITE_URL/$BUNDLE_PATH',
+          attributes: {
+            'name': widget.title,
+          },
+          slot: '&lt;button id="my-button"&gt;Talk back!&lt;/button&gt;',
+          events: [
+            EventCallback(
+              event: 'click',
+              query: '#my-button',
+              onPressed: (_) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text('Clicked!')));
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}</code></pre>
+<p>You will need to update <code>WEBSITE_URL</code> to have the url of the website where you will be deploying and 'BUNDLE_URL' to the relative path to the js bundle. </p>
+<p>This will ensure auto updates with a new version rolls out and the cache it stale. This will also allow for offline support after the first time it is downloaded.</p>
+<h3 id="running">Running</h3>
+<p>Now we can run our application but it requires a few steps to get it all setup.</p>
+<p>To test and build our web app locally we will use <a href="https://github.com/vitejs/vite" rel="noopener noreferrer" target="_blank">vite</a> and render the <code>index.html</code></p>
+<pre><code class="s language-s">$ npm i
+$ npm run dev</code></pre>
+<p>You should see the following:</p>
+<pre><code> vite v2.2.3 dev server running at:
+
+  &gt; Local:    http://localhost:3000/flutter_lit_example/
+  &gt; Network:  http://192.168.1.143:3000/flutter_lit_example/
+
+  ready in 311ms.</code></pre>
+<p>Wee can open the link <code>http://localhost:3000/flutter_lit_example/</code> to see our running web app and hot reload changes from <code>my-app.ts</code>.</p>
+<p>If you want to learn more about lit you can read the docs <a href="https://lit.dev" rel="noopener noreferrer" target="_blank">here</a>.</p>
+<p>Once you are happy with how it looks we can move on to flutter to wrap it in a native app. This will give us access to native code if we wanted to use the in app purchase api or push notifications.</p>
+<p>Kill the terminal and run the following:</p>
+<pre><code class="s language-s">$ flutter packages get
+$ flutter build ios
+$ flutter build appbundle
+$ flutter run</code></pre>
+<p>This should select a running device or prompt you to select one. Now that it is running on the device you can see we have two way communication with the flutter app and the web component.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>If you want to find the source code you can check it out <a href="https://github.com/rodydavis/flutter_hybrid_template" rel="noopener noreferrer" target="_blank">here</a> otherwise thanks for reading and let me know if you have any questions!</p>
+        </article>
+      </nav-wrapper>
+      <noscript>You need to enable JavaScript to run this app.</noscript>
+      <script type="module" src="/dist/components/nav-wrapper.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
+  
+  <script
+    src="https://utteranc.es/client.js"
+    repo="rodydavis/rodydavis"
+    issue-term="pathname"
+    theme="github-light"
+    crossorigin="anonymous"
+    async
+  ></script>
+  
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+    <script>
+      // window.addEventListener('load', () => {
+      //   navigator.serviceWorker.register('/sw.js');
+      // });
+
+      const firebaseConfig = {
+        apiKey: 'AIzaSyCfbxrJWY2QgbSJrCnS3jZ8mfBwvQrqII0',
+        authDomain: 'development-267918.firebaseapp.com',
+        databaseURL: 'https://development-267918.firebaseio.com',
+        projectId: 'development-267918',
+        storageBucket: 'development-267918.appspot.com',
+        messagingSenderId: '700791912456',
+        appId: '1:700791912456:web:0b4947c995cec6c38bb9bd',
+        measurementId: 'G-JQNPVBL9DR',
+      };
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+    
+    </body>
+  </html>

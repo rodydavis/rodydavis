@@ -7,6 +7,7 @@ import { getPostFromMeta, mdWithoutMeta, PostMeta } from '../src/utils/meta';
 export async function build(inputDir: string, outputDir: string) {
   const files = fs.readdirSync(inputDir);
   for (const path of files) {
+    if (path.startsWith('_')) continue;
     checkFile(inputDir, outputDir, path);
   }
   const rss = await writeRssFile('assets/blog').catch(console.error);
@@ -35,6 +36,7 @@ function scanDir(inputDir: string, outputDir: string, subPath: string) {
   const items: PostMeta[] = [];
   const folders: string[] = [];
   for (const path of files) {
+    if (path.startsWith('_')) continue;
     const meta = checkFile(inputDir, outputDir, `${subPath}/${path}`);
     if (meta) {
       items.push(meta);
