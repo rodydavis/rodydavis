@@ -1293,7 +1293,7 @@ Create a new file at &lt;code&gt;src/controllers/canvas.dart&lt;/code&gt; and ad
 		<updated>2021-05-04T17:00:00-07:00</updated>
 		<id>https://rodydavis.com/posts/flutter-and-lit/</id>
 		<content type="html">
-		  &lt;p&gt;In this article I will go over how to set up a &lt;a href=&quot;https://lit.dev/&quot;&gt;lit&lt;/a&gt; (web component) and use it inline in the flutter widget tree.&lt;/p&gt;
+		  &lt;p&gt;In this article I will go over how to set up a &lt;a href=&quot;https://lit.dev/&quot;&gt;Lit&lt;/a&gt; (web component) and use it inline in the flutter widget tree.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;TLDR&lt;/strong&gt; You can find the final source &lt;a href=&quot;https://github.com/rodydavis/flutter_hybrid_template&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites &lt;a class=&quot;direct-link&quot; href=&quot;#prerequisites&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
