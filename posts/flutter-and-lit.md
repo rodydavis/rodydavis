@@ -6,7 +6,7 @@ categories: [flutter, web, lit]
 hasComments: 'true'
 ---
 
-In this article I will go over how to set up a [lit](https://lit.dev) (web component) and use it inline in the flutter widget tree.
+In this article I will go over how to set up a [Lit](https://lit.dev) (web component) and use it inline in the flutter widget tree.
 
 **TLDR** You can find the final source [here](https://github.com/rodydavis/flutter_hybrid_template).
 
