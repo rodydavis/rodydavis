@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: "Automate Flutter App Releases"
 date: 2019-03-15
 categories: [flutter, apps]
-hasComments: 'true'
+image: /img/banner.jpeg
 ---
 
 **TLDR** You can find the script [here](https://gist.github.com/rodydavis/774b36e32d7efa882cca8dd16da6e74c).

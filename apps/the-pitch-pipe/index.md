@@ -1,9 +1,10 @@
 ---
-layout: layouts/post.njk
+layout: layouts/base.njk
 title: 'The Pitch Pipe'
 date: 2017-03-10
 categories: [ios, android, music]
 tags: [pitch pipe, music, sheet music, teachers, education]
+image: /img/the-pitch-pipe/icon.png
 ---
 
 > Sheet Music Made Easy
@@ -40,7 +41,10 @@ Features:
 - Today Widget for Sheet Music Help
 - In app rating for a better App Store rating experience
 
-<a href="https://apps.apple.com/us/app/the-pitch-pipe/id1244972865?itsct=apps_box&amp;itscg=30200" style="display: inline-block; overflow: hidden; border-radius: 13px; width: 250px; height: 83px;"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-US?size=250x83&amp;releaseDate=1497225600&h=3708931c274bf63cc5e8a14d09319984" alt="Download on the App Store" style="border-radius: 13px; width: 250px; height: 83px;"></a>
+<div style="display: flex; flex-direction: row; align-items: center;">
+<a target="_blank" rel="noopener noreferrer" href="https://apps.apple.com/us/app/the-pitch-pipe/id1244972865"><img src="/img/badges/app_store.png" ></a>
+<a target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/details?id=com.appleeducate.thepitchpipe&hl=en_US&gl=US"><img src="/img/badges/google_play.png" ></a>
+</div>
 
 <a style="
 background-color: darkred;

@@ -3,16 +3,16 @@ layout: layouts/post.njk
 title: 'Lit and Flutter'
 date: 2021-05-05
 categories: [flutter, web, lit]
-hasComments: 'true'
+image: /img/banner.jpeg
 ---
 
-In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it inline in the flutter widget tree.
+In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it inline in the Flutter widget tree.
 
 **TLDR** You can find the final source [here](https://github.com/rodydavis/flutter_hybrid_template).
 
 The reason you would want this integration is so you can take an existing web app, or just a single part of it and embed it in the widget tree.
 
-With it wrapped in flutter you can call device APIs from event listeners on your web component. 
+With it wrapped in Flutter you can call device APIs from event listeners on your web component. 
 
 For example you may have an app that handles purchases, and now you can call the in app purchase API or other device specific features not available on the web.
 
@@ -40,13 +40,12 @@ cd flutter_lit_example
 
 ### Web Setup
 
-Now we are in the `flutter_lit_example` directory and can setup flutter and lit. Let's start with node.
+Now we are in the `flutter_lit_example` directory and can setup Flutter and Lit. Let's start with node.
 
 ```bash
 npm init -y
-npm i --save lit
-npm i --save-dev typescript vite @types/node
-npm i
+npm i lit
+npm i -D typescript vite @types/node
 ```
 
 This will setup the basics for a node project and install the packages we need. Now lets add some config files.
@@ -449,7 +448,7 @@ npm run dev
 
 You should see the following:
 
-```
+```html
 vite v2.2.3 dev server running at:
 
 Local:    http://localhost:3000/flutter_lit_example/
@@ -458,11 +457,11 @@ Network:  http://192.168.1.143:3000/flutter_lit_example/
 ready in 311ms.
 ```
 
-Wee can open the link `http://localhost:3000/flutter_lit_example/` to see our running web app and hot reload changes from `my-app.ts`.
+We can open the link `http://localhost:3000/flutter_lit_example/` to see our running web app and hot reload changes from `my-app.ts`.
 
-If you want to learn more about lit you can read the docs [here](https://lit.dev).
+If you want to learn more about Lit you can read the docs [here](https://lit.dev).
 
-Once you are happy with how it looks we can move on to flutter to wrap it in a native app. This will give us access to native code if we wanted to use the in app purchase api or push notifications.
+Once you are happy with how it looks we can move on to Flutter to wrap it in a native app. This will give us access to native code if we wanted to use the in app purchase api or push notifications.
 
 Kill the terminal and run the following:
 
@@ -473,7 +472,7 @@ flutter build appbundle
 flutter run
 ```
 
-This should select a running device or prompt you to select one. Now that it is running on the device you can see we have two way communication with the flutter app and the web component.
+This should select a running device or prompt you to select one. Now that it is running on the device you can see we have two way communication with the Flutter app and the web component.
 
 ## Conclusion
 

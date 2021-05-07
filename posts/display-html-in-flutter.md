@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: "Displaying HTML in Flutter"
 date: 2020-03-10
 categories: [flutter, web]
-hasComments: 'true'
+image: /img/banner.jpeg
 ---
 
 Sometimes you have content in HTML that needs to be displayed and interacted with in Flutter.

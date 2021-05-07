@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: "Using Fastlane in Flutter and CI"
 date: 2019-10-16
 categories: [flutter, ci]
-hasComments: 'true'
+image: /img/banner.jpeg
 ---
 
 Prerequisites:

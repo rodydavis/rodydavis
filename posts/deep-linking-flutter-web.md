@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: "Deep Linking for Flutter Web"
 date: 2020-03-11
 categories: [flutter, web]
-hasComments: 'true'
+image: /img/banner.jpeg
 ---
 
 In this article I will show you how to have proper URL navigation for your application. Open links to specific pages, protected routes and custom transitions.

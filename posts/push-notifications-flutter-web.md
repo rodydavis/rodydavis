@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: "How To Send Push Notifications on Flutter Web (FCM)"
 date: 2020-05-01
 categories: [flutter, web]
-hasComments: 'true'
+image: /img/banner.jpeg
 ---
 
 If you are using Firebase then you are probably familiar with Firebase Cloud Messaging. The setup on Flutter web is very different than mobile and other plugins you are probably used to.

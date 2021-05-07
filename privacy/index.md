@@ -2,9 +2,6 @@
 layout: layouts/base.njk
 title: Privacy Policy
 templateClass: tmpl-post
-eleventyNavigation:
-  key: Privacy
-  order: 4
 ---
 
 Your privacy is critically important to us.
