@@ -37,7 +37,7 @@ const getFileType = (filename, buffer) => {
     // return the filename with extension
     return `${filename}.${type.ext}`;
   } else {
-    throw new Error(`Couldn't infer file extension for "${path}"`);
+    throw new Error(`Couldn't infer file extension for "${JSON.stringify(path)}"`);
   }
 };
 
