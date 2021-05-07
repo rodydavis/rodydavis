@@ -5,6 +5,7 @@ _site/
 node_modules/
 package-lock.json
 README.md
+SETUP.md
 _11ty/
 third_party
 functions
