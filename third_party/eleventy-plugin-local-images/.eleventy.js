@@ -33,7 +33,7 @@ const getFileType = (filename, buffer) => {
   // infer the file ext from the buffer
   const type = fileType(buffer);
 
-  if (type.ext) {
+  if (type && type.ext) {
     // return the filename with extension
     return `${filename}.${type.ext}`;
   } else {
