@@ -422,7 +422,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 ```
 
-You will need to update `WEBSITE_URL` to have the url of the website where you will be deploying and 'BUNDLE_URL' to the relative path to the js bundle. 
+You will need to update `WEBSITE_URL` to have the url of the website where you will be deploying and `BUNDLE_URL` to the relative path to the js bundle. 
 
 This will ensure auto updates with a new version rolls out and the cache it stale. This will also allow for offline support after the first time it is downloaded.
 
