@@ -6,9 +6,19 @@ categories: [flutter, web, lit]
 hasComments: 'true'
 ---
 
-In this article I will go over how to set up a [Lit](https://lit.dev) (web component) and use it inline in the flutter widget tree.
+In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it inline in the flutter widget tree.
 
 **TLDR** You can find the final source [here](https://github.com/rodydavis/flutter_hybrid_template).
+
+The reason you would want this integration is so you can take an existing web app, or just a single part of it and embed it in the widget tree.
+
+With it wrapped in flutter you can call device APIs from event listeners on your web component. 
+
+For example you may have an app that handles purchases, and now you can call the in app purchase API or other device specific features not available on the web.
+
+You also get a cross platform app that can be delivered to both Google Play and the App Store.
+
+The web component will receive new code each time you update your site, so you do not have to ship an update each time the web component changes.
 
 ## Prerequisites
 
