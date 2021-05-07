@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title:  "Launching... Space Curiosity"
 date:   2019-03-10
 categories: [flutter, ios, android]
-tags: [flutter, SpaceX, nasa, iss, planets, space]
+tags: [flutter, spacex, nasa, iss, planets, space]
 ---
 
 A brief overview of a new app built with [Flutter](https://Flutter.io) by Rody Davis and Jesus Rodriguez.
