@@ -24,7 +24,13 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm install
     - run: npm run build
-    - name: Deploy to Firebase
+    
+    - name: Github Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site
+    - name: Firebase Hosting
       uses: w9jds/firebase-action@master
       with:
         args: deploy --only hosting
