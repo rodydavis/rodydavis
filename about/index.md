@@ -33,7 +33,6 @@ I am looking forward to what the future will bring and I’m excited about all t
 ## Social
 
 - [Glitch](https://glitch.com/@rodydavis)
-- [Medium](https://medium.com/@rody.davis.jr)
 - [Github](https://github.com/rodydavis)
 - [Twitter](https://twitter.com/rodydavis)
 - [YouTube](https://youtube.com/rodydavis)
@@ -41,6 +40,8 @@ I am looking forward to what the future will bring and I’m excited about all t
 - [Facebook](https://facebook.com/rodydavisjr)
 - [LinkedIn](https://www.linkedin.com/in/rodydavis)
 - [TikTok](https://tiktok.com/@rodydavisjr)
+- [Dev.to](https://dev.to/rodydavis)
+- [Medium](https://medium.com/@rody.davis.jr)
 - [Email](mailto:rody.davis.jr@gmail.com)
 - [RSS Feed](/feed/feed.xml)
 
