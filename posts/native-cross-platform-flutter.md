@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: "How to build a native cross platform project with Flutter"
 date: 2019-09-06
 categories: [flutter]
-hasComments: 'true'
+image: /img/banner.jpeg
 ---
 
 Import dart:html and dart:io in the same project!

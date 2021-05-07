@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: "Host your Flutter Project as a REST API"
 date: 2019-10-18
 categories: [flutter, api]
-hasComments: 'true'
+image: /img/banner.jpeg
 ---
 
 After you build your flutter project you may want to reuse the models and business logic from your lib folder. I will show you how to go about setting up the project to have iOS, Android, Web, Windows, MacOS, Linux and a REST API interface with one project. The REST API can also be deploy to Google Cloud Run for Dart everywhere.

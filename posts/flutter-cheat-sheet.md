@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: "Flutter Cheat Sheet — Terminal"
 date: 2020-03-05
 categories: [flutter, scripting]
-hasComments: 'true'
+image: /img/banner.jpeg
 ---
 
 Run Flutter web with SKIA

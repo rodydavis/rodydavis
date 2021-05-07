@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: "Creating Your First Flutter Project"
 date: 2019-04-28
 categories: [flutter]
-hasComments: 'true'
+image: /img/banner.jpeg
 ---
 
 Flutter is a UI Toolkit from Google allowing you to create expressive and unique experiences unmatched on any platform. You can write your UI once and run it everywhere. Yes everywhere! Web, iOS, Android, Windows, Linux, MacOS, Raspberry PI and much more…

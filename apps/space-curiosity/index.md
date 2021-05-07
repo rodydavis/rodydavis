@@ -1,9 +1,10 @@
 ---
-layout: layouts/post.njk
+layout: layouts/base.njk
 title:  "Launching... Space Curiosity"
 date:   2019-03-10
 categories: [flutter, ios, android]
 tags: [flutter, spacex, nasa, iss, planets, space]
+image: /img/space-curiosity/icon.png
 ---
 
 A brief overview of a new app built with [Flutter](https://Flutter.io) by Rody Davis and Jesus Rodriguez.
@@ -45,7 +46,10 @@ All this work would not be possible without the incredible community behind Flut
 
 [TestFlight](https://testflight.apple.com/join/uIwSD3Rj)
 
-<a href='https://play.google.com/store/apps/details?id=com.chechu.curiosity&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="200"/></a>
+<div style="display: flex; flex-direction: row; align-items: center;">
+<a href="https://apps.apple.com/us/app/space-curiosity/id1435609944"><img src="/img/badges/app_store.png" ></a>
+<a href="https://play.google.com/store/apps/details?id=com.chechu.curiosity"><img src="/img/badges/google_play.png" ></a>
+</div>
 
 ## Other
 
