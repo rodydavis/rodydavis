@@ -6,7 +6,7 @@ categories: [flutter, web, lit]
 hasComments: 'true'
 ---
 
-In this article I will go over how to set up a lit (web component) and use it inline in the flutter widget tree.
+In this article I will go over how to set up a [lit](https://lit.dev) (web component) and use it inline in the flutter widget tree.
 
 **TLDR** You can find the final source [here](https://github.com/rodydavis/flutter_hybrid_template).
 
@@ -79,7 +79,7 @@ This will create 2 files. Now open up `tsconfig.json` and paste the following:
   "exclude": []
 }
 ```
-This is a basic typescript config. Now open up `vite.config,ts` and paste the following:
+This is a basic typescript config. Now open up `vite.config.ts` and paste the following:
 
 ```js
 import { defineConfig } from "vite";
@@ -422,7 +422,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 ```
 
-You will need to update `WEBSITE_URL` to have the url of the website where you will be deploying and 'BUNDLE_URL' to the relative path to the js bundle. 
+You will need to update `WEBSITE_URL` to have the url of the website where you will be deploying and `BUNDLE_URL` to the relative path to the js bundle. 
 
 This will ensure auto updates with a new version rolls out and the cache it stale. This will also allow for offline support after the first time it is downloaded.
 
