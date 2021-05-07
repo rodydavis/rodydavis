@@ -1311,3 +1311,7 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
 }
+
+code {
+  padding: 0;
+}

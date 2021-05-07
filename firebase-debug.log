@@ -1,0 +1,36 @@
+[debug] [2021-05-07T08:19:26.483Z] ----------------------------------------------------------------------
+[debug] [2021-05-07T08:19:26.484Z] Command:       /usr/local/bin/firebase /Users/rodydavis/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase deploy
+[debug] [2021-05-07T08:19:26.484Z] CLI Version:   7.7.0
+[debug] [2021-05-07T08:19:26.484Z] Platform:      darwin
+[debug] [2021-05-07T08:19:26.484Z] Node Version:  v10.15.3
+[debug] [2021-05-07T08:19:26.488Z] Time:          Fri May 07 2021 01:19:26 GMT-0700 (Pacific Daylight Time)
+[debug] [2021-05-07T08:19:26.488Z] ----------------------------------------------------------------------
+[debug] [2021-05-07T08:19:26.488Z] 
+[debug] [2021-05-07T08:19:26.496Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-05-07T08:19:26.496Z] > authorizing via signed-in user
+[debug] [2021-05-07T08:19:26.496Z] [iam] checking project development-267918 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-05-07T08:19:26.497Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/development-267918:testIamPermissions  
+
+[debug] [2021-05-07T08:19:27.004Z] <<< HTTP RESPONSE 200
+[debug] [2021-05-07T08:19:27.006Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/development-267918  
+ 
+[debug] [2021-05-07T08:19:27.489Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'development-267918'...
+[info] 
+[info] i  deploying hosting
+[debug] [2021-05-07T08:19:27.493Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/development-267918/versions  
+
+[debug] [2021-05-07T08:19:28.521Z] <<< HTTP RESPONSE 200
+[info] i  hosting[development-267918]: beginning deploy...
+[info] i  hosting[development-267918]: found 1469 files in _site
+[debug] [2021-05-07T08:19:28.748Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/development-267918/versions/aa713dbd3581041b:populateFiles  
+ <request body omitted>
+[debug] [2021-05-07T08:19:28.830Z] [hosting] hash cache [X3NpdGU] stored for 1469 files
+[debug] [2021-05-07T08:19:28.830Z] [hosting][hash queue][FINAL]
+[debug] [2021-05-07T08:19:28.830Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/development-267918/versions/aa713dbd3581041b:populateFiles  
+ <request body omitted>
+[debug] [2021-05-07T08:19:29.969Z] <<< HTTP RESPONSE 200
+[debug] [2021-05-07T08:19:30.129Z] <<< HTTP RESPONSE 200
+[debug] [2021-05-07T08:19:30.129Z] [hosting][populate queue][FINAL]
+[debug] [2021-05-07T08:19:30.130Z] [hosting] uploads queued: 17

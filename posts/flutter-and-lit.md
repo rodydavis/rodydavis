@@ -440,12 +440,12 @@ npm run dev
 You should see the following:
 
 ```
- vite v2.2.3 dev server running at:
+vite v2.2.3 dev server running at:
 
-  > Local:    http://localhost:3000/flutter_lit_example/
-  > Network:  http://192.168.1.143:3000/flutter_lit_example/
+Local:    http://localhost:3000/flutter_lit_example/
+Network:  http://192.168.1.143:3000/flutter_lit_example/
 
-  ready in 311ms.
+ready in 311ms.
 ```
 
 Wee can open the link `http://localhost:3000/flutter_lit_example/` to see our running web app and hot reload changes from `my-app.ts`.
