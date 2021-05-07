@@ -1,8 +1,8 @@
 {
   "hosting": {
-    "public": "build",
+    "public": "_site",
     "ignore": [
-      "readme.md",
+      "README.md",
       "LICENSE",
       "firebase.json",
       "package.json",
