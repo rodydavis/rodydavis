@@ -31,13 +31,16 @@ const downloadImage = async (path) => {
 
 const getFileType = (filename, buffer) => {
   // infer the file ext from the buffer
-  const type = fileType(buffer);
+  let type = fileType(buffer);
+  if (!type) {
+    type = { ext: 'txt' };
+  }
 
   if (type && type.ext) {
     // return the filename with extension
     return `${filename}.${type.ext}`;
   } else {
-    throw new Error(`Couldn't infer file extension for "${JSON.stringify(path)}"`);
+    throw new Error(`Couldn't infer file extension for "${filename} ${path}"`);
   }
 };
 
