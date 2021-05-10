@@ -28,7 +28,7 @@ cd figma_lit_example
 
 ### Web Setup
 
-Now we are in the `figma_lit_example` directory and can setup Flutter and Lit. Let's start with node.
+Now we are in the `figma_lit_example` directory and can setup Figma and Lit. Let's start with node.
 
 ```bash
 npm init -y
