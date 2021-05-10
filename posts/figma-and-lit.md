@@ -232,10 +232,12 @@ Open `my-app.ts` and paste the following:
 
 ```js
 import { html, LitElement } from "lit";
-import { customElement } from "lit/decorators.js";
+import { customElement, query } from "lit/decorators.js";
 
 @customElement("my-app")
 export class MyApp extends LitElement {
+  @query("#count") countInput!: HTMLInputElement;
+
   render() {
     return html`
       <div>
@@ -248,8 +250,7 @@ export class MyApp extends LitElement {
   }
 
   create() {
-    const textBox: HTMLInputElement = this.shadowRoot?.querySelector("#count")!;
-    const count = parseInt(textBox.value, 10);
+    const count = parseInt(this.countInput.value, 10);
     this.sendMessage("create-rectangles", { count });
   }
 
