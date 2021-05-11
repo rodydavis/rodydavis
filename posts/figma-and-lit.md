@@ -332,7 +332,7 @@ Click on the box to link to an existing plugin to navigate to the `lit-plugin` f
 
 To run the plugin navigate to “Plugins > Development > figma_lit_example” to launch your plugin.
 
-<img width="100%" src="/img/figma/run-plugin.png">
+<img width="100%" src="/img/figma/run-lit-plugin.png">
 
 #### Step 5
 

@@ -1,10 +1,12 @@
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css);
+
 /* Color customization */
 :root {
   --primary: #f9c412;
   --secondary: #e7bf60;
   --background: #181818;
   --on-background: #eee;
-  --surface: #FFF;
+  --surface: #fff;
 }
 
 /* :root {
@@ -1122,7 +1124,7 @@ footer {
   text-align: center;
 }
 footer > * {
-  margin: 1.5em;
+  margin: 0.8em;
 }
 footer nav a img {
   vertical-align: middle;

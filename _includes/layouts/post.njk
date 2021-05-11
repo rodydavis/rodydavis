@@ -22,7 +22,7 @@ templateClass: tmpl-post
 <p>
   Since you've made it this far, <a href="{{ shareUrl | safe }}" on-click="share">sharing</a> this article on your favorite social media network 
   would be highly appreciated 💖! For feedback, please 
-  <a href="https://twitter.com/{{ metadata.author.twitterHandle }}" target="_blank" rel="noopener">ping me on Twitter.</a>
+  <a href="https://twitter.com/{{ metadata.author.twitter }}" target="_blank" rel="noopener">ping me on Twitter.</a>
 </p>
 
 <share-widget>
@@ -41,7 +41,7 @@ templateClass: tmpl-post
   "genre": "{{ metadata.genre }}", 
   "publisher": {
     "@type": "Organization",
-    "name": "{{ metadata.publisher.name }}",
+    "name": "{{ metadata.author.name }}",
     "logo": {
       "@type": "ImageObject",
       "url": "{{ '/img/favicon/favicon-32x32.png' | addHash }}"
