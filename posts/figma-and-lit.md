@@ -316,7 +316,7 @@ https://www.figma.com/downloads/
 
 Open the menu and navigate to “Plugins > Manage plugins”
 
-<img width="100%" src="/img/figma/manage-plugins.png">
+<img width="100%" src="/img/figma/manage-plugin.png">
 
 #### Step 3
 
