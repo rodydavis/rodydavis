@@ -632,7 +632,7 @@ export function checkFonts(): string[] {
 
 ```
 
-Following this great suggestion [here](https://stackoverflow.com/a/62755574/7303311) the document check check to see all the avaliable fonts for the browser and given document.
+Following this great suggestion [here](https://stackoverflow.com/a/62755574/7303311) the document checks to see all the avaliable fonts for the browser and given document.
 
 ## Running
 
