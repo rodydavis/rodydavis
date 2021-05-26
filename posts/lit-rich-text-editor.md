@@ -115,7 +115,7 @@ The important things to take away are the styles added to remove the body paddin
 
 Inside the `lit-rich-text-editor` tags there is a [`template`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) passed as a slot to provide html that will not be rendered but can be accessed.
 
-There is also an import for the Material Icons so it can be used in the editor later.
+There is also an import for the [Material Icons](https://fonts.google.com/icons) so it can be used in the editor later.
 
 ## Editor
 
