@@ -86,7 +86,7 @@ Open up the `index.html` and update it with the following:
   </head>
   <body>
     <lit-rich-text-editor>
-    <template>
+     <template>
         <h1>Headline 1</h1>
         <p>This is a paragraph.</p>
         <p>
