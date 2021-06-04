@@ -12,7 +12,7 @@ You can find the final project [here](https://github.com/AppleEducate/flutter_x/
 
 Up to now you have been able to create projects with Flutter that run on iOS/Android, Web and Desktop but only sharing pure dart plugins. Flutter launched Flutter for web at Google I/O and was a temporary fork that required you to change imports from import 'package:flutter/material.dart'; to import 'package:flutter_web/material.dart';. As you can image this was really difficult for a code base as you had to create a fork and change the imports. This also meant that you could not import any package that needed on a path or depended on flutter. The time as come and the merge is complete. Now you no longer need to change the imports!
 
-![](https://cdn-images-1.medium.com/max/2000/1*epSHkw0msNuaisyHy9yYAA.gif)
+<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*epSHkw0msNuaisyHy9yYAA.gif">
 
 You can use any plugin now, have a debugger, create new flutter projects with the web folder added, web plugins, and so much more..
 
@@ -22,35 +22,147 @@ You will need to be on the latest flutter for this to work.
 
 [Download Flutter](https://flutter.io/get-started/install/)
 
-![](https://cdn-images-1.medium.com/max/2000/1*1PVcOkDgx2p_G3Bou3IFsg.jpeg)
+<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*1PVcOkDgx2p_G3Bou3IFsg.jpeg">
 
 If you are pretty new to Flutter you can check out [this useful guide](https://flutter.io/get-started/codelab/) on how to create a new project step by step.
 
-![](https://cdn-images-1.medium.com/max/2000/1*d6qN8hoGMwldMtIsQYIqrg.jpeg)
+<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*d6qN8hoGMwldMtIsQYIqrg.jpeg">
 
 Create a new project named flutter_x and it should look like this:
 
-![](https://cdn-images-1.medium.com/max/2628/1*xe6ubLj5psVH4JQd-VqSAQ.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/2628/1*xe6ubLj5psVH4JQd-VqSAQ.png">
 
 You can also down the starter project [here](https://github.com/AppleEducate/flutter_x/tree/starter).
 
 Your code should look like this:
 
-<iframe src="https://medium.com/media/64311732193c2dd39b2cdbc42965b538" frameborder=0></iframe>
+```dart
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        // This is the theme of your application.
+        //
+        // Try running your application with "flutter run". You'll see the
+        // application has a blue toolbar. Then, without quitting the app, try
+        // changing the primarySwatch below to Colors.green and then invoke
+        // "hot reload" (press "r" in the console where you ran "flutter run",
+        // or simply save your changes to "hot reload" in a Flutter IDE).
+        // Notice that the counter didn't reset back to zero; the application
+        // is not restarted.
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  // This widget is the home page of your application. It is stateful, meaning
+  // that it has a State object (defined below) that contains fields that affect
+  // how it looks.
+
+  // This class is the configuration for the state. It holds the values (in this
+  // case the title) provided by the parent (in this case the App widget) and
+  // used by the build method of the State. Fields in a Widget subclass are
+  // always marked "final".
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // This method is rerun every time setState is called, for instance as done
+    // by the _incrementCounter method above.
+    //
+    // The Flutter framework has been optimized to make rerunning build methods
+    // fast, so that you can just rebuild anything that needs updating rather
+    // than having to individually change instances of widgets.
+    return Scaffold(
+      appBar: AppBar(
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: Text(widget.title),
+      ),
+      body: Center(
+        // Center is a layout widget. It takes a single child and positions it
+        // in the middle of the parent.
+        child: Column(
+          // Column is also a layout widget. It takes a list of children and
+          // arranges them vertically. By default, it sizes itself to fit its
+          // children horizontally, and tries to be as tall as its parent.
+          //
+          // Invoke "debug painting" (press "p" in the console, choose the
+          // "Toggle Debug Paint" action from the Flutter Inspector in Android
+          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+          // to see the wireframe for each widget.
+          //
+          // Column has various properties to control how it sizes itself and
+          // how it positions its children. Here we use mainAxisAlignment to
+          // center the children vertically; the main axis here is the vertical
+          // axis because Columns are vertical (the cross axis would be
+          // horizontal).
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'You have pushed the button this many times:',
+            ),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.display1,
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: Icon(Icons.add),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+```
 
 Just to make sure everything is working go ahead and run the project on iOS/Android.
 
-![](https://cdn-images-1.medium.com/max/5464/1*teDs_OqHkRdhwyuzyb2rVA.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/5464/1*teDs_OqHkRdhwyuzyb2rVA.png">
 
 You should have the counter application running and working correctly. Now quit and run on Chrome. It should be listed as a device. You can also run from the command line flutter run -d chrome.
 
-![](https://cdn-images-1.medium.com/max/5248/1*CzZ28crDYxBEMaNVq9CtvQ.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/5248/1*CzZ28crDYxBEMaNVq9CtvQ.png">
 > *You do not get hot reload yet on web so be aware of that.*
 > *This is optional but I use this structure in all my apps*
 
 <iframe src="https://medium.com/media/139a52e7b9117765d41bf34d5813f57c" frameborder=0></iframe>
 
-![](https://cdn-images-1.medium.com/max/2000/1*zr22DdSlEXlluwcki-ahEQ.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*zr22DdSlEXlluwcki-ahEQ.png">
 
 Your project should now look like this.
 
@@ -61,7 +173,8 @@ dependencies:
   universal_html:
   url_launcher:
 ```
-> *You can also remove the comments generated in the pubspec.yaml*
+
+> _You can also remove the comments generated in the pubspec.yaml_
 
 Your pubspec.yaml will now read like this:
 
@@ -93,7 +206,7 @@ uses-material-design: true
 
 By default if you were to check if the device was mobile or web you will get an error at compile time when trying to import a plugin that is not meant for the platform. To get around this we will use dynamic imports.
 
-![](https://cdn-images-1.medium.com/max/2000/1*YCLt5ItFmyOmrd-CKgOQFQ.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*YCLt5ItFmyOmrd-CKgOQFQ.png">
 
 Create a url_launcher folder and file url_launcher.dart, mobile.dart, web.dart, unsupported.dart inside the plugins folder.
 
@@ -202,10 +315,11 @@ onPressed: () {
 
 Now when you go to import the UrlUtils it is important to import the correct URI.
 
-![](https://cdn-images-1.medium.com/max/2140/1*7OyxZG6557DYE1XiBscCtA.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/2140/1*7OyxZG6557DYE1XiBscCtA.png">
 
 Make sure to import import 'package:flutter_x/plugins/url_launcher/url_launcher.dart'; only.
-> *You can use the relative import if you wish.*
+
+> _You can use the relative import if you wish._
 
 You UI code will now read the following:
 
@@ -248,26 +362,24 @@ class _MyHomePageState extends State<MyHomePage> {
 
 Your app on the web should look like this:
 
-![](https://cdn-images-1.medium.com/max/5248/1*6ni24NpLIULqi_Cd5NHh3Q.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/5248/1*6ni24NpLIULqi_Cd5NHh3Q.png">
 
 And when you tap the button..
 
-![](https://cdn-images-1.medium.com/max/5248/1*tgcfnrgu9O4joiPeKFmqKw.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/5248/1*tgcfnrgu9O4joiPeKFmqKw.png">
 
 And when you run it on iOS/Android it should look like this:
 
-![](https://cdn-images-1.medium.com/max/5036/1*QEFw3xDevKMsjke4Dd06VA.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/5036/1*QEFw3xDevKMsjke4Dd06VA.png">
 
 And when you tap the button..
 
-![](https://cdn-images-1.medium.com/max/5036/1*lCvTvAvu0nI_dhgUUFHkWA.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/5036/1*lCvTvAvu0nI_dhgUUFHkWA.png">
 
 Congratulations! You made it :)
 
-![](https://cdn-images-1.medium.com/max/2000/1*KowWujusMfDjlkjeeOFEBg.gif)
+<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*KowWujusMfDjlkjeeOFEBg.gif">
 
 Here is the final project located [here](https://github.com/AppleEducate/flutter_x/tree/finish).
 
 Please reach out if you have any questions!
-
-*Originally published at [http://github.com](https://gist.github.com/a2c38b2020d09e718c8d894d048e9c7e).*

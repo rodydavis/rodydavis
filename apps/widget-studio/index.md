@@ -17,11 +17,11 @@ Layouts can be hard, but they don't have to be! As of this version of the app it
 
 Flutter is a powerful toolkit for creating app that run on iOS, Web and MacOS. You can find more about Flutter at https://flutter.dev/.
 
-![](/img/widget-studio/1.png)
-![](/img/widget-studio/2.png)
-![](/img/widget-studio/3.png)
-![](/img/widget-studio/4.png)
-![](/img/widget-studio/5.png)
+<img width="100%" src="/img/widget-studio/1.png">
+<img width="100%" src="/img/widget-studio/2.png">
+<img width="100%" src="/img/widget-studio/3.png">
+<img width="100%" src="/img/widget-studio/4.png">
+<img width="100%" src="/img/widget-studio/5.png">
 
 <div style="display: flex; flex-direction: row; align-items: center;">
 <a target="_blank" rel="noopener noreferrer" href="https://apps.apple.com/us/app/widget-studio/id1516549273"><img src="/img/badges/app_store.png" ></a>
