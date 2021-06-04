@@ -251,9 +251,9 @@ We are passing a src attribute to the web component for this example but we can 
 
 ## Web Component
 
-Before we update our component we need to rename `my-element.ts` to `lit-sheet-music.ts`
+Before we update our component we need to rename `my-element.ts` to `sheet-music.ts`
 
-Open up `lit-sheet-music.ts` and update it with the following:
+Open up `sheet-music.ts` and update it with the following:
 
 ```js
 import { html, css, LitElement } from "lit";
