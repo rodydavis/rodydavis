@@ -1,12 +1,16 @@
 ---
 layout: layouts/post.njk
-title: 'Lit Sheet Music'
+title: "Lit Sheet Music"
 date: 2021-06-04
 categories: [web, lit, sheet-music, music, html]
-image: /img/sheet-music/finished.png
+image: https://media.giphy.com/media/KbTUp85em6hdmmgTfK/giphy.gif
 ---
 
-In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to render[musicxml](https://www.musicxml.com/) from a src attribute or inline xml using [opensheetmusicdisplay](https://github.com/opensheetmusicdisplay/opensheetmusicdisplay).
+In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to render [musicxml](https://www.musicxml.com/) from a src attribute or inline xml using [opensheetmusicdisplay](https://github.com/opensheetmusicdisplay/opensheetmusicdisplay).
+
+<img width="100%" src="https://media.giphy.com/media/Qe0sYiS7fpdRjOisK4/giphy.gif">
+
+Now any sheet music can be rendered based on the browser width as an svg or canvas (and will resize when the viewport changes).
 
 **TLDR** The final source [here](https://github.com/rodydavis/lit-sheet-music) and an online [demo](https://rodydavis.github.io/lit-sheet-music/).
 
@@ -40,7 +44,7 @@ import { defineConfig } from "vite";
 import { resolve } from "path";
 
 export default defineConfig({
-  base: '/lit-sheet-music/',
+  base: "/lit-sheet-music/",
   build: {
     lib: {
       entry: "src/lit-sheet-music.ts",
@@ -53,7 +57,6 @@ export default defineConfig({
     },
   },
 });
-
 ```
 
 ## Template
@@ -63,29 +66,27 @@ Open up the `index.html` and update it with the following:
 ```html
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lit Sheet Music</title>
+    <script type="module" src="/src/sheet-music.ts"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lit Sheet Music</title>
-  <script type="module" src="/src/sheet-music.ts"></script>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
-  </style>
-</head>
-
-<body>
-  <sheet-music
-    src="https://raw.githubusercontent.com/opensheetmusicdisplay/opensheetmusicdisplay/develop/demo/BrahWiMeSample.musicxml">
-  </sheet-music>
-</body>
-
+  <body>
+    <sheet-music
+      src="https://raw.githubusercontent.com/opensheetmusicdisplay/opensheetmusicdisplay/develop/demo/BrahWiMeSample.musicxml"
+    >
+    </sheet-music>
+  </body>
 </html>
-
 ```
 
 If local [musicxml](https://www.musicxml.com/) is intended to be used update `index.html` with the following:
@@ -93,165 +94,160 @@ If local [musicxml](https://www.musicxml.com/) is intended to be used update `in
 ```html
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lit Sheet Music</title>
+    <script type="module" src="/src/sheet-music.ts"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lit Sheet Music</title>
-  <script type="module" src="/src/sheet-music.ts"></script>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
-  </style>
-</head>
-
-<body>
-  <sheet-music>
-   <script type="text/xml">
-    <?xml version="1.0" standalone="no"?>
-    <!DOCTYPE score-partwise PUBLIC
-        "-//Recordare//DTD MusicXML Partwise//EN"
-        "http://www.musicxml.org/dtds/partwise.dtd">
-      <score-partwise>
-        <part-list>
-          <score-part id="P1">
-            <part-name>Voice</part-name>
-          </score-part>
-        </part-list>
-        <part id="P1">
-          <measure number="0" implicit="yes">
-            <attributes>
-              <divisions>4</divisions>
-              <key>
-                <fifths>-3</fifths>
-                <mode>major</mode>
-              </key>
-              <time>
-                <beats>2</beats>
-                <beat-type>4</beat-type>
-              </time>
-              <clef>
-                <sign>G</sign>
-                <line>2</line>
-              </clef>
-              <directive>Langsam, innig.</directive>
-            </attributes>
-            <note>
-              <pitch>
-                <step>G</step>
-                <octave>4</octave>
-              </pitch>
-              <duration>2</duration>
-              <type>eighth</type>
-              <stem>up</stem>
-              <notations>
-                <dynamics>
-                  <p/>
-                </dynamics>
-              </notations>
-              <lyric>
-                <syllabic>single</syllabic>
-                <text>W&auml;rst</text>
-              </lyric>
-            </note>
-          </measure>
-          <measure number="1">
-            <note>
-              <pitch>
-                <step>F</step>
-                <octave>4</octave>
-              </pitch>
-              <duration>3</duration>
-              <type>eighth</type>
-              <dot/>
-              <stem>up</stem>
-              <lyric>
-                <syllabic>single</syllabic>
-                <text>du</text>
-              </lyric>
-            </note>
-            <note>
-              <pitch>
-                <step>E</step>
-                <alter>-1</alter>
-                <octave>4</octave>
-              </pitch>
-              <duration>1</duration>
-              <type>16th</type>
-              <stem>up</stem>
-              <lyric>
-                <syllabic>single</syllabic>
-                <text>nicht,</text>
-              </lyric>
-            </note>
-            <note>
-              <pitch>
-                <step>E</step>
-                <alter>-1</alter>
-                <octave>4</octave>
-              </pitch>
-              <duration>2</duration>
-              <type>eighth</type>
-              <stem>up</stem>
-              <lyric>
-                <syllabic>begin</syllabic>
-                <text>heil</text>
-              </lyric>
-            </note>
-            <note>
-              <pitch>
-                <step>B</step>
-                <alter>-1</alter>
-                <octave>4</octave>
-              </pitch>
-              <duration>1</duration>
-              <type>16th</type>
-              <stem>up</stem>
-              <beam number="1">begin</beam>
-              <beam number="2">begin</beam>
-              <notations>
-                <slur type="start" number="1"/>
-              </notations>
-              <lyric>
-                <syllabic>end</syllabic>
-                <text>ger</text>
-                <extend/>
-              </lyric>
-            </note>
-            <note>
-              <pitch>
-                <step>G</step>
-                <octave>4</octave>
-              </pitch>
-              <duration>1</duration>
-              <type>16th</type>
-              <stem>up</stem>
-              <beam number="1">end</beam>
-              <beam number="2">end</beam>
-              <notations>
-                <slur type="stop" number="1"/>
-              </notations>
-              <lyric>
-                <extend/>
-              </lyric>
-            </note>
-          </measure>
-        </part>
-      </score-partwise>
-    </script>
-  </sheet-music>
-</body>
-
+  <body>
+    <sheet-music>
+      <script type="text/xml">
+        <?xml version="1.0" standalone="no"?>
+        <!DOCTYPE score-partwise PUBLIC
+            "-//Recordare//DTD MusicXML Partwise//EN"
+            "http://www.musicxml.org/dtds/partwise.dtd">
+          <score-partwise>
+            <part-list>
+              <score-part id="P1">
+                <part-name>Voice</part-name>
+              </score-part>
+            </part-list>
+            <part id="P1">
+              <measure number="0" implicit="yes">
+                <attributes>
+                  <divisions>4</divisions>
+                  <key>
+                    <fifths>-3</fifths>
+                    <mode>major</mode>
+                  </key>
+                  <time>
+                    <beats>2</beats>
+                    <beat-type>4</beat-type>
+                  </time>
+                  <clef>
+                    <sign>G</sign>
+                    <line>2</line>
+                  </clef>
+                  <directive>Langsam, innig.</directive>
+                </attributes>
+                <note>
+                  <pitch>
+                    <step>G</step>
+                    <octave>4</octave>
+                  </pitch>
+                  <duration>2</duration>
+                  <type>eighth</type>
+                  <stem>up</stem>
+                  <notations>
+                    <dynamics>
+                      <p/>
+                    </dynamics>
+                  </notations>
+                  <lyric>
+                    <syllabic>single</syllabic>
+                    <text>W&auml;rst</text>
+                  </lyric>
+                </note>
+              </measure>
+              <measure number="1">
+                <note>
+                  <pitch>
+                    <step>F</step>
+                    <octave>4</octave>
+                  </pitch>
+                  <duration>3</duration>
+                  <type>eighth</type>
+                  <dot/>
+                  <stem>up</stem>
+                  <lyric>
+                    <syllabic>single</syllabic>
+                    <text>du</text>
+                  </lyric>
+                </note>
+                <note>
+                  <pitch>
+                    <step>E</step>
+                    <alter>-1</alter>
+                    <octave>4</octave>
+                  </pitch>
+                  <duration>1</duration>
+                  <type>16th</type>
+                  <stem>up</stem>
+                  <lyric>
+                    <syllabic>single</syllabic>
+                    <text>nicht,</text>
+                  </lyric>
+                </note>
+                <note>
+                  <pitch>
+                    <step>E</step>
+                    <alter>-1</alter>
+                    <octave>4</octave>
+                  </pitch>
+                  <duration>2</duration>
+                  <type>eighth</type>
+                  <stem>up</stem>
+                  <lyric>
+                    <syllabic>begin</syllabic>
+                    <text>heil</text>
+                  </lyric>
+                </note>
+                <note>
+                  <pitch>
+                    <step>B</step>
+                    <alter>-1</alter>
+                    <octave>4</octave>
+                  </pitch>
+                  <duration>1</duration>
+                  <type>16th</type>
+                  <stem>up</stem>
+                  <beam number="1">begin</beam>
+                  <beam number="2">begin</beam>
+                  <notations>
+                    <slur type="start" number="1"/>
+                  </notations>
+                  <lyric>
+                    <syllabic>end</syllabic>
+                    <text>ger</text>
+                    <extend/>
+                  </lyric>
+                </note>
+                <note>
+                  <pitch>
+                    <step>G</step>
+                    <octave>4</octave>
+                  </pitch>
+                  <duration>1</duration>
+                  <type>16th</type>
+                  <stem>up</stem>
+                  <beam number="1">end</beam>
+                  <beam number="2">end</beam>
+                  <notations>
+                    <slur type="stop" number="1"/>
+                  </notations>
+                  <lyric>
+                    <extend/>
+                  </lyric>
+                </note>
+              </measure>
+            </part>
+          </score-partwise>
+      </script>
+    </sheet-music>
+  </body>
 </html>
-
 ```
 
-We are passing a src attribute to the web component for this example but we can also add a script tag with the type attribute set to `application/json` with the contents containing the json.
-
-If any table header cell needed to be replaced an element can be provided with the slot name set to the key in the json object.
+We are passing a src attribute to the web component for this example but we can also add a script tag with the type attribute set to `text/xml` with the contents containing the json.
 
 ## Web Component
 
@@ -343,3 +339,4 @@ If you want to learn more about building with Lit you can read the docs [here](h
 
 The source for this example can be found [here](https://github.com/rodydavis/lit-sheet-music).
 
+<img width="100%" src="https://media.giphy.com/media/KbTUp85em6hdmmgTfK/giphy.gif">
