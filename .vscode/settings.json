@@ -4,6 +4,7 @@
         "figma",
         "jsonfeed",
         "mkdir",
+        "pubspec",
         "vite"
     ]
 }

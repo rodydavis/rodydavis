@@ -8,7 +8,7 @@ image: /img/banner.jpeg
 
 After you build your flutter project you may want to reuse the models and business logic from your lib folder. I will show you how to go about setting up the project to have iOS, Android, Web, Windows, MacOS, Linux and a REST API interface with one project. The REST API can also be deploy to Google Cloud Run for Dart everywhere.
 
-![](/img/gifs/mind_blown.gif)
+<img width="100%" src="/img/gifs/mind_blown.gif">
 
 > One Codebase for Client and Sever.
 
@@ -22,7 +22,7 @@ As with any Flutter project I am going to assume that you already have [Flutter]
 
 It may not be obvious but when building complex applications you will at some point have a server and an application that calls that server. [Firebase](https://firebase.google.com/) is an excellent option for doing this and I use it in almost all my projects. [Firebase Functions](https://firebase.google.com/products/functions/) are really powerful but you are limited by Javascript or Typescript. What if you could use the same packages that you are using in the Flutter project, or better yet what if they both used the same?
 
-![](https://cdn-images-1.medium.com/max/2000/1*1xVIzjzgJnmuWTJoaG3kAQ.gif)
+<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*1xVIzjzgJnmuWTJoaG3kAQ.gif">
 
 When you have a server project and a client project that communicate over a rest api or client sdk like Firebase then you will run into the problem that the server has models of objects stored and the client has models of the objects that are stored. This can lead to a serious mismatch when it changed without you knowing. GraphQL helps a lot with this since you define the model that you recieve. This approach allows your business logic to be always up to date for both the client and server.
 
@@ -118,7 +118,7 @@ This is just a basic screen and should look very normal.
 
 ### Counter Example
 
-![](https://cdn-images-1.medium.com/max/2336/1*qFZepZBtk0RhEojjGsI85g.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/2336/1*qFZepZBtk0RhEojjGsI85g.png">
 
 Now create a file ui/counter/screen.dart and add the following:
 
@@ -223,7 +223,7 @@ As you can see it is really easy to expose only what we want to while still havi
 
 ### Todo Example
 
-![](https://cdn-images-1.medium.com/max/2336/1*47x4TDkyWCo8-qMCfYaeng.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/2336/1*47x4TDkyWCo8-qMCfYaeng.png">
 
 Lets create a file at ui/todos/screen.dart and add the following:
 
@@ -366,9 +366,9 @@ Here we just get dummy data from a url that emits json and convert them to our c
 
 ### Run the Project (Web)
 
-![](https://cdn-images-1.medium.com/max/5248/1*et2kG6_skauXJ6rogFy_ZQ.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/5248/1*et2kG6_skauXJ6rogFy_ZQ.png">
 
-![](https://cdn-images-1.medium.com/max/5248/1*za20ru3G18DUFob07Cjv2A.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/5248/1*za20ru3G18DUFob07Cjv2A.png">
 
 As you can see when you run your project on chrome you will get the same application that you got on mobile. Even the networking is working in the web. You can call the model and retrieve the list just like you would expect.
 
@@ -655,21 +655,21 @@ If you are using [VSCode](https://code.visualstudio.com/) then you will need to 
 
 Now when you hit run with Server selected you will see the output:
 
-![](https://cdn-images-1.medium.com/max/2000/1*akfcrkLuxit4vZdtHJty_Q.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*akfcrkLuxit4vZdtHJty_Q.png">
 
 You can navigate to this in a browser but you can also work with this in [Postman](https://www.getpostman.com/).
 
-![](https://cdn-images-1.medium.com/max/4796/1*zJR2ZNZfCmvLg3y5wByLNA.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/4796/1*zJR2ZNZfCmvLg3y5wByLNA.png">
 
-![](https://cdn-images-1.medium.com/max/4788/1*Z2vnHjHEfYe8yWajGWVLOw.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/4788/1*Z2vnHjHEfYe8yWajGWVLOw.png">
 
 Just by adding to the url todos and todos/1 it will return different responses.
 
 For the counter model we can use query parameters too!
 
-![](https://cdn-images-1.medium.com/max/4768/1*YMwQEOoaCjngYpidKBbADg.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/4768/1*YMwQEOoaCjngYpidKBbADg.png">
 
-![](https://cdn-images-1.medium.com/max/4760/1*vPYs9780bcVrlIPBMjF4eQ.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/4760/1*vPYs9780bcVrlIPBMjF4eQ.png">
 
 Just by adding ?count=22 it will update the model with the input.
 
@@ -677,9 +677,9 @@ Just by adding ?count=22 it will update the model with the input.
 
 As a side benefit we can also run this project on Desktop. Check out the final project for the desktop folders needed from [Flutter Desktop Embedding](https://github.com/google/flutter-desktop-embedding).
 
-![](https://cdn-images-1.medium.com/max/3648/1*Mk_6Rlq2qMbpk79OPo_QBw.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/3648/1*Mk_6Rlq2qMbpk79OPo_QBw.png">
 
-![](https://cdn-images-1.medium.com/max/3648/1*hWirIWGRQjN8hVvUZsB2Nw.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/3648/1*hWirIWGRQjN8hVvUZsB2Nw.png">
 
 ## Conclusion
 

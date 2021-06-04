@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: 'Lit and Figma'
 date: 2021-05-10
 categories: [figma, web, lit, plugin]
-image: /img/banner.jpeg
+image: /img/figma/rectangles.png
 ---
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a figma plugin.

@@ -8,7 +8,7 @@ image: /img/banner.jpeg
 
 If you are using Firebase then you are probably familiar with Firebase Cloud Messaging. The setup on Flutter web is very different than mobile and other plugins you are probably used to.
 
-![](https://cdn-images-1.medium.com/max/3200/1*B0Av_NnFrCKsyC7gN94ytg.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/3200/1*B0Av_NnFrCKsyC7gN94ytg.png">
 
 ## Setting Up
 
@@ -72,7 +72,7 @@ _messaging.stream.listen((event) {
 
 Now when you run your application and request permissions you will get a token back. With this token you can open the firebase console and sent a test message to the token.
 
-![](https://cdn-images-1.medium.com/max/2000/1*ZzoPP7kRHOR-yDN6Sv9XjQ.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*ZzoPP7kRHOR-yDN6Sv9XjQ.png">
 
 ## Conclusion
 

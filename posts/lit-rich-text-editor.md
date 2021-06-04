@@ -3,7 +3,7 @@ layout: layouts/post.njk
 title: 'Building a Rich Text Editor with Lit'
 date: 2021-05-26
 categories: [editor, web, lit, wysiwyg]
-image: /img/banner.jpeg
+image: /img/rich-text/editor-finish.png
 ---
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a rich text editor.

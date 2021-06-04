@@ -89,7 +89,7 @@ Application finished.
 
 You can also run multiple devices at the same time. You can find more info on the [Flutter Octopus here](https://github.com/flutter/flutter/wiki/Multi-device-debugging-in-VS-Code). If everything went well you should see the following application launch:
 
-![](https://cdn-images-1.medium.com/max/3560/1*O3W-7Ge-qfMk7i4CgqN-oQ.png)
+<img width="100%" src="https://cdn-images-1.medium.com/max/3560/1*O3W-7Ge-qfMk7i4CgqN-oQ.png">
 
 It is a pretty basic application at this point but it is important to show how easy it is to change the state in the application. You can rebuild the UI just by calling “setState()”.
 
