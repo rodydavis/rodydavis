@@ -24,21 +24,21 @@ Here is the source code:
 
 * Update your “pubspec.yaml” with the following:
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*T8p4RgLHWHHaAo1JbhUB-g.png">
+<img width="100%" src="/img/deep-linking/0.png">
 
 ## Step 1
 
 * Create a file at “lib/ui/home/screen.dart” and add the following:
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*1qTWt0lGfSQeUwoTjzbFuA.png">
+<img width="100%" src="/img/deep-linking/1.png">
 
 * Update your “lib/main.dart” with the following:
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*Vo3FEkRX_to3SbYsUQ8a5Q.png">
+<img width="100%" src="/img/deep-linking/2.png">
 
 * Run your application and you should see the following:
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/3468/1*1O9oKvIOSCpgwJ6GekFG4Q.png">
+<img width="100%" src="/img/deep-linking/3.png">
 
 ## Step 2
 
@@ -48,19 +48,19 @@ Now we need to grab the url the user enters into the address bar.
 
 * Create a file inside named: “web.dart” with the following:
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2072/1*hkuI9pfODs-yewfNUPMbTw.png">
+<img width="100%" src="/img/deep-linking/4.png">
 
 * Create a file inside named: “unsupported.dart” with the following:
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*u2BPO9L2w9ci-RI9dOi43Q.png">
+<img width="100%" src="/img/deep-linking/5.png">
 
 * Create a file inside named: “navigator.dart” with the following:
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2032/1*-QnmWVuypD4z58ZXLircaA.png">
+<img width="100%" src="/img/deep-linking/6.png">
 
 * Now go back to your “lib/main.dart” file and add the navigator:
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2080/1*UN0nQy8wcXELNBzfIMqNZA.png">
+<img width="100%" src="/img/deep-linking/7.png">
 
 > It’s important to import the navigator as shown as this will have the conditional import for web compiling.
 
@@ -72,11 +72,11 @@ Now let’s add the proper routing.
 
 * Create a new file “lib/ui/router.dart” and add the following:
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2404/1*JpwIDmcnQMzxTdSr0OQWfQ.png">
+<img width="100%" src="/img/deep-linking/8.png">
 
 * Also update “lib/main.dart” with the following:
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2120/1*4e_oz-ENDkaBS35ZoEZQMA.png">
+<img width="100%" src="/img/deep-linking/9.png">
 
 > Notice how we removed the “home” field for MaterialApp. This is because the router will handle everything. By default we will go home on “/”
 
@@ -86,35 +86,35 @@ Now let’s add multiple screens to put this to the test! Add the following fold
 
 * Create a file “lib/ui/account/screen.dart” and add the following:
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2056/1*vRXbGfLK-D1827s2C57aEQ.png">
+<img width="100%" src="/img/deep-linking/10.png">
 
 * Create a file “lib/ui/settings/screen.dart” and add the following:
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*FJK7a8eeOyVFbAcULxo_Gw.png">
+<img width="100%" src="/img/deep-linking/11.png">
 
 * Create a file “lib/ui/about/screen.dart” and add the following:
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*A9CJ8-bGCv2Np6ZLS9l5oA.png">
+<img width="100%" src="/img/deep-linking/12.png">
 
 * Add the following to “lib/ui/router.dart”:
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2332/1*kKTHn14JH6AXhkbuLUCnFA.png">
+<img width="100%" src="/img/deep-linking/13.png">
 
 * Now when you navigate to /about, /account and /settings you will go to the new pages!
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/3468/1*5Qtymz13vrEZmCa9zRikWw.png">
+<img width="100%" src="/img/deep-linking/14.png">
 
 ## Step 5
 
 Now let’s tie into the browser navigation buttons! Update “lib/ui/home/screen.dart” with the following:
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2516/1*6JTelDsDG6njWK8watZdlQ.png">
+<img width="100%" src="/img/deep-linking/15.png">
 
 * Now when you run the application and click on the settings icon it will launch the new screen as expected. But if you click your browsers back button it will go back to the home screen!
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/3468/1*Fji7xHupcpduXITJ9JmzYw.png">
+<img width="100%" src="/img/deep-linking/16.png">
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/3468/1*8wQrI1MJPi6MGr65jaqjTQ.png">
+<img width="100%" src="/img/deep-linking/17.png">
 
 ## Step 6
 
@@ -122,15 +122,15 @@ These urls are great but what if you want to pass data such as an ID that is not
 
 * Update “lib/ui/account/screen.dart” with the following:
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2184/1*yOpcN7lpYP9cc5Mo2dJQwg.png">
+<img width="100%" src="/img/deep-linking/18.png">
 
 * Let’s update our “lib/ui/router.dart” with the following:
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2064/1*izyMARAi5g8GrV3q-qwUcw.png">
+<img width="100%" src="/img/deep-linking/19.png">
 
 * Now when you run your application and navigate to “/account/40” you will see the following:
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/3468/1*wKMr8wDsEWKxvrkTVnfKLQ.png">
+<img width="100%" src="/img/deep-linking/20.png">
 
 ## Conclusion
 
