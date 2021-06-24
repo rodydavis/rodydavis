@@ -29,10 +29,10 @@
     {% endif %}
     <link
     rel="canonical" href="{{ metadata.url }}{{ canonicalUrl or page.url }}"> <!-- This is a blog and so it SHOULD be safe and it is nice for the web
-           to send referrers cross-origin.
-           However, if you use sensitive data in URLs, consider changing this to
-           a value like `origin-when-cross-origin`
-           https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy -->
+                to send referrers cross-origin.
+                However, if you use sensitive data in URLs, consider changing this to
+                a value like `origin-when-cross-origin`
+                https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy -->
     <meta name="referrer" content="no-referrer-when-downgrade">
     <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
     <link rel="preconnect" href="/" crossorigin>
@@ -92,27 +92,64 @@
     </main>
     <footer>
       {% if metadata.author.twitter %}
-        <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/{{ metadata.author.twitter }}" class="fab fa-twitter"></a>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://twitter.com/{{ metadata.author.twitter }}"
+          class="fab fa-twitter"></a>
       {% endif %}
       {% if metadata.author.facebook %}
-        <a target="_blank" rel="noopener noreferrer" href="https://facebook.com/{{ metadata.author.facebook }}" class="fab fa-facebook"></a>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://facebook.com/{{ metadata.author.facebook }}"
+          class="fab fa-facebook"></a>
       {% endif %}
       {% if metadata.author.linkedin %}
-        <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/{{ metadata.author.linkedin }}" class="fab fa-linkedin"></a>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.linkedin.com/in/{{ metadata.author.linkedin }}"
+          class="fab fa-linkedin"></a>
       {% endif %}
       {% if metadata.author.youtube %}
-        <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/{{ metadata.author.youtube }}" class="fab fa-youtube"></a>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.youtube.com/{{ metadata.author.youtube }}"
+          class="fab fa-youtube"></a>
       {% endif %}
       {% if metadata.author.instagram %}
-        <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/{{ metadata.author.instagram }}" class="fab fa-instagram"></a>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.instagram.com/{{ metadata.author.instagram }}"
+          class="fab fa-instagram"></a>
       {% endif %}
       {% if metadata.author.github %}
-        <a target="_blank" rel="noopener noreferrer" href="https://www.github.com/{{ metadata.author.github }}" class="fab fa-github"></a>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.github.com/{{ metadata.author.github }}"
+          class="fab fa-github"></a>
       {% endif %}
       {% if metadata.author.tiktok %}
-        <a target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/@{{ metadata.author.tiktok }}" class="fab fa-tiktok"></a>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.tiktok.com/@{{ metadata.author.tiktok }}"
+          class="fab fa-tiktok"></a>
       {% endif %}
     </footer>
     <!-- Current page: {{ page.url | url }} -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-JQNPVBL9DR');
+    </script>
   </body>
 </html>
