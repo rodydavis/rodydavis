@@ -10,10 +10,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
+        run: npm i
+        run: npm i jimp lru-cache
       - name: Build
         uses: TartanLlama/actions-eleventy@v1.1
-        with:
-          install_dependencies: true
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
