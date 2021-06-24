@@ -8,12 +8,12 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Build and Deploy
+      - name: Checkout
         uses: actions/checkout@master
-      - name: Install Dependencies
-        run: npm install
       - name: Build
-        run: npm run build
+        uses: TartanLlama/actions-eleventy@v1.1
+        with:
+          install_dependencies: true
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
