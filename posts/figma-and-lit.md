@@ -385,7 +385,7 @@ npm run asbuild
 
 For the wasm build to be ignored for git add the following to .gitignore:
 
-```txt
+```bash
 build
 ```
 
