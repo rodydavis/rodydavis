@@ -185,7 +185,7 @@ Now we need to create the ui for the plugin:
 touch ui.html
 ```
 
-Open up `ui.html` and add the following:
+Open up `/src/ui.html` and add the following:
 
 ```html
 <my-app></my-app>
@@ -221,14 +221,14 @@ touch ui.ts
 cd ..
 ```
 
-Open `ui.ts` and paste the following:
+Open `/src/ui.ts` and paste the following:
 
 ```js
 import "./my-app";
 
 ```
 
-Open `my-app.ts` and paste the following:
+Open `/src/my-app.ts` and paste the following:
 
 ```js
 import { html, LitElement } from "lit";
@@ -236,13 +236,14 @@ import { customElement, query } from "lit/decorators.js";
 
 @customElement("my-app")
 export class MyApp extends LitElement {
+  @property() amount = "5";
   @query("#count") countInput!: HTMLInputElement;
 
   render() {
     return html`
       <div>
         <h2>Rectangle Creator</h2>
-        <p>Count: <input id="count" value="5" /></p>
+        <p>Count: <input id="count" value="${this.amount}" /></p>
         <button id="create" @click=${this.create}>Create</button>
         <button id="cancel" @click=${this.cancel}>Cancel</button>
       </div>
@@ -343,6 +344,118 @@ Now your plugin should launch and you can create 5 rectangles on the canvas.
 If everything worked you will have 5 new rectangles on the canvas focused by figma.
 
 <img width="100%" src="/img/figma/rectangles.png">
+
+## WASM Support
+
+If there is a heavy computation that could benefit from running in [WebAssembly](https://webassembly.org/) the following will ensure that it is hardware accelerated when possible.
+
+Let's add [AssemblyScript](https://www.assemblyscript.org/) and some dependencies that will be used for loading the WASM into the figma ui.
+
+```bash
+npm i @assemblyscript/loader
+npm i --D assemblyscript js-inline-wasm
+npx asinit .
+```
+
+Confirm yes to the prompt to have it generate the project files and add the following to the scripts in `package.json`:
+
+```bash
+"asbuild:untouched": "asc assembly/index.ts --target debug",
+"asbuild:optimized": "asc assembly/index.ts --target release",
+"asbuild": "npm run asbuild:untouched && npm run asbuild:optimized",
+"inlinewasm": "inlinewasm build/optimized.wasm --output src/wasm.ts",
+```
+
+The code that will be used for the WASM is in `/assembly/index.ts` and it should show the following:
+
+```js
+// The entry file of your WebAssembly module.
+
+export function add(a: i32, b: i32): i32 {
+  return a + b;
+}
+
+```
+
+Now let's build the wasm module:
+
+```bash
+npm run asbuild
+```
+
+For the wasm build to be ignored for git add the following to .gitignore:
+
+```txt
+build
+```
+
+This will generate the wasm and wat files in the build directory, but for figma to load them into the ui it needs to be inlined so run the following command to generate the js from the wasm file:
+
+```bash
+npm run inlinewasm
+```
+
+This should generate `src/wasm.ts` with the following:
+
+```js
+const encoded = 'AGFzbQEAAAABBwFgAn9/AX8DAgEABQMBAAAHEAIDYWRkAAAGbWVtb3J5AgAKCQEHACAAIAFqCwAmEHNvdXJjZU1hcHBpbmdVUkwULi9vcHRpbWl6ZWQud2FzbS5tYXA=';
+export default new Promise(resolve => {
+    const decoded = atob(encoded);
+    const len = decoded.length;
+    const bytes = new Uint8Array(len);
+    for (var i = 0; i < len; i++) {
+        bytes[i] = decoded.charCodeAt(i);
+    }
+    resolve(new Response(bytes, { status: 200, headers: { "Content-Type": "application/wasm" } }));
+});
+
+```
+
+Now open up the `/src/my-app.ts` and update with the following:
+
+```js
+import { html, LitElement } from "lit";
+import { customElement, property, query } from "lit/decorators.js";
+
+@customElement("my-app")
+export class MyApp extends LitElement {
+  @property() amount = "5"; // <-- Pass in a value for the number of rectangles to create
+  @query("#count") countInput!: HTMLInputElement;
+
+  render() {
+    return html`
+      <div>
+        <h2>Rectangle Creator</h2>
+        <!-- Pass in the amount to the input value -->
+        <p>Count: <input id="count" value="${this.amount}" /></p>
+        ...
+      </div>
+    `;
+  }
+  ...
+}
+```
+
+This will let us pass in the amount of boxes to create externally.
+
+Now open `/src/ui.ts` and update it with the following:
+
+```js
+import "./my-app";
+
+import wasm from "./wasm"; // <-- Our WASM file to load
+
+WebAssembly.instantiateStreaming(wasm as Promise<Response>).then((obj) => {
+  // @ts-ignore
+  const value: number = obj.instance.exports.add(2, 4);
+  console.log("return from wasm", value);
+  const elem = document.querySelector('my-app')! as HTMLElement;
+  elem.setAttribute('amount', `${value}`);
+});
+
+```
+
+Now when we build the plugin and run it in figma the amount of boxes will be the result of calling into wasm!
 
 ## Conclusion
 
