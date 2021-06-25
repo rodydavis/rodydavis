@@ -6,9 +6,9 @@ categories: [vscode, web, lit, plugin, extension]
 image: /img/vscode/final.png
 ---
 
-In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a figma plugin.
+In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a VSCode extension.
 
-**TLDR** You can find the final source [here](https://github.com/rodydavis/figma_lit_example).
+**TLDR** You can find the final source [here](https://github.com/rodydavis/lit-vscode-extension).
 
 ## Prerequisites
 
@@ -106,7 +106,6 @@ Open `package.json` and update it with the following:
     "lit": "^2.0.0-rc.2"
   },
   "devDependencies": {
-    "@rollup/plugin-multi-entry": "^4.0.0",
     "@types/node": "^15.12.4",
     "@types/vscode": "^1.57.0",
     "typescript": "^4.2.3",
