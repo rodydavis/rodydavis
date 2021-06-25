@@ -11,23 +11,27 @@ eleventyNavigation:
 
 <img src='/img/profile.jpg' width="100%">
 
-My name is Rody Davis and I grew up in Alabama but currently work at Google on the [Material Design](https://material.io/) team as a Developer Advocate and live in San Francisco. 
+My name is Rody Davis and I grew up in Alabama and currently work at Google on the [Material Design](https://material.io/) team as a Developer Advocate and live in San Francisco. 
 
 <img src='/img/personal/golden_gate.jpeg' width="100%">
 
-Growing up, I was always taking apart every device I had and recreating it to figure it out and how it worked then sometimes making something new. I always wanted to be an inventor growing up, and I was always sketching out designs and building prototypes and stuffing them in a box. In high school I was in marching band on the drumline and worked many jobs. When I went to Florida College there was a job I thought I always wanted to do, which was being the Audio Visual Technician. After working that job for almost five years I joined a small startup where I managed the video department and later became the System Administrator.
+Growing up, I was always taking apart every device I had and recreating it to figure it out and how it worked then sometimes making something new. I always wanted to be an inventor growing up, and I would sketch out designs and build prototypes and stuff them in a box. In high school I was in marching band on the drumline and worked many jobs.
+
+I went to Florida College with the intention of being an Audio Visual Technician. After working that job for almost five years, I joined a small startup where I managed the video department and later became the System Administrator.
 
 <img src='/img/personal/grand_canyon.jpeg' width="100%">
 
-The job was not what I wanted however, so I slowly but steadily taught my self mobile development. I created my first app and released it into the AppStore, “The Pitch Pipe”, and it quickly gained traction as it fulfilled a need in the market being undeserved. I then was able to get a job a professional mobile developer and now I am in charge of the mobile department creating both Android and iOS apps.
+Eventually I realized that this was not the job I wanted anymore, so I slowly but steadily taught my self mobile development. I created my first app and released it to the AppStore- “The Pitch Pipe”- and it quickly gained traction as it fulfilled a need in the market being overlooked. I was then able to get a job as a professional mobile developer and now I am in charge of the mobile department creating both Android and iOS apps.
 
 <img src='/img/personal/shuttle.jpeg' width="100%">
 
-Something that dawned on me recently is that I am doing my dream job, I always wanted to be an inventor and now I am. It may not involve physical products but the rules still apply. I get to create products from pure imagination and bring them to market.
+Something that dawned on me recently is that I am doing my dream job. I always wanted to be an inventor and now I am. It may not involve physical products but the rules still apply. I get to create products from pure imagination and bring them to market.
 
 <img src='/img/personal/family.jpeg' width="100%">
 
-I am looking forward to what the future will bring and I’m excited about all the new technologies coming up. All the apps I create try to reflect me learning and trying to perfect different markets and technologies for mobile. We spend a majority of our lives on our smart phones, there is now more than ever a need for high quality and functioning apps. Never stop learning and trying to be better.
+I am looking forward to what the future will bring and I’m excited about all the new technologies coming up. All the apps I create reflect what I am learning and trying to perfect with the different markets and technologies for mobile. We spend a majority of our lives on our smart phones, so there is a need now more than ever for high quality and functioning apps. 
+
+Never stop learning and trying to be better.
 
 ## Discover
 
