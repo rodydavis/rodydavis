@@ -514,6 +514,7 @@ export class CSSCanvas extends LitElement {
             this.moveElement(child, delta);
           });
         });
+        child.setAttribute("draggable", "false");
         i++;
       }
     }
@@ -530,6 +531,9 @@ export class CSSCanvas extends LitElement {
           }
         }
       });
+    });
+    this.root.addEventListener("touchstart", function (e) {
+      e.preventDefault();
     });
     this.root.addEventListener("pointerup", (e: any) => {
       this.handleUp(e);
