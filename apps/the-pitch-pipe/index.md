@@ -2,8 +2,13 @@
 layout: layouts/base.njk
 title: 'The Pitch Pipe'
 date: 2017-03-10
-categories: [ios, android, music]
-tags: [pitch pipe, music, sheet music, teachers, education]
+tags:
+- pitch pipe
+- music
+- teachers
+- education
+- ios
+- android
 image: /img/the-pitch-pipe/icon.png
 ---
 

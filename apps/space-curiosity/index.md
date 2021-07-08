@@ -2,8 +2,15 @@
 layout: layouts/base.njk
 title:  "Launching... Space Curiosity"
 date:   2019-03-10
-categories: [flutter, ios, android]
-tags: [flutter, spacex, nasa, iss, planets, space]
+tags:
+- flutter
+- spacex
+- nasa
+- iss
+- planets
+- space
+- ios
+- android
 image: /img/space-curiosity/icon.png
 ---
 

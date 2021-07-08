@@ -2,7 +2,11 @@
 layout: layouts/post.njk
 title: "The Perfect Brisket"
 date: 2020-12-24
-categories: [cooking, recipe, diy]
+tags:
+- posts
+- cooking
+- recipe
+- diy
 image: /img/cooking/brisket-done.jpeg
 ---
 

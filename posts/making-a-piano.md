@@ -2,7 +2,10 @@
 layout: layouts/post.njk
 title:  "Building A Piano with Flutter"
 date:   2019-03-12
-categories: [flutter, music]
+tags:
+- posts
+- flutter
+- music
 image: /img/banner.jpeg
 ---
 

@@ -2,8 +2,15 @@
 layout: layouts/base.njk
 title: "Widget Studio"
 date: 2018-06-08
-categories: [ios, android, desktop]
-tags: [ide, editor, code, drag-and-drop, flutter]
+tags:
+- ide
+- editor
+- code
+- drag-and-drop
+- flutter
+- ios
+- android
+- desktop
 image: /img/widget-studio/icon.png
 ---
 

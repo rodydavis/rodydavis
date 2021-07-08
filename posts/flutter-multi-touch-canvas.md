@@ -2,7 +2,10 @@
 layout: layouts/post.njk
 title: "Multi-touch Canvas with Flutter"
 date: 2020-06-10
-categories: [flutter, graphics]
+tags:
+- posts
+- flutter
+- graphics
 image: /img/banner.jpeg
 ---
 

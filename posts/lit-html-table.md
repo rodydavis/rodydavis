@@ -2,13 +2,25 @@
 layout: layouts/post.njk
 title: 'JSON to HTML Table with Lit'
 date: 2021-06-03
-categories: [web, lit, json, html]
+tags:
+- posts
+- web
+- lit
+- json
+- html
+- playground
 image: /img/banner.jpeg
 ---
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a HTML [Table](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table) from json url or inline json.
 
 **TLDR** The final source [here](https://github.com/rodydavis/lit-html-table) and an online [demo](https://rodydavis.github.io/lit-html-table/).
+
+<playground-ide editable-file-system line-numbers resizable></playground-ide>
+
+<script>
+  addFiles('lit-html-table', 'lit-html-table.ts')
+</script>
 
 ## Prerequisites
 

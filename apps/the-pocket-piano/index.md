@@ -2,8 +2,11 @@
 layout: layouts/base.njk
 title: "The Pocket Piano"
 date: 2018-06-08
-categories: [ios, android, music]
-tags: [pitch pipe, music, sheet music, teachers, education]
+tags:
+- music
+- piano
+- ios
+- android
 image: /img/the-pocket-piano/icon.png
 ---
 

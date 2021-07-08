@@ -2,7 +2,10 @@
 layout: layouts/post.njk
 title: "Host your Flutter Project as a REST API"
 date: 2019-10-18
-categories: [flutter, api]
+tags:
+- posts
+- flutter
+- api
 image: /img/banner.jpeg
 ---
 

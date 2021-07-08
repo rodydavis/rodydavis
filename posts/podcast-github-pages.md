@@ -2,7 +2,11 @@
 layout: layouts/post.njk
 title: "How To Host Your Podcast For Free On Github Pages"
 date: 2020-03-27
-categories: [flutter, podcast, github]
+tags:
+- posts
+- flutter
+- podcast
+- github
 image: /img/banner.jpeg
 ---
 

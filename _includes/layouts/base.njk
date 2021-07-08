@@ -48,6 +48,35 @@
           .classList
           .add('apple')
     </script>
+
+    <script type="text/javascript">
+      function getCode(repo, path, branch) {
+        const url = `https://raw.githubusercontent.com/rodydavis/${repo}/${branch}/${path}`;
+        return fetch(url).then((res) => res.text());
+      }
+      async function addFiles(tag, path, branch = "main") {
+          const ide = document.querySelector('playground-ide');
+          const ui = await getCode(tag, 'index.html', branch);
+          const code = await getCode(tag, `src/${path}`, branch);
+          const name = path.split('.ts').join('.js');
+          const config = { files: {} };
+          config.files['index.html'] = { content:  ui.split(`/src/${path}`).join(`./${name}`) };
+          config.files[path] = { content: code };
+          ide.config = config;
+      }
+    </script>
+
+    <style>
+      playground-id {
+        height: 500px;
+        width: 100%;
+      }
+    </style>
+
+    <script
+      type="module"
+      src="https://unpkg.com/playground-elements@0.10.0/playground-ide.js?module"
+    ></script>
     <!-- css is inserted by optimize-html custom plugin -->
   </head>
   <body>

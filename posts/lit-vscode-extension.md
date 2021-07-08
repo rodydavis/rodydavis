@@ -2,7 +2,13 @@
 layout: layouts/post.njk
 title: 'Lit and VSCode Extensions'
 date: 2021-06-24
-categories: [vscode, web, lit, plugin, extension]
+tags:
+- posts
+- vscode
+- web
+- lit
+- plugin
+- extension
 image: /img/vscode/final.png
 ---
 

@@ -2,8 +2,11 @@
 layout: layouts/post.njk
 title:  "Flutter + Fastlane (One Click Beta)"
 date:   2019-03-11
-categories: [flutter, scripting]
-tags: [flutter, ci, automation, fastlane, AppStore, Google Play]
+tags:
+- posts
+- flutter
+- ci
+- scripting
 image: /img/banner.jpeg
 ---
 

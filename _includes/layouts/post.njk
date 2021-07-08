@@ -4,7 +4,6 @@ templateClass: tmpl-post
 ---
 {% extends "layouts/base.njk" %}
 
-
 {% block extraArticleHeader %}
    {% set wc = content | striptags | wordcount %}
    {% set wPerMinute = (wc / 240) + 1 %}
@@ -16,6 +15,15 @@ templateClass: tmpl-post
 {% set shareUrl = metadata.url + page.url %}
 
 {% block article %}
+
+<div class="tags">
+{% for tag in tags -%}
+  {% if tag !== 'posts' %}
+    <a class="click" href="/tags/{{ tag }}"><div class="chip">{{ tag }}</div></a>
+  {% endif %}
+{%- endfor %}
+</div>
+
 {{ content | safe }}
 
 <h1>🙏🙏🙏</h1>
@@ -54,7 +62,6 @@ templateClass: tmpl-post
   "description": "{{ content | striptags | truncate(140) }}"
 }
 </script>
-
 
 {# <script
   src="https://utteranc.es/client.js"
