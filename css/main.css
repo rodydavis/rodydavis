@@ -1,4 +1,5 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css);
+@import url(https://unpkg.com/playground-elements@0.10.0/themes/tomorrow-night-eighties.css);
 
 /* Color customization */
 :root {
@@ -8,6 +9,7 @@
   --background: #181818;
   --on-background: #eee;
   --surface: #fff;
+  --default-font: Inter UI, normal;
 }
 
 /* :root {
@@ -43,7 +45,7 @@
   border-radius: 25px;
   margin: 4px;
   background-color: var(--primary);
-  color: var(--on-primary)
+  color: var(--on-primary);
 }
 
 .test-dead-code-elimination-sentinel {
