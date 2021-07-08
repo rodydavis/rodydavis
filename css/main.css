@@ -1,10 +1,13 @@
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css);
+
 /* Color customization */
 :root {
   --primary: #f9c412;
+  --on-primary: #181818;
   --secondary: #e7bf60;
   --background: #181818;
   --on-background: #eee;
-  --surface: #FFF;
+  --surface: #fff;
 }
 
 /* :root {
@@ -24,6 +27,24 @@
     --surface: #FFF;
   }
 } */
+
+.tags {
+  display: wrap;
+}
+
+.click {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.chip {
+  display: inline-block;
+  padding: 0 15px;
+  border-radius: 25px;
+  margin: 4px;
+  background-color: var(--primary);
+  color: var(--on-primary)
+}
 
 .test-dead-code-elimination-sentinel {
   color: red;
@@ -1118,11 +1139,12 @@ main {
 footer {
   background: var(--background);
   color: var(--on-background);
-  padding: 3em;
+  padding: 2em;
   text-align: center;
+  padding-bottom: 100px;
 }
 footer > * {
-  margin: 1.5em;
+  margin: 0.6em;
 }
 footer nav a img {
   vertical-align: middle;
