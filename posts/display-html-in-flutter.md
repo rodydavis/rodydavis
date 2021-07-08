@@ -2,7 +2,10 @@
 layout: layouts/post.njk
 title: "Displaying HTML in Flutter"
 date: 2020-03-10
-categories: [flutter, web]
+tags:
+- posts
+- flutter
+- web
 image: /img/banner.jpeg
 ---
 

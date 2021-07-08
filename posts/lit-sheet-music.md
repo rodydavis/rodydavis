@@ -2,7 +2,13 @@
 layout: layouts/post.njk
 title: "Lit Sheet Music"
 date: 2021-06-04
-categories: [web, lit, sheet-music, music, html]
+tags:
+- posts
+- web
+- lit
+- sheet-music
+- music
+- html
 image: https://media.giphy.com/media/KbTUp85em6hdmmgTfK/giphy.gif
 ---
 

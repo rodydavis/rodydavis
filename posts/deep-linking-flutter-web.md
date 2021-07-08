@@ -2,7 +2,10 @@
 layout: layouts/post.njk
 title: "Deep Linking for Flutter Web"
 date: 2020-03-11
-categories: [flutter, web]
+tags:
+- posts
+- flutter
+- web
 image: /img/banner.jpeg
 ---
 

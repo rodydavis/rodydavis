@@ -2,13 +2,25 @@
 layout: layouts/post.njk
 title: 'CSS Canvas with Lit'
 date: 2021-06-23
-categories: [web, lit, css, canvas]
+tags:
+- posts
+- web
+- lit
+- css
+- canvas
+- playground
 image: /img/css-canvas/canvas.png
 ---
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a interactive canvas with CSS transforms and slots.
 
 **TLDR** The final source [here](https://github.com/rodydavis/lit-css-canvas) and an online [demo](https://rodydavis.github.io/lit-css-canvas/).
+
+<playground-ide editable-file-system line-numbers resizable></playground-ide>
+
+<script>
+  addFiles('lit-css-canvas', 'css-canvas.ts')
+</script>
 
 ## Prerequisites
 

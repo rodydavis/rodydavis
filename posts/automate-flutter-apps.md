@@ -2,7 +2,10 @@
 layout: layouts/post.njk
 title: "Automate Flutter App Releases"
 date: 2019-03-15
-categories: [flutter, apps]
+tags:
+- posts
+- flutter
+- apps
 image: /img/banner.jpeg
 ---
 

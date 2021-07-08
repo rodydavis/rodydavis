@@ -2,7 +2,12 @@
 layout: layouts/post.njk
 title: 'Lit and Figma'
 date: 2021-05-10
-categories: [figma, web, lit, plugin]
+tags:
+- posts
+- lit
+- figma
+- plugin
+- web
 image: /img/figma/rectangles.png
 ---
 

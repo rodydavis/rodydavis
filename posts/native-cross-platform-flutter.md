@@ -2,7 +2,9 @@
 layout: layouts/post.njk
 title: "How to build a native cross platform project with Flutter"
 date: 2019-09-06
-categories: [flutter]
+tags:
+- posts
+- flutter
 image: /img/banner.jpeg
 ---
 

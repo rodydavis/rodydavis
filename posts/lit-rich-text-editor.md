@@ -2,13 +2,25 @@
 layout: layouts/post.njk
 title: 'Building a Rich Text Editor with Lit'
 date: 2021-05-26
-categories: [editor, web, lit, wysiwyg]
+tags:
+- posts
+- editor
+- web
+- lit
+- wysiwyg
+- playground
 image: /img/rich-text/editor-finish.png
 ---
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a rich text editor.
 
 **TLDR** The final source [here](https://github.com/rodydavis/lit-html-editor) and an online [demo](https://rodydavis.github.io/lit-html-editor/).
+
+<playground-ide editable-file-system line-numbers resizable></playground-ide>
+
+<script>
+  addFiles('lit-html-editor', 'rich-text-editor.ts', 'master')
+</script>
 
 ## Prerequisites
 

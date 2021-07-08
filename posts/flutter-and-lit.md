@@ -2,7 +2,11 @@
 layout: layouts/post.njk
 title: 'Lit and Flutter'
 date: 2021-05-05
-categories: [flutter, web, lit]
+tags:
+- posts
+- flutter
+- web
+- lit
 image: /img/banner.jpeg
 ---
 

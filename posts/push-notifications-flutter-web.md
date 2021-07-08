@@ -2,7 +2,10 @@
 layout: layouts/post.njk
 title: "How To Send Push Notifications on Flutter Web (FCM)"
 date: 2020-05-01
-categories: [flutter, web]
+tags:
+- posts
+- flutter
+- web
 image: /img/banner.jpeg
 ---
 

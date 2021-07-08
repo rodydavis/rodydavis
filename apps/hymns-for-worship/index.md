@@ -2,8 +2,13 @@
 layout: layouts/base.njk
 title: "Hymns for Worship"
 date: 2019-01-01
-categories: [ios, android, music]
-tags: [pitch pipe, music, sheet music, teachers, education]
+tags:
+- pitch pipe
+- music
+- teachers
+- education
+- ios
+- android
 image: /img/hymns-for-worship/icon.png
 ---
 

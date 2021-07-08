@@ -2,7 +2,9 @@
 layout: layouts/post.njk
 title: "Creating Your First Flutter Project"
 date: 2019-04-28
-categories: [flutter]
+tags:
+- posts
+- flutter
 image: /img/banner.jpeg
 ---
 
