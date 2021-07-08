@@ -165,6 +165,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addCollection("tagList", require("./_11ty/getTagList"));
 
+  eleventyConfig.addPassthroughCopy("CNAME");
   eleventyConfig.addPassthroughCopy("img");
   eleventyConfig.addPassthroughCopy("css");
   // We need to copy cached.js only if GA is used
