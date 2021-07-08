@@ -63,21 +63,33 @@
           config.files['index.html'] = { content:  ui.split(`/src/${path}`).join(`./${name}`) };
           config.files[path] = { content: code };
           ide.config = config;
+          ide.id = 'playground';
+          ide.className = 'playground-theme-tomorrow-night-eighties'
       }
     </script>
-
-    <style>
-      playground-id {
-        height: 500px;
-        width: 100%;
-      }
-    </style>
 
     <script
       type="module"
       src="https://unpkg.com/playground-elements@0.10.0/playground-ide.js?module"
     ></script>
     <!-- css is inserted by optimize-html custom plugin -->
+
+    <style>
+      playground-ide {
+        height: 500px;
+        width: 100%;
+        --playground-preview-width: 40%;
+        --playground-code-background: var(--background);
+        --playground-tab-bar-background: var(--background);
+        --playground-tab-bar-foreground-color: var(--on-background);
+        --playground-border: var(--on-background);
+        --playground-preview-toolbar-background: var(--background);
+        --playground-preview-toolbar-foreground-color: var(--on-background);
+        --playground-highlight-color: var(--primary);
+        --playground-code-default-color: var(--primary);
+        --playground-code-font-family: var(--default-font);
+      }
+    </style>
   </head>
   <body>
     <header>

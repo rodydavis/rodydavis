@@ -19,7 +19,7 @@ templateClass: tmpl-post
 <div class="tags">
 {% for tag in tags -%}
   {% if tag !== 'posts' %}
-    <a class="click" href="/tags/{{ tag }}"><div class="chip">{{ tag }}</div></a>
+    <a class="click" href="/tags/{{ tag }}/"><div class="chip">{{ tag }}</div></a>
   {% endif %}
 {%- endfor %}
 </div>
