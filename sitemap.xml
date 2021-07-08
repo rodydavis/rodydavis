@@ -334,7 +334,7 @@
     
   
   <url>
-    <loc>https://rodydavis.com/tags/ci/</loc>
+    <loc>https://rodydavis.com/tags/apps/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -350,6 +350,21 @@
   
   <url>
     <loc>https://rodydavis.com/tags/web/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/ci/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -409,37 +424,7 @@
     
   
   <url>
-    <loc>https://rodydavis.com/tags/apps/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
     <loc>https://rodydavis.com/tags/scripting/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/api/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -469,7 +454,7 @@
     
   
   <url>
-    <loc>https://rodydavis.com/tags/json/</loc>
+    <loc>https://rodydavis.com/tags/api/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -484,7 +469,22 @@
     
   
   <url>
-    <loc>https://rodydavis.com/tags/html/</loc>
+    <loc>https://rodydavis.com/tags/css/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/canvas/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -544,7 +544,7 @@
     
   
   <url>
-    <loc>https://rodydavis.com/tags/vscode/</loc>
+    <loc>https://rodydavis.com/tags/html/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -559,37 +559,7 @@
     
   
   <url>
-    <loc>https://rodydavis.com/tags/extension/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/css/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/canvas/</loc>
+    <loc>https://rodydavis.com/tags/json/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -620,6 +590,36 @@
   
   <url>
     <loc>https://rodydavis.com/tags/wysiwyg/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/vscode/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/extension/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -709,111 +709,6 @@
     
   
   <url>
-    <loc>https://rodydavis.com/tags/spacex/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/nasa/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/iss/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/planets/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/space/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/ios/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/android/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
     <loc>https://rodydavis.com/tags/pitch-pipe/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
@@ -845,6 +740,36 @@
   
   <url>
     <loc>https://rodydavis.com/tags/education/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/ios/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/android/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -920,6 +845,81 @@
   
   <url>
     <loc>https://rodydavis.com/tags/desktop/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/spacex/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/nasa/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/iss/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/planets/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/space/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
