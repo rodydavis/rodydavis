@@ -16,8 +16,7 @@ In this article I will go over how to set up a [Lit](https://lit.dev) web compon
 
 **TLDR** The final source [here](https://github.com/rodydavis/lit-html-table) and an online [demo](https://rodydavis.github.io/lit-html-table/).
 
-<playground-ide editable-file-system line-numbers resizable></playground-ide>
-
+<div id="playground" hidden></div>
 <script>
   addFiles('lit-html-table', 'lit-html-table.ts')
 </script>
