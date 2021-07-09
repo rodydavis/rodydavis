@@ -336,8 +336,8 @@
     
   
   <url>
-    <loc>https://rodydavis.com/posts/lit-css-canvas/</loc>
-    <lastmod>2021-07-09T00:14:02.000Z</lastmod>
+    <loc>https://rodydavis.com/posts/lit-draggable-dom/</loc>
+    <lastmod>2021-07-09T02:25:30.000Z</lastmod>
   </url>
   
   
@@ -678,32 +678,6 @@
   
   
   <url>
-    <loc>https://rodydavis.com/tags/vscode/</loc>
-    <lastmod>2021-07-09T00:39:16.951Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  <url>
-    <loc>https://rodydavis.com/tags/extension/</loc>
-    <lastmod>2021-07-09T00:39:16.951Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  <url>
     <loc>https://rodydavis.com/tags/sheet-music/</loc>
     <lastmod>2021-07-09T00:39:16.951Z</lastmod>
   </url>
@@ -718,6 +692,32 @@
   
   <url>
     <loc>https://rodydavis.com/tags/music/</loc>
+    <lastmod>2021-07-09T00:39:16.951Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <url>
+    <loc>https://rodydavis.com/tags/vscode/</loc>
+    <lastmod>2021-07-09T00:39:16.951Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <url>
+    <loc>https://rodydavis.com/tags/extension/</loc>
     <lastmod>2021-07-09T00:39:16.951Z</lastmod>
   </url>
   
@@ -795,71 +795,6 @@
   
   
   <url>
-    <loc>https://rodydavis.com/tags/pitch-pipe/</loc>
-    <lastmod>2021-07-09T00:39:16.951Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  <url>
-    <loc>https://rodydavis.com/tags/teachers/</loc>
-    <lastmod>2021-07-09T00:39:16.951Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  <url>
-    <loc>https://rodydavis.com/tags/education/</loc>
-    <lastmod>2021-07-09T00:39:16.951Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  <url>
-    <loc>https://rodydavis.com/tags/ios/</loc>
-    <lastmod>2021-07-09T00:39:16.951Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  <url>
-    <loc>https://rodydavis.com/tags/android/</loc>
-    <lastmod>2021-07-09T00:39:16.951Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  <url>
     <loc>https://rodydavis.com/tags/spacex/</loc>
     <lastmod>2021-07-09T00:39:16.951Z</lastmod>
   </url>
@@ -925,6 +860,84 @@
   
   
   <url>
+    <loc>https://rodydavis.com/tags/ios/</loc>
+    <lastmod>2021-07-09T00:39:16.951Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <url>
+    <loc>https://rodydavis.com/tags/android/</loc>
+    <lastmod>2021-07-09T00:39:16.951Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <url>
+    <loc>https://rodydavis.com/tags/pitch-pipe/</loc>
+    <lastmod>2021-07-09T00:39:16.951Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <url>
+    <loc>https://rodydavis.com/tags/teachers/</loc>
+    <lastmod>2021-07-09T00:39:16.951Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <url>
+    <loc>https://rodydavis.com/tags/education/</loc>
+    <lastmod>2021-07-09T00:39:16.951Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <url>
+    <loc>https://rodydavis.com/tags/piano/</loc>
+    <lastmod>2021-07-09T00:39:16.951Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <url>
     <loc>https://rodydavis.com/tags/ide/</loc>
     <lastmod>2021-07-09T00:39:16.951Z</lastmod>
   </url>
@@ -977,19 +990,6 @@
   
   
   <url>
-    <loc>https://rodydavis.com/tags/piano/</loc>
-    <lastmod>2021-07-09T00:39:16.951Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  <url>
     <loc>https://rodydavis.com/talks/</loc>
     <lastmod>2021-07-09T00:39:16.951Z</lastmod>
   </url>
@@ -1005,23 +1005,8 @@
     
   
   <url>
-    <loc>https://rodydavis.com/examples/lit-css-canvas/README/</loc>
-    <lastmod>2021-07-09T01:16:16.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
     <loc>https://rodydavis.com/examples/lit-css-canvas/</loc>
-    <lastmod>2021-07-09T01:16:16.000Z</lastmod>
+    <lastmod>2021-07-09T02:25:30.000Z</lastmod>
   </url>
   
   
@@ -1277,5 +1262,35 @@
   <url>
     <loc>https://rodydavis.com/examples/flutter_multi_touch_canvas/web/</loc>
     <lastmod>2021-07-09T01:16:16.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/posts/lit-css-canvas/</loc>
+    <lastmod>2021-07-09T02:25:30.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/examples/lit-css-canvas/README/</loc>
+    <lastmod>2021-07-09T02:25:30.000Z</lastmod>
   </url>
 </urlset>
