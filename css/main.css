@@ -1,5 +1,4 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css);
-@import url(https://unpkg.com/playground-elements@0.10.0/themes/tomorrow-night-eighties.css);
 
 /* Color customization */
 :root {
@@ -10,6 +9,16 @@
   --on-background: #eee;
   --surface: #fff;
   --default-font: Inter UI, normal;
+}
+
+#playground {
+  width: 100%;
+}
+#playground > playground-file-editor {
+  height: auto;
+}
+#playground > playground-preview {
+  height: 450px;
 }
 
 /* :root {

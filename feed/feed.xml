@@ -1367,7 +1367,7 @@ Create a new file at &lt;code&gt;src/controllers/canvas.dart&lt;/code&gt; and ad
 		<content type="html">
 		  &lt;p&gt;In this article I will go over how to set up a &lt;a href=&quot;https://lit.dev/&quot;&gt;Lit&lt;/a&gt; web component and use it to create a rich text editor.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;TLDR&lt;/strong&gt; The final source &lt;a href=&quot;https://github.com/rodydavis/lit-html-editor&quot;&gt;here&lt;/a&gt; and an online &lt;a href=&quot;https://rodydavis.github.io/lit-html-editor/&quot;&gt;demo&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;playground-ide editable-file-system=&quot;&quot; line-numbers=&quot;&quot; resizable=&quot;&quot;&gt;&lt;/playground-ide&gt;&lt;/p&gt;
+&lt;div id=&quot;playground&quot; hidden=&quot;&quot;&gt;&lt;/div&gt;
 &lt;script&gt;
   addFiles(&#39;lit-html-editor&#39;, &#39;rich-text-editor.ts&#39;, &#39;master&#39;)
 &lt;/script&gt;
@@ -1430,7 +1430,7 @@ Create a new file at &lt;code&gt;src/controllers/canvas.dart&lt;/code&gt; and ad
 		<content type="html">
 		  &lt;p&gt;In this article I will go over how to set up a &lt;a href=&quot;https://lit.dev/&quot;&gt;Lit&lt;/a&gt; web component and use it to create a HTML &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table&quot;&gt;Table&lt;/a&gt; from json url or inline json.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;TLDR&lt;/strong&gt; The final source &lt;a href=&quot;https://github.com/rodydavis/lit-html-table&quot;&gt;here&lt;/a&gt; and an online &lt;a href=&quot;https://rodydavis.github.io/lit-html-table/&quot;&gt;demo&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;playground-ide editable-file-system=&quot;&quot; line-numbers=&quot;&quot; resizable=&quot;&quot;&gt;&lt;/playground-ide&gt;&lt;/p&gt;
+&lt;div id=&quot;playground&quot; hidden=&quot;&quot;&gt;&lt;/div&gt;
 &lt;script&gt;
   addFiles(&#39;lit-html-table&#39;, &#39;lit-html-table.ts&#39;)
 &lt;/script&gt;
@@ -1541,7 +1541,7 @@ Create a new file at &lt;code&gt;src/controllers/canvas.dart&lt;/code&gt; and ad
 		<content type="html">
 		  &lt;p&gt;In this article I will go over how to set up a &lt;a href=&quot;https://lit.dev/&quot;&gt;Lit&lt;/a&gt; web component and use it to create a interactive canvas with CSS transforms and slots.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;TLDR&lt;/strong&gt; The final source &lt;a href=&quot;https://github.com/rodydavis/lit-css-canvas&quot;&gt;here&lt;/a&gt; and an online &lt;a href=&quot;https://rodydavis.github.io/lit-css-canvas/&quot;&gt;demo&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;playground-ide editable-file-system=&quot;&quot; line-numbers=&quot;&quot; resizable=&quot;&quot;&gt;&lt;/playground-ide&gt;&lt;/p&gt;
+&lt;div id=&quot;playground&quot; hidden=&quot;&quot;&gt;&lt;/div&gt;
 &lt;script&gt;
   addFiles(&#39;lit-css-canvas&#39;, &#39;css-canvas.ts&#39;)
 &lt;/script&gt;
