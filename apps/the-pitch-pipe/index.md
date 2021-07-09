@@ -12,9 +12,11 @@ tags:
 image: /img/the-pitch-pipe/icon.png
 ---
 
+<img class="app-icon" src="/img/the-pitch-pipe/icon.png" hidden>
+
 > Sheet Music Made Easy
 
-![app-icon](/img/the-pitch-pipe/icon.png)
+<iframe class="app" src="https://pitchpipe.app"></iframe>
 
 Looking for the perfect pitch pipe companion?
 Need more features that just playing a note?
@@ -46,18 +48,14 @@ Features:
 - Today Widget for Sheet Music Help
 - In app rating for a better App Store rating experience
 
-<div style="display: flex; flex-direction: row; align-items: center;">
-<a target="_blank" rel="noopener noreferrer" href="https://apps.apple.com/us/app/the-pitch-pipe/id1244972865"><img src="/img/badges/app_store.png" ></a>
-<a target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/details?id=com.appleeducate.thepitchpipe&hl=en_US&gl=US"><img src="/img/badges/google_play.png" ></a>
-</div>
+<div class="app-links">
+  <a target="_blank" rel="noopener noreferrer" href="https://apps.apple.com/us/app/the-pitch-pipe/id1244972865">
+   <div class="apple"></div>
+  </a>
+  <a target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/details?id=com.appleeducate.thepitchpipe&hl=en_US&gl=US">
+   <div class="google"></div>
+  </a>
 
-<a style="
-background-color: darkred;
-border: none;
-color: white;
-padding: 15px 32px;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-font-size: 16px;
-" target="_blank" href="https://pitchpipe.app" class="button">Web App</a>
+  <a class="web-app" target="_blank" href="https://pitchpipe.app" class="button">Web App</a>
+
+</div>

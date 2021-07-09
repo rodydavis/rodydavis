@@ -14,9 +14,9 @@ tags:
 image: /img/space-curiosity/icon.png
 ---
 
-A brief overview of a new app built with [Flutter](https://Flutter.io) by Rody Davis and Jesus Rodriguez.
+<img class="app-icon" src="/img/space-curiosity/icon.png" hidden>
 
-![icon](/img/space-curiosity/icon.png)
+A brief overview of a new app built with [Flutter](https://Flutter.io) by Rody Davis and Jesus Rodriguez.
 
 ## Background
 
@@ -53,9 +53,15 @@ All this work would not be possible without the incredible community behind Flut
 
 [TestFlight](https://testflight.apple.com/join/uIwSD3Rj)
 
-<div style="display: flex; flex-direction: row; align-items: center;">
-<a href="https://apps.apple.com/us/app/space-curiosity/id1435609944"><img src="/img/badges/app_store.png" ></a>
-<a href="https://play.google.com/store/apps/details?id=com.chechu.curiosity"><img src="/img/badges/google_play.png" ></a>
+
+<div class="app-links">
+  <a target="_blank" rel="noopener noreferrer" href="https://apps.apple.com/us/app/space-curiosity/id1435609944">
+   <div class="apple"></div>
+  </a>
+  <a target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/details?id=com.chechu.curiosity">
+   <div class="google"></div>
+  </a>
+
 </div>
 
 ## Other

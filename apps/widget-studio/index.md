@@ -14,7 +14,9 @@ tags:
 image: /img/widget-studio/icon.png
 ---
 
-![app-icon](/img/widget-studio/icon.png)
+<img class="app-icon" src="/img/widget-studio/icon.png" hidden>
+
+<iframe class="app" src="https://widget.studio"></iframe>
 
 Working with declarative frameworks can be great building layouts very quickly and predicting how the screen will look from code. This has its challenges as you lose out on UI builders such as Xcode Storyboards or Adobe XD.
 
@@ -30,18 +32,15 @@ Flutter is a powerful toolkit for creating app that run on iOS, Web and MacOS. Y
 <img width="100%" src="/img/widget-studio/4.png">
 <img width="100%" src="/img/widget-studio/5.png">
 
-<div style="display: flex; flex-direction: row; align-items: center;">
-<a target="_blank" rel="noopener noreferrer" href="https://apps.apple.com/us/app/widget-studio/id1516549273"><img src="/img/badges/app_store.png" ></a>
-<a target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/details?id=com.appleeducate.widgetstudio&hl=en_US"><img src="/img/badges/google_play.png" ></a>
+<div class="app-links">
+  <a target="_blank" rel="noopener noreferrer" href="https://apps.apple.com/us/app/widget-studio/id1516549273">
+   <div class="apple"></div>
+  </a>
+  <a target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/details?id=com.appleeducate.widgetstudio&hl=en_US">
+   <div class="google"></div>
+  </a>
+
+  <a class="web-app" target="_blank" href="https://widget.studio" class="button">Web App</a>
+
 </div>
 
-<a style="
-background-color: darkred;
-border: none;
-color: white;
-padding: 15px 32px;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-font-size: 16px;
-" target="_blank" href="https://widget.studio" class="button">Web App</a>

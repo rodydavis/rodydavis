@@ -15,7 +15,7 @@ After you build your flutter project you may want to reuse the models and busine
 
 > One Codebase for Client and Sever.
 
-This will allow you to expose your Dart models as a REST API and run your business logic from your lib folder while the application runs the models as they are. [Here](https://github.com/AppleEducate/shared_dart) is the final project.
+This will allow you to expose your Dart models as a REST API and run your business logic from your lib folder while the application runs the models as they are. [Here](https://github.com/rodydavis/shared_dart) is the final project.
 
 ## Setting Up
 
@@ -694,4 +694,4 @@ Replace PROJECT_NAME with your project name, mine is shared-dart for this exampl
 
 You will also need to replace YOUR_GOOGLE_PROJECT_ID with your Google Cloud Project ID. You can create one [here](https://cloud.google.com/cloud-build/docs/quickstart-docker).
 
-Again the final project source code is [here](https://github.com/AppleEducate/shared_dart). Let me know your thoughts!
+Again the final project source code is [here](https://github.com/rodydavis/shared_dart). Let me know your thoughts!
