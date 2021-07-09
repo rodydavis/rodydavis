@@ -16,8 +16,7 @@ In this article I will go over how to set up a [Lit](https://lit.dev) web compon
 
 **TLDR** The final source [here](https://github.com/rodydavis/lit-css-canvas) and an online [demo](https://rodydavis.github.io/lit-css-canvas/).
 
-<playground-ide editable-file-system line-numbers resizable></playground-ide>
-
+<div id="playground" hidden></div>
 <script>
   addFiles('lit-css-canvas', 'css-canvas.ts')
 </script>

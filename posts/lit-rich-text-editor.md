@@ -16,8 +16,7 @@ In this article I will go over how to set up a [Lit](https://lit.dev) web compon
 
 **TLDR** The final source [here](https://github.com/rodydavis/lit-html-editor) and an online [demo](https://rodydavis.github.io/lit-html-editor/).
 
-<playground-ide editable-file-system line-numbers resizable></playground-ide>
-
+<div id="playground" hidden></div>
 <script>
   addFiles('lit-html-editor', 'rich-text-editor.ts', 'master')
 </script>
