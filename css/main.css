@@ -18,7 +18,7 @@
 }
 
 .app-links {
-  display: flex;
+  display: wrap;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
