@@ -9,16 +9,20 @@
   --on-background: #eee;
   --surface: #fff;
   --default-font: Inter UI, normal;
+  --playground-height: 450px;
+  --surface-background: #2d2d2d;
 }
 
 #playground {
   width: 100%;
+  height: calc(var(--playground-height) * 2);
+  background-color: var(--surface-background);
 }
 #playground > playground-file-editor {
-  height: auto;
+  height: var(--playground-height);
 }
 #playground > playground-preview {
-  height: 450px;
+  height: var(--playground-height);
 }
 
 /* :root {
