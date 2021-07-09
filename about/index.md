@@ -55,7 +55,7 @@ Never stop learning and trying to be better.
 - [LinkedIn](https://www.linkedin.com/in/rodydavis)
 - [TikTok](https://tiktok.com/@rodydavisjr)
 - [Dev.to](https://dev.to/rodydavis)
-- [Medium](https://medium.com/@rody.davis.jr)
+- [Medium](https://rodydavis.medium.com/)
 - [Email](mailto:rody.davis.jr@gmail.com)
 - [RSS Feed](/feed/feed.xml)
 
