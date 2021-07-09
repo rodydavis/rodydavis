@@ -1,0 +1,24 @@
+[submodule "examples/lit-css-canvas"]
+	path = examples/lit-css-canvas
+	url = https://github.com/rodydavis/lit-css-canvas
+[submodule "examples/lit-vscode-extension"]
+	path = examples/lit-vscode-extension
+	url = https://github.com/rodydavis/lit-vscode-extension
+[submodule "examples/lit-sheet-music"]
+	path = examples/lit-sheet-music
+	url = https://github.com/rodydavis/lit-sheet-music
+[submodule "examples/lit-html-table"]
+	path = examples/lit-html-table
+	url = https://github.com/rodydavis/lit-html-table
+[submodule "examples/lit-html-editor"]
+	path = examples/lit-html-editor
+	url = https://github.com/rodydavis/lit-html-editor
+[submodule "examples/figma_lit_example"]
+	path = examples/figma_lit_example
+	url = https://github.com/rodydavis/figma_lit_example
+[submodule "examples/flutter_hybrid_template"]
+	path = examples/flutter_hybrid_template
+	url = https://github.com/rodydavis/flutter_hybrid_template
+[submodule "examples/flutter_multi_touch_canvas"]
+	path = examples/flutter_multi_touch_canvas
+	url = https://github.com/rodydavis/flutter_multi_touch_canvas/
