@@ -334,7 +334,7 @@
     
   
   <url>
-    <loc>https://rodydavis.com/tags/web/</loc>
+    <loc>https://rodydavis.com/tags/apps/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -350,6 +350,21 @@
   
   <url>
     <loc>https://rodydavis.com/tags/ci/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/web/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -409,37 +424,7 @@
     
   
   <url>
-    <loc>https://rodydavis.com/tags/css/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/canvas/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/playground/</loc>
+    <loc>https://rodydavis.com/tags/scripting/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -469,52 +454,7 @@
     
   
   <url>
-    <loc>https://rodydavis.com/tags/api/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/scripting/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/sheet-music/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/music/</loc>
+    <loc>https://rodydavis.com/tags/json/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -544,7 +484,7 @@
     
   
   <url>
-    <loc>https://rodydavis.com/tags/json/</loc>
+    <loc>https://rodydavis.com/tags/playground/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -559,7 +499,37 @@
     
   
   <url>
-    <loc>https://rodydavis.com/tags/apps/</loc>
+    <loc>https://rodydavis.com/tags/api/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/css/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/canvas/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -620,6 +590,36 @@
   
   <url>
     <loc>https://rodydavis.com/tags/extension/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/music/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/sheet-music/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -739,21 +739,6 @@
     
   
   <url>
-    <loc>https://rodydavis.com/tags/piano/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
     <loc>https://rodydavis.com/tags/spacex/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
@@ -829,6 +814,66 @@
     
   
   <url>
+    <loc>https://rodydavis.com/tags/piano/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/cooking/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/recipe/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/diy/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
     <loc>https://rodydavis.com/tags/ide/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
@@ -875,51 +920,6 @@
   
   <url>
     <loc>https://rodydavis.com/tags/desktop/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/cooking/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/recipe/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/diy/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -1095,5 +1095,20 @@
   <url>
     <loc>https://rodydavis.com/apps/</loc>
     <lastmod>2021-07-09T02:39:25.830Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/blog/</loc>
+    <lastmod>2021-07-09T02:47:15.000Z</lastmod>
   </url>
 </urlset>
