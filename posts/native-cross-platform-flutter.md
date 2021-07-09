@@ -10,7 +10,9 @@ image: /img/banner.jpeg
 
 Import dart:html and dart:io in the same project!
 
-You can find the final project [here](https://github.com/AppleEducate/flutter_x/tree/finish).
+**TLDR** The final source [here](https://github.com/rodydavis/flutter_x/tree/finish).
+
+<iframe class="demo" src="https://dartpad.dev/embed-flutter.html?id=09b230b972b9b5575a63345006fd1833&split=80&theme=dark&null_safety=false&split=50&ga_id=flutter-multi-touch-canvas&run=true"></iframe>
 
 Up to now you have been able to create projects with Flutter that run on iOS/Android, Web and Desktop but only sharing pure dart plugins. Flutter launched Flutter for web at Google I/O and was a temporary fork that required you to change imports from import 'package:flutter/material.dart'; to import 'package:flutter_web/material.dart';. As you can image this was really difficult for a code base as you had to create a fork and change the imports. This also meant that you could not import any package that needed on a path or depended on flutter. The time as come and the merge is complete. Now you no longer need to change the imports!
 
@@ -34,7 +36,7 @@ Create a new project named flutter_x and it should look like this:
 
 <img width="100%" src="https://cdn-images-1.medium.com/max/2628/1*xe6ubLj5psVH4JQd-VqSAQ.png">
 
-You can also down the starter project [here](https://github.com/AppleEducate/flutter_x/tree/starter).
+You can also down the starter project [here](https://github.com/rodydavis/flutter_x/tree/starter).
 
 Your code should look like this:
 
@@ -382,6 +384,6 @@ Congratulations! You made it :)
 
 <img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*KowWujusMfDjlkjeeOFEBg.gif">
 
-Here is the final project located [here](https://github.com/AppleEducate/flutter_x/tree/finish).
+Here is the final project located [here](https://github.com/rodydavis/flutter_x/tree/finish).
 
 Please reach out if you have any questions!

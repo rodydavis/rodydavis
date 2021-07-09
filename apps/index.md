@@ -13,7 +13,11 @@ eleventyNavigation:
 - [Space Curiosity](/apps/space-curiosity)
 - [Hymns for Worship](/apps/hymns-for-worship)
 
-<div style="display: flex; flex-direction: row; align-items: center;">
-<a target="_blank" rel="noopener noreferrer" href="https://apps.apple.com/us/developer/rody-davis/id1200052810"><img src="/img/badges/app_store.png" ></a>
-<a target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/developer?id=Rhodes+Davis&hl=en_US&gl=US"><img src="/img/badges/google_play.png" ></a>
+<div class="app-links">
+  <a target="_blank" rel="noopener noreferrer" href="https://apps.apple.com/us/developer/rody-davis/id1200052810">
+   <div class="apple"></div>
+  </a>
+  <a target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/developer?id=Rhodes+Davis&hl=en_US&gl=US">
+   <div class="google"></div>
+  </a>
 </div>

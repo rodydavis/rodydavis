@@ -9,9 +9,9 @@ tags:
 image: /img/banner.jpeg
 ---
 
-## TLDR
+**TLDR** The final source [here](https://github.com/rodydavis/flutter_piano/tree/5k) and an online [demo](https://pocketpiano.app).
 
-You can find the final source code [here](https://github.com/rodydavis/flutter_piano/tree/5k).
+<iframe class="app" src="https://pocketpiano.app"></iframe>
 
 This piano uses only `5032` bytes of Dart Code!
 
