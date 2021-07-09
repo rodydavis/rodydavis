@@ -29,10 +29,10 @@
     {% endif %}
     <link
     rel="canonical" href="{{ metadata.url }}{{ canonicalUrl or page.url }}"> <!-- This is a blog and so it SHOULD be safe and it is nice for the web
-                                         to send referrers cross-origin.
-                                         However, if you use sensitive data in URLs, consider changing this to
-                                         a value like `origin-when-cross-origin`
-                                         https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy -->
+                                              to send referrers cross-origin.
+                                              However, if you use sensitive data in URLs, consider changing this to
+                                              a value like `origin-when-cross-origin`
+                                              https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy -->
     <meta name="referrer" content="no-referrer-when-downgrade">
     <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
     <link rel="preconnect" href="/" crossorigin>
@@ -61,9 +61,6 @@
         const preview = document.createElement('playground-preview');
         const ide = document.createElement('playground-project');
         ide.id = "project";
-        ide.setAttribute('editable-file-system', '');
-        ide.setAttribute('line-numbers', '');
-        ide.setAttribute('resizable', '');
         function addScript(filename, source) {
           const elem = document.createElement('script');
           elem.setAttribute('type', `sample/${
@@ -82,6 +79,7 @@
         output.append(preview);
         const code = await getCode(tag, `src/${path}`, branch);
         addScript(path, code);
+        codeEditor.setAttribute('line-numbers', '');
         codeEditor.setAttribute('project', ide.id);
         codeEditor.setAttribute('filename', path);
         output.append(codeEditor);
@@ -127,10 +125,9 @@
         --playground-code-variable-3-color: rgb(248, 248, 242);
         --playground-code-callee-color: rgb(248, 248, 242);
         --playground-code-property-color: rgb(153, 199, 148);
-        
         --playground-code-font-family: var(--default-font);
         --playground-code-font-size: 90%;
-        --playground-code-background: #2d2d2d;
+        --playground-code-background: var(--surface-background);
       }
     </style>
   </head>
