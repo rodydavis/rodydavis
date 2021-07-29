@@ -334,6 +334,21 @@
     
   
   <url>
+    <loc>https://rodydavis.com/tags/web/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
     <loc>https://rodydavis.com/tags/apps/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
@@ -349,7 +364,7 @@
     
   
   <url>
-    <loc>https://rodydavis.com/tags/web/</loc>
+    <loc>https://rodydavis.com/tags/ci/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -409,7 +424,7 @@
     
   
   <url>
-    <loc>https://rodydavis.com/tags/ci/</loc>
+    <loc>https://rodydavis.com/tags/scripting/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -424,7 +439,7 @@
     
   
   <url>
-    <loc>https://rodydavis.com/tags/scripting/</loc>
+    <loc>https://rodydavis.com/tags/graphics/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -499,7 +514,7 @@
     
   
   <url>
-    <loc>https://rodydavis.com/tags/graphics/</loc>
+    <loc>https://rodydavis.com/tags/css/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -514,22 +529,7 @@
     
   
   <url>
-    <loc>https://rodydavis.com/tags/sheet-music/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/music/</loc>
+    <loc>https://rodydavis.com/tags/canvas/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -604,7 +604,7 @@
     
   
   <url>
-    <loc>https://rodydavis.com/tags/css/</loc>
+    <loc>https://rodydavis.com/tags/sheet-music/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -619,37 +619,7 @@
     
   
   <url>
-    <loc>https://rodydavis.com/tags/canvas/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/podcast/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/github/</loc>
+    <loc>https://rodydavis.com/tags/music/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -695,6 +665,171 @@
   
   <url>
     <loc>https://rodydavis.com/tags/diy/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/podcast/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/github/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/pitch-pipe/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/teachers/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/education/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/ios/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/android/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/ide/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/code/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/drag-and-drop/</loc>
+    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://rodydavis.com/tags/desktop/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -784,142 +919,7 @@
     
   
   <url>
-    <loc>https://rodydavis.com/tags/ios/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/android/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/pitch-pipe/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/teachers/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/education/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
     <loc>https://rodydavis.com/tags/piano/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/ide/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/code/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/drag-and-drop/</loc>
-    <lastmod>2021-07-08T01:46:55.000Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  <url>
-    <loc>https://rodydavis.com/tags/desktop/</loc>
     <lastmod>2021-07-08T01:46:55.000Z</lastmod>
   </url>
   
@@ -950,7 +950,7 @@
   
   <url>
     <loc>https://rodydavis.com/about/</loc>
-    <lastmod>2021-06-25T03:23:32.000Z</lastmod>
+    <lastmod>2021-07-09T17:29:43.000Z</lastmod>
   </url>
   
   
@@ -1110,5 +1110,18 @@
   <url>
     <loc>https://rodydavis.com/blog/</loc>
     <lastmod>2021-07-09T02:47:15.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <url>
+    <loc>https://rodydavis.com/posts/lit-monaco-editor/</loc>
+    <lastmod>2021-07-29T00:00:00.000Z</lastmod>
   </url>
 </urlset>
