@@ -133,7 +133,8 @@ There is also an import for the [Material Icons](https://fonts.google.com/icons)
 The next thing to create is the editor itself. Open up `src/lit-rich-text-editor.ts` and update it with the following:
 
 ```js
-import { LitElement, html, customElement, css, state } from "lit-element";
+import { html, css, LitElement } from "lit";
+import { customElement, property, state } from "lit/decorators.js";
 
 import "@material/mwc-icon-button";
 
