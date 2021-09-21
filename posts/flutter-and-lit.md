@@ -104,7 +104,6 @@ export default defineConfig({
   build: {
     outDir: "build/web",
     rollupOptions: {
-      // external: /^lit-element/,
       output: {
         entryFileNames: `assets/[name].js`,
         chunkFileNames: `assets/[name].js`,
