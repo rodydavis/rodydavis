@@ -1,5 +1,6 @@
 ---
 layout: layouts/base.njk
+permalink: /blog
 title: Blog
 templateClass: tmpl-post
 eleventyNavigation:

@@ -7,6 +7,7 @@ tags:
 - lit
 - figma
 - plugin
+- webpack
 - web
 image: /img/figma/rectangles.png
 ---

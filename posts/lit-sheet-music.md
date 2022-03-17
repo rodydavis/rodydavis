@@ -9,6 +9,7 @@ tags:
 - sheet-music
 - music
 - html
+- vite
 image: https://media.giphy.com/media/KbTUp85em6hdmmgTfK/giphy.gif
 ---
 
