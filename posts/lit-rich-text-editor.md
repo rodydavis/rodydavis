@@ -8,6 +8,7 @@ tags:
 - web
 - lit
 - wysiwyg
+- vite
 - playground
 image: /img/rich-text/editor-finish.png
 ---

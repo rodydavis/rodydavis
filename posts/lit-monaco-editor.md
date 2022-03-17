@@ -8,6 +8,7 @@ tags:
 - vscode
 - editor
 - web
+- vite
 image: /img/code-editor/dark.png
 ---
 

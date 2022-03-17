@@ -8,6 +8,7 @@ tags:
 - lit
 - json
 - html
+- vite
 - playground
 image: /img/banner.jpeg
 ---

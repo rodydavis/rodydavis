@@ -6,6 +6,7 @@ tags:
 - posts
 - flutter
 - web
+- vite
 - lit
 image: /img/banner.jpeg
 ---

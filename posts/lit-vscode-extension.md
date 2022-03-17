@@ -8,6 +8,7 @@ tags:
 - web
 - lit
 - plugin
+- vite
 - extension
 image: /img/vscode/final.png
 ---

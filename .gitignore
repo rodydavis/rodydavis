@@ -7,3 +7,6 @@ js/min.js.map
 export
 .firebase
 .DS_Store
+IDEA
+node_modules
+_site

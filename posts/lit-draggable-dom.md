@@ -8,6 +8,7 @@ tags:
 - lit
 - css
 - canvas
+- vite
 - playground
 image: /img/draggable-dom/canvas.png
 ---
