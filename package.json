@@ -14,11 +14,15 @@
     "js-build-watch": "rollup -c rollup.config.js -w",
     "debug": "DEBUG=* eleventy && npm run test",
     "test": "mocha test/test*.js",
-    "test-watch": "mocha test/test*.js --watch"
+    "test-watch": "mocha test/test*.js --watch",
+    "dev": "DEBUG=Eleventy* npx @11ty/eleventy"
   },
   "pre-push": [
     "build"
   ],
+  "engines": {
+    "node": ">=17.0.0"
+  },
   "pre-commit": [],
   "repository": {
     "type": "git",
@@ -39,7 +43,7 @@
     "fs-extra": "^8.1.0",
     "gh-pages": "^3.2.3",
     "jimp": "^0.16.1",
-    "jsdom": "^15.1.1",
+    "jsdom": "^19.0.0",
     "lru-cache": "^5.1.1",
     "luxon": "^1.28.0",
     "markdown-it": "^8.4.2",
