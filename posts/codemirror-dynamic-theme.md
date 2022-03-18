@@ -534,8 +534,6 @@ Changing the brightness can set the colors as well:
 
 If you want to learn more about building with Lit you can read the docs [here](https://lit.dev).
 
-There is also an example on the Lit playground [here]().
-
 The source for this example can be found [here](https://github.com/rodydavis/codemirror-dynamic-theme).
 
 If you want to check out dynamic themes for VSCode I created an extension [here](https://github.com/rodydavis/vscode-dynamic-theme).
