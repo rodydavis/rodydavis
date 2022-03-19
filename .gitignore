@@ -1,13 +1,17 @@
-_site/
+# build output
+dist
+
+# dependencies
 node_modules/
-js/min.js
-js/min.js.map
-.vscode/
-.netlify/
-export
-.firebase
-.DS_Store
-IDEA
-node_modules
-_site
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
 .DS_Store

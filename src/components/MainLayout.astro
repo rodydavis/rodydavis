@@ -1,0 +1,38 @@
+---
+import BaseHead from './BaseHead.astro';
+import './app-header';
+import './social-links';
+
+export interface Props {
+	title: string;
+	author: string;
+	publishDate: string;
+	image: string;
+	alt: string;
+}
+
+const { title, description, permalink } = Astro.props;
+---
+<html lang="en">
+	<head>
+		<BaseHead {title} {description} {permalink} />
+		
+		<style>
+			article {
+				width: 100%; 
+				margin-left: auto;
+				margin-right: auto;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+		</style>
+	</head>
+
+	<body class="material-theme">
+		<app-header title={title} client:load></app-header>
+		<article><slot></slot></article>
+		<div style="height: 25px"></div>
+		<social-links></social-links>
+	</body>
+</html>

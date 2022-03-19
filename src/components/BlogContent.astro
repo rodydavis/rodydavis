@@ -1,0 +1,75 @@
+<div class="layout">
+	<article class="content">
+		<div>
+			<main>
+				<slot />
+			</main>
+		</div>
+	</article>
+</div>
+
+<style>
+    .content {
+		max-width: 960px;
+      	margin-left:1rem;
+		margin-right:1rem;
+	}
+
+	@media (min-width: 960px) {
+		.content {
+			margin-left:auto;
+			margin-right:auto;
+		}
+	}
+
+	.content {
+		margin-bottom: 8rem;
+		margin-top: 1rem;
+	}
+
+	.content :global(main > * + *) {
+		margin-top: 1rem;
+	}
+
+	.content :global(h2) {
+		margin-top: 4rem;
+	}
+
+	header {
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		align-items: center;
+		justify-content: center;
+
+		padding-bottom: 2rem;
+		margin-bottom: 2rem;
+		border-bottom: 4px solid var(--theme-divider);
+	}
+
+	.title,
+	.author,
+	.publish-date {
+		margin: 0;
+	}
+
+	.publish-date,
+	.author {
+		color: var(--theme-text-lighter);
+	}
+
+	.title {
+		font-size: 2.25rem;
+		font-weight: 700;
+	}
+
+	img {
+		width: 100%;
+	}
+
+    iframe {
+        width: 100%;
+        height: auto;
+        border: none;
+    }
+</style>

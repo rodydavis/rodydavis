@@ -1,0 +1,117 @@
+---
+import MainLayout from '../components/MainLayout.astro';
+import Posts from '../components/Posts.astro';
+import { Markdown } from 'astro/components';
+
+const title = 'Rody Davis';
+const description = 'Designer. Developer. Polygot.';
+const permalink = 'https://rodydavis.com/';
+---
+
+<style>
+.content-section {
+  width: 100%;
+}
+.full-width {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  width: calc(100% - 2rem) !important;
+  max-width: 960px;
+}
+
+@media (min-width: 960px) {
+  .full-width {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.banner  {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quote {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: var(--md-sys-color-surface-variant);
+  color: var(--md-sys-color-on-surface-variant);
+  border-radius: 20px;
+}
+
+.pages {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.pages a {
+  flex: 1;
+  text-align: center;
+  background-color: var(--md-sys-color-tertiary-container);
+  color: var(--md-sys-color-on-tertiary-container);
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.pages :nth-child(1), .pages :nth-child(2), .pages :nth-child(3) {
+  margin-right: 0.5rem;
+}
+
+.pages a:hover {
+  border: 1px solid var(--md-sys-color-outline);
+}
+
+.links {
+  margin-top: 2rem;
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+
+.links .dontate {
+  margin-right: 0.5rem;
+}
+</style>
+
+<MainLayout {title} {description} {permalink}>
+  <section class="content-section">
+     <div class="banner full-width">
+       <img  src="/img/banner.jpeg" />
+     </div>
+  </section>
+
+  <section class="content-section">
+  <div class="quote full-width">
+      <q
+      >Your work is going to fill a large part of your life, and the only
+      way to be truly satisfied is to do what you believe is great work.
+      And the only way to do great work is to love what you do. If you
+      haven't found it yet, keep looking. Don't settle. As with all
+      matters of the heart, you'll know when you find it.</q
+      >
+      <p>- Steve Jobs</p>
+  </div>
+  </section>
+
+  <section class="content-section">
+    <div class="pages full-width">
+      <a href="/apps">Apps</a>
+      <a href="/posts">Blog</a>
+      <a href="/talks">Talks</a>
+      <a href="/about">About</a>
+    </div>
+  </section>
+
+  <section>
+    <div class="full-width info">
+      <Posts />
+    </div>
+  </section>
+</MainLayout>
