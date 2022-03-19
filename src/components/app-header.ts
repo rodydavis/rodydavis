@@ -144,14 +144,15 @@ export class AppHeader extends LitElement {
     } catch (e) {
       canShare = false;
     }
+    const title = (this.title || "").trim();
     return html`<header class="wrapper">
       <article>
         <h1 class="title">
           <a href="/">
             <div class="title-prefix">Rody Davis</div>
-            ${this.title.trim() !== "Rody Davis"
+            ${title !== "Rody Davis"
               ? html`<div class="title-prefix">&nbsp;|&nbsp;</div>
-                  <div>${this.title}</div>`
+                  <div>${title}</div>`
               : html``}
           </a>
         </h1>
