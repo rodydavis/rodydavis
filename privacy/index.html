@@ -44,10 +44,10 @@
 <link rel="stylesheet" href="/assets/MainLayout.a768070b.css"></link>
 <link rel="stylesheet" href="/assets/social-links.ac123a03.css"></link><style astro-style="true">astro-root, astro-fragment { display: contents; }</style><script type="module" astro-script="/privacy/script-0">import "../client-shim.751854cd.js";</script>
 <script type="module" data-astro-component-hydration astro-script="/privacy/script-1">import setup from '../load.644f6253.js';
-setup("2nLXfm", {name:"app-header",value: true}, async () => {
+setup("L0HX1", {name:"app-header",value: true}, async () => {
   await Promise.all([
   import("../hydration-support.20f55b8e.js")]);
-await import("../app-header.0698726e.js");
+await import("../app-header.c748af77.js");
   return () => {};
 
 });
@@ -55,7 +55,7 @@ await import("../app-header.0698726e.js");
 </head>
 
 	<body>
-		<astro-root uid="2nLXfm"><app-header class="astro-XZN2UAUQ"><template shadowroot="open"><style>
+		<astro-root uid="L0HX1"><app-header class="astro-XZN2UAUQ"><template shadowroot="open"><style>
     header {
       width: 100%;
       background-color: var(--md-sys-color-primary-container);
@@ -63,6 +63,30 @@ await import("../app-header.0698726e.js");
       display: flex;
       align-items: center;
       --input-size: 32px;
+    }
+
+    .spacer {
+      flex: 1;
+    }
+
+    .title {
+      display: none;
+    }
+
+    .title-prefix {
+      display: none;
+    }
+
+    @media (min-width: 200px) {
+      .title {
+        display: block;
+      }
+    }
+
+    @media (min-width: 300px) {
+      .title-prefix {
+        display: block;
+      }
     }
 
     article {
@@ -138,13 +162,25 @@ await import("../app-header.0698726e.js");
         display: flex;
       }
     }
-  </style><!--lit-part tWH7hVWrhQY=--><header class="wrapper">
+
+    .title a {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    .title a div {
+      white-space: nowrap;
+    }
+  </style><!--lit-part bgyFX7AkLd0=--><header class="wrapper">
       <article>
-        <h1>
+        <h1 class="title">
           <a href="/">
-            <span><!--lit-part-->Rody Davis | Privacy Policy<!--/lit-part--></span>
+            <div class="title-prefix">Rody Davis</div>
+            <!--lit-part +r04RIJdkoI=--><div class="title-prefix">&nbsp;|&nbsp;</div>
+                  <div><!--lit-part-->Privacy Policy<!--/lit-part--></div><!--/lit-part-->
           </a>
         </h1>
+        <div class="spacer"></div>
         <div class="links">
           <a href="/apps"> Apps </a>
           <a href="/posts"> Blog </a>
@@ -154,13 +190,13 @@ await import("../app-header.0698726e.js");
         <div class="actions">
           <input
             type="color"
-            value="#8E7A26"
+            value="#61A1E7"
             
-          /><!--lit-node 12-->
+          /><!--lit-node 13-->
           <icon-button
             
             
-           icon="shuffle"><!--lit-node 13--><template shadowroot="open"><style>
+           icon="shuffle"><!--lit-node 14--><template shadowroot="open"><style>
     .icon {
       --icon-size: 24px;
       --icon-padding: 0.5rem;
@@ -210,7 +246,7 @@ await import("../app-header.0698726e.js");
           <icon-button
             
             
-           icon="dark_mode"><!--lit-node 14--><template shadowroot="open"><style>
+           icon="dark_mode"><!--lit-node 15--><template shadowroot="open"><style>
     .icon {
       --icon-size: 24px;
       --icon-padding: 0.5rem;

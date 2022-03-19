@@ -42,12 +42,12 @@
 		
 	<link rel="stylesheet" href="/assets/MainLayout.5bb08088.css"></link>
 <link rel="stylesheet" href="/assets/social-links.ac123a03.css"></link>
-<link rel="stylesheet" href="/assets/_slug_.ed8c35df.css"></link><style astro-style="true">astro-root, astro-fragment { display: contents; }</style><script type="module" astro-script="/tags/css//script-0">import "../../client-shim.751854cd.js";</script>
+<link rel="stylesheet" href="/assets/_slug_.f1a5d965.css"></link><style astro-style="true">astro-root, astro-fragment { display: contents; }</style><script type="module" astro-script="/tags/css//script-0">import "../../client-shim.751854cd.js";</script>
 <script type="module" data-astro-component-hydration astro-script="/tags/css//script-1">import setup from '../../load.644f6253.js';
-setup("Z86bVQ", {name:"app-header",value: true}, async () => {
+setup("Z3Whaz", {name:"app-header",value: true}, async () => {
   await Promise.all([
   import("../../hydration-support.20f55b8e.js")]);
-await import("../../app-header.0698726e.js");
+await import("../../app-header.c748af77.js");
   return () => {};
 
 });
@@ -55,7 +55,7 @@ await import("../../app-header.0698726e.js");
 </head>
 
 	<body class="material-theme">
-		<astro-root uid="Z86bVQ"><app-header class="astro-JHGVYN2B"><template shadowroot="open"><style>
+		<astro-root uid="Z3Whaz"><app-header class="astro-JHGVYN2B"><template shadowroot="open"><style>
     header {
       width: 100%;
       background-color: var(--md-sys-color-primary-container);
@@ -63,6 +63,30 @@ await import("../../app-header.0698726e.js");
       display: flex;
       align-items: center;
       --input-size: 32px;
+    }
+
+    .spacer {
+      flex: 1;
+    }
+
+    .title {
+      display: none;
+    }
+
+    .title-prefix {
+      display: none;
+    }
+
+    @media (min-width: 200px) {
+      .title {
+        display: block;
+      }
+    }
+
+    @media (min-width: 300px) {
+      .title-prefix {
+        display: block;
+      }
     }
 
     article {
@@ -138,13 +162,25 @@ await import("../../app-header.0698726e.js");
         display: flex;
       }
     }
-  </style><!--lit-part tWH7hVWrhQY=--><header class="wrapper">
+
+    .title a {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    .title a div {
+      white-space: nowrap;
+    }
+  </style><!--lit-part bgyFX7AkLd0=--><header class="wrapper">
       <article>
-        <h1>
+        <h1 class="title">
           <a href="/">
-            <span><!--lit-part-->Rody Davis | Tag: css<!--/lit-part--></span>
+            <div class="title-prefix">Rody Davis</div>
+            <!--lit-part +r04RIJdkoI=--><div class="title-prefix">&nbsp;|&nbsp;</div>
+                  <div><!--lit-part-->Tag: css<!--/lit-part--></div><!--/lit-part-->
           </a>
         </h1>
+        <div class="spacer"></div>
         <div class="links">
           <a href="/apps"> Apps </a>
           <a href="/posts"> Blog </a>
@@ -154,13 +190,13 @@ await import("../../app-header.0698726e.js");
         <div class="actions">
           <input
             type="color"
-            value="#036A15"
+            value="#02CC41"
             
-          /><!--lit-node 12-->
+          /><!--lit-node 13-->
           <icon-button
             
             
-           icon="shuffle"><!--lit-node 13--><template shadowroot="open"><style>
+           icon="shuffle"><!--lit-node 14--><template shadowroot="open"><style>
     .icon {
       --icon-size: 24px;
       --icon-padding: 0.5rem;
@@ -210,7 +246,7 @@ await import("../../app-header.0698726e.js");
           <icon-button
             
             
-           icon="dark_mode"><!--lit-node 14--><template shadowroot="open"><style>
+           icon="dark_mode"><!--lit-node 15--><template shadowroot="open"><style>
     .icon {
       --icon-size: 24px;
       --icon-padding: 0.5rem;
@@ -261,10 +297,10 @@ await import("../../app-header.0698726e.js");
         </div>
       </article>
     </header><!--/lit-part--></template></app-header></astro-root>
-		<article class="astro-JHGVYN2B"><main class="astro-QDSBVT7H">
-        <div class="container astro-QDSBVT7H">
-            <article class="content astro-QDSBVT7H">
-                <post-preview class="astro-QDSBVT7H"><template shadowroot="open"><style>
+		<article class="astro-JHGVYN2B"><main class="astro-6MSO5AHL">
+        <div class="full-width container astro-6MSO5AHL">
+            <article class="content astro-6MSO5AHL">
+                <post-preview class="astro-6MSO5AHL"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
@@ -515,7 +551,7 @@ await import("../../app-header.0698726e.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="/img/dynamic-theme/purple-dark.png" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-QDSBVT7H"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-6MSO5AHL"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
