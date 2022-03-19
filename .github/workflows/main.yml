@@ -1,11 +1,3 @@
-# Workflow to build and deploy to your GitHub Pages repo.
-
-# Edit your project details here.
-# Remember to add API_TOKEN_GITHUB in repo Settings > Secrets as well!
-env:
-  githubEmail: rody.davis.jr@gmail.com
-  deployToRepo: rodydavis.github.io
-
 name: Github Pages Astro CI
 
 on:
@@ -37,14 +29,8 @@ jobs:
           touch ./dist/.nojekyll
 
       # Push to your pages repo
-      - name: Push to pages repo
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
+      - name: Github Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          source-directory: 'dist'
-          destination-github-username: ${{ github.actor }}
-          destination-repository-name: ${{ env.deployToRepo }}
-          user-email: ${{ env.githubEmail }}
-          commit-message: Deploy ORIGIN_COMMIT
-          target-branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist
