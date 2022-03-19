@@ -43,10 +43,10 @@
 	<link rel="stylesheet" href="/assets/MainLayout.5bb08088.css"></link>
 <link rel="stylesheet" href="/assets/social-links.ac123a03.css"></link><style astro-style="true">astro-root, astro-fragment { display: contents; }</style><script type="module" astro-script="/apps/the-pocket-piano//script-0">import "../../client-shim.751854cd.js";</script>
 <script type="module" data-astro-component-hydration astro-script="/apps/the-pocket-piano//script-1">import setup from '../../load.644f6253.js';
-setup("ZLQhEz", {name:"app-header",value: true}, async () => {
+setup("1ccqf2", {name:"app-header",value: true}, async () => {
   await Promise.all([
   import("../../hydration-support.20f55b8e.js")]);
-await import("../../app-header.7f1a48fb.js");
+await import("../../app-header.ee8bf833.js");
   return () => {};
 
 });
@@ -54,7 +54,7 @@ await import("../../app-header.7f1a48fb.js");
 </head>
 
 	<body class="material-theme">
-		<astro-root uid="ZLQhEz"><app-header class="astro-JHGVYN2B"><template shadowroot="open"><style>
+		<astro-root uid="1ccqf2"><app-header class="astro-JHGVYN2B"><template shadowroot="open"><style>
     header {
       width: 100%;
       background-color: var(--md-sys-color-primary-container);
@@ -76,15 +76,29 @@ await import("../../app-header.7f1a48fb.js");
       display: none;
     }
 
+    .title-details {
+      max-width: 200px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
     @media (min-width: 200px) {
       .title {
         display: block;
       }
     }
 
-    @media (min-width: 300px) {
+    @media (min-width: 700px) {
       .title-prefix {
         display: block;
+      }
+      .title-details {
+        max-width: 350px;
+      }
+    }
+    @media (min-width: 900px) {
+      .title-details {
+        max-width: 450px;
       }
     }
 
@@ -175,8 +189,8 @@ await import("../../app-header.7f1a48fb.js");
         <h1 class="title">
           <a href="/">
             <div class="title-prefix">Rody Davis</div>
-            <!--lit-part +r04RIJdkoI=--><div class="title-prefix">&nbsp;|&nbsp;</div>
-                  <div><!--lit-part-->The Pocket Piano<!--/lit-part--></div><!--/lit-part-->
+            <!--lit-part F7wN3VMcQAI=--><div class="title-prefix">&nbsp;|&nbsp;</div>
+                  <div class="title-details"><!--lit-part-->The Pocket Piano<!--/lit-part--></div><!--/lit-part-->
           </a>
         </h1>
         <div class="spacer"></div>
@@ -189,7 +203,7 @@ await import("../../app-header.7f1a48fb.js");
         <div class="actions">
           <input
             type="color"
-            value="#2771CB"
+            value="#D3EE18"
             
           /><!--lit-node 13-->
           <icon-button
