@@ -61,9 +61,35 @@ const permalink = `/tags/${tag}`;
         header, .container {
             width: 100%;
         }
+
+        .content {
+            margin-top: 1em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        post-preview {
+            margin-bottom: 1em;
+            width: 100%;
+        }
+
+        .full-width {
+            margin-left: 1rem;
+            margin-right: 1rem;
+            width: calc(100% - 2rem) !important;
+            max-width: 960px;
+        }
+
+    @media (min-width: 960px) {
+        .full-width {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
     </style>
     <main>
-        <div class="container">
+        <div class="full-width container">
             <article class="content">
                 {related.map(
                 (p) => <post-preview post={p}></post-preview>

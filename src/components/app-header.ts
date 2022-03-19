@@ -23,6 +23,30 @@ export class AppHeader extends LitElement {
       --input-size: 32px;
     }
 
+    .spacer {
+      flex: 1;
+    }
+
+    .title {
+      display: none;
+    }
+
+    .title-prefix {
+      display: none;
+    }
+
+    @media (min-width: 200px) {
+      .title {
+        display: block;
+      }
+    }
+
+    @media (min-width: 300px) {
+      .title-prefix {
+        display: block;
+      }
+    }
+
     article {
       width: 100%;
       height: 100%;
@@ -96,19 +120,24 @@ export class AppHeader extends LitElement {
         display: flex;
       }
     }
+
+    .title a {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    .title a div {
+      white-space: nowrap;
+    }
   `;
 
   @property({ type: Boolean }) dark =
     localStorage.getItem("theme-dark") === "true";
   @property() color = localStorage.getItem("theme-color") || randomColor();
-   //"#6750A4";
+  //"#6750A4";
   @property() title = document.title;
 
   render() {
-    const title =
-      this.title && this.title !== "Rody Davis"
-        ? `Rody Davis | ${this.title}`
-        : "Rody Davis";
     let canShare = false;
     try {
       canShare = navigator.canShare();
@@ -117,11 +146,16 @@ export class AppHeader extends LitElement {
     }
     return html`<header class="wrapper">
       <article>
-        <h1>
+        <h1 class="title">
           <a href="/">
-            <span>${title}</span>
+            <div class="title-prefix">Rody Davis</div>
+            ${this.title.trim() !== "Rody Davis"
+              ? html`<div class="title-prefix">&nbsp;|&nbsp;</div>
+                  <div>${this.title}</div>`
+              : html``}
           </a>
         </h1>
+        <div class="spacer"></div>
         <div class="links">
           <a href="/apps"> Apps </a>
           <a href="/posts"> Blog </a>
