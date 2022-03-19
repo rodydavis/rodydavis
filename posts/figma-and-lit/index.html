@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="icon" type="image/x-icon" href="/img/favicon/favicon.ico">
+
+<!-- Primary Meta Tags -->
+<title>Lit and Figma</title>
+<meta name="title" content="Lit and Figma">
+<meta name="description">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url">
+<meta property="og:title" content="Lit and Figma">
+<meta property="og:description">
+<meta property="og:image" content="https://astro.build/social.jpg?v=1">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url">
+<meta property="twitter:title" content="Lit and Figma">
+<meta property="twitter:description">
+<meta property="twitter:image" content="https://astro.build/social.jpg?v=1">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;700&display=swap">
+<link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-lucario.css">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JQNPVBL9DR');
+</script>
+	<link rel="stylesheet" href="/assets/_slug_.2050125d.css"></link>
+<link rel="stylesheet" href="/assets/social-links.ac123a03.css"></link>
+<link rel="stylesheet" href="/assets/BlogContent.6b85ce27.css"></link><style astro-style="true">astro-root, astro-fragment { display: contents; }</style><script type="module" astro-script="/posts/figma-and-lit//script-0">import "../../client-shim.751854cd.js";</script>
+<script type="module" data-astro-component-hydration astro-script="/posts/figma-and-lit//script-1">import setup from '../../load.644f6253.js';
+setup("2sf9y", {name:"app-header",value: true}, async () => {
+  await Promise.all([
+  import("../../hydration-support.20f55b8e.js")]);
+await import("../../app-header.7f1a48fb.js");
+  return () => {};
+
+});
+</script>
+</head>
+
+	<body>
+		<astro-root uid="2sf9y"><app-header><template shadowroot="open"><style>
+    header {
+      width: 100%;
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      display: flex;
+      align-items: center;
+      --input-size: 32px;
+    }
+
+    .spacer {
+      flex: 1;
+    }
+
+    .title {
+      display: none;
+    }
+
+    .title-prefix {
+      display: none;
+    }
+
+    @media (min-width: 200px) {
+      .title {
+        display: block;
+      }
+    }
+
+    @media (min-width: 300px) {
+      .title-prefix {
+        display: block;
+      }
+    }
+
+    article {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+    }
+
+    img {
+      margin-right: 1rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      max-width: 100%;
+      display: flex;
+      flex-grow: 1;
+    }
+
+    .logo {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    svg {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    a {
+      text-decoration: none;
+      display: inline-flex;
+      color: var(--md-sys-color-on-primary-container);
+      margin-right: 1rem;
+    }
+
+    icon-button {
+      margin-left: 3px;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+    }
+
+    input[type="color"] {
+      width: calc(var(--input-size) * 2);
+      height: var(--input-size);
+      outline: none;
+      border: none;
+      border-radius: 50%;
+      background-color: var(--md-sys-color-primary-container);
+    }
+    input[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+    input[type="color"]::-webkit-color-swatch {
+      border: none;
+      border-radius: var(--input-size);
+      border: var(--md-sys-color-outline) solid 1px;
+    }
+
+    .links {
+      display: none;
+    }
+
+    @media (min-width: 600px) {
+      .links {
+        display: flex;
+      }
+    }
+
+    .title a {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    .title a div {
+      white-space: nowrap;
+    }
+  </style><!--lit-part bgyFX7AkLd0=--><header class="wrapper">
+      <article>
+        <h1 class="title">
+          <a href="/">
+            <div class="title-prefix">Rody Davis</div>
+            <!--lit-part +r04RIJdkoI=--><div class="title-prefix">&nbsp;|&nbsp;</div>
+                  <div><!--lit-part--><!--/lit-part--></div><!--/lit-part-->
+          </a>
+        </h1>
+        <div class="spacer"></div>
+        <div class="links">
+          <a href="/apps"> Apps </a>
+          <a href="/posts"> Blog </a>
+          <a href="/talks"> Talks </a>
+          <a href="/about"> About </a>
+        </div>
+        <div class="actions">
+          <input
+            type="color"
+            value="#1FB3CA"
+            
+          /><!--lit-node 13-->
+          <icon-button
+            
+            
+           icon="shuffle"><!--lit-node 14--><template shadowroot="open"><style>
+    .icon {
+      --icon-size: 24px;
+      --icon-padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      color: var(--icon-color);
+    }
+    .icon:hover {
+      outline: 1px solid var(--md-sys-color-outline);
+    }
+    .icon :first-child {
+      padding: var(--icon-padding);
+    }
+    .material-icons {
+      font-family: "Material Icons";
+      font-weight: normal;
+      font-style: normal;
+      font-size: var(--icon-size);
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "liga";
+    }
+
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style><!--lit-part jPZqHVkf+Tk=-->
+      <div class="icon">
+        <i class="material-icons"><!--lit-part-->shuffle<!--/lit-part--></i>
+      </div>
+    <!--/lit-part--></template></icon-button>
+          <icon-button
+            
+            
+           icon="dark_mode"><!--lit-node 15--><template shadowroot="open"><style>
+    .icon {
+      --icon-size: 24px;
+      --icon-padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      color: var(--icon-color);
+    }
+    .icon:hover {
+      outline: 1px solid var(--md-sys-color-outline);
+    }
+    .icon :first-child {
+      padding: var(--icon-padding);
+    }
+    .material-icons {
+      font-family: "Material Icons";
+      font-weight: normal;
+      font-style: normal;
+      font-size: var(--icon-size);
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "liga";
+    }
+
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style><!--lit-part jPZqHVkf+Tk=-->
+      <div class="icon">
+        <i class="material-icons"><!--lit-part-->dark_mode<!--/lit-part--></i>
+      </div>
+    <!--/lit-part--></template></icon-button>
+          <!--lit-part BRUAAAUVAAA=--><?><!--/lit-part-->
+        </div>
+      </article>
+    </header><!--/lit-part--></template></app-header></astro-root>
+		<div class="wrapper">
+			<div class="layout astro-X5J4CTKI">
+	<article class="content astro-X5J4CTKI">
+		<div class="astro-X5J4CTKI">
+			<header class="astro-X5J4CTKI">
+				<img width="720" height="420" class="hero-image astro-X5J4CTKI" loading="lazy" src="/img/figma/rectangles.png">
+				<p class="publish-date astro-X5J4CTKI">10 May 2021 ~ 8 min read</p>
+				<h1 class="title astro-X5J4CTKI">Lit and Figma</h1>
+				<div class="author astro-KO5QTRDP">
+	<p class="astro-KO5QTRDP"><a href="https://twitter.com/rodydavis" class="astro-KO5QTRDP">@rodydavis</a></p>
+</div>
+
+
+
+				 <tag-list class="astro-X5J4CTKI"><template shadowroot="open"><style>
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    tag-item {
+      margin-bottom: 0.4rem;
+      margin-top: 0.4rem;
+    }
+  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+      <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/posts"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->posts<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="lit"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/lit"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->lit<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="figma"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/figma"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->figma<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="plugin"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/plugin"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->plugin<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="webpack"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/webpack"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->webpack<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="web"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/web"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->web<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--/lit-part-->
+    </div><!--/lit-part--></template></tag-list>
+			</header>
+			<main class="astro-X5J4CTKI">
+				<div class="layout astro-W2QVQNXU">
+	<article class="content astro-W2QVQNXU">
+		<div class="astro-W2QVQNXU">
+			<main class="astro-W2QVQNXU">
+				<p>In this article I will go over how to set up a <a href="https://lit.dev">Lit</a> web component and use it to create a figma plugin.</p>
+<p><strong>TLDR</strong> You can find the final source <a href="https://github.com/rodydavis/figma_lit_example">here</a>.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Vscode</li>
+<li>Figma Desktop</li>
+<li>Node</li>
+<li>Typescript</li>
+</ul>
+<h2 id="getting-started">Getting Started</h2>
+<p>We can start off by creating a empty directory and naming it with <code>snake_case</code> whatever we want.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">mkdir</span> figma_lit_example
+<span class="token builtin class-name">cd</span> figma_lit_example</code></pre>
+<h3 id="web-setup">Web Setup</h3>
+<p>Now we are in the <code>figma_lit_example</code> directory and can setup Figma and Lit. Let’s start with node.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> init -y</code></pre>
+<p>This will setup the basics for a node project and install the packages we need. Now lets add some config files. Now open the <code>package.json</code> and replace it with the following:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"figma_lit_example"</span><span class="token punctuation">,</span>
+  <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"1.0.0"</span><span class="token punctuation">,</span>
+  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"Lit Figma Plugin"</span><span class="token punctuation">,</span>
+  <span class="token property">"dependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"lit"</span><span class="token operator">:</span> <span class="token string">"^2.0.0-rc.1"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"devDependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"@figma/plugin-typings"</span><span class="token operator">:</span> <span class="token string">"^1.23.0"</span><span class="token punctuation">,</span>
+    <span class="token property">"html-webpack-inline-source-plugin"</span><span class="token operator">:</span> <span class="token string">"^1.0.0-beta.2"</span><span class="token punctuation">,</span>
+    <span class="token property">"html-webpack-plugin"</span><span class="token operator">:</span> <span class="token string">"^4.3.0"</span><span class="token punctuation">,</span>
+    <span class="token property">"css-loader"</span><span class="token operator">:</span> <span class="token string">"^5.2.4"</span><span class="token punctuation">,</span>
+    <span class="token property">"ts-loader"</span><span class="token operator">:</span> <span class="token string">"^8.0.0"</span><span class="token punctuation">,</span>
+    <span class="token property">"typescript"</span><span class="token operator">:</span> <span class="token string">"^4.2.4"</span><span class="token punctuation">,</span>
+    <span class="token property">"url-loader"</span><span class="token operator">:</span> <span class="token string">"^4.1.1"</span><span class="token punctuation">,</span>
+    <span class="token property">"webpack"</span><span class="token operator">:</span> <span class="token string">"^4.44.1"</span><span class="token punctuation">,</span>
+    <span class="token property">"webpack-cli"</span><span class="token operator">:</span> <span class="token string">"^4.6.0"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"dev"</span><span class="token operator">:</span> <span class="token string">"npx webpack --mode=development --watch"</span><span class="token punctuation">,</span>
+    <span class="token property">"copy"</span><span class="token operator">:</span> <span class="token string">"mkdir -p lit-plugin &amp;&amp; cp ./manifest.json ./lit-plugin/manifest.json &amp;&amp; cp ./dist/ui.html ./lit-plugin/ui.html &amp;&amp; cp ./dist/code.js ./lit-plugin/code.js"</span><span class="token punctuation">,</span>
+    <span class="token property">"build"</span><span class="token operator">:</span> <span class="token string">"npx webpack --mode=production &amp;&amp; npm run copy"</span><span class="token punctuation">,</span>
+    <span class="token property">"zip"</span><span class="token operator">:</span> <span class="token string">"npm run build &amp;&amp; zip -r lit-plugin.zip lit-plugin"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"browserslist"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"last 1 Chrome versions"</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"keywords"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"author"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
+  <span class="token property">"license"</span><span class="token operator">:</span> <span class="token string">"ISC"</span>
+<span class="token punctuation">}</span></code></pre>
+<p>This will add everything we need and add the scripts we need for development and production. Then run the following:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> i</code></pre>
+<p>This will install everything we need to get started. Now we need to setup some config files.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">touch</span> tsconfig.json
+<span class="token function">touch</span> webpack.config.ts</code></pre>
+<p>This will create 2 files. Now open up <code>tsconfig.json</code> and paste the following:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"compilerOptions"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"target"</span><span class="token operator">:</span> <span class="token string">"es2017"</span><span class="token punctuation">,</span>
+    <span class="token property">"module"</span><span class="token operator">:</span> <span class="token string">"esNext"</span><span class="token punctuation">,</span>
+    <span class="token property">"moduleResolution"</span><span class="token operator">:</span> <span class="token string">"node"</span><span class="token punctuation">,</span>
+    <span class="token property">"lib"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"es2017"</span><span class="token punctuation">,</span> <span class="token string">"dom"</span><span class="token punctuation">,</span> <span class="token string">"dom.iterable"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"typeRoots"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"./node_modules/@types"</span><span class="token punctuation">,</span> <span class="token string">"./node_modules/@figma"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"declaration"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"sourceMap"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"inlineSources"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"noUnusedLocals"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"noImplicitReturns"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"noFallthroughCasesInSwitch"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"experimentalDecorators"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"skipLibCheck"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"strict"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"noImplicitAny"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">"outDir"</span><span class="token operator">:</span> <span class="token string">"./lib"</span><span class="token punctuation">,</span>
+    <span class="token property">"baseUrl"</span><span class="token operator">:</span> <span class="token string">"./packages"</span><span class="token punctuation">,</span>
+    <span class="token property">"importHelpers"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"plugins"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"ts-lit-plugin"</span><span class="token punctuation">,</span>
+        <span class="token property">"rules"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">"no-unknown-tag-name"</span><span class="token operator">:</span> <span class="token string">"error"</span><span class="token punctuation">,</span>
+          <span class="token property">"no-unclosed-tag"</span><span class="token operator">:</span> <span class="token string">"error"</span><span class="token punctuation">,</span>
+          <span class="token property">"no-unknown-property"</span><span class="token operator">:</span> <span class="token string">"error"</span><span class="token punctuation">,</span>
+          <span class="token property">"no-unintended-mixed-binding"</span><span class="token operator">:</span> <span class="token string">"error"</span><span class="token punctuation">,</span>
+          <span class="token property">"no-invalid-boolean-binding"</span><span class="token operator">:</span> <span class="token string">"error"</span><span class="token punctuation">,</span>
+          <span class="token property">"no-expressionless-property-binding"</span><span class="token operator">:</span> <span class="token string">"error"</span><span class="token punctuation">,</span>
+          <span class="token property">"no-noncallable-event-binding"</span><span class="token operator">:</span> <span class="token string">"error"</span><span class="token punctuation">,</span>
+          <span class="token property">"no-boolean-in-attribute-binding"</span><span class="token operator">:</span> <span class="token string">"error"</span><span class="token punctuation">,</span>
+          <span class="token property">"no-complex-attribute-binding"</span><span class="token operator">:</span> <span class="token string">"error"</span><span class="token punctuation">,</span>
+          <span class="token property">"no-nullable-attribute-binding"</span><span class="token operator">:</span> <span class="token string">"error"</span><span class="token punctuation">,</span>
+          <span class="token property">"no-incompatible-type-binding"</span><span class="token operator">:</span> <span class="token string">"error"</span><span class="token punctuation">,</span>
+          <span class="token property">"no-invalid-directive-binding"</span><span class="token operator">:</span> <span class="token string">"error"</span><span class="token punctuation">,</span>
+          <span class="token property">"no-incompatible-property-type"</span><span class="token operator">:</span> <span class="token string">"error"</span><span class="token punctuation">,</span>
+          <span class="token property">"no-unknown-property-converter"</span><span class="token operator">:</span> <span class="token string">"error"</span><span class="token punctuation">,</span>
+          <span class="token property">"no-invalid-attribute-name"</span><span class="token operator">:</span> <span class="token string">"error"</span><span class="token punctuation">,</span>
+          <span class="token property">"no-invalid-tag-name"</span><span class="token operator">:</span> <span class="token string">"error"</span><span class="token punctuation">,</span>
+          <span class="token property">"no-unknown-attribute"</span><span class="token operator">:</span> <span class="token string">"off"</span><span class="token punctuation">,</span>
+          <span class="token property">"no-unknown-event"</span><span class="token operator">:</span> <span class="token string">"off"</span><span class="token punctuation">,</span>
+          <span class="token property">"no-unknown-slot"</span><span class="token operator">:</span> <span class="token string">"off"</span><span class="token punctuation">,</span>
+          <span class="token property">"no-invalid-css"</span><span class="token operator">:</span> <span class="token string">"off"</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"include"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"src/**/*.ts"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"references"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>This is a basic typescript config. Now open up <code>webpack.config.ts</code> and paste the following:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> HtmlWebpackInlineSourcePlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"html-webpack-inline-source-plugin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> HtmlWebpackPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"html-webpack-plugin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"path"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">env<span class="token punctuation">,</span> argv</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">mode</span><span class="token operator">:</span> argv<span class="token punctuation">.</span>mode <span class="token operator">===</span> <span class="token string">"production"</span> <span class="token operator">?</span> <span class="token string">"production"</span> <span class="token operator">:</span> <span class="token string">"development"</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">devtool</span><span class="token operator">:</span> argv<span class="token punctuation">.</span>mode <span class="token operator">===</span> <span class="token string">"production"</span> <span class="token operator">?</span> <span class="token boolean">false</span> <span class="token operator">:</span> <span class="token string">"inline-source-map"</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">ui</span><span class="token operator">:</span> <span class="token string">"./src/ui.ts"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">code</span><span class="token operator">:</span> <span class="token string">"./src/code.ts"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">app</span><span class="token operator">:</span> <span class="token string">"./src/my-app.ts"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">module</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">rules</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span> <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.tsx?$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span> <span class="token literal-property property">use</span><span class="token operator">:</span> <span class="token string">"ts-loader"</span><span class="token punctuation">,</span> <span class="token literal-property property">exclude</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">node_modules</span><span class="token regex-delimiter">/</span></span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.css$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span> <span class="token literal-property property">use</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"style-loader"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">"css-loader"</span> <span class="token punctuation">}</span><span class="token punctuation">]</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.(png|jpg|gif|webp|svg)$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span> <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">"url-loader"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">resolve</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">extensions</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">".ts"</span><span class="token punctuation">,</span> <span class="token string">".js"</span><span class="token punctuation">]</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">output</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">filename</span><span class="token operator">:</span> <span class="token string">"[name].js"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">path</span><span class="token operator">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">"dist"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">plugins</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token keyword">new</span> <span class="token class-name">HtmlWebpackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token literal-property property">template</span><span class="token operator">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">"ui.html"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">filename</span><span class="token operator">:</span> <span class="token string">"ui.html"</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">inject</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">inlineSource</span><span class="token operator">:</span> <span class="token string">".(js|css)$"</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">chunks</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"ui"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">new</span> <span class="token class-name">HtmlWebpackInlineSourcePlugin</span><span class="token punctuation">(</span>HtmlWebpackPlugin<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Now we need to create the ui for the plugin:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">touch</span> ui.html</code></pre>
+<p>Open up <code>/src/ui.html</code> and add the following:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>my-app</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>my-app</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>Now we need a manifest file for the figma plugin:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">touch</span> manifest.json</code></pre>
+<p>Open <code>manifest.json</code> and add the following:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"figma_lit_example"</span><span class="token punctuation">,</span>
+  <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"973668777853442323"</span><span class="token punctuation">,</span>
+  <span class="token property">"api"</span><span class="token operator">:</span> <span class="token string">"1.0.0"</span><span class="token punctuation">,</span>
+  <span class="token property">"main"</span><span class="token operator">:</span> <span class="token string">"code.js"</span><span class="token punctuation">,</span>
+  <span class="token property">"ui"</span><span class="token operator">:</span> <span class="token string">"ui.html"</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Now we need to create our web component:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">mkdir</span> src
+<span class="token builtin class-name">cd</span> src
+<span class="token function">touch</span> my-app.ts
+<span class="token function">touch</span> code.ts
+<span class="token function">touch</span> ui.ts
+<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span></code></pre>
+<p>Open <code>/src/ui.ts</code> and paste the following:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token string">"./my-app"</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Open <code>/src/my-app.ts</code> and paste the following:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> html<span class="token punctuation">,</span> LitElement <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"lit"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> customElement<span class="token punctuation">,</span> query <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"lit/decorators.js"</span><span class="token punctuation">;</span>
+
+@<span class="token function">customElement</span><span class="token punctuation">(</span><span class="token string">"my-app"</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">MyApp</span> <span class="token keyword">extends</span> <span class="token class-name">LitElement</span> <span class="token punctuation">{</span>
+  @<span class="token function">property</span><span class="token punctuation">(</span><span class="token punctuation">)</span> amount <span class="token operator">=</span> <span class="token string">"5"</span><span class="token punctuation">;</span>
+  @<span class="token function">query</span><span class="token punctuation">(</span><span class="token string">"#count"</span><span class="token punctuation">)</span> countInput<span class="token operator">!</span><span class="token operator">:</span> HTMLInputElement<span class="token punctuation">;</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> html<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+      &lt;div>
+        &lt;h2>Rectangle Creator&lt;/h2>
+        &lt;p>Count: &lt;input id="count" value="</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>amount<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">" />&lt;/p>
+        &lt;button id="create" @click=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>create<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">>Create&lt;/button>
+        &lt;button id="cancel" @click=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>cancel<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">>Cancel&lt;/button>
+      &lt;/div>
+    </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> count <span class="token operator">=</span> <span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>countInput<span class="token punctuation">.</span>value<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span><span class="token string">"create-rectangles"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> count <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">cancel</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">sendMessage</span><span class="token punctuation">(</span><span class="token string">"cancel"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">private</span> <span class="token function">sendMessage</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">type</span><span class="token operator">:</span> string<span class="token punctuation">,</span> <span class="token literal-property property">content</span><span class="token operator">:</span> Object <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> message <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token literal-property property">pluginMessage</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">type</span><span class="token operator">:</span> type<span class="token punctuation">,</span> <span class="token operator">...</span>content <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    parent<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span>message<span class="token punctuation">,</span> <span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Open <code>code.ts</code> and paste the following:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token literal-property property">options</span><span class="token operator">:</span> ShowUIOptions <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">width</span><span class="token operator">:</span> <span class="token number">250</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">height</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+figma<span class="token punctuation">.</span><span class="token function">showUI</span><span class="token punctuation">(</span>__html__<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+figma<span class="token punctuation">.</span>ui<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token parameter">msg</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>msg<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">'create-rectangles'</span><span class="token operator">:</span>
+      <span class="token keyword">const</span> <span class="token literal-property property">nodes</span><span class="token operator">:</span> SceneNode<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> msg<span class="token punctuation">.</span>count<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> rect <span class="token operator">=</span> figma<span class="token punctuation">.</span><span class="token function">createRectangle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        rect<span class="token punctuation">.</span>x <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">150</span><span class="token punctuation">;</span>
+        rect<span class="token punctuation">.</span>fills <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'SOLID'</span><span class="token punctuation">,</span> <span class="token literal-property property">color</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">r</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token literal-property property">g</span><span class="token operator">:</span> <span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token literal-property property">b</span><span class="token operator">:</span> <span class="token number">0</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        figma<span class="token punctuation">.</span>currentPage<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>rect<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        nodes<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>rect<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      figma<span class="token punctuation">.</span>currentPage<span class="token punctuation">.</span>selection <span class="token operator">=</span> nodes<span class="token punctuation">;</span>
+      figma<span class="token punctuation">.</span>viewport<span class="token punctuation">.</span><span class="token function">scrollAndZoomIntoView</span><span class="token punctuation">(</span>nodes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token operator">:</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  figma<span class="token punctuation">.</span><span class="token function">closePlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="building-the-plugin">Building the Plugin</h2>
+<p>Now that we have all the code in place we can build the plugin and test it in Figma.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> run build</code></pre>
+<h4 id="step-1">Step 1</h4>
+<p>Download and open the desktop version of Figma.</p>
+<p><a href="https://www.figma.com/downloads/">https://www.figma.com/downloads/</a></p>
+<h4 id="step-2">Step 2</h4>
+<p>Open the menu and navigate to “Plugins > Manage plugins”</p>
+<img width="100%" src="/img/figma/manage-plugin.png">
+<h4 id="step-3">Step 3</h4>
+<p>Click on the plus icon to add a local plugin.</p>
+<img width="100%" src="/img/figma/add-plugin.png">
+<p>Click on the box to link to an existing plugin to navigate to the <code>lit-plugin</code> folder that was created after the build process in your source code and select <code>manifest.json</code>.</p>
+<img width="100%" src="/img/figma/create-plugin.png">
+<h4 id="step-4">Step 4</h4>
+<p>To run the plugin navigate to “Plugins > Development > figma_lit_example” to launch your plugin.</p>
+<img width="100%" src="/img/figma/run-lit-plugin.png">
+<h4 id="step-5">Step 5</h4>
+<p>Now your plugin should launch and you can create 5 rectangles on the canvas.</p>
+<img width="100%" src="/img/figma/plugin-overview.png">
+<p>If everything worked you will have 5 new rectangles on the canvas focused by figma.</p>
+<img width="100%" src="/img/figma/rectangles.png">
+<h2 id="wasm-support">WASM Support</h2>
+<p>If there is a heavy computation that could benefit from running in <a href="https://webassembly.org/">WebAssembly</a> the following will ensure that it is hardware accelerated when possible.</p>
+<p>Let’s add <a href="https://www.assemblyscript.org/">AssemblyScript</a> and some dependencies that will be used for loading the WASM into the figma ui.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> i @assemblyscript/loader
+<span class="token function">npm</span> i --D assemblyscript js-inline-wasm
+npx asinit <span class="token builtin class-name">.</span></code></pre>
+<p>Confirm yes to the prompt to have it generate the project files and add the following to the scripts in <code>package.json</code>:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token string">"asbuild:untouched"</span><span class="token builtin class-name">:</span> <span class="token string">"asc assembly/index.ts --target debug"</span>,
+<span class="token string">"asbuild:optimized"</span><span class="token builtin class-name">:</span> <span class="token string">"asc assembly/index.ts --target release"</span>,
+<span class="token string">"asbuild"</span><span class="token builtin class-name">:</span> <span class="token string">"npm run asbuild:untouched &amp;&amp; npm run asbuild:optimized"</span>,
+<span class="token string">"inlinewasm"</span><span class="token builtin class-name">:</span> <span class="token string">"inlinewasm build/optimized.wasm --output src/wasm.ts"</span>,</code></pre>
+<p>The code that will be used for the WASM is in <code>/assembly/index.ts</code> and it should show the following:</p>
+<pre class="language-js"><code class="language-js"><span class="token comment">// The entry file of your WebAssembly module.</span>
+
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">a</span><span class="token operator">:</span> i32<span class="token punctuation">,</span> <span class="token literal-property property">b</span><span class="token operator">:</span> i32</span><span class="token punctuation">)</span><span class="token operator">:</span> i32 <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Now let’s build the wasm module:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> run asbuild</code></pre>
+<p>For the wasm build to be ignored for git add the following to .gitignore:</p>
+<pre class="language-bash"><code class="language-bash">build</code></pre>
+<p>This will generate the wasm and wat files in the build directory, but for figma to load them into the ui it needs to be inlined so run the following command to generate the js from the wasm file:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> run inlinewasm</code></pre>
+<p>This should generate <code>src/wasm.ts</code> with the following:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> encoded <span class="token operator">=</span> <span class="token string">'AGFzbQEAAAABBwFgAn9/AX8DAgEABQMBAAAHEAIDYWRkAAAGbWVtb3J5AgAKCQEHACAAIAFqCwAmEHNvdXJjZU1hcHBpbmdVUkwULi9vcHRpbWl6ZWQud2FzbS5tYXA='</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token parameter">resolve</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> decoded <span class="token operator">=</span> <span class="token function">atob</span><span class="token punctuation">(</span>encoded<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> len <span class="token operator">=</span> decoded<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> bytes <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span>len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        bytes<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> decoded<span class="token punctuation">.</span><span class="token function">charCodeAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Response</span><span class="token punctuation">(</span>bytes<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">status</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span> <span class="token literal-property property">headers</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token string-property property">"Content-Type"</span><span class="token operator">:</span> <span class="token string">"application/wasm"</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Now open up the <code>/src/my-app.ts</code> and update with the following:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> html<span class="token punctuation">,</span> LitElement <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"lit"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> customElement<span class="token punctuation">,</span> property<span class="token punctuation">,</span> query <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"lit/decorators.js"</span><span class="token punctuation">;</span>
+
+@<span class="token function">customElement</span><span class="token punctuation">(</span><span class="token string">"my-app"</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">MyApp</span> <span class="token keyword">extends</span> <span class="token class-name">LitElement</span> <span class="token punctuation">{</span>
+  @<span class="token function">property</span><span class="token punctuation">(</span><span class="token punctuation">)</span> amount <span class="token operator">=</span> <span class="token string">"5"</span><span class="token punctuation">;</span> <span class="token comment">// &lt;-- Pass in a value for the number of rectangles to create</span>
+  @<span class="token function">query</span><span class="token punctuation">(</span><span class="token string">"#count"</span><span class="token punctuation">)</span> countInput<span class="token operator">!</span><span class="token operator">:</span> HTMLInputElement<span class="token punctuation">;</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> html<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+      &lt;div>
+        &lt;h2>Rectangle Creator&lt;/h2>
+        &lt;!-- Pass in the amount to the input value -->
+        &lt;p>Count: &lt;input id="count" value="</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>amount<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">" />&lt;/p>
+        ...
+      &lt;/div>
+    </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span></code></pre>
+<p>This will let us pass in the amount of boxes to create externally.</p>
+<p>Now open <code>/src/ui.ts</code> and update it with the following:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token string">"./my-app"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> wasm <span class="token keyword">from</span> <span class="token string">"./wasm"</span><span class="token punctuation">;</span> <span class="token comment">// &lt;-- Our WASM file to load</span>
+
+WebAssembly<span class="token punctuation">.</span><span class="token function">instantiateStreaming</span><span class="token punctuation">(</span>wasm <span class="token keyword">as</span> Promise<span class="token operator">&lt;</span>Response<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">obj</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token comment">// @ts-ignore</span>
+  <span class="token keyword">const</span> <span class="token literal-property property">value</span><span class="token operator">:</span> number <span class="token operator">=</span> obj<span class="token punctuation">.</span>instance<span class="token punctuation">.</span>exports<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"return from wasm"</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> elem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'my-app'</span><span class="token punctuation">)</span><span class="token operator">!</span> <span class="token keyword">as</span> HTMLElement<span class="token punctuation">;</span>
+  elem<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'amount'</span><span class="token punctuation">,</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>value<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Now when we build the plugin and run it in figma the amount of boxes will be the result of calling into wasm!</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>If you want to learn more about building a plugin in Figma you can read more <a href="https://www.figma.com/plugin-docs/intro/">here</a> and for Lit you can read the docs <a href="https://lit.dev">here</a>.</p>
+			</main>
+		</div>
+	</article>
+</div>
+
+
+
+			</main>
+		</div>
+	</article>
+</div>
+
+
+
+		</div>
+		<div style="height: 25px"></div>
+		<social-links><template shadowroot="open"><style>
+    footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: var(--width, 100%);
+      margin-bottom: 2rem;
+    }
+    .fab,
+    svg {
+      --size: 3vw;
+      width: var(--size);
+      height: var(--size);
+      max-width: 30px;
+      max-height: 30px;
+      min-width: 20px;
+      min-height: 20px;
+      margin: 0.5rem;
+      color: var(--md-sys-color-on-surface);
+      font-family: FontAwesome;
+      cursor: pointer;
+    }
+    svg {
+      color: var(--md-sys-color-on-surface);
+    }
+  </style><!--lit-part fkbI1zGBADw=--><footer>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://twitter.com/rodydavis"
+        class="fab fa fa-twitter"
+      >
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="twitter"
+          class="svg-inline--fa fa-twitter fa-w-16"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
+          ></path>
+        </svg>
+      </a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://facebook.com/rodydavisjr"
+        class="fab fa fa-facebook"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="facebook-f"
+          class="svg-inline--fa fa-facebook-f fa-w-10"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+        >
+          <path
+            fill="currentColor"
+            d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.linkedin.com/in/rodydavis"
+        class="fab fa fa-linkedin"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="linkedin-in"
+          class="svg-inline--fa fa-linkedin-in fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.youtube.com/rodydavis"
+        class="fab fa fa-youtube"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="youtube"
+          class="svg-inline--fa fa-youtube fa-w-18"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 576 512"
+        >
+          <path
+            fill="currentColor"
+            d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.instagram.com/rodydavisjr"
+        class="fab fa fa-instagram"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="instagram"
+          class="svg-inline--fa fa-instagram fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.github.com/rodydavis"
+        class="fab fa fa-github"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="github"
+          class="svg-inline--fa fa-github fa-w-16"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 496 512"
+        >
+          <path
+            fill="currentColor"
+            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.tiktok.com/@rodydavisjr"
+        class="fab fa-tiktok"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="tiktok"
+          class="svg-inline--fa fa-tiktok fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"
+          ></path></svg
+      ></a>
+    </footer><!--/lit-part--></template></social-links>
+	</body></html>

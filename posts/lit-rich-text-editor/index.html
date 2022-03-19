@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="icon" type="image/x-icon" href="/img/favicon/favicon.ico">
+
+<!-- Primary Meta Tags -->
+<title>Building a Rich Text Editor with Lit</title>
+<meta name="title" content="Building a Rich Text Editor with Lit">
+<meta name="description">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url">
+<meta property="og:title" content="Building a Rich Text Editor with Lit">
+<meta property="og:description">
+<meta property="og:image" content="https://astro.build/social.jpg?v=1">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url">
+<meta property="twitter:title" content="Building a Rich Text Editor with Lit">
+<meta property="twitter:description">
+<meta property="twitter:image" content="https://astro.build/social.jpg?v=1">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;700&display=swap">
+<link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-lucario.css">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JQNPVBL9DR');
+</script>
+	<link rel="stylesheet" href="/assets/BlogContent.6b85ce27.css"></link>
+<link rel="stylesheet" href="/assets/social-links.ac123a03.css"></link>
+<link rel="stylesheet" href="/assets/_slug_.2050125d.css"></link><style astro-style="true">astro-root, astro-fragment { display: contents; }</style><script type="module" astro-script="/posts/lit-rich-text-editor//script-0">import "../../client-shim.751854cd.js";</script>
+<script type="module" data-astro-component-hydration astro-script="/posts/lit-rich-text-editor//script-1">import setup from '../../load.644f6253.js';
+setup("ZWHPxt", {name:"app-header",value: true}, async () => {
+  await Promise.all([
+  import("../../hydration-support.20f55b8e.js")]);
+await import("../../app-header.7f1a48fb.js");
+  return () => {};
+
+});
+</script>
+</head>
+
+	<body>
+		<astro-root uid="ZWHPxt"><app-header><template shadowroot="open"><style>
+    header {
+      width: 100%;
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      display: flex;
+      align-items: center;
+      --input-size: 32px;
+    }
+
+    .spacer {
+      flex: 1;
+    }
+
+    .title {
+      display: none;
+    }
+
+    .title-prefix {
+      display: none;
+    }
+
+    @media (min-width: 200px) {
+      .title {
+        display: block;
+      }
+    }
+
+    @media (min-width: 300px) {
+      .title-prefix {
+        display: block;
+      }
+    }
+
+    article {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+    }
+
+    img {
+      margin-right: 1rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      max-width: 100%;
+      display: flex;
+      flex-grow: 1;
+    }
+
+    .logo {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    svg {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    a {
+      text-decoration: none;
+      display: inline-flex;
+      color: var(--md-sys-color-on-primary-container);
+      margin-right: 1rem;
+    }
+
+    icon-button {
+      margin-left: 3px;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+    }
+
+    input[type="color"] {
+      width: calc(var(--input-size) * 2);
+      height: var(--input-size);
+      outline: none;
+      border: none;
+      border-radius: 50%;
+      background-color: var(--md-sys-color-primary-container);
+    }
+    input[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+    input[type="color"]::-webkit-color-swatch {
+      border: none;
+      border-radius: var(--input-size);
+      border: var(--md-sys-color-outline) solid 1px;
+    }
+
+    .links {
+      display: none;
+    }
+
+    @media (min-width: 600px) {
+      .links {
+        display: flex;
+      }
+    }
+
+    .title a {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    .title a div {
+      white-space: nowrap;
+    }
+  </style><!--lit-part bgyFX7AkLd0=--><header class="wrapper">
+      <article>
+        <h1 class="title">
+          <a href="/">
+            <div class="title-prefix">Rody Davis</div>
+            <!--lit-part +r04RIJdkoI=--><div class="title-prefix">&nbsp;|&nbsp;</div>
+                  <div><!--lit-part--><!--/lit-part--></div><!--/lit-part-->
+          </a>
+        </h1>
+        <div class="spacer"></div>
+        <div class="links">
+          <a href="/apps"> Apps </a>
+          <a href="/posts"> Blog </a>
+          <a href="/talks"> Talks </a>
+          <a href="/about"> About </a>
+        </div>
+        <div class="actions">
+          <input
+            type="color"
+            value="#EF9174"
+            
+          /><!--lit-node 13-->
+          <icon-button
+            
+            
+           icon="shuffle"><!--lit-node 14--><template shadowroot="open"><style>
+    .icon {
+      --icon-size: 24px;
+      --icon-padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      color: var(--icon-color);
+    }
+    .icon:hover {
+      outline: 1px solid var(--md-sys-color-outline);
+    }
+    .icon :first-child {
+      padding: var(--icon-padding);
+    }
+    .material-icons {
+      font-family: "Material Icons";
+      font-weight: normal;
+      font-style: normal;
+      font-size: var(--icon-size);
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "liga";
+    }
+
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style><!--lit-part jPZqHVkf+Tk=-->
+      <div class="icon">
+        <i class="material-icons"><!--lit-part-->shuffle<!--/lit-part--></i>
+      </div>
+    <!--/lit-part--></template></icon-button>
+          <icon-button
+            
+            
+           icon="dark_mode"><!--lit-node 15--><template shadowroot="open"><style>
+    .icon {
+      --icon-size: 24px;
+      --icon-padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      color: var(--icon-color);
+    }
+    .icon:hover {
+      outline: 1px solid var(--md-sys-color-outline);
+    }
+    .icon :first-child {
+      padding: var(--icon-padding);
+    }
+    .material-icons {
+      font-family: "Material Icons";
+      font-weight: normal;
+      font-style: normal;
+      font-size: var(--icon-size);
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "liga";
+    }
+
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style><!--lit-part jPZqHVkf+Tk=-->
+      <div class="icon">
+        <i class="material-icons"><!--lit-part-->dark_mode<!--/lit-part--></i>
+      </div>
+    <!--/lit-part--></template></icon-button>
+          <!--lit-part BRUAAAUVAAA=--><?><!--/lit-part-->
+        </div>
+      </article>
+    </header><!--/lit-part--></template></app-header></astro-root>
+		<div class="wrapper">
+			<div class="layout astro-X5J4CTKI">
+	<article class="content astro-X5J4CTKI">
+		<div class="astro-X5J4CTKI">
+			<header class="astro-X5J4CTKI">
+				<img width="720" height="420" class="hero-image astro-X5J4CTKI" loading="lazy" src="/img/rich-text/editor-finish.png">
+				<p class="publish-date astro-X5J4CTKI">26 May 2021 ~ 9 min read</p>
+				<h1 class="title astro-X5J4CTKI">Building a Rich Text Editor with Lit</h1>
+				<div class="author astro-KO5QTRDP">
+	<p class="astro-KO5QTRDP"><a href="https://twitter.com/rodydavis" class="astro-KO5QTRDP">@rodydavis</a></p>
+</div>
+
+
+
+				 <tag-list class="astro-X5J4CTKI"><template shadowroot="open"><style>
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    tag-item {
+      margin-bottom: 0.4rem;
+      margin-top: 0.4rem;
+    }
+  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+      <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/posts"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->posts<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="editor"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/editor"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->editor<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="web"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/web"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->web<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="lit"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/lit"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->lit<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="wysiwyg"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/wysiwyg"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->wysiwyg<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="vite"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/vite"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->vite<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="playground"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/playground"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->playground<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--/lit-part-->
+    </div><!--/lit-part--></template></tag-list>
+			</header>
+			<main class="astro-X5J4CTKI">
+				<div class="layout astro-W2QVQNXU">
+	<article class="content astro-W2QVQNXU">
+		<div class="astro-W2QVQNXU">
+			<main class="astro-W2QVQNXU">
+				<p>In this article I will go over how to set up a <a href="https://lit.dev">Lit</a> web component and use it to create a rich text editor.</p>
+<p><strong>TLDR</strong> The final source <a href="https://github.com/rodydavis/lit-html-editor">here</a> and an online <a href="https://rodydavis.github.io/lit-html-editor/">demo</a>.</p>
+<div id="playground" hidden></div>
+<script>
+  addFiles('lit-html-editor', 'rich-text-editor.ts', 'master')
+</script>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Vscode</li>
+<li>Node >= 12</li>
+<li>Typescript</li>
+</ul>
+<h2 id="getting-started">Getting Started</h2>
+<p>We can start off by navigating in terminal to the location of the project and run the following:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> init @vitejs/app --template lit-element-ts</code></pre>
+<p>Then enter a project name <code>lit-rich-text-editor</code> and now open the project in vscode and install the dependencies:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token builtin class-name">cd</span> lit-rich-text-editor
+<span class="token function">npm</span> i @material/mwc-icon-button
+<span class="token function">npm</span> i -D @types/node
+code <span class="token builtin class-name">.</span></code></pre>
+<p>Update the <code>vite.config.ts</code> with the following:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> defineConfig <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"vite"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> resolve <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"path"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">base</span><span class="token operator">:</span> <span class="token string">'/lit-rich-text-editor/'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">build</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">lib</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token string">"src/lit-rich-text-editor.ts"</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">formats</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"es"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">rollupOptions</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">input</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token literal-property property">main</span><span class="token operator">:</span> <span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">"index.html"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="template">Template</h2>
+<p>Open up the <code>index.html</code> and update it with the following:</p>
+<pre class="language-html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>icon<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>image/svg+xml<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/src/favicon.svg<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span>
+      <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://fonts.googleapis.com/css?family=Material+Icons&amp;display=block<span class="token punctuation">"</span></span>
+      <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span>
+    <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Lit Rich Text Editor<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>module<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/src/lit-rich-text-editor.ts<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
+      <span class="token selector">body</span> <span class="token punctuation">{</span>
+        <span class="token property">padding</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+        <span class="token property">margin</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token selector">lit-rich-text-editor</span> <span class="token punctuation">{</span>
+        <span class="token property">--editor-width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+        <span class="token property">--editor-height</span><span class="token punctuation">:</span> 100vh<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>lit-rich-text-editor</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Headline 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>This is a paragraph.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token function">rgb</span><span class="token punctuation">(</span>255<span class="token punctuation">,</span> 0<span class="token punctuation">,</span> 0<span class="token punctuation">)</span></span><span class="token punctuation">"</span></span></span>
+            <span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span> <span class="token attr-name">color</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#ffffff<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Styled Text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span>
+          <span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>lit-rich-text-editor</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>The important things to take away are the styles added to remove the body padding and send size <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*">CSS Custom Properties</a> to the editor to take up the full viewport.</p>
+<p>Inside the <code>lit-rich-text-editor</code> tags there is a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template"><code>template</code></a> passed as a slot to provide html that will not be rendered but can be accessed.</p>
+<p>There is also an import for the <a href="https://fonts.google.com/icons">Material Icons</a> so it can be used in the editor later.</p>
+<h2 id="editor">Editor</h2>
+<p>The next thing to create is the editor itself. Open up <code>src/lit-rich-text-editor.ts</code> and update it with the following:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> html<span class="token punctuation">,</span> css<span class="token punctuation">,</span> LitElement <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"lit"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> customElement<span class="token punctuation">,</span> property<span class="token punctuation">,</span> state <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"lit/decorators.js"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token string">"@material/mwc-icon-button"</span><span class="token punctuation">;</span>
+
+@<span class="token function">customElement</span><span class="token punctuation">(</span><span class="token string">"lit-rich-text-editor"</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">LitRichTextEditor</span> <span class="token keyword">extends</span> <span class="token class-name">LitElement</span> <span class="token punctuation">{</span>
+  @<span class="token function">state</span><span class="token punctuation">(</span><span class="token punctuation">)</span> content<span class="token operator">:</span> string <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+  @<span class="token function">state</span><span class="token punctuation">(</span><span class="token punctuation">)</span> root<span class="token operator">:</span> Element <span class="token operator">|</span> <span class="token keyword">null</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">static</span> styles <span class="token operator">=</span> css<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+    :host {
+      --editor-width: 600px;
+      --editor-height: 600px;
+      --editor-background: #f1f1f1;
+      --editor-toolbar-height: 33px;
+      --editor-toolbar-background: black;
+      --editor-toolbar-on-background: white;
+      --editor-toolbar-on-active-background: #a4a4a4;
+    }
+    main {
+      width: var(--editor-width);
+      height: var(--editor-height);
+      display: grid;
+      grid-template-areas:
+        "toolbar toolbar"
+        "editor editor";
+      grid-template-rows: var(--editor-toolbar-height) auto;
+      grid-template-columns: auto auto;
+    }
+    #editor-actions {
+      grid-area: toolbar;
+      width: var(--editor-width);
+      height: var(--editor-toolbar-height);
+      background-color: var(--editor-toolbar-background);
+      color: var(--editor-toolbar-on-background);
+      overscroll-behavior: contain;
+      overflow-y: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    #editor-actions::-webkit-scrollbar {
+      display: none;
+    }
+    #editor {
+      width: var(--editor-width);
+      grid-area: editor;
+      background-color: var(--editor-background);
+    }
+    #toolbar {
+      width: 1090px;
+      height: var(--editor-toolbar-height);
+    }
+    [contenteditable] {
+      outline: 0px solid transparent;
+    }
+    #toolbar > mwc-icon-button {
+      color: var(--editor-toolbar-on-background);
+      --mdc-icon-size: 20px;
+      --mdc-icon-button-size: 30px;
+      cursor: pointer;
+    }
+    #toolbar > .active {
+      color: var(--editor-toolbar-on-active-background);
+    }
+    select {
+      margin-top: 5px;
+      height: calc(var(--editor-toolbar-height) - 10px);
+    }
+    input[type="color"] {
+      height: calc(var(--editor-toolbar-height) - 15px);
+      -webkit-appearance: none;
+      border: none;
+      width: 22px;
+    }
+    input[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+    input[type="color"]::-webkit-color-swatch {
+      border: none;
+    }
+  </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> html<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">&lt;main>
+      &lt;input id="bg" type="color" style="display:none" />
+      &lt;input id="fg" type="color" style="display:none" />
+      &lt;div id="editor-actions">
+        &lt;div id="toolbar">
+        &lt;/div>
+      &lt;/div>
+      &lt;div id="editor"></span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>root<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;/div>
+    &lt;/main> </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">async</span> <span class="token function">firstUpdated</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> elem <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>parentElement<span class="token operator">!</span><span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"lit-rich-text-editor template"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>content <span class="token operator">=</span> elem<span class="token operator">?.</span>innerHTML <span class="token operator">??</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> parser <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DOMParser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> doc <span class="token operator">=</span> parser<span class="token punctuation">.</span><span class="token function">parseFromString</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>content<span class="token punctuation">,</span> <span class="token string">"text/html"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    document<span class="token punctuation">.</span><span class="token function">execCommand</span><span class="token punctuation">(</span><span class="token string">"defaultParagraphSeparator"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">"br"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"selectionchange"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">requestUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> root <span class="token operator">=</span> doc<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"body"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    root<span class="token operator">!</span><span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"contenteditable"</span><span class="token punctuation">,</span> <span class="token string">"true"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>root <span class="token operator">=</span> root<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p>With everything updated run <code>npm run dev</code> and the following should appear in the browser:</p>
+<img width="100%" src="/img/rich-text/editor-start.png">
+<p>Nothing special is happening yet, but the template is being read and passed into the element, parsed and setting the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable"><code>contenteditable</code></a> attribute to <code>true</code>.</p>
+<p>This is a way to access the slots and use the nodes to hold data that are not used for rendering. Doing it this way allows for a transformation of the HTML source into a format that can be used.</p>
+<h2 id="toolbar">Toolbar</h2>
+<p>At the bottom of the class before the last <code>}</code> add the following:</p>
+<pre class="language-js"><code class="language-js"><span class="token function">renderToolbar</span><span class="token punctuation">(</span><span class="token function-variable function">command</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">c</span><span class="token operator">:</span> string<span class="token punctuation">,</span> <span class="token literal-property property">val</span><span class="token operator">:</span> string <span class="token operator">|</span> <span class="token keyword">undefined</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// TODO: Selection does not work on Safari iOS</span>
+    <span class="token keyword">const</span> selection <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>shadowRoot<span class="token operator">?.</span>getSelection
+      <span class="token operator">?</span> <span class="token keyword">this</span><span class="token punctuation">.</span>shadowRoot<span class="token operator">!</span><span class="token punctuation">.</span><span class="token function">getSelection</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> <span class="token literal-property property">tags</span><span class="token operator">:</span> string<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>selection<span class="token operator">?.</span>type <span class="token operator">===</span> <span class="token string">"Range"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// @ts-ignore</span>
+      <span class="token keyword">let</span> parentNode <span class="token operator">=</span> selection<span class="token operator">?.</span>baseNode<span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>parentNode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> <span class="token function-variable function">checkNode</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+          <span class="token keyword">const</span> parentTagName <span class="token operator">=</span> parentNode<span class="token operator">?.</span>tagName<span class="token operator">?.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">?.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>parentTagName<span class="token punctuation">)</span> tags<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>parentTagName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>parentNode <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token function">checkNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          parentNode <span class="token operator">=</span> parentNode<span class="token operator">?.</span>parentNode<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">const</span> <span class="token literal-property property">commands</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">icon</span><span class="token operator">:</span> string<span class="token punctuation">;</span>
+      <span class="token literal-property property">command</span><span class="token operator">:</span> string <span class="token operator">|</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      active<span class="token operator">?</span><span class="token operator">:</span> boolean<span class="token punctuation">;</span>
+      type<span class="token operator">?</span><span class="token operator">:</span> string<span class="token punctuation">;</span>
+      values<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">value</span><span class="token operator">:</span> string<span class="token punctuation">;</span> name<span class="token operator">:</span> string<span class="token punctuation">;</span> font<span class="token operator">?</span><span class="token operator">:</span> boolean <span class="token punctuation">}</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      command_value<span class="token operator">?</span><span class="token operator">:</span> string<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"format_clear"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">"removeFormat"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"format_bold"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">"bold"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">active</span><span class="token operator">:</span> tags<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">"b"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"format_italic"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">"italic"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">active</span><span class="token operator">:</span> tags<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">"i"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"format_underlined"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">"underline"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">active</span><span class="token operator">:</span> tags<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">"u"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"format_align_left"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">"justifyleft"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"format_align_center"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">"justifycenter"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"format_align_right"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">"justifyright"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"format_list_numbered"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">"insertorderedlist"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">active</span><span class="token operator">:</span> tags<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">"ol"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"format_list_bulleted"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">"insertunorderedlist"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">active</span><span class="token operator">:</span> tags<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">"ul"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"format_quote"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">"formatblock"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">command_value</span><span class="token operator">:</span> <span class="token string">"blockquote"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"format_indent_decrease"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">"outdent"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"format_indent_increase"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">"indent"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"add_link"</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">command</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+          <span class="token keyword">const</span> newLink <span class="token operator">=</span> <span class="token function">prompt</span><span class="token punctuation">(</span><span class="token string">"Write the URL here"</span><span class="token punctuation">,</span> <span class="token string">"http://"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>newLink <span class="token operator">&amp;&amp;</span> newLink <span class="token operator">!=</span> <span class="token string">""</span> <span class="token operator">&amp;&amp;</span> newLink <span class="token operator">!=</span> <span class="token string">"http://"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">command</span><span class="token punctuation">(</span><span class="token string">"createlink"</span><span class="token punctuation">,</span> newLink<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"link_off"</span><span class="token punctuation">,</span> <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">"unlink"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"format_color_text"</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">command</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+          <span class="token keyword">const</span> input <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>shadowRoot<span class="token operator">!</span><span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span>
+            <span class="token string">"#fg"</span>
+          <span class="token punctuation">)</span><span class="token operator">!</span> <span class="token keyword">as</span> HTMLInputElement<span class="token punctuation">;</span>
+          input<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"input"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">e</span><span class="token operator">:</span> any</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            <span class="token keyword">const</span> val <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+            <span class="token function">command</span><span class="token punctuation">(</span><span class="token string">"forecolor"</span><span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          input<span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"color"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"border_color"</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">command</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+          <span class="token keyword">const</span> input <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>shadowRoot<span class="token operator">!</span><span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span>
+            <span class="token string">"#bg"</span>
+          <span class="token punctuation">)</span><span class="token operator">!</span> <span class="token keyword">as</span> HTMLInputElement<span class="token punctuation">;</span>
+          input<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"input"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">e</span><span class="token operator">:</span> any</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            <span class="token keyword">const</span> val <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+            <span class="token function">command</span><span class="token punctuation">(</span><span class="token string">"backcolor"</span><span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          input<span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"color"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"title"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">"formatblock"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">values</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Normal Text"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"--"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Heading 1"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"h1"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Heading 2"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"h2"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Heading 3"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"h3"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Heading 4"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"h4"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Heading 5"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"h5"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Heading 6"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"h6"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Paragraph"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"p"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Pre-Formatted"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"pre"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"text_format"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">"fontname"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">values</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Font Name"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"--"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token operator">...</span><span class="token punctuation">[</span><span class="token operator">...</span><span class="token function">checkFonts</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">f</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+            <span class="token literal-property property">name</span><span class="token operator">:</span> f<span class="token punctuation">,</span>
+            <span class="token literal-property property">value</span><span class="token operator">:</span> f<span class="token punctuation">,</span>
+            <span class="token literal-property property">font</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"format_size"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">"fontsize"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">values</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Font Size"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"--"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Very Small"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"1"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Small"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"2"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Normal"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"3"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Medium Large"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"4"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Large"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"5"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Very Large"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"6"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Maximum"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"7"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"undo"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">"undo"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"redo"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">"redo"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"content_cut"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">"cut"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"content_copy"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">"copy"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">icon</span><span class="token operator">:</span> <span class="token string">"content_paste"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">command</span><span class="token operator">:</span> <span class="token string">"paste"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> html<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+      </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>commands<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">n</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> html`
+          $<span class="token punctuation">{</span>n<span class="token punctuation">.</span>values
+            <span class="token operator">?</span> html` <span class="token operator">&lt;</span>select
+                id<span class="token operator">=</span><span class="token string">"${n.icon}"</span>
+                @change<span class="token operator">=</span>$<span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">e</span><span class="token operator">:</span> any</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+                  <span class="token keyword">const</span> val <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+                  <span class="token keyword">if</span> <span class="token punctuation">(</span>val <span class="token operator">===</span> <span class="token string">"--"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token function">command</span><span class="token punctuation">(</span><span class="token string">"removeFormat"</span><span class="token punctuation">,</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> n<span class="token punctuation">.</span>command <span class="token operator">===</span> <span class="token string">"string"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token function">command</span><span class="token punctuation">(</span>n<span class="token punctuation">.</span>command<span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">
+              >
+                </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>n<span class="token punctuation">.</span>values<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>
+                  <span class="token punctuation">(</span><span class="token parameter">v</span><span class="token punctuation">)</span> <span class="token operator">=></span> html<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string"> &lt;option value=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>v<span class="token punctuation">.</span>value<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">></span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>v<span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;/option></span><span class="token template-punctuation string">`</span></span>
+                <span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">
+              &lt;/select></span><span class="token template-punctuation string">`</span></span>
+            <span class="token operator">:</span> html<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string"> &lt;mwc-icon-button
+                icon="</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>n<span class="token punctuation">.</span>icon<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">"
+                class="</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>n<span class="token punctuation">.</span>active <span class="token operator">?</span> <span class="token string">"active"</span> <span class="token operator">:</span> <span class="token string">"inactive"</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">"
+                @click=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+                  <span class="token keyword">if</span> <span class="token punctuation">(</span>n<span class="token punctuation">.</span>values<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> n<span class="token punctuation">.</span>command <span class="token operator">===</span> <span class="token string">"string"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token function">command</span><span class="token punctuation">(</span>n<span class="token punctuation">.</span>command<span class="token punctuation">,</span> n<span class="token punctuation">.</span>command_value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                    n<span class="token punctuation">.</span><span class="token function">command</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">
+              >&lt;/mwc-icon-button></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">;
+      })}
+    </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>This takes an array of objects that we can map to <code>mwc-icon-button</code> or <code>select</code> depending on the passed values. This will also set up the event listeners and execute the command for the given action.</p>
+<p>Inside the <code>&#x3C;div id="toolbar"></code> tag add the following:</p>
+<pre class="language-js"><code class="language-js">$<span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">renderToolbar</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">command<span class="token punctuation">,</span> val</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    document<span class="token punctuation">.</span><span class="token function">execCommand</span><span class="token punctuation">(</span>command<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"command"</span><span class="token punctuation">,</span> command<span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">}</span></code></pre>
+<p>This will listen for the callback and fire the command on the document and log it to the console.</p>
+<p>And finally at the bottom of the file add the following:</p>
+<pre class="language-js"><code class="language-js">
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">checkFonts</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> string<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> fontCheck <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span>
+    <span class="token punctuation">[</span>
+      <span class="token comment">// Windows 10</span>
+      <span class="token string">"Arial"</span><span class="token punctuation">,</span>
+      <span class="token string">"Arial Black"</span><span class="token punctuation">,</span>
+      <span class="token string">"Bahnschrift"</span><span class="token punctuation">,</span>
+      <span class="token string">"Calibri"</span><span class="token punctuation">,</span>
+      <span class="token string">"Cambria"</span><span class="token punctuation">,</span>
+      <span class="token string">"Cambria Math"</span><span class="token punctuation">,</span>
+      <span class="token string">"Candara"</span><span class="token punctuation">,</span>
+      <span class="token string">"Comic Sans MS"</span><span class="token punctuation">,</span>
+      <span class="token string">"Consolas"</span><span class="token punctuation">,</span>
+      <span class="token string">"Constantia"</span><span class="token punctuation">,</span>
+      <span class="token string">"Corbel"</span><span class="token punctuation">,</span>
+      <span class="token string">"Courier New"</span><span class="token punctuation">,</span>
+      <span class="token string">"Ebrima"</span><span class="token punctuation">,</span>
+      <span class="token string">"Franklin Gothic Medium"</span><span class="token punctuation">,</span>
+      <span class="token string">"Gabriola"</span><span class="token punctuation">,</span>
+      <span class="token string">"Gadugi"</span><span class="token punctuation">,</span>
+      <span class="token string">"Georgia"</span><span class="token punctuation">,</span>
+      <span class="token string">"HoloLens MDL2 Assets"</span><span class="token punctuation">,</span>
+      <span class="token string">"Impact"</span><span class="token punctuation">,</span>
+      <span class="token string">"Ink Free"</span><span class="token punctuation">,</span>
+      <span class="token string">"Javanese Text"</span><span class="token punctuation">,</span>
+      <span class="token string">"Leelawadee UI"</span><span class="token punctuation">,</span>
+      <span class="token string">"Lucida Console"</span><span class="token punctuation">,</span>
+      <span class="token string">"Lucida Sans Unicode"</span><span class="token punctuation">,</span>
+      <span class="token string">"Malgun Gothic"</span><span class="token punctuation">,</span>
+      <span class="token string">"Marlett"</span><span class="token punctuation">,</span>
+      <span class="token string">"Microsoft Himalaya"</span><span class="token punctuation">,</span>
+      <span class="token string">"Microsoft JhengHei"</span><span class="token punctuation">,</span>
+      <span class="token string">"Microsoft New Tai Lue"</span><span class="token punctuation">,</span>
+      <span class="token string">"Microsoft PhagsPa"</span><span class="token punctuation">,</span>
+      <span class="token string">"Microsoft Sans Serif"</span><span class="token punctuation">,</span>
+      <span class="token string">"Microsoft Tai Le"</span><span class="token punctuation">,</span>
+      <span class="token string">"Microsoft YaHei"</span><span class="token punctuation">,</span>
+      <span class="token string">"Microsoft Yi Baiti"</span><span class="token punctuation">,</span>
+      <span class="token string">"MingLiU-ExtB"</span><span class="token punctuation">,</span>
+      <span class="token string">"Mongolian Baiti"</span><span class="token punctuation">,</span>
+      <span class="token string">"MS Gothic"</span><span class="token punctuation">,</span>
+      <span class="token string">"MV Boli"</span><span class="token punctuation">,</span>
+      <span class="token string">"Myanmar Text"</span><span class="token punctuation">,</span>
+      <span class="token string">"Nirmala UI"</span><span class="token punctuation">,</span>
+      <span class="token string">"Palatino Linotype"</span><span class="token punctuation">,</span>
+      <span class="token string">"Segoe MDL2 Assets"</span><span class="token punctuation">,</span>
+      <span class="token string">"Segoe Print"</span><span class="token punctuation">,</span>
+      <span class="token string">"Segoe Script"</span><span class="token punctuation">,</span>
+      <span class="token string">"Segoe UI"</span><span class="token punctuation">,</span>
+      <span class="token string">"Segoe UI Historic"</span><span class="token punctuation">,</span>
+      <span class="token string">"Segoe UI Emoji"</span><span class="token punctuation">,</span>
+      <span class="token string">"Segoe UI Symbol"</span><span class="token punctuation">,</span>
+      <span class="token string">"SimSun"</span><span class="token punctuation">,</span>
+      <span class="token string">"Sitka"</span><span class="token punctuation">,</span>
+      <span class="token string">"Sylfaen"</span><span class="token punctuation">,</span>
+      <span class="token string">"Symbol"</span><span class="token punctuation">,</span>
+      <span class="token string">"Tahoma"</span><span class="token punctuation">,</span>
+      <span class="token string">"Times New Roman"</span><span class="token punctuation">,</span>
+      <span class="token string">"Trebuchet MS"</span><span class="token punctuation">,</span>
+      <span class="token string">"Verdana"</span><span class="token punctuation">,</span>
+      <span class="token string">"Webdings"</span><span class="token punctuation">,</span>
+      <span class="token string">"Wingdings"</span><span class="token punctuation">,</span>
+      <span class="token string">"Yu Gothic"</span><span class="token punctuation">,</span>
+      <span class="token comment">// macOS</span>
+      <span class="token string">"American Typewriter"</span><span class="token punctuation">,</span>
+      <span class="token string">"Andale Mono"</span><span class="token punctuation">,</span>
+      <span class="token string">"Arial"</span><span class="token punctuation">,</span>
+      <span class="token string">"Arial Black"</span><span class="token punctuation">,</span>
+      <span class="token string">"Arial Narrow"</span><span class="token punctuation">,</span>
+      <span class="token string">"Arial Rounded MT Bold"</span><span class="token punctuation">,</span>
+      <span class="token string">"Arial Unicode MS"</span><span class="token punctuation">,</span>
+      <span class="token string">"Avenir"</span><span class="token punctuation">,</span>
+      <span class="token string">"Avenir Next"</span><span class="token punctuation">,</span>
+      <span class="token string">"Avenir Next Condensed"</span><span class="token punctuation">,</span>
+      <span class="token string">"Baskerville"</span><span class="token punctuation">,</span>
+      <span class="token string">"Big Caslon"</span><span class="token punctuation">,</span>
+      <span class="token string">"Bodoni 72"</span><span class="token punctuation">,</span>
+      <span class="token string">"Bodoni 72 Oldstyle"</span><span class="token punctuation">,</span>
+      <span class="token string">"Bodoni 72 Smallcaps"</span><span class="token punctuation">,</span>
+      <span class="token string">"Bradley Hand"</span><span class="token punctuation">,</span>
+      <span class="token string">"Brush Script MT"</span><span class="token punctuation">,</span>
+      <span class="token string">"Chalkboard"</span><span class="token punctuation">,</span>
+      <span class="token string">"Chalkboard SE"</span><span class="token punctuation">,</span>
+      <span class="token string">"Chalkduster"</span><span class="token punctuation">,</span>
+      <span class="token string">"Charter"</span><span class="token punctuation">,</span>
+      <span class="token string">"Cochin"</span><span class="token punctuation">,</span>
+      <span class="token string">"Comic Sans MS"</span><span class="token punctuation">,</span>
+      <span class="token string">"Copperplate"</span><span class="token punctuation">,</span>
+      <span class="token string">"Courier"</span><span class="token punctuation">,</span>
+      <span class="token string">"Courier New"</span><span class="token punctuation">,</span>
+      <span class="token string">"Didot"</span><span class="token punctuation">,</span>
+      <span class="token string">"DIN Alternate"</span><span class="token punctuation">,</span>
+      <span class="token string">"DIN Condensed"</span><span class="token punctuation">,</span>
+      <span class="token string">"Futura"</span><span class="token punctuation">,</span>
+      <span class="token string">"Geneva"</span><span class="token punctuation">,</span>
+      <span class="token string">"Georgia"</span><span class="token punctuation">,</span>
+      <span class="token string">"Gill Sans"</span><span class="token punctuation">,</span>
+      <span class="token string">"Helvetica"</span><span class="token punctuation">,</span>
+      <span class="token string">"Helvetica Neue"</span><span class="token punctuation">,</span>
+      <span class="token string">"Herculanum"</span><span class="token punctuation">,</span>
+      <span class="token string">"Hoefler Text"</span><span class="token punctuation">,</span>
+      <span class="token string">"Impact"</span><span class="token punctuation">,</span>
+      <span class="token string">"Lucida Grande"</span><span class="token punctuation">,</span>
+      <span class="token string">"Luminari"</span><span class="token punctuation">,</span>
+      <span class="token string">"Marker Felt"</span><span class="token punctuation">,</span>
+      <span class="token string">"Menlo"</span><span class="token punctuation">,</span>
+      <span class="token string">"Microsoft Sans Serif"</span><span class="token punctuation">,</span>
+      <span class="token string">"Monaco"</span><span class="token punctuation">,</span>
+      <span class="token string">"Noteworthy"</span><span class="token punctuation">,</span>
+      <span class="token string">"Optima"</span><span class="token punctuation">,</span>
+      <span class="token string">"Palatino"</span><span class="token punctuation">,</span>
+      <span class="token string">"Papyrus"</span><span class="token punctuation">,</span>
+      <span class="token string">"Phosphate"</span><span class="token punctuation">,</span>
+      <span class="token string">"Rockwell"</span><span class="token punctuation">,</span>
+      <span class="token string">"Savoye LET"</span><span class="token punctuation">,</span>
+      <span class="token string">"SignPainter"</span><span class="token punctuation">,</span>
+      <span class="token string">"Skia"</span><span class="token punctuation">,</span>
+      <span class="token string">"Snell Roundhand"</span><span class="token punctuation">,</span>
+      <span class="token string">"Tahoma"</span><span class="token punctuation">,</span>
+      <span class="token string">"Times"</span><span class="token punctuation">,</span>
+      <span class="token string">"Times New Roman"</span><span class="token punctuation">,</span>
+      <span class="token string">"Trattatello"</span><span class="token punctuation">,</span>
+      <span class="token string">"Trebuchet MS"</span><span class="token punctuation">,</span>
+      <span class="token string">"Verdana"</span><span class="token punctuation">,</span>
+      <span class="token string">"Zapfino"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> fontAvailable <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token operator">&lt;</span>string<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// @ts-ignore</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> font <span class="token keyword">of</span> fontCheck<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// @ts-ignore</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>document<span class="token punctuation">.</span>fonts<span class="token punctuation">.</span><span class="token function">check</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">12px "</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>font<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">"</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      fontAvailable<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>font<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// @ts-ignore</span>
+  <span class="token keyword">return</span> fontAvailable<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Following this great suggestion <a href="https://stackoverflow.com/a/62755574/7303311">here</a> the document checks to see all the avaliable fonts for the browser and given document.</p>
+<h2 id="running">Running</h2>
+<p>If everything went well when the command <code>npm run dev</code> is run the following should appear in the viewport:</p>
+<img width="100%" src="/img/rich-text/editor-finish.png">
+<h2 id="conclusion">Conclusion</h2>
+<p>If you want to learn more about building with Lit you can read the docs <a href="https://lit.dev">here</a>. There is also an example on the Lit playground <a href="https://lit.dev/playground/#project=W3sibmFtZSI6InJpY2gtdGV4dC1lZGl0b3IudHMiLCJjb250ZW50IjoiaW1wb3J0IHsgTGl0RWxlbWVudCwgaHRtbCwgY3VzdG9tRWxlbWVudCwgY3NzLCBzdGF0ZSB9IGZyb20gXCJsaXQtZWxlbWVudFwiO1xuXG5pbXBvcnQgXCJAbWF0ZXJpYWwvbXdjLWljb24tYnV0dG9uXCI7XG5cbkBjdXN0b21FbGVtZW50KFwicmljaC10ZXh0LWVkaXRvclwiKVxuZXhwb3J0IGNsYXNzIFJpY2hUZXh0RWRpdG9yIGV4dGVuZHMgTGl0RWxlbWVudCB7XG4gIEBzdGF0ZSgpIGNvbnRlbnQ6IHN0cmluZyA9IFwiXCI7XG4gIEBzdGF0ZSgpIHJvb3Q6IEVsZW1lbnQgfCBudWxsID0gbnVsbDtcblxuICBzdGF0aWMgc3R5bGVzID0gY3NzYFxuICAgIDpob3N0IHtcbiAgICAgIC0tZWRpdG9yLXdpZHRoOiA2MDBweDtcbiAgICAgIC0tZWRpdG9yLWhlaWdodDogNjAwcHg7XG4gICAgICAtLWVkaXRvci1iYWNrZ3JvdW5kOiAjZjFmMWYxO1xuICAgICAgLS1lZGl0b3ItdG9vbGJhci1oZWlnaHQ6IDMzcHg7XG4gICAgICAtLWVkaXRvci10b29sYmFyLWJhY2tncm91bmQ6IGJsYWNrO1xuICAgICAgLS1lZGl0b3ItdG9vbGJhci1vbi1iYWNrZ3JvdW5kOiB3aGl0ZTtcbiAgICAgIC0tZWRpdG9yLXRvb2xiYXItb24tYWN0aXZlLWJhY2tncm91bmQ6ICNhNGE0YTQ7XG4gICAgfVxuICAgIG1haW4ge1xuICAgICAgd2lkdGg6IHZhcigtLWVkaXRvci13aWR0aCk7XG4gICAgICBoZWlnaHQ6IHZhcigtLWVkaXRvci1oZWlnaHQpO1xuICAgICAgZGlzcGxheTogZ3JpZDtcbiAgICAgIGdyaWQtdGVtcGxhdGUtYXJlYXM6XG4gICAgICAgIFwidG9vbGJhciB0b29sYmFyXCJcbiAgICAgICAgXCJlZGl0b3IgZWRpdG9yXCI7XG4gICAgICBncmlkLXRlbXBsYXRlLXJvd3M6IHZhcigtLWVkaXRvci10b29sYmFyLWhlaWdodCkgYXV0bztcbiAgICAgIGdyaWQtdGVtcGxhdGUtY29sdW1uczogYXV0byBhdXRvO1xuICAgIH1cbiAgICAjZWRpdG9yLWFjdGlvbnMge1xuICAgICAgZ3JpZC1hcmVhOiB0b29sYmFyO1xuICAgICAgd2lkdGg6IHZhcigtLWVkaXRvci13aWR0aCk7XG4gICAgICBoZWlnaHQ6IHZhcigtLWVkaXRvci10b29sYmFyLWhlaWdodCk7XG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1lZGl0b3ItdG9vbGJhci1iYWNrZ3JvdW5kKTtcbiAgICAgIGNvbG9yOiB2YXIoLS1lZGl0b3ItdG9vbGJhci1vbi1iYWNrZ3JvdW5kKTtcbiAgICAgIG92ZXJzY3JvbGwtYmVoYXZpb3I6IGNvbnRhaW47XG4gICAgICBvdmVyZmxvdy15OiBhdXRvO1xuICAgICAgLW1zLW92ZXJmbG93LXN0eWxlOiBub25lO1xuICAgICAgc2Nyb2xsYmFyLXdpZHRoOiBub25lO1xuICAgIH1cbiAgICAjZWRpdG9yLWFjdGlvbnM6Oi13ZWJraXQtc2Nyb2xsYmFyIHtcbiAgICAgIGRpc3BsYXk6IG5vbmU7XG4gICAgfVxuICAgICNlZGl0b3Ige1xuICAgICAgd2lkdGg6IHZhcigtLWVkaXRvci13aWR0aCk7XG4gICAgICBncmlkLWFyZWE6IGVkaXRvcjtcbiAgICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWVkaXRvci1iYWNrZ3JvdW5kKTtcbiAgICB9XG4gICAgI3Rvb2xiYXIge1xuICAgICAgd2lkdGg6IDEwODBweDtcbiAgICAgIGhlaWdodDogdmFyKC0tZWRpdG9yLXRvb2xiYXItaGVpZ2h0KTtcbiAgICB9XG4gICAgW2NvbnRlbnRlZGl0YWJsZV0ge1xuICAgICAgb3V0bGluZTogMHB4IHNvbGlkIHRyYW5zcGFyZW50O1xuICAgIH1cbiAgICAjdG9vbGJhciA-IG13Yy1pY29uLWJ1dHRvbiB7XG4gICAgICBjb2xvcjogdmFyKC0tZWRpdG9yLXRvb2xiYXItb24tYmFja2dyb3VuZCk7XG4gICAgICAtLW1kYy1pY29uLXNpemU6IDIwcHg7XG4gICAgICAtLW1kYy1pY29uLWJ1dHRvbi1zaXplOiAzMHB4O1xuICAgICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIH1cbiAgICAjdG9vbGJhciA-IC5hY3RpdmUge1xuICAgICAgY29sb3I6IHZhcigtLWVkaXRvci10b29sYmFyLW9uLWFjdGl2ZS1iYWNrZ3JvdW5kKTtcbiAgICB9XG4gICAgc2VsZWN0IHtcbiAgICAgIG1hcmdpbi10b3A6IDVweDtcbiAgICAgIGhlaWdodDogY2FsYyh2YXIoLS1lZGl0b3ItdG9vbGJhci1oZWlnaHQpIC0gMTBweCk7XG4gICAgfVxuICAgIGlucHV0W3R5cGU9XCJjb2xvclwiXSB7XG4gICAgICBoZWlnaHQ6IGNhbGModmFyKC0tZWRpdG9yLXRvb2xiYXItaGVpZ2h0KSAtIDE1cHgpO1xuICAgICAgLXdlYmtpdC1hcHBlYXJhbmNlOiBub25lO1xuICAgICAgYm9yZGVyOiBub25lO1xuICAgICAgd2lkdGg6IDIycHg7XG4gICAgfVxuICAgIGlucHV0W3R5cGU9XCJjb2xvclwiXTo6LXdlYmtpdC1jb2xvci1zd2F0Y2gtd3JhcHBlciB7XG4gICAgICBwYWRkaW5nOiAwO1xuICAgIH1cbiAgICBpbnB1dFt0eXBlPVwiY29sb3JcIl06Oi13ZWJraXQtY29sb3Itc3dhdGNoIHtcbiAgICAgIGJvcmRlcjogbm9uZTtcbiAgICB9XG4gIGA7XG5cbiAgcmVuZGVyKCkge1xuICAgIHJldHVybiBodG1sYDxtYWluPlxuICAgICAgPGlucHV0IGlkPVwiYmdcIiB0eXBlPVwiY29sb3JcIiBzdHlsZT0nZGlzcGxheTpub25lJyAvPlxuICAgICAgPGlucHV0IGlkPVwiZmdcIiB0eXBlPVwiY29sb3JcIiBzdHlsZT0nZGlzcGxheTpub25lJyAvPlxuICAgICAgPGRpdiBpZD1cImVkaXRvci1hY3Rpb25zXCI-XG4gICAgICAgIDxkaXYgaWQ9XCJ0b29sYmFyXCI-XG4gICAgICAgICAgJHt0b29sYmFyKHRoaXMuc2hhZG93Um9vdCEsIHRoaXMuZ2V0U2VsZWN0aW9uKCksIChjb21tYW5kLCB2YWwpID0-IHtcbiAgICAgICAgICAgIGRvY3VtZW50LmV4ZWNDb21tYW5kKGNvbW1hbmQsIGZhbHNlLCB2YWwpO1xuICAgICAgICAgICAgY29uc29sZS5sb2coXCJjb21tYW5kXCIsIGNvbW1hbmQsIHZhbCk7XG4gICAgICAgICAgfSl9XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9kaXY-XG4gICAgICA8ZGl2IGlkPVwiZWRpdG9yXCI-JHt0aGlzLnJvb3R9PC9kaXY-XG4gICAgPC9tYWluPiBgO1xuICB9XG5cbiAgYXN5bmMgZmlyc3RVcGRhdGVkKCkge1xuICAgIGNvbnN0IGVsZW0gPSB0aGlzLnBhcmVudEVsZW1lbnQhLnF1ZXJ5U2VsZWN0b3IoXCJyaWNoLXRleHQtZWRpdG9yIHRlbXBsYXRlXCIpO1xuICAgIHRoaXMuY29udGVudCA9IGVsZW0_LmlubmVySFRNTCA_PyBcIlwiO1xuICAgIHRoaXMucmVzZXQoKTtcbiAgfVxuXG4gIHJlc2V0KCkge1xuICAgIGNvbnN0IHBhcnNlciA9IG5ldyBET01QYXJzZXIoKTtcbiAgICBjb25zdCBkb2MgPSBwYXJzZXIucGFyc2VGcm9tU3RyaW5nKHRoaXMuY29udGVudCwgXCJ0ZXh0L2h0bWxcIik7XG4gICAgZG9jdW1lbnQuZXhlY0NvbW1hbmQoXCJkZWZhdWx0UGFyYWdyYXBoU2VwYXJhdG9yXCIsIGZhbHNlLCBcImJyXCIpO1xuICAgIGRvY3VtZW50LmFkZEV2ZW50TGlzdGVuZXIoXCJzZWxlY3Rpb25jaGFuZ2VcIiwgKCkgPT4ge1xuICAgICAgdGhpcy5yZXF1ZXN0VXBkYXRlKCk7XG4gICAgfSk7XG4gICAgY29uc3Qgcm9vdCA9IGRvYy5xdWVyeVNlbGVjdG9yKFwiYm9keVwiKTtcbiAgICByb290IS5zZXRBdHRyaWJ1dGUoXCJjb250ZW50ZWRpdGFibGVcIiwgXCJ0cnVlXCIpO1xuICAgIHRoaXMucm9vdCA9IHJvb3Q7XG4gIH1cblxuICBnZXRTZWxlY3Rpb24oKTogU2VsZWN0aW9uIHwgbnVsbCB7XG4gICAgaWYgKHRoaXMuc2hhZG93Um9vdD8uZ2V0U2VsZWN0aW9uKSByZXR1cm4gdGhpcy5zaGFkb3dSb290Py5nZXRTZWxlY3Rpb24oKTtcbiAgICByZXR1cm4gbnVsbDtcbiAgfVxufVxuXG5mdW5jdGlvbiB0b29sYmFyKFxuICBzaGFkb3dSb290OiBTaGFkb3dSb290LFxuICBzZWxlY3Rpb246IFNlbGVjdGlvbiB8IG51bGwsXG4gIGNvbW1hbmQ6IChjOiBzdHJpbmcsIHZhbDogc3RyaW5nIHwgdW5kZWZpbmVkKSA9PiB2b2lkXG4pIHtcbiAgY29uc3QgdGFnczogc3RyaW5nW10gPSBbXTtcbiAgaWYgKHNlbGVjdGlvbj8udHlwZSA9PT0gXCJSYW5nZVwiKSB7XG4gICAgLy8gQHRzLWlnbm9yZVxuICAgIGxldCBwYXJlbnROb2RlID0gc2VsZWN0aW9uPy5iYXNlTm9kZTtcbiAgICBpZiAocGFyZW50Tm9kZSkge1xuICAgICAgY29uc3QgY2hlY2tOb2RlID0gKCkgPT4ge1xuICAgICAgICBjb25zdCBwYXJlbnRUYWdOYW1lID0gcGFyZW50Tm9kZT8udGFnTmFtZT8udG9Mb3dlckNhc2UoKT8udHJpbSgpO1xuICAgICAgICBpZiAocGFyZW50VGFnTmFtZSkgdGFncy5wdXNoKHBhcmVudFRhZ05hbWUpO1xuICAgICAgfTtcbiAgICAgIHdoaWxlIChwYXJlbnROb2RlICE9IG51bGwpIHtcbiAgICAgICAgY2hlY2tOb2RlKCk7XG4gICAgICAgIHBhcmVudE5vZGUgPSBwYXJlbnROb2RlPy5wYXJlbnROb2RlO1xuICAgICAgfVxuICAgIH1cbiAgfVxuXG4gIGNvbnN0IGNvbW1hbmRzOiB7XG4gICAgaWNvbjogc3RyaW5nO1xuICAgIGNvbW1hbmQ6IHN0cmluZyB8ICgoKSA9PiB2b2lkKTtcbiAgICBhY3RpdmU_OiBib29sZWFuO1xuICAgIHR5cGU_OiBzdHJpbmc7XG4gICAgdmFsdWVzPzogeyB2YWx1ZTogc3RyaW5nOyBuYW1lOiBzdHJpbmc7IGZvbnQ_OiBib29sZWFuIH1bXTtcbiAgICBjb21tYW5kX3ZhbHVlPzogc3RyaW5nO1xuICB9W10gPSBbXG4gICAge1xuICAgICAgaWNvbjogXCJmb3JtYXRfY2xlYXJcIixcbiAgICAgIGNvbW1hbmQ6IFwicmVtb3ZlRm9ybWF0XCIsXG4gICAgfSxcblxuICAgIHtcbiAgICAgIGljb246IFwiZm9ybWF0X2JvbGRcIixcbiAgICAgIGNvbW1hbmQ6IFwiYm9sZFwiLFxuICAgICAgYWN0aXZlOiB0YWdzLmluY2x1ZGVzKFwiYlwiKSxcbiAgICB9LFxuICAgIHtcbiAgICAgIGljb246IFwiZm9ybWF0X2l0YWxpY1wiLFxuICAgICAgY29tbWFuZDogXCJpdGFsaWNcIixcbiAgICAgIGFjdGl2ZTogdGFncy5pbmNsdWRlcyhcImlcIiksXG4gICAgfSxcbiAgICB7XG4gICAgICBpY29uOiBcImZvcm1hdF91bmRlcmxpbmVkXCIsXG4gICAgICBjb21tYW5kOiBcInVuZGVybGluZVwiLFxuICAgICAgYWN0aXZlOiB0YWdzLmluY2x1ZGVzKFwidVwiKSxcbiAgICB9LFxuICAgIHtcbiAgICAgIGljb246IFwiZm9ybWF0X2FsaWduX2xlZnRcIixcbiAgICAgIGNvbW1hbmQ6IFwianVzdGlmeWxlZnRcIixcbiAgICB9LFxuICAgIHtcbiAgICAgIGljb246IFwiZm9ybWF0X2FsaWduX2NlbnRlclwiLFxuICAgICAgY29tbWFuZDogXCJqdXN0aWZ5Y2VudGVyXCIsXG4gICAgfSxcbiAgICB7XG4gICAgICBpY29uOiBcImZvcm1hdF9hbGlnbl9yaWdodFwiLFxuICAgICAgY29tbWFuZDogXCJqdXN0aWZ5cmlnaHRcIixcbiAgICB9LFxuICAgIHtcbiAgICAgIGljb246IFwiZm9ybWF0X2xpc3RfbnVtYmVyZWRcIixcbiAgICAgIGNvbW1hbmQ6IFwiaW5zZXJ0b3JkZXJlZGxpc3RcIixcbiAgICAgIGFjdGl2ZTogdGFncy5pbmNsdWRlcyhcIm9sXCIpLFxuICAgIH0sXG4gICAge1xuICAgICAgaWNvbjogXCJmb3JtYXRfbGlzdF9idWxsZXRlZFwiLFxuICAgICAgY29tbWFuZDogXCJpbnNlcnR1bm9yZGVyZWRsaXN0XCIsXG4gICAgICBhY3RpdmU6IHRhZ3MuaW5jbHVkZXMoXCJ1bFwiKSxcbiAgICB9LFxuICAgIHtcbiAgICAgIGljb246IFwiZm9ybWF0X3F1b3RlXCIsXG4gICAgICBjb21tYW5kOiBcImZvcm1hdGJsb2NrXCIsXG4gICAgICBjb21tYW5kX3ZhbHVlOiBcImJsb2NrcXVvdGVcIixcbiAgICB9LFxuICAgIHtcbiAgICAgIGljb246IFwiZm9ybWF0X2luZGVudF9kZWNyZWFzZVwiLFxuICAgICAgY29tbWFuZDogXCJvdXRkZW50XCIsXG4gICAgfSxcbiAgICB7XG4gICAgICBpY29uOiBcImZvcm1hdF9pbmRlbnRfaW5jcmVhc2VcIixcbiAgICAgIGNvbW1hbmQ6IFwiaW5kZW50XCIsXG4gICAgfSxcbiAgICB0YWdzLmluY2x1ZGVzKFwiYVwiKVxuICAgICAgPyB7IGljb246IFwibGlua19vZmZcIiwgY29tbWFuZDogXCJ1bmxpbmtcIiB9XG4gICAgICA6IHtcbiAgICAgICAgICBpY29uOiBcImFkZF9saW5rXCIsXG4gICAgICAgICAgY29tbWFuZDogKCkgPT4ge1xuICAgICAgICAgICAgY29uc3QgbmV3TGluayA9IHByb21wdChcIldyaXRlIHRoZSBVUkwgaGVyZVwiLCBcImh0dHA6Ly9cIik7XG4gICAgICAgICAgICBpZiAobmV3TGluayAmJiBuZXdMaW5rICE9IFwiXCIgJiYgbmV3TGluayAhPSBcImh0dHA6Ly9cIikge1xuICAgICAgICAgICAgICBjb21tYW5kKFwiY3JlYXRlbGlua1wiLCBuZXdMaW5rKTtcbiAgICAgICAgICAgIH1cbiAgICAgICAgICB9LFxuICAgICAgICB9LFxuICAgIHtcbiAgICAgIGljb246IFwiZm9ybWF0X2NvbG9yX3RleHRcIixcbiAgICAgIGNvbW1hbmQ6ICgpID0-IHtcbiAgICAgICAgY29uc3QgaW5wdXQgPSBzaGFkb3dSb290LnF1ZXJ5U2VsZWN0b3IoXCIjZmdcIikhIGFzIEhUTUxJbnB1dEVsZW1lbnQ7XG4gICAgICAgIGlucHV0LmFkZEV2ZW50TGlzdGVuZXIoXCJpbnB1dFwiLCAoZTogYW55KSA9PiB7XG4gICAgICAgICAgY29uc3QgdmFsID0gZS50YXJnZXQudmFsdWU7XG4gICAgICAgICAgY29tbWFuZChcImZvcmVjb2xvclwiLCB2YWwpO1xuICAgICAgICB9KTtcbiAgICAgICAgaW5wdXQuY2xpY2soKTtcbiAgICAgIH0sXG4gICAgICB0eXBlOiBcImNvbG9yXCIsXG4gICAgfSxcbiAgICB7XG4gICAgICBpY29uOiBcImJvcmRlcl9jb2xvclwiLFxuICAgICAgY29tbWFuZDogKCkgPT4ge1xuICAgICAgICBjb25zdCBpbnB1dCA9IHNoYWRvd1Jvb3QucXVlcnlTZWxlY3RvcihcIiNiZ1wiKSEgYXMgSFRNTElucHV0RWxlbWVudDtcbiAgICAgICAgaW5wdXQuYWRkRXZlbnRMaXN0ZW5lcihcImlucHV0XCIsIChlOiBhbnkpID0-IHtcbiAgICAgICAgICBjb25zdCB2YWwgPSBlLnRhcmdldC52YWx1ZTtcbiAgICAgICAgICBjb21tYW5kKFwiYmFja2NvbG9yXCIsIHZhbCk7XG4gICAgICAgIH0pO1xuICAgICAgICBpbnB1dC5jbGljaygpO1xuICAgICAgfSxcbiAgICAgIHR5cGU6IFwiY29sb3JcIixcbiAgICB9LFxuICAgIHtcbiAgICAgIGljb246IFwidGl0bGVcIixcbiAgICAgIGNvbW1hbmQ6IFwiZm9ybWF0YmxvY2tcIixcbiAgICAgIHZhbHVlczogW1xuICAgICAgICB7IG5hbWU6IFwiTm9ybWFsIFRleHRcIiwgdmFsdWU6IFwiLS1cIiB9LFxuICAgICAgICB7IG5hbWU6IFwiSGVhZGluZyAxXCIsIHZhbHVlOiBcImgxXCIgfSxcbiAgICAgICAgeyBuYW1lOiBcIkhlYWRpbmcgMlwiLCB2YWx1ZTogXCJoMlwiIH0sXG4gICAgICAgIHsgbmFtZTogXCJIZWFkaW5nIDNcIiwgdmFsdWU6IFwiaDNcIiB9LFxuICAgICAgICB7IG5hbWU6IFwiSGVhZGluZyA0XCIsIHZhbHVlOiBcImg0XCIgfSxcbiAgICAgICAgeyBuYW1lOiBcIkhlYWRpbmcgNVwiLCB2YWx1ZTogXCJoNVwiIH0sXG4gICAgICAgIHsgbmFtZTogXCJIZWFkaW5nIDZcIiwgdmFsdWU6IFwiaDZcIiB9LFxuICAgICAgICB7IG5hbWU6IFwiUGFyYWdyYXBoXCIsIHZhbHVlOiBcInBcIiB9LFxuICAgICAgICB7IG5hbWU6IFwiUHJlLUZvcm1hdHRlZFwiLCB2YWx1ZTogXCJwcmVcIiB9LFxuICAgICAgXSxcbiAgICB9LFxuICAgIHtcbiAgICAgIGljb246IFwidGV4dF9mb3JtYXRcIixcbiAgICAgIGNvbW1hbmQ6IFwiZm9udG5hbWVcIixcbiAgICAgIHZhbHVlczogW1xuICAgICAgICB7IG5hbWU6IFwiRm9udCBOYW1lXCIsIHZhbHVlOiBcIi0tXCIgfSxcbiAgICAgICAgLi4uWy4uLmNoZWNrRm9udHMoKV0ubWFwKChmKSA9PiAoe1xuICAgICAgICAgIG5hbWU6IGYsXG4gICAgICAgICAgdmFsdWU6IGYsXG4gICAgICAgICAgZm9udDogdHJ1ZSxcbiAgICAgICAgfSkpLFxuICAgICAgXSxcbiAgICB9LFxuICAgIHtcbiAgICAgIGljb246IFwiZm9ybWF0X3NpemVcIixcbiAgICAgIGNvbW1hbmQ6IFwiZm9udHNpemVcIixcbiAgICAgIHZhbHVlczogW1xuICAgICAgICB7IG5hbWU6IFwiRm9udCBTaXplXCIsIHZhbHVlOiBcIi0tXCIgfSxcbiAgICAgICAgeyBuYW1lOiBcIlZlcnkgU21hbGxcIiwgdmFsdWU6IFwiMVwiIH0sXG4gICAgICAgIHsgbmFtZTogXCJTbWFsbFwiLCB2YWx1ZTogXCIyXCIgfSxcbiAgICAgICAgeyBuYW1lOiBcIk5vcm1hbFwiLCB2YWx1ZTogXCIzXCIgfSxcbiAgICAgICAgeyBuYW1lOiBcIk1lZGl1bSBMYXJnZVwiLCB2YWx1ZTogXCI0XCIgfSxcbiAgICAgICAgeyBuYW1lOiBcIkxhcmdlXCIsIHZhbHVlOiBcIjVcIiB9LFxuICAgICAgICB7IG5hbWU6IFwiVmVyeSBMYXJnZVwiLCB2YWx1ZTogXCI2XCIgfSxcbiAgICAgICAgeyBuYW1lOiBcIk1heGltdW1cIiwgdmFsdWU6IFwiN1wiIH0sXG4gICAgICBdLFxuICAgIH0sXG4gICAge1xuICAgICAgaWNvbjogXCJ1bmRvXCIsXG4gICAgICBjb21tYW5kOiBcInVuZG9cIixcbiAgICB9LFxuICAgIHtcbiAgICAgIGljb246IFwicmVkb1wiLFxuICAgICAgY29tbWFuZDogXCJyZWRvXCIsXG4gICAgfSxcbiAgICB7XG4gICAgICBpY29uOiBcImNvbnRlbnRfY3V0XCIsXG4gICAgICBjb21tYW5kOiBcImN1dFwiLFxuICAgIH0sXG4gICAge1xuICAgICAgaWNvbjogXCJjb250ZW50X2NvcHlcIixcbiAgICAgIGNvbW1hbmQ6IFwiY29weVwiLFxuICAgIH0sXG4gICAge1xuICAgICAgaWNvbjogXCJjb250ZW50X3Bhc3RlXCIsXG4gICAgICBjb21tYW5kOiBcInBhc3RlXCIsXG4gICAgfSxcbiAgXTtcblxuICByZXR1cm4gaHRtbGBcbiAgICAke2NvbW1hbmRzLm1hcCgobikgPT4ge1xuICAgICAgY29uc3QgZWxlbSA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJtd2MtaWNvbi1idXR0b25cIik7XG4gICAgICBlbGVtLnNldEF0dHJpYnV0ZShcImljb25cIiwgbi5pY29uKTtcbiAgICAgIGVsZW0uY2xhc3NOYW1lID0gbi5hY3RpdmUgPyBcImFjdGl2ZVwiIDogXCJpbmFjdGl2ZVwiO1xuICAgICAgZWxlbS5hZGRFdmVudExpc3RlbmVyKFwiY2xpY2tcIiwgKCkgPT4ge1xuICAgICAgICBpZiAobi52YWx1ZXMpIHtcbiAgICAgICAgfSBlbHNlIGlmICh0eXBlb2Ygbi5jb21tYW5kID09PSBcInN0cmluZ1wiKSB7XG4gICAgICAgICAgY29tbWFuZChuLmNvbW1hbmQsIG4uY29tbWFuZF92YWx1ZSk7XG4gICAgICAgIH0gZWxzZSB7XG4gICAgICAgICAgbi5jb21tYW5kKCk7XG4gICAgICAgIH1cbiAgICAgIH0pO1xuICAgICAgcmV0dXJuIGh0bWxgXG4gICAgICAgICR7bi52YWx1ZXNcbiAgICAgICAgICA_IGh0bWxgIDxzZWxlY3RcbiAgICAgICAgICAgICAgaWQ9XCIke24uaWNvbn1cIlxuICAgICAgICAgICAgICBAY2hhbmdlPSR7KGU6IGFueSkgPT4ge1xuICAgICAgICAgICAgICAgIGNvbnN0IHZhbCA9IGUudGFyZ2V0LnZhbHVlO1xuICAgICAgICAgICAgICAgIGlmICh2YWwgPT09IFwiLS1cIikge1xuICAgICAgICAgICAgICAgICAgY29tbWFuZChcInJlbW92ZUZvcm1hdFwiLCB1bmRlZmluZWQpO1xuICAgICAgICAgICAgICAgIH0gZWxzZSBpZiAodHlwZW9mIG4uY29tbWFuZCA9PT0gXCJzdHJpbmdcIikge1xuICAgICAgICAgICAgICAgICAgY29tbWFuZChuLmNvbW1hbmQsIHZhbCk7XG4gICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICB9fVxuICAgICAgICAgICAgPlxuICAgICAgICAgICAgICAke24udmFsdWVzLm1hcChcbiAgICAgICAgICAgICAgICAodikgPT4gaHRtbGAgPG9wdGlvbiB2YWx1ZT0ke3YudmFsdWV9PiR7di5uYW1lfTwvb3B0aW9uPmBcbiAgICAgICAgICAgICAgKX1cbiAgICAgICAgICAgIDwvc2VsZWN0PmBcbiAgICAgICAgICA6IGh0bWxgICR7ZWxlbX1gfVxuICAgICAgYDtcbiAgICB9KX1cbiAgYDtcbn1cblxuZXhwb3J0IGZ1bmN0aW9uIGNoZWNrRm9udHMoKTogc3RyaW5nW10ge1xuICBjb25zdCBmb250Q2hlY2sgPSBuZXcgU2V0KFxuICAgIFtcbiAgICAgIC8vIFdpbmRvd3MgMTBcbiAgICAgIFwiQXJpYWxcIixcbiAgICAgIFwiQXJpYWwgQmxhY2tcIixcbiAgICAgIFwiQmFobnNjaHJpZnRcIixcbiAgICAgIFwiQ2FsaWJyaVwiLFxuICAgICAgXCJDYW1icmlhXCIsXG4gICAgICBcIkNhbWJyaWEgTWF0aFwiLFxuICAgICAgXCJDYW5kYXJhXCIsXG4gICAgICBcIkNvbWljIFNhbnMgTVNcIixcbiAgICAgIFwiQ29uc29sYXNcIixcbiAgICAgIFwiQ29uc3RhbnRpYVwiLFxuICAgICAgXCJDb3JiZWxcIixcbiAgICAgIFwiQ291cmllciBOZXdcIixcbiAgICAgIFwiRWJyaW1hXCIsXG4gICAgICBcIkZyYW5rbGluIEdvdGhpYyBNZWRpdW1cIixcbiAgICAgIFwiR2FicmlvbGFcIixcbiAgICAgIFwiR2FkdWdpXCIsXG4gICAgICBcIkdlb3JnaWFcIixcbiAgICAgIFwiSG9sb0xlbnMgTURMMiBBc3NldHNcIixcbiAgICAgIFwiSW1wYWN0XCIsXG4gICAgICBcIkluayBGcmVlXCIsXG4gICAgICBcIkphdmFuZXNlIFRleHRcIixcbiAgICAgIFwiTGVlbGF3YWRlZSBVSVwiLFxuICAgICAgXCJMdWNpZGEgQ29uc29sZVwiLFxuICAgICAgXCJMdWNpZGEgU2FucyBVbmljb2RlXCIsXG4gICAgICBcIk1hbGd1biBHb3RoaWNcIixcbiAgICAgIFwiTWFybGV0dFwiLFxuICAgICAgXCJNaWNyb3NvZnQgSGltYWxheWFcIixcbiAgICAgIFwiTWljcm9zb2Z0IEpoZW5nSGVpXCIsXG4gICAgICBcIk1pY3Jvc29mdCBOZXcgVGFpIEx1ZVwiLFxuICAgICAgXCJNaWNyb3NvZnQgUGhhZ3NQYVwiLFxuICAgICAgXCJNaWNyb3NvZnQgU2FucyBTZXJpZlwiLFxuICAgICAgXCJNaWNyb3NvZnQgVGFpIExlXCIsXG4gICAgICBcIk1pY3Jvc29mdCBZYUhlaVwiLFxuICAgICAgXCJNaWNyb3NvZnQgWWkgQmFpdGlcIixcbiAgICAgIFwiTWluZ0xpVS1FeHRCXCIsXG4gICAgICBcIk1vbmdvbGlhbiBCYWl0aVwiLFxuICAgICAgXCJNUyBHb3RoaWNcIixcbiAgICAgIFwiTVYgQm9saVwiLFxuICAgICAgXCJNeWFubWFyIFRleHRcIixcbiAgICAgIFwiTmlybWFsYSBVSVwiLFxuICAgICAgXCJQYWxhdGlubyBMaW5vdHlwZVwiLFxuICAgICAgXCJTZWdvZSBNREwyIEFzc2V0c1wiLFxuICAgICAgXCJTZWdvZSBQcmludFwiLFxuICAgICAgXCJTZWdvZSBTY3JpcHRcIixcbiAgICAgIFwiU2Vnb2UgVUlcIixcbiAgICAgIFwiU2Vnb2UgVUkgSGlzdG9yaWNcIixcbiAgICAgIFwiU2Vnb2UgVUkgRW1vamlcIixcbiAgICAgIFwiU2Vnb2UgVUkgU3ltYm9sXCIsXG4gICAgICBcIlNpbVN1blwiLFxuICAgICAgXCJTaXRrYVwiLFxuICAgICAgXCJTeWxmYWVuXCIsXG4gICAgICBcIlN5bWJvbFwiLFxuICAgICAgXCJUYWhvbWFcIixcbiAgICAgIFwiVGltZXMgTmV3IFJvbWFuXCIsXG4gICAgICBcIlRyZWJ1Y2hldCBNU1wiLFxuICAgICAgXCJWZXJkYW5hXCIsXG4gICAgICBcIldlYmRpbmdzXCIsXG4gICAgICBcIldpbmdkaW5nc1wiLFxuICAgICAgXCJZdSBHb3RoaWNcIixcbiAgICAgIC8vIG1hY09TXG4gICAgICBcIkFtZXJpY2FuIFR5cGV3cml0ZXJcIixcbiAgICAgIFwiQW5kYWxlIE1vbm9cIixcbiAgICAgIFwiQXJpYWxcIixcbiAgICAgIFwiQXJpYWwgQmxhY2tcIixcbiAgICAgIFwiQXJpYWwgTmFycm93XCIsXG4gICAgICBcIkFyaWFsIFJvdW5kZWQgTVQgQm9sZFwiLFxuICAgICAgXCJBcmlhbCBVbmljb2RlIE1TXCIsXG4gICAgICBcIkF2ZW5pclwiLFxuICAgICAgXCJBdmVuaXIgTmV4dFwiLFxuICAgICAgXCJBdmVuaXIgTmV4dCBDb25kZW5zZWRcIixcbiAgICAgIFwiQmFza2VydmlsbGVcIixcbiAgICAgIFwiQmlnIENhc2xvblwiLFxuICAgICAgXCJCb2RvbmkgNzJcIixcbiAgICAgIFwiQm9kb25pIDcyIE9sZHN0eWxlXCIsXG4gICAgICBcIkJvZG9uaSA3MiBTbWFsbGNhcHNcIixcbiAgICAgIFwiQnJhZGxleSBIYW5kXCIsXG4gICAgICBcIkJydXNoIFNjcmlwdCBNVFwiLFxuICAgICAgXCJDaGFsa2JvYXJkXCIsXG4gICAgICBcIkNoYWxrYm9hcmQgU0VcIixcbiAgICAgIFwiQ2hhbGtkdXN0ZXJcIixcbiAgICAgIFwiQ2hhcnRlclwiLFxuICAgICAgXCJDb2NoaW5cIixcbiAgICAgIFwiQ29taWMgU2FucyBNU1wiLFxuICAgICAgXCJDb3BwZXJwbGF0ZVwiLFxuICAgICAgXCJDb3VyaWVyXCIsXG4gICAgICBcIkNvdXJpZXIgTmV3XCIsXG4gICAgICBcIkRpZG90XCIsXG4gICAgICBcIkRJTiBBbHRlcm5hdGVcIixcbiAgICAgIFwiRElOIENvbmRlbnNlZFwiLFxuICAgICAgXCJGdXR1cmFcIixcbiAgICAgIFwiR2VuZXZhXCIsXG4gICAgICBcIkdlb3JnaWFcIixcbiAgICAgIFwiR2lsbCBTYW5zXCIsXG4gICAgICBcIkhlbHZldGljYVwiLFxuICAgICAgXCJIZWx2ZXRpY2EgTmV1ZVwiLFxuICAgICAgXCJIZXJjdWxhbnVtXCIsXG4gICAgICBcIkhvZWZsZXIgVGV4dFwiLFxuICAgICAgXCJJbXBhY3RcIixcbiAgICAgIFwiTHVjaWRhIEdyYW5kZVwiLFxuICAgICAgXCJMdW1pbmFyaVwiLFxuICAgICAgXCJNYXJrZXIgRmVsdFwiLFxuICAgICAgXCJNZW5sb1wiLFxuICAgICAgXCJNaWNyb3NvZnQgU2FucyBTZXJpZlwiLFxuICAgICAgXCJNb25hY29cIixcbiAgICAgIFwiTm90ZXdvcnRoeVwiLFxuICAgICAgXCJPcHRpbWFcIixcbiAgICAgIFwiUGFsYXRpbm9cIixcbiAgICAgIFwiUGFweXJ1c1wiLFxuICAgICAgXCJQaG9zcGhhdGVcIixcbiAgICAgIFwiUm9ja3dlbGxcIixcbiAgICAgIFwiU2F2b3llIExFVFwiLFxuICAgICAgXCJTaWduUGFpbnRlclwiLFxuICAgICAgXCJTa2lhXCIsXG4gICAgICBcIlNuZWxsIFJvdW5kaGFuZFwiLFxuICAgICAgXCJUYWhvbWFcIixcbiAgICAgIFwiVGltZXNcIixcbiAgICAgIFwiVGltZXMgTmV3IFJvbWFuXCIsXG4gICAgICBcIlRyYXR0YXRlbGxvXCIsXG4gICAgICBcIlRyZWJ1Y2hldCBNU1wiLFxuICAgICAgXCJWZXJkYW5hXCIsXG4gICAgICBcIlphcGZpbm9cIixcbiAgICBdLnNvcnQoKVxuICApO1xuICBjb25zdCBmb250QXZhaWxhYmxlID0gbmV3IFNldDxzdHJpbmc-KCk7XG4gIC8vIEB0cy1pZ25vcmVcbiAgZm9yIChjb25zdCBmb250IG9mIGZvbnRDaGVjay52YWx1ZXMoKSkge1xuICAgIC8vIEB0cy1pZ25vcmVcbiAgICBpZiAoZG9jdW1lbnQuZm9udHMuY2hlY2soYDEycHggXCIke2ZvbnR9XCJgKSkge1xuICAgICAgZm9udEF2YWlsYWJsZS5hZGQoZm9udCk7XG4gICAgfVxuICB9XG4gIC8vIEB0cy1pZ25vcmVcbiAgcmV0dXJuIGZvbnRBdmFpbGFibGUudmFsdWVzKCk7XG59XG4ifSx7Im5hbWUiOiJpbmRleC5odG1sIiwiY29udGVudCI6IjwhRE9DVFlQRSBodG1sPlxuPGh0bWwgbGFuZz1cImVuXCI-XG4gIDxoZWFkPlxuICAgIDxtZXRhIGNoYXJzZXQ9XCJVVEYtOFwiIC8-XG4gICAgPGxpbmsgcmVsPVwiaWNvblwiIHR5cGU9XCJpbWFnZS9zdmcreG1sXCIgaHJlZj1cIi9zcmMvZmF2aWNvbi5zdmdcIiAvPlxuICAgIDxtZXRhIG5hbWU9XCJ2aWV3cG9ydFwiIGNvbnRlbnQ9XCJ3aWR0aD1kZXZpY2Utd2lkdGgsIGluaXRpYWwtc2NhbGU9MS4wXCIgLz5cbiAgICA8bGlua1xuICAgICAgaHJlZj1cImh0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzP2ZhbWlseT1NYXRlcmlhbCtJY29ucyZkaXNwbGF5PWJsb2NrXCJcbiAgICAgIHJlbD1cInN0eWxlc2hlZXRcIlxuICAgIC8-XG4gICAgPHRpdGxlPkxpdCBIVE1MIEVkaXRvcjwvdGl0bGU-XG4gICAgPHNjcmlwdCB0eXBlPVwibW9kdWxlXCIgc3JjPVwiLi9yaWNoLXRleHQtZWRpdG9yLmpzXCI-PC9zY3JpcHQ-XG4gICAgPHN0eWxlPlxuICAgICAgYm9keSB7XG4gICAgICAgIHdpZHRoOiAxMDAlO1xuICAgICAgICBoZWlnaHQ6IDEwMHZoO1xuICAgICAgICBwYWRkaW5nOiAwO1xuICAgICAgICBtYXJnaW46IDA7XG4gICAgICB9XG4gICAgICByaWNoLXRleHQtZWRpdG9yIHtcbiAgICAgICAgLS1lZGl0b3Itd2lkdGg6IDEwMCU7XG4gICAgICAgIC0tZWRpdG9yLWhlaWdodDogMTAwdmg7XG4gICAgICB9XG4gICAgPC9zdHlsZT5cbiAgPC9oZWFkPlxuICA8Ym9keT5cbiAgICA8cmljaC10ZXh0LWVkaXRvcj5cbiAgICAgIDx0ZW1wbGF0ZT5cbiAgICAgICAgPGgxPkhlYWRsaW5lIDE8L2gxPlxuICAgICAgICA8cD5UaGlzIGlzIGEgcGFyYWdyYXBoLjwvcD5cbiAgICAgICAgPHA-XG4gICAgICAgICAgPHNwYW4gc3R5bGU9XCJiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjU1LCAwLCAwKVwiXG4gICAgICAgICAgICA-PGZvbnQgY29sb3I9XCIjZmZmZmZmXCI-U3R5bGVkIFRleHQ8L2ZvbnQ-PC9zcGFuXG4gICAgICAgICAgPlxuICAgICAgICA8L3A-XG4gICAgICA8L3RlbXBsYXRlPlxuICAgIDwvcmljaC10ZXh0LWVkaXRvcj5cbiAgPC9ib2R5PlxuPC9odG1sPlxuIn1d">here</a>.</p>
+<p>The source for this example can be found <a href="https://github.com/rodydavis/lit-html-editor">here</a>.</p>
+			</main>
+		</div>
+	</article>
+</div>
+
+
+
+			</main>
+		</div>
+	</article>
+</div>
+
+
+
+		</div>
+		<div style="height: 25px"></div>
+		<social-links><template shadowroot="open"><style>
+    footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: var(--width, 100%);
+      margin-bottom: 2rem;
+    }
+    .fab,
+    svg {
+      --size: 3vw;
+      width: var(--size);
+      height: var(--size);
+      max-width: 30px;
+      max-height: 30px;
+      min-width: 20px;
+      min-height: 20px;
+      margin: 0.5rem;
+      color: var(--md-sys-color-on-surface);
+      font-family: FontAwesome;
+      cursor: pointer;
+    }
+    svg {
+      color: var(--md-sys-color-on-surface);
+    }
+  </style><!--lit-part fkbI1zGBADw=--><footer>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://twitter.com/rodydavis"
+        class="fab fa fa-twitter"
+      >
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="twitter"
+          class="svg-inline--fa fa-twitter fa-w-16"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
+          ></path>
+        </svg>
+      </a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://facebook.com/rodydavisjr"
+        class="fab fa fa-facebook"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="facebook-f"
+          class="svg-inline--fa fa-facebook-f fa-w-10"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+        >
+          <path
+            fill="currentColor"
+            d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.linkedin.com/in/rodydavis"
+        class="fab fa fa-linkedin"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="linkedin-in"
+          class="svg-inline--fa fa-linkedin-in fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.youtube.com/rodydavis"
+        class="fab fa fa-youtube"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="youtube"
+          class="svg-inline--fa fa-youtube fa-w-18"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 576 512"
+        >
+          <path
+            fill="currentColor"
+            d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.instagram.com/rodydavisjr"
+        class="fab fa fa-instagram"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="instagram"
+          class="svg-inline--fa fa-instagram fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.github.com/rodydavis"
+        class="fab fa fa-github"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="github"
+          class="svg-inline--fa fa-github fa-w-16"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 496 512"
+        >
+          <path
+            fill="currentColor"
+            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.tiktok.com/@rodydavisjr"
+        class="fab fa-tiktok"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="tiktok"
+          class="svg-inline--fa fa-tiktok fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"
+          ></path></svg
+      ></a>
+    </footer><!--/lit-part--></template></social-links>
+	</body></html>

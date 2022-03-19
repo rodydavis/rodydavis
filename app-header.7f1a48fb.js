@@ -1,4 +1,4 @@
-import{r as f,e as d,s as u,$ as s,n as g,t as y,a as v,b}from"./client-shim.751854cd.js";var w=Object.defineProperty,x=Object.getOwnPropertyDescriptor,p=(e,t,i,o)=>{for(var r=o>1?void 0:o?x(t,i):t,a=e.length-1,n;a>=0;a--)(n=e[a])&&(r=(o?n(t,i,r):n(r))||r);return o&&r&&w(t,i,r),r};let c=class extends u{constructor(){super(...arguments);this.icon="add",this.href=""}render(){return this.href?s`
+import{r as f,e as d,s as u,$ as s,n as g,t as y,a as v,b}from"./client-shim.751854cd.js";var w=Object.defineProperty,x=Object.getOwnPropertyDescriptor,p=(t,e,r,o)=>{for(var i=o>1?void 0:o?x(e,r):e,a=t.length-1,n;a>=0;a--)(n=t[a])&&(i=(o?n(e,r,i):n(i))||i);return o&&i&&w(e,r,i),i};let c=class extends u{constructor(){super(...arguments);this.icon="add",this.href=""}render(){return this.href?s`
         <div class="icon">
           <a href="${this.href}" target="_blank" rel="noopener noreferrer">
             <i class="material-icons">${this.icon}</i>
@@ -50,13 +50,13 @@ import{r as f,e as d,s as u,$ as s,n as g,t as y,a as v,b}from"./client-shim.751
       align-items: center;
       justify-content: center;
     }
-  `;p([d({type:String})],c.prototype,"icon",2);p([d({type:String})],c.prototype,"href",2);c=p([g("icon-button")],c);var k=Object.defineProperty,$=Object.getOwnPropertyDescriptor,h=(e,t,i,o)=>{for(var r=o>1?void 0:o?$(t,i):t,a=e.length-1,n;a>=0;a--)(n=e[a])&&(r=(o?n(t,i,r):n(r))||r);return o&&r&&k(t,i,r),r};const _="app-header";let l=class extends u{constructor(){super(...arguments);this.dark=localStorage.getItem("theme-dark")==="true",this.color=localStorage.getItem("theme-color")||m(),this.title=document.title}render(){let e=!1;try{e=navigator.canShare()}catch{e=!1}return s`<header class="wrapper">
+  `;p([d({type:String})],c.prototype,"icon",2);p([d({type:String})],c.prototype,"href",2);c=p([g("icon-button")],c);var k=Object.defineProperty,$=Object.getOwnPropertyDescriptor,h=(t,e,r,o)=>{for(var i=o>1?void 0:o?$(e,r):e,a=t.length-1,n;a>=0;a--)(n=t[a])&&(i=(o?n(e,r,i):n(i))||i);return o&&i&&k(e,r,i),i};const _="app-header";let l=class extends u{constructor(){super(...arguments);this.dark=localStorage.getItem("theme-dark")==="true",this.color=localStorage.getItem("theme-color")||m(),this.title=document.title}render(){let t=!1;try{t=navigator.canShare()}catch{t=!1}const e=(this.title||"").trim();return s`<header class="wrapper">
       <article>
         <h1 class="title">
           <a href="/">
             <div class="title-prefix">Rody Davis</div>
-            ${this.title.trim()!=="Rody Davis"?s`<div class="title-prefix">&nbsp;|&nbsp;</div>
-                  <div>${this.title}</div>`:s``}
+            ${e!=="Rody Davis"?s`<div class="title-prefix">&nbsp;|&nbsp;</div>
+                  <div>${e}</div>`:s``}
           </a>
         </h1>
         <div class="spacer"></div>
@@ -80,13 +80,13 @@ import{r as f,e as d,s as u,$ as s,n as g,t as y,a as v,b}from"./client-shim.751
             @click=${this.toggle.bind(this)}
             icon="${this.dark?"light_mode":"dark_mode"}"
           ></icon-button>
-          ${e?s` <icon-button
+          ${t?s` <icon-button
                 @click=${this.share.bind(this)}
                 icon="share"
               ></icon-button>`:s``}
         </div>
       </article>
-    </header>`}share(){const t=new URL(window.location.href).toString(),i=`${t}`,o=`${t}`;navigator.share&&navigator.share({text:i,title:o}).catch(r=>{console.error(r)})}toggle(){this.dark=!this.dark,localStorage.setItem("theme-dark",this.dark.toString()),this.updateTheme()}setColor(e){this.color=e,localStorage.setItem("theme-color",e),this.updateTheme()}onColor(e){const t=e.target;this.setColor(t.value)}randomColor(){this.setColor(m())}updateTheme(){const e=this.color,t=this.dark;this.dark?document.body.classList.add("dark-theme"):document.body.classList.remove("dark-theme");const i=this.shadowRoot.querySelector("main"),o=y(v(e));b(o,{target:i,dark:t})}firstUpdated(){const e=window.matchMedia("(prefers-color-scheme: dark)"),t=localStorage.getItem("theme-dark")??e.matches.toString();this.dark=t==="true",this.dark&&document.body.classList.add("dark-theme"),this.updateTheme(),e.addEventListener("change",i=>{this.dark=i.matches,this.updateTheme()})}};l.styles=f`
+    </header>`}share(){const e=new URL(window.location.href).toString(),r=`${e}`,o=`${e}`;navigator.share&&navigator.share({text:r,title:o}).catch(i=>{console.error(i)})}toggle(){this.dark=!this.dark,localStorage.setItem("theme-dark",this.dark.toString()),this.updateTheme()}setColor(t){this.color=t,localStorage.setItem("theme-color",t),this.updateTheme()}onColor(t){const e=t.target;this.setColor(e.value)}randomColor(){this.setColor(m())}updateTheme(){const t=this.color,e=this.dark;this.dark?document.body.classList.add("dark-theme"):document.body.classList.remove("dark-theme");const r=this.shadowRoot.querySelector("main"),o=y(v(t));b(o,{target:r,dark:e})}firstUpdated(){const t=window.matchMedia("(prefers-color-scheme: dark)"),e=localStorage.getItem("theme-dark")??t.matches.toString();this.dark=e==="true",this.dark&&document.body.classList.add("dark-theme"),this.updateTheme(),t.addEventListener("change",r=>{this.dark=r.matches,this.updateTheme()})}};l.styles=f`
     header {
       width: 100%;
       background-color: var(--md-sys-color-primary-container);
@@ -202,4 +202,4 @@ import{r as f,e as d,s as u,$ as s,n as g,t as y,a as v,b}from"./client-shim.751
     .title a div {
       white-space: nowrap;
     }
-  `;h([d({type:Boolean})],l.prototype,"dark",2);h([d()],l.prototype,"color",2);h([d()],l.prototype,"title",2);l=h([g(_)],l);function m(){const e="0123456789ABCDEF";let t="#";for(let i=0;i<6;i++)t+=e[Math.floor(Math.random()*16)];return t}export{l as AppHeader,_ as tagName};
+  `;h([d({type:Boolean})],l.prototype,"dark",2);h([d()],l.prototype,"color",2);h([d()],l.prototype,"title",2);l=h([g(_)],l);function m(){const t="0123456789ABCDEF";let e="#";for(let r=0;r<6;r++)e+=t[Math.floor(Math.random()*16)];return e}export{l as AppHeader,_ as tagName};

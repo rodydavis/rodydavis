@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="icon" type="image/x-icon" href="/img/favicon/favicon.ico">
+
+<!-- Primary Meta Tags -->
+<title>Host your Flutter Project as a REST API</title>
+<meta name="title" content="Host your Flutter Project as a REST API">
+<meta name="description">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url">
+<meta property="og:title" content="Host your Flutter Project as a REST API">
+<meta property="og:description">
+<meta property="og:image" content="https://astro.build/social.jpg?v=1">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url">
+<meta property="twitter:title" content="Host your Flutter Project as a REST API">
+<meta property="twitter:description">
+<meta property="twitter:image" content="https://astro.build/social.jpg?v=1">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;700&display=swap">
+<link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-lucario.css">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JQNPVBL9DR');
+</script>
+	<link rel="stylesheet" href="/assets/_slug_.2050125d.css"></link>
+<link rel="stylesheet" href="/assets/social-links.ac123a03.css"></link>
+<link rel="stylesheet" href="/assets/BlogContent.6b85ce27.css"></link><style astro-style="true">astro-root, astro-fragment { display: contents; }</style><script type="module" astro-script="/posts/host-flutter-rest-api//script-0">import "../../client-shim.751854cd.js";</script>
+<script type="module" data-astro-component-hydration astro-script="/posts/host-flutter-rest-api//script-1">import setup from '../../load.644f6253.js';
+setup("1Xaw31", {name:"app-header",value: true}, async () => {
+  await Promise.all([
+  import("../../hydration-support.20f55b8e.js")]);
+await import("../../app-header.7f1a48fb.js");
+  return () => {};
+
+});
+</script>
+</head>
+
+	<body>
+		<astro-root uid="1Xaw31"><app-header><template shadowroot="open"><style>
+    header {
+      width: 100%;
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      display: flex;
+      align-items: center;
+      --input-size: 32px;
+    }
+
+    .spacer {
+      flex: 1;
+    }
+
+    .title {
+      display: none;
+    }
+
+    .title-prefix {
+      display: none;
+    }
+
+    @media (min-width: 200px) {
+      .title {
+        display: block;
+      }
+    }
+
+    @media (min-width: 300px) {
+      .title-prefix {
+        display: block;
+      }
+    }
+
+    article {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+    }
+
+    img {
+      margin-right: 1rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      max-width: 100%;
+      display: flex;
+      flex-grow: 1;
+    }
+
+    .logo {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    svg {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    a {
+      text-decoration: none;
+      display: inline-flex;
+      color: var(--md-sys-color-on-primary-container);
+      margin-right: 1rem;
+    }
+
+    icon-button {
+      margin-left: 3px;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+    }
+
+    input[type="color"] {
+      width: calc(var(--input-size) * 2);
+      height: var(--input-size);
+      outline: none;
+      border: none;
+      border-radius: 50%;
+      background-color: var(--md-sys-color-primary-container);
+    }
+    input[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+    input[type="color"]::-webkit-color-swatch {
+      border: none;
+      border-radius: var(--input-size);
+      border: var(--md-sys-color-outline) solid 1px;
+    }
+
+    .links {
+      display: none;
+    }
+
+    @media (min-width: 600px) {
+      .links {
+        display: flex;
+      }
+    }
+
+    .title a {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    .title a div {
+      white-space: nowrap;
+    }
+  </style><!--lit-part bgyFX7AkLd0=--><header class="wrapper">
+      <article>
+        <h1 class="title">
+          <a href="/">
+            <div class="title-prefix">Rody Davis</div>
+            <!--lit-part +r04RIJdkoI=--><div class="title-prefix">&nbsp;|&nbsp;</div>
+                  <div><!--lit-part--><!--/lit-part--></div><!--/lit-part-->
+          </a>
+        </h1>
+        <div class="spacer"></div>
+        <div class="links">
+          <a href="/apps"> Apps </a>
+          <a href="/posts"> Blog </a>
+          <a href="/talks"> Talks </a>
+          <a href="/about"> About </a>
+        </div>
+        <div class="actions">
+          <input
+            type="color"
+            value="#A75AFB"
+            
+          /><!--lit-node 13-->
+          <icon-button
+            
+            
+           icon="shuffle"><!--lit-node 14--><template shadowroot="open"><style>
+    .icon {
+      --icon-size: 24px;
+      --icon-padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      color: var(--icon-color);
+    }
+    .icon:hover {
+      outline: 1px solid var(--md-sys-color-outline);
+    }
+    .icon :first-child {
+      padding: var(--icon-padding);
+    }
+    .material-icons {
+      font-family: "Material Icons";
+      font-weight: normal;
+      font-style: normal;
+      font-size: var(--icon-size);
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "liga";
+    }
+
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style><!--lit-part jPZqHVkf+Tk=-->
+      <div class="icon">
+        <i class="material-icons"><!--lit-part-->shuffle<!--/lit-part--></i>
+      </div>
+    <!--/lit-part--></template></icon-button>
+          <icon-button
+            
+            
+           icon="dark_mode"><!--lit-node 15--><template shadowroot="open"><style>
+    .icon {
+      --icon-size: 24px;
+      --icon-padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      color: var(--icon-color);
+    }
+    .icon:hover {
+      outline: 1px solid var(--md-sys-color-outline);
+    }
+    .icon :first-child {
+      padding: var(--icon-padding);
+    }
+    .material-icons {
+      font-family: "Material Icons";
+      font-weight: normal;
+      font-style: normal;
+      font-size: var(--icon-size);
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "liga";
+    }
+
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style><!--lit-part jPZqHVkf+Tk=-->
+      <div class="icon">
+        <i class="material-icons"><!--lit-part-->dark_mode<!--/lit-part--></i>
+      </div>
+    <!--/lit-part--></template></icon-button>
+          <!--lit-part BRUAAAUVAAA=--><?><!--/lit-part-->
+        </div>
+      </article>
+    </header><!--/lit-part--></template></app-header></astro-root>
+		<div class="wrapper">
+			<div class="layout astro-X5J4CTKI">
+	<article class="content astro-X5J4CTKI">
+		<div class="astro-X5J4CTKI">
+			<header class="astro-X5J4CTKI">
+				<img width="720" height="420" class="hero-image astro-X5J4CTKI" loading="lazy" src="https://cdn-images-1.medium.com/max/2336/1*qFZepZBtk0RhEojjGsI85g.png">
+				<p class="publish-date astro-X5J4CTKI">18 Oct 2019 ~ 13 min read</p>
+				<h1 class="title astro-X5J4CTKI">Host your Flutter Project as a REST API</h1>
+				<div class="author astro-KO5QTRDP">
+	<p class="astro-KO5QTRDP"><a href="https://twitter.com/rodydavis" class="astro-KO5QTRDP">@rodydavis</a></p>
+</div>
+
+
+
+				 <tag-list class="astro-X5J4CTKI"><template shadowroot="open"><style>
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    tag-item {
+      margin-bottom: 0.4rem;
+      margin-top: 0.4rem;
+    }
+  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+      <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/posts"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->posts<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="flutter"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/flutter"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->flutter<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="api"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/api"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->api<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--/lit-part-->
+    </div><!--/lit-part--></template></tag-list>
+			</header>
+			<main class="astro-X5J4CTKI">
+				<div class="layout astro-W2QVQNXU">
+	<article class="content astro-W2QVQNXU">
+		<div class="astro-W2QVQNXU">
+			<main class="astro-W2QVQNXU">
+				<p>After you build your flutter project you may want to reuse the models and business logic from your lib folder. I will show you how to go about setting up the project to have iOS, Android, Web, Windows, MacOS, Linux and a REST API interface with one project. The REST API can also be deploy to Google Cloud Run for Dart everywhere.</p>
+<p><img src="/img/gifs/mind_blown.gif" alt=""></p>
+<blockquote>
+<p>One Codebase for Client and Sever.</p>
+</blockquote>
+<p>This will allow you to expose your Dart models as a REST API and run your business logic from your lib folder while the application runs the models as they are. <a href="https://github.com/rodydavis/shared_dart">Here</a> is the final project.</p>
+<h2 id="setting-up">Setting Up</h2>
+<p>As with any Flutter project I am going to assume that you already have <a href="https://flutter.dev/">Flutter</a> installed on your machine and that you can create a project. This is a intermediate level difficulty so read on if you are up to the challenge. You will also need to know the basics of <a href="https://www.docker.com/">Docker</a>.</p>
+<h2 id="why-one-project">Why one project?</h2>
+<p>It may not be obvious but when building complex applications you will at some point have a server and an application that calls that server. <a href="https://firebase.google.com/">Firebase</a> is an excellent option for doing this and I use it in almost all my projects. <a href="https://firebase.google.com/products/functions/">Firebase Functions</a> are really powerful but you are limited by Javascript or Typescript. What if you could use the same packages that you are using in the Flutter project, or better yet what if they both used the same?</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*1xVIzjzgJnmuWTJoaG3kAQ.gif" alt=""></p>
+<p>When you have a server project and a client project that communicate over a rest api or client sdk like Firebase then you will run into the problem that the server has models of objects stored and the client has models of the objects that are stored. This can lead to a serious mismatch when it changed without you knowing. GraphQL helps a lot with this since you define the model that you recieve. This approach allows your business logic to be always up to date for both the client and server.</p>
+<h2 id="client-setup">Client Setup</h2>
+<p>The first step is to just build your application. The only difference that we will make is keeping the UI and business logic separate. When starting out with Flutter it can be very easy to throw all the logic into the screen and calling setState when the data changes. Even the application when creating a new Flutter project does this. That’s why <a href="https://flutter.dev/docs/development/data-and-backend/state-mgmt/options">choosing a state management solution </a>is so important.</p>
+<p>To make things clean and concise we will make 2 folders in our lib folder.</p>
+<ul>
+<li>
+<p>ui for all Flutter Widgets and Screens</p>
+</li>
+<li>
+<p>src for all business logic, classes, models and utility functions</p>
+</li>
+</ul>
+<p>This will leave us with main.dart being only the entry point into our client application.</p>
+<pre class="language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:flutter/material.dart'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'plugins/desktop/desktop.dart'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'ui/home/screen.dart'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">runApp</span><span class="token punctuation">(</span><span class="token class-name">MyApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MyApp</span> <span class="token keyword">extends</span> <span class="token class-name">StatelessWidget</span> <span class="token punctuation">{</span>
+  <span class="token metadata function">@override</span>
+  <span class="token class-name">Widget</span> <span class="token function">build</span><span class="token punctuation">(</span><span class="token class-name">BuildContext</span> context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token class-name">MaterialApp</span><span class="token punctuation">(</span>
+      title<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'Flutter Demo'</span></span><span class="token punctuation">,</span>
+      theme<span class="token punctuation">:</span> <span class="token class-name">ThemeData</span><span class="token punctuation">.</span><span class="token function">light</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      darkTheme<span class="token punctuation">:</span> <span class="token class-name">ThemeData</span><span class="token punctuation">.</span><span class="token function">dark</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      home<span class="token punctuation">:</span> <span class="token class-name">HomeScreen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Let’s Start by making a tab bar for the 2 screens. Create a file in the folder ui/home/screen.dart and add the following:</p>
+<pre class="language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:flutter/material.dart'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'../counter/screen.dart'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'../todo/screen.dart'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">HomeScreen</span> <span class="token keyword">extends</span> <span class="token class-name">StatefulWidget</span> <span class="token punctuation">{</span>
+  <span class="token metadata function">@override</span>
+  _HomeScreenState <span class="token function">createState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">_HomeScreenState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> _HomeScreenState <span class="token keyword">extends</span> <span class="token class-name">State</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">HomeScreen</span><span class="token punctuation">></span></span> <span class="token punctuation">{</span>
+  int _currentIndex <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token metadata function">@override</span>
+  <span class="token class-name">Widget</span> <span class="token function">build</span><span class="token punctuation">(</span><span class="token class-name">BuildContext</span> context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token class-name">Scaffold</span><span class="token punctuation">(</span>
+      body<span class="token punctuation">:</span> <span class="token class-name">IndexedStack</span><span class="token punctuation">(</span>
+        index<span class="token punctuation">:</span> _currentIndex<span class="token punctuation">,</span>
+        children<span class="token punctuation">:</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Widget</span><span class="token punctuation">></span></span><span class="token punctuation">[</span>
+          <span class="token class-name">CounterScreen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token class-name">TodosScreen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+      bottomNavigationBar<span class="token punctuation">:</span> <span class="token class-name">BottomNavigationBar</span><span class="token punctuation">(</span>
+        currentIndex<span class="token punctuation">:</span> _currentIndex<span class="token punctuation">,</span>
+        onTap<span class="token punctuation">:</span> <span class="token punctuation">(</span>val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>mounted<span class="token punctuation">)</span>
+            <span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              _currentIndex <span class="token operator">=</span> val<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        type<span class="token punctuation">:</span> <span class="token class-name">BottomNavigationBarType</span><span class="token punctuation">.</span>fixed<span class="token punctuation">,</span>
+        items<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+          <span class="token class-name">BottomNavigationBarItem</span><span class="token punctuation">(</span>
+            icon<span class="token punctuation">:</span> <span class="token class-name">Icon</span><span class="token punctuation">(</span><span class="token class-name">Icons</span><span class="token punctuation">.</span>add<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            title<span class="token punctuation">:</span> <span class="token class-name">Text</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'Counter'</span></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token class-name">BottomNavigationBarItem</span><span class="token punctuation">(</span>
+            icon<span class="token punctuation">:</span> <span class="token class-name">Icon</span><span class="token punctuation">(</span><span class="token class-name">Icons</span><span class="token punctuation">.</span>list<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            title<span class="token punctuation">:</span> <span class="token class-name">Text</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'Todos'</span></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>This is just a basic screen and should look very normal.</p>
+<h3 id="counter-example">Counter Example</h3>
+<p><img src="https://cdn-images-1.medium.com/max/2336/1*qFZepZBtk0RhEojjGsI85g.png" alt=""></p>
+<p>Now create a file ui/counter/screen.dart and add the following:</p>
+<pre class="language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:flutter/material.dart'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:shared_dart/src/models/counter.dart'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">CounterScreen</span> <span class="token keyword">extends</span> <span class="token class-name">StatefulWidget</span> <span class="token punctuation">{</span>
+  <span class="token metadata function">@override</span>
+  _CounterScreenState <span class="token function">createState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">_CounterScreenState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> _CounterScreenState <span class="token keyword">extends</span> <span class="token class-name">State</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">CounterScreen</span><span class="token punctuation">></span></span> <span class="token punctuation">{</span>
+  <span class="token class-name">CounterModel</span> _counterModel <span class="token operator">=</span> <span class="token class-name">CounterModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">_incrementCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// This call to setState tells the Flutter framework that something has</span>
+      <span class="token comment">// changed in this State, which causes it to rerun the build method below</span>
+      <span class="token comment">// so that the display can reflect the updated values. If we changed</span>
+      <span class="token comment">// _counter without calling setState(), then the build method would not be</span>
+      <span class="token comment">// called again, and so nothing would appear to happen.</span>
+      _counterModel<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token metadata function">@override</span>
+  <span class="token class-name">Widget</span> <span class="token function">build</span><span class="token punctuation">(</span><span class="token class-name">BuildContext</span> context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// This method is rerun every time setState is called, for instance as done</span>
+    <span class="token comment">// by the _incrementCounter method above.</span>
+    <span class="token comment">//</span>
+    <span class="token comment">// The Flutter framework has been optimized to make rerunning build methods</span>
+    <span class="token comment">// fast, so that you can just rebuild anything that needs updating rather</span>
+    <span class="token comment">// than having to individually change instances of widgets.</span>
+    <span class="token keyword">return</span> <span class="token class-name">Scaffold</span><span class="token punctuation">(</span>
+      appBar<span class="token punctuation">:</span> <span class="token class-name">AppBar</span><span class="token punctuation">(</span>
+        <span class="token comment">// Here we take the value from the MyCounterPage object that was created by</span>
+        <span class="token comment">// the App.build method, and use it to set our appbar title.</span>
+        title<span class="token punctuation">:</span> <span class="token class-name">Text</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'Counter Screen'</span></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+      body<span class="token punctuation">:</span> <span class="token class-name">Center</span><span class="token punctuation">(</span>
+        <span class="token comment">// Center is a layout widget. It takes a single child and positions it</span>
+        <span class="token comment">// in the middle of the parent.</span>
+        child<span class="token punctuation">:</span> <span class="token class-name">Column</span><span class="token punctuation">(</span>
+          <span class="token comment">// Column is also a layout widget. It takes a list of children and</span>
+          <span class="token comment">// arranges them vertically. By default, it sizes itself to fit its</span>
+          <span class="token comment">// children horizontally, and tries to be as tall as its parent.</span>
+          <span class="token comment">//</span>
+          <span class="token comment">// Invoke "debug painting" (press "p" in the console, choose the</span>
+          <span class="token comment">// "Toggle Debug Paint" action from the Flutter Inspector in Android</span>
+          <span class="token comment">// Studio, or the "Toggle Debug Paint" command in Visual Studio Code)</span>
+          <span class="token comment">// to see the wireframe for each widget.</span>
+          <span class="token comment">//</span>
+          <span class="token comment">// Column has various properties to control how it sizes itself and</span>
+          <span class="token comment">// how it positions its children. Here we use mainAxisAlignment to</span>
+          <span class="token comment">// center the children vertically; the main axis here is the vertical</span>
+          <span class="token comment">// axis because Columns are vertical (the cross axis would be</span>
+          <span class="token comment">// horizontal).</span>
+          mainAxisAlignment<span class="token punctuation">:</span> <span class="token class-name">MainAxisAlignment</span><span class="token punctuation">.</span>center<span class="token punctuation">,</span>
+          children<span class="token punctuation">:</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Widget</span><span class="token punctuation">></span></span><span class="token punctuation">[</span>
+            <span class="token class-name">Text</span><span class="token punctuation">(</span>
+              <span class="token string-literal"><span class="token string">'You have pushed the button this many times:'</span></span><span class="token punctuation">,</span>
+            <span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token class-name">Text</span><span class="token punctuation">(</span>
+              <span class="token string-literal"><span class="token string">'</span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">_counterModel<span class="token punctuation">.</span>count</span><span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">,</span>
+              style<span class="token punctuation">:</span> <span class="token class-name">Theme</span><span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>context<span class="token punctuation">)</span><span class="token punctuation">.</span>textTheme<span class="token punctuation">.</span>display1<span class="token punctuation">,</span>
+            <span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+      floatingActionButton<span class="token punctuation">:</span> <span class="token class-name">FloatingActionButton</span><span class="token punctuation">(</span>
+        onPressed<span class="token punctuation">:</span> _incrementCounter<span class="token punctuation">,</span>
+        tooltip<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'Increment'</span></span><span class="token punctuation">,</span>
+        child<span class="token punctuation">:</span> <span class="token class-name">Icon</span><span class="token punctuation">(</span><span class="token class-name">Icons</span><span class="token punctuation">.</span>add<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">// This trailing comma makes auto-formatting nicer for build methods.</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>This is the default counter app you get when you create a Flutter application but with one change, it uses <code>CounterModel</code> to hold the logic.</p>
+<p>Create the counter model at src/models/counter.dart and add the following:</p>
+<pre class="language-dart"><code class="language-dart"><span class="token keyword">class</span> <span class="token class-name">CounterModel</span> <span class="token punctuation">{</span>
+  <span class="token class-name">CounterModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  int _count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+  int <span class="token keyword">get</span> count <span class="token operator">=</span><span class="token operator">></span> _count<span class="token punctuation">;</span>
+
+  <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> _count<span class="token operator">++</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">void</span> <span class="token function">subtract</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> _count<span class="token operator">--</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">void</span> <span class="token keyword">set</span><span class="token punctuation">(</span>int val<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> _count <span class="token operator">=</span> val<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>As you can see it is really easy to expose only what we want to while still having complete flexibility. You could use provider here if you choose, or even bloc and/or streams.</p>
+<h3 id="todo-example">Todo Example</h3>
+<p><img src="https://cdn-images-1.medium.com/max/2336/1*47x4TDkyWCo8-qMCfYaeng.png" alt=""></p>
+<p>Lets create a file at ui/todos/screen.dart and add the following:</p>
+<pre class="language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:flutter/material.dart'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'../../src/classes/todo.dart'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'../../src/models/todos.dart'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">TodosScreen</span> <span class="token keyword">extends</span> <span class="token class-name">StatefulWidget</span> <span class="token punctuation">{</span>
+  <span class="token metadata function">@override</span>
+  _TodosScreenState <span class="token function">createState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">_TodosScreenState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> _TodosScreenState <span class="token keyword">extends</span> <span class="token class-name">State</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">TodosScreen</span><span class="token punctuation">></span></span> <span class="token punctuation">{</span>
+  <span class="token keyword">final</span> _model <span class="token operator">=</span> <span class="token class-name">TodosModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ToDo</span><span class="token punctuation">></span></span> _todos<span class="token punctuation">;</span>
+
+<span class="token metadata function">@override</span>
+  <span class="token keyword">void</span> <span class="token function">initState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    _model<span class="token punctuation">.</span><span class="token function">getList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>mounted<span class="token punctuation">)</span>
+        <span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          _todos <span class="token operator">=</span> val<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">initState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token metadata function">@override</span>
+  <span class="token class-name">Widget</span> <span class="token function">build</span><span class="token punctuation">(</span><span class="token class-name">BuildContext</span> context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token class-name">Scaffold</span><span class="token punctuation">(</span>
+      appBar<span class="token punctuation">:</span> <span class="token class-name">AppBar</span><span class="token punctuation">(</span>
+        title<span class="token punctuation">:</span> <span class="token class-name">Text</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'Todos Screen'</span></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+      body<span class="token punctuation">:</span> <span class="token class-name">Builder</span><span class="token punctuation">(</span>
+        builder<span class="token punctuation">:</span> <span class="token punctuation">(</span>_<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>_todos <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">ListView</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span>
+              itemCount<span class="token punctuation">:</span> _todos<span class="token punctuation">.</span>length<span class="token punctuation">,</span>
+              itemBuilder<span class="token punctuation">:</span> <span class="token punctuation">(</span>context<span class="token punctuation">,</span> index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">final</span> _item <span class="token operator">=</span> _todos<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                <span class="token keyword">return</span> <span class="token class-name">ListTile</span><span class="token punctuation">(</span>
+                  title<span class="token punctuation">:</span> <span class="token class-name">Text</span><span class="token punctuation">(</span>_item<span class="token punctuation">.</span>title<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                  subtitle<span class="token punctuation">:</span> <span class="token class-name">Text</span><span class="token punctuation">(</span>_item<span class="token punctuation">.</span>completed <span class="token operator">?</span> <span class="token string-literal"><span class="token string">'Completed'</span></span> <span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'Pending'</span></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+          <span class="token keyword">return</span> <span class="token class-name">Center</span><span class="token punctuation">(</span>
+            child<span class="token punctuation">:</span> <span class="token class-name">CircularProgressIndicator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>You will see that we have the logic in TodosModel and uses the class ToDo for toJson and fromJson.</p>
+<p>Create a file at the location src/classes/todo.dart and add the following:</p>
+<pre class="language-dart"><code class="language-dart"><span class="token comment">// To parse this JSON data, do</span>
+<span class="token comment">//</span>
+<span class="token comment">//     final toDo = toDoFromJson(jsonString);</span>
+
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'dart:convert'</span></span><span class="token punctuation">;</span>
+
+<span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ToDo</span><span class="token punctuation">></span></span> <span class="token function">toDoFromJson</span><span class="token punctuation">(</span><span class="token class-name">String</span> str<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ToDo</span><span class="token punctuation">></span></span><span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span>json<span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token class-name">ToDo</span><span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">String</span> <span class="token function">toDoToJson</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ToDo</span><span class="token punctuation">></span></span> data<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> json<span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token keyword">dynamic</span><span class="token punctuation">></span></span><span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> x<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">ToDo</span> <span class="token punctuation">{</span>
+    int userId<span class="token punctuation">;</span>
+    int id<span class="token punctuation">;</span>
+    <span class="token class-name">String</span> title<span class="token punctuation">;</span>
+    bool completed<span class="token punctuation">;</span>
+
+<span class="token class-name">ToDo</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>userId<span class="token punctuation">,</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>id<span class="token punctuation">,</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>title<span class="token punctuation">,</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>completed<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">factory</span> <span class="token class-name">ToDo</span><span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span><span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token keyword">dynamic</span><span class="token punctuation">></span></span> json<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token class-name">ToDo</span><span class="token punctuation">(</span>
+        userId<span class="token punctuation">:</span> json<span class="token punctuation">[</span><span class="token string-literal"><span class="token string">"userId"</span></span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        id<span class="token punctuation">:</span> json<span class="token punctuation">[</span><span class="token string-literal"><span class="token string">"id"</span></span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        title<span class="token punctuation">:</span> json<span class="token punctuation">[</span><span class="token string-literal"><span class="token string">"title"</span></span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        completed<span class="token punctuation">:</span> json<span class="token punctuation">[</span><span class="token string-literal"><span class="token string">"completed"</span></span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token keyword">dynamic</span><span class="token punctuation">></span></span> <span class="token function">toJson</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token string-literal"><span class="token string">"userId"</span></span><span class="token punctuation">:</span> userId<span class="token punctuation">,</span>
+        <span class="token string-literal"><span class="token string">"id"</span></span><span class="token punctuation">:</span> id<span class="token punctuation">,</span>
+        <span class="token string-literal"><span class="token string">"title"</span></span><span class="token punctuation">:</span> title<span class="token punctuation">,</span>
+        <span class="token string-literal"><span class="token string">"completed"</span></span><span class="token punctuation">:</span> completed<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>and create the model src/models/todo.dart and add the following:</p>
+<pre class="language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'dart:convert'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:http/http.dart'</span></span> <span class="token operator">as</span> http<span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:shared_dart/src/classes/todo.dart'</span></span> <span class="token operator">as</span> t<span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">TodosModel</span> <span class="token punctuation">{</span>
+  <span class="token keyword">final</span> kTodosUrl <span class="token operator">=</span> <span class="token string-literal"><span class="token string">'[https://jsonplaceholder.typicode.com/todos'</span></span><span class="token punctuation">]</span><span class="token punctuation">(</span>https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>jsonplaceholder<span class="token punctuation">.</span>typicode<span class="token punctuation">.</span>com<span class="token operator">/</span>todos'<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">Future</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name"><span class="token namespace">t<span class="token punctuation">.</span></span>ToDo</span><span class="token punctuation">></span><span class="token punctuation">></span></span> <span class="token function">getList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+    <span class="token keyword">final</span> _response <span class="token operator">=</span> <span class="token keyword">await</span> http<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>kTodosUrl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>_response <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">final</span> _todos <span class="token operator">=</span> t<span class="token punctuation">.</span><span class="token function">toDoFromJson</span><span class="token punctuation">(</span>_response<span class="token punctuation">.</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>_todos <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> _todos<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token class-name">Future</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name"><span class="token namespace">t<span class="token punctuation">.</span></span>ToDo</span><span class="token punctuation">></span></span> <span class="token function">getItem</span><span class="token punctuation">(</span>int id<span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+    <span class="token keyword">final</span> _response <span class="token operator">=</span> <span class="token keyword">await</span> http<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'</span><span class="token interpolation"><span class="token punctuation">$</span><span class="token expression">kTodosUrl</span></span><span class="token string">/</span><span class="token interpolation"><span class="token punctuation">$</span><span class="token expression">id</span></span><span class="token string">'</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>_response <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">final</span> _todo <span class="token operator">=</span> <span class="token class-name"><span class="token namespace">t<span class="token punctuation">.</span></span>ToDo</span><span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>json<span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span>_response<span class="token punctuation">.</span>body<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>_todo <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> _todo<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Here we just get dummy data from a url that emits json and convert them to our classes. This is an example I want to show with networking. There is only one place that fetches the data.</p>
+<h3 id="run-the-project-web">Run the Project (Web)</h3>
+<p><img src="https://cdn-images-1.medium.com/max/5248/1*et2kG6_skauXJ6rogFy_ZQ.png" alt=""></p>
+<p><img src="https://cdn-images-1.medium.com/max/5248/1*za20ru3G18DUFob07Cjv2A.png" alt=""></p>
+<p>As you can see when you run your project on chrome you will get the same application that you got on mobile. Even the networking is working in the web. You can call the model and retrieve the list just like you would expect.</p>
+<h2 id="server-setup">Server Setup</h2>
+<blockquote>
+<p>Now time for the magic..</p>
+</blockquote>
+<p>In the root of the project folder create a file Dockerfile and add the following:</p>
+<pre class="language-yaml"><code class="language-yaml"><span class="token comment"># Use Google's official Dart image.</span>
+<span class="token comment"># [https://hub.docker.com/r/google/dart-runtime/](https://hub.docker.com/r/google/dart-runtime/)</span>
+FROM google/dart<span class="token punctuation">-</span>runtime</code></pre>
+<p>Create another file at the root called service.yaml and add the following:</p>
+<pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> serving.knative.dev/v1
+    <span class="token key atrule">kind</span><span class="token punctuation">:</span> Service
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> PROJECT_NAME
+      <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">template</span><span class="token punctuation">:</span>
+        <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+          <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> docker.io/YOUR_DOCKER_NAME/PROJECT_NAME
+              <span class="token key atrule">env</span><span class="token punctuation">:</span>
+                <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> TARGET
+                  <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token string">"PROJECT_NAME v1"</span></code></pre>
+<p>Replace PROJECT_NAME with your project name, mine is shared-dart for this example.</p>
+<p>You will also need to replace YOUR_DOCKER_NAME with your docker username so the container can be deployed correctly.</p>
+<p>Update your pubspec.yaml with the following:</p>
+<pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">name</span><span class="token punctuation">:</span> shared_dart
+<span class="token key atrule">description</span><span class="token punctuation">:</span> A new Flutter project.
+<span class="token key atrule">publish_to</span><span class="token punctuation">:</span> none
+<span class="token key atrule">version</span><span class="token punctuation">:</span> 1.0.0+1
+
+<span class="token key atrule">environment</span><span class="token punctuation">:</span>
+  <span class="token key atrule">sdk</span><span class="token punctuation">:</span> <span class="token string">">=2.1.0 &lt;3.0.0"</span>
+
+<span class="token key atrule">dependencies</span><span class="token punctuation">:</span>
+  <span class="token key atrule">flutter</span><span class="token punctuation">:</span>
+    <span class="token key atrule">sdk</span><span class="token punctuation">:</span> flutter
+  <span class="token key atrule">shelf</span><span class="token punctuation">:</span> ^0.7.3
+  <span class="token key atrule">cupertino_icons</span><span class="token punctuation">:</span> ^0.1.2
+  <span class="token key atrule">http</span><span class="token punctuation">:</span> ^0.12.0+2
+
+<span class="token key atrule">dev_dependencies</span><span class="token punctuation">:</span>
+  <span class="token key atrule">flutter_test</span><span class="token punctuation">:</span>
+    <span class="token key atrule">sdk</span><span class="token punctuation">:</span> flutter
+
+<span class="token key atrule">flutter</span><span class="token punctuation">:</span>
+  <span class="token key atrule">uses-material-design</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></code></pre>
+<p>The important package here is shelf as it allows us to run a http server with dart.</p>
+<p>Create a folder in the root of the project called bin then add a file server.dart and replace it with the following:</p>
+<pre class="language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'dart:io'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:shelf/shelf.dart'</span></span> <span class="token operator">as</span> shelf<span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:shelf/shelf_io.dart'</span></span> <span class="token operator">as</span> io<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'src/routing.dart'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">final</span> handler <span class="token operator">=</span> <span class="token keyword">const</span> <span class="token class-name"><span class="token namespace">shelf<span class="token punctuation">.</span></span>Pipeline</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">addMiddleware</span><span class="token punctuation">(</span>shelf<span class="token punctuation">.</span><span class="token function">logRequests</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">addHandler</span><span class="token punctuation">(</span><span class="token class-name">RouteUtils</span><span class="token punctuation">.</span>handler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">final</span> port <span class="token operator">=</span> int<span class="token punctuation">.</span><span class="token function">tryParse</span><span class="token punctuation">(</span><span class="token class-name">Platform</span><span class="token punctuation">.</span>environment<span class="token punctuation">[</span><span class="token string-literal"><span class="token string">'PORT'</span></span><span class="token punctuation">]</span> <span class="token operator">?</span><span class="token operator">?</span> <span class="token string-literal"><span class="token string">'8080'</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">final</span> address <span class="token operator">=</span> <span class="token class-name">InternetAddress</span><span class="token punctuation">.</span>anyIPv4<span class="token punctuation">;</span>
+
+io<span class="token punctuation">.</span><span class="token function">serve</span><span class="token punctuation">(</span>handler<span class="token punctuation">,</span> address<span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>server<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    server<span class="token punctuation">.</span>autoCompress <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'Serving at [http://</span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">server<span class="token punctuation">.</span>address<span class="token punctuation">.</span>host</span><span class="token punctuation">}</span></span><span class="token string">:</span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">server<span class="token punctuation">.</span>port</span><span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">]</span><span class="token punctuation">(</span>http<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>$<span class="token punctuation">{</span>server<span class="token punctuation">.</span>address<span class="token punctuation">.</span>host<span class="token punctuation">}</span><span class="token punctuation">:</span>$<span class="token punctuation">{</span>server<span class="token punctuation">.</span>port<span class="token punctuation">}</span>'<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>This will tell the container what port to listen for and how to handle the requests.</p>
+<p>Create a folder src in the bin folder and add a file routing.dart and replace the contents with the following:</p>
+<pre class="language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'dart:async'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:shelf/shelf.dart'</span></span> <span class="token operator">as</span> shelf<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'controllers/index.dart'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'result.dart'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">RouteUtils</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> <span class="token class-name">FutureOr</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name"><span class="token namespace">shelf<span class="token punctuation">.</span></span>Response</span><span class="token punctuation">></span></span> <span class="token function">handler</span><span class="token punctuation">(</span><span class="token class-name"><span class="token namespace">shelf<span class="token punctuation">.</span></span>Request</span> request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> component <span class="token operator">=</span> request<span class="token punctuation">.</span>url<span class="token punctuation">.</span>pathSegments<span class="token punctuation">.</span>first<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> handler <span class="token operator">=</span> <span class="token function">_handlers</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">[</span>component<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>handler <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token class-name"><span class="token namespace">shelf<span class="token punctuation">.</span></span>Response</span><span class="token punctuation">.</span><span class="token function">notFound</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> handler<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token keyword">static</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">FutureOr</span><span class="token punctuation">&lt;</span><span class="token class-name"><span class="token namespace">shelf<span class="token punctuation">.</span></span>Response</span><span class="token punctuation">></span><span class="token punctuation">></span></span> <span class="token function">_handlers</span><span class="token punctuation">(</span>
+      <span class="token class-name"><span class="token namespace">shelf<span class="token punctuation">.</span></span>Request</span> request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      <span class="token string-literal"><span class="token string">'info'</span></span><span class="token punctuation">:</span> <span class="token class-name">ServerResponse</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'Info'</span></span><span class="token punctuation">,</span> body<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string-literal"><span class="token string">"version"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'v1.0.0'</span></span><span class="token punctuation">,</span>
+        <span class="token string-literal"><span class="token string">"status"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">"ok"</span></span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token string-literal"><span class="token string">'counter'</span></span><span class="token punctuation">:</span> <span class="token class-name">CounterController</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">result</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token string-literal"><span class="token string">'todos'</span></span><span class="token punctuation">:</span> <span class="token class-name">TodoController</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">result</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>There is still nothing imported from our main project but you will start to see some similarities. Here we specify controllers for todos and counter url paths.</p>
+<pre class="language-dart"><code class="language-dart"><span class="token string-literal"><span class="token string">'counter'</span></span><span class="token punctuation">:</span> <span class="token class-name">CounterController</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">result</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token string-literal"><span class="token string">'todos'</span></span><span class="token punctuation">:</span> <span class="token class-name">TodoController</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">result</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">,</span></code></pre>
+<p>that means any url with the following:<a href="https://mydomain.com/todos">https://mydomain.com/todos</a> , <a href="https://mydomain.com/todos">https://mydomain.com/todos</a>/1</p>
+<p>will get routed to the TodoController to handle the request.</p>
+<blockquote>
+<p>This is also the first time I found out about FutureOr. It allows you to return a sync or async function.</p>
+</blockquote>
+<p>And important part about build a REST API is having a consistent response body, so here we can create a wrapper that adds fields we always want to return, like the status of the call, a message and the body.</p>
+<p>Create a file at src/result.dart and add the following:</p>
+<pre class="language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'dart:convert'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:shelf/shelf.dart'</span></span> <span class="token operator">as</span> shelf<span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">ServerResponse</span> <span class="token punctuation">{</span>
+  <span class="token keyword">final</span> <span class="token class-name">String</span> message<span class="token punctuation">;</span>
+  <span class="token keyword">final</span> <span class="token keyword">dynamic</span> body<span class="token punctuation">;</span>
+  <span class="token keyword">final</span> <span class="token class-name">StatusType</span> type<span class="token punctuation">;</span>
+
+<span class="token class-name">ServerResponse</span><span class="token punctuation">(</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>message<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>type <span class="token operator">=</span> <span class="token class-name">StatusType</span><span class="token punctuation">.</span>success<span class="token punctuation">,</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>body<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token keyword">dynamic</span><span class="token punctuation">></span></span> <span class="token function">toJson</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      <span class="token string-literal"><span class="token string">"status"</span></span><span class="token punctuation">:</span> type<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">replaceAll</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'StatusType.'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">''</span></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token string-literal"><span class="token string">"message"</span></span><span class="token punctuation">:</span> message<span class="token punctuation">,</span>
+      <span class="token string-literal"><span class="token string">"body"</span></span><span class="token punctuation">:</span> body <span class="token operator">?</span><span class="token operator">?</span> <span class="token string-literal"><span class="token string">''</span></span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token class-name">String</span> <span class="token function">toJsonString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> json<span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span><span class="token function">toJson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token class-name"><span class="token namespace">shelf<span class="token punctuation">.</span></span>Response</span> <span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token class-name"><span class="token namespace">shelf<span class="token punctuation">.</span></span>Response</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span>
+      <span class="token function">toJsonString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      headers<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string-literal"><span class="token string">'Content-Type'</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'application/json'</span></span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">enum</span> <span class="token class-name">StatusType</span> <span class="token punctuation">{</span> success<span class="token punctuation">,</span> error <span class="token punctuation">}</span>
+
+<span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">ResponseImpl</span> <span class="token punctuation">{</span>
+  <span class="token class-name">Future</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name"><span class="token namespace">shelf<span class="token punctuation">.</span></span>Response</span><span class="token punctuation">></span></span> <span class="token function">result</span><span class="token punctuation">(</span><span class="token class-name"><span class="token namespace">shelf<span class="token punctuation">.</span></span>Request</span> request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>This will always return json and the fields that we want to show. You could also include your paging meta data here.</p>
+<p>Create a file in at the location src/controllers/counter.dart and add the following:</p>
+<pre class="language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:shared_dart/src/models/counter.dart'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:shelf/shelf.dart'</span></span> <span class="token operator">as</span> shelf<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'../result.dart'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">CounterController</span> <span class="token keyword">implements</span> <span class="token class-name">ResponseImpl</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token class-name">CounterController</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token metadata function">@override</span>
+  <span class="token class-name">Future</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name"><span class="token namespace">shelf<span class="token punctuation">.</span></span>Response</span><span class="token punctuation">></span></span> <span class="token function">result</span><span class="token punctuation">(</span><span class="token class-name"><span class="token namespace">shelf<span class="token punctuation">.</span></span>Request</span> request<span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+    <span class="token keyword">final</span> _model <span class="token operator">=</span> <span class="token class-name">CounterModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">final</span> _params <span class="token operator">=</span> request<span class="token punctuation">.</span>url<span class="token punctuation">.</span>queryParameters<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>_params <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">final</span> _val <span class="token operator">=</span> int<span class="token punctuation">.</span><span class="token function">tryParse</span><span class="token punctuation">(</span>_params<span class="token punctuation">[</span><span class="token string-literal"><span class="token string">'count'</span></span><span class="token punctuation">]</span> <span class="token operator">?</span><span class="token operator">?</span> <span class="token string-literal"><span class="token string">'0'</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      _model<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span>_val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      _model<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token class-name">ServerResponse</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'Info'</span></span><span class="token punctuation">,</span> body<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token string-literal"><span class="token string">"counter"</span></span><span class="token punctuation">:</span> _model<span class="token punctuation">.</span>count<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>You will see the import to the lib folder of the root project. Since it shares the pubspec.yaml all the packages can be shared. You can import the CounterModel that we created earlier.</p>
+<p>Create a file in at the location src/controllers/todos.dart and add the following:</p>
+<pre class="language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:shared_dart/src/models/todos.dart'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:shelf/src/request.dart'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:shelf/src/response.dart'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'../result.dart'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">TodoController</span> <span class="token keyword">implements</span> <span class="token class-name">ResponseImpl</span> <span class="token punctuation">{</span>
+  <span class="token metadata function">@override</span>
+  <span class="token class-name">Future</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Response</span><span class="token punctuation">></span></span> <span class="token function">result</span><span class="token punctuation">(</span><span class="token class-name">Request</span> request<span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+    <span class="token keyword">final</span> _model <span class="token operator">=</span> <span class="token class-name">TodosModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>request<span class="token punctuation">.</span>url<span class="token punctuation">.</span>pathSegments<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">final</span> _id <span class="token operator">=</span> int<span class="token punctuation">.</span><span class="token function">tryParse</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>url<span class="token punctuation">.</span>pathSegments<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">?</span><span class="token operator">?</span> <span class="token string-literal"><span class="token string">'1'</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">final</span> _todo <span class="token operator">=</span> <span class="token keyword">await</span> _model<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span>_id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token class-name">ServerResponse</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'Todo Item'</span></span><span class="token punctuation">,</span> body<span class="token punctuation">:</span> _todo<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">final</span> _todos <span class="token operator">=</span> <span class="token keyword">await</span> _model<span class="token punctuation">.</span><span class="token function">getList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token class-name">ServerResponse</span><span class="token punctuation">(</span>
+      <span class="token string-literal"><span class="token string">'List Todos'</span></span><span class="token punctuation">,</span>
+      body<span class="token punctuation">:</span> _todos<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> t<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Just like before we are importing the TodosModel model from the lib folder.</p>
+<p>For convenience add a file at the location src/controllers/index.dart and add the following:</p>
+<pre class="language-dart"><code class="language-dart"><span class="token keyword">export</span> <span class="token string-literal"><span class="token string">'counter.dart'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token string-literal"><span class="token string">'todo.dart'</span></span><span class="token punctuation">;</span></code></pre>
+<p>This will make it easier to import all the controllers.</p>
+<h2 id="run-the-project-server">Run the Project (Server)</h2>
+<p>If you are using <a href="https://code.visualstudio.com/">VSCode</a> then you will need to update your launch.json with the following:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token comment">// Use IntelliSense to learn about possible attributes.</span>
+    <span class="token comment">// Hover to view descriptions of existing attributes.</span>
+    <span class="token comment">// For more information, visit: [https://go.microsoft.com/fwlink/?linkid=830387](https://go.microsoft.com/fwlink/?linkid=830387)</span>
+    <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"0.2.0"</span><span class="token punctuation">,</span>
+    <span class="token property">"configurations"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Client"</span><span class="token punctuation">,</span>
+            <span class="token property">"request"</span><span class="token operator">:</span> <span class="token string">"launch"</span><span class="token punctuation">,</span>
+            <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"dart"</span><span class="token punctuation">,</span>
+            <span class="token property">"program"</span><span class="token operator">:</span> <span class="token string">"lib/main.dart"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> 
+          <span class="token punctuation">{</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Server"</span><span class="token punctuation">,</span>
+            <span class="token property">"request"</span><span class="token operator">:</span> <span class="token string">"launch"</span><span class="token punctuation">,</span>
+            <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"dart"</span><span class="token punctuation">,</span>
+            <span class="token property">"program"</span><span class="token operator">:</span> <span class="token string">"bin/server.dart"</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Now when you hit run with Server selected you will see the output:</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*akfcrkLuxit4vZdtHJty_Q.png" alt=""></p>
+<p>You can navigate to this in a browser but you can also work with this in <a href="https://www.getpostman.com/">Postman</a>.</p>
+<p><img src="https://cdn-images-1.medium.com/max/4796/1*zJR2ZNZfCmvLg3y5wByLNA.png" alt=""></p>
+<p><img src="https://cdn-images-1.medium.com/max/4788/1*Z2vnHjHEfYe8yWajGWVLOw.png" alt=""></p>
+<p>Just by adding to the url todos and todos/1 it will return different responses.</p>
+<p>For the counter model we can use query parameters too!</p>
+<p><img src="https://cdn-images-1.medium.com/max/4768/1*YMwQEOoaCjngYpidKBbADg.png" alt=""></p>
+<p><img src="https://cdn-images-1.medium.com/max/4760/1*vPYs9780bcVrlIPBMjF4eQ.png" alt=""></p>
+<p>Just by adding ?count=22 it will update the model with the input.</p>
+<blockquote>
+<p>Keep in mind this is running your Dart code from you lib folder in your Flutter project without needing the Flutter widgets!</p>
+</blockquote>
+<p>As a side benefit we can also run this project on Desktop. Check out the final project for the desktop folders needed from <a href="https://github.com/google/flutter-desktop-embedding">Flutter Desktop Embedding</a>.</p>
+<p><img src="https://cdn-images-1.medium.com/max/3648/1*Mk_6Rlq2qMbpk79OPo_QBw.png" alt=""></p>
+<p><img src="https://cdn-images-1.medium.com/max/3648/1*hWirIWGRQjN8hVvUZsB2Nw.png" alt=""></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Now if you wanted to deploy the container to Cloud Run you could with the following command:</p>
+<p>gcloud builds submit — tag gcr.io/YOUR_GOOGLE_PROJECT_ID/PROJECT_NAME .</p>
+<p>Replace PROJECT_NAME with your project name, mine is shared-dart for this example.</p>
+<p>You will also need to replace YOUR_GOOGLE_PROJECT_ID with your Google Cloud Project ID. You can create one <a href="https://cloud.google.com/cloud-build/docs/quickstart-docker">here</a>.</p>
+<p>Again the final project source code is <a href="https://github.com/rodydavis/shared_dart">here</a>. Let me know your thoughts!</p>
+			</main>
+		</div>
+	</article>
+</div>
+
+
+
+			</main>
+		</div>
+	</article>
+</div>
+
+
+
+		</div>
+		<div style="height: 25px"></div>
+		<social-links><template shadowroot="open"><style>
+    footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: var(--width, 100%);
+      margin-bottom: 2rem;
+    }
+    .fab,
+    svg {
+      --size: 3vw;
+      width: var(--size);
+      height: var(--size);
+      max-width: 30px;
+      max-height: 30px;
+      min-width: 20px;
+      min-height: 20px;
+      margin: 0.5rem;
+      color: var(--md-sys-color-on-surface);
+      font-family: FontAwesome;
+      cursor: pointer;
+    }
+    svg {
+      color: var(--md-sys-color-on-surface);
+    }
+  </style><!--lit-part fkbI1zGBADw=--><footer>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://twitter.com/rodydavis"
+        class="fab fa fa-twitter"
+      >
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="twitter"
+          class="svg-inline--fa fa-twitter fa-w-16"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
+          ></path>
+        </svg>
+      </a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://facebook.com/rodydavisjr"
+        class="fab fa fa-facebook"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="facebook-f"
+          class="svg-inline--fa fa-facebook-f fa-w-10"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+        >
+          <path
+            fill="currentColor"
+            d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.linkedin.com/in/rodydavis"
+        class="fab fa fa-linkedin"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="linkedin-in"
+          class="svg-inline--fa fa-linkedin-in fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.youtube.com/rodydavis"
+        class="fab fa fa-youtube"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="youtube"
+          class="svg-inline--fa fa-youtube fa-w-18"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 576 512"
+        >
+          <path
+            fill="currentColor"
+            d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.instagram.com/rodydavisjr"
+        class="fab fa fa-instagram"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="instagram"
+          class="svg-inline--fa fa-instagram fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.github.com/rodydavis"
+        class="fab fa fa-github"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="github"
+          class="svg-inline--fa fa-github fa-w-16"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 496 512"
+        >
+          <path
+            fill="currentColor"
+            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.tiktok.com/@rodydavisjr"
+        class="fab fa-tiktok"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="tiktok"
+          class="svg-inline--fa fa-tiktok fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"
+          ></path></svg
+      ></a>
+    </footer><!--/lit-part--></template></social-links>
+	</body></html>
