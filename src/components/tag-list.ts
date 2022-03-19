@@ -10,8 +10,11 @@ export class TagList extends LitElement {
     .tags {
       display: flex;
       flex-wrap: wrap;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
+      margin-left: 2rem;
+      margin-right: 2rem;
+      width: calc(100% - 4rem);
     }
     tag-item {
       margin-bottom: 0.4rem;
