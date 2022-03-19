@@ -1,0 +1,74 @@
+---
+// import Layout from '../../layouts/BlogPost.astro'
+import '../../components/post-preview';
+import MainLayout from '../../components/MainLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await Astro.fetchContent('../../data/blog-posts/*.md');
+  let tags: string[] = [];
+  posts.forEach(post => {
+     post.tags.forEach(tag => {
+     if (!tags.includes(tag)) {
+         tags.push(tag);
+     }
+     });
+  });
+  // Remove duplicate tags
+  tags = tags.filter((v, i, a) => a.indexOf(v) === i);
+  const allTags =  tags.map(p => {
+      const name = p.split('-').join(' ') || p || '';
+      const title = name;
+      const slug = '/tags/' + p ;
+      return {
+        params: { slug: p },
+        props: { tag: p, title, slug },
+      };
+  });
+//   console.log(allTags);
+  return allTags;
+}
+
+// const {  title, slug } = Astro.props  || {};
+const props = Astro.props
+const title = `Tag: ${props.title || ''}`;
+const tag = props.tag || '';
+const posts =  await Astro.fetchContent('../../data/blog-posts/*.md');
+const related = posts.filter(post => post.tags.includes(tag));
+const permalink = `/tags/${tag}`;
+---
+
+<MainLayout {title} {permalink} >
+    <style>
+        header {
+            text-align: center;
+        }
+        header h1 {
+            margin-bottom: 0.7em;
+        }
+        header p {
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-family: var(--font-family-sans);
+            font-weight: 600;
+        }
+        header hr {
+            /* min-width: 100px; */
+            width: 100%;
+        }
+        main {
+            width: 100%;
+        }
+        header, .container {
+            width: 100%;
+        }
+    </style>
+    <main>
+        <div class="container">
+            <article class="content">
+                {related.map(
+                (p) => <post-preview post={p}></post-preview>
+                )}
+            </article>
+        </div>
+    </main>
+</MainLayout>

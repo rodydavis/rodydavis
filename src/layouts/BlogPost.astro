@@ -1,0 +1,28 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import BlogPost from '../components/BlogPost.astro';
+import '../components/app-header';
+import '../components/social-links';
+import {postTime} from '../utils/getPostData';
+
+const { content } = Astro.props;
+const readingTime = postTime(content.astro.source);
+const { title, description, publishDate, author, image, permalink, alt, tags } = content;
+---
+
+<html lang={content.lang || 'en'}>
+	<head>
+		<BaseHead {title} {description} {permalink} />
+	</head>
+
+	<body>
+		<app-header client:load ></app-header>
+		<div class="wrapper">
+			<BlogPost {title} {author} {image} {publishDate} {alt} {tags} {readingTime}>
+				<slot />
+			</BlogPost>
+		</div>
+		<div style="height: 25px"></div>
+		<social-links></social-links>
+	</body>
+</html>

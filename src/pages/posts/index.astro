@@ -1,0 +1,12 @@
+---
+import MainLayout from '../../components/MainLayout.astro';
+import Posts from '../../components/Posts.astro';
+
+const title = 'Blog';
+const description = 'Personal blog of Rody Davis';
+const permalink = 'https://rodydavis.com/blog';
+---
+
+<MainLayout  {title} {description} {permalink}>
+    <Posts />
+</MainLayout>
