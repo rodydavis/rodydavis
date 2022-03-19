@@ -1,82 +1,646 @@
-<!DOCTYPE html><html domain=rodydavis.com ga-id=G-JQNPVBL9DR lang=en><meta charset=utf-8><meta content="width=device-width,initial-scale=1" name=viewport><link href="/img/favicon/favicon-32x32.png?hash=3df5885280" rel=icon type=image/png><meta content=#f9c412 name=theme-color><meta content="max-snippet:-1, max-image-preview: large, max-video-preview: -1" name=robots><title>Deep Linking for Flutter Web</title><meta content="Deep Linking for Flutter Web" property=og:title><meta content="In this article I will show you how to have proper URL navigation for your application. Open links to specific pages, protected routes and..." name=description><meta content="In this article I will show you how to have proper URL navigation for your application. Open links to specific pages, protected routes and..." property=og:description><meta content=summary_large_image name=twitter:card><meta content=@rodydavis name=twitter:site><meta content=@rodydavis name=twitter:creator><meta content=https://rodydavis.com/img/remote/Z1D401D.jpeg property=og:image><link href=https://rodydavis.com/posts/deep-linking-flutter-web/ rel=canonical><meta content=no-referrer-when-downgrade name=referrer><link href=/feed/feed.xml rel=alternate type=application/atom+xml title="Rody Davis"><link href=/ rel=preconnect crossorigin=""><script src="/js/min.js?hash=c372ec6a84" async defer></script><script src="/js/cached.js?hash=9030142fbb" async defer></script><script csp-hash="">if (/Mac OS X/.test(navigator.userAgent)) 
-        document
-          .documentElement
-          .classList
-          .add('apple')</script><script type=text/javascript>function getCode(repo, path, branch) {
-        const url = `https://raw.githubusercontent.com/rodydavis/${repo}/${branch}/${path}`;
-        return fetch(url).then((res) => res.text());
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="icon" type="image/x-icon" href="/img/favicon/favicon.ico">
+
+<!-- Primary Meta Tags -->
+<title>Deep Linking for Flutter Web</title>
+<meta name="title" content="Deep Linking for Flutter Web">
+<meta name="description">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url">
+<meta property="og:title" content="Deep Linking for Flutter Web">
+<meta property="og:description">
+<meta property="og:image" content="https://astro.build/social.jpg?v=1">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url">
+<meta property="twitter:title" content="Deep Linking for Flutter Web">
+<meta property="twitter:description">
+<meta property="twitter:image" content="https://astro.build/social.jpg?v=1">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;700&display=swap">
+<link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-lucario.css">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JQNPVBL9DR');
+</script>
+	<link rel="stylesheet" href="/assets/BlogContent.6b85ce27.css"></link>
+<link rel="stylesheet" href="/assets/social-links.ac123a03.css"></link>
+<link rel="stylesheet" href="/assets/_slug_.2050125d.css"></link><style astro-style="true">astro-root, astro-fragment { display: contents; }</style><script type="module" astro-script="/posts/deep-linking-flutter-web//script-0">import "../../client-shim.751854cd.js";</script>
+<script type="module" data-astro-component-hydration astro-script="/posts/deep-linking-flutter-web//script-1">import setup from '../../load.644f6253.js';
+setup("Z1q7NiJ", {name:"app-header",value: true}, async () => {
+  await Promise.all([
+  import("../../hydration-support.20f55b8e.js")]);
+await import("../../app-header.0698726e.js");
+  return () => {};
+
+});
+</script>
+</head>
+
+	<body>
+		<astro-root uid="Z1q7NiJ"><app-header><template shadowroot="open"><style>
+    header {
+      width: 100%;
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      display: flex;
+      align-items: center;
+      --input-size: 32px;
+    }
+
+    article {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+    }
+
+    img {
+      margin-right: 1rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      max-width: 100%;
+      display: flex;
+      flex-grow: 1;
+    }
+
+    .logo {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    svg {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    a {
+      text-decoration: none;
+      display: inline-flex;
+      color: var(--md-sys-color-on-primary-container);
+      margin-right: 1rem;
+    }
+
+    icon-button {
+      margin-left: 3px;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+    }
+
+    input[type="color"] {
+      width: calc(var(--input-size) * 2);
+      height: var(--input-size);
+      outline: none;
+      border: none;
+      border-radius: 50%;
+      background-color: var(--md-sys-color-primary-container);
+    }
+    input[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+    input[type="color"]::-webkit-color-swatch {
+      border: none;
+      border-radius: var(--input-size);
+      border: var(--md-sys-color-outline) solid 1px;
+    }
+
+    .links {
+      display: none;
+    }
+
+    @media (min-width: 600px) {
+      .links {
+        display: flex;
       }
-      async function addFiles(tag, path, branch = "main") {
-        const output = document.querySelector('#playground');
-        output.removeAttribute('hidden');
-        const codeEditor = document.createElement('playground-file-editor');
-        const uiEditor = document.createElement('playground-file-editor');
-        const preview = document.createElement('playground-preview');
-        const ide = document.createElement('playground-project');
-        ide.id = "project";
-        function addScript(filename, source) {
-          const elem = document.createElement('script');
-          elem.setAttribute('type', `sample/${
-            filename.split('.').pop()
-          }`);
-          elem.setAttribute('filename', filename);
-          elem.innerHTML = source;
-          ide.append(elem);
-        }
-        const name = path.split('.ts').join('.js');
-        const ui = await getCode(tag, 'index.html', branch);
-        addScript('index.html', ui.split(`/src/${path}`).join(`./${name}`));
-        preview.setAttribute('project', ide.id);
-        uiEditor.setAttribute('project', ide.id);
-        uiEditor.setAttribute('filename', path);
-        output.append(preview);
-        const code = await getCode(tag, `src/${path}`, branch);
-        addScript(path, code);
-        codeEditor.setAttribute('line-numbers', '');
-        codeEditor.setAttribute('project', ide.id);
-        codeEditor.setAttribute('filename', path);
-        output.append(codeEditor);
-        output.append(ide);
-      }</script><script src=https://unpkg.com/playground-elements@0.10.0/playground-project.js?module type=module></script><script src=https://unpkg.com/playground-elements@0.10.0/playground-file-editor.js?module type=module></script><script src=https://unpkg.com/playground-elements@0.10.0/playground-preview.js?module type=module></script><script src=https://dartpad.dev/inject_embed.dart.js type=text/javascript defer></script><style>#playground {
-        --playground-preview-width: 40%;
-        --playground-tab-bar-background: var(--background);
-        --playground-tab-bar-foreground-color: var(--on-background);
-        --playground-border: var(--on-background);
-        --playground-preview-toolbar-background: var(--background);
-        --playground-preview-toolbar-foreground-color: var(--on-background);
-        --playground-highlight-color: var(--primary);
-        --playground-code-background: rgb(48, 65, 72);
-        --playground-code-default-color: rgb(248, 248, 242);
-        --playground-code-cursor-color: rgb(248, 248, 240);
-        --playground-code-selection-background: rgba(101, 115, 126, 0.33);
-        --playground-code-gutter-background: rgb(48, 65, 72);
-        --playground-code-gutter-border-right: 0;
-        --playground-code-linenumber-color: rgb(208, 208, 208);
-        --playground-code-atom-color: rgb(197, 148, 197);
-        --playground-code-attribute-color: rgb(197, 148, 197);
-        --playground-code-builtin-color: rgb(102, 217, 239);
-        --playground-code-comment-color: rgb(101, 115, 126);
-        --playground-code-def-color: rgb(102, 153, 204);
-        --playground-code-keyword-color: rgb(197, 148, 197);
-        --playground-code-meta-color: rgb(248, 248, 242);
-        --playground-code-number-color: rgb(249, 145, 87);
-        --playground-code-operator-color: rgb(248, 248, 242);
-        --playground-code-qualifier-color: rgb(248, 248, 242);
-        --playground-code-string-color: rgb(153, 199, 148);
-        --playground-code-string-2-color: rgb(248, 248, 242);
-        --playground-code-tag-color: rgb(197, 148, 197);
-        --playground-code-type-color: rgb(248, 248, 242);
-        --playground-code-variable-color: rgb(248, 248, 242);
-        --playground-code-variable-2-color: rgb(248, 248, 242);
-        --playground-code-variable-3-color: rgb(248, 248, 242);
-        --playground-code-callee-color: rgb(248, 248, 242);
-        --playground-code-property-color: rgb(153, 199, 148);
-        --playground-code-font-family: var(--default-font);
-        --playground-code-font-size: 90%;
-        --playground-code-background: var(--surface-background);
-      }</style><style>@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css);:root{--primary:#f9c412;--on-primary:#181818;--secondary:#e7bf60;--background:#181818;--on-background:#eee;--playground-height:450px;--surface-background:#2d2d2d}div.apple{background-image:url(/img/badges/app_store.png);margin:4px;height:80px;width:200px;background-size:contain;background-repeat:no-repeat;background-position:center}#playground{width:100%;height:calc(var(--playground-height)*2);background-color:var(--surface-background)}#playground>playground-file-editor,#playground>playground-preview{height:var(--playground-height)}.tags{display:wrap}.click{cursor:pointer;text-decoration:none}.chip{display:inline-block;padding:0 15px;border-radius:25px;margin:4px;background-color:var(--primary);color:var(--on-primary)}main img{content-visibility:auto}article *{scroll-margin-top:50px}header nav{z-index:1;position:fixed;top:0;left:0;width:100vw;padding:.375em 1.5em;background:rgba(255,255,255,.9);font-weight:200;text-align:right}:root{--main-width:calc(100vw - 3em)}@media (min-width:37.5em){:root{--main-width:calc(37.5em - 3em)}}dialog,share-widget{position:fixed;opacity:.9}share-widget{right:20px;bottom:20px}share-widget div{width:30px;height:30px;background-image:url(/img/share.svg);background-repeat:no-repeat;background-position:center}.apple share-widget div{background-image:url(/img/share-apple.svg)}body,share-widget button{margin:0}share-widget button:active{transform:scale(1.2)}dialog{background-color:#8dff80;z-index:1000}header aside{font-style:italic}#nav{z-index:2;position:relative}#reading-progress{z-index:1;background-color:var(--primary);width:100vw;position:absolute;left:0;top:0;bottom:0;transform:translate(-100vw,0);will-change:transform;pointer-events:none}#posts li{margin-bottom:.5em}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:100;src:url(/fonts/Inter-Thin.woff2) format("woff2"),url(/fonts/Inter-Thin.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:100;src:url(/fonts/Inter-ThinItalic.woff2) format("woff2"),url(/fonts/Inter-ThinItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:200;src:url(/fonts/Inter-ExtraLight.woff2) format("woff2"),url(/fonts/Inter-ExtraLight.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:200;src:url(/fonts/Inter-ExtraLightItalic.woff2) format("woff2"),url(/fonts/Inter-ExtraLightItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:300;src:url(/fonts/Inter-Light.woff2) format("woff2"),url(/fonts/Inter-Light.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:300;src:url(/fonts/Inter-LightItalic.woff2) format("woff2"),url(/fonts/Inter-LightItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:400;src:url(/fonts/Inter-Regular.woff2) format("woff2"),url(/fonts/Inter-Regular.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:400;src:url(/fonts/Inter-Italic.woff2) format("woff2"),url(/fonts/Inter-Italic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:500;src:url(/fonts/Inter-Medium.woff2) format("woff2"),url(/fonts/Inter-Medium.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:500;src:url(/fonts/Inter-MediumItalic.woff2) format("woff2"),url(/fonts/Inter-MediumItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:600;src:url(/fonts/Inter-SemiBold.woff2) format("woff2"),url(/fonts/Inter-SemiBold.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:600;src:url(/fonts/Inter-SemiBoldItalic.woff2) format("woff2"),url(/fonts/Inter-SemiBoldItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:700;src:url(/fonts/Inter-Bold.woff2) format("woff2"),url(/fonts/Inter-Bold.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:700;src:url(/fonts/Inter-BoldItalic.woff2) format("woff2"),url(/fonts/Inter-BoldItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:800;src:url(/fonts/Inter-ExtraBold.woff2) format("woff2"),url(/fonts/Inter-ExtraBold.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:800;src:url(/fonts/Inter-ExtraBoldItalic.woff2) format("woff2"),url(/fonts/Inter-ExtraBoldItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:900;src:url(/fonts/Inter-Black.woff2) format("woff2"),url(/fonts/Inter-Black.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:900;src:url(/fonts/Inter-BlackItalic.woff2) format("woff2"),url(/fonts/Inter-BlackItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI var alt";font-weight:100 900;font-style:normal;font-named-instance:"Regular";src:url(/fonts/Inter-roman.var.woff2) format("woff2")}@font-face{font-display:optional;font-family:"Inter UI var alt";font-weight:100 900;font-style:italic;font-named-instance:"Italic";src:url(/fonts/Inter-italic.var.woff2) format("woff2")}button,html{line-height:1.15}html{-webkit-text-size-adjust:100%;font-family:Inter UI,sans-serif;--font-family:Inter UI, sans-serif}h1{font-size:3em;line-height:1.25;margin:.67em 0 .5em;font-size:2.074rem}a{background-color:transparent;color:#f9c412;text-decoration:none;color:var(--primary)}b{font-weight:700}code{overflow-x:auto;border-radius:.3em;color:#e2777a;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:90%;background:#2d2d2d;padding:0}img{border-style:none;max-width:100%;height:auto;margin:0 auto}button{font-family:inherit;font-size:100%;overflow:visible;text-transform:none}[type=button],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}[hidden]{display:none}h2{font-size:2.5em;line-height:1.2;margin-bottom:.6em}body,p,ul{font-size:1em}p,ul{margin-bottom:1.5em}h1,h2{line-height:2.4rem;margin-bottom:1.36rem}h2{font-size:1.728rem}body,p,ul{font-size:1rem;line-height:1.6}p,ul{margin-bottom:1.36rem}@media (min-width:600px){h1{font-size:4.3978rem;line-height:4.4rem}h2{font-size:3.1097rem;line-height:3.52rem}body,p,ul{font-size:1.1rem;line-height:1.6}h1,h2,p,ul{margin-bottom:1.496rem}}@media (min-width:1200px){h1{font-size:6.0756rem;line-height:6.72rem}h2{font-size:4.05rem;line-height:4.8rem}body,p,ul{font-size:1.2rem;line-height:1.6}h1,h2,p,ul{margin-bottom:1.632rem}}h1,h2{font-family:var(--font-family)}h2{font-style:italic}a:hover{text-decoration:underline}dt{font-weight:600;padding-top:.75em;padding-left:.75em}@supports (font-variation-settings:normal){html{font-family:Inter UI var alt,sans-serif;--font-family:Inter UI var alt, sans-serif}}button{border-radius:.3em;max-width:100%;background:#f2f2f2;color:#191919;cursor:pointer;display:inline-block;padding:.75em 1.5em;text-align:center;margin:0 .75em 1.5em 0}button:hover{background:#d9d9d9;color:var(--surface)}button:not([disabled]){background:#f9c412;color:#181818;background:var(--primary)}button:not([disabled]):hover{background:#ba9005;color:#000;background:var(--secondary)}*{border:0;box-sizing:border-box}body,header nav a{font-family:var(--font-family)}body{background:var(--background);color:var(--on-background)}header{padding:4.5em 1.5em 3em;width:37.5em;margin:0 auto;text-align:center;max-width:100%;display:flex;align-items:center;flex-direction:column}header p,ul{margin-top:0}header nav h1{float:left;font-size:inherit;line-height:inherit;margin:0;text-align:left}header nav a{font-weight:700;text-decoration:none;color:#181818;margin-left:1.5em}header nav a:first-of-type{margin-left:auto}header nav a:last-of-type{margin-right:1.5em}main{max-width:70rem;margin:0 auto;border-top:.5px solid #ccc}footer{background:var(--background);color:var(--on-background);text-align:center;padding:2em 2em 100px}footer>*{margin:.6em}footer nav a img{vertical-align:middle}footer nav,footer p{font-size:90%}article{max-width:100%;padding:1.5em;width:37.5em;margin:0 auto}li ul{margin-bottom:0}blockquote{border-left:1px solid #f9c412;padding:0 1.5em;margin:1.5em 0 1.5em 1.5em;border-left:1px solid var(--primary)}blockquote footer{background:0 0;display:block;color:#ccc;padding:.75em 0;font-size:90%;text-align:start}</style><header><nav><div id=nav><h1><a href=/ title=Homepage>Rody Davis</a></h1><a href=/about/ >About</a> <a href=/talks/ >Talks</a> <a href=/apps/ >Apps</a></div><div id=reading-progress aria-hidden=true></div></nav><h1>Deep Linking for Flutter Web</h1><aside>3 min read.</aside><dialog id=message></dialog><noscript><img src="/.netlify/functions/ga?v=1&_v=j83&t=pageview&dr=https%3A%2F%2Fno-script.com&_s=1&dh=rodydavis.com&dp=%2Fposts%2Fdeep-linking-flutter-web%2F&ul=en-us&de=UTF-8&dt=Deep%20Linking%20for%20Flutter%20Web&tid=G-JQNPVBL9DR" style=display:none width=1 alt="" height=1></noscript></header><main><article><div class=tags><a href=/tags/flutter/ class=click><div class=chip>flutter</div></a><a href=/tags/web/ class=click><div class=chip>web</div></a></div><p>In this article I will show you how to have proper URL navigation for your application. Open links to specific pages, protected routes and custom transitions.<p>There is a online demo here:<p><a href=https://rodydavis.github.io/flutter_deep_linking/ >https://rodydavis.github.io/flutter_deep_linking/</a><p>Here is the source code:<p><a href=https://github.com/rodydavis/flutter_deep_linking>https://github.com/rodydavis/flutter_deep_linking</a><h2 id=setup>Setup <a href=#setup class=direct-link>#</a></h2><ul><li><p>Create a new flutter project called “flutter_deep_linking”<li><p>Open that folder up in VSCode<li><p>Update your “pubspec.yaml” with the following:</ul><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/0-1920w.avif 1920w, /img/deep-linking/0-1280w.avif 1280w, /img/deep-linking/0-640w.avif 640w, /img/deep-linking/0-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/0-1920w.webp 1920w, /img/deep-linking/0-1280w.webp 1280w, /img/deep-linking/0-640w.webp 640w, /img/deep-linking/0-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/0-1920w.jpg 1920w, /img/deep-linking/0-1280w.jpg 1280w, /img/deep-linking/0-640w.jpg 640w, /img/deep-linking/0-320w.jpg 320w" type=image/jpeg><img src=/img/deep-linking/0-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 984 790'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAHCAIAAABV+fA3AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAcklEQVQI11WMSw7CMAxEexAS/2Jsp2kbFtz/argIpPZpVvM0s7BIzPc+thm2mjam+mdBRIkj+upZI9QLp2t9bzGyLrU+Ssn8HBOl69scbq6scgYAvo5ZfNh4maoy3ZykVFcLBMy3cvvM3TNIndWoKVz4AO2kGXbGYr/wAAAAAElFTkSuQmCC'%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><h2 id=step-1>Step 1 <a href=#step-1 class=direct-link>#</a></h2><ul><li>Create a file at “lib/ui/home/screen.dart” and add the following:</ul><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/1-1920w.avif 1920w, /img/deep-linking/1-1280w.avif 1280w, /img/deep-linking/1-640w.avif 640w, /img/deep-linking/1-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/1-1920w.webp 1920w, /img/deep-linking/1-1280w.webp 1280w, /img/deep-linking/1-640w.webp 640w, /img/deep-linking/1-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/1-1920w.jpg 1920w, /img/deep-linking/1-1280w.jpg 1280w, /img/deep-linking/1-640w.jpg 640w, /img/deep-linking/1-320w.jpg 320w" type=image/jpeg><img src=/img/deep-linking/1-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 898 502'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAIAAAB1kpiRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAj0lEQVQI1x2OXQ7DIAyDOUghIeEnZKQt1aRu2rT7H2u0L36wP8t22k37NlY7j92aVKZKEQFCCADgIHKUziqUS8rCrXJXlhq8n4TDSPV56tiTKWpjkaYNEJZlueLJrN3e34/8XtsYslozPfpjM4uILkYsiWclNWHmyAxEJedaCgI6IpoX/Fy6x65LIfhbp/8H1/IaNWIwK28AAAAASUVORK5CYII='%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><ul><li>Update your “lib/main.dart” with the following:</ul><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/2-1920w.avif 1920w, /img/deep-linking/2-1280w.avif 1280w, /img/deep-linking/2-640w.avif 640w, /img/deep-linking/2-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/2-1920w.webp 1920w, /img/deep-linking/2-1280w.webp 1280w, /img/deep-linking/2-640w.webp 640w, /img/deep-linking/2-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/2-1920w.jpg 1920w, /img/deep-linking/2-1280w.jpg 1280w, /img/deep-linking/2-640w.jpg 640w, /img/deep-linking/2-320w.jpg 320w" type=image/jpeg><img src=/img/deep-linking/2-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 866 820'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAiUlEQVQI1z2Oaw7CIBCEuQjLsgssCwUbjcY0jb3/raQ0Oj/nyzxM0lqWXlLIgXMMickjAoDxFAZrGnW4gdE5mDJE3EagCoCzAPYPOESqnbRgElRhzRcagLX1++vRn6suRUQQT2IQsWrZj2P9bNv+zlEA/bVBkmK99dgWT3QesnZWMeO84me3++kLz3wbeJWUM8MAAAAASUVORK5CYII='%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><ul><li>Run your application and you should see the following:</ul><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/3-1920w.avif 1920w, /img/deep-linking/3-1280w.avif 1280w, /img/deep-linking/3-640w.avif 640w, /img/deep-linking/3-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/3-1920w.webp 1920w, /img/deep-linking/3-1280w.webp 1280w, /img/deep-linking/3-640w.webp 640w, /img/deep-linking/3-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/3-1920w.jpg 1920w, /img/deep-linking/3-1280w.jpg 1280w, /img/deep-linking/3-640w.jpg 640w, /img/deep-linking/3-320w.jpg 320w" type=image/jpeg><img src=/img/deep-linking/3-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 1734 1648'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA2ElEQVQY023Myw7BQBQG4HkxO+/BRuIFbETKK6CmnWqLVBc0IhFxWdnYCAuViBKSTtvEZYEIiSjGDF1afOf8+ZNzwBxvE9b+YqwOt8pid9VM56TN3HNlio/GZLOPA7U+HpYbJkE1k0h1tqffzDavjZpgyec6tigQW4R3yscI+jaCd4wEYuWzGthIYt8rKcRV5SdFAr5bkslKhDpYI6HPSkcp+o4iv39opt1SKOjsQ8/7XT2oV4Bl9qEK6BhgWSL2HwvIG6DNpcK9DBfrprkIFQ1EurRrpZKhDzbwufaLlK2gAAAAAElFTkSuQmCC'%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><h2 id=step-2>Step 2 <a href=#step-2 class=direct-link>#</a></h2><p>Now we need to grab the url the user enters into the address bar.<ul><li><p>Create a folder at this location “lib/plugins/navigator”<li><p>Create a file inside named: “web.dart” with the following:</ul><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/4-1920w.avif 1920w, /img/deep-linking/4-1280w.avif 1280w, /img/deep-linking/4-640w.avif 640w, /img/deep-linking/4-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/4-1920w.webp 1920w, /img/deep-linking/4-1280w.webp 1280w, /img/deep-linking/4-640w.webp 640w, /img/deep-linking/4-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/4-1920w.jpg 1920w, /img/deep-linking/4-1280w.jpg 1280w, /img/deep-linking/4-640w.jpg 640w, /img/deep-linking/4-320w.jpg 320w" type=image/jpeg><img src=/img/deep-linking/4-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 1036 362'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAFCAIAAAAR2vFGAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAdklEQVQI12WOQQ7DIAwEeQikhgK2MRAgUf7/tKZE5dLRHlarPYwqbdS9n71Jqcd5JRFjzDaxPwBABem4D6mVksRUkHj9FveiHNJ7NJ/JOdBab3+nB+W8tzE5QouMFEuhGAMzi0ia5JzvrnwIL4CZr8eUgaW1ygf9yhtsbHh78wAAAABJRU5ErkJggg=='%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><ul><li>Create a file inside named: “unsupported.dart” with the following:</ul><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/5-1920w.avif 1920w, /img/deep-linking/5-1280w.avif 1280w, /img/deep-linking/5-640w.avif 640w, /img/deep-linking/5-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/5-1920w.webp 1920w, /img/deep-linking/5-1280w.webp 1280w, /img/deep-linking/5-640w.webp 640w, /img/deep-linking/5-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/5-1920w.jpg 1920w, /img/deep-linking/5-1280w.jpg 1280w, /img/deep-linking/5-640w.jpg 640w, /img/deep-linking/5-320w.jpg 320w" type=image/jpeg><img src=/img/deep-linking/5-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 852 286'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAECAIAAADahiLjAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAZ0lEQVQI133MSRLDIAxEUQ5ikBAKGiCQpOz7Xy3EZW/zNr351YGZzd3Gux+7fyaL6GIqIrWgqqwgxhgAEAGpdXqN6pUybFu8pWtSCohYiIiVasuuWUzM5vT+tAeXQvlXrQ7OwyX99QX0JRUvN/gcxAAAAABJRU5ErkJggg=='%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><ul><li>Create a file inside named: “navigator.dart” with the following:</ul><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/6-1920w.avif 1920w, /img/deep-linking/6-1280w.avif 1280w, /img/deep-linking/6-640w.avif 640w, /img/deep-linking/6-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/6-1920w.webp 1920w, /img/deep-linking/6-1280w.webp 1280w, /img/deep-linking/6-640w.webp 640w, /img/deep-linking/6-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/6-1920w.jpg 1920w, /img/deep-linking/6-1280w.jpg 1280w, /img/deep-linking/6-640w.jpg 640w, /img/deep-linking/6-320w.jpg 320w" type=image/jpeg><img src=/img/deep-linking/6-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 1016 148'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAIAAAAcOLh5AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAgklEQVQI1zWKiw6DIAxF/Q/olBURykOqYFz8//9addnJSdPb2yHGmFI6zk+Iufd+9u6J1m2/zqO1VuuK+Bastc9EM41ojCjLYG4mDBkjO2tbIqalBsfkvZuJPNeScmbmUkrbN+9QKnGZ7TA+gNaglQZQWj/CHeA+K8l/lFIAr9+btF9KJxpsA42hagAAAABJRU5ErkJggg=='%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><ul><li>Now go back to your “lib/main.dart” file and add the navigator:</ul><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/7-1920w.avif 1920w, /img/deep-linking/7-1280w.avif 1280w, /img/deep-linking/7-640w.avif 640w, /img/deep-linking/7-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/7-1920w.webp 1920w, /img/deep-linking/7-1280w.webp 1280w, /img/deep-linking/7-640w.webp 640w, /img/deep-linking/7-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/7-1920w.jpg 1920w, /img/deep-linking/7-1280w.jpg 1280w, /img/deep-linking/7-640w.jpg 640w, /img/deep-linking/7-320w.jpg 320w" type=image/jpeg><img src=/img/deep-linking/7-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 1040 886'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAHCAIAAAC6O5sJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAeElEQVQI102OQQ6DMAwE/RASB2Ji4xAgUaOqqP9/V41UtexhLyPNLsyiWbWuWlSZYggBEa1hJC5b2Zc5J+JoAP0VhDjFlMWHcXDO+X+AWPhovG+0KnHCHzBdq7W/X/35YBaPXwSm7b3V88ztWETwBqbriG06N9xWPkGrF8uFd5VnAAAAAElFTkSuQmCC'%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><blockquote><p>It’s important to import the navigator as shown as this will have the conditional import for web compiling.</blockquote><ul><li>If you run the app now nothing should change.</ul><h2 id=step-3>Step 3 <a href=#step-3 class=direct-link>#</a></h2><p>Now let’s add the proper routing.<ul><li>Create a new file “lib/ui/router.dart” and add the following:</ul><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/8-1920w.avif 1920w, /img/deep-linking/8-1280w.avif 1280w, /img/deep-linking/8-640w.avif 640w, /img/deep-linking/8-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/8-1920w.webp 1920w, /img/deep-linking/8-1280w.webp 1280w, /img/deep-linking/8-640w.webp 640w, /img/deep-linking/8-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/8-1920w.jpg 1920w, /img/deep-linking/8-1280w.jpg 1280w, /img/deep-linking/8-640w.jpg 640w, /img/deep-linking/8-320w.jpg 320w" type=image/jpeg><img src=/img/deep-linking/8-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 1202 1712'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAJCAIAAACe+MrKAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAc0lEQVQI1zWNUQ7EIAhEvYgCgoC2Snr/yy3bpPMDDJM3xeb13HNPA2i11tZaEVsRey1XHdw7IhYzjSfUlLkjEQD8rX02m5qbDGlpCbO4o3BGMHnJYp+yFolAp/aqeJLjZCSPr5H5ikM5uNP7KLkOEfyUjT++TBaSVnpXsgAAAABJRU5ErkJggg=='%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><ul><li>Also update “lib/main.dart” with the following:</ul><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/9-1920w.avif 1920w, /img/deep-linking/9-1280w.avif 1280w, /img/deep-linking/9-640w.avif 640w, /img/deep-linking/9-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/9-1920w.webp 1920w, /img/deep-linking/9-1280w.webp 1280w, /img/deep-linking/9-640w.webp 640w, /img/deep-linking/9-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/9-1920w.jpg 1920w, /img/deep-linking/9-1280w.jpg 1280w, /img/deep-linking/9-640w.jpg 640w, /img/deep-linking/9-320w.jpg 320w" type=image/jpeg><img src=/img/deep-linking/9-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 1060 1362'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAJCAIAAABxOqH0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAgElEQVQI10WOWQ6DMBBDuQhlNicwCYUG1K+q9z9WRyyqP+1ny53lqZR58bGMSZiHQ50CtXpNmlTCfRzqAMtzFYCgA9PNmvHolpNmcAQnKwZfX9NcBEZM10KwKO6e1CS6f7cu63Nvk/tANysirbX397PtG4C+7w9W4w9HFiDRtfADV70aogzLTF8AAAAASUVORK5CYII='%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><blockquote><p>Notice how we removed the “home” field for MaterialApp. This is because the router will handle everything. By default we will go home on “/”</blockquote><h2 id=step-4>Step 4 <a href=#step-4 class=direct-link>#</a></h2><p>Now let’s add multiple screens to put this to the test! Add the following folders and files.<ul><li>Create a file “lib/ui/account/screen.dart” and add the following:</ul><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/10-1920w.avif 1920w, /img/deep-linking/10-1280w.avif 1280w, /img/deep-linking/10-640w.avif 640w, /img/deep-linking/10-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/10-1920w.webp 1920w, /img/deep-linking/10-1280w.webp 1280w, /img/deep-linking/10-640w.webp 640w, /img/deep-linking/10-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/10-1920w.jpg 1920w, /img/deep-linking/10-1280w.jpg 1280w, /img/deep-linking/10-640w.jpg 640w, /img/deep-linking/10-320w.jpg 320w" type=image/jpeg><img src=/img/deep-linking/10-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 1028 482'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAFCAIAAAAcxIEBAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAfklEQVQI1zXMQQ7DIAxEUQ4CmBiDHQOBJG3V+5+sEKmzna9nUkqiTUsZ/Ri1cqJMEXHz/xnwPkqL/SRJmJlEs8q28/ycc6uIESPz+frU78X34FK07rIkCiGsQoQDwNW7vu+9NRZByUfR0VoimoxBxMlMEh52yc5b56y1EwCAHxuZF7n1TLysAAAAAElFTkSuQmCC'%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><ul><li>Create a file “lib/ui/settings/screen.dart” and add the following:</ul><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/11-1920w.avif 1920w, /img/deep-linking/11-1280w.avif 1280w, /img/deep-linking/11-640w.avif 640w, /img/deep-linking/11-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/11-1920w.webp 1920w, /img/deep-linking/11-1280w.webp 1280w, /img/deep-linking/11-640w.webp 640w, /img/deep-linking/11-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/11-1920w.jpg 1920w, /img/deep-linking/11-1280w.jpg 1280w, /img/deep-linking/11-640w.jpg 640w, /img/deep-linking/11-320w.jpg 320w" type=image/jpeg><img src=/img/deep-linking/11-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 922 494'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAGCAIAAACaUPOvAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAkUlEQVQI11WOWw6EMAhFuxBtC6VvsTUanTGz/3VJ/Zsb+Lk54aBSSnXtzLytfPS1Rh8JAoLREiNR1hjwCVLGHCw5CtnF6ErCmq21QikE8JWX6657o8ZYSpRJwYCVM9M0KURh4HNe/Xfn77ltPTRunY/Ge29LqYMQhsj5ENA5keohtqN9VxERwPDpedbz+57+ywPnxRzkojX2ygAAAABJRU5ErkJggg=='%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><ul><li>Create a file “lib/ui/about/screen.dart” and add the following:</ul><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/12-1920w.avif 1920w, /img/deep-linking/12-1280w.avif 1280w, /img/deep-linking/12-640w.avif 640w, /img/deep-linking/12-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/12-1920w.webp 1920w, /img/deep-linking/12-1280w.webp 1280w, /img/deep-linking/12-640w.webp 640w, /img/deep-linking/12-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/12-1920w.jpg 1920w, /img/deep-linking/12-1280w.jpg 1280w, /img/deep-linking/12-640w.jpg 640w, /img/deep-linking/12-320w.jpg 320w" type=image/jpeg><img src=/img/deep-linking/12-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 872 496'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAIAAAB1kpiRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAiElEQVQI103NURLCIAwEUC6ChoSEAEXSVlud9v7nEsdxxve1s/uxjplLs5zLvfflVtdJH7P1UjXlEIKDgRVLIRWMCUVDYpoyEHrvXQDA3Np+tG3htWPOOlUtCQJ8ZpaUxL+2vR/Peu6LGffWra3WZjMXYxQOFFFEiGhcXQeAcYxI7lv5P5fhl99HhRr/VqSGmwAAAABJRU5ErkJggg=='%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><ul><li>Add the following to “lib/ui/router.dart”:</ul><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/13-1920w.avif 1920w, /img/deep-linking/13-1280w.avif 1280w, /img/deep-linking/13-640w.avif 640w, /img/deep-linking/13-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/13-1920w.webp 1920w, /img/deep-linking/13-1280w.webp 1280w, /img/deep-linking/13-640w.webp 640w, /img/deep-linking/13-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/13-1920w.jpg 1920w, /img/deep-linking/13-1280w.jpg 1280w, /img/deep-linking/13-640w.jpg 640w, /img/deep-linking/13-320w.jpg 320w" type=image/jpeg><img src=/img/deep-linking/13-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 1166 1806'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAKCAIAAAAYbLhkAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAfUlEQVQI1y2OWQ7DMAgFfZHGC5txsGtZuf/ZClFHfKARD0is9ph+lWvJnytINOa+VQhzKSUHSbqe59gcIgyt1VpT73LP0V4q4hVTzHMv6MLCSBRB79de6NuYACCUCts06AzopoViIlvWOFL/KQ/us2F0V4gYCt5bxevFX/0BzNgaBXAft20AAAAASUVORK5CYII='%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><ul><li>Now when you navigate to /about, /account and /settings you will go to the new pages!</ul><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/14-1920w.avif 1920w, /img/deep-linking/14-1280w.avif 1280w, /img/deep-linking/14-640w.avif 640w, /img/deep-linking/14-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/14-1920w.webp 1920w, /img/deep-linking/14-1280w.webp 1280w, /img/deep-linking/14-640w.webp 640w, /img/deep-linking/14-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/14-1920w.jpg 1920w, /img/deep-linking/14-1280w.jpg 1280w, /img/deep-linking/14-640w.jpg 640w, /img/deep-linking/14-320w.jpg 320w" type=image/jpeg><img src=/img/deep-linking/14-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 1734 1648'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAyElEQVQY013MOQrCQBQG4LmYnffQJuAFvI0gw5jGFHaijWvMmIgGBBdUXLGREBOXJGYyPicyWFh8b+PxI3txKi4OrrY8eni6dYm9doi9cfBkddGs2bmAcG+pV609qHQHeJDa/pRa8xp6et16ElJIQiPiocGkiEcU7m6boPCmNyEewftlJQJILO2Pa09Fga8304VHJhPeEuPidnfFg0hoyIRY4FIM8TehgkRps2AILKB/huA7HQ1ZBs5OTKKMTZIT8lI6K7RfznwA9i3Ytq+o6o8AAAAASUVORK5CYII='%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><h2 id=step-5>Step 5 <a href=#step-5 class=direct-link>#</a></h2><p>Now let’s tie into the browser navigation buttons! Update “lib/ui/home/screen.dart” with the following:</p><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/15-1920w.avif 1920w, /img/deep-linking/15-1280w.avif 1280w, /img/deep-linking/15-640w.avif 640w, /img/deep-linking/15-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/15-1920w.webp 1920w, /img/deep-linking/15-1280w.webp 1280w, /img/deep-linking/15-640w.webp 640w, /img/deep-linking/15-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/15-1920w.jpg 1920w, /img/deep-linking/15-1280w.jpg 1280w, /img/deep-linking/15-640w.jpg 640w, /img/deep-linking/15-320w.jpg 320w" type=image/jpeg><img src=/img/deep-linking/15-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 1258 792'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAIAAAB1kpiRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAeElEQVQI11WOWQrDMAxEfRFXsjbLS5yEtL3/0SpKoeR9DIiRZpSIWfvW52heqxurPL4AQGhCxLqt+bpodm3O9rODnHNiZmE63k+/dhNBhJstIpFTx9jPU3uz5qbqIUyEkGIQ5rFW1JdIUjW1/3UphYhKhMYvcCM2Pj0VGOMq5wj/AAAAAElFTkSuQmCC'%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><ul><li>Now when you run the application and click on the settings icon it will launch the new screen as expected. But if you click your browsers back button it will go back to the home screen!</ul><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/16-1920w.avif 1920w, /img/deep-linking/16-1280w.avif 1280w, /img/deep-linking/16-640w.avif 640w, /img/deep-linking/16-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/16-1920w.webp 1920w, /img/deep-linking/16-1280w.webp 1280w, /img/deep-linking/16-640w.webp 640w, /img/deep-linking/16-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/16-1920w.jpg 1920w, /img/deep-linking/16-1280w.jpg 1280w, /img/deep-linking/16-640w.jpg 640w, /img/deep-linking/16-320w.jpg 320w" type=image/jpeg><img src=/img/deep-linking/16-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 1734 1648'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAy0lEQVQY013OTQ7BQBQA4LmYnXvURuICzmGhiZWFFFGlTUWkQiIS8T/6p9VqNUIt0AOIwZhJZiEWX95PXt57YBuc8kGcSP4pqbjHRLCjG3GvmOFVgl6cA7wWTcrjCy4Nz7g4iDH/o9ANFDDT7R509hg6/mPj+IihOZ5CUwBry+1b/gGbXvgiMINoXBh2DSxNp08LYxcg4sMgg/TmOhlYWa7GNjyJN/NkG6pgodsj3d1jevMf+UEC9ZaSFpVOtiGrnCirGYajvWqznfoCNWzNasf2MuIAAAAASUVORK5CYII='%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/17-1920w.avif 1920w, /img/deep-linking/17-1280w.avif 1280w, /img/deep-linking/17-640w.avif 640w, /img/deep-linking/17-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/17-1920w.webp 1920w, /img/deep-linking/17-1280w.webp 1280w, /img/deep-linking/17-640w.webp 640w, /img/deep-linking/17-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/17-1920w.jpg 1920w, /img/deep-linking/17-1280w.jpg 1280w, /img/deep-linking/17-640w.jpg 640w, /img/deep-linking/17-320w.jpg 320w" type=image/jpeg><img src=/img/deep-linking/17-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 1734 1648'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAyElEQVQY013Nyw7BUBAG4PNidt6DjcQLeB6lqqILK9ImEouiN4dSlRCXoDZUsahWi2Max8bim39mFjPIWu0LM8cV7L1Xsp0LO1qfWHPjloaro4AXhzyqiMtutb0jRXFLGOmbP0xz3kBeT2/dByYB4d0wY8hEGMDOlRUW3XQsPcwpCUfWExAqTtJTDA5dNSwlQzCcxOBNxQHszn2dQzcNi/RCBF5U9PheqCAoHR+PiQ8//526qoB6XC2t8UJO5esZkKWSPieXq6kP83nRbTosPzYAAAAASUVORK5CYII='%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><h2 id=step-6>Step 6 <a href=#step-6 class=direct-link>#</a></h2><p>These urls are great but what if you want to pass data such as an ID that is not known ahead of time? No worries!<ul><li>Update “lib/ui/account/screen.dart” with the following:</ul><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/18-1920w.avif 1920w, /img/deep-linking/18-1280w.avif 1280w, /img/deep-linking/18-640w.avif 640w, /img/deep-linking/18-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/18-1920w.webp 1920w, /img/deep-linking/18-1280w.webp 1280w, /img/deep-linking/18-640w.webp 640w, /img/deep-linking/18-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/18-1920w.jpg 1920w, /img/deep-linking/18-1280w.jpg 1280w, /img/deep-linking/18-640w.jpg 640w, /img/deep-linking/18-320w.jpg 320w" type=image/jpeg><img src=/img/deep-linking/18-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 1092 598'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAIAAAB1kpiRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAgElEQVQI1zWOSRLDIBDE+AibZx8w+OCD8/+PBZxKX1XVUrA+rfk1z+7GBESQS07/hYMdR+fRUBRUoFklzCmvvVjb0QcoH4KADIC5VEBChI1R7X4e/9w6h22FKpMwE8I6CFDrOU6eQ0Qq4yLd3c1q2QkBYJ+UZYrxlxRjTDG99vwFmPQZzL9gJ5IAAAAASUVORK5CYII='%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><ul><li>Let’s update our “lib/ui/router.dart” with the following:</ul><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/19-1920w.avif 1920w, /img/deep-linking/19-1280w.avif 1280w, /img/deep-linking/19-640w.avif 640w, /img/deep-linking/19-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/19-1920w.webp 1920w, /img/deep-linking/19-1280w.webp 1280w, /img/deep-linking/19-640w.webp 640w, /img/deep-linking/19-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/19-1920w.jpg 1920w, /img/deep-linking/19-1280w.jpg 1280w, /img/deep-linking/19-640w.jpg 640w, /img/deep-linking/19-320w.jpg 320w" type=image/jpeg><img src=/img/deep-linking/19-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 1032 656'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAIAAAB1kpiRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAhUlEQVQI1zWNCw7DIAxDe5ASCP8QWsqgU7X7H2xppz0pkiXH9uK9d86NvpeSFIBGNHhjrTXGLGKLuubJo/N45bbxVmvlGGMI4WcjEyXKgAgAq6BWpaQLFmmWj8/17n0PlANT4SKklO60nGzUdtQ59nO2flAh56zW+r+NWEsO0St9ox7g4Qu7PRppPFvUfAAAAABJRU5ErkJggg=='%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><ul><li>Now when you run your application and navigate to “/account/40” you will see the following:</ul><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/20-1920w.avif 1920w, /img/deep-linking/20-1280w.avif 1280w, /img/deep-linking/20-640w.avif 640w, /img/deep-linking/20-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/20-1920w.webp 1920w, /img/deep-linking/20-1280w.webp 1280w, /img/deep-linking/20-640w.webp 640w, /img/deep-linking/20-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/deep-linking/20-1920w.jpg 1920w, /img/deep-linking/20-1280w.jpg 1280w, /img/deep-linking/20-640w.jpg 640w, /img/deep-linking/20-320w.jpg 320w" type=image/jpeg><img src=/img/deep-linking/20-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 1734 1648'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAxklEQVQY013MOQrCQBQG4LmYnffQJuAFvI0gQxTEFHZiGtfs4tK4RMUVGwlxz8RMxudEBgSL7208fjSeH/Kzna+4+wserzx5tORWHh4uToozOeYQ7rpa1dlCxdoA1taA9Z9Cc1pDz0unHhMTKDFCRgwqhCw04e63ZERuugpRH94vJ+ZAoEl/nLtlFFw1NVlYaFPuLVDGb3efP5Cb1hAJEceECKJvQgnx0qKBBTQw/1hw9doKcgycHtqyNLDlDJcVklkye8XUB/Xs2LZJ8jEXAAAAAElFTkSuQmCC'%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><h2 id=conclusion>Conclusion <a href=#conclusion class=direct-link>#</a></h2><p>Dynamic routes work great for Flutter web, you just need to know what to tweak! This package uses a forked version of fluro for some fixes I added but once the PRs is merged you can just use the regular package. Let me know what you think below and if there is a better way I am not seeing!<p>Here is the final code: <a href=https://github.com/rodydavis/flutter_deep_linking>https://github.com/rodydavis/flutter_deep_linking</a><h1>🙏🙏🙏</h1><p>Since you've made it this far, <a href=https://rodydavis.com/posts/deep-linking-flutter-web/ on-click=share>sharing</a> this article on your favorite social media network would be highly appreciated 💖! For feedback, please <a href=https://twitter.com/rodydavis rel=noopener target=_blank>ping me on Twitter.</a></p><share-widget><button aria-label=Share href=https://rodydavis.com/posts/deep-linking-flutter-web/ on-click=share><div></div></button></share-widget><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","headline":"Deep Linking for Flutter Web","image":["https://rodydavis.com/img/deep-linking/0-1920w.jpg","https://rodydavis.com/img/deep-linking/1-1920w.jpg","https://rodydavis.com/img/deep-linking/2-1920w.jpg","https://rodydavis.com/img/deep-linking/3-1920w.jpg","https://rodydavis.com/img/deep-linking/4-1920w.jpg","https://rodydavis.com/img/deep-linking/5-1920w.jpg","https://rodydavis.com/img/deep-linking/6-1920w.jpg","https://rodydavis.com/img/deep-linking/7-1920w.jpg","https://rodydavis.com/img/deep-linking/8-1920w.jpg","https://rodydavis.com/img/deep-linking/9-1920w.jpg","https://rodydavis.com/img/deep-linking/10-1920w.jpg","https://rodydavis.com/img/deep-linking/11-1920w.jpg","https://rodydavis.com/img/deep-linking/12-1920w.jpg","https://rodydavis.com/img/deep-linking/13-1920w.jpg","https://rodydavis.com/img/deep-linking/14-1920w.jpg","https://rodydavis.com/img/deep-linking/15-1920w.jpg","https://rodydavis.com/img/deep-linking/16-1920w.jpg","https://rodydavis.com/img/deep-linking/17-1920w.jpg","https://rodydavis.com/img/deep-linking/18-1920w.jpg","https://rodydavis.com/img/deep-linking/19-1920w.jpg","https://rodydavis.com/img/deep-linking/20-1920w.jpg"],"author":"Rody Davis","genre":"https://schema.org/Code","publisher":{"@type":"Organization","name":"Rody Davis","logo":{"@type":"ImageObject","url":"/img/favicon/favicon-32x32.png?hash=3df5885280"}},"url":"https://rodydavis.com/posts/deep-linking-flutter-web/","mainEntityOfPage":"https://rodydavis.com/posts/deep-linking-flutter-web/","datePublished":"2020-03-11","dateModified":"2021-07-08","description":"In this article I will show you how to have proper URL navigation for your application. Open links to specific pages, protected routes and..."}</script><p>Published <time datetime=2020-03-11>11 Mar 2020</time></article></main><footer><a href=https://twitter.com/rodydavis class="fab fa-twitter" rel="noopener noreferrer" target=_blank></a> <a href=https://facebook.com/rodydavisjr class="fab fa-facebook" rel="noopener noreferrer" target=_blank></a> <a href=https://www.linkedin.com/in/rodydavis class="fab fa-linkedin" rel="noopener noreferrer" target=_blank></a> <a href=https://www.youtube.com/rodydavis class="fab fa-youtube" rel="noopener noreferrer" target=_blank></a> <a href=https://www.instagram.com/rodydavisjr class="fab fa-instagram" rel="noopener noreferrer" target=_blank></a> <a href=https://www.github.com/rodydavis class="fab fa-github" rel="noopener noreferrer" target=_blank></a> <a href=https://www.tiktok.com/@rodydavisjr class="fab fa-tiktok" rel="noopener noreferrer" target=_blank></a></footer><script src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR" async></script><script>window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', 'G-JQNPVBL9DR');</script>
+    }
+  </style><!--lit-part tWH7hVWrhQY=--><header class="wrapper">
+      <article>
+        <h1>
+          <a href="/">
+            <span><!--lit-part-->Rody Davis<!--/lit-part--></span>
+          </a>
+        </h1>
+        <div class="links">
+          <a href="/apps"> Apps </a>
+          <a href="/posts"> Blog </a>
+          <a href="/talks"> Talks </a>
+          <a href="/about"> About </a>
+        </div>
+        <div class="actions">
+          <input
+            type="color"
+            value="#0C7761"
+            
+          /><!--lit-node 12-->
+          <icon-button
+            
+            
+           icon="shuffle"><!--lit-node 13--><template shadowroot="open"><style>
+    .icon {
+      --icon-size: 24px;
+      --icon-padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      color: var(--icon-color);
+    }
+    .icon:hover {
+      outline: 1px solid var(--md-sys-color-outline);
+    }
+    .icon :first-child {
+      padding: var(--icon-padding);
+    }
+    .material-icons {
+      font-family: "Material Icons";
+      font-weight: normal;
+      font-style: normal;
+      font-size: var(--icon-size);
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "liga";
+    }
+
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style><!--lit-part jPZqHVkf+Tk=-->
+      <div class="icon">
+        <i class="material-icons"><!--lit-part-->shuffle<!--/lit-part--></i>
+      </div>
+    <!--/lit-part--></template></icon-button>
+          <icon-button
+            
+            
+           icon="dark_mode"><!--lit-node 14--><template shadowroot="open"><style>
+    .icon {
+      --icon-size: 24px;
+      --icon-padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      color: var(--icon-color);
+    }
+    .icon:hover {
+      outline: 1px solid var(--md-sys-color-outline);
+    }
+    .icon :first-child {
+      padding: var(--icon-padding);
+    }
+    .material-icons {
+      font-family: "Material Icons";
+      font-weight: normal;
+      font-style: normal;
+      font-size: var(--icon-size);
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "liga";
+    }
+
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style><!--lit-part jPZqHVkf+Tk=-->
+      <div class="icon">
+        <i class="material-icons"><!--lit-part-->dark_mode<!--/lit-part--></i>
+      </div>
+    <!--/lit-part--></template></icon-button>
+          <!--lit-part BRUAAAUVAAA=--><?><!--/lit-part-->
+        </div>
+      </article>
+    </header><!--/lit-part--></template></app-header></astro-root>
+		<div class="wrapper">
+			<div class="layout astro-X5J4CTKI">
+	<article class="content astro-X5J4CTKI">
+		<div class="astro-X5J4CTKI">
+			<header class="astro-X5J4CTKI">
+				<img width="720" height="420" class="hero-image astro-X5J4CTKI" loading="lazy" src="/img/deep-linking/0.png">
+				<p class="publish-date astro-X5J4CTKI">11 Mar 2020 ~ 3 min read</p>
+				<h1 class="title astro-X5J4CTKI">Deep Linking for Flutter Web</h1>
+				<div class="author astro-KO5QTRDP">
+	<p class="astro-KO5QTRDP"><a href="https://twitter.com/rodydavis" class="astro-KO5QTRDP">@rodydavis</a></p>
+</div>
+
+
+
+				 <tag-list class="astro-X5J4CTKI"><template shadowroot="open"><style>
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    tag-item {
+      margin-bottom: 0.4rem;
+      margin-top: 0.4rem;
+    }
+  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+      <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/posts"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->posts<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="flutter"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/flutter"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->flutter<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="web"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/web"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->web<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--/lit-part-->
+    </div><!--/lit-part--></template></tag-list>
+			</header>
+			<main class="astro-X5J4CTKI">
+				<div class="layout astro-W2QVQNXU">
+	<article class="content astro-W2QVQNXU">
+		<div class="astro-W2QVQNXU">
+			<main class="astro-W2QVQNXU">
+				<p>In this article I will show you how to have proper URL navigation for your application. Open links to specific pages, protected routes and custom transitions.</p>
+<p>There is a online demo here:</p>
+<p><a href="https://rodydavis.github.io/flutter_deep_linking/">https://rodydavis.github.io/flutter_deep_linking/</a></p>
+<p>Here is the source code:</p>
+<p><a href="https://github.com/rodydavis/flutter_deep_linking">https://github.com/rodydavis/flutter_deep_linking</a></p>
+<h2 id="setup">Setup</h2>
+<ul>
+<li>
+<p>Create a new flutter project called “flutter_deep_linking”</p>
+</li>
+<li>
+<p>Open that folder up in VSCode</p>
+</li>
+<li>
+<p>Update your “pubspec.yaml” with the following:</p>
+</li>
+</ul>
+<p><img src="/img/deep-linking/0.png" alt=""></p>
+<h2 id="step-1">Step 1</h2>
+<ul>
+<li>Create a file at “lib/ui/home/screen.dart” and add the following:</li>
+</ul>
+<p><img src="/img/deep-linking/1.png" alt=""></p>
+<ul>
+<li>Update your “lib/main.dart” with the following:</li>
+</ul>
+<p><img src="/img/deep-linking/2.png" alt=""></p>
+<ul>
+<li>Run your application and you should see the following:</li>
+</ul>
+<p><img src="/img/deep-linking/3.png" alt=""></p>
+<h2 id="step-2">Step 2</h2>
+<p>Now we need to grab the url the user enters into the address bar.</p>
+<ul>
+<li>
+<p>Create a folder at this location “lib/plugins/navigator”</p>
+</li>
+<li>
+<p>Create a file inside named: “web.dart” with the following:</p>
+</li>
+</ul>
+<p><img src="/img/deep-linking/4.png" alt=""></p>
+<ul>
+<li>Create a file inside named: “unsupported.dart” with the following:</li>
+</ul>
+<p><img src="/img/deep-linking/5.png" alt=""></p>
+<ul>
+<li>Create a file inside named: “navigator.dart” with the following:</li>
+</ul>
+<p><img src="/img/deep-linking/6.png" alt=""></p>
+<ul>
+<li>Now go back to your “lib/main.dart” file and add the navigator:</li>
+</ul>
+<p><img src="/img/deep-linking/7.png" alt=""></p>
+<blockquote>
+<p>It’s important to import the navigator as shown as this will have the conditional import for web compiling.</p>
+</blockquote>
+<ul>
+<li>If you run the app now nothing should change.</li>
+</ul>
+<h2 id="step-3">Step 3</h2>
+<p>Now let’s add the proper routing.</p>
+<ul>
+<li>Create a new file “lib/ui/router.dart” and add the following:</li>
+</ul>
+<p><img src="/img/deep-linking/8.png" alt=""></p>
+<ul>
+<li>Also update “lib/main.dart” with the following:</li>
+</ul>
+<p><img src="/img/deep-linking/9.png" alt=""></p>
+<blockquote>
+<p>Notice how we removed the “home” field for MaterialApp. This is because the router will handle everything. By default we will go home on “/”</p>
+</blockquote>
+<h2 id="step-4">Step 4</h2>
+<p>Now let’s add multiple screens to put this to the test! Add the following folders and files.</p>
+<ul>
+<li>Create a file “lib/ui/account/screen.dart” and add the following:</li>
+</ul>
+<p><img src="/img/deep-linking/10.png" alt=""></p>
+<ul>
+<li>Create a file “lib/ui/settings/screen.dart” and add the following:</li>
+</ul>
+<p><img src="/img/deep-linking/11.png" alt=""></p>
+<ul>
+<li>Create a file “lib/ui/about/screen.dart” and add the following:</li>
+</ul>
+<p><img src="/img/deep-linking/12.png" alt=""></p>
+<ul>
+<li>Add the following to “lib/ui/router.dart”:</li>
+</ul>
+<p><img src="/img/deep-linking/13.png" alt=""></p>
+<ul>
+<li>Now when you navigate to /about, /account and /settings you will go to the new pages!</li>
+</ul>
+<p><img src="/img/deep-linking/14.png" alt=""></p>
+<h2 id="step-5">Step 5</h2>
+<p>Now let’s tie into the browser navigation buttons! Update “lib/ui/home/screen.dart” with the following:</p>
+<p><img src="/img/deep-linking/15.png" alt=""></p>
+<ul>
+<li>Now when you run the application and click on the settings icon it will launch the new screen as expected. But if you click your browsers back button it will go back to the home screen!</li>
+</ul>
+<p><img src="/img/deep-linking/16.png" alt=""></p>
+<p><img src="/img/deep-linking/17.png" alt=""></p>
+<h2 id="step-6">Step 6</h2>
+<p>These urls are great but what if you want to pass data such as an ID that is not known ahead of time? No worries!</p>
+<ul>
+<li>Update “lib/ui/account/screen.dart” with the following:</li>
+</ul>
+<p><img src="/img/deep-linking/18.png" alt=""></p>
+<ul>
+<li>Let’s update our “lib/ui/router.dart” with the following:</li>
+</ul>
+<p><img src="/img/deep-linking/19.png" alt=""></p>
+<ul>
+<li>Now when you run your application and navigate to “/account/40” you will see the following:</li>
+</ul>
+<p><img src="/img/deep-linking/20.png" alt=""></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Dynamic routes work great for Flutter web, you just need to know what to tweak! This package uses a forked version of fluro for some fixes I added but once the PRs is merged you can just use the regular package. Let me know what you think below and if there is a better way I am not seeing!</p>
+<p>Here is the final code: <a href="https://github.com/rodydavis/flutter_deep_linking">https://github.com/rodydavis/flutter_deep_linking</a></p>
+			</main>
+		</div>
+	</article>
+</div>
+
+
+
+			</main>
+		</div>
+	</article>
+</div>
+
+
+
+		</div>
+		<div style="height: 25px"></div>
+		<social-links><template shadowroot="open"><style>
+    footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: var(--width, 100%);
+      margin-bottom: 2rem;
+    }
+    .fab,
+    svg {
+      --size: 3vw;
+      width: var(--size);
+      height: var(--size);
+      max-width: 30px;
+      max-height: 30px;
+      min-width: 20px;
+      min-height: 20px;
+      margin: 0.5rem;
+      color: var(--md-sys-color-on-surface);
+      font-family: FontAwesome;
+      cursor: pointer;
+    }
+    svg {
+      color: var(--md-sys-color-on-surface);
+    }
+  </style><!--lit-part fkbI1zGBADw=--><footer>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://twitter.com/rodydavis"
+        class="fab fa fa-twitter"
+      >
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="twitter"
+          class="svg-inline--fa fa-twitter fa-w-16"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
+          ></path>
+        </svg>
+      </a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://facebook.com/rodydavisjr"
+        class="fab fa fa-facebook"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="facebook-f"
+          class="svg-inline--fa fa-facebook-f fa-w-10"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+        >
+          <path
+            fill="currentColor"
+            d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.linkedin.com/in/rodydavis"
+        class="fab fa fa-linkedin"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="linkedin-in"
+          class="svg-inline--fa fa-linkedin-in fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.youtube.com/rodydavis"
+        class="fab fa fa-youtube"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="youtube"
+          class="svg-inline--fa fa-youtube fa-w-18"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 576 512"
+        >
+          <path
+            fill="currentColor"
+            d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.instagram.com/rodydavisjr"
+        class="fab fa fa-instagram"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="instagram"
+          class="svg-inline--fa fa-instagram fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.github.com/rodydavis"
+        class="fab fa fa-github"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="github"
+          class="svg-inline--fa fa-github fa-w-16"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 496 512"
+        >
+          <path
+            fill="currentColor"
+            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.tiktok.com/@rodydavisjr"
+        class="fab fa-tiktok"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="tiktok"
+          class="svg-inline--fa fa-tiktok fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"
+          ></path></svg
+      ></a>
+    </footer><!--/lit-part--></template></social-links>
+	</body></html>

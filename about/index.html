@@ -1,82 +1,483 @@
-<!DOCTYPE html><html domain=rodydavis.com ga-id=G-JQNPVBL9DR lang=en><meta charset=utf-8><meta content="width=device-width,initial-scale=1" name=viewport><link href="/img/favicon/favicon-32x32.png?hash=3df5885280" rel=icon type=image/png><meta content=#f9c412 name=theme-color><meta content="max-snippet:-1, max-image-preview: large, max-video-preview: -1" name=robots><title>About</title><meta content=About property=og:title><meta content="Background # My name is Rody Davis and I grew up in Alabama and currently work at Google on the Material Design team as a Developer Advocate..." name=description><meta content="Background # My name is Rody Davis and I grew up in Alabama and currently work at Google on the Material Design team as a Developer Advocate..." property=og:description><meta content=summary_large_image name=twitter:card><meta content=@rodydavis name=twitter:site><meta content=@rodydavis name=twitter:creator><link href=https://rodydavis.com/about/ rel=canonical><meta content=no-referrer-when-downgrade name=referrer><link href=/feed/feed.xml rel=alternate type=application/atom+xml title="Rody Davis"><link href=/ rel=preconnect crossorigin=""><script src="/js/min.js?hash=c372ec6a84" async defer></script><script src="/js/cached.js?hash=9030142fbb" async defer></script><script csp-hash="">if (/Mac OS X/.test(navigator.userAgent)) 
-        document
-          .documentElement
-          .classList
-          .add('apple')</script><script type=text/javascript>function getCode(repo, path, branch) {
-        const url = `https://raw.githubusercontent.com/rodydavis/${repo}/${branch}/${path}`;
-        return fetch(url).then((res) => res.text());
+<!DOCTYPE html>
+<html lang="en" class="astro-XZN2UAUQ">
+	<head>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-lucario.css">
+		<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="icon" type="image/x-icon" href="/img/favicon/favicon.ico">
+
+<!-- Primary Meta Tags -->
+<title>About</title>
+<meta name="title" content="About">
+<meta name="description">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url">
+<meta property="og:title" content="About">
+<meta property="og:description">
+<meta property="og:image" content="https://astro.build/social.jpg?v=1">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url">
+<meta property="twitter:title" content="About">
+<meta property="twitter:description">
+<meta property="twitter:image" content="https://astro.build/social.jpg?v=1">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;700&display=swap">
+<link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-lucario.css">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JQNPVBL9DR');
+</script>
+        
+	<link rel="stylesheet" href="/assets/BlogContent.6b85ce27.css"></link>
+<link rel="stylesheet" href="/assets/MainLayout.a768070b.css"></link>
+<link rel="stylesheet" href="/assets/social-links.ac123a03.css"></link><style astro-style="true">astro-root, astro-fragment { display: contents; }</style><script type="module" astro-script="/about/script-0">import "../client-shim.751854cd.js";</script>
+<script type="module" data-astro-component-hydration astro-script="/about/script-1">import setup from '../load.644f6253.js';
+setup("Z173wjX", {name:"app-header",value: true}, async () => {
+  await Promise.all([
+  import("../hydration-support.20f55b8e.js")]);
+await import("../app-header.0698726e.js");
+  return () => {};
+
+});
+</script>
+</head>
+
+	<body>
+		<astro-root uid="Z173wjX"><app-header class="astro-XZN2UAUQ"><template shadowroot="open"><style>
+    header {
+      width: 100%;
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      display: flex;
+      align-items: center;
+      --input-size: 32px;
+    }
+
+    article {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+    }
+
+    img {
+      margin-right: 1rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      max-width: 100%;
+      display: flex;
+      flex-grow: 1;
+    }
+
+    .logo {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    svg {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    a {
+      text-decoration: none;
+      display: inline-flex;
+      color: var(--md-sys-color-on-primary-container);
+      margin-right: 1rem;
+    }
+
+    icon-button {
+      margin-left: 3px;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+    }
+
+    input[type="color"] {
+      width: calc(var(--input-size) * 2);
+      height: var(--input-size);
+      outline: none;
+      border: none;
+      border-radius: 50%;
+      background-color: var(--md-sys-color-primary-container);
+    }
+    input[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+    input[type="color"]::-webkit-color-swatch {
+      border: none;
+      border-radius: var(--input-size);
+      border: var(--md-sys-color-outline) solid 1px;
+    }
+
+    .links {
+      display: none;
+    }
+
+    @media (min-width: 600px) {
+      .links {
+        display: flex;
       }
-      async function addFiles(tag, path, branch = "main") {
-        const output = document.querySelector('#playground');
-        output.removeAttribute('hidden');
-        const codeEditor = document.createElement('playground-file-editor');
-        const uiEditor = document.createElement('playground-file-editor');
-        const preview = document.createElement('playground-preview');
-        const ide = document.createElement('playground-project');
-        ide.id = "project";
-        function addScript(filename, source) {
-          const elem = document.createElement('script');
-          elem.setAttribute('type', `sample/${
-            filename.split('.').pop()
-          }`);
-          elem.setAttribute('filename', filename);
-          elem.innerHTML = source;
-          ide.append(elem);
-        }
-        const name = path.split('.ts').join('.js');
-        const ui = await getCode(tag, 'index.html', branch);
-        addScript('index.html', ui.split(`/src/${path}`).join(`./${name}`));
-        preview.setAttribute('project', ide.id);
-        uiEditor.setAttribute('project', ide.id);
-        uiEditor.setAttribute('filename', path);
-        output.append(preview);
-        const code = await getCode(tag, `src/${path}`, branch);
-        addScript(path, code);
-        codeEditor.setAttribute('line-numbers', '');
-        codeEditor.setAttribute('project', ide.id);
-        codeEditor.setAttribute('filename', path);
-        output.append(codeEditor);
-        output.append(ide);
-      }</script><script src=https://unpkg.com/playground-elements@0.10.0/playground-project.js?module type=module></script><script src=https://unpkg.com/playground-elements@0.10.0/playground-file-editor.js?module type=module></script><script src=https://unpkg.com/playground-elements@0.10.0/playground-preview.js?module type=module></script><script src=https://dartpad.dev/inject_embed.dart.js type=text/javascript defer></script><style>#playground {
-        --playground-preview-width: 40%;
-        --playground-tab-bar-background: var(--background);
-        --playground-tab-bar-foreground-color: var(--on-background);
-        --playground-border: var(--on-background);
-        --playground-preview-toolbar-background: var(--background);
-        --playground-preview-toolbar-foreground-color: var(--on-background);
-        --playground-highlight-color: var(--primary);
-        --playground-code-background: rgb(48, 65, 72);
-        --playground-code-default-color: rgb(248, 248, 242);
-        --playground-code-cursor-color: rgb(248, 248, 240);
-        --playground-code-selection-background: rgba(101, 115, 126, 0.33);
-        --playground-code-gutter-background: rgb(48, 65, 72);
-        --playground-code-gutter-border-right: 0;
-        --playground-code-linenumber-color: rgb(208, 208, 208);
-        --playground-code-atom-color: rgb(197, 148, 197);
-        --playground-code-attribute-color: rgb(197, 148, 197);
-        --playground-code-builtin-color: rgb(102, 217, 239);
-        --playground-code-comment-color: rgb(101, 115, 126);
-        --playground-code-def-color: rgb(102, 153, 204);
-        --playground-code-keyword-color: rgb(197, 148, 197);
-        --playground-code-meta-color: rgb(248, 248, 242);
-        --playground-code-number-color: rgb(249, 145, 87);
-        --playground-code-operator-color: rgb(248, 248, 242);
-        --playground-code-qualifier-color: rgb(248, 248, 242);
-        --playground-code-string-color: rgb(153, 199, 148);
-        --playground-code-string-2-color: rgb(248, 248, 242);
-        --playground-code-tag-color: rgb(197, 148, 197);
-        --playground-code-type-color: rgb(248, 248, 242);
-        --playground-code-variable-color: rgb(248, 248, 242);
-        --playground-code-variable-2-color: rgb(248, 248, 242);
-        --playground-code-variable-3-color: rgb(248, 248, 242);
-        --playground-code-callee-color: rgb(248, 248, 242);
-        --playground-code-property-color: rgb(153, 199, 148);
-        --playground-code-font-family: var(--default-font);
-        --playground-code-font-size: 90%;
-        --playground-code-background: var(--surface-background);
-      }</style><style>@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css);:root{--primary:#f9c412;--secondary:#e7bf60;--background:#181818;--on-background:#eee;--playground-height:450px;--surface-background:#2d2d2d;--main-width:calc(100vw - 3em)}div.apple,div.google{background-image:url(/img/badges/app_store.png);margin:4px;height:80px;width:200px;background-size:contain;background-repeat:no-repeat;background-position:center}div.google{background-image:url(/img/badges/google_play.png)}#playground{width:100%;height:calc(var(--playground-height)*2);background-color:var(--surface-background)}#playground>playground-file-editor,#playground>playground-preview{height:var(--playground-height)}main img{content-visibility:auto}article *{scroll-margin-top:50px}header nav{position:fixed;padding:.375em 1.5em;background:rgba(255,255,255,.9);font-weight:200;text-align:right}@media (min-width:37.5em){:root{--main-width:calc(37.5em - 3em)}}dialog{background-color:#8dff80;position:fixed;opacity:.9;z-index:1000}#nav{z-index:2;position:relative}#reading-progress,header nav{z-index:1;width:100vw;left:0;top:0}#reading-progress{background-color:var(--primary);position:absolute;bottom:0;transform:translate(-100vw,0);will-change:transform;pointer-events:none}#posts li{margin-bottom:.5em}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:100;src:url(/fonts/Inter-Thin.woff2) format("woff2"),url(/fonts/Inter-Thin.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:100;src:url(/fonts/Inter-ThinItalic.woff2) format("woff2"),url(/fonts/Inter-ThinItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:200;src:url(/fonts/Inter-ExtraLight.woff2) format("woff2"),url(/fonts/Inter-ExtraLight.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:200;src:url(/fonts/Inter-ExtraLightItalic.woff2) format("woff2"),url(/fonts/Inter-ExtraLightItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:300;src:url(/fonts/Inter-Light.woff2) format("woff2"),url(/fonts/Inter-Light.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:300;src:url(/fonts/Inter-LightItalic.woff2) format("woff2"),url(/fonts/Inter-LightItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:400;src:url(/fonts/Inter-Regular.woff2) format("woff2"),url(/fonts/Inter-Regular.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:400;src:url(/fonts/Inter-Italic.woff2) format("woff2"),url(/fonts/Inter-Italic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:500;src:url(/fonts/Inter-Medium.woff2) format("woff2"),url(/fonts/Inter-Medium.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:500;src:url(/fonts/Inter-MediumItalic.woff2) format("woff2"),url(/fonts/Inter-MediumItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:600;src:url(/fonts/Inter-SemiBold.woff2) format("woff2"),url(/fonts/Inter-SemiBold.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:600;src:url(/fonts/Inter-SemiBoldItalic.woff2) format("woff2"),url(/fonts/Inter-SemiBoldItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:700;src:url(/fonts/Inter-Bold.woff2) format("woff2"),url(/fonts/Inter-Bold.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:700;src:url(/fonts/Inter-BoldItalic.woff2) format("woff2"),url(/fonts/Inter-BoldItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:800;src:url(/fonts/Inter-ExtraBold.woff2) format("woff2"),url(/fonts/Inter-ExtraBold.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:800;src:url(/fonts/Inter-ExtraBoldItalic.woff2) format("woff2"),url(/fonts/Inter-ExtraBoldItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:900;src:url(/fonts/Inter-Black.woff2) format("woff2"),url(/fonts/Inter-Black.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:900;src:url(/fonts/Inter-BlackItalic.woff2) format("woff2"),url(/fonts/Inter-BlackItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI var alt";font-weight:100 900;font-style:normal;font-named-instance:"Regular";src:url(/fonts/Inter-roman.var.woff2) format("woff2")}@font-face{font-display:optional;font-family:"Inter UI var alt";font-weight:100 900;font-style:italic;font-named-instance:"Italic";src:url(/fonts/Inter-italic.var.woff2) format("woff2")}html{line-height:1.15;-webkit-text-size-adjust:100%;font-family:Inter UI,sans-serif;--font-family:Inter UI, sans-serif}body,p,ul{font-size:1em}body{margin:0}h1{font-size:3em;line-height:1.25;margin:.67em 0 .5em;font-size:2.074rem}a{background-color:transparent;color:#f9c412;text-decoration:none;color:var(--primary)}b{font-weight:700}code{overflow-x:auto;border-radius:.3em;color:#e2777a;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:90%;background:#2d2d2d;padding:0}small{font-size:80%;color:#ccc}img{border-style:none}[hidden],template{display:none}h2{font-size:2.5em;line-height:1.2;margin-bottom:.6em}p,ul{margin-bottom:1.5em}h1,h2{line-height:2.4rem;margin-bottom:1.36rem}h2{font-size:1.728rem}body,p,ul{font-size:1rem;line-height:1.6}p,ul{margin-bottom:1.36rem}@media (min-width:600px){h1{font-size:4.3978rem;line-height:4.4rem}h2{font-size:3.1097rem;line-height:3.52rem}body,p,ul{font-size:1.1rem;line-height:1.6}h1,h2,p,ul{margin-bottom:1.496rem}}@media (min-width:1200px){h1{font-size:6.0756rem;line-height:6.72rem}h2{font-size:4.05rem;line-height:4.8rem}body,p,ul{font-size:1.2rem;line-height:1.6}h1,h2,p,ul{margin-bottom:1.632rem}}h1,h2{font-family:var(--font-family)}h2{font-style:italic}a:hover{text-decoration:underline}dt{font-weight:600;padding-top:.75em;padding-left:.75em}@supports (font-variation-settings:normal){html{font-family:Inter UI var alt,sans-serif;--font-family:Inter UI var alt, sans-serif}}*{border:0;box-sizing:border-box}header,img,video{margin:0 auto;max-width:100%}img,video{height:auto}body,header nav a{font-family:var(--font-family)}body{background:var(--background);color:var(--on-background)}header{padding:4.5em 1.5em 3em;width:37.5em;text-align:center;display:flex;align-items:center;flex-direction:column}header p,ul{margin-top:0}header nav h1{float:left;font-size:inherit;line-height:inherit;margin:0;text-align:left}header nav a{font-weight:700;text-decoration:none;color:#181818;margin-left:1.5em}header nav a:first-of-type{margin-left:auto}header nav a:last-of-type{margin-right:1.5em}main{max-width:70rem;margin:0 auto;border-top:.5px solid #ccc}footer{background:var(--background);color:var(--on-background);text-align:center;padding:2em 2em 100px}footer>*{margin:.6em}footer nav a img{vertical-align:middle}footer nav,footer p{font-size:90%}article{max-width:100%;padding:1.5em;width:37.5em;margin:0 auto}li ul{margin-bottom:0}figure{margin:1.5em}figure img{display:block}</style><header><nav><div id=nav><h1><a href=/ title=Homepage>Rody Davis</a></h1><a href=/about/ >About</a> <a href=/talks/ >Talks</a> <a href=/apps/ >Apps</a></div><div id=reading-progress aria-hidden=true></div></nav><h1>About</h1><dialog id=message></dialog><noscript><img src="/.netlify/functions/ga?v=1&_v=j83&t=pageview&dr=https%3A%2F%2Fno-script.com&_s=1&dh=rodydavis.com&dp=%2Fabout%2F&ul=en-us&de=UTF-8&dt=About&tid=G-JQNPVBL9DR" style=display:none width=1 alt="" height=1></noscript></header><main><article><h2 id=background>Background <a href=#background class=direct-link>#</a></h2><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/profile-1920w.avif 1920w, /img/profile-1280w.avif 1280w, /img/profile-640w.avif 640w, /img/profile-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/profile-1920w.webp 1920w, /img/profile-1280w.webp 1280w, /img/profile-640w.webp 640w, /img/profile-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/profile-1920w.jpg 1920w, /img/profile-1280w.jpg 1280w, /img/profile-640w.jpg 640w, /img/profile-320w.jpg 320w" type=image/jpeg><img src=/img/profile-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 2312 1253'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAGCAIAAACaUPOvAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA1ElEQVQI12OoSIssykytzs+YXJkWF+gWam8e52GfGOwR4GzlbWfq52jK0JIdFhvslRbm1V8anx/jvy8/dnVaaFyAa5iHvbedhYOZAUOMg2GGr02goVxZhEt5StixwsRNGeFp4Z7mOmrSQkKSwqIMJmqKbgZqLjrK6b52ZTGes1MDu6M9MgPtbPU1VGQkVeWkGZwN1Ky1lW21VBJdTBuinctD7IuD7EoCbcLsDYzU5VXlJBlMlBTVpaT1FGTinIyyvS0LA21zfC2T3EwcdJX5uPnERAQBAAA4UElAQzwAAAAASUVORK5CYII='%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><p>My name is Rody Davis and I grew up in Alabama and currently work at Google on the <a href=https://material.io/ >Material Design</a> team as a Developer Advocate and live in San Francisco.</p><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/personal/golden_gate-1920w.avif 1920w, /img/personal/golden_gate-1280w.avif 1280w, /img/personal/golden_gate-640w.avif 640w, /img/personal/golden_gate-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/personal/golden_gate-1920w.webp 1920w, /img/personal/golden_gate-1280w.webp 1280w, /img/personal/golden_gate-640w.webp 640w, /img/personal/golden_gate-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/personal/golden_gate-1920w.jpg 1920w, /img/personal/golden_gate-1280w.jpg 1280w, /img/personal/golden_gate-640w.jpg 640w, /img/personal/golden_gate-320w.jpg 320w" type=image/jpeg><img src=/img/personal/golden_gate-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 1200 900'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAHCAIAAABV+fA3AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAz0lEQVQI1wHEADv/AHer2H+x4Yez44ao1Ia26H6r2n2q1YKt1Yq22gCHqciWudyYqcSLeoeky/CdwuSewuCkyOCz0uUAnLTEsMrbsLW/nXt62Nvg3dvZ4dzT6+PO9+/RAICPlouZoYh/gYVWTZCMjop4cpJ5aaOKdL6qiwA0T18zUmJMSEx0OypOSUtAQ0lHTVFZZWp1fYAAHjI5Ky4uRC0lUiwgLzc8LT5DOkVHUVxgYmtsAA8PDR8WDBkQCCEVDhsfHRciIiEvMDJAQkZSU/ZBXB8mUKcHAAAAAElFTkSuQmCC'%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><p>Growing up, I was always taking apart every device I had and recreating it to figure it out and how it worked then sometimes making something new. I always wanted to be an inventor growing up, and I would sketch out designs and build prototypes and stuff them in a box. In high school I was in marching band on the drumline and worked many jobs.<p>I went to Florida College with the intention of being an Audio Visual Technician. After working that job for almost five years, I joined a small startup where I managed the video department and later became the System Administrator.</p><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/personal/grand_canyon-1920w.avif 1920w, /img/personal/grand_canyon-1280w.avif 1280w, /img/personal/grand_canyon-640w.avif 640w, /img/personal/grand_canyon-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/personal/grand_canyon-1920w.webp 1920w, /img/personal/grand_canyon-1280w.webp 1280w, /img/personal/grand_canyon-640w.webp 640w, /img/personal/grand_canyon-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/personal/grand_canyon-1920w.jpg 1920w, /img/personal/grand_canyon-1280w.jpg 1280w, /img/personal/grand_canyon-640w.jpg 640w, /img/personal/grand_canyon-320w.jpg 320w" type=image/jpeg><img src=/img/personal/grand_canyon-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 1200 900'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAHCAIAAABV+fA3AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAz0lEQVQI1wHEADv/AILP/4PP/3vI/3PB/ma5+2C0+Wq3+Xq8+Xq7+QCttsCxws2zzdrB1NjD2t/C4uy64e285fO74/cAoY2RjIWWnZOe5bih1aiRkHJm07SosKGqrp6lAFxniFFnkG10jrmgmHVoZAwLD1pSZEFEXjk4TAAwQGY7SWo3SGlCS2VOU2QzNkNERl4eHR8PEhAAQE5qUWOFYHKSXG+PZ3qbWmV+W3CSQE1hIyw3AFRxnGSMx2GJw2KJwmOIwF94omCCt2SNylyEutUiZGc8MOVFAAAAAElFTkSuQmCC'%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><p>Eventually I realized that this was not the job I wanted anymore, so I slowly but steadily taught my self mobile development. I created my first app and released it to the AppStore- “The Pitch Pipe”- and it quickly gained traction as it fulfilled a need in the market being overlooked. I was then able to get a job as a professional mobile developer and now I am in charge of the mobile department creating both Android and iOS apps.</p><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/personal/shuttle-1920w.avif 1920w, /img/personal/shuttle-1280w.avif 1280w, /img/personal/shuttle-640w.avif 640w, /img/personal/shuttle-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/personal/shuttle-1920w.webp 1920w, /img/personal/shuttle-1280w.webp 1280w, /img/personal/shuttle-640w.webp 640w, /img/personal/shuttle-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/personal/shuttle-1920w.jpg 1920w, /img/personal/shuttle-1280w.jpg 1280w, /img/personal/shuttle-640w.jpg 640w, /img/personal/shuttle-320w.jpg 320w" type=image/jpeg><img src=/img/personal/shuttle-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 1200 900'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAHCAIAAABV+fA3AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAz0lEQVQI1wHEADv/AJCw2afD57va+r/h/8rn+sTp/crq/tLm8bHAzwCt1fi/3vC50N2ftMWAj6CVoa2UdWKWhHKHvdkAreLumr7Mc21rfmxfinhshWBDfFQ0e3pwZ31/ALemfqacjpl/Z4NcPKaYibKsn5idpI6QkVZQPQDFq4uzoYy6rZygo7Gnp62woI6tnIy4pZCiknsAuLq7trm7s7W5pLjZmaS5mJibmZmbl5aXkpOTAKuzwaWsuqSruTg6SX2BjJmfqn+EkIeNmIOMlt1Ods9d/UEOAAAAAElFTkSuQmCC'%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><p>Something that dawned on me recently is that I am doing my dream job. I always wanted to be an inventor and now I am. It may not involve physical products but the rules still apply. I get to create products from pure imagination and bring them to market.</p><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/personal/family-1920w.avif 1920w, /img/personal/family-1280w.avif 1280w, /img/personal/family-640w.avif 640w, /img/personal/family-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/personal/family-1920w.webp 1920w, /img/personal/family-1280w.webp 1280w, /img/personal/family-640w.webp 640w, /img/personal/family-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/personal/family-1920w.jpg 1920w, /img/personal/family-1280w.jpg 1280w, /img/personal/family-640w.jpg 640w, /img/personal/family-320w.jpg 320w" type=image/jpeg><img src=/img/personal/family-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 1200 770'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAIAAAB1kpiRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAwklEQVQI12NITQ5wdtYKCzJJT7aPjbXMy3bPS3fPivJNDHSP9XFmcLXRLYpwa82OrsuNbaqMr80OLUkPK0oOzQr0iPB0YEgM8sj08zdT085JTVm/ZE5qSqq5ha2JtkGKk32avztDmLtDUmCgnLhiXXn5tq2bgoLCdDQNDNR0i8PDqtPiGNR1THRNrKXktKKDQgMTkrUdPKwj4vQjEgIjY8sTohhk5NRkZVTFheS1lTTUDC20XX2MgyK03X01vEMtvHwBrLs3aI9C1GkAAAAASUVORK5CYII='%3E%3C/image%3E%3C/svg%3E&#34;)" width=100% decoding=async loading=lazy></picture><p>I am looking forward to what the future will bring and I’m excited about all the new technologies coming up. All the apps I create reflect what I am learning and trying to perfect with the different markets and technologies for mobile. We spend a majority of our lives on our smart phones, so there is a need now more than ever for high quality and functioning apps.<p>Never stop learning and trying to be better.<h2 id=discover>Discover <a href=#discover class=direct-link>#</a></h2><ul><li>🕹 Fascinated by <a href=https://aframe.io/ >VR/AR</a><li>🤓 Working on <a href=https://developer.mozilla.org/en-US/docs/Web/Web_Components>Web Componenets</a><li>🥳 Developer Advocate for <a href=https://github.com/material-components>@material-components</a><li>🎹 Musician <a href=https://soundcloud.com/theonlysounddr>SoundCloud</a>, <a href=https://open.spotify.com/artist/5HBkYdhRZn1aOq40T2A7Eg>Spotify</a><li>🎧 Podcast "Creative Engineering" <a href=https://podcasts.apple.com/us/podcast/creative-engineering/id1507852833>Apple Podcasts</a>, <a href="https://podcasts.google.com/feed/aHR0cHM6Ly9yb2R5ZGF2aXMuZ2l0aHViLmlvL2NyZWF0aXZlX2VuZ2luZWVyaW5nL2ZlZWQueG1s?ved=2ahUKEwiw5anO0dLqAhU2lZ4KHR3FDtcQ4aUDegQIARAC&hl=en-GB">Google Podcasts</a>, <a href=https://open.spotify.com/show/3UTiK34aDOOSHFpGQ0RglN>Spotify Podcasts</a>, <a href="https://music.amazon.com/podcasts/8884a5cb-a92a-4ba5-a3ef-906ac334386d/Creative-Engineering?ref=dm_wcp_pp_link_pr_s">Amazon Music</a><li>⚒️ Creator of <a href=https://widget.studio/ >Widget Studio</a><li>📦 Dart/Flutter <a href=https://pub.dev/publishers/rodydavis.com/packages>Packages</a> on <a href=https://pub.dev>pub.dev</a></ul><h2 id=social>Social <a href=#social class=direct-link>#</a></h2><ul><li><a href=https://glitch.com/@rodydavis>Glitch</a><li><a href=https://github.com/rodydavis>Github</a><li><a href=https://stackoverflow.com/users/7303311/rody-davis>StackOverflow</a><li><a href=https://twitter.com/rodydavis>Twitter</a><li><a href=https://youtube.com/rodydavis>YouTube</a><li><a href=https://instagram.com/rodydavisjr>Instagram</a><li><a href=https://facebook.com/rodydavisjr>Facebook</a><li><a href=https://www.linkedin.com/in/rodydavis>LinkedIn</a><li><a href=https://tiktok.com/@rodydavisjr>TikTok</a><li><a href=https://dev.to/rodydavis>Dev.to</a><li><a href=https://rodydavis.medium.com/ >Medium</a><li><a href=mailto:rody.davis.jr@gmail.com>Email</a><li><a href=/feed/feed.xml>RSS Feed</a></ul><h2 id=support>Support <a href=#support class=direct-link>#</a></h2><ul><li><a href=https://www.buymeacoffee.com/rodydavis>Buy Me A Coffee</a><li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSH3GVC49GNNJ">PayPal</a></ul><h2 id=more-info>More Info <a href=#more-info class=direct-link>#</a></h2><p>This blog template is based on <a href=https://www.industrialempathy.com/posts/eleventy-high-performance-blog/ >eleventy-high-performance-blog</a> which itself is based on <a href=https://github.com/11ty/eleventy-base-blog>eleventy-base-blog</a>.</article></main><footer><a href=https://twitter.com/rodydavis class="fab fa-twitter" rel="noopener noreferrer" target=_blank></a> <a href=https://facebook.com/rodydavisjr class="fab fa-facebook" rel="noopener noreferrer" target=_blank></a> <a href=https://www.linkedin.com/in/rodydavis class="fab fa-linkedin" rel="noopener noreferrer" target=_blank></a> <a href=https://www.youtube.com/rodydavis class="fab fa-youtube" rel="noopener noreferrer" target=_blank></a> <a href=https://www.instagram.com/rodydavisjr class="fab fa-instagram" rel="noopener noreferrer" target=_blank></a> <a href=https://www.github.com/rodydavis class="fab fa-github" rel="noopener noreferrer" target=_blank></a> <a href=https://www.tiktok.com/@rodydavisjr class="fab fa-tiktok" rel="noopener noreferrer" target=_blank></a></footer><script src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR" async></script><script>window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', 'G-JQNPVBL9DR');</script>
+    }
+  </style><!--lit-part tWH7hVWrhQY=--><header class="wrapper">
+      <article>
+        <h1>
+          <a href="/">
+            <span><!--lit-part-->Rody Davis | About<!--/lit-part--></span>
+          </a>
+        </h1>
+        <div class="links">
+          <a href="/apps"> Apps </a>
+          <a href="/posts"> Blog </a>
+          <a href="/talks"> Talks </a>
+          <a href="/about"> About </a>
+        </div>
+        <div class="actions">
+          <input
+            type="color"
+            value="#EF417F"
+            
+          /><!--lit-node 12-->
+          <icon-button
+            
+            
+           icon="shuffle"><!--lit-node 13--><template shadowroot="open"><style>
+    .icon {
+      --icon-size: 24px;
+      --icon-padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      color: var(--icon-color);
+    }
+    .icon:hover {
+      outline: 1px solid var(--md-sys-color-outline);
+    }
+    .icon :first-child {
+      padding: var(--icon-padding);
+    }
+    .material-icons {
+      font-family: "Material Icons";
+      font-weight: normal;
+      font-style: normal;
+      font-size: var(--icon-size);
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "liga";
+    }
+
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style><!--lit-part jPZqHVkf+Tk=-->
+      <div class="icon">
+        <i class="material-icons"><!--lit-part-->shuffle<!--/lit-part--></i>
+      </div>
+    <!--/lit-part--></template></icon-button>
+          <icon-button
+            
+            
+           icon="dark_mode"><!--lit-node 14--><template shadowroot="open"><style>
+    .icon {
+      --icon-size: 24px;
+      --icon-padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      color: var(--icon-color);
+    }
+    .icon:hover {
+      outline: 1px solid var(--md-sys-color-outline);
+    }
+    .icon :first-child {
+      padding: var(--icon-padding);
+    }
+    .material-icons {
+      font-family: "Material Icons";
+      font-weight: normal;
+      font-style: normal;
+      font-size: var(--icon-size);
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "liga";
+    }
+
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style><!--lit-part jPZqHVkf+Tk=-->
+      <div class="icon">
+        <i class="material-icons"><!--lit-part-->dark_mode<!--/lit-part--></i>
+      </div>
+    <!--/lit-part--></template></icon-button>
+          <!--lit-part BRUAAAUVAAA=--><?><!--/lit-part-->
+        </div>
+      </article>
+    </header><!--/lit-part--></template></app-header></astro-root>
+		<div class="layout astro-W2QVQNXU">
+	<article class="content astro-W2QVQNXU">
+		<div class="astro-W2QVQNXU">
+			<main class="astro-W2QVQNXU">
+				<h2 id="discover">Discover</h2><ul>
+<li>🕹 Fascinated by <a href="https://aframe.io/">VR/AR</a></li>
+<li>🤓 Working on <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">Web Componenets</a></li>
+<li>🥳 Developer Advocate for <a href="https://github.com/material-components">@material-components</a></li>
+<li>🎹 Musician <a href="https://soundcloud.com/theonlysounddr">SoundCloud</a>, <a href="https://open.spotify.com/artist/5HBkYdhRZn1aOq40T2A7Eg">Spotify</a></li>
+<li>🎧 Podcast “Creative Engineering”
+<ul>
+<li><a href="https://podcasts.apple.com/us/podcast/creative-engineering/id1507852833">Apple Podcasts</a></li>
+<li><a href="https://podcasts.google.com/feed/aHR0cHM6Ly9yb2R5ZGF2aXMuZ2l0aHViLmlvL2NyZWF0aXZlX2VuZ2luZWVyaW5nL2ZlZWQueG1s?ved=2ahUKEwiw5anO0dLqAhU2lZ4KHR3FDtcQ4aUDegQIARAC&hl=en-GB">Google Podcasts</a></li>
+<li><a href="https://open.spotify.com/show/3UTiK34aDOOSHFpGQ0RglN">Spotify Podcasts</a></li>
+<li><a href="https://music.amazon.com/podcasts/8884a5cb-a92a-4ba5-a3ef-906ac334386d/Creative-Engineering?ref=dm_wcp_pp_link_pr_s">Amazon Music</a></li>
+</ul>
+</li>
+<li>⚒️ Creator of <a href="https://widget.studio/">Widget Studio</a></li>
+<li>📦 Dart/Flutter <a href="https://pub.dev/publishers/rodydavis.com/packages">Packages</a> on <a href="https://pub.dev">pub.dev</a></li>
+<li>😎 Find me on <a href="https://glitch.com/@rodydavis">Glitch</a></li>
+<li>🗣 Follow on <a href="https://twitter.com/rodydavis">Twitter</a></li>
+<li>📸 Follow me on <a href="https://instagram.com/rodydavisjr?r=nametag">Instagram</a></li>
+<li>📹 Subscribe on <a href="https://www.youtube.com/rodydavis">YouTube</a></li>
+<li>📖 Read on <a href="https://medium.com/@rody.davis.jr">Medium</a></li>
+</ul><h2 id="background">Background</h2><p><img src="/img/profile.jpg" alt=""></p><p>My name is Rody Davis and I grew up in Alabama and currently work at Google on the <a href="https://material.io/">Material Design</a> team as a Developer Advocate and live in San Francisco.</p><p><img src="/img/personal/golden_gate.jpeg" alt=""></p><p>Growing up, I was always taking apart every device I had and recreating it to figure it out and how it worked then sometimes making something new. I always wanted to be an inventor growing up, and I would sketch out designs and build prototypes and stuff them in a box. In high school I was in marching band on the drumline and worked many jobs.</p><p>I went to Florida College with the intention of being an Audio Visual Technician. After working that job for almost five years, I joined a small startup where I managed the video department and later became the System Administrator.</p><p><img src="/img/personal/grand_canyon.jpeg" alt=""></p><p>Eventually I realized that this was not the job I wanted anymore, so I slowly but steadily taught my self mobile development. I created my first app and released it to the AppStore- “The Pitch Pipe”- and it quickly gained traction as it fulfilled a need in the market being overlooked. I was then able to get a job as a professional mobile developer and now I am in charge of the mobile department creating both Android and iOS apps.</p><p><img src="/img/personal/shuttle.jpeg" alt=""></p><p>Something that dawned on me recently is that I am doing my dream job. I always wanted to be an inventor and now I am. It may not involve physical products but the rules still apply. I get to create products from pure imagination and bring them to market.</p><p><img src="/img/personal/family.jpeg" alt=""></p><p>I am looking forward to what the future will bring and I’m excited about all the new technologies coming up. All the apps I create reflect what I am learning and trying to perfect with the different markets and technologies for mobile. We spend a majority of our lives on our smart phones, so there is a need now more than ever for high quality and functioning apps.</p><p>Never stop learning and trying to be better.</p><h2 id="social">Social</h2><ul>
+<li><a href="https://glitch.com/@rodydavis">Glitch</a></li>
+<li><a href="https://github.com/rodydavis">Github</a></li>
+<li><a href="https://stackoverflow.com/users/7303311/rody-davis">StackOverflow</a></li>
+<li><a href="https://twitter.com/rodydavis">Twitter</a></li>
+<li><a href="https://youtube.com/rodydavis">YouTube</a></li>
+<li><a href="https://instagram.com/rodydavisjr">Instagram</a></li>
+<li><a href="https://facebook.com/rodydavisjr">Facebook</a></li>
+<li><a href="https://www.linkedin.com/in/rodydavis">LinkedIn</a></li>
+<li><a href="https://tiktok.com/@rodydavisjr">TikTok</a></li>
+<li><a href="https://dev.to/rodydavis">Dev.to</a></li>
+<li><a href="https://rodydavis.medium.com/">Medium</a></li>
+<li><a href="mailto:rody.davis.jr@gmail.com">Email</a></li>
+<li><a href="/feed/feed.xml">RSS Feed</a></li>
+</ul><h2 id="support">Support</h2><ul>
+<li><a href="https://www.buymeacoffee.com/rodydavis">Buy Me A Coffee</a></li>
+<li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSH3GVC49GNNJ">PayPal</a></li>
+</ul><h2 id="more-info">More Info</h2><p>This blog template is based on <a href="https://www.industrialempathy.com/posts/eleventy-high-performance-blog/">eleventy-high-performance-blog</a> which itself is based on <a href="https://github.com/11ty/eleventy-base-blog">eleventy-base-blog</a>.</p>
+			</main>
+		</div>
+	</article>
+</div>
+
+
+
+		<div style="height: 25px" class="astro-XZN2UAUQ"></div>
+		<social-links class="astro-XZN2UAUQ"><template shadowroot="open"><style>
+    footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: var(--width, 100%);
+      margin-bottom: 2rem;
+    }
+    .fab,
+    svg {
+      --size: 3vw;
+      width: var(--size);
+      height: var(--size);
+      max-width: 30px;
+      max-height: 30px;
+      min-width: 20px;
+      min-height: 20px;
+      margin: 0.5rem;
+      color: var(--md-sys-color-on-surface);
+      font-family: FontAwesome;
+      cursor: pointer;
+    }
+    svg {
+      color: var(--md-sys-color-on-surface);
+    }
+  </style><!--lit-part fkbI1zGBADw=--><footer>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://twitter.com/rodydavis"
+        class="fab fa fa-twitter"
+      >
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="twitter"
+          class="svg-inline--fa fa-twitter fa-w-16"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
+          ></path>
+        </svg>
+      </a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://facebook.com/rodydavisjr"
+        class="fab fa fa-facebook"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="facebook-f"
+          class="svg-inline--fa fa-facebook-f fa-w-10"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+        >
+          <path
+            fill="currentColor"
+            d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.linkedin.com/in/rodydavis"
+        class="fab fa fa-linkedin"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="linkedin-in"
+          class="svg-inline--fa fa-linkedin-in fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.youtube.com/rodydavis"
+        class="fab fa fa-youtube"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="youtube"
+          class="svg-inline--fa fa-youtube fa-w-18"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 576 512"
+        >
+          <path
+            fill="currentColor"
+            d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.instagram.com/rodydavisjr"
+        class="fab fa fa-instagram"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="instagram"
+          class="svg-inline--fa fa-instagram fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.github.com/rodydavis"
+        class="fab fa fa-github"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="github"
+          class="svg-inline--fa fa-github fa-w-16"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 496 512"
+        >
+          <path
+            fill="currentColor"
+            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.tiktok.com/@rodydavisjr"
+        class="fab fa-tiktok"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="tiktok"
+          class="svg-inline--fa fa-tiktok fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"
+          ></path></svg
+      ></a>
+    </footer><!--/lit-part--></template></social-links>
+	</body></html>

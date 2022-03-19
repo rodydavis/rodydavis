@@ -1,82 +1,1073 @@
-<!DOCTYPE html><html domain=rodydavis.com ga-id=G-JQNPVBL9DR lang=en><meta charset=utf-8><meta content="width=device-width,initial-scale=1" name=viewport><link href="/img/favicon/favicon-32x32.png?hash=3df5885280" rel=icon type=image/png><meta content=#f9c412 name=theme-color><meta content="max-snippet:-1, max-image-preview: large, max-video-preview: -1" name=robots><title>Dynamic Themes with CodeMirror</title><meta content="Dynamic Themes with CodeMirror" property=og:title><meta content="In this article I will go over how to set up a Lit web component and use it to create a a code window that uses CodeMirror and apply a..." name=description><meta content="In this article I will go over how to set up a Lit web component and use it to create a a code window that uses CodeMirror and apply a..." property=og:description><meta content=summary_large_image name=twitter:card><meta content=@rodydavis name=twitter:site><meta content=@rodydavis name=twitter:creator><meta content=https://rodydavis.com/img/dynamic-theme/purple-dark.png property=og:image><link href=https://rodydavis.com/posts/codemirror-dynamic-theme/ rel=canonical><meta content=no-referrer-when-downgrade name=referrer><link href=/feed/feed.xml rel=alternate type=application/atom+xml title="Rody Davis"><link href=/ rel=preconnect crossorigin=""><script src="/js/min.js?hash=c372ec6a84" async defer></script><script src="/js/cached.js?hash=9030142fbb" async defer></script><script csp-hash="">if (/Mac OS X/.test(navigator.userAgent)) 
-        document
-          .documentElement
-          .classList
-          .add('apple')</script><script type=text/javascript>function getCode(repo, path, branch) {
-        const url = `https://raw.githubusercontent.com/rodydavis/${repo}/${branch}/${path}`;
-        return fetch(url).then((res) => res.text());
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="icon" type="image/x-icon" href="/img/favicon/favicon.ico">
+
+<!-- Primary Meta Tags -->
+<title>Dynamic Themes with CodeMirror</title>
+<meta name="title" content="Dynamic Themes with CodeMirror">
+<meta name="description">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url">
+<meta property="og:title" content="Dynamic Themes with CodeMirror">
+<meta property="og:description">
+<meta property="og:image" content="https://astro.build/social.jpg?v=1">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url">
+<meta property="twitter:title" content="Dynamic Themes with CodeMirror">
+<meta property="twitter:description">
+<meta property="twitter:image" content="https://astro.build/social.jpg?v=1">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;700&display=swap">
+<link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-lucario.css">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JQNPVBL9DR');
+</script>
+	<link rel="stylesheet" href="/assets/BlogContent.6b85ce27.css"></link>
+<link rel="stylesheet" href="/assets/social-links.ac123a03.css"></link>
+<link rel="stylesheet" href="/assets/_slug_.2050125d.css"></link><style astro-style="true">astro-root, astro-fragment { display: contents; }</style><script type="module" astro-script="/posts/codemirror-dynamic-theme//script-0">import "../../client-shim.751854cd.js";</script>
+<script type="module" data-astro-component-hydration astro-script="/posts/codemirror-dynamic-theme//script-1">import setup from '../../load.644f6253.js';
+setup("Z1rdrSW", {name:"app-header",value: true}, async () => {
+  await Promise.all([
+  import("../../hydration-support.20f55b8e.js")]);
+await import("../../app-header.0698726e.js");
+  return () => {};
+
+});
+</script>
+</head>
+
+	<body>
+		<astro-root uid="Z1rdrSW"><app-header><template shadowroot="open"><style>
+    header {
+      width: 100%;
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      display: flex;
+      align-items: center;
+      --input-size: 32px;
+    }
+
+    article {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+    }
+
+    img {
+      margin-right: 1rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      max-width: 100%;
+      display: flex;
+      flex-grow: 1;
+    }
+
+    .logo {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    svg {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    a {
+      text-decoration: none;
+      display: inline-flex;
+      color: var(--md-sys-color-on-primary-container);
+      margin-right: 1rem;
+    }
+
+    icon-button {
+      margin-left: 3px;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+    }
+
+    input[type="color"] {
+      width: calc(var(--input-size) * 2);
+      height: var(--input-size);
+      outline: none;
+      border: none;
+      border-radius: 50%;
+      background-color: var(--md-sys-color-primary-container);
+    }
+    input[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+    input[type="color"]::-webkit-color-swatch {
+      border: none;
+      border-radius: var(--input-size);
+      border: var(--md-sys-color-outline) solid 1px;
+    }
+
+    .links {
+      display: none;
+    }
+
+    @media (min-width: 600px) {
+      .links {
+        display: flex;
       }
-      async function addFiles(tag, path, branch = "main") {
-        const output = document.querySelector('#playground');
-        output.removeAttribute('hidden');
-        const codeEditor = document.createElement('playground-file-editor');
-        const uiEditor = document.createElement('playground-file-editor');
-        const preview = document.createElement('playground-preview');
-        const ide = document.createElement('playground-project');
-        ide.id = "project";
-        function addScript(filename, source) {
-          const elem = document.createElement('script');
-          elem.setAttribute('type', `sample/${
-            filename.split('.').pop()
-          }`);
-          elem.setAttribute('filename', filename);
-          elem.innerHTML = source;
-          ide.append(elem);
-        }
-        const name = path.split('.ts').join('.js');
-        const ui = await getCode(tag, 'index.html', branch);
-        addScript('index.html', ui.split(`/src/${path}`).join(`./${name}`));
-        preview.setAttribute('project', ide.id);
-        uiEditor.setAttribute('project', ide.id);
-        uiEditor.setAttribute('filename', path);
-        output.append(preview);
-        const code = await getCode(tag, `src/${path}`, branch);
-        addScript(path, code);
-        codeEditor.setAttribute('line-numbers', '');
-        codeEditor.setAttribute('project', ide.id);
-        codeEditor.setAttribute('filename', path);
-        output.append(codeEditor);
-        output.append(ide);
-      }</script><script src=https://unpkg.com/playground-elements@0.10.0/playground-project.js?module type=module></script><script src=https://unpkg.com/playground-elements@0.10.0/playground-file-editor.js?module type=module></script><script src=https://unpkg.com/playground-elements@0.10.0/playground-preview.js?module type=module></script><script src=https://dartpad.dev/inject_embed.dart.js type=text/javascript defer></script><style>#playground {
-        --playground-preview-width: 40%;
-        --playground-tab-bar-background: var(--background);
-        --playground-tab-bar-foreground-color: var(--on-background);
-        --playground-border: var(--on-background);
-        --playground-preview-toolbar-background: var(--background);
-        --playground-preview-toolbar-foreground-color: var(--on-background);
-        --playground-highlight-color: var(--primary);
-        --playground-code-background: rgb(48, 65, 72);
-        --playground-code-default-color: rgb(248, 248, 242);
-        --playground-code-cursor-color: rgb(248, 248, 240);
-        --playground-code-selection-background: rgba(101, 115, 126, 0.33);
-        --playground-code-gutter-background: rgb(48, 65, 72);
-        --playground-code-gutter-border-right: 0;
-        --playground-code-linenumber-color: rgb(208, 208, 208);
-        --playground-code-atom-color: rgb(197, 148, 197);
-        --playground-code-attribute-color: rgb(197, 148, 197);
-        --playground-code-builtin-color: rgb(102, 217, 239);
-        --playground-code-comment-color: rgb(101, 115, 126);
-        --playground-code-def-color: rgb(102, 153, 204);
-        --playground-code-keyword-color: rgb(197, 148, 197);
-        --playground-code-meta-color: rgb(248, 248, 242);
-        --playground-code-number-color: rgb(249, 145, 87);
-        --playground-code-operator-color: rgb(248, 248, 242);
-        --playground-code-qualifier-color: rgb(248, 248, 242);
-        --playground-code-string-color: rgb(153, 199, 148);
-        --playground-code-string-2-color: rgb(248, 248, 242);
-        --playground-code-tag-color: rgb(197, 148, 197);
-        --playground-code-type-color: rgb(248, 248, 242);
-        --playground-code-variable-color: rgb(248, 248, 242);
-        --playground-code-variable-2-color: rgb(248, 248, 242);
-        --playground-code-variable-3-color: rgb(248, 248, 242);
-        --playground-code-callee-color: rgb(248, 248, 242);
-        --playground-code-property-color: rgb(153, 199, 148);
-        --playground-code-font-family: var(--default-font);
-        --playground-code-font-size: 90%;
-        --playground-code-background: var(--surface-background);
-      }</style><style>@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css);:root{--primary:#f9c412;--on-primary:#181818;--secondary:#e7bf60;--background:#181818;--on-background:#eee;--playground-height:450px;--surface-background:#2d2d2d}div.apple{background-image:url(/img/badges/app_store.png);margin:4px;height:80px;width:200px;background-size:contain;background-repeat:no-repeat;background-position:center}#playground{width:100%;height:calc(var(--playground-height)*2);background-color:var(--surface-background)}#playground>playground-file-editor,#playground>playground-preview{height:var(--playground-height)}.tags{display:wrap}.click{cursor:pointer;text-decoration:none}.chip{display:inline-block;padding:0 15px;border-radius:25px;margin:4px;background-color:var(--primary);color:var(--on-primary)}main img{content-visibility:auto}article *{scroll-margin-top:50px}header nav{z-index:1;position:fixed;top:0;left:0;width:100vw;padding:.375em 1.5em;background:rgba(255,255,255,.9);font-weight:200;text-align:right}:root{--main-width:calc(100vw - 3em)}@media (min-width:37.5em){:root{--main-width:calc(37.5em - 3em)}}dialog,share-widget{position:fixed;opacity:.9}share-widget{right:20px;bottom:20px}share-widget div{width:30px;height:30px;background-image:url(/img/share.svg);background-repeat:no-repeat;background-position:center}.apple share-widget div{background-image:url(/img/share-apple.svg)}body,share-widget button{margin:0}share-widget button:active{transform:scale(1.2)}dialog{background-color:#8dff80;z-index:1000}header aside{font-style:italic}#nav{z-index:2;position:relative}#reading-progress{z-index:1;background-color:var(--primary);width:100vw;position:absolute;left:0;top:0;bottom:0;transform:translate(-100vw,0);will-change:transform;pointer-events:none}#posts li{margin-bottom:.5em}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:100;src:url(/fonts/Inter-Thin.woff2) format("woff2"),url(/fonts/Inter-Thin.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:100;src:url(/fonts/Inter-ThinItalic.woff2) format("woff2"),url(/fonts/Inter-ThinItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:200;src:url(/fonts/Inter-ExtraLight.woff2) format("woff2"),url(/fonts/Inter-ExtraLight.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:200;src:url(/fonts/Inter-ExtraLightItalic.woff2) format("woff2"),url(/fonts/Inter-ExtraLightItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:300;src:url(/fonts/Inter-Light.woff2) format("woff2"),url(/fonts/Inter-Light.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:300;src:url(/fonts/Inter-LightItalic.woff2) format("woff2"),url(/fonts/Inter-LightItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:400;src:url(/fonts/Inter-Regular.woff2) format("woff2"),url(/fonts/Inter-Regular.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:400;src:url(/fonts/Inter-Italic.woff2) format("woff2"),url(/fonts/Inter-Italic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:500;src:url(/fonts/Inter-Medium.woff2) format("woff2"),url(/fonts/Inter-Medium.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:500;src:url(/fonts/Inter-MediumItalic.woff2) format("woff2"),url(/fonts/Inter-MediumItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:600;src:url(/fonts/Inter-SemiBold.woff2) format("woff2"),url(/fonts/Inter-SemiBold.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:600;src:url(/fonts/Inter-SemiBoldItalic.woff2) format("woff2"),url(/fonts/Inter-SemiBoldItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:700;src:url(/fonts/Inter-Bold.woff2) format("woff2"),url(/fonts/Inter-Bold.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:700;src:url(/fonts/Inter-BoldItalic.woff2) format("woff2"),url(/fonts/Inter-BoldItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:800;src:url(/fonts/Inter-ExtraBold.woff2) format("woff2"),url(/fonts/Inter-ExtraBold.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:800;src:url(/fonts/Inter-ExtraBoldItalic.woff2) format("woff2"),url(/fonts/Inter-ExtraBoldItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:900;src:url(/fonts/Inter-Black.woff2) format("woff2"),url(/fonts/Inter-Black.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:900;src:url(/fonts/Inter-BlackItalic.woff2) format("woff2"),url(/fonts/Inter-BlackItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI var alt";font-weight:100 900;font-style:normal;font-named-instance:"Regular";src:url(/fonts/Inter-roman.var.woff2) format("woff2")}@font-face{font-display:optional;font-family:"Inter UI var alt";font-weight:100 900;font-style:italic;font-named-instance:"Italic";src:url(/fonts/Inter-italic.var.woff2) format("woff2")}html{line-height:1.15;-webkit-text-size-adjust:100%;font-family:Inter UI,sans-serif;--font-family:Inter UI, sans-serif}h1{font-size:3em;line-height:1.25;margin:.67em 0 .5em;font-size:2.074rem}a{background-color:transparent;color:#f9c412;text-decoration:none;color:var(--primary)}b,strong{font-weight:700}img{border-style:none;max-width:100%;height:auto;margin:0 auto}button,input{font-family:inherit;font-size:100%;line-height:1.15;overflow:visible}button{text-transform:none}input{margin:0}[type=button],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[hidden],template{display:none}h2{font-size:2.5em;line-height:1.2;margin-bottom:.6em}body,p,pre,ul{font-size:1em}p,pre,ul{margin-bottom:1.5em}h1,h2{line-height:2.4rem;margin-bottom:1.36rem}h2{font-size:1.728rem}body,p,pre,ul{font-size:1rem;line-height:1.6}p,pre,ul{margin-bottom:1.36rem}@media (min-width:600px){h1{font-size:4.3978rem;line-height:4.4rem}h2{font-size:3.1097rem;line-height:3.52rem}body,p,pre,ul{font-size:1.1rem;line-height:1.6}h1,h2,p,pre,ul{margin-bottom:1.496rem}}@media (min-width:1200px){h1{font-size:6.0756rem;line-height:6.72rem}h2{font-size:4.05rem;line-height:4.8rem}body,p,pre,ul{font-size:1.2rem;line-height:1.6}h1,h2,p,pre,ul{margin-bottom:1.632rem}}code,pre{overflow-x:auto}pre{font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace}pre code:not([class]){padding:1.5em;overflow-x:scroll}code{border-radius:.3em;color:#e2777a;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:90%;background:#2d2d2d;padding:0}h1,h2{font-family:var(--font-family)}h2{font-style:italic}a:hover{text-decoration:underline}dt{font-weight:600;padding-top:.75em;padding-left:.75em}@supports (font-variation-settings:normal){html{font-family:Inter UI var alt,sans-serif;--font-family:Inter UI var alt, sans-serif}}button,input{border-radius:.3em;max-width:100%}button{background:#f2f2f2;color:#191919;cursor:pointer;display:inline-block;padding:.75em 1.5em;text-align:center;margin:0 .75em 1.5em 0}input{padding:.75em;margin-bottom:1.5em;display:inline}button:hover{background:#d9d9d9;color:var(--surface)}button:not([disabled]){background:#f9c412;color:#181818;background:var(--primary)}button:not([disabled]):hover{background:#ba9005;color:#000;background:var(--secondary)}input[type=color],input[type=datetime],input[type=file],input[type=number],input[type=text],input[type=time],input[type=url]{border:1px solid #595959;padding:.75em}*{border:0;box-sizing:border-box}body,header nav a{font-family:var(--font-family)}body{background:var(--background);color:var(--on-background)}section{margin-left:auto;margin-right:auto;width:900px}header{padding:4.5em 1.5em 3em;width:37.5em;margin:0 auto;text-align:center;max-width:100%;display:flex;align-items:center;flex-direction:column}header p,ul{margin-top:0}header nav h1{float:left;font-size:inherit;line-height:inherit;margin:0;text-align:left}header nav a{font-weight:700;text-decoration:none;color:#181818;margin-left:1.5em}header nav a:first-of-type{margin-left:auto}header nav a:last-of-type{margin-right:1.5em}main{max-width:70rem;margin:0 auto;border-top:.5px solid #ccc}footer{background:var(--background);color:var(--on-background);text-align:center;padding:2em 2em 100px}footer>*{margin:.6em}footer nav a img{vertical-align:middle}footer nav,footer p{font-size:90%}article{max-width:100%;padding:1.5em;width:37.5em;margin:0 auto}li ul{margin-bottom:0}code[class*=language-],pre[class*=language-]{color:#ccc;background:0 0;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;background:#2d2d2d}.token.comment,.token.doctype{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.tag{color:#e2777a}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.property{color:#f8c555}.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.regex,.token.string{color:#7ec699}.token.operator,.token.url{color:#67cdcc}.token.important{font-weight:700}.token.inserted{color:green}</style><header><nav><div id=nav><h1><a href=/ title=Homepage>Rody Davis</a></h1><a href=/about/ >About</a> <a href=/talks/ >Talks</a> <a href=/apps/ >Apps</a></div><div id=reading-progress aria-hidden=true></div></nav><h1>Dynamic Themes with CodeMirror</h1><aside>8 min read.</aside><dialog id=message></dialog><noscript><img alt="" height=1 src="/.netlify/functions/ga?v=1&_v=j83&t=pageview&dr=https%3A%2F%2Fno-script.com&_s=1&dh=rodydavis.com&dp=%2Fposts%2Fcodemirror-dynamic-theme%2F&ul=en-us&de=UTF-8&dt=Dynamic%20Themes%20with%20CodeMirror&tid=G-JQNPVBL9DR" style=display:none width=1></noscript></header><main><article><div class=tags><a href=/tags/web/ class=click><div class=chip>web</div></a><a href=/tags/lit/ class=click><div class=chip>lit</div></a><a href=/tags/vite/ class=click><div class=chip>vite</div></a><a href=/tags/css/ class=click><div class=chip>css</div></a><a href=/tags/material-design/ class=click><div class=chip>material-design</div></a><a href=/tags/dynamic-color/ class=click><div class=chip>dynamic-color</div></a><a href=/tags/playground/ class=click><div class=chip>playground</div></a></div><p>In this article I will go over how to set up a <a href=https://lit.dev>Lit</a> web component and use it to create a a code window that uses <a href=https://codemirror.net>CodeMirror</a> and apply a dynamic theme with <a href=https://material.io>Material Design</a>.<p><strong>TLDR</strong> The final source <a href=https://github.com/rodydavis/codemirror-dynamic-theme>here</a> and an online <a href=https://rodydavis.github.io/codemirror-dynamic-theme/ >demo</a>.<h2 id=prerequisites>Prerequisites <a href=#prerequisites class=direct-link>#</a></h2><ul><li>Vscode<li>Node >= 12<li>Typescript</ul><h2 id=getting-started>Getting Started <a href=#getting-started class=direct-link>#</a></h2><p>We can start off by navigating in terminal to the location of the project and run the following:<pre class=language-bash><code class=language-bash><span class="token function">npm</span> init @vitejs/app --template lit-element-ts</code></pre><p>Then enter a project name <code>codemirror-dynamic-theme</code> and now open the project in vscode and install the dependencies:<pre class=language-bash><code class=language-bash><span class="token class-name builtin">cd</span> codemirror-dynamic-theme<br><span class="token function">npm</span> i lit codemirror @material/material-color-utilities<br><span class="token function">npm</span> i -D @types/node @types/codemirror<br>code <span class="token class-name builtin">.</span></code></pre><p>Update the <code>vite.config.ts</code> with the following:<pre class=language-js><code class=language-js><span class="token keyword">import</span> <span class="token punctuation">{</span> defineConfig <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"vite"</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> <span class="token punctuation">{</span> resolve <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"path"</span><span class="token punctuation">;</span><br><br><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span><br>  <span class="token property literal-property">base</span><span class="token operator">:</span> <span class="token string">"/codemirror-dynamic-theme/"</span><span class="token punctuation">,</span><br>  <span class="token property literal-property">build</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token property literal-property">rollupOptions</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>      <span class="token property literal-property">input</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>        <span class="token property literal-property">main</span><span class="token operator">:</span> <span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">"index.html"</span><span class="token punctuation">)</span><span class="token punctuation">,</span><br>      <span class="token punctuation">}</span><span class="token punctuation">,</span><br>    <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><h2 id=template>Template <a href=#template class=direct-link>#</a></h2><p>Open up the <code>index.html</code> and update it with the following:<pre class=language-html><code class=language-html><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>icon<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>image/svg+xml<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/src/favicon.svg<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>CodeMirror Dynamic Theme<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>module<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/src/code-window.ts<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css"><br>      <span class="token selector">body</span> <span class="token punctuation">{</span><br>        <span class="token property">margin</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span><br>        <span class="token property">padding</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span><br>      <span class="token punctuation">}</span><br>    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code-window</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code-window</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre><h2 id=web-component>Web Component <a href=#web-component class=direct-link>#</a></h2><p>Before we update our component we need to rename <code>my-element.ts</code> to <code>code-window.ts</code><p>Open up <code>code-window.ts</code> and update it with the following:<pre class=language-js><code class=language-js><span class="token keyword">import</span> <span class="token punctuation">{</span> html<span class="token punctuation">,</span> css<span class="token punctuation">,</span> LitElement<span class="token punctuation">,</span> unsafeCSS <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"lit"</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> <span class="token punctuation">{</span> customElement<span class="token punctuation">,</span> property <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"lit/decorators.js"</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> <span class="token punctuation">{</span><br>  applyTheme<span class="token punctuation">,</span><br>  argbFromHex<span class="token punctuation">,</span><br>  hexFromArgb<span class="token punctuation">,</span><br>  themeFromSourceColor<span class="token punctuation">,</span><br><span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@material/material-color-utilities"</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> CodeMirror <span class="token keyword">from</span> <span class="token string">"codemirror"</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> codemirrorStyles <span class="token keyword">from</span> <span class="token string">"codemirror/lib/codemirror.css"</span><span class="token punctuation">;</span><br><br>@<span class="token function">customElement</span><span class="token punctuation">(</span><span class="token string">"code-window"</span><span class="token punctuation">)</span><br><span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">CodeWindow</span> <span class="token keyword">extends</span> <span class="token class-name">LitElement</span> <span class="token punctuation">{</span><br>  <span class="token keyword">static</span> styles <span class="token operator">=</span> css<span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string"><br>    </span><span class="token interpolation"><span class="token punctuation interpolation-punctuation">${</span><span class="token function">unsafeCSS</span><span class="token punctuation">(</span>codemirrorStyles<span class="token punctuation">)</span><span class="token punctuation interpolation-punctuation">}</span></span><span class="token string"><br><br>    main {<br>      width: 100vw;<br>      height: 100vh;<br>      background-color: var(--md-sys-color-background);<br>      color: var(--md-sys-color-on-background);<br>      --header-height: 48px;<br>      --input-size: 32px;<br>    }<br><br>    .toolbar {<br>      height: var(--header-height);<br>      background-color: var(--md-sys-color-primary-container);<br>      color: var(--md-sys-color-on-primary-container);<br>      display: flex;<br>      align-items: center;<br>    }<br><br>    .actions > * {<br>      margin-left: 4px;<br>      margin-right: 4px;<br>    }<br><br>    .toolbar .title {<br>      font-family: sans-serif;<br>      font-size: 18px;<br>      padding-left: 4px;<br>    }<br><br>    .toolbar .actions {<br>      display: flex;<br>      align-items: center;<br>    }<br><br>    .toolbar a {<br>      padding: 0;<br>      margin: 0;<br>      padding-left: 8px;<br>      padding-right: 8px;<br>      display: flex;<br>      align-items: center;<br>      cursor: pointer;<br>    }<br><br>    input[type="color"] {<br>      width: calc(var(--input-size) * 2);<br>      height: var(--input-size);<br>      outline: none;<br>      border: none;<br>      border-radius: 50%;<br>      background-color: var(--md-sys-color-primary-container);<br>    }<br>    input[type="color"]::-webkit-color-swatch-wrapper {<br>      padding: 0;<br>    }<br>    input[type="color"]::-webkit-color-swatch {<br>      border: none;<br>      border-radius: var(--input-size);<br>      border: var(--md-sys-color-outline) solid 1px;<br>    }<br><br>    button {<br>      border: none;<br>      border-radius: 4px;<br>      padding: 8px;<br>    }<br><br>    .tertiary {<br>      background-color: var(--md-sys-color-tertiary);<br>      color: var(--md-sys-color-on-tertiary);<br>    }<br><br>    .secondary {<br>      background-color: var(--md-sys-color-secondary);<br>      color: var(--md-sys-color-on-secondary);<br>    }<br><br>    .spacer {<br>      flex: 1;<br>    }<br><br>    .editor {<br>      height: calc(100% - var(--header-height));<br>      width: 100%;<br>    }<br>  </span><span class="token string template-punctuation">`</span></span><span class="token punctuation">;</span><br><br>  @<span class="token function">property</span><span class="token punctuation">(</span><span class="token punctuation">)</span> value <span class="token operator">=</span> <span class="token punctuation">[</span><br>    <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">import {html, css, LitElement} from 'lit';</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>    <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">import {customElement, property} from 'lit/decorators.js';</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>    <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>    <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">@customElement('simple-greeting')</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>    <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">export class SimpleGreeting extends LitElement {</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>    <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">  static styles = css\`p { color: blue }\`;</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>    <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>    <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">  @property()</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>    <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">  name = 'Somebody';</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>    <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>    <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">  render() {</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>    <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">    return html\`&lt;p>Hello, \${this.name}!&lt;/p>\`;</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>    <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">  }</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>    <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">}</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>  <span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>  @<span class="token function">property</span><span class="token punctuation">(</span><span class="token punctuation">)</span> color <span class="token operator">=</span> <span class="token string">"#6750A4"</span><span class="token punctuation">;</span><br>  @<span class="token function">property</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token property literal-property">type</span><span class="token operator">:</span> Boolean <span class="token punctuation">}</span><span class="token punctuation">)</span> dark <span class="token operator">=</span> window<span class="token punctuation">.</span><span class="token function">matchMedia</span><span class="token punctuation">(</span><br>    <span class="token string">"(prefers-color-scheme: dark)"</span><br>  <span class="token punctuation">)</span><span class="token punctuation">.</span>matches<span class="token punctuation">;</span><br><br>  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">return</span> html<span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">&lt;main><br>      &lt;header class="toolbar"><br>        &lt;div class="title"></span><span class="token interpolation"><span class="token punctuation interpolation-punctuation">${</span>document<span class="token punctuation">.</span>title<span class="token punctuation interpolation-punctuation">}</span></span><span class="token string">&lt;/div><br>        &lt;div class="spacer">&lt;/div><br>        &lt;div class="actions"><br>          &lt;button class="secondary" @click=</span><span class="token interpolation"><span class="token punctuation interpolation-punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">toggleDark</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation interpolation-punctuation">}</span></span><span class="token string">><br>            </span><span class="token interpolation"><span class="token punctuation interpolation-punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>dark <span class="token operator">?</span> <span class="token string">"Light"</span> <span class="token operator">:</span> <span class="token string">"Dark"</span><span class="token punctuation interpolation-punctuation">}</span></span><span class="token string"><br>          &lt;/button><br>          &lt;button class="tertiary" @click=</span><span class="token interpolation"><span class="token punctuation interpolation-punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">randomColor</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation interpolation-punctuation">}</span></span><span class="token string">><br>            Random<br>          &lt;/button><br>          &lt;input<br>            type="color"<br>            .value=</span><span class="token interpolation"><span class="token punctuation interpolation-punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>color<span class="token punctuation interpolation-punctuation">}</span></span><span class="token string"><br>            @input=</span><span class="token interpolation"><span class="token punctuation interpolation-punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">onColor</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation interpolation-punctuation">}</span></span><span class="token string"><br>          /><br>        &lt;/div><br>      &lt;/header><br>      &lt;div class="editor">&lt;/div><br>    &lt;/main></span><span class="token string template-punctuation">`</span></span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><br>  <span class="token function">firstUpdated</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">const</span> root <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>shadowRoot<span class="token operator">!</span><span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">".editor"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> HTMLElement<span class="token punctuation">;</span><br>    <span class="token keyword">const</span> editor <span class="token operator">=</span> <span class="token function">CodeMirror</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> <span class="token punctuation">{</span><br>      <span class="token property literal-property">value</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token punctuation">,</span><br>      <span class="token property literal-property">mode</span><span class="token operator">:</span> <span class="token string">"javascript"</span><span class="token punctuation">,</span><br>      <span class="token property literal-property">lineNumbers</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>      <span class="token property literal-property">lineWrapping</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>      <span class="token property literal-property">indentUnit</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span><br>      <span class="token property literal-property">tabSize</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span><br>      <span class="token property literal-property">indentWithTabs</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>      <span class="token property literal-property">autofocus</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    console<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span>editor<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    editor<span class="token punctuation">.</span><span class="token function">setSize</span><span class="token punctuation">(</span><span class="token string">"100%"</span><span class="token punctuation">,</span> <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">100%</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">updateTheme</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    window<br>      <span class="token punctuation">.</span><span class="token function">matchMedia</span><span class="token punctuation">(</span><span class="token string">"(prefers-color-scheme: dark)"</span><span class="token punctuation">)</span><br>      <span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"change"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><br>        <span class="token keyword">this</span><span class="token punctuation">.</span>dark <span class="token operator">=</span> e<span class="token punctuation">.</span>matches<span class="token punctuation">;</span><br>        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">updateTheme</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><br>  <span class="token keyword">private</span> <span class="token function">updateTheme</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>   <span class="token comment">// TODO: Generate Theme</span><br>  <span class="token punctuation">}</span><br><br>  <span class="token keyword">private</span> <span class="token function">setColor</span><span class="token punctuation">(</span><span class="token parameter"><span class="token property literal-property">val</span><span class="token operator">:</span> string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>color <span class="token operator">=</span> val<span class="token punctuation">;</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">updateTheme</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><br>  <span class="token keyword">private</span> <span class="token function">onColor</span><span class="token punctuation">(</span><span class="token parameter"><span class="token property literal-property">e</span><span class="token operator">:</span> Event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">const</span> target <span class="token operator">=</span> e<span class="token punctuation">.</span>target <span class="token keyword">as</span> HTMLInputElement<span class="token punctuation">;</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span>target<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><br>  <span class="token keyword">private</span> <span class="token function">toggleDark</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>dark <span class="token operator">=</span> <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>dark<span class="token punctuation">;</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">updateTheme</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><br>  <span class="token keyword">private</span> <span class="token function">randomColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">const</span> letters <span class="token operator">=</span> <span class="token string">"0123456789ABCDEF"</span><span class="token punctuation">;</span><br>    <span class="token keyword">let</span> color <span class="token operator">=</span> <span class="token string">"#"</span><span class="token punctuation">;</span><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">6</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>      color <span class="token operator">+=</span> letters<span class="token punctuation">[</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span>color<span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br>declare global <span class="token punctuation">{</span><br>  <span class="token keyword">interface</span> <span class="token class-name">HTMLElementTagNameMap</span> <span class="token punctuation">{</span><br>    <span class="token property string-property">"code-window"</span><span class="token operator">:</span> CodeWindow<span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br></code></pre><p>Here we are setting up some of the editor basics to load in the styles needed for the basic layout.<p>There are also few methods that handle updating of properties on the element such as <code>toggleDark</code> and <code>setColor</code>. When you run the application you should see the following:<p><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/dynamic-theme/start-1920w.avif 1920w, /img/dynamic-theme/start-1280w.avif 1280w, /img/dynamic-theme/start-640w.avif 640w, /img/dynamic-theme/start-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/dynamic-theme/start-1920w.webp 1920w, /img/dynamic-theme/start-1280w.webp 1280w, /img/dynamic-theme/start-640w.webp 640w, /img/dynamic-theme/start-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/dynamic-theme/start-1920w.jpg 1920w, /img/dynamic-theme/start-1280w.jpg 1280w, /img/dynamic-theme/start-640w.jpg 640w, /img/dynamic-theme/start-320w.jpg 320w" type=image/jpeg><img alt=start height=397 src=/img/dynamic-theme/start-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 695 397'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAeUlEQVQI122OWwoDIRRD3f/W+tcdSH2AiPgcrahpFWawZQLh/pwklwghIKVcDiGg1orWGnrvKOWNXA48Hy8QpRQ455gBxhi01rDWfqGCXQuklMIYgxgjUkqrcWqMcZk45+C9Xw1zNuf8A56XzF/utENreqb3idP/8AcdounE51JE6gAAAABJRU5ErkJggg=='%3E%3C/image%3E%3C/svg%3E&#34;)" width=695 decoding=async loading=lazy></picture><p>It doesn't look great yet, but now we can add a CodeMirror theme to import. Create a file <code>src/theme.ts</code> and update it with the following:<pre class=language-js><code class=language-js><span class="token keyword">import</span> <span class="token punctuation">{</span> css <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"lit"</span><span class="token punctuation">;</span><br><br><span class="token keyword">export</span> <span class="token keyword">const</span> codeMirrorTheme <span class="token operator">=</span> css<span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string"><br>  .CodeMirror {<br>    background-color: var(--md-sys-color-background);<br>    color: var(--md-sys-color-on-background);<br>  }<br><br>  .CodeMirror-gutters {<br>    background: var(--md-sys-color-surface-variant);<br>    color: var(--md-sys-color-on-surface-variant);<br>    border: none;<br>  }<br><br>  .CodeMirror-guttermarker,<br>  .CodeMirror-guttermarker-subtle,<br>  .CodeMirror-linenumber {<br>    color: var(--md-sys-color-on-background);<br>  }<br><br>  .CodeMirror-cursor {<br>    border-left: 1px solid var(--md-sys-color-primary);<br>  }<br>  .cm-fat-cursor .CodeMirror-cursor {<br>    background-color: var(--md-sys-color-background);<br>  }<br>  .cm-animate-fat-cursor {<br>    background-color: var(--md-sys-color-background);<br>  }<br><br>  div.CodeMirror-selected {<br>    background: var(--md-sys-color-surface-variant);<br>  }<br><br>  .CodeMirror-focused div.CodeMirror-selected {<br>    background: var(--md-sys-color-surface-variant);<br>  }<br><br>  .CodeMirror-line::selection,<br>  .CodeMirror-line > span::selection,<br>  .CodeMirror-line > span > span::selection {<br>    background: var(--md-sys-color-surface-variant);<br>  }<br><br>  .CodeMirror-line::-moz-selection,<br>  .CodeMirror-line > span::-moz-selection,<br>  .CodeMirror-line > span > span::-moz-selection {<br>    background: var(--md-sys-color-surface-variant);<br>  }<br><br>  .CodeMirror-activeline-background {<br>    background: var(--md-sys-color-surface);<br>  }<br><br>  .cm-keyword {<br>    color: var(--md-custom-color-keyword) !important;<br>  }<br><br>  .cm-operator {<br>    color: var(--md-custom-color-operator) !important;<br>  }<br><br>  .cm-variable-2 {<br>    color: var(--md-custom-color-variable-2) !important;<br>  }<br><br>  .cm-variable-3,<br>  .cm-type {<br>    color: var(--md-custom-color-variable-3) !important;<br>  }<br><br>  .cm-builtin {<br>    color: var(--md-custom-color-builtin) !important;<br>  }<br><br>  .cm-atom {<br>    color: var(--md-custom-color-atom) !important;<br>  }<br><br>  .cm-number {<br>    color: var(--md-custom-color-number) !important;<br>  }<br><br>  .cm-def {<br>    color: var(--md-custom-color-def) !important;<br>  }<br><br>  .cm-string {<br>    color: var(--md-custom-color-string) !important;<br>  }<br><br>  .cm-string-2 {<br>    color: var(--md-custom-color-string-2) !important;<br>  }<br><br>  .cm-comment {<br>    color: var(--md-custom-color-comment) !important;<br>  }<br><br>  .cm-variable {<br>    color: var(--md-custom-color-variable) !important;<br>  }<br><br>  .cm-tag {<br>    color: var(--md-custom-color-tag) !important;<br>  }<br><br>  .cm-meta {<br>    color: var(--md-custom-color-meta) !important;<br>  }<br><br>  .cm-attribute {<br>    color: var(--md-custom-color-attribute) !important;<br>  }<br><br>  .cm-property {<br>    color: var(--md-custom-color-property) !important;<br>  }<br><br>  .cm-qualifier {<br>    color: var(--md-custom-color-qualifier) !important;<br>  }<br><br>  .cm-variable-3,<br>  .cm-type {<br>    color: var(--md-custom-color-variable-3) !important;<br>  }<br><br>  .cm-error {<br>    color: var(--md-sys-color-on-error);<br>    background-color: var(--md-sys-color-error);<br>  }<br><br>  .CodeMirror-matchingbracket {<br>    text-decoration: underline;<br>    color: var(--md-sys-color-on-surface);<br>  }<br></span><span class="token string template-punctuation">`</span></span><span class="token punctuation">;</span><br></code></pre><p>Here we are defining all the styles as <a href=https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties>CSS Custom Properties</a> so we can easily update them.<p>Now import the theme and apply the styles in the component:<pre class=language-js><code class=language-js><br><span class="token keyword">import</span> <span class="token punctuation">{</span> codeMirrorTheme <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./theme"</span><span class="token punctuation">;</span><br><br>@<span class="token function">customElement</span><span class="token punctuation">(</span><span class="token string">"code-window"</span><span class="token punctuation">)</span><br><span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">CodeWindow</span> <span class="token keyword">extends</span> <span class="token class-name">LitElement</span> <span class="token punctuation">{</span><br>  <span class="token keyword">static</span> styles <span class="token operator">=</span> css`<br>    $<span class="token punctuation">{</span><span class="token function">unsafeCSS</span><span class="token punctuation">(</span>codemirrorStyles<span class="token punctuation">)</span><span class="token punctuation">}</span><br>    $<span class="token punctuation">{</span>codeMirrorTheme<span class="token punctuation">}</span><br>    <span class="token operator">...</span></code></pre><p>Now we need to implement the <code>updateTheme</code> method in our element:<pre class=language-js><code class=language-js><span class="token function">updateTheme</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">const</span> source <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>color<span class="token punctuation">;</span><br>    <span class="token keyword">const</span> dark <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>dark<span class="token punctuation">;</span><br>    <span class="token keyword">const</span> target <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>shadowRoot<span class="token operator">!</span><span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"main"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> HTMLElement<span class="token punctuation">;</span><br>    <span class="token keyword">const</span> properties <span class="token operator">=</span> <span class="token punctuation">[</span><br>        <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">--md-custom-color-keyword: #c75779;</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>        <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">--md-custom-color-operator: #008800;</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>        <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">--md-custom-color-variable: #90ccff;</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>        <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">--md-custom-color-variable-2: #dd7700;</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>        <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">--md-custom-color-variable-3: #3333bb;</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>        <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">--md-custom-color-variable-3: #decb6b;</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>        <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">--md-custom-color-builtin: #003388;</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>        <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">--md-custom-color-atom: #bb4646;</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>        <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">--md-custom-color-number: #b4c5ff;</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>        <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">--md-custom-color-def: #82aaff;</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>        <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">--md-custom-color-string: #ffb4a9;</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>        <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">--md-custom-color-string-2: #ffb4a9;</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>        <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">--md-custom-color-comment: #888888;</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>        <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">--md-custom-color-tag: #000080;</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>        <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">--md-custom-color-meta: #a9c7ff;</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>        <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">--md-custom-color-attribute: #008080;</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>        <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">--md-custom-color-property: #336699;</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>        <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">--md-custom-color-qualifier: #690;</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>    <span class="token punctuation">]</span><span class="token punctuation">;</span><br>    <span class="token keyword">const</span> customColors <span class="token operator">=</span> properties<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">property</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><br>        <span class="token keyword">const</span> <span class="token punctuation">[</span>key<span class="token punctuation">,</span> value<span class="token punctuation">]</span> <span class="token operator">=</span> property<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">":"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token keyword">const</span> name <span class="token operator">=</span> key<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token language-regex regex-source">^--md-custom-color-</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token keyword">const</span> color <span class="token operator">=</span> <span class="token function">argbFromHex</span><span class="token punctuation">(</span>value<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">";"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token keyword">return</span> <span class="token punctuation">{</span><br>        name<span class="token punctuation">,</span><br>        <span class="token property literal-property">value</span><span class="token operator">:</span> color<span class="token punctuation">,</span><br>        <span class="token property literal-property">blend</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>        <span class="token punctuation">}</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">const</span> theme <span class="token operator">=</span> <span class="token function">themeFromSourceColor</span><span class="token punctuation">(</span><span class="token function">argbFromHex</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span><span class="token punctuation">,</span> customColors<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token function">applyTheme</span><span class="token punctuation">(</span>theme<span class="token punctuation">,</span> <span class="token punctuation">{</span> target<span class="token punctuation">,</span> dark <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> custom <span class="token keyword">of</span> theme<span class="token punctuation">.</span>customColors<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">const</span> name <span class="token operator">=</span> custom<span class="token punctuation">.</span>color<span class="token punctuation">.</span>name<span class="token punctuation">;</span><br>        <span class="token keyword">const</span> section <span class="token operator">=</span> dark <span class="token operator">?</span> custom<span class="token punctuation">.</span>dark <span class="token operator">:</span> custom<span class="token punctuation">.</span>light<span class="token punctuation">;</span><br>        target<span class="token punctuation">.</span>style<span class="token punctuation">.</span><span class="token function">setProperty</span><span class="token punctuation">(</span><br>        <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">--md-custom-color-</span><span class="token interpolation"><span class="token punctuation interpolation-punctuation">${</span>name<span class="token punctuation interpolation-punctuation">}</span></span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>        <span class="token function">hexFromArgb</span><span class="token punctuation">(</span>section<span class="token punctuation">.</span>color<span class="token punctuation">)</span><br>        <span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre><p>Here we are using the <a href=https://github.com/material-foundation/material-color-utilities>Material Color Utilities</a> package and generating a theme from a source color. We can take advantage of Custom Colors to blend the values to the theme.<p>After the theme is generated we can apply them to the root element and have the custom properties update the editor.<p><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/dynamic-theme/purple-light-1920w.avif 1920w, /img/dynamic-theme/purple-light-1280w.avif 1280w, /img/dynamic-theme/purple-light-640w.avif 640w, /img/dynamic-theme/purple-light-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/dynamic-theme/purple-light-1920w.webp 1920w, /img/dynamic-theme/purple-light-1280w.webp 1280w, /img/dynamic-theme/purple-light-640w.webp 640w, /img/dynamic-theme/purple-light-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/dynamic-theme/purple-light-1920w.jpg 1920w, /img/dynamic-theme/purple-light-1280w.jpg 1280w, /img/dynamic-theme/purple-light-640w.jpg 640w, /img/dynamic-theme/purple-light-320w.jpg 320w" type=image/jpeg><img alt="purple theme light" height=368 src=/img/dynamic-theme/purple-light-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 672 368'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAkUlEQVQI112MPQ+CMBRF+/9/i4ujm4mJq8YNTBwEo+JXKUVa2nIsJBDicJL7bu474nRQHPeKdFeSJ4Z3zsA50awWa7bLDVmqEPoqKbIHz8sLdZc4bcBBsAHfuIEuZtGWFXVxo60b7EdiZRmzpWtDfOgmRPgajKrwxsdPF009fhjOEf16POaGsZ+MxDwW/5b5+Ae6TegMI6oRFQAAAABJRU5ErkJggg=='%3E%3C/image%3E%3C/svg%3E&#34;)" width=672 decoding=async loading=lazy></picture><p>Changing the source color can update the theme:<p><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/dynamic-theme/green-light-1920w.avif 1920w, /img/dynamic-theme/green-light-1280w.avif 1280w, /img/dynamic-theme/green-light-640w.avif 640w, /img/dynamic-theme/green-light-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/dynamic-theme/green-light-1920w.webp 1920w, /img/dynamic-theme/green-light-1280w.webp 1280w, /img/dynamic-theme/green-light-640w.webp 640w, /img/dynamic-theme/green-light-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/dynamic-theme/green-light-1920w.jpg 1920w, /img/dynamic-theme/green-light-1280w.jpg 1280w, /img/dynamic-theme/green-light-640w.jpg 640w, /img/dynamic-theme/green-light-320w.jpg 320w" type=image/jpeg><img alt="green theme light" height=368 src=/img/dynamic-theme/green-light-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 672 368'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAn0lEQVQI113MvQrCMBQF4Lyxex0EfwZdBCcdHBwc9BUcfZBQQUoNpU2aJmn+jrWg1A4f93I495JjnmCfTXHIEpz4DFe/wsUvcC7n2N6W2NzX2NEJCH+lSHOKZzeL4gGtGVyUsF7AON6zQYC0goEzCqNLKJFB1TlaXcF7hRh0LwQFYk2FRjJYW8O5L9kVmz8kRt0vn6uxYU4A8wvGX4blN6414Fc9wKXPAAAAAElFTkSuQmCC'%3E%3C/image%3E%3C/svg%3E&#34;)" width=672 decoding=async loading=lazy></picture><p>Changing the brightness can set the colors as well:<p><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/dynamic-theme/purple-dark-1920w.avif 1920w, /img/dynamic-theme/purple-dark-1280w.avif 1280w, /img/dynamic-theme/purple-dark-640w.avif 640w, /img/dynamic-theme/purple-dark-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/dynamic-theme/purple-dark-1920w.webp 1920w, /img/dynamic-theme/purple-dark-1280w.webp 1280w, /img/dynamic-theme/purple-dark-640w.webp 640w, /img/dynamic-theme/purple-dark-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/dynamic-theme/purple-dark-1920w.jpg 1920w, /img/dynamic-theme/purple-dark-1280w.jpg 1280w, /img/dynamic-theme/purple-dark-640w.jpg 640w, /img/dynamic-theme/purple-dark-320w.jpg 320w" type=image/jpeg><img alt="purple theme dark" height=366 src=/img/dynamic-theme/purple-dark-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 670 366'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAmUlEQVQI11XLPQrCMADF8dzCNl9t0qRIHArRoohTwUlH8QIu7h0rCAqCmwfwrs8Yi7TDb3n8Hzk0Nxy3j2i37tBUbbTfdLicX7ifnri2b5DazVH7FRbVEn7mYXIDRiU4y/5oKkCcKUPgoFUBZy2mxkLnRQhkOIiIsxAqqVBqCykUBJdBFn3DIZImdPQe6fcYJpNfyPthiA22D32yWbScEegDAAAAAElFTkSuQmCC'%3E%3C/image%3E%3C/svg%3E&#34;)" width=670 decoding=async loading=lazy></picture><br><picture><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/dynamic-theme/green-dark-1920w.avif 1920w, /img/dynamic-theme/green-dark-1280w.avif 1280w, /img/dynamic-theme/green-dark-640w.avif 640w, /img/dynamic-theme/green-dark-320w.avif 320w" type=image/avif><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/dynamic-theme/green-dark-1920w.webp 1920w, /img/dynamic-theme/green-dark-1280w.webp 1280w, /img/dynamic-theme/green-dark-640w.webp 640w, /img/dynamic-theme/green-dark-320w.webp 320w" type=image/webp><source sizes="(max-width: 608px) 100vw, 608px" srcset="/img/dynamic-theme/green-dark-1920w.jpg 1920w, /img/dynamic-theme/green-dark-1280w.jpg 1280w, /img/dynamic-theme/green-dark-640w.jpg 640w, /img/dynamic-theme/green-dark-320w.jpg 320w" type=image/jpeg><img alt="green theme dark" height=365 src=/img/dynamic-theme/green-dark-1920w.jpg style="background-size:cover;background-image:url(&#34;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' xmlns%3Axlink='http%3A//www.w3.org/1999/xlink' viewBox='0 0 672 365'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' preserveAspectRatio='none' height='100%25' width='100%25' xlink%3Ahref='data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAGCAYAAAAVMmT4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAr0lEQVQY012Muw6CQBBFN8bOhhiBXVgQcBVRVx6CEY0ljYUWFiQ2/oV8/hWRmI3Fycy9OTNk9TQwqzWIh9Gig99GmFRDjKsB/KuGurnj0tQ4vDyQ8rRDtg6R5FvEqUQslwgCG9Q2YXETjPezzaQoM0TCRbrx4AUc0YIjnDvwfN5KtJOYTbudHM97TF0GIRxw14Lt0B8fQYWkhYRJdeXLH33fyUkuYdDJ97ovVZjSvQGDZFylcuPJwAAAAABJRU5ErkJggg=='%3E%3C/image%3E%3C/svg%3E&#34;)" width=672 decoding=async loading=lazy></picture><h2 id=conclusion>Conclusion <a href=#conclusion class=direct-link>#</a></h2><p>If you want to learn more about building with Lit you can read the docs <a href=https://lit.dev>here</a>.<p>There is also an example on the Lit playground <a href="">here</a>.<p>The source for this example can be found <a href=https://github.com/rodydavis/codemirror-dynamic-theme>here</a>.<p>If you want to check out dynamic themes for VSCode I created an extension <a href=https://github.com/rodydavis/vscode-dynamic-theme>here</a>.<h1>🙏🙏🙏</h1><p>Since you've made it this far, <a href=https://rodydavis.com/posts/codemirror-dynamic-theme/ on-click=share>sharing</a> this article on your favorite social media network would be highly appreciated 💖! For feedback, please <a href=https://twitter.com/rodydavis rel=noopener target=_blank>ping me on Twitter.</a></p><share-widget><button aria-label=Share href=https://rodydavis.com/posts/codemirror-dynamic-theme/ on-click=share><div></div></button></share-widget><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","headline":"Dynamic Themes with CodeMirror","image":["https://rodydavis.com/img/dynamic-theme/start-1920w.jpg","https://rodydavis.com/img/dynamic-theme/purple-light-1920w.jpg","https://rodydavis.com/img/dynamic-theme/green-light-1920w.jpg","https://rodydavis.com/img/dynamic-theme/purple-dark-1920w.jpg","https://rodydavis.com/img/dynamic-theme/green-dark-1920w.jpg"],"author":"Rody Davis","genre":"https://schema.org/Code","publisher":{"@type":"Organization","name":"Rody Davis","logo":{"@type":"ImageObject","url":"/img/favicon/favicon-32x32.png?hash=3df5885280"}},"url":"https://rodydavis.com/posts/codemirror-dynamic-theme/","mainEntityOfPage":"https://rodydavis.com/posts/codemirror-dynamic-theme/","datePublished":"2022-03-17","dateModified":"2022-03-17","description":"In this article I will go over how to set up a Lit web component and use it to create a a code window that uses CodeMirror and apply a..."}</script><p>Published <time datetime=2022-03-17>17 Mar 2022</time></article></main><footer><a href=https://twitter.com/rodydavis class="fab fa-twitter" rel="noopener noreferrer" target=_blank></a> <a href=https://facebook.com/rodydavisjr class="fab fa-facebook" rel="noopener noreferrer" target=_blank></a> <a href=https://www.linkedin.com/in/rodydavis class="fab fa-linkedin" rel="noopener noreferrer" target=_blank></a> <a href=https://www.youtube.com/rodydavis class="fab fa-youtube" rel="noopener noreferrer" target=_blank></a> <a href=https://www.instagram.com/rodydavisjr class="fab fa-instagram" rel="noopener noreferrer" target=_blank></a> <a href=https://www.github.com/rodydavis class="fab fa-github" rel="noopener noreferrer" target=_blank></a> <a href=https://www.tiktok.com/@rodydavisjr class="fab fa-tiktok" rel="noopener noreferrer" target=_blank></a></footer><script src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR" async></script><script>window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', 'G-JQNPVBL9DR');</script>
+    }
+  </style><!--lit-part tWH7hVWrhQY=--><header class="wrapper">
+      <article>
+        <h1>
+          <a href="/">
+            <span><!--lit-part-->Rody Davis<!--/lit-part--></span>
+          </a>
+        </h1>
+        <div class="links">
+          <a href="/apps"> Apps </a>
+          <a href="/posts"> Blog </a>
+          <a href="/talks"> Talks </a>
+          <a href="/about"> About </a>
+        </div>
+        <div class="actions">
+          <input
+            type="color"
+            value="#095EFE"
+            
+          /><!--lit-node 12-->
+          <icon-button
+            
+            
+           icon="shuffle"><!--lit-node 13--><template shadowroot="open"><style>
+    .icon {
+      --icon-size: 24px;
+      --icon-padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      color: var(--icon-color);
+    }
+    .icon:hover {
+      outline: 1px solid var(--md-sys-color-outline);
+    }
+    .icon :first-child {
+      padding: var(--icon-padding);
+    }
+    .material-icons {
+      font-family: "Material Icons";
+      font-weight: normal;
+      font-style: normal;
+      font-size: var(--icon-size);
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "liga";
+    }
+
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style><!--lit-part jPZqHVkf+Tk=-->
+      <div class="icon">
+        <i class="material-icons"><!--lit-part-->shuffle<!--/lit-part--></i>
+      </div>
+    <!--/lit-part--></template></icon-button>
+          <icon-button
+            
+            
+           icon="dark_mode"><!--lit-node 14--><template shadowroot="open"><style>
+    .icon {
+      --icon-size: 24px;
+      --icon-padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      color: var(--icon-color);
+    }
+    .icon:hover {
+      outline: 1px solid var(--md-sys-color-outline);
+    }
+    .icon :first-child {
+      padding: var(--icon-padding);
+    }
+    .material-icons {
+      font-family: "Material Icons";
+      font-weight: normal;
+      font-style: normal;
+      font-size: var(--icon-size);
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "liga";
+    }
+
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style><!--lit-part jPZqHVkf+Tk=-->
+      <div class="icon">
+        <i class="material-icons"><!--lit-part-->dark_mode<!--/lit-part--></i>
+      </div>
+    <!--/lit-part--></template></icon-button>
+          <!--lit-part BRUAAAUVAAA=--><?><!--/lit-part-->
+        </div>
+      </article>
+    </header><!--/lit-part--></template></app-header></astro-root>
+		<div class="wrapper">
+			<div class="layout astro-X5J4CTKI">
+	<article class="content astro-X5J4CTKI">
+		<div class="astro-X5J4CTKI">
+			<header class="astro-X5J4CTKI">
+				<img width="720" height="420" class="hero-image astro-X5J4CTKI" loading="lazy" src="/img/dynamic-theme/purple-dark.png">
+				<p class="publish-date astro-X5J4CTKI">17 Mar 2022 ~ 7 min read</p>
+				<h1 class="title astro-X5J4CTKI">Dynamic Themes with CodeMirror</h1>
+				<div class="author astro-KO5QTRDP">
+	<p class="astro-KO5QTRDP"><a href="https://twitter.com/rodydavis" class="astro-KO5QTRDP">@rodydavis</a></p>
+</div>
+
+
+
+				 <tag-list class="astro-X5J4CTKI"><template shadowroot="open"><style>
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    tag-item {
+      margin-bottom: 0.4rem;
+      margin-top: 0.4rem;
+    }
+  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+      <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/posts"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->posts<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="web"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/web"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->web<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="lit"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/lit"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->lit<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="vite"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/vite"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->vite<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="css"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/css"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->css<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="material-design"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/material-design"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->material-design<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="dynamic-color"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/dynamic-color"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->dynamic-color<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="playground"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/playground"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->playground<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--/lit-part-->
+    </div><!--/lit-part--></template></tag-list>
+			</header>
+			<main class="astro-X5J4CTKI">
+				<div class="layout astro-W2QVQNXU">
+	<article class="content astro-W2QVQNXU">
+		<div class="astro-W2QVQNXU">
+			<main class="astro-W2QVQNXU">
+				<p>In this article I will go over how to set up a <a href="https://lit.dev">Lit</a> web component and use it to create a a code window that uses <a href="https://codemirror.net">CodeMirror</a> and apply a dynamic theme with <a href="https://material.io">Material Design</a>.</p>
+<p><strong>TLDR</strong> The final source <a href="https://github.com/rodydavis/codemirror-dynamic-theme">here</a> and an online <a href="https://rodydavis.github.io/codemirror-dynamic-theme/">demo</a>.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Vscode</li>
+<li>Node >= 12</li>
+<li>Typescript</li>
+</ul>
+<h2 id="getting-started">Getting Started</h2>
+<p>We can start off by navigating in terminal to the location of the project and run the following:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> init @vitejs/app --template lit-element-ts</code></pre>
+<p>Then enter a project name <code>codemirror-dynamic-theme</code> and now open the project in vscode and install the dependencies:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token builtin class-name">cd</span> codemirror-dynamic-theme
+<span class="token function">npm</span> i lit codemirror @material/material-color-utilities
+<span class="token function">npm</span> i -D @types/node @types/codemirror
+code <span class="token builtin class-name">.</span></code></pre>
+<p>Update the <code>vite.config.ts</code> with the following:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> defineConfig <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"vite"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> resolve <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"path"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">base</span><span class="token operator">:</span> <span class="token string">"/codemirror-dynamic-theme/"</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">build</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">rollupOptions</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">input</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token literal-property property">main</span><span class="token operator">:</span> <span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">"index.html"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h2 id="template">Template</h2>
+<p>Open up the <code>index.html</code> and update it with the following:</p>
+<pre class="language-html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>icon<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>image/svg+xml<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/src/favicon.svg<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>CodeMirror Dynamic Theme<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>module<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/src/code-window.ts<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
+      <span class="token selector">body</span> <span class="token punctuation">{</span>
+        <span class="token property">margin</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+        <span class="token property">padding</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code-window</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code-window</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
+<h2 id="web-component">Web Component</h2>
+<p>Before we update our component we need to rename <code>my-element.ts</code> to <code>code-window.ts</code></p>
+<p>Open up <code>code-window.ts</code> and update it with the following:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> html<span class="token punctuation">,</span> css<span class="token punctuation">,</span> LitElement<span class="token punctuation">,</span> unsafeCSS <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"lit"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> customElement<span class="token punctuation">,</span> property <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"lit/decorators.js"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>
+  applyTheme<span class="token punctuation">,</span>
+  argbFromHex<span class="token punctuation">,</span>
+  hexFromArgb<span class="token punctuation">,</span>
+  themeFromSourceColor<span class="token punctuation">,</span>
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@material/material-color-utilities"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> CodeMirror <span class="token keyword">from</span> <span class="token string">"codemirror"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> codemirrorStyles <span class="token keyword">from</span> <span class="token string">"codemirror/lib/codemirror.css"</span><span class="token punctuation">;</span>
+
+@<span class="token function">customElement</span><span class="token punctuation">(</span><span class="token string">"code-window"</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">CodeWindow</span> <span class="token keyword">extends</span> <span class="token class-name">LitElement</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> styles <span class="token operator">=</span> css<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+    </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">unsafeCSS</span><span class="token punctuation">(</span>codemirrorStyles<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">
+
+    main {
+      width: 100vw;
+      height: 100vh;
+      background-color: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
+      --header-height: 48px;
+      --input-size: 32px;
+    }
+
+    .toolbar {
+      height: var(--header-height);
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      display: flex;
+      align-items: center;
+    }
+
+    .actions > * {
+      margin-left: 4px;
+      margin-right: 4px;
+    }
+
+    .toolbar .title {
+      font-family: sans-serif;
+      font-size: 18px;
+      padding-left: 4px;
+    }
+
+    .toolbar .actions {
+      display: flex;
+      align-items: center;
+    }
+
+    .toolbar a {
+      padding: 0;
+      margin: 0;
+      padding-left: 8px;
+      padding-right: 8px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    input[type="color"] {
+      width: calc(var(--input-size) * 2);
+      height: var(--input-size);
+      outline: none;
+      border: none;
+      border-radius: 50%;
+      background-color: var(--md-sys-color-primary-container);
+    }
+    input[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+    input[type="color"]::-webkit-color-swatch {
+      border: none;
+      border-radius: var(--input-size);
+      border: var(--md-sys-color-outline) solid 1px;
+    }
+
+    button {
+      border: none;
+      border-radius: 4px;
+      padding: 8px;
+    }
+
+    .tertiary {
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+    }
+
+    .secondary {
+      background-color: var(--md-sys-color-secondary);
+      color: var(--md-sys-color-on-secondary);
+    }
+
+    .spacer {
+      flex: 1;
+    }
+
+    .editor {
+      height: calc(100% - var(--header-height));
+      width: 100%;
+    }
+  </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+
+  @<span class="token function">property</span><span class="token punctuation">(</span><span class="token punctuation">)</span> value <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">import {html, css, LitElement} from 'lit';</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">import {customElement, property} from 'lit/decorators.js';</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">@customElement('simple-greeting')</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">export class SimpleGreeting extends LitElement {</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">  static styles = css\`p { color: blue }\`;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">  @property()</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">  name = 'Somebody';</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">  render() {</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">    return html\`&lt;p>Hello, \${this.name}!&lt;/p>\`;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">  }</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">}</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  @<span class="token function">property</span><span class="token punctuation">(</span><span class="token punctuation">)</span> color <span class="token operator">=</span> <span class="token string">"#6750A4"</span><span class="token punctuation">;</span>
+  @<span class="token function">property</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">type</span><span class="token operator">:</span> Boolean <span class="token punctuation">}</span><span class="token punctuation">)</span> dark <span class="token operator">=</span> window<span class="token punctuation">.</span><span class="token function">matchMedia</span><span class="token punctuation">(</span>
+    <span class="token string">"(prefers-color-scheme: dark)"</span>
+  <span class="token punctuation">)</span><span class="token punctuation">.</span>matches<span class="token punctuation">;</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> html<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">&lt;main>
+      &lt;header class="toolbar">
+        &lt;div class="title"></span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>document<span class="token punctuation">.</span>title<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;/div>
+        &lt;div class="spacer">&lt;/div>
+        &lt;div class="actions">
+          &lt;button class="secondary" @click=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">toggleDark</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">>
+            </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>dark <span class="token operator">?</span> <span class="token string">"Light"</span> <span class="token operator">:</span> <span class="token string">"Dark"</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">
+          &lt;/button>
+          &lt;button class="tertiary" @click=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">randomColor</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">>
+            Random
+          &lt;/button>
+          &lt;input
+            type="color"
+            .value=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>color<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">
+            @input=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">onColor</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">
+          />
+        &lt;/div>
+      &lt;/header>
+      &lt;div class="editor">&lt;/div>
+    &lt;/main></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">firstUpdated</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> root <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>shadowRoot<span class="token operator">!</span><span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">".editor"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> HTMLElement<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> editor <span class="token operator">=</span> <span class="token function">CodeMirror</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token punctuation">,</span>
+      <span class="token literal-property property">mode</span><span class="token operator">:</span> <span class="token string">"javascript"</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">lineNumbers</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">lineWrapping</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">indentUnit</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">tabSize</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">indentWithTabs</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">autofocus</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span>editor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    editor<span class="token punctuation">.</span><span class="token function">setSize</span><span class="token punctuation">(</span><span class="token string">"100%"</span><span class="token punctuation">,</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">100%</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">updateTheme</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    window
+      <span class="token punctuation">.</span><span class="token function">matchMedia</span><span class="token punctuation">(</span><span class="token string">"(prefers-color-scheme: dark)"</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"change"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>dark <span class="token operator">=</span> e<span class="token punctuation">.</span>matches<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">updateTheme</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">private</span> <span class="token function">updateTheme</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token comment">// TODO: Generate Theme</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">private</span> <span class="token function">setColor</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">val</span><span class="token operator">:</span> string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>color <span class="token operator">=</span> val<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">updateTheme</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">private</span> <span class="token function">onColor</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">e</span><span class="token operator">:</span> Event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> target <span class="token operator">=</span> e<span class="token punctuation">.</span>target <span class="token keyword">as</span> HTMLInputElement<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span>target<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">private</span> <span class="token function">randomColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> letters <span class="token operator">=</span> <span class="token string">"0123456789ABCDEF"</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> color <span class="token operator">=</span> <span class="token string">"#"</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">6</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      color <span class="token operator">+=</span> letters<span class="token punctuation">[</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setColor</span><span class="token punctuation">(</span>color<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">private</span> <span class="token function">toggleDark</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>dark <span class="token operator">=</span> <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>dark<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">updateTheme</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+declare global <span class="token punctuation">{</span>
+  <span class="token keyword">interface</span> <span class="token class-name">HTMLElementTagNameMap</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">"code-window"</span><span class="token operator">:</span> CodeWindow<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Here we are setting up some of the editor basics to load in the styles needed for the basic layout.</p>
+<p>There are also few methods that handle updating of properties on the element such as <code>toggleDark</code> and <code>setColor</code>. When you run the application you should see the following:</p>
+<p><img src="/img/dynamic-theme/start.png" alt="start"></p>
+<p>It doesn’t look great yet, but now we can add a CodeMirror theme to import. Create a file <code>src/theme.ts</code> and update it with the following:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> css <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"lit"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> codeMirrorTheme <span class="token operator">=</span> css<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+  .CodeMirror {
+    background-color: var(--md-sys-color-background);
+    color: var(--md-sys-color-on-background);
+  }
+
+  .CodeMirror-gutters {
+    background: var(--md-sys-color-surface-variant);
+    color: var(--md-sys-color-on-surface-variant);
+    border: none;
+  }
+
+  .CodeMirror-guttermarker,
+  .CodeMirror-guttermarker-subtle,
+  .CodeMirror-linenumber {
+    color: var(--md-sys-color-on-background);
+  }
+
+  .CodeMirror-cursor {
+    border-left: 1px solid var(--md-sys-color-primary);
+  }
+  .cm-fat-cursor .CodeMirror-cursor {
+    background-color: var(--md-sys-color-background);
+  }
+  .cm-animate-fat-cursor {
+    background-color: var(--md-sys-color-background);
+  }
+
+  div.CodeMirror-selected {
+    background: var(--md-sys-color-surface-variant);
+  }
+
+  .CodeMirror-focused div.CodeMirror-selected {
+    background: var(--md-sys-color-surface-variant);
+  }
+
+  .CodeMirror-line::selection,
+  .CodeMirror-line > span::selection,
+  .CodeMirror-line > span > span::selection {
+    background: var(--md-sys-color-surface-variant);
+  }
+
+  .CodeMirror-line::-moz-selection,
+  .CodeMirror-line > span::-moz-selection,
+  .CodeMirror-line > span > span::-moz-selection {
+    background: var(--md-sys-color-surface-variant);
+  }
+
+  .CodeMirror-activeline-background {
+    background: var(--md-sys-color-surface);
+  }
+
+  .cm-keyword {
+    color: var(--md-custom-color-keyword) !important;
+  }
+
+  .cm-operator {
+    color: var(--md-custom-color-operator) !important;
+  }
+
+  .cm-variable-2 {
+    color: var(--md-custom-color-variable-2) !important;
+  }
+
+  .cm-variable-3,
+  .cm-type {
+    color: var(--md-custom-color-variable-3) !important;
+  }
+
+  .cm-builtin {
+    color: var(--md-custom-color-builtin) !important;
+  }
+
+  .cm-atom {
+    color: var(--md-custom-color-atom) !important;
+  }
+
+  .cm-number {
+    color: var(--md-custom-color-number) !important;
+  }
+
+  .cm-def {
+    color: var(--md-custom-color-def) !important;
+  }
+
+  .cm-string {
+    color: var(--md-custom-color-string) !important;
+  }
+
+  .cm-string-2 {
+    color: var(--md-custom-color-string-2) !important;
+  }
+
+  .cm-comment {
+    color: var(--md-custom-color-comment) !important;
+  }
+
+  .cm-variable {
+    color: var(--md-custom-color-variable) !important;
+  }
+
+  .cm-tag {
+    color: var(--md-custom-color-tag) !important;
+  }
+
+  .cm-meta {
+    color: var(--md-custom-color-meta) !important;
+  }
+
+  .cm-attribute {
+    color: var(--md-custom-color-attribute) !important;
+  }
+
+  .cm-property {
+    color: var(--md-custom-color-property) !important;
+  }
+
+  .cm-qualifier {
+    color: var(--md-custom-color-qualifier) !important;
+  }
+
+  .cm-variable-3,
+  .cm-type {
+    color: var(--md-custom-color-variable-3) !important;
+  }
+
+  .cm-error {
+    color: var(--md-sys-color-on-error);
+    background-color: var(--md-sys-color-error);
+  }
+
+  .CodeMirror-matchingbracket {
+    text-decoration: underline;
+    color: var(--md-sys-color-on-surface);
+  }
+</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+</code></pre>
+<p>Here we are defining all the styles as <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties">CSS Custom Properties</a> so we can easily update them.</p>
+<p>Now import the theme and apply the styles in the component:</p>
+<pre class="language-js"><code class="language-js">
+<span class="token keyword">import</span> <span class="token punctuation">{</span> codeMirrorTheme <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./theme"</span><span class="token punctuation">;</span>
+
+@<span class="token function">customElement</span><span class="token punctuation">(</span><span class="token string">"code-window"</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">CodeWindow</span> <span class="token keyword">extends</span> <span class="token class-name">LitElement</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> styles <span class="token operator">=</span> css`
+    $<span class="token punctuation">{</span><span class="token function">unsafeCSS</span><span class="token punctuation">(</span>codemirrorStyles<span class="token punctuation">)</span><span class="token punctuation">}</span>
+    $<span class="token punctuation">{</span>codeMirrorTheme<span class="token punctuation">}</span>
+    <span class="token operator">...</span></code></pre>
+<p>Now we need to implement the <code>updateTheme</code> method in our element:</p>
+<pre class="language-js"><code class="language-js"><span class="token function">updateTheme</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> source <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>color<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> dark <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>dark<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> target <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>shadowRoot<span class="token operator">!</span><span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"main"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> HTMLElement<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> properties <span class="token operator">=</span> <span class="token punctuation">[</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">--md-custom-color-keyword: #c75779;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">--md-custom-color-operator: #008800;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">--md-custom-color-variable: #90ccff;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">--md-custom-color-variable-2: #dd7700;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">--md-custom-color-variable-3: #3333bb;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">--md-custom-color-variable-3: #decb6b;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">--md-custom-color-builtin: #003388;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">--md-custom-color-atom: #bb4646;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">--md-custom-color-number: #b4c5ff;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">--md-custom-color-def: #82aaff;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">--md-custom-color-string: #ffb4a9;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">--md-custom-color-string-2: #ffb4a9;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">--md-custom-color-comment: #888888;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">--md-custom-color-tag: #000080;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">--md-custom-color-meta: #a9c7ff;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">--md-custom-color-attribute: #008080;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">--md-custom-color-property: #336699;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">--md-custom-color-qualifier: #690;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> customColors <span class="token operator">=</span> properties<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">property</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> <span class="token punctuation">[</span>key<span class="token punctuation">,</span> value<span class="token punctuation">]</span> <span class="token operator">=</span> property<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">":"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> name <span class="token operator">=</span> key<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^--md-custom-color-</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> color <span class="token operator">=</span> <span class="token function">argbFromHex</span><span class="token punctuation">(</span>value<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">";"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        name<span class="token punctuation">,</span>
+        <span class="token literal-property property">value</span><span class="token operator">:</span> color<span class="token punctuation">,</span>
+        <span class="token literal-property property">blend</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> theme <span class="token operator">=</span> <span class="token function">themeFromSourceColor</span><span class="token punctuation">(</span><span class="token function">argbFromHex</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span><span class="token punctuation">,</span> customColors<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">applyTheme</span><span class="token punctuation">(</span>theme<span class="token punctuation">,</span> <span class="token punctuation">{</span> target<span class="token punctuation">,</span> dark <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> custom <span class="token keyword">of</span> theme<span class="token punctuation">.</span>customColors<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> name <span class="token operator">=</span> custom<span class="token punctuation">.</span>color<span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+        <span class="token keyword">const</span> section <span class="token operator">=</span> dark <span class="token operator">?</span> custom<span class="token punctuation">.</span>dark <span class="token operator">:</span> custom<span class="token punctuation">.</span>light<span class="token punctuation">;</span>
+        target<span class="token punctuation">.</span>style<span class="token punctuation">.</span><span class="token function">setProperty</span><span class="token punctuation">(</span>
+        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">--md-custom-color-</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token function">hexFromArgb</span><span class="token punctuation">(</span>section<span class="token punctuation">.</span>color<span class="token punctuation">)</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Here we are using the <a href="https://github.com/material-foundation/material-color-utilities">Material Color Utilities</a> package and generating a theme from a source color. We can take advantage of Custom Colors to blend the values to the theme.</p>
+<p>After the theme is generated we can apply them to the root element and have the custom properties update the editor.</p>
+<p><img src="/img/dynamic-theme/purple-light.png" alt="purple theme light"></p>
+<p>Changing the source color can update the theme:</p>
+<p><img src="/img/dynamic-theme/green-light.png" alt="green theme light"></p>
+<p>Changing the brightness can set the colors as well:</p>
+<p><img src="/img/dynamic-theme/purple-dark.png" alt="purple theme dark">
+<img src="/img/dynamic-theme/green-dark.png" alt="green theme dark"></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>If you want to learn more about building with Lit you can read the docs <a href="https://lit.dev">here</a>.</p>
+<p>The source for this example can be found <a href="https://github.com/rodydavis/codemirror-dynamic-theme">here</a>.</p>
+<p>If you want to check out dynamic themes for VSCode I created an extension <a href="https://github.com/rodydavis/vscode-dynamic-theme">here</a>.</p>
+			</main>
+		</div>
+	</article>
+</div>
+
+
+
+			</main>
+		</div>
+	</article>
+</div>
+
+
+
+		</div>
+		<div style="height: 25px"></div>
+		<social-links><template shadowroot="open"><style>
+    footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: var(--width, 100%);
+      margin-bottom: 2rem;
+    }
+    .fab,
+    svg {
+      --size: 3vw;
+      width: var(--size);
+      height: var(--size);
+      max-width: 30px;
+      max-height: 30px;
+      min-width: 20px;
+      min-height: 20px;
+      margin: 0.5rem;
+      color: var(--md-sys-color-on-surface);
+      font-family: FontAwesome;
+      cursor: pointer;
+    }
+    svg {
+      color: var(--md-sys-color-on-surface);
+    }
+  </style><!--lit-part fkbI1zGBADw=--><footer>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://twitter.com/rodydavis"
+        class="fab fa fa-twitter"
+      >
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="twitter"
+          class="svg-inline--fa fa-twitter fa-w-16"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
+          ></path>
+        </svg>
+      </a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://facebook.com/rodydavisjr"
+        class="fab fa fa-facebook"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="facebook-f"
+          class="svg-inline--fa fa-facebook-f fa-w-10"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+        >
+          <path
+            fill="currentColor"
+            d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.linkedin.com/in/rodydavis"
+        class="fab fa fa-linkedin"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="linkedin-in"
+          class="svg-inline--fa fa-linkedin-in fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.youtube.com/rodydavis"
+        class="fab fa fa-youtube"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="youtube"
+          class="svg-inline--fa fa-youtube fa-w-18"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 576 512"
+        >
+          <path
+            fill="currentColor"
+            d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.instagram.com/rodydavisjr"
+        class="fab fa fa-instagram"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="instagram"
+          class="svg-inline--fa fa-instagram fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.github.com/rodydavis"
+        class="fab fa fa-github"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="github"
+          class="svg-inline--fa fa-github fa-w-16"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 496 512"
+        >
+          <path
+            fill="currentColor"
+            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.tiktok.com/@rodydavisjr"
+        class="fab fa-tiktok"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="tiktok"
+          class="svg-inline--fa fa-tiktok fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"
+          ></path></svg
+      ></a>
+    </footer><!--/lit-part--></template></social-links>
+	</body></html>

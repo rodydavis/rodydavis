@@ -1,102 +1,937 @@
-<!DOCTYPE html><html domain=rodydavis.com ga-id=G-JQNPVBL9DR lang=en><meta charset=utf-8><meta content="width=device-width,initial-scale=1" name=viewport><link href="/img/favicon/favicon-32x32.png?hash=3df5885280" rel=icon type=image/png><meta content=#f9c412 name=theme-color><meta content="max-snippet:-1, max-image-preview: large, max-video-preview: -1" name=robots><title>Lit and Flutter</title><meta content="Lit and Flutter" property=og:title><meta content="In this article I will go over how to set up a Lit web component and use it inline in the Flutter widget tree. TLDR You can find the final..." name=description><meta content="In this article I will go over how to set up a Lit web component and use it inline in the Flutter widget tree. TLDR You can find the final..." property=og:description><meta content=summary_large_image name=twitter:card><meta content=@rodydavis name=twitter:site><meta content=@rodydavis name=twitter:creator><meta content=https://rodydavis.com/img/remote/Z1D401D.jpeg property=og:image><link href=https://rodydavis.com/posts/flutter-and-lit/ rel=canonical><meta content=no-referrer-when-downgrade name=referrer><link href=/feed/feed.xml rel=alternate type=application/atom+xml title="Rody Davis"><link href=/ rel=preconnect crossorigin=""><script src="/js/min.js?hash=c372ec6a84" async defer></script><script src="/js/cached.js?hash=9030142fbb" async defer></script><script csp-hash="">if (/Mac OS X/.test(navigator.userAgent)) 
-        document
-          .documentElement
-          .classList
-          .add('apple')</script><script type=text/javascript>function getCode(repo, path, branch) {
-        const url = `https://raw.githubusercontent.com/rodydavis/${repo}/${branch}/${path}`;
-        return fetch(url).then((res) => res.text());
-      }
-      async function addFiles(tag, path, branch = "main") {
-        const output = document.querySelector('#playground');
-        output.removeAttribute('hidden');
-        const codeEditor = document.createElement('playground-file-editor');
-        const uiEditor = document.createElement('playground-file-editor');
-        const preview = document.createElement('playground-preview');
-        const ide = document.createElement('playground-project');
-        ide.id = "project";
-        function addScript(filename, source) {
-          const elem = document.createElement('script');
-          elem.setAttribute('type', `sample/${
-            filename.split('.').pop()
-          }`);
-          elem.setAttribute('filename', filename);
-          elem.innerHTML = source;
-          ide.append(elem);
-        }
-        const name = path.split('.ts').join('.js');
-        const ui = await getCode(tag, 'index.html', branch);
-        addScript('index.html', ui.split(`/src/${path}`).join(`./${name}`));
-        preview.setAttribute('project', ide.id);
-        uiEditor.setAttribute('project', ide.id);
-        uiEditor.setAttribute('filename', path);
-        output.append(preview);
-        const code = await getCode(tag, `src/${path}`, branch);
-        addScript(path, code);
-        codeEditor.setAttribute('line-numbers', '');
-        codeEditor.setAttribute('project', ide.id);
-        codeEditor.setAttribute('filename', path);
-        output.append(codeEditor);
-        output.append(ide);
-      }</script><script src=https://unpkg.com/playground-elements@0.10.0/playground-project.js?module type=module></script><script src=https://unpkg.com/playground-elements@0.10.0/playground-file-editor.js?module type=module></script><script src=https://unpkg.com/playground-elements@0.10.0/playground-preview.js?module type=module></script><script src=https://dartpad.dev/inject_embed.dart.js type=text/javascript defer></script><style>#playground {
-        --playground-preview-width: 40%;
-        --playground-tab-bar-background: var(--background);
-        --playground-tab-bar-foreground-color: var(--on-background);
-        --playground-border: var(--on-background);
-        --playground-preview-toolbar-background: var(--background);
-        --playground-preview-toolbar-foreground-color: var(--on-background);
-        --playground-highlight-color: var(--primary);
-        --playground-code-background: rgb(48, 65, 72);
-        --playground-code-default-color: rgb(248, 248, 242);
-        --playground-code-cursor-color: rgb(248, 248, 240);
-        --playground-code-selection-background: rgba(101, 115, 126, 0.33);
-        --playground-code-gutter-background: rgb(48, 65, 72);
-        --playground-code-gutter-border-right: 0;
-        --playground-code-linenumber-color: rgb(208, 208, 208);
-        --playground-code-atom-color: rgb(197, 148, 197);
-        --playground-code-attribute-color: rgb(197, 148, 197);
-        --playground-code-builtin-color: rgb(102, 217, 239);
-        --playground-code-comment-color: rgb(101, 115, 126);
-        --playground-code-def-color: rgb(102, 153, 204);
-        --playground-code-keyword-color: rgb(197, 148, 197);
-        --playground-code-meta-color: rgb(248, 248, 242);
-        --playground-code-number-color: rgb(249, 145, 87);
-        --playground-code-operator-color: rgb(248, 248, 242);
-        --playground-code-qualifier-color: rgb(248, 248, 242);
-        --playground-code-string-color: rgb(153, 199, 148);
-        --playground-code-string-2-color: rgb(248, 248, 242);
-        --playground-code-tag-color: rgb(197, 148, 197);
-        --playground-code-type-color: rgb(248, 248, 242);
-        --playground-code-variable-color: rgb(248, 248, 242);
-        --playground-code-variable-2-color: rgb(248, 248, 242);
-        --playground-code-variable-3-color: rgb(248, 248, 242);
-        --playground-code-callee-color: rgb(248, 248, 242);
-        --playground-code-property-color: rgb(153, 199, 148);
-        --playground-code-font-family: var(--default-font);
-        --playground-code-font-size: 90%;
-        --playground-code-background: var(--surface-background);
-      }</style><style>@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css);:root{--primary:#f9c412;--on-primary:#181818;--secondary:#e7bf60;--background:#181818;--on-background:#eee;--playground-height:450px;--surface-background:#2d2d2d}div.apple{background-image:url(/img/badges/app_store.png);margin:4px;height:80px;width:200px;background-size:contain;background-repeat:no-repeat;background-position:center}#playground{width:100%;height:calc(var(--playground-height)*2);background-color:var(--surface-background)}#playground>playground-file-editor,#playground>playground-preview{height:var(--playground-height)}.tags{display:wrap}.click{cursor:pointer;text-decoration:none}.chip{display:inline-block;padding:0 15px;border-radius:25px;margin:4px;background-color:var(--primary);color:var(--on-primary)}main img{content-visibility:auto}article *{scroll-margin-top:50px}header nav{z-index:1;position:fixed;top:0;left:0;width:100vw;padding:.375em 1.5em;background:rgba(255,255,255,.9);font-weight:200;text-align:right}:root{--main-width:calc(100vw - 3em)}@media (min-width:37.5em){:root{--main-width:calc(37.5em - 3em)}}dialog,share-widget{position:fixed;opacity:.9}share-widget{right:20px;bottom:20px}share-widget div{width:30px;height:30px;background-image:url(/img/share.svg);background-repeat:no-repeat;background-position:center}.apple share-widget div{background-image:url(/img/share-apple.svg)}body,share-widget button{margin:0}share-widget button:active{transform:scale(1.2)}dialog{background-color:#8dff80;z-index:1000}header aside{font-style:italic}#nav{z-index:2;position:relative}#reading-progress{z-index:1;background-color:var(--primary);width:100vw;position:absolute;left:0;top:0;bottom:0;transform:translate(-100vw,0);will-change:transform;pointer-events:none}#posts li{margin-bottom:.5em}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:100;src:url(/fonts/Inter-Thin.woff2) format("woff2"),url(/fonts/Inter-Thin.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:100;src:url(/fonts/Inter-ThinItalic.woff2) format("woff2"),url(/fonts/Inter-ThinItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:200;src:url(/fonts/Inter-ExtraLight.woff2) format("woff2"),url(/fonts/Inter-ExtraLight.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:200;src:url(/fonts/Inter-ExtraLightItalic.woff2) format("woff2"),url(/fonts/Inter-ExtraLightItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:300;src:url(/fonts/Inter-Light.woff2) format("woff2"),url(/fonts/Inter-Light.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:300;src:url(/fonts/Inter-LightItalic.woff2) format("woff2"),url(/fonts/Inter-LightItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:400;src:url(/fonts/Inter-Regular.woff2) format("woff2"),url(/fonts/Inter-Regular.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:400;src:url(/fonts/Inter-Italic.woff2) format("woff2"),url(/fonts/Inter-Italic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:500;src:url(/fonts/Inter-Medium.woff2) format("woff2"),url(/fonts/Inter-Medium.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:500;src:url(/fonts/Inter-MediumItalic.woff2) format("woff2"),url(/fonts/Inter-MediumItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:600;src:url(/fonts/Inter-SemiBold.woff2) format("woff2"),url(/fonts/Inter-SemiBold.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:600;src:url(/fonts/Inter-SemiBoldItalic.woff2) format("woff2"),url(/fonts/Inter-SemiBoldItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:700;src:url(/fonts/Inter-Bold.woff2) format("woff2"),url(/fonts/Inter-Bold.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:700;src:url(/fonts/Inter-BoldItalic.woff2) format("woff2"),url(/fonts/Inter-BoldItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:800;src:url(/fonts/Inter-ExtraBold.woff2) format("woff2"),url(/fonts/Inter-ExtraBold.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:800;src:url(/fonts/Inter-ExtraBoldItalic.woff2) format("woff2"),url(/fonts/Inter-ExtraBoldItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:normal;font-weight:900;src:url(/fonts/Inter-Black.woff2) format("woff2"),url(/fonts/Inter-Black.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI";font-style:italic;font-weight:900;src:url(/fonts/Inter-BlackItalic.woff2) format("woff2"),url(/fonts/Inter-BlackItalic.woff) format("woff")}@font-face{font-display:optional;font-family:"Inter UI var alt";font-weight:100 900;font-style:normal;font-named-instance:"Regular";src:url(/fonts/Inter-roman.var.woff2) format("woff2")}@font-face{font-display:optional;font-family:"Inter UI var alt";font-weight:100 900;font-style:italic;font-named-instance:"Italic";src:url(/fonts/Inter-italic.var.woff2) format("woff2")}html{line-height:1.15;-webkit-text-size-adjust:100%;font-family:Inter UI,sans-serif;--font-family:Inter UI, sans-serif}h1{font-size:3em;line-height:1.25;margin:.67em 0 .5em;font-size:2.074rem}a{background-color:transparent;color:#f9c412;text-decoration:none;color:var(--primary)}strong{font-weight:700}img{border-style:none;max-width:100%;height:auto;margin:0 auto}button,input,select{font-family:inherit;font-size:100%;line-height:1.15}input,select{margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}[hidden]{display:none}h2{font-size:2.5em;line-height:1.2;margin-bottom:.6em}h1,h2,h3{margin-bottom:1.36rem}h3{font-size:2em;line-height:1.125;margin-bottom:.75em;font-size:1.4rem;line-height:1.6rem}body,p,pre,ul{font-size:1em}p,pre,ul{margin-bottom:1.5em}h1,h2{line-height:2.4rem}h2{font-size:1.728rem}body,p,pre,ul{font-size:1rem;line-height:1.6}p,pre,ul{margin-bottom:1.36rem}@media (min-width:600px){h1{font-size:4.3978rem;line-height:4.4rem}h2{font-size:3.1097rem;line-height:3.52rem}h3{font-size:2.1989rem;line-height:2.64rem}body,p,pre,ul{font-size:1.1rem;line-height:1.6}h1,h2,h3,p,pre,ul{margin-bottom:1.496rem}}@media (min-width:1200px){h1{font-size:6.0756rem;line-height:6.72rem}h2{font-size:4.05rem;line-height:4.8rem}h3{font-size:2.7rem;line-height:2.88rem}body,p,pre,ul{font-size:1.2rem;line-height:1.6}h1,h2,h3,p,pre,ul{margin-bottom:1.632rem}}th{font-weight:600;border-bottom:1px solid #595959;overflow:auto;padding:.75em;text-align:left;vertical-align:top}code,pre{overflow-x:auto}pre{font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace}pre code:not([class]){padding:1.5em;overflow-x:scroll}code{border-radius:.3em;color:#e2777a;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:90%;background:#2d2d2d;padding:0}h1,h2,h3{font-family:var(--font-family)}h2{font-style:italic}a:hover{text-decoration:underline}dt{font-weight:600;padding-top:.75em;padding-left:.75em}@supports (font-variation-settings:normal){html{font-family:Inter UI var alt,sans-serif;--font-family:Inter UI var alt, sans-serif}}button,input,select{border-radius:.3em;max-width:100%}input{padding:.75em}input,select{margin-bottom:1.5em;display:inline}button{background:#f2f2f2;color:#191919;cursor:pointer;display:inline-block;padding:.75em 1.5em;text-align:center;margin:0 .75em 1.5em 0}button:hover{background:#d9d9d9;color:var(--surface)}button:not([disabled]){background:#f9c412;color:#181818;background:var(--primary)}button:not([disabled]):hover{background:#ba9005;color:#000;background:var(--secondary)}input[type=color],input[type=datetime],input[type=file],input[type=text],input[type=time],input[type=url],select{border:1px solid #595959;padding:.75em}*{border:0;box-sizing:border-box}body,header nav a{font-family:var(--font-family)}body{background:var(--background);color:var(--on-background)}header{padding:4.5em 1.5em 3em;width:37.5em;margin:0 auto;text-align:center;max-width:100%;display:flex;align-items:center;flex-direction:column}header p,ul{margin-top:0}header nav h1{float:left;font-size:inherit;line-height:inherit;margin:0;text-align:left}header nav a{font-weight:700;text-decoration:none;color:#181818;margin-left:1.5em}header nav a:first-of-type{margin-left:auto}header nav a:last-of-type{margin-right:1.5em}main{max-width:70rem;margin:0 auto;border-top:.5px solid #ccc}footer{background:var(--background);color:var(--on-background);text-align:center;padding:2em 2em 100px}footer>*{margin:.6em}footer nav a img{vertical-align:middle}footer nav,footer p{font-size:90%}article{max-width:100%;padding:1.5em;width:37.5em;margin:0 auto}li ul{margin-bottom:0}code[class*=language-],pre[class*=language-]{color:#ccc;background:0 0;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;background:#2d2d2d}.token.comment,.token.doctype{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.tag{color:#e2777a}.token.boolean,.token.function{color:#f08d49}.token.class-name,.token.property{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.string{color:#7ec699}.token.operator,.token.url{color:#67cdcc}.token.important{font-weight:700}.token.inserted{color:green}</style><header><nav><div id=nav><h1><a href=/ title=Homepage>Rody Davis</a></h1><a href=/about/ >About</a> <a href=/talks/ >Talks</a> <a href=/apps/ >Apps</a></div><div id=reading-progress aria-hidden=true></div></nav><h1>Lit and Flutter</h1><aside>7 min read.</aside><dialog id=message></dialog><noscript><img alt="" height=1 src="/.netlify/functions/ga?v=1&_v=j83&t=pageview&dr=https%3A%2F%2Fno-script.com&_s=1&dh=rodydavis.com&dp=%2Fposts%2Fflutter-and-lit%2F&ul=en-us&de=UTF-8&dt=Lit%20and%20Flutter&tid=G-JQNPVBL9DR" style=display:none width=1></noscript></header><main><article><div class=tags><a href=/tags/flutter/ class=click><div class=chip>flutter</div></a><a href=/tags/web/ class=click><div class=chip>web</div></a><a href=/tags/vite/ class=click><div class=chip>vite</div></a><a href=/tags/lit/ class=click><div class=chip>lit</div></a></div><p>In this article I will go over how to set up a <a href=https://lit.dev>Lit</a> web component and use it inline in the Flutter widget tree.<p><strong>TLDR</strong> You can find the final source <a href=https://github.com/rodydavis/flutter_hybrid_template>here</a>.<p>The reason you would want this integration is so you can take an existing web app, or just a single part of it and embed it in the widget tree.<p>With it wrapped in Flutter you can call device APIs from event listeners on your web component.<p>For example you may have an app that handles purchases, and now you can call the in app purchase API or other device specific features not available on the web.<p>You also get a cross platform app that can be delivered to both Google Play and the App Store.<p>The web component will receive new code each time you update your site, so you do not have to ship an update each time the web component changes.<h2 id=prerequisites>Prerequisites <a href=#prerequisites class=direct-link>#</a></h2><ul><li>Flutter SDK<li>Xcode and Command Line Tools<li>Android SDK<li>Vscode<li>Node<li>Typescript</ul><h2 id=getting-started>Getting Started <a href=#getting-started class=direct-link>#</a></h2><p>We can start off by creating a empty directory and naming it with <code>snake_case</code> whatever we want.<pre class=language-bash><code class=language-bash><span class="token function">mkdir</span> flutter_lit_example<br><span class="token class-name builtin">cd</span> flutter_lit_example</code></pre><h3 id=web-setup>Web Setup <a href=#web-setup class=direct-link>#</a></h3><p>Now we are in the <code>flutter_lit_example</code> directory and can setup Flutter and Lit. Let's start with node.<pre class=language-bash><code class=language-bash><span class="token function">npm</span> init -y<br><span class="token function">npm</span> i lit<br><span class="token function">npm</span> i -D typescript vite @types/node</code></pre><p>This will setup the basics for a node project and install the packages we need. Now lets add some config files.<pre class=language-bash><code class=language-bash><span class="token function">touch</span> tsconfig.json<br><span class="token function">touch</span> vite.config.ts</code></pre><p>This will create 2 files. Now open up <code>tsconfig.json</code> and paste the following:<pre class=language-json><code class=language-json><span class="token punctuation">{</span><br>  <span class="token property">"compilerOptions"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token property">"module"</span><span class="token operator">:</span> <span class="token string">"esnext"</span><span class="token punctuation">,</span><br>    <span class="token property">"lib"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>      <span class="token string">"es2017"</span><span class="token punctuation">,</span><br>      <span class="token string">"dom"</span><span class="token punctuation">,</span><br>      <span class="token string">"dom.iterable"</span><br>    <span class="token punctuation">]</span><span class="token punctuation">,</span><br>    <span class="token property">"types"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>      <span class="token string">"vite/client"</span><br>    <span class="token punctuation">]</span><span class="token punctuation">,</span><br>    <span class="token property">"declaration"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>    <span class="token property">"emitDeclarationOnly"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>    <span class="token property">"outDir"</span><span class="token operator">:</span> <span class="token string">"./types"</span><span class="token punctuation">,</span><br>    <span class="token property">"rootDir"</span><span class="token operator">:</span> <span class="token string">"./src"</span><span class="token punctuation">,</span><br>    <span class="token property">"strict"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>    <span class="token property">"noUnusedLocals"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>    <span class="token property">"noUnusedParameters"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>    <span class="token property">"noImplicitReturns"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>    <span class="token property">"noFallthroughCasesInSwitch"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>    <span class="token property">"moduleResolution"</span><span class="token operator">:</span> <span class="token string">"node"</span><span class="token punctuation">,</span><br>    <span class="token property">"allowSyntheticDefaultImports"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>    <span class="token property">"experimentalDecorators"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>    <span class="token property">"forceConsistentCasingInFileNames"</span><span class="token operator">:</span> <span class="token boolean">true</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token property">"include"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token string">"src/**/*.ts"</span><br>  <span class="token punctuation">]</span><span class="token punctuation">,</span><br>  <span class="token property">"exclude"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><br><span class="token punctuation">}</span></code></pre><p>This is a basic typescript config. Now open up <code>vite.config.ts</code> and paste the following:<pre class=language-js><code class=language-js><span class="token keyword">import</span> <span class="token punctuation">{</span> defineConfig <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"vite"</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> <span class="token punctuation">{</span> resolve <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"path"</span><span class="token punctuation">;</span><br><br><span class="token comment">// https://vitejs.dev/config/</span><br><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span><br>  <span class="token property literal-property">base</span><span class="token operator">:</span> <span class="token string">"/flutter_lit_example/"</span><span class="token punctuation">,</span> <span class="token comment">// TODO: Name of your github repo</span><br>  <span class="token property literal-property">build</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token property literal-property">outDir</span><span class="token operator">:</span> <span class="token string">"build/web"</span><span class="token punctuation">,</span><br>    <span class="token property literal-property">rollupOptions</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>      <span class="token property literal-property">output</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>        <span class="token property literal-property">entryFileNames</span><span class="token operator">:</span> <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">assets/[name].js</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>        <span class="token property literal-property">chunkFileNames</span><span class="token operator">:</span> <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">assets/[name].js</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>        <span class="token property literal-property">assetFileNames</span><span class="token operator">:</span> <span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">assets/[name].[ext]</span><span class="token string template-punctuation">`</span></span><span class="token punctuation">,</span><br>      <span class="token punctuation">}</span><span class="token punctuation">,</span><br>      <span class="token property literal-property">input</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>        <span class="token property literal-property">main</span><span class="token operator">:</span> <span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">"index.html"</span><span class="token punctuation">)</span><span class="token punctuation">,</span><br>        <span class="token comment">// TODO: Create a new module for each component you want to embed</span><br>      <span class="token punctuation">}</span><span class="token punctuation">,</span><br>    <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Now we need to create our web component:<pre class=language-bash><code class=language-bash><span class="token function">mkdir</span> src<br><span class="token class-name builtin">cd</span> src<br><span class="token function">touch</span> my-app.ts<br><span class="token class-name builtin">cd</span> <span class="token punctuation">..</span></code></pre><p>Open <code>my-app.ts</code> and paste the following:<pre class=language-js><code class=language-js><span class="token keyword">import</span> <span class="token punctuation">{</span> html<span class="token punctuation">,</span> css<span class="token punctuation">,</span> LitElement <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"lit"</span><span class="token punctuation">;</span><br><span class="token keyword">import</span> <span class="token punctuation">{</span> customElement<span class="token punctuation">,</span> property <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"lit/decorators.js"</span><span class="token punctuation">;</span><br><br>@<span class="token function">customElement</span><span class="token punctuation">(</span><span class="token string">"my-app"</span><span class="token punctuation">)</span><br><span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">MyApp</span> <span class="token keyword">extends</span> <span class="token class-name">LitElement</span> <span class="token punctuation">{</span><br>  <span class="token keyword">static</span> styles <span class="token operator">=</span> css<span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string"><br>    p {<br>      color: blue;<br>    }<br>  </span><span class="token string template-punctuation">`</span></span><span class="token punctuation">;</span><br><br>  @<span class="token function">property</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>  name <span class="token operator">=</span> <span class="token string">"Somebody"</span><span class="token punctuation">;</span><br><br>  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">return</span> html<span class="token template-string"><span class="token string template-punctuation">`</span><span class="token string">&lt;div><br>      &lt;p>Hello, </span><span class="token interpolation"><span class="token punctuation interpolation-punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation interpolation-punctuation">}</span></span><span class="token string">!&lt;/p><br>      &lt;slot>&lt;/slot><br>    &lt;/div></span><span class="token string template-punctuation">`</span></span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre><p>We need to create a <code>index.html</code> for our web app.<pre class=language-bash><code class=language-bash><span class="token function">touch</span> index.html</code></pre><p>Open <code>index.html</code> and paste the following:<pre class=language-html><code class=language-html><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>X-UA-Compatible<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>IE=edge<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Example<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>module<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/src/my-app.ts<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css"><br>      <span class="token selector">body</span> <span class="token punctuation">{</span><br>        <span class="token property">padding</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span><br>        <span class="token property">margin</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span><br>      <span class="token punctuation">}</span><br>      <span class="token selector">my-app</span> <span class="token punctuation">{</span><br>        <span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span><br>        <span class="token property">height</span><span class="token punctuation">:</span> 100vh<span class="token punctuation">;</span><br>      <span class="token punctuation">}</span><br>    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>my-app</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>my-app</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre><h3 id=flutter-setup>Flutter Setup <a href=#flutter-setup class=direct-link>#</a></h3><p>Now that we have the basics setup for web we can move on to flutter. Let's create the project with the following:<pre class=language-bash><code class=language-bash>flutter create --platforms<span class="token operator">=</span>ios,android <span class="token class-name builtin">.</span><br>flutter packages get</code></pre><p>Open up <code>pubspec.yaml</code> and update it with the following:<pre class=language-yaml><code class=language-yaml><span class="token atrule key">name</span><span class="token punctuation">:</span> flutter_lit_example<br><span class="token atrule key">description</span><span class="token punctuation">:</span> A hybrid Flutter app.<br><span class="token atrule key">publish_to</span><span class="token punctuation">:</span> <span class="token string">"none"</span><br><span class="token atrule key">version</span><span class="token punctuation">:</span> 1.0.0+1<br><br><span class="token atrule key">environment</span><span class="token punctuation">:</span><br>  <span class="token atrule key">sdk</span><span class="token punctuation">:</span> <span class="token string">">=2.7.0 &lt;3.0.0"</span><br><br><span class="token atrule key">dependencies</span><span class="token punctuation">:</span><br>  <span class="token atrule key">flutter</span><span class="token punctuation">:</span><br>    <span class="token atrule key">sdk</span><span class="token punctuation">:</span> flutter<br>  <span class="token atrule key">flutter_inappwebview</span><span class="token punctuation">:</span> ^5.3.2<br><br><span class="token atrule key">dev_dependencies</span><span class="token punctuation">:</span><br>  <span class="token atrule key">flutter_test</span><span class="token punctuation">:</span><br>    <span class="token atrule key">sdk</span><span class="token punctuation">:</span> flutter<br><br><span class="token atrule key">flutter</span><span class="token punctuation">:</span><br>  <span class="token atrule key">uses-material-design</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></code></pre><p>Make sure to get the packages again:<pre class=language-bash><code class=language-bash>flutter packages get</code></pre><p>Now we need to create the file that will wrap the web component.<pre class=language-bash><code class=language-bash><span class="token class-name builtin">cd</span> lib<br><span class="token function">touch</span> web_component.dart<br><span class="token class-name builtin">cd</span> <span class="token punctuation">..</span></code></pre><p>Open <code>web_component.dart</code> and paste the following:<pre class=language-dart><code class=language-dart><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:flutter/material.dart'</span></span><span class="token punctuation">;</span><br><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:flutter_inappwebview/flutter_inappwebview.dart'</span></span><span class="token punctuation">;</span><br><br><span class="token keyword">class</span> <span class="token class-name">WebComponent</span> <span class="token keyword">extends</span> <span class="token class-name">StatefulWidget</span> <span class="token punctuation">{</span><br>  <span class="token keyword">const</span> <span class="token class-name">WebComponent</span><span class="token punctuation">(</span><span class="token punctuation">{</span><br>    <span class="token class-name">Key</span> key<span class="token punctuation">,</span><br>    <span class="token function metadata">@required</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">,</span><br>    <span class="token function metadata">@required</span> <span class="token keyword">this</span><span class="token punctuation">.</span>bundle<span class="token punctuation">,</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>attributes <span class="token operator">=</span> <span class="token keyword">const</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>slot <span class="token operator">=</span> <span class="token string-literal"><span class="token string">''</span></span><span class="token punctuation">,</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>events <span class="token operator">=</span> <span class="token keyword">const</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><br>  <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword">super</span><span class="token punctuation">(</span>key<span class="token punctuation">:</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token keyword">final</span> <span class="token class-name">String</span> name<span class="token punctuation">,</span> bundle<span class="token punctuation">;</span><br>  <span class="token keyword">final</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">></span></span> attributes<span class="token punctuation">;</span><br>  <span class="token keyword">final</span> <span class="token class-name">String</span> slot<span class="token punctuation">;</span><br>  <span class="token keyword">final</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EventCallback</span><span class="token punctuation">></span></span> events<span class="token punctuation">;</span><br><br>  <span class="token function metadata">@override</span><br>  _WebComponentState <span class="token function">createState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">_WebComponentState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">class</span> _WebComponentState <span class="token keyword">extends</span> <span class="token class-name">State</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">WebComponent</span><span class="token punctuation">></span></span> <span class="token punctuation">{</span><br>  <span class="token class-name">InAppWebViewController</span> controller<span class="token punctuation">;</span><br>  <span class="token keyword">final</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name">EventCallback</span><span class="token punctuation">></span><span class="token punctuation">></span></span> _events <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span><br><br>  <span class="token class-name">String</span> <span class="token keyword">get</span> source <span class="token punctuation">{</span><br>    <span class="token keyword">return</span> <span class="token string-literal"><span class="token string">'''&lt;!DOCTYPE html><br>&lt;html lang="en"><br>  &lt;head><br>    &lt;meta charset="UTF-8" /><br>    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge" /><br>    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /><br>    &lt;style><br>      body {<br>        padding: 0;<br>        margin: 0;<br>      }<br>      </span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">widget<span class="token punctuation">.</span>name</span><span class="token punctuation">}</span></span><span class="token string"> {<br>        width: 100%;<br>        height: 100vh;<br>      }<br>    &lt;/style><br>  &lt;script type="module" crossorigin src="</span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">widget<span class="token punctuation">.</span>bundle</span><span class="token punctuation">}</span></span><span class="token string">">&lt;/script><br>&lt;/head><br>  &lt;body><br>    &lt;</span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">widget<span class="token punctuation">.</span>name</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">widget<span class="token punctuation">.</span>attributes<span class="token punctuation">.</span>entries<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string-literal"><span class="token string">'</span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">e<span class="token punctuation">.</span>key</span><span class="token punctuation">}</span></span><span class="token string">="</span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">e<span class="token punctuation">.</span>value</span><span class="token punctuation">}</span></span><span class="token string">"'</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">' '</span></span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">><br>      </span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">widget<span class="token punctuation">.</span>slot</span><span class="token punctuation">}</span></span><span class="token string"><br>    &lt;/</span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">widget<span class="token punctuation">.</span>name</span><span class="token punctuation">}</span></span><span class="token string">><br>    &lt;script><br>    window.addEventListener("flutterInAppWebViewPlatformReady", (event) => {<br>      </span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">widget<span class="token punctuation">.</span>events<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'\n'</span></span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string"><br>    });<br>    &lt;/script><br>  &lt;/body><br>&lt;/html> <br>'''</span></span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><br>  <span class="token keyword">void</span> <span class="token function">_setup</span><span class="token punctuation">(</span><span class="token class-name">InAppWebViewController</span> controller<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>controller <span class="token operator">=</span> controller<span class="token punctuation">;</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_setupEvents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><br>  <span class="token keyword">void</span> <span class="token function">_setupEvents</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">final</span> event <span class="token keyword">in</span> _events<span class="token punctuation">.</span>keys<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>      controller<span class="token punctuation">.</span><span class="token function">removeJavaScriptHandler</span><span class="token punctuation">(</span>handlerName<span class="token punctuation">:</span> event<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">final</span> event <span class="token keyword">in</span> widget<span class="token punctuation">.</span>events<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>      <span class="token function">_addEvent</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">}</span><br><br>  <span class="token keyword">void</span> <span class="token function">_addEvent</span><span class="token punctuation">(</span><span class="token class-name">EventCallback</span> event<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    controller<span class="token punctuation">.</span><span class="token function">addJavaScriptHandler</span><span class="token punctuation">(</span><br>      handlerName<span class="token punctuation">:</span> event<span class="token punctuation">.</span>query<span class="token punctuation">,</span><br>      callback<span class="token punctuation">:</span> event<span class="token punctuation">.</span>onPressed<span class="token punctuation">,</span><br>    <span class="token punctuation">)</span><span class="token punctuation">;</span><br>    _events<span class="token punctuation">[</span>event<span class="token punctuation">.</span>event<span class="token punctuation">]</span> <span class="token operator">?</span><span class="token operator">?</span><span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br>    _events<span class="token punctuation">[</span>event<span class="token punctuation">.</span>event<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><br>  <span class="token function metadata">@override</span><br>  <span class="token keyword">void</span> <span class="token function">didUpdateWidget</span><span class="token punctuation">(</span><span class="token keyword">covariant</span> <span class="token class-name">WebComponent</span> oldWidget<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">if</span> <span class="token punctuation">(</span>oldWidget<span class="token punctuation">.</span>events <span class="token operator">!=</span> widget<span class="token punctuation">.</span>events<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>      <span class="token function">_setupEvents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>    <span class="token keyword">if</span> <span class="token punctuation">(</span>oldWidget<span class="token punctuation">.</span>slot <span class="token operator">!=</span> widget<span class="token punctuation">.</span>slot <span class="token operator">||</span><br>        oldWidget<span class="token punctuation">.</span>bundle <span class="token operator">!=</span> widget<span class="token punctuation">.</span>bundle <span class="token operator">||</span><br>        oldWidget<span class="token punctuation">.</span>name <span class="token operator">!=</span> widget<span class="token punctuation">.</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>      controller<span class="token punctuation">.</span><span class="token function">loadData</span><span class="token punctuation">(</span>data<span class="token punctuation">:</span> source<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br>    <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">didUpdateWidget</span><span class="token punctuation">(</span>oldWidget<span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><br>  <span class="token function metadata">@override</span><br>  <span class="token class-name">Widget</span> <span class="token function">build</span><span class="token punctuation">(</span><span class="token class-name">BuildContext</span> context<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">return</span> <span class="token class-name">InAppWebView</span><span class="token punctuation">(</span><br>      initialData<span class="token punctuation">:</span> <span class="token class-name">InAppWebViewInitialData</span><span class="token punctuation">(</span>data<span class="token punctuation">:</span> source<span class="token punctuation">)</span><span class="token punctuation">,</span><br>      onWebViewCreated<span class="token punctuation">:</span> _setup<span class="token punctuation">,</span><br>    <span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">class</span> <span class="token class-name">EventCallback</span> <span class="token punctuation">{</span><br>  <span class="token class-name">EventCallback</span><span class="token punctuation">(</span><span class="token punctuation">{</span><br>    <span class="token function metadata">@required</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onPressed<span class="token punctuation">,</span><br>    <span class="token function metadata">@required</span> <span class="token keyword">this</span><span class="token punctuation">.</span>event<span class="token punctuation">,</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>query<span class="token punctuation">,</span><br>  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token keyword">final</span> <span class="token class-name">String</span> query<span class="token punctuation">,</span> event<span class="token punctuation">;</span><br>  <span class="token keyword">final</span> <span class="token keyword">dynamic</span> <span class="token class-name">Function</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token keyword">dynamic</span><span class="token punctuation">></span></span> args<span class="token punctuation">)</span> onPressed<span class="token punctuation">;</span><br><br>  <span class="token function metadata">@override</span><br>  <span class="token class-name">String</span> <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> _source<span class="token punctuation">;</span><br><br>  <span class="token class-name">String</span> <span class="token keyword">get</span> _prefix <span class="token operator">=</span><span class="token operator">></span> query <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&&</span> query<span class="token punctuation">.</span>isNotEmpty<br>      <span class="token operator">?</span> <span class="token string-literal"><span class="token string">'document.querySelector("</span><span class="token interpolation"><span class="token punctuation">$</span><span class="token expression">query</span></span><span class="token string">")'</span></span><br>      <span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'document.body'</span></span><span class="token punctuation">;</span><br><br>  <span class="token class-name">String</span> <span class="token keyword">get</span> _source <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span><br>        <span class="token string-literal"><span class="token string">'</span><span class="token interpolation"><span class="token punctuation">$</span><span class="token expression">_prefix</span></span><span class="token string">.addEventListener("</span><span class="token interpolation"><span class="token punctuation">$</span><span class="token expression">event</span></span><span class="token string">", (e) => {'</span></span><span class="token punctuation">,</span><br>        <span class="token string-literal"><span class="token string">'  window.flutter_inappwebview.callHandler("</span><span class="token interpolation"><span class="token punctuation">$</span><span class="token expression">query</span></span><span class="token string">", e);'</span></span><span class="token punctuation">,</span><br>        <span class="token string-literal"><span class="token string">'}, false);'</span></span><span class="token punctuation">,</span><br>      <span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'\n'</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre><p>Open <code>main.dart</code> and paste it with th following:<pre class=language-dart><code class=language-dart><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:flutter/material.dart'</span></span><span class="token punctuation">;</span><br><br><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'web_component.dart'</span></span><span class="token punctuation">;</span><br><br><span class="token keyword">const</span> WEBSITE_URL <span class="token operator">=</span> <span class="token string-literal"><span class="token string">'https://rodydavis.github.io/flutter_lit_example/'</span></span><span class="token punctuation">;</span><br><span class="token keyword">const</span> BUNDLE_PATH <span class="token operator">=</span> <span class="token string-literal"><span class="token string">'assets/main.js'</span></span><span class="token punctuation">;</span><br><br><span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token class-name">WidgetsFlutterBinding</span><span class="token punctuation">.</span><span class="token function">ensureInitialized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token function">runApp</span><span class="token punctuation">(</span><span class="token class-name">MyApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">class</span> <span class="token class-name">MyApp</span> <span class="token keyword">extends</span> <span class="token class-name">StatelessWidget</span> <span class="token punctuation">{</span><br>  <span class="token keyword">final</span> title <span class="token operator">=</span> <span class="token string-literal"><span class="token string">'Flutter Hybrid App'</span></span><span class="token punctuation">;</span><br>  <span class="token function metadata">@override</span><br>  <span class="token class-name">Widget</span> <span class="token function">build</span><span class="token punctuation">(</span><span class="token class-name">BuildContext</span> context<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">return</span> <span class="token class-name">MaterialApp</span><span class="token punctuation">(</span><br>      debugShowCheckedModeBanner<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span><br>      title<span class="token punctuation">:</span> title<span class="token punctuation">,</span><br>      theme<span class="token punctuation">:</span> <span class="token class-name">ThemeData</span><span class="token punctuation">(</span>primarySwatch<span class="token punctuation">:</span> <span class="token class-name">Colors</span><span class="token punctuation">.</span>blue<span class="token punctuation">)</span><span class="token punctuation">,</span><br>      home<span class="token punctuation">:</span> <span class="token class-name">MyHomePage</span><span class="token punctuation">(</span>title<span class="token punctuation">:</span> title<span class="token punctuation">)</span><span class="token punctuation">,</span><br>    <span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">class</span> <span class="token class-name">MyHomePage</span> <span class="token keyword">extends</span> <span class="token class-name">StatefulWidget</span> <span class="token punctuation">{</span><br>  <span class="token class-name">MyHomePage</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token class-name">Key</span> key<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>title<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword">super</span><span class="token punctuation">(</span>key<span class="token punctuation">:</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>  <span class="token keyword">final</span> <span class="token class-name">String</span> title<span class="token punctuation">;</span><br><br>  <span class="token function metadata">@override</span><br>  _MyHomePageState <span class="token function">createState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">_MyHomePageState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">class</span> _MyHomePageState <span class="token keyword">extends</span> <span class="token class-name">State</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">MyHomePage</span><span class="token punctuation">></span></span> <span class="token punctuation">{</span><br>  <span class="token function metadata">@override</span><br>  <span class="token class-name">Widget</span> <span class="token function">build</span><span class="token punctuation">(</span><span class="token class-name">BuildContext</span> context<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">return</span> <span class="token class-name">Scaffold</span><span class="token punctuation">(</span><br>      appBar<span class="token punctuation">:</span> <span class="token class-name">AppBar</span><span class="token punctuation">(</span><br>        title<span class="token punctuation">:</span> <span class="token class-name">Text</span><span class="token punctuation">(</span>widget<span class="token punctuation">.</span>title<span class="token punctuation">)</span><span class="token punctuation">,</span><br>      <span class="token punctuation">)</span><span class="token punctuation">,</span><br>      body<span class="token punctuation">:</span> <span class="token class-name">Builder</span><span class="token punctuation">(</span><br>        builder<span class="token punctuation">:</span> <span class="token punctuation">(</span>context<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token class-name">WebComponent</span><span class="token punctuation">(</span><br>          name<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'my-app'</span></span><span class="token punctuation">,</span><br>          bundle<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'</span><span class="token interpolation"><span class="token punctuation">$</span><span class="token expression">WEBSITE_URL</span></span><span class="token string">/</span><span class="token interpolation"><span class="token punctuation">$</span><span class="token expression">BUNDLE_PATH</span></span><span class="token string">'</span></span><span class="token punctuation">,</span><br>          attributes<span class="token punctuation">:</span> <span class="token punctuation">{</span><br>            <span class="token string-literal"><span class="token string">'name'</span></span><span class="token punctuation">:</span> widget<span class="token punctuation">.</span>title<span class="token punctuation">,</span><br>          <span class="token punctuation">}</span><span class="token punctuation">,</span><br>          slot<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'&lt;button id="my-button">Talk back!&lt;/button>'</span></span><span class="token punctuation">,</span><br>          events<span class="token punctuation">:</span> <span class="token punctuation">[</span><br>            <span class="token class-name">EventCallback</span><span class="token punctuation">(</span><br>              event<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'click'</span></span><span class="token punctuation">,</span><br>              query<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'#my-button'</span></span><span class="token punctuation">,</span><br>              onPressed<span class="token punctuation">:</span> <span class="token punctuation">(</span>_<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>                <span class="token class-name">ScaffoldMessenger</span><span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>context<span class="token punctuation">)</span><br>                    <span class="token punctuation">.</span><span class="token function">showSnackBar</span><span class="token punctuation">(</span><span class="token class-name">SnackBar</span><span class="token punctuation">(</span>content<span class="token punctuation">:</span> <span class="token class-name">Text</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'Clicked!'</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>              <span class="token punctuation">}</span><span class="token punctuation">,</span><br>            <span class="token punctuation">)</span><span class="token punctuation">,</span><br>          <span class="token punctuation">]</span><span class="token punctuation">,</span><br>        <span class="token punctuation">)</span><span class="token punctuation">,</span><br>      <span class="token punctuation">)</span><span class="token punctuation">,</span><br>    <span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br></code></pre><p>You will need to update <code>WEBSITE_URL</code> to have the url of the website where you will be deploying and <code>BUNDLE_URL</code> to the relative path to the js bundle.<p>This will ensure auto updates with a new version rolls out and the cache it stale. This will also allow for offline support after the first time it is downloaded.<h2 id=running>Running <a href=#running class=direct-link>#</a></h2><p>Now we can run our application but it requires a few steps to get it all setup.<p>To test and build our web app locally we will use <a href=https://github.com/vitejs/vite>vite</a> and render the <code>index.html</code><pre class=language-bash><code class=language-bash><span class="token function">npm</span> i<br><span class="token function">npm</span> run dev</code></pre><p>You should see the following:<pre class=language-html><code class=language-html>vite v2.2.3 dev server running at:<br><br>Local:    http://localhost:3000/flutter_lit_example/<br>Network:  http://192.168.1.143:3000/flutter_lit_example/<br><br>ready in 311ms.</code></pre><p>We can open the link <code>http://localhost:3000/flutter_lit_example/</code> to see our running web app and hot reload changes from <code>my-app.ts</code>.<p>If you want to learn more about Lit you can read the docs <a href=https://lit.dev>here</a>.<p>Once you are happy with how it looks we can move on to Flutter to wrap it in a native app. This will give us access to native code if we wanted to use the in app purchase api or push notifications.<p>Kill the terminal and run the following:<pre class=language-bash><code class=language-bash>flutter packages get<br>flutter build ios<br>flutter build appbundle<br>flutter run</code></pre><p>This should select a running device or prompt you to select one. Now that it is running on the device you can see we have two way communication with the Flutter app and the web component.<h2 id=conclusion>Conclusion <a href=#conclusion class=direct-link>#</a></h2><p>If you want to find the source code you can check it out <a href=https://github.com/rodydavis/flutter_hybrid_template>here</a> otherwise thanks for reading and let me know if you have any questions!<h1>🙏🙏🙏</h1><p>Since you've made it this far, <a href=https://rodydavis.com/posts/flutter-and-lit/ on-click=share>sharing</a> this article on your favorite social media network would be highly appreciated 💖! For feedback, please <a href=https://twitter.com/rodydavis rel=noopener target=_blank>ping me on Twitter.</a></p><share-widget><button aria-label=Share href=https://rodydavis.com/posts/flutter-and-lit/ on-click=share><div></div></button></share-widget><script type=application/ld+json>{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Lit and Flutter",
-  "image": [],
-  "author": "Rody Davis", 
-  "genre": "https://schema.org/Code", 
-  "publisher": {
-    "@type": "Organization",
-    "name": "Rody Davis",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "/img/favicon/favicon-32x32.png?hash=3df5885280"
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="icon" type="image/x-icon" href="/img/favicon/favicon.ico">
+
+<!-- Primary Meta Tags -->
+<title>Lit and Flutter</title>
+<meta name="title" content="Lit and Flutter">
+<meta name="description">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url">
+<meta property="og:title" content="Lit and Flutter">
+<meta property="og:description">
+<meta property="og:image" content="https://astro.build/social.jpg?v=1">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url">
+<meta property="twitter:title" content="Lit and Flutter">
+<meta property="twitter:description">
+<meta property="twitter:image" content="https://astro.build/social.jpg?v=1">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;700&display=swap">
+<link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-lucario.css">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JQNPVBL9DR');
+</script>
+	<link rel="stylesheet" href="/assets/BlogContent.6b85ce27.css"></link>
+<link rel="stylesheet" href="/assets/social-links.ac123a03.css"></link>
+<link rel="stylesheet" href="/assets/_slug_.2050125d.css"></link><style astro-style="true">astro-root, astro-fragment { display: contents; }</style><script type="module" astro-script="/posts/flutter-and-lit//script-0">import "../../client-shim.751854cd.js";</script>
+<script type="module" data-astro-component-hydration astro-script="/posts/flutter-and-lit//script-1">import setup from '../../load.644f6253.js';
+setup("2kOu6x", {name:"app-header",value: true}, async () => {
+  await Promise.all([
+  import("../../hydration-support.20f55b8e.js")]);
+await import("../../app-header.0698726e.js");
+  return () => {};
+
+});
+</script>
+</head>
+
+	<body>
+		<astro-root uid="2kOu6x"><app-header><template shadowroot="open"><style>
+    header {
+      width: 100%;
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      display: flex;
+      align-items: center;
+      --input-size: 32px;
     }
-  },
-  "url": "https://rodydavis.com/posts/flutter-and-lit/",
-  "mainEntityOfPage": "https://rodydavis.com/posts/flutter-and-lit/",
-  "datePublished": "2021-05-05",
-  "dateModified": "2022-03-17",
-  "description": "In this article I will go over how to set up a Lit web component and use it inline in the Flutter widget tree. TLDR You can find the final..."
-}</script><p>Published <time datetime=2021-05-05>05 May 2021</time></article></main><footer><a href=https://twitter.com/rodydavis class="fab fa-twitter" rel="noopener noreferrer" target=_blank></a> <a href=https://facebook.com/rodydavisjr class="fab fa-facebook" rel="noopener noreferrer" target=_blank></a> <a href=https://www.linkedin.com/in/rodydavis class="fab fa-linkedin" rel="noopener noreferrer" target=_blank></a> <a href=https://www.youtube.com/rodydavis class="fab fa-youtube" rel="noopener noreferrer" target=_blank></a> <a href=https://www.instagram.com/rodydavisjr class="fab fa-instagram" rel="noopener noreferrer" target=_blank></a> <a href=https://www.github.com/rodydavis class="fab fa-github" rel="noopener noreferrer" target=_blank></a> <a href=https://www.tiktok.com/@rodydavisjr class="fab fa-tiktok" rel="noopener noreferrer" target=_blank></a></footer><script src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR" async></script><script>window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
+
+    article {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+    }
+
+    img {
+      margin-right: 1rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      max-width: 100%;
+      display: flex;
+      flex-grow: 1;
+    }
+
+    .logo {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    svg {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    a {
+      text-decoration: none;
+      display: inline-flex;
+      color: var(--md-sys-color-on-primary-container);
+      margin-right: 1rem;
+    }
+
+    icon-button {
+      margin-left: 3px;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+    }
+
+    input[type="color"] {
+      width: calc(var(--input-size) * 2);
+      height: var(--input-size);
+      outline: none;
+      border: none;
+      border-radius: 50%;
+      background-color: var(--md-sys-color-primary-container);
+    }
+    input[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+    input[type="color"]::-webkit-color-swatch {
+      border: none;
+      border-radius: var(--input-size);
+      border: var(--md-sys-color-outline) solid 1px;
+    }
+
+    .links {
+      display: none;
+    }
+
+    @media (min-width: 600px) {
+      .links {
+        display: flex;
       }
-      gtag('js', new Date());
-      gtag('config', 'G-JQNPVBL9DR');</script>
+    }
+  </style><!--lit-part tWH7hVWrhQY=--><header class="wrapper">
+      <article>
+        <h1>
+          <a href="/">
+            <span><!--lit-part-->Rody Davis<!--/lit-part--></span>
+          </a>
+        </h1>
+        <div class="links">
+          <a href="/apps"> Apps </a>
+          <a href="/posts"> Blog </a>
+          <a href="/talks"> Talks </a>
+          <a href="/about"> About </a>
+        </div>
+        <div class="actions">
+          <input
+            type="color"
+            value="#B34EE2"
+            
+          /><!--lit-node 12-->
+          <icon-button
+            
+            
+           icon="shuffle"><!--lit-node 13--><template shadowroot="open"><style>
+    .icon {
+      --icon-size: 24px;
+      --icon-padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      color: var(--icon-color);
+    }
+    .icon:hover {
+      outline: 1px solid var(--md-sys-color-outline);
+    }
+    .icon :first-child {
+      padding: var(--icon-padding);
+    }
+    .material-icons {
+      font-family: "Material Icons";
+      font-weight: normal;
+      font-style: normal;
+      font-size: var(--icon-size);
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "liga";
+    }
+
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style><!--lit-part jPZqHVkf+Tk=-->
+      <div class="icon">
+        <i class="material-icons"><!--lit-part-->shuffle<!--/lit-part--></i>
+      </div>
+    <!--/lit-part--></template></icon-button>
+          <icon-button
+            
+            
+           icon="dark_mode"><!--lit-node 14--><template shadowroot="open"><style>
+    .icon {
+      --icon-size: 24px;
+      --icon-padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      color: var(--icon-color);
+    }
+    .icon:hover {
+      outline: 1px solid var(--md-sys-color-outline);
+    }
+    .icon :first-child {
+      padding: var(--icon-padding);
+    }
+    .material-icons {
+      font-family: "Material Icons";
+      font-weight: normal;
+      font-style: normal;
+      font-size: var(--icon-size);
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "liga";
+    }
+
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style><!--lit-part jPZqHVkf+Tk=-->
+      <div class="icon">
+        <i class="material-icons"><!--lit-part-->dark_mode<!--/lit-part--></i>
+      </div>
+    <!--/lit-part--></template></icon-button>
+          <!--lit-part BRUAAAUVAAA=--><?><!--/lit-part-->
+        </div>
+      </article>
+    </header><!--/lit-part--></template></app-header></astro-root>
+		<div class="wrapper">
+			<div class="layout astro-X5J4CTKI">
+	<article class="content astro-X5J4CTKI">
+		<div class="astro-X5J4CTKI">
+			<header class="astro-X5J4CTKI">
+				<img width="720" height="420" class="hero-image astro-X5J4CTKI" loading="lazy" src="/img/flutter/first.png">
+				<p class="publish-date astro-X5J4CTKI">5 May 2021 ~ 7 min read</p>
+				<h1 class="title astro-X5J4CTKI">Lit and Flutter</h1>
+				<div class="author astro-KO5QTRDP">
+	<p class="astro-KO5QTRDP"><a href="https://twitter.com/rodydavis" class="astro-KO5QTRDP">@rodydavis</a></p>
+</div>
+
+
+
+				 <tag-list class="astro-X5J4CTKI"><template shadowroot="open"><style>
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    tag-item {
+      margin-bottom: 0.4rem;
+      margin-top: 0.4rem;
+    }
+  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+      <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/posts"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->posts<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="flutter"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/flutter"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->flutter<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="web"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/web"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->web<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="vite"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/vite"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->vite<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="lit"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/lit"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->lit<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--/lit-part-->
+    </div><!--/lit-part--></template></tag-list>
+			</header>
+			<main class="astro-X5J4CTKI">
+				<div class="layout astro-W2QVQNXU">
+	<article class="content astro-W2QVQNXU">
+		<div class="astro-W2QVQNXU">
+			<main class="astro-W2QVQNXU">
+				<p>In this article I will go over how to set up a <a href="https://lit.dev">Lit</a> web component and use it inline in the Flutter widget tree.</p>
+<p><strong>TLDR</strong> You can find the final source <a href="https://github.com/rodydavis/flutter_hybrid_template">here</a>.</p>
+<p>The reason you would want this integration is so you can take an existing web app, or just a single part of it and embed it in the widget tree.</p>
+<p>With it wrapped in Flutter you can call device APIs from event listeners on your web component.</p>
+<p>For example you may have an app that handles purchases, and now you can call the in app purchase API or other device specific features not available on the web.</p>
+<p>You also get a cross platform app that can be delivered to both Google Play and the App Store.</p>
+<p>The web component will receive new code each time you update your site, so you do not have to ship an update each time the web component changes.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Flutter SDK</li>
+<li>Xcode and Command Line Tools</li>
+<li>Android SDK</li>
+<li>Vscode</li>
+<li>Node</li>
+<li>Typescript</li>
+</ul>
+<h2 id="getting-started">Getting Started</h2>
+<p>We can start off by creating a empty directory and naming it with <code>snake_case</code> whatever we want.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">mkdir</span> flutter_lit_example
+<span class="token builtin class-name">cd</span> flutter_lit_example</code></pre>
+<h3 id="web-setup">Web Setup</h3>
+<p>Now we are in the <code>flutter_lit_example</code> directory and can setup Flutter and Lit. Let’s start with node.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> init -y
+<span class="token function">npm</span> i lit
+<span class="token function">npm</span> i -D typescript vite @types/node</code></pre>
+<p>This will setup the basics for a node project and install the packages we need. Now lets add some config files.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">touch</span> tsconfig.json
+<span class="token function">touch</span> vite.config.ts</code></pre>
+<p>This will create 2 files. Now open up <code>tsconfig.json</code> and paste the following:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"compilerOptions"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"module"</span><span class="token operator">:</span> <span class="token string">"esnext"</span><span class="token punctuation">,</span>
+    <span class="token property">"lib"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">"es2017"</span><span class="token punctuation">,</span>
+      <span class="token string">"dom"</span><span class="token punctuation">,</span>
+      <span class="token string">"dom.iterable"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"types"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">"vite/client"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"declaration"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"emitDeclarationOnly"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"outDir"</span><span class="token operator">:</span> <span class="token string">"./types"</span><span class="token punctuation">,</span>
+    <span class="token property">"rootDir"</span><span class="token operator">:</span> <span class="token string">"./src"</span><span class="token punctuation">,</span>
+    <span class="token property">"strict"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"noUnusedLocals"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"noUnusedParameters"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"noImplicitReturns"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"noFallthroughCasesInSwitch"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"moduleResolution"</span><span class="token operator">:</span> <span class="token string">"node"</span><span class="token punctuation">,</span>
+    <span class="token property">"allowSyntheticDefaultImports"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"experimentalDecorators"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"forceConsistentCasingInFileNames"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"include"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"src/**/*.ts"</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"exclude"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<p>This is a basic typescript config. Now open up <code>vite.config.ts</code> and paste the following:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> defineConfig <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"vite"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> resolve <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"path"</span><span class="token punctuation">;</span>
+
+<span class="token comment">// https://vitejs.dev/config/</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">base</span><span class="token operator">:</span> <span class="token string">"/flutter_lit_example/"</span><span class="token punctuation">,</span> <span class="token comment">// TODO: Name of your github repo</span>
+  <span class="token literal-property property">build</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">outDir</span><span class="token operator">:</span> <span class="token string">"build/web"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">rollupOptions</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">output</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token literal-property property">entryFileNames</span><span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">assets/[name].js</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token literal-property property">chunkFileNames</span><span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">assets/[name].js</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token literal-property property">assetFileNames</span><span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">assets/[name].[ext]</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">input</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token literal-property property">main</span><span class="token operator">:</span> <span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">"index.html"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token comment">// TODO: Create a new module for each component you want to embed</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Now we need to create our web component:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">mkdir</span> src
+<span class="token builtin class-name">cd</span> src
+<span class="token function">touch</span> my-app.ts
+<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span></code></pre>
+<p>Open <code>my-app.ts</code> and paste the following:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> html<span class="token punctuation">,</span> css<span class="token punctuation">,</span> LitElement <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"lit"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> customElement<span class="token punctuation">,</span> property <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"lit/decorators.js"</span><span class="token punctuation">;</span>
+
+@<span class="token function">customElement</span><span class="token punctuation">(</span><span class="token string">"my-app"</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">MyApp</span> <span class="token keyword">extends</span> <span class="token class-name">LitElement</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> styles <span class="token operator">=</span> css<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+    p {
+      color: blue;
+    }
+  </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+
+  @<span class="token function">property</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  name <span class="token operator">=</span> <span class="token string">"Somebody"</span><span class="token punctuation">;</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> html<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">&lt;div>
+      &lt;p>Hello, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">!&lt;/p>
+      &lt;slot>&lt;/slot>
+    &lt;/div></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>We need to create a <code>index.html</code> for our web app.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">touch</span> index.html</code></pre>
+<p>Open <code>index.html</code> and paste the following:</p>
+<pre class="language-html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>X-UA-Compatible<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>IE=edge<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Example<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>module<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/src/my-app.ts<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
+      <span class="token selector">body</span> <span class="token punctuation">{</span>
+        <span class="token property">padding</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+        <span class="token property">margin</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token selector">my-app</span> <span class="token punctuation">{</span>
+        <span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+        <span class="token property">height</span><span class="token punctuation">:</span> 100vh<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>my-app</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>my-app</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
+<h3 id="flutter-setup">Flutter Setup</h3>
+<p>Now that we have the basics setup for web we can move on to flutter. Let’s create the project with the following:</p>
+<pre class="language-bash"><code class="language-bash">flutter create --platforms<span class="token operator">=</span>ios,android <span class="token builtin class-name">.</span>
+flutter packages get</code></pre>
+<p>Open up <code>pubspec.yaml</code> and update it with the following:</p>
+<pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">name</span><span class="token punctuation">:</span> flutter_lit_example
+<span class="token key atrule">description</span><span class="token punctuation">:</span> A hybrid Flutter app.
+<span class="token key atrule">publish_to</span><span class="token punctuation">:</span> <span class="token string">"none"</span>
+<span class="token key atrule">version</span><span class="token punctuation">:</span> 1.0.0+1
+
+<span class="token key atrule">environment</span><span class="token punctuation">:</span>
+  <span class="token key atrule">sdk</span><span class="token punctuation">:</span> <span class="token string">">=2.7.0 &lt;3.0.0"</span>
+
+<span class="token key atrule">dependencies</span><span class="token punctuation">:</span>
+  <span class="token key atrule">flutter</span><span class="token punctuation">:</span>
+    <span class="token key atrule">sdk</span><span class="token punctuation">:</span> flutter
+  <span class="token key atrule">flutter_inappwebview</span><span class="token punctuation">:</span> ^5.3.2
+
+<span class="token key atrule">dev_dependencies</span><span class="token punctuation">:</span>
+  <span class="token key atrule">flutter_test</span><span class="token punctuation">:</span>
+    <span class="token key atrule">sdk</span><span class="token punctuation">:</span> flutter
+
+<span class="token key atrule">flutter</span><span class="token punctuation">:</span>
+  <span class="token key atrule">uses-material-design</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></code></pre>
+<p>Make sure to get the packages again:</p>
+<pre class="language-bash"><code class="language-bash">flutter packages get</code></pre>
+<p>Now we need to create the file that will wrap the web component.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token builtin class-name">cd</span> lib
+<span class="token function">touch</span> web_component.dart
+<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span></code></pre>
+<p>Open <code>web_component.dart</code> and paste the following:</p>
+<pre class="language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:flutter/material.dart'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:flutter_inappwebview/flutter_inappwebview.dart'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">WebComponent</span> <span class="token keyword">extends</span> <span class="token class-name">StatefulWidget</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token class-name">WebComponent</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token class-name">Key</span> key<span class="token punctuation">,</span>
+    <span class="token metadata function">@required</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">,</span>
+    <span class="token metadata function">@required</span> <span class="token keyword">this</span><span class="token punctuation">.</span>bundle<span class="token punctuation">,</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>attributes <span class="token operator">=</span> <span class="token keyword">const</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>slot <span class="token operator">=</span> <span class="token string-literal"><span class="token string">''</span></span><span class="token punctuation">,</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>events <span class="token operator">=</span> <span class="token keyword">const</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword">super</span><span class="token punctuation">(</span>key<span class="token punctuation">:</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">final</span> <span class="token class-name">String</span> name<span class="token punctuation">,</span> bundle<span class="token punctuation">;</span>
+  <span class="token keyword">final</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">></span></span> attributes<span class="token punctuation">;</span>
+  <span class="token keyword">final</span> <span class="token class-name">String</span> slot<span class="token punctuation">;</span>
+  <span class="token keyword">final</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EventCallback</span><span class="token punctuation">></span></span> events<span class="token punctuation">;</span>
+
+  <span class="token metadata function">@override</span>
+  _WebComponentState <span class="token function">createState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">_WebComponentState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> _WebComponentState <span class="token keyword">extends</span> <span class="token class-name">State</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">WebComponent</span><span class="token punctuation">></span></span> <span class="token punctuation">{</span>
+  <span class="token class-name">InAppWebViewController</span> controller<span class="token punctuation">;</span>
+  <span class="token keyword">final</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name">EventCallback</span><span class="token punctuation">></span><span class="token punctuation">></span></span> _events <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token class-name">String</span> <span class="token keyword">get</span> source <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string-literal"><span class="token string">'''&lt;!DOCTYPE html>
+&lt;html lang="en">
+  &lt;head>
+    &lt;meta charset="UTF-8" />
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    &lt;style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      </span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">widget<span class="token punctuation">.</span>name</span><span class="token punctuation">}</span></span><span class="token string"> {
+        width: 100%;
+        height: 100vh;
+      }
+    &lt;/style>
+  &lt;script type="module" crossorigin src="</span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">widget<span class="token punctuation">.</span>bundle</span><span class="token punctuation">}</span></span><span class="token string">">&lt;/script>
+&lt;/head>
+  &lt;body>
+    &lt;</span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">widget<span class="token punctuation">.</span>name</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">widget<span class="token punctuation">.</span>attributes<span class="token punctuation">.</span>entries<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string-literal"><span class="token string">'</span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">e<span class="token punctuation">.</span>key</span><span class="token punctuation">}</span></span><span class="token string">="</span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">e<span class="token punctuation">.</span>value</span><span class="token punctuation">}</span></span><span class="token string">"'</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">' '</span></span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">>
+      </span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">widget<span class="token punctuation">.</span>slot</span><span class="token punctuation">}</span></span><span class="token string">
+    &lt;/</span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">widget<span class="token punctuation">.</span>name</span><span class="token punctuation">}</span></span><span class="token string">>
+    &lt;script>
+    window.addEventListener("flutterInAppWebViewPlatformReady", (event) => {
+      </span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">widget<span class="token punctuation">.</span>events<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'\n'</span></span><span class="token punctuation">)</span></span><span class="token punctuation">}</span></span><span class="token string">
+    });
+    &lt;/script>
+  &lt;/body>
+&lt;/html> 
+'''</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">void</span> <span class="token function">_setup</span><span class="token punctuation">(</span><span class="token class-name">InAppWebViewController</span> controller<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>controller <span class="token operator">=</span> controller<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_setupEvents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">void</span> <span class="token function">_setupEvents</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">final</span> event <span class="token keyword">in</span> _events<span class="token punctuation">.</span>keys<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      controller<span class="token punctuation">.</span><span class="token function">removeJavaScriptHandler</span><span class="token punctuation">(</span>handlerName<span class="token punctuation">:</span> event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">final</span> event <span class="token keyword">in</span> widget<span class="token punctuation">.</span>events<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">_addEvent</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">void</span> <span class="token function">_addEvent</span><span class="token punctuation">(</span><span class="token class-name">EventCallback</span> event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    controller<span class="token punctuation">.</span><span class="token function">addJavaScriptHandler</span><span class="token punctuation">(</span>
+      handlerName<span class="token punctuation">:</span> event<span class="token punctuation">.</span>query<span class="token punctuation">,</span>
+      callback<span class="token punctuation">:</span> event<span class="token punctuation">.</span>onPressed<span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _events<span class="token punctuation">[</span>event<span class="token punctuation">.</span>event<span class="token punctuation">]</span> <span class="token operator">?</span><span class="token operator">?</span><span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    _events<span class="token punctuation">[</span>event<span class="token punctuation">.</span>event<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token metadata function">@override</span>
+  <span class="token keyword">void</span> <span class="token function">didUpdateWidget</span><span class="token punctuation">(</span><span class="token keyword">covariant</span> <span class="token class-name">WebComponent</span> oldWidget<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>oldWidget<span class="token punctuation">.</span>events <span class="token operator">!=</span> widget<span class="token punctuation">.</span>events<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">_setupEvents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>oldWidget<span class="token punctuation">.</span>slot <span class="token operator">!=</span> widget<span class="token punctuation">.</span>slot <span class="token operator">||</span>
+        oldWidget<span class="token punctuation">.</span>bundle <span class="token operator">!=</span> widget<span class="token punctuation">.</span>bundle <span class="token operator">||</span>
+        oldWidget<span class="token punctuation">.</span>name <span class="token operator">!=</span> widget<span class="token punctuation">.</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      controller<span class="token punctuation">.</span><span class="token function">loadData</span><span class="token punctuation">(</span>data<span class="token punctuation">:</span> source<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">didUpdateWidget</span><span class="token punctuation">(</span>oldWidget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token metadata function">@override</span>
+  <span class="token class-name">Widget</span> <span class="token function">build</span><span class="token punctuation">(</span><span class="token class-name">BuildContext</span> context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token class-name">InAppWebView</span><span class="token punctuation">(</span>
+      initialData<span class="token punctuation">:</span> <span class="token class-name">InAppWebViewInitialData</span><span class="token punctuation">(</span>data<span class="token punctuation">:</span> source<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      onWebViewCreated<span class="token punctuation">:</span> _setup<span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">EventCallback</span> <span class="token punctuation">{</span>
+  <span class="token class-name">EventCallback</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token metadata function">@required</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onPressed<span class="token punctuation">,</span>
+    <span class="token metadata function">@required</span> <span class="token keyword">this</span><span class="token punctuation">.</span>event<span class="token punctuation">,</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>query<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">final</span> <span class="token class-name">String</span> query<span class="token punctuation">,</span> event<span class="token punctuation">;</span>
+  <span class="token keyword">final</span> <span class="token keyword">dynamic</span> <span class="token class-name">Function</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token keyword">dynamic</span><span class="token punctuation">></span></span> args<span class="token punctuation">)</span> onPressed<span class="token punctuation">;</span>
+
+  <span class="token metadata function">@override</span>
+  <span class="token class-name">String</span> <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> _source<span class="token punctuation">;</span>
+
+  <span class="token class-name">String</span> <span class="token keyword">get</span> _prefix <span class="token operator">=</span><span class="token operator">></span> query <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> query<span class="token punctuation">.</span>isNotEmpty
+      <span class="token operator">?</span> <span class="token string-literal"><span class="token string">'document.querySelector("</span><span class="token interpolation"><span class="token punctuation">$</span><span class="token expression">query</span></span><span class="token string">")'</span></span>
+      <span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'document.body'</span></span><span class="token punctuation">;</span>
+
+  <span class="token class-name">String</span> <span class="token keyword">get</span> _source <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+        <span class="token string-literal"><span class="token string">'</span><span class="token interpolation"><span class="token punctuation">$</span><span class="token expression">_prefix</span></span><span class="token string">.addEventListener("</span><span class="token interpolation"><span class="token punctuation">$</span><span class="token expression">event</span></span><span class="token string">", (e) => {'</span></span><span class="token punctuation">,</span>
+        <span class="token string-literal"><span class="token string">'  window.flutter_inappwebview.callHandler("</span><span class="token interpolation"><span class="token punctuation">$</span><span class="token expression">query</span></span><span class="token string">", e);'</span></span><span class="token punctuation">,</span>
+        <span class="token string-literal"><span class="token string">'}, false);'</span></span><span class="token punctuation">,</span>
+      <span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'\n'</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Open <code>main.dart</code> and paste it with th following:</p>
+<pre class="language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:flutter/material.dart'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'web_component.dart'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> WEBSITE_URL <span class="token operator">=</span> <span class="token string-literal"><span class="token string">'https://rodydavis.github.io/flutter_lit_example/'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> BUNDLE_PATH <span class="token operator">=</span> <span class="token string-literal"><span class="token string">'assets/main.js'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token class-name">WidgetsFlutterBinding</span><span class="token punctuation">.</span><span class="token function">ensureInitialized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">runApp</span><span class="token punctuation">(</span><span class="token class-name">MyApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MyApp</span> <span class="token keyword">extends</span> <span class="token class-name">StatelessWidget</span> <span class="token punctuation">{</span>
+  <span class="token keyword">final</span> title <span class="token operator">=</span> <span class="token string-literal"><span class="token string">'Flutter Hybrid App'</span></span><span class="token punctuation">;</span>
+  <span class="token metadata function">@override</span>
+  <span class="token class-name">Widget</span> <span class="token function">build</span><span class="token punctuation">(</span><span class="token class-name">BuildContext</span> context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token class-name">MaterialApp</span><span class="token punctuation">(</span>
+      debugShowCheckedModeBanner<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      title<span class="token punctuation">:</span> title<span class="token punctuation">,</span>
+      theme<span class="token punctuation">:</span> <span class="token class-name">ThemeData</span><span class="token punctuation">(</span>primarySwatch<span class="token punctuation">:</span> <span class="token class-name">Colors</span><span class="token punctuation">.</span>blue<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      home<span class="token punctuation">:</span> <span class="token class-name">MyHomePage</span><span class="token punctuation">(</span>title<span class="token punctuation">:</span> title<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MyHomePage</span> <span class="token keyword">extends</span> <span class="token class-name">StatefulWidget</span> <span class="token punctuation">{</span>
+  <span class="token class-name">MyHomePage</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token class-name">Key</span> key<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>title<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword">super</span><span class="token punctuation">(</span>key<span class="token punctuation">:</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">final</span> <span class="token class-name">String</span> title<span class="token punctuation">;</span>
+
+  <span class="token metadata function">@override</span>
+  _MyHomePageState <span class="token function">createState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">_MyHomePageState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> _MyHomePageState <span class="token keyword">extends</span> <span class="token class-name">State</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">MyHomePage</span><span class="token punctuation">></span></span> <span class="token punctuation">{</span>
+  <span class="token metadata function">@override</span>
+  <span class="token class-name">Widget</span> <span class="token function">build</span><span class="token punctuation">(</span><span class="token class-name">BuildContext</span> context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token class-name">Scaffold</span><span class="token punctuation">(</span>
+      appBar<span class="token punctuation">:</span> <span class="token class-name">AppBar</span><span class="token punctuation">(</span>
+        title<span class="token punctuation">:</span> <span class="token class-name">Text</span><span class="token punctuation">(</span>widget<span class="token punctuation">.</span>title<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+      body<span class="token punctuation">:</span> <span class="token class-name">Builder</span><span class="token punctuation">(</span>
+        builder<span class="token punctuation">:</span> <span class="token punctuation">(</span>context<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token class-name">WebComponent</span><span class="token punctuation">(</span>
+          name<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'my-app'</span></span><span class="token punctuation">,</span>
+          bundle<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'</span><span class="token interpolation"><span class="token punctuation">$</span><span class="token expression">WEBSITE_URL</span></span><span class="token string">/</span><span class="token interpolation"><span class="token punctuation">$</span><span class="token expression">BUNDLE_PATH</span></span><span class="token string">'</span></span><span class="token punctuation">,</span>
+          attributes<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string-literal"><span class="token string">'name'</span></span><span class="token punctuation">:</span> widget<span class="token punctuation">.</span>title<span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          slot<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'&lt;button id="my-button">Talk back!&lt;/button>'</span></span><span class="token punctuation">,</span>
+          events<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+            <span class="token class-name">EventCallback</span><span class="token punctuation">(</span>
+              event<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'click'</span></span><span class="token punctuation">,</span>
+              query<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'#my-button'</span></span><span class="token punctuation">,</span>
+              onPressed<span class="token punctuation">:</span> <span class="token punctuation">(</span>_<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token class-name">ScaffoldMessenger</span><span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>context<span class="token punctuation">)</span>
+                    <span class="token punctuation">.</span><span class="token function">showSnackBar</span><span class="token punctuation">(</span><span class="token class-name">SnackBar</span><span class="token punctuation">(</span>content<span class="token punctuation">:</span> <span class="token class-name">Text</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'Clicked!'</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>You will need to update <code>WEBSITE_URL</code> to have the url of the website where you will be deploying and <code>BUNDLE_URL</code> to the relative path to the js bundle.</p>
+<p>This will ensure auto updates with a new version rolls out and the cache it stale. This will also allow for offline support after the first time it is downloaded.</p>
+<h2 id="running">Running</h2>
+<p>Now we can run our application but it requires a few steps to get it all setup.</p>
+<p>To test and build our web app locally we will use <a href="https://github.com/vitejs/vite">vite</a> and render the <code>index.html</code></p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> i
+<span class="token function">npm</span> run dev</code></pre>
+<p>You should see the following:</p>
+<pre class="language-html"><code class="language-html">vite v2.2.3 dev server running at:
+
+Local:    http://localhost:3000/flutter_lit_example/
+Network:  http://192.168.1.143:3000/flutter_lit_example/
+
+ready in 311ms.</code></pre>
+<p>We can open the link <code>http://localhost:3000/flutter_lit_example/</code> to see our running web app and hot reload changes from <code>my-app.ts</code>.</p>
+<p>If you want to learn more about Lit you can read the docs <a href="https://lit.dev">here</a>.</p>
+<p>Once you are happy with how it looks we can move on to Flutter to wrap it in a native app. This will give us access to native code if we wanted to use the in app purchase api or push notifications.</p>
+<p>Kill the terminal and run the following:</p>
+<pre class="language-bash"><code class="language-bash">flutter packages get
+flutter build ios
+flutter build appbundle
+flutter run</code></pre>
+<p>This should select a running device or prompt you to select one. Now that it is running on the device you can see we have two way communication with the Flutter app and the web component.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>If you want to find the source code you can check it out <a href="https://github.com/rodydavis/flutter_hybrid_template">here</a> otherwise thanks for reading and let me know if you have any questions!</p>
+			</main>
+		</div>
+	</article>
+</div>
+
+
+
+			</main>
+		</div>
+	</article>
+</div>
+
+
+
+		</div>
+		<div style="height: 25px"></div>
+		<social-links><template shadowroot="open"><style>
+    footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: var(--width, 100%);
+      margin-bottom: 2rem;
+    }
+    .fab,
+    svg {
+      --size: 3vw;
+      width: var(--size);
+      height: var(--size);
+      max-width: 30px;
+      max-height: 30px;
+      min-width: 20px;
+      min-height: 20px;
+      margin: 0.5rem;
+      color: var(--md-sys-color-on-surface);
+      font-family: FontAwesome;
+      cursor: pointer;
+    }
+    svg {
+      color: var(--md-sys-color-on-surface);
+    }
+  </style><!--lit-part fkbI1zGBADw=--><footer>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://twitter.com/rodydavis"
+        class="fab fa fa-twitter"
+      >
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="twitter"
+          class="svg-inline--fa fa-twitter fa-w-16"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
+          ></path>
+        </svg>
+      </a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://facebook.com/rodydavisjr"
+        class="fab fa fa-facebook"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="facebook-f"
+          class="svg-inline--fa fa-facebook-f fa-w-10"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+        >
+          <path
+            fill="currentColor"
+            d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.linkedin.com/in/rodydavis"
+        class="fab fa fa-linkedin"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="linkedin-in"
+          class="svg-inline--fa fa-linkedin-in fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.youtube.com/rodydavis"
+        class="fab fa fa-youtube"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="youtube"
+          class="svg-inline--fa fa-youtube fa-w-18"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 576 512"
+        >
+          <path
+            fill="currentColor"
+            d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.instagram.com/rodydavisjr"
+        class="fab fa fa-instagram"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="instagram"
+          class="svg-inline--fa fa-instagram fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.github.com/rodydavis"
+        class="fab fa fa-github"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="github"
+          class="svg-inline--fa fa-github fa-w-16"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 496 512"
+        >
+          <path
+            fill="currentColor"
+            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.tiktok.com/@rodydavisjr"
+        class="fab fa-tiktok"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="tiktok"
+          class="svg-inline--fa fa-tiktok fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"
+          ></path></svg
+      ></a>
+    </footer><!--/lit-part--></template></social-links>
+	</body></html>
