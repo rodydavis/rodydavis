@@ -16,7 +16,7 @@ const { title, description, publishDate, author, image, permalink, alt, tags } =
 	</head>
 
 	<body>
-		<app-header client:load ></app-header>
+		<app-header {title} client:load ></app-header>
 		<div class="wrapper">
 			<BlogPost {title} {author} {image} {publishDate} {alt} {tags} {readingTime}>
 				<slot />

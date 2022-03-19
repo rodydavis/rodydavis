@@ -11,7 +11,7 @@ export interface Props {
 	alt: string;
 }
 
-const { title, author, publishDate, image, alt, tags, readingTime } = Astro.props;
+const { title, publishDate, image, alt, tags, readingTime } = Astro.props;
 ---
 
 <div class="layout">
@@ -21,7 +21,7 @@ const { title, author, publishDate, image, alt, tags, readingTime } = Astro.prop
 				{image && <img width="720" height="420" class="hero-image" loading="lazy" src={image} alt={alt} />}
 				<p class="publish-date">{publishDate} ~ {readingTime}</p>
 				<h1 class="title">{title}</h1>
-				<Author name="@rodydavis" href="https://twitter.com/rodydavis" />
+				<Author name="@rodydavis" href="/about" />
 				 <tag-list tags={tags}> </tag-list>
 			</header>
 			<main>
