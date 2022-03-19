@@ -35,15 +35,29 @@ export class AppHeader extends LitElement {
       display: none;
     }
 
+    .title-details {
+      max-width: 200px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
     @media (min-width: 200px) {
       .title {
         display: block;
       }
     }
 
-    @media (min-width: 300px) {
+    @media (min-width: 700px) {
       .title-prefix {
         display: block;
+      }
+      .title-details {
+        max-width: 350px;
+      }
+    }
+    @media (min-width: 900px) {
+      .title-details {
+        max-width: 450px;
       }
     }
 
@@ -152,7 +166,7 @@ export class AppHeader extends LitElement {
             <div class="title-prefix">Rody Davis</div>
             ${title !== "Rody Davis"
               ? html`<div class="title-prefix">&nbsp;|&nbsp;</div>
-                  <div>${title}</div>`
+                  <div class="title-details">${title}</div>`
               : html``}
           </a>
         </h1>
