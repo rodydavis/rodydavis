@@ -2,7 +2,7 @@
 import BlogPost from '../../layouts/BlogPost.astro';
 
 export async function getStaticPaths({rss}) {
- const allPosts = await Astro.fetchContent('../../data/blog-posts/*.md');
+ const allPosts = await Astro.fetchContent('../../data/blog/*.md');
   const sortedPosts = allPosts.sort((a, b) => {
     const aDate = new Date(a.date) as any;
     const bDate = new Date(b.date) as any;

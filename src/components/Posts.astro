@@ -1,7 +1,7 @@
 ---
 import './post-preview';
 
-let allPosts = await Astro.fetchContent('../data/blog-posts/*.md');
+let allPosts = await Astro.fetchContent('../data/blog/*.md');
 allPosts = allPosts.sort((a, b) => new Date(b.publishDate).valueOf() - new Date(a.publishDate).valueOf());
 allPosts = allPosts.map(post => {
     const parts =  post.file.href.split('/') as string[];
