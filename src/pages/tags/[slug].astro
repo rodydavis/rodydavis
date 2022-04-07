@@ -4,7 +4,7 @@ import '../../components/post-preview';
 import MainLayout from '../../components/MainLayout.astro';
 
 export async function getStaticPaths() {
-  const posts = await Astro.fetchContent('../../data/blog-posts/*.md');
+  const posts = await Astro.fetchContent('../../data/blog/*.md');
   let tags: string[] = [];
   posts.forEach(post => {
      post.tags.forEach(tag => {
@@ -32,7 +32,7 @@ export async function getStaticPaths() {
 const props = Astro.props
 const title = `Tag: ${props.title || ''}`;
 const tag = props.tag || '';
-const posts =  await Astro.fetchContent('../../data/blog-posts/*.md');
+const posts =  await Astro.fetchContent('../../data/blog/*.md');
 const related = posts.filter(post => post.tags.includes(tag));
 const permalink = `/tags/${tag}`;
 ---
