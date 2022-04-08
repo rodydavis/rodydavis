@@ -78,7 +78,8 @@ import{r as f,e as h,s as g,$ as l,n as u,t as v,i as y,a as w,b,c as x}from"./c
           </div>
         </article>
       </header>
-      <dialog id="theme-options" @close=${()=>this.showOptions=!1}>
+      <dialog
+       id="theme-options" @close=${()=>this.showOptions=!1}>
         <div class="wrapper">
           <div>
             <h2 class="theme-options">Theme Options</h2>
