@@ -5,7 +5,7 @@ import {
   hexFromArgb,
 } from "@material/material-color-utilities";
 import { html, css, LitElement } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { customElement, property, state, query } from "lit/decorators.js";
 
 import "./icon-button";
 
@@ -108,23 +108,6 @@ export class AppHeader extends LitElement {
       align-items: center;
     }
 
-    input[type="color"] {
-      width: calc(var(--input-size) * 2);
-      height: var(--input-size);
-      outline: none;
-      border: none;
-      border-radius: 50%;
-      background-color: var(--md-sys-color-primary-container);
-    }
-    input[type="color"]::-webkit-color-swatch-wrapper {
-      padding: 0;
-    }
-    input[type="color"]::-webkit-color-swatch {
-      border: none;
-      border-radius: var(--input-size);
-      border: var(--md-sys-color-outline) solid 1px;
-    }
-
     .links {
       display: none;
     }
@@ -143,6 +126,22 @@ export class AppHeader extends LitElement {
     .title a div {
       white-space: nowrap;
     }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .row icon-button,
+    .row input {
+      margin-left: 10px;
+    }
+
+    .theme-options {
+      font-size: 1.5rem;
+    }
   `;
 
   @property({ type: Boolean }) dark =
@@ -150,6 +149,8 @@ export class AppHeader extends LitElement {
   @property() color = localStorage.getItem("theme-color") || randomColor();
   //"#6750A4";
   @property() title = document.title;
+  @state() showOptions = false;
+  @query("#theme-options") options!: HTMLDivElement;
 
   render() {
     let canShare = false;
@@ -160,46 +161,81 @@ export class AppHeader extends LitElement {
     }
     const title = (this.title || "").trim();
     return html`<header class="wrapper">
-      <article>
-        <h1 class="title">
-          <a href="/">
-            <div class="title-prefix">Rody Davis</div>
-            ${title !== "Rody Davis"
-              ? html`<div class="title-prefix">&nbsp;|&nbsp;</div>
-                  <div class="title-details">${title}</div>`
+        <article>
+          <h1 class="title">
+            <a href="/">
+              <div class="title-prefix">Rody Davis</div>
+              ${title !== "Rody Davis"
+                ? html`<div class="title-prefix">&nbsp;|&nbsp;</div>
+                    <div class="title-details">${title}</div>`
+                : html``}
+            </a>
+          </h1>
+          <div class="spacer"></div>
+          <div class="links">
+            <a href="/apps"> Apps </a>
+            <a href="/posts"> Blog </a>
+            <a href="/talks"> Talks </a>
+            <a href="/about"> About </a>
+          </div>
+          <div class="actions">
+            <icon-button
+              @click=${this.toggleOptions}
+              icon="palette"
+            ></icon-button>
+            ${canShare
+              ? html` <icon-button
+                  @click=${this.share}
+                  icon="share"
+                ></icon-button>`
               : html``}
-          </a>
-        </h1>
-        <div class="spacer"></div>
-        <div class="links">
-          <a href="/apps"> Apps </a>
-          <a href="/posts"> Blog </a>
-          <a href="/talks"> Talks </a>
-          <a href="/about"> About </a>
+          </div>
+        </article>
+      </header>
+      <dialog id="theme-options" @close=${() => (this.showOptions = false)}>
+        <div class="wrapper">
+          <div>
+            <h2 class="theme-options">Theme Options</h2>
+          </div>
+          <div class="row">
+            <label for="source">Source Color</label>
+            <input
+              id="source"
+              type="color"
+              .value=${this.color}
+              @input=${this.onColor}
+            />
+          </div>
+          <div class="row">
+            <label for="shuffle">Shuffle</label>
+            <icon-button
+              id="shuffle"
+              @click=${this.randomColor}
+              icon="shuffle"
+            ></icon-button>
+          </div>
+          <div class="row">
+            <label for="brightness">Brightness</label>
+            <icon-button
+              id="brightness"
+              @click=${this.toggle}
+              icon="${this.dark ? "light_mode" : "dark_mode"}"
+            ></icon-button>
+          </div>
+
+          <form method="dialog">
+            <button>Close</button>
+          </form>
         </div>
-        <div class="actions">
-          <input
-            type="color"
-            .value=${this.color}
-            @input=${this.onColor.bind(this)}
-          />
-          <icon-button
-            @click=${this.randomColor.bind(this)}
-            icon="shuffle"
-          ></icon-button>
-          <icon-button
-            @click=${this.toggle.bind(this)}
-            icon="${this.dark ? "light_mode" : "dark_mode"}"
-          ></icon-button>
-          ${canShare
-            ? html` <icon-button
-                @click=${this.share.bind(this)}
-                icon="share"
-              ></icon-button>`
-            : html``}
-        </div>
-      </article>
-    </header>`;
+      </dialog>`;
+  }
+
+  private toggleOptions() {
+    this.showOptions = !this.showOptions;
+    if (this.showOptions) {
+      // @ts-ignore
+      this.options.showModal();
+    }
   }
 
   private share() {
