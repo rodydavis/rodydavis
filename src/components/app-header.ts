@@ -192,7 +192,8 @@ export class AppHeader extends LitElement {
           </div>
         </article>
       </header>
-      <dialog id="theme-options" @close=${() => (this.showOptions = false)}>
+      <dialog
+       id="theme-options" @close=${() => (this.showOptions = false)}>
         <div class="wrapper">
           <div>
             <h2 class="theme-options">Theme Options</h2>

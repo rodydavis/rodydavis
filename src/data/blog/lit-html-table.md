@@ -1,16 +1,14 @@
 ---
-
-title: 'JSON to HTML Table with Lit'
+title: "JSON to HTML Table with Lit"
 date: 2021-06-03
 publishDate: 3 Jun 2021
 tags:
-- posts
-- web
-- lit
-- json
-- html
-- vite
-- playground
+  - posts
+  - web
+  - lit
+  - json
+  - html
+  - vite
 image: /img/json-to-table/finished.png
 ---
 
@@ -18,15 +16,10 @@ In this article I will go over how to set up a [Lit](https://lit.dev) web compon
 
 **TLDR** The final source [here](https://github.com/rodydavis/lit-html-table) and an online [demo](https://rodydavis.github.io/lit-html-table/).
 
-<div id="playground" hidden></div>
-<script>
-  addFiles('lit-html-table', 'lit-html-table.ts')
-</script>
-
 ## Prerequisites
 
 - Vscode
-- Node >= 12
+- Node >= 16
 - Typescript
 
 ## Getting Started
@@ -34,7 +27,7 @@ In this article I will go over how to set up a [Lit](https://lit.dev) web compon
 We can start off by navigating in terminal to the location of the project and run the following:
 
 ```bash
-npm init @vitejs/app --template lit-element-ts
+npm init @vitejs/app --template lit-ts
 ```
 
 Then enter a project name `lit-html-table` and now open the project in vscode and install the dependencies:
@@ -53,7 +46,7 @@ import { defineConfig } from "vite";
 import { resolve } from "path";
 
 export default defineConfig({
-  base: '/lit-html-table/',
+  base: "/lit-html-table/",
   build: {
     lib: {
       entry: "src/lit-html-table.ts",
@@ -66,7 +59,6 @@ export default defineConfig({
     },
   },
 });
-
 ```
 
 ## Template
@@ -76,19 +68,18 @@ Open up the `index.html` and update it with the following:
 ```html
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSON to Lit HTML Table</title>
+    <script type="module" src="/src/lit-html-table.ts"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JSON to Lit HTML Table</title>
-  <script type="module" src="/src/lit-html-table.ts"></script>
-</head>
-
-<body>
-  <lit-html-table src="https://jsonplaceholder.typicode.com/posts">
-    <!-- <span slot="title" style="color: red;">Title</span> -->
-    <!-- <script type="application/json">
+  <body>
+    <lit-html-table src="https://jsonplaceholder.typicode.com/posts">
+      <!-- <span slot="title" style="color: red;">Title</span> -->
+      <!-- <script type="application/json">
       [
         {
           "id": "0",
@@ -96,12 +87,9 @@ Open up the `index.html` and update it with the following:
         }
       ]
     </script> -->
-  </lit-html-table>
-
-</body>
-
+    </lit-html-table>
+  </body>
 </html>
-
 ```
 
 We are passing a src attribute to the web component for this example but we can also add a script tag with the type attribute set to `application/json` with the contents containing the json.
@@ -261,9 +249,7 @@ By checking to see if the `editable` and if `true` return an input with an event
 Add the `editable` attribute to the `index.html`:
 
 ```html
-<lit-html-table editable>
-...
-</lit-html-table>
+<lit-html-table editable> ... </lit-html-table>
 ```
 
 After a reload the table should look like this and any cell can be edited.
@@ -274,13 +260,17 @@ An event listener can be added just before the closing `body` tag in `index.html
 
 ```html
 <script>
-  const elem = document.querySelector('lit-html-table');
-  elem.addEventListener('input-cell', (e) => {
-    // Index and data for the individual cell
-    const { index, data } = e.detail;
-    // New array of json items
-    const values = elem.values;
-  }, false);
+  const elem = document.querySelector("lit-html-table");
+  elem.addEventListener(
+    "input-cell",
+    (e) => {
+      // Index and data for the individual cell
+      const { index, data } = e.detail;
+      // New array of json items
+      const values = elem.values;
+    },
+    false
+  );
 </script>
 ```
 
@@ -291,4 +281,3 @@ This can be taken farther by checking for the type of the value and returning a 
 If you want to learn more about building with Lit you can read the docs [here](https://lit.dev). There is also an example on the Lit playground [here](https://lit.dev/playground/#project=W3sibmFtZSI6ImxpdC1odG1sLXRhYmxlLnRzIiwiY29udGVudCI6ImltcG9ydCB7IGh0bWwsIGNzcywgTGl0RWxlbWVudCB9IGZyb20gXCJsaXRcIjtcbmltcG9ydCB7IGN1c3RvbUVsZW1lbnQsIHByb3BlcnR5IH0gZnJvbSBcImxpdC9kZWNvcmF0b3JzLmpzXCI7XG5cbnR5cGUgT2JqZWN0RGF0YSA9IHsgW2tleTogc3RyaW5nXTogYW55IH07XG5cbkBjdXN0b21FbGVtZW50KFwibGl0LWh0bWwtdGFibGVcIilcbmV4cG9ydCBjbGFzcyBMaXRIdG1sVGFibGUgZXh0ZW5kcyBMaXRFbGVtZW50IHtcbiAgQHByb3BlcnR5KCkgc3JjID0gXCJcIjtcblxuICBkYXRhPzogT2JqZWN0RGF0YVtdO1xuXG4gIHN0YXRpYyBzdHlsZXMgPSBjc3NgXG4gICAgdHIge1xuICAgICAgdGV4dC1hbGlnbjogdmFyKC0tdGFibGUtdHItdGV4dC1hbGlnbiwgbGVmdCk7XG4gICAgICB2ZXJ0aWNhbC1hbGlnbjogdmFyKC0tdGFibGUtdHItdmVydGljYWwtYWxpZ24sIHRvcCk7XG4gICAgICBwYWRkaW5nOiB2YXIoLS10YWJsZS10ci1wYWRkaW5nLCAxMHB4KTtcbiAgICB9XG4gIGA7XG5cbiAgcmVuZGVyKCkge1xuICAgIC8vIENoZWNrIGlmIGRhdGEgaXMgbG9hZGVkXG4gICAgaWYgKCF0aGlzLmRhdGEpIHtcbiAgICAgIHJldHVybiBodG1sYDxzbG90IG5hbWU9XCJsb2FkaW5nXCI-TG9hZGluZy4uLjwvc2xvdD5gO1xuICAgIH1cbiAgICAvLyBDaGVjayBpZiBpdGVtcyBhcmUgbm90IGVtcHR5XG4gICAgaWYgKHRoaXMuZGF0YS5sZW5ndGggPT09IDApIHtcbiAgICAgIHJldHVybiBodG1sYDxzbG90IG5hbWU9XCJlbXB0eVwiPk5vIEl0ZW1zIEZvdW5kITwvc2xvdD5gO1xuICAgIH1cbiAgICAvLyBDb252ZXJ0IEpTT04gdG8gSFRNTCBUYWJsZVxuICAgIHJldHVybiBodG1sYFxuICAgICAgPHRhYmxlPlxuICAgICAgICA8dGhlYWQ-XG4gICAgICAgICAgPHRyPlxuICAgICAgICAgICAgJHtPYmplY3Qua2V5cyh0aGlzLmRhdGFbMF0pLm1hcCgoa2V5KSA9PiB7XG4gICAgICAgICAgICAgIGNvbnN0IG5hbWUgPSBrZXkucmVwbGFjZSgvXFxiKFthLXpdKS9nLCAoXywgdmFsKSA9PlxuICAgICAgICAgICAgICAgIHZhbC50b1VwcGVyQ2FzZSgpXG4gICAgICAgICAgICAgICk7XG4gICAgICAgICAgICAgIHJldHVybiBodG1sYDx0aD5cbiAgICAgICAgICAgICAgICA8c2xvdCBuYW1lPVwiJHtrZXl9XCI-JHtuYW1lfTwvc2xvdD5cbiAgICAgICAgICAgICAgPC90aD5gO1xuICAgICAgICAgICAgfSl9XG4gICAgICAgICAgPC90cj5cbiAgICAgICAgPC90aGVhZD5cbiAgICAgICAgPHRib2R5PlxuICAgICAgICAgICR7dGhpcy5kYXRhLm1hcCgoaXRlbSkgPT4ge1xuICAgICAgICAgICAgcmV0dXJuIGh0bWxgXG4gICAgICAgICAgICAgIDx0cj5cbiAgICAgICAgICAgICAgICAke09iamVjdC52YWx1ZXMoaXRlbSkubWFwKCh2YWwpID0-IHtcbiAgICAgICAgICAgICAgICAgIHJldHVybiBodG1sYDx0ZD4ke3ZhbH08L3RkPmA7XG4gICAgICAgICAgICAgICAgfSl9XG4gICAgICAgICAgICAgIDwvdHI-XG4gICAgICAgICAgICBgO1xuICAgICAgICAgIH0pfVxuICAgICAgICA8L3Rib2R5PlxuICAgICAgPC90YWJsZT5cbiAgICBgO1xuICB9XG5cbiAgYXN5bmMgZmlyc3RVcGRhdGVkKCkge1xuICAgIGF3YWl0IHRoaXMuZmV0Y2hEYXRhKCk7XG4gIH1cblxuICBhc3luYyBmZXRjaERhdGEoKSB7XG4gICAgbGV0IF9kYXRhOiBhbnk7XG4gICAgaWYgKHRoaXMuc3JjLmxlbmd0aCA-IDApIHtcbiAgICAgIF9kYXRhID0gYXdhaXQgZmV0Y2godGhpcy5zcmMpLnRoZW4oKHJlcykgPT4gcmVzLmpzb24oKSk7XG4gICAgfSBlbHNlIHtcbiAgICAgIGNvbnN0IGVsZW0gPSB0aGlzLnBhcmVudEVsZW1lbnQ_LnF1ZXJ5U2VsZWN0b3IoXG4gICAgICAgICdzY3JpcHRbdHlwZT1cImFwcGxpY2F0aW9uL2pzb25cIl0nXG4gICAgICApIGFzIEhUTUxTY3JpcHRFbGVtZW50O1xuICAgICAgaWYgKGVsZW0pIF9kYXRhID0gSlNPTi5wYXJzZShlbGVtLmlubmVySFRNTCk7XG4gICAgfVxuICAgIF9kYXRhID8_PSBbXTtcbiAgICB0aGlzLmRhdGEgPSB0aGlzLnRyYW5zZm9ybShfZGF0YSk7XG4gICAgdGhpcy5yZXF1ZXN0VXBkYXRlKCk7XG4gIH1cblxuICB0cmFuc2Zvcm0oZGF0YTogYW55KSB7XG4gICAgcmV0dXJuIGRhdGE7XG4gIH1cbn1cbiJ9LHsibmFtZSI6ImluZGV4Lmh0bWwiLCJjb250ZW50IjoiPCFET0NUWVBFIGh0bWw-XG48aHRtbCBsYW5nPVwiZW5cIj5cblxuPGhlYWQ-XG4gIDxtZXRhIGNoYXJzZXQ9XCJVVEYtOFwiIC8-XG4gIDxsaW5rIHJlbD1cImljb25cIiB0eXBlPVwiaW1hZ2Uvc3ZnK3htbFwiIGhyZWY9XCIvc3JjL2Zhdmljb24uc3ZnXCIgLz5cbiAgPG1ldGEgbmFtZT1cInZpZXdwb3J0XCIgY29udGVudD1cIndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjBcIiAvPlxuICA8dGl0bGU-SlNPTiB0byBMaXQgSFRNTCBUYWJsZTwvdGl0bGU-XG4gIDxzY3JpcHQgdHlwZT1cIm1vZHVsZVwiIHNyYz1cIi4vbGl0LWh0bWwtdGFibGUuanNcIj48L3NjcmlwdD5cbjwvaGVhZD5cblxuPGJvZHk-XG4gIDxsaXQtaHRtbC10YWJsZSBzcmM9XCJodHRwczovL2pzb25wbGFjZWhvbGRlci50eXBpY29kZS5jb20vcG9zdHNcIj5cbiAgICA8IS0tIDxzcGFuIHNsb3Q9XCJ0aXRsZVwiIHN0eWxlPVwiY29sb3I6IHJlZDtcIj5UaXRsZTwvc3Bhbj4gLS0-XG4gICAgPCEtLSA8c2NyaXB0IHR5cGU9XCJhcHBsaWNhdGlvbi9qc29uXCI-XG4gICAgICBbXG4gICAgICAgIHtcbiAgICAgICAgICBcImlkXCI6IFwiMFwiLFxuICAgICAgICAgIFwibmFtZVwiOiBcIkZpcnN0IEl0ZW1cIlxuICAgICAgICB9XG4gICAgICBdXG4gICAgPC9zY3JpcHQ-IC0tPlxuICA8L2xpdC1odG1sLXRhYmxlPlxuXG48L2JvZHk-XG5cbjwvaHRtbD4ifV0).
 
 The source for this example can be found [here](https://github.com/rodydavis/lit-html-table).
-
