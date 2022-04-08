@@ -41,12 +41,12 @@
 		
 		
 	<link rel="stylesheet" href="/assets/MainLayout.5bb08088.css"></link>
-<link rel="stylesheet" href="/assets/social-links.ac123a03.css"></link><style astro-style="true">astro-root, astro-fragment { display: contents; }</style><script type="module" astro-script="/apps/the-pocket-piano//script-0">import "../../client-shim.751854cd.js";</script>
-<script type="module" data-astro-component-hydration astro-script="/apps/the-pocket-piano//script-1">import setup from '../../load.644f6253.js';
-setup("1ccqf2", {name:"app-header",value: true}, async () => {
+<link rel="stylesheet" href="/assets/social-links.ac123a03.css"></link><style astro-style="true">astro-root, astro-fragment { display: contents; }</style><script type="module" astro-script="/apps/the-pocket-piano//script-0">import "../../client-shim.70661ac8.js";</script>
+<script type="module" data-astro-component-hydration astro-script="/apps/the-pocket-piano//script-1">import setup from '../../load.b40bd4ef.js';
+setup("11IHPC", {name:"app-header",value: true}, async () => {
   await Promise.all([
-  import("../../hydration-support.20f55b8e.js")]);
-await import("../../app-header.ee8bf833.js");
+  import("../../hydration-support.81250293.js")]);
+await import("../../app-header.561cdaac.js");
   return () => {};
 
 });
@@ -54,7 +54,7 @@ await import("../../app-header.ee8bf833.js");
 </head>
 
 	<body class="material-theme">
-		<astro-root uid="1ccqf2"><app-header class="astro-JHGVYN2B"><template shadowroot="open"><style>
+		<astro-root uid="11IHPC"><app-header class="astro-JHGVYN2B"><template shadowroot="open"><style>
     header {
       width: 100%;
       background-color: var(--md-sys-color-primary-container);
@@ -149,23 +149,6 @@ await import("../../app-header.ee8bf833.js");
       align-items: center;
     }
 
-    input[type="color"] {
-      width: calc(var(--input-size) * 2);
-      height: var(--input-size);
-      outline: none;
-      border: none;
-      border-radius: 50%;
-      background-color: var(--md-sys-color-primary-container);
-    }
-    input[type="color"]::-webkit-color-swatch-wrapper {
-      padding: 0;
-    }
-    input[type="color"]::-webkit-color-swatch {
-      border: none;
-      border-radius: var(--input-size);
-      border: var(--md-sys-color-outline) solid 1px;
-    }
-
     .links {
       display: none;
     }
@@ -184,32 +167,114 @@ await import("../../app-header.ee8bf833.js");
     .title a div {
       white-space: nowrap;
     }
-  </style><!--lit-part bgyFX7AkLd0=--><header class="wrapper">
-      <article>
-        <h1 class="title">
-          <a href="/">
-            <div class="title-prefix">Rody Davis</div>
-            <!--lit-part F7wN3VMcQAI=--><div class="title-prefix">&nbsp;|&nbsp;</div>
-                  <div class="title-details"><!--lit-part-->The Pocket Piano<!--/lit-part--></div><!--/lit-part-->
-          </a>
-        </h1>
-        <div class="spacer"></div>
-        <div class="links">
-          <a href="/apps"> Apps </a>
-          <a href="/posts"> Blog </a>
-          <a href="/talks"> Talks </a>
-          <a href="/about"> About </a>
-        </div>
-        <div class="actions">
-          <input
-            type="color"
-            value="#D3EE18"
-            
-          /><!--lit-node 13-->
-          <icon-button
-            
-            
-           icon="shuffle"><!--lit-node 14--><template shadowroot="open"><style>
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .row icon-button,
+    .row input {
+      margin-left: 10px;
+    }
+
+    .theme-options {
+      font-size: 1.5rem;
+    }
+  </style><!--lit-part QA9Js3fMsj0=--><header class="wrapper">
+        <article>
+          <h1 class="title">
+            <a href="/">
+              <div class="title-prefix">Rody Davis</div>
+              <!--lit-part Fyy4SXOkav0=--><div class="title-prefix">&nbsp;|&nbsp;</div>
+                    <div class="title-details"><!--lit-part-->The Pocket Piano<!--/lit-part--></div><!--/lit-part-->
+            </a>
+          </h1>
+          <div class="spacer"></div>
+          <div class="links">
+            <a href="/apps"> Apps </a>
+            <a href="/posts"> Blog </a>
+            <a href="/talks"> Talks </a>
+            <a href="/about"> About </a>
+          </div>
+          <div class="actions">
+            <icon-button
+              
+              
+             icon="palette"><!--lit-node 13--><template shadowroot="open"><style>
+    .icon {
+      --icon-size: 24px;
+      --icon-padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      color: var(--icon-color);
+    }
+    .icon:hover {
+      outline: 1px solid var(--md-sys-color-outline);
+    }
+    .icon :first-child {
+      padding: var(--icon-padding);
+    }
+    .material-icons {
+      font-family: "Material Icons";
+      font-weight: normal;
+      font-style: normal;
+      font-size: var(--icon-size);
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "liga";
+    }
+
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style><!--lit-part jPZqHVkf+Tk=-->
+      <div class="icon">
+        <i class="material-icons"><!--lit-part-->palette<!--/lit-part--></i>
+      </div>
+    <!--/lit-part--></template></icon-button>
+            <!--lit-part BRUAAAUVAAA=--><?><!--/lit-part-->
+          </div>
+        </article>
+      </header>
+      <dialog id="theme-options" ><!--lit-node 15-->
+        <div class="wrapper">
+          <div>
+            <h2 class="theme-options">Theme Options</h2>
+          </div>
+          <div class="row">
+            <label for="source">Source Color</label>
+            <input
+              id="source"
+              type="color"
+              value="#C1B9C4"
+              
+            /><!--lit-node 21-->
+          </div>
+          <div class="row">
+            <label for="shuffle">Shuffle</label>
+            <icon-button
+              
+              
+              
+             id="shuffle" icon="shuffle"><!--lit-node 24--><template shadowroot="open"><style>
     .icon {
       --icon-size: 24px;
       --icon-padding: 0.5rem;
@@ -256,10 +321,14 @@ await import("../../app-header.ee8bf833.js");
         <i class="material-icons"><!--lit-part-->shuffle<!--/lit-part--></i>
       </div>
     <!--/lit-part--></template></icon-button>
-          <icon-button
-            
-            
-           icon="dark_mode"><!--lit-node 15--><template shadowroot="open"><style>
+          </div>
+          <div class="row">
+            <label for="brightness">Brightness</label>
+            <icon-button
+              
+              
+              
+             id="brightness" icon="dark_mode"><!--lit-node 27--><template shadowroot="open"><style>
     .icon {
       --icon-size: 24px;
       --icon-padding: 0.5rem;
@@ -306,10 +375,13 @@ await import("../../app-header.ee8bf833.js");
         <i class="material-icons"><!--lit-part-->dark_mode<!--/lit-part--></i>
       </div>
     <!--/lit-part--></template></icon-button>
-          <!--lit-part BRUAAAUVAAA=--><?><!--/lit-part-->
+          </div>
+
+          <form method="dialog">
+            <button>Close</button>
+          </form>
         </div>
-      </article>
-    </header><!--/lit-part--></template></app-header></astro-root>
+      </dialog><!--/lit-part--></template></app-header></astro-root>
 		<article class="astro-JHGVYN2B"><app-details><template shadowroot="open"><style>
     iframe {
       --width: 100%;
