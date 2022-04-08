@@ -22,7 +22,7 @@ In this article I will go over how to set up a [Lit](https://lit.dev) web compon
 ## Prerequisites
 
 - Vscode
-- Node >= 12
+- Node >= 16
 - Typescript
 
 ## Getting Started
@@ -30,7 +30,7 @@ In this article I will go over how to set up a [Lit](https://lit.dev) web compon
 We can start off by navigating in terminal to the location of the project and run the following:
 
 ```bash
-npm init @vitejs/app --template lit-element-ts
+npm init @vitejs/app --template lit-ts
 ```
 
 Then enter a project name `codemirror-dynamic-theme` and now open the project in vscode and install the dependencies:
