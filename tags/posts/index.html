@@ -28,7 +28,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;700&display=swap">
 <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
+<link rel="stylesheet" href="https://material-foundation.github.io/material-tokens/css/baseline.css"> 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-lucario.css">
+
+<script type="module" src="https://rodydavis.github.io/material-theme-control/material-theme-control.es.js"></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
@@ -42,12 +45,12 @@
 		
 	<link rel="stylesheet" href="/assets/MainLayout.5bb08088.css"></link>
 <link rel="stylesheet" href="/assets/social-links.ac123a03.css"></link>
-<link rel="stylesheet" href="/assets/_slug_.68d23d24.css"></link><style astro-style="true">astro-root, astro-fragment { display: contents; }</style><script type="module" astro-script="/tags/posts//script-0">import "../../client-shim.70661ac8.js";</script>
-<script type="module" data-astro-component-hydration astro-script="/tags/posts//script-1">import setup from '../../load.b40bd4ef.js';
-setup("ZJnxwN", {name:"app-header",value: true}, async () => {
+<link rel="stylesheet" href="/assets/_slug_.1586e909.css"></link><style astro-style="true">astro-root, astro-fragment { display: contents; }</style><script type="module" astro-script="/tags/posts//script-0">import "../../client-shim.6d491e7a.js";</script>
+<script type="module" data-astro-component-hydration astro-script="/tags/posts//script-1">import setup from '../../load.732510f7.js';
+setup("ZWb4v2", {name:"app-header",value: true}, async () => {
   await Promise.all([
-  import("../../hydration-support.81250293.js")]);
-await import("../../app-header.fbdffc89.js");
+  import("../../hydration-support.3bb20349.js")]);
+await import("../../app-header.bed0a715.js");
   return () => {};
 
 });
@@ -55,7 +58,7 @@ await import("../../app-header.fbdffc89.js");
 </head>
 
 	<body class="material-theme">
-		<astro-root uid="ZJnxwN"><app-header class="astro-JHGVYN2B"><template shadowroot="open"><style>
+		<astro-root uid="ZWb4v2"><app-header class="astro-JHGVYN2B"><template shadowroot="open"><style>
     header {
       width: 100%;
       background-color: var(--md-sys-color-primary-container);
@@ -70,11 +73,11 @@ await import("../../app-header.fbdffc89.js");
     }
 
     .title {
-      display: none;
+      display: block;
     }
 
     .title-prefix {
-      display: none;
+      display: block;
     }
 
     .title-details {
@@ -140,11 +143,12 @@ await import("../../app-header.fbdffc89.js");
       color: var(--md-sys-color-on-primary-container);
       margin-right: 1rem;
     }
-
-    icon-button {
+    a:hover {
+      text-decoration: underline;
+    }
+    a icon-button {
       margin-left: 3px;
     }
-
     .actions {
       display: flex;
       align-items: center;
@@ -184,220 +188,35 @@ await import("../../app-header.fbdffc89.js");
     .theme-options {
       font-size: 1.5rem;
     }
-  </style><!--lit-part XQpL+wCyXkc=--><header class="wrapper">
-        <article>
-          <h1 class="title">
-            <a href="/">
-              <div class="title-prefix">Rody Davis</div>
-              <!--lit-part Fyy4SXOkav0=--><div class="title-prefix">&nbsp;|&nbsp;</div>
-                    <div class="title-details"><!--lit-part-->Tag: posts<!--/lit-part--></div><!--/lit-part-->
-            </a>
-          </h1>
-          <div class="spacer"></div>
-          <div class="links">
-            <a href="/apps"> Apps </a>
-            <a href="/posts"> Blog </a>
-            <a href="/talks"> Talks </a>
-            <a href="/about"> About </a>
-          </div>
-          <div class="actions">
-            <icon-button
-              
-              
-             icon="palette"><!--lit-node 13--><template shadowroot="open"><style>
-    .icon {
-      --icon-size: 24px;
-      --icon-padding: 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      cursor: pointer;
-      user-select: none;
-      color: var(--icon-color);
-    }
-    .icon:hover {
-      outline: 1px solid var(--md-sys-color-outline);
-    }
-    .icon :first-child {
-      padding: var(--icon-padding);
-    }
-    .material-icons {
-      font-family: "Material Icons";
-      font-weight: normal;
-      font-style: normal;
-      font-size: var(--icon-size);
-      display: inline-block;
-      line-height: 1;
-      text-transform: none;
-      letter-spacing: normal;
-      word-wrap: normal;
-      white-space: nowrap;
-      direction: ltr;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      -moz-osx-font-smoothing: grayscale;
-      font-feature-settings: "liga";
-    }
-
-    a {
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  </style><!--lit-part jPZqHVkf+Tk=-->
-      <div class="icon">
-        <i class="material-icons"><!--lit-part-->palette<!--/lit-part--></i>
-      </div>
-    <!--/lit-part--></template></icon-button>
-            <!--lit-part BRUAAAUVAAA=--><?><!--/lit-part-->
-          </div>
-        </article>
-      </header>
-      <dialog
-       id="theme-options" ><!--lit-node 15-->
-        <div class="wrapper">
-          <div>
-            <h2 class="theme-options">Theme Options</h2>
-          </div>
-          <div class="row">
-            <label for="source">Source Color</label>
-            <input
-              id="source"
-              type="color"
-              value="#7BCA64"
-              
-            /><!--lit-node 21-->
-          </div>
-          <div class="row">
-            <label for="shuffle">Shuffle</label>
-            <icon-button
-              
-              
-              
-             id="shuffle" icon="shuffle"><!--lit-node 24--><template shadowroot="open"><style>
-    .icon {
-      --icon-size: 24px;
-      --icon-padding: 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      cursor: pointer;
-      user-select: none;
-      color: var(--icon-color);
-    }
-    .icon:hover {
-      outline: 1px solid var(--md-sys-color-outline);
-    }
-    .icon :first-child {
-      padding: var(--icon-padding);
-    }
-    .material-icons {
-      font-family: "Material Icons";
-      font-weight: normal;
-      font-style: normal;
-      font-size: var(--icon-size);
-      display: inline-block;
-      line-height: 1;
-      text-transform: none;
-      letter-spacing: normal;
-      word-wrap: normal;
-      white-space: nowrap;
-      direction: ltr;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      -moz-osx-font-smoothing: grayscale;
-      font-feature-settings: "liga";
-    }
-
-    a {
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  </style><!--lit-part jPZqHVkf+Tk=-->
-      <div class="icon">
-        <i class="material-icons"><!--lit-part-->shuffle<!--/lit-part--></i>
-      </div>
-    <!--/lit-part--></template></icon-button>
-          </div>
-          <div class="row">
-            <label for="brightness">Brightness</label>
-            <icon-button
-              
-              
-              
-             id="brightness" icon="dark_mode"><!--lit-node 27--><template shadowroot="open"><style>
-    .icon {
-      --icon-size: 24px;
-      --icon-padding: 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      cursor: pointer;
-      user-select: none;
-      color: var(--icon-color);
-    }
-    .icon:hover {
-      outline: 1px solid var(--md-sys-color-outline);
-    }
-    .icon :first-child {
-      padding: var(--icon-padding);
-    }
-    .material-icons {
-      font-family: "Material Icons";
-      font-weight: normal;
-      font-style: normal;
-      font-size: var(--icon-size);
-      display: inline-block;
-      line-height: 1;
-      text-transform: none;
-      letter-spacing: normal;
-      word-wrap: normal;
-      white-space: nowrap;
-      direction: ltr;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      -moz-osx-font-smoothing: grayscale;
-      font-feature-settings: "liga";
-    }
-
-    a {
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  </style><!--lit-part jPZqHVkf+Tk=-->
-      <div class="icon">
-        <i class="material-icons"><!--lit-part-->dark_mode<!--/lit-part--></i>
-      </div>
-    <!--/lit-part--></template></icon-button>
-          </div>
-
-          <form method="dialog">
-            <button>Close</button>
-          </form>
+  </style><!--lit-part ReyuoSOz8+c=--><header class="wrapper">
+      <article>
+        <h1 class="title">
+          <a href="/">
+            <div class="title-prefix">Rody Davis</div>
+            <!--lit-part F7wN3VMcQAI=--><div class="title-prefix">&nbsp;|&nbsp;</div>
+                  <div class="title-details"><!--lit-part-->Tag: posts<!--/lit-part--></div><!--/lit-part-->
+          </a>
+        </h1>
+        <div class="spacer"></div>
+        <div class="links">
+          <a href="/apps"> Apps </a>
+          <a href="/posts"> Blog </a>
+          <a href="/talks"> Talks </a>
+          <a href="/about"> About </a>
         </div>
-      </dialog><!--/lit-part--></template></app-header></astro-root>
-		<article class="astro-JHGVYN2B"><main class="astro-H6J2NQOF">
-        <div class="full-width container astro-H6J2NQOF">
-            <article class="content astro-H6J2NQOF">
-                <post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+        <div class="actions">
+          <material-theme-control></material-theme-control>
+          <!--lit-part BRUAAAUVAAA=--><?><!--/lit-part-->
+        </div>
+      </article>
+    </header> <!--/lit-part--></template></app-header></astro-root>
+		<article class="astro-JHGVYN2B"><main class="astro-HXY7ZWOU">
+        <div class="full-width container astro-HXY7ZWOU">
+            <article class="content astro-HXY7ZWOU">
+                <post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -496,12 +315,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/automate-flutter-apps"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->15 Mar 2019<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->Automate Flutter App Releases<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -515,7 +334,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -566,17 +390,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="/img/flutter/fastlane.jpg" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -675,12 +492,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/codemirror-dynamic-theme"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->17 Mar 2022<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->Dynamic Themes with CodeMirror<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -694,7 +511,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -820,17 +642,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="/img/dynamic-theme/purple-dark.png" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -929,12 +744,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/deep-linking-flutter-web"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->11 Mar 2020<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->Deep Linking for Flutter Web<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -948,7 +763,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -999,17 +819,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="/img/deep-linking/0.png" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -1108,12 +921,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/display-html-in-flutter"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->10 Mar 2020<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->Displaying HTML in Flutter<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -1127,7 +940,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -1178,17 +996,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="https://cdn-images-1.medium.com/max/4112/1*4vexucSoyjRip7TBQZhkog.png" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -1287,12 +1098,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/fastlane-and-flutter"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->16 Oct 2019<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->Using Fastlane in Flutter and CI<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -1306,7 +1117,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -1357,17 +1173,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="/img/flutter/fastlane.jpg" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -1466,12 +1275,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/figma-and-lit"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->10 May 2021<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->Lit and Figma<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -1485,7 +1294,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -1581,17 +1395,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="/img/figma/rectangles.png" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -1690,12 +1497,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/first-flutter-project"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->28 Apr 2019<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->Creating Your First Flutter Project<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -1709,7 +1516,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -1745,17 +1557,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="/img/flutter/first.png" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -1854,12 +1659,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/flutter-and-lit"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->5 May 2021<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->Lit and Flutter<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -1873,7 +1678,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -1954,17 +1764,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="/img/flutter/first.png" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -2063,12 +1866,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/flutter-cheat-sheet"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->5 Mar 2020<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->Flutter Cheat Sheet — Terminal<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -2082,7 +1885,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -2133,17 +1941,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="/img/flutter/first.png" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -2242,12 +2043,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/flutter-multi-touch-canvas"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->10 Jun 2020<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->Multi-touch Canvas with Flutter<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -2261,7 +2062,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -2312,17 +2118,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="/img/flutter/multi-touch.png" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -2421,12 +2220,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/flutter-one-click-release"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->11 Mar 2019<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->Flutter + Fastlane (One Click Beta)<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -2440,7 +2239,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -2506,17 +2310,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="/img/flutter/first.png" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -2615,12 +2412,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/host-flutter-rest-api"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->18 Oct 2019<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->Host your Flutter Project as a REST API<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -2634,7 +2431,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -2685,17 +2487,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="https://cdn-images-1.medium.com/max/2336/1*qFZepZBtk0RhEojjGsI85g.png" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -2794,12 +2589,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/lit-draggable-dom"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->23 Jun 2021<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->Draggable DOM with Lit<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -2813,7 +2608,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -2924,17 +2724,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="/img/draggable-dom/canvas.png" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -3033,12 +2826,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/lit-force-graph"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->7 Apr 2022<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->2D/3D Force Graph with Lit<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -3052,7 +2845,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -3178,17 +2976,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="/img/lit/force-graph/3d-dark.png" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -3287,12 +3078,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/lit-html-table"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->3 Jun 2021<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->JSON to HTML Table with Lit<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -3306,7 +3097,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -3402,17 +3198,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="/img/json-to-table/finished.png" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -3511,12 +3300,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/lit-monaco-editor"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->29 Jul 2021<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->Lit and Monaco Editor<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -3530,7 +3319,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -3626,17 +3420,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="/img/code-editor/dark.png" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -3735,12 +3522,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/lit-rich-text-editor"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->26 May 2021<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->Building a Rich Text Editor with Lit<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -3754,7 +3541,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -3865,17 +3657,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="/img/rich-text/editor-finish.png" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -3974,12 +3759,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/lit-sheet-music"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->4 Jun 2021<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->Lit Sheet Music<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -3993,7 +3778,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -4104,17 +3894,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="https://media.giphy.com/media/KbTUp85em6hdmmgTfK/giphy.gif" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -4213,12 +3996,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/lit-vscode-extension"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->24 Jun 2021<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->Lit and VSCode Extensions<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -4232,7 +4015,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -4343,17 +4131,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="/img/vscode/final.png" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -4452,12 +4233,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/making-a-piano"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->12 Mar 2019<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->Building A Piano with Flutter<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -4471,7 +4252,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -4522,17 +4308,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="/img/flutter_piano/final.png" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -4631,12 +4410,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/native-cross-platform-flutter"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->6 Sep 2019<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->How to build a native cross platform project with Flutter<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -4650,7 +4429,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -4686,17 +4470,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="/img/flutter/first.png" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -4795,12 +4572,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/podcast-github-pages"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->27 Mar 2020<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->How To Host Your Podcast For Free On Github Pages<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -4814,7 +4591,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
@@ -4880,17 +4662,10 @@ await import("../../app-header.fbdffc89.js");
         </header>
         <!--lit-part NrEHqcd8ZXg=--><img src="/img/podcast-github/gh-pages.jpeg" /><!--lit-node 0--><!--/lit-part-->
       </div>
-    </a><!--/lit-part--></template></post-preview><post-preview class="astro-H6J2NQOF"><template shadowroot="open"><style>
+    </a><!--/lit-part--></template></post-preview><post-preview class="astro-HXY7ZWOU"><template shadowroot="open"><style>
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -4989,12 +4764,12 @@ await import("../../app-header.fbdffc89.js");
         display: block;
       }
     }
-  </style><!--lit-part bQS/gFYlsVs=--><a href=""><!--lit-node 0-->
+  </style><!--lit-part xcOtiMgCWS4=--><a href="/posts/push-notifications-flutter-web"><!--lit-node 0-->
       <div class="card">
         <header>
           <p class="publish-date"><!--lit-part-->01 May 2020<!--/lit-part--></p>
           <h1 class="title"><!--lit-part-->How To Send Push Notifications on Flutter Web (FCM)<!--/lit-part--></h1>
-          <tag-list ><!--lit-node 7--><template shadowroot="open"><style>
+          <tag-list   card><!--lit-node 7--><template shadowroot="open"><style>
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -5008,7 +4783,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" card><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts" defer-hydration><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;

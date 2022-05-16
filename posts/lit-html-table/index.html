@@ -28,7 +28,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;700&display=swap">
 <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
+<link rel="stylesheet" href="https://material-foundation.github.io/material-tokens/css/baseline.css"> 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-lucario.css">
+
+<script type="module" src="https://rodydavis.github.io/material-theme-control/material-theme-control.es.js"></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
@@ -40,12 +43,12 @@
 </script>
 	<link rel="stylesheet" href="/assets/BlogContent.6b85ce27.css"></link>
 <link rel="stylesheet" href="/assets/social-links.ac123a03.css"></link>
-<link rel="stylesheet" href="/assets/_slug_.1ed25ffe.css"></link><style astro-style="true">astro-root, astro-fragment { display: contents; }</style><script type="module" astro-script="/posts/lit-html-table//script-0">import "../../client-shim.70661ac8.js";</script>
-<script type="module" data-astro-component-hydration astro-script="/posts/lit-html-table//script-1">import setup from '../../load.b40bd4ef.js';
-setup("CczaV", {name:"app-header",value: true}, async () => {
+<link rel="stylesheet" href="/assets/_slug_.1ed25ffe.css"></link><style astro-style="true">astro-root, astro-fragment { display: contents; }</style><script type="module" astro-script="/posts/lit-html-table//script-0">import "../../client-shim.6d491e7a.js";</script>
+<script type="module" data-astro-component-hydration astro-script="/posts/lit-html-table//script-1">import setup from '../../load.732510f7.js';
+setup("wVC4Q", {name:"app-header",value: true}, async () => {
   await Promise.all([
-  import("../../hydration-support.81250293.js")]);
-await import("../../app-header.fbdffc89.js");
+  import("../../hydration-support.3bb20349.js")]);
+await import("../../app-header.bed0a715.js");
   return () => {};
 
 });
@@ -53,7 +56,7 @@ await import("../../app-header.fbdffc89.js");
 </head>
 
 	<body>
-		<astro-root uid="CczaV"><app-header><template shadowroot="open"><style>
+		<astro-root uid="wVC4Q"><app-header><template shadowroot="open"><style>
     header {
       width: 100%;
       background-color: var(--md-sys-color-primary-container);
@@ -68,11 +71,11 @@ await import("../../app-header.fbdffc89.js");
     }
 
     .title {
-      display: none;
+      display: block;
     }
 
     .title-prefix {
-      display: none;
+      display: block;
     }
 
     .title-details {
@@ -138,11 +141,12 @@ await import("../../app-header.fbdffc89.js");
       color: var(--md-sys-color-on-primary-container);
       margin-right: 1rem;
     }
-
-    icon-button {
+    a:hover {
+      text-decoration: underline;
+    }
+    a icon-button {
       margin-left: 3px;
     }
-
     .actions {
       display: flex;
       align-items: center;
@@ -182,206 +186,28 @@ await import("../../app-header.fbdffc89.js");
     .theme-options {
       font-size: 1.5rem;
     }
-  </style><!--lit-part XQpL+wCyXkc=--><header class="wrapper">
-        <article>
-          <h1 class="title">
-            <a href="/">
-              <div class="title-prefix">Rody Davis</div>
-              <!--lit-part Fyy4SXOkav0=--><div class="title-prefix">&nbsp;|&nbsp;</div>
-                    <div class="title-details"><!--lit-part-->JSON to HTML Table with Lit<!--/lit-part--></div><!--/lit-part-->
-            </a>
-          </h1>
-          <div class="spacer"></div>
-          <div class="links">
-            <a href="/apps"> Apps </a>
-            <a href="/posts"> Blog </a>
-            <a href="/talks"> Talks </a>
-            <a href="/about"> About </a>
-          </div>
-          <div class="actions">
-            <icon-button
-              
-              
-             icon="palette"><!--lit-node 13--><template shadowroot="open"><style>
-    .icon {
-      --icon-size: 24px;
-      --icon-padding: 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      cursor: pointer;
-      user-select: none;
-      color: var(--icon-color);
-    }
-    .icon:hover {
-      outline: 1px solid var(--md-sys-color-outline);
-    }
-    .icon :first-child {
-      padding: var(--icon-padding);
-    }
-    .material-icons {
-      font-family: "Material Icons";
-      font-weight: normal;
-      font-style: normal;
-      font-size: var(--icon-size);
-      display: inline-block;
-      line-height: 1;
-      text-transform: none;
-      letter-spacing: normal;
-      word-wrap: normal;
-      white-space: nowrap;
-      direction: ltr;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      -moz-osx-font-smoothing: grayscale;
-      font-feature-settings: "liga";
-    }
-
-    a {
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  </style><!--lit-part jPZqHVkf+Tk=-->
-      <div class="icon">
-        <i class="material-icons"><!--lit-part-->palette<!--/lit-part--></i>
-      </div>
-    <!--/lit-part--></template></icon-button>
-            <!--lit-part BRUAAAUVAAA=--><?><!--/lit-part-->
-          </div>
-        </article>
-      </header>
-      <dialog
-       id="theme-options" ><!--lit-node 15-->
-        <div class="wrapper">
-          <div>
-            <h2 class="theme-options">Theme Options</h2>
-          </div>
-          <div class="row">
-            <label for="source">Source Color</label>
-            <input
-              id="source"
-              type="color"
-              value="#537607"
-              
-            /><!--lit-node 21-->
-          </div>
-          <div class="row">
-            <label for="shuffle">Shuffle</label>
-            <icon-button
-              
-              
-              
-             id="shuffle" icon="shuffle"><!--lit-node 24--><template shadowroot="open"><style>
-    .icon {
-      --icon-size: 24px;
-      --icon-padding: 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      cursor: pointer;
-      user-select: none;
-      color: var(--icon-color);
-    }
-    .icon:hover {
-      outline: 1px solid var(--md-sys-color-outline);
-    }
-    .icon :first-child {
-      padding: var(--icon-padding);
-    }
-    .material-icons {
-      font-family: "Material Icons";
-      font-weight: normal;
-      font-style: normal;
-      font-size: var(--icon-size);
-      display: inline-block;
-      line-height: 1;
-      text-transform: none;
-      letter-spacing: normal;
-      word-wrap: normal;
-      white-space: nowrap;
-      direction: ltr;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      -moz-osx-font-smoothing: grayscale;
-      font-feature-settings: "liga";
-    }
-
-    a {
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  </style><!--lit-part jPZqHVkf+Tk=-->
-      <div class="icon">
-        <i class="material-icons"><!--lit-part-->shuffle<!--/lit-part--></i>
-      </div>
-    <!--/lit-part--></template></icon-button>
-          </div>
-          <div class="row">
-            <label for="brightness">Brightness</label>
-            <icon-button
-              
-              
-              
-             id="brightness" icon="dark_mode"><!--lit-node 27--><template shadowroot="open"><style>
-    .icon {
-      --icon-size: 24px;
-      --icon-padding: 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      cursor: pointer;
-      user-select: none;
-      color: var(--icon-color);
-    }
-    .icon:hover {
-      outline: 1px solid var(--md-sys-color-outline);
-    }
-    .icon :first-child {
-      padding: var(--icon-padding);
-    }
-    .material-icons {
-      font-family: "Material Icons";
-      font-weight: normal;
-      font-style: normal;
-      font-size: var(--icon-size);
-      display: inline-block;
-      line-height: 1;
-      text-transform: none;
-      letter-spacing: normal;
-      word-wrap: normal;
-      white-space: nowrap;
-      direction: ltr;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      -moz-osx-font-smoothing: grayscale;
-      font-feature-settings: "liga";
-    }
-
-    a {
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  </style><!--lit-part jPZqHVkf+Tk=-->
-      <div class="icon">
-        <i class="material-icons"><!--lit-part-->dark_mode<!--/lit-part--></i>
-      </div>
-    <!--/lit-part--></template></icon-button>
-          </div>
-
-          <form method="dialog">
-            <button>Close</button>
-          </form>
+  </style><!--lit-part ReyuoSOz8+c=--><header class="wrapper">
+      <article>
+        <h1 class="title">
+          <a href="/">
+            <div class="title-prefix">Rody Davis</div>
+            <!--lit-part F7wN3VMcQAI=--><div class="title-prefix">&nbsp;|&nbsp;</div>
+                  <div class="title-details"><!--lit-part-->JSON to HTML Table with Lit<!--/lit-part--></div><!--/lit-part-->
+          </a>
+        </h1>
+        <div class="spacer"></div>
+        <div class="links">
+          <a href="/apps"> Apps </a>
+          <a href="/posts"> Blog </a>
+          <a href="/talks"> Talks </a>
+          <a href="/about"> About </a>
         </div>
-      </dialog><!--/lit-part--></template></app-header></astro-root>
+        <div class="actions">
+          <material-theme-control></material-theme-control>
+          <!--lit-part BRUAAAUVAAA=--><?><!--/lit-part-->
+        </div>
+      </article>
+    </header> <!--/lit-part--></template></app-header></astro-root>
 		<div class="wrapper">
 			<div class="layout astro-6ZXIMRXV">
 	<article class="content astro-6ZXIMRXV">
@@ -410,7 +236,12 @@ await import("../../app-header.fbdffc89.js");
       margin-bottom: 0.4rem;
       margin-top: 0.4rem;
     }
-  </style><!--lit-part OvKRUActBHU=--> <div class="tags">
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" ><!--lit-node 0-->
       <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts"><!--lit-node 0--><template shadowroot="open"><style>
     .tag {
       margin-right: 0.5rem;
