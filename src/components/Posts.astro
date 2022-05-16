@@ -35,6 +35,7 @@ post-preview {
 <div class="posts" aria-label="Blog post list">
       {allPosts.map((p) => {
           const post = {...p};
+          post.card = true;
           return <post-preview {post}></post-preview>;
       })}
 </div>

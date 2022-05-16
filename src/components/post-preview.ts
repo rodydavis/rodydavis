@@ -10,13 +10,6 @@ export class PostPreview extends LitElement {
     .content :global(main > * + *) {
       margin-top: 1rem;
     }
-    /* 
-    .post-preview {
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 4px solid var(--theme-divider);
-    } */
-
     header {
       grid-area: header;
       padding: 1rem;
@@ -126,7 +119,7 @@ export class PostPreview extends LitElement {
         <header>
           <p class="publish-date">${post.publishDate}</p>
           <h1 class="title">${post.title}</h1>
-          <tag-list .tags=${post.tags}> </tag-list>
+          <tag-list ?card=${post.card} .tags=${post.tags}> </tag-list>
         </header>
         ${post.image ? html`<img src="${post.image}" />` : ""}
       </div>
@@ -140,6 +133,7 @@ export interface Post {
   tags: string[];
   publishDate: string;
   image?: string;
+  card?: boolean;
 }
 
 declare global {
