@@ -1,13 +1,12 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
+import { VitePWA } from "vite-plugin-pwa";
 
 // https://astro.build/config
 export default defineConfig({
-  renderers: [
-    "@astrojs/renderer-preact",
-    "@astrojs/renderer-lit",
-  ],
+  renderers: ["@astrojs/renderer-preact", "@astrojs/renderer-lit"],
   buildOptions: {
     sitemap: true,
     site: "https://rodydavis.com/",
   },
+  plugins: [VitePWA()],
 });
