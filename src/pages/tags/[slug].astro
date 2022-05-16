@@ -8,9 +8,9 @@ export async function getStaticPaths() {
   let tags: string[] = [];
   posts.forEach(post => {
      post.tags.forEach(tag => {
-     if (!tags.includes(tag)) {
-         tags.push(tag);
-     }
+        if (!tags.includes(tag)) {
+            tags.push(tag);
+        }
      });
   });
   // Remove duplicate tags
@@ -24,7 +24,6 @@ export async function getStaticPaths() {
         props: { tag: p, title, slug },
       };
   });
-//   console.log(allTags);
   return allTags;
 }
 
@@ -32,7 +31,15 @@ export async function getStaticPaths() {
 const props = Astro.props
 const title = `Tag: ${props.title || ''}`;
 const tag = props.tag || '';
-const posts =  await Astro.fetchContent('../../data/blog/*.md');
+let posts =  await Astro.fetchContent('../../data/blog/*.md');
+posts = posts.map((post) => {
+    const parts = post.file.href.split("/") as string[];
+    const slug = parts[parts.length - 1].split(".")[0];
+    return {
+        ...post,
+        url: `/posts/${slug}`,
+    };
+});
 const related = posts.filter(post => post.tags.includes(tag));
 const permalink = `/tags/${tag}`;
 ---
@@ -92,7 +99,12 @@ const permalink = `/tags/${tag}`;
         <div class="full-width container">
             <article class="content">
                 {related.map(
-                (p) => <post-preview post={p}></post-preview>
+                    (p) => {
+                        const post = p;
+                        post.card = true;
+                        console.log(post.url);
+                        return <post-preview post={post}></post-preview>;
+                    }
                 )}
             </article>
         </div>

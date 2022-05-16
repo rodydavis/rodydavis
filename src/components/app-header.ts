@@ -1,11 +1,5 @@
-import {
-  argbFromHex,
-  themeFromSourceColor,
-  applyTheme,
-  hexFromArgb,
-} from "@material/material-color-utilities";
 import { html, css, LitElement } from "lit";
-import { customElement, property, state, query } from "lit/decorators.js";
+import { customElement, property } from "lit/decorators.js";
 
 import "./icon-button";
 
@@ -28,11 +22,11 @@ export class AppHeader extends LitElement {
     }
 
     .title {
-      display: none;
+      display: block;
     }
 
     .title-prefix {
-      display: none;
+      display: block;
     }
 
     .title-details {
@@ -98,11 +92,12 @@ export class AppHeader extends LitElement {
       color: var(--md-sys-color-on-primary-container);
       margin-right: 1rem;
     }
-
-    icon-button {
+    a:hover {
+      text-decoration: underline;
+    }
+    a icon-button {
       margin-left: 3px;
     }
-
     .actions {
       display: flex;
       align-items: center;
@@ -144,13 +139,7 @@ export class AppHeader extends LitElement {
     }
   `;
 
-  @property({ type: Boolean }) dark =
-    localStorage.getItem("theme-dark") === "true";
-  @property() color = localStorage.getItem("theme-color") || randomColor();
-  //"#6750A4";
   @property() title = document.title;
-  @state() showOptions = false;
-  @query("#theme-options") options!: HTMLDivElement;
 
   render() {
     let canShare = false;
@@ -161,82 +150,34 @@ export class AppHeader extends LitElement {
     }
     const title = (this.title || "").trim();
     return html`<header class="wrapper">
-        <article>
-          <h1 class="title">
-            <a href="/">
-              <div class="title-prefix">Rody Davis</div>
-              ${title !== "Rody Davis"
-                ? html`<div class="title-prefix">&nbsp;|&nbsp;</div>
-                    <div class="title-details">${title}</div>`
-                : html``}
-            </a>
-          </h1>
-          <div class="spacer"></div>
-          <div class="links">
-            <a href="/apps"> Apps </a>
-            <a href="/posts"> Blog </a>
-            <a href="/talks"> Talks </a>
-            <a href="/about"> About </a>
-          </div>
-          <div class="actions">
-            <icon-button
-              @click=${this.toggleOptions}
-              icon="palette"
-            ></icon-button>
-            ${canShare
-              ? html` <icon-button
-                  @click=${this.share}
-                  icon="share"
-                ></icon-button>`
+      <article>
+        <h1 class="title">
+          <a href="/">
+            <div class="title-prefix">Rody Davis</div>
+            ${title !== "Rody Davis"
+              ? html`<div class="title-prefix">&nbsp;|&nbsp;</div>
+                  <div class="title-details">${title}</div>`
               : html``}
-          </div>
-        </article>
-      </header>
-      <dialog
-       id="theme-options" @close=${() => (this.showOptions = false)}>
-        <div class="wrapper">
-          <div>
-            <h2 class="theme-options">Theme Options</h2>
-          </div>
-          <div class="row">
-            <label for="source">Source Color</label>
-            <input
-              id="source"
-              type="color"
-              .value=${this.color}
-              @input=${this.onColor}
-            />
-          </div>
-          <div class="row">
-            <label for="shuffle">Shuffle</label>
-            <icon-button
-              id="shuffle"
-              @click=${this.randomColor}
-              icon="shuffle"
-            ></icon-button>
-          </div>
-          <div class="row">
-            <label for="brightness">Brightness</label>
-            <icon-button
-              id="brightness"
-              @click=${this.toggle}
-              icon="${this.dark ? "light_mode" : "dark_mode"}"
-            ></icon-button>
-          </div>
-
-          <form method="dialog">
-            <button>Close</button>
-          </form>
+          </a>
+        </h1>
+        <div class="spacer"></div>
+        <div class="links">
+          <a href="/apps"> Apps </a>
+          <a href="/posts"> Blog </a>
+          <a href="/talks"> Talks </a>
+          <a href="/about"> About </a>
         </div>
-      </dialog>`;
-  }
-
-  private toggleOptions() {
-    this.showOptions = !this.showOptions;
-    if (this.showOptions) {
-      // @ts-ignore
-      this.options.showModal();
-    }
+        <div class="actions">
+          <material-theme-control></material-theme-control>
+          ${canShare
+            ? html` <icon-button
+                @click=${this.share}
+                icon="share"
+              ></icon-button>`
+            : html``}
+        </div>
+      </article>
+    </header> `;
   }
 
   private share() {
@@ -250,64 +191,6 @@ export class AppHeader extends LitElement {
       });
     }
   }
-
-  private toggle() {
-    this.dark = !this.dark;
-    localStorage.setItem("theme-dark", this.dark.toString());
-    this.updateTheme();
-  }
-
-  private setColor(val: string) {
-    this.color = val;
-    localStorage.setItem("theme-color", val);
-    this.updateTheme();
-  }
-
-  private onColor(e: Event) {
-    const target = e.target as HTMLInputElement;
-    this.setColor(target.value);
-  }
-
-  private randomColor() {
-    this.setColor(randomColor());
-  }
-
-  private updateTheme() {
-    const source = this.color;
-    const dark = this.dark;
-    if (this.dark) {
-      document.body.classList.add("dark-theme");
-    } else {
-      document.body.classList.remove("dark-theme");
-    }
-    const target = this.shadowRoot!.querySelector("main") as HTMLElement;
-    const theme = themeFromSourceColor(argbFromHex(source));
-    applyTheme(theme, { target, dark });
-  }
-
-  firstUpdated() {
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-    const dark =
-      localStorage.getItem("theme-dark") ?? prefersDark.matches.toString();
-    this.dark = dark === "true";
-    if (this.dark) {
-      document.body.classList.add("dark-theme");
-    }
-    this.updateTheme();
-    prefersDark.addEventListener("change", (e) => {
-      this.dark = e.matches;
-      this.updateTheme();
-    });
-  }
-}
-
-function randomColor() {
-  const letters = "0123456789ABCDEF";
-  let color = "#";
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
 }
 
 declare global {
