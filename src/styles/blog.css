@@ -1,8 +1,8 @@
 @import url(icons.css);
-@import url(https://fonts.googleapis.com/css?family=Material+Icons&display=block);
 @import url(https://material-foundation.github.io/material-tokens/css/baseline.css);
 @import url(https://rodydavis.github.io/material-css/components.css);
 @import url(https://rodydavis.github.io/material-css/layout.css);
+
 
 :root {
   --font-fallback: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
@@ -42,12 +42,14 @@ body {
   color: var(--md-sys-color-on-background);
 }
 
-html, body {
-    width: 100vw;
-    overflow-x: hidden;
+html,
+body {
+  width: 100vw;
+  overflow-x: hidden;
 }
 
-.video, .demo {
+.video,
+.demo {
   aspect-ratio: 16/9;
   width: 100%;
   height: 100%;
@@ -58,13 +60,10 @@ html, body {
   background-color: rgba(var(--theme-accent-rgb), var(--theme-accent-opacity));
 } */
 
-
-
 :root {
   --user-font-scale: 1rem - 16px;
   /* --max-width: calc(100% - 2rem); */
 }
-
 
 img {
   border-radius: var(--md-sys-shape-small);

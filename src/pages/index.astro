@@ -44,11 +44,23 @@ section, article {
   color: var(--md-sys-color-on-surface-variant);
   border-radius: var(--md-sys-shape-small);
 }
-
 .pages {
   margin-top: 0.5rem;
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+}
+@media (min-width: 960px) {
+ .pages {
+    display: flex;
+    flex-direction: row;
+  }
+  .pages :nth-child(1), .pages :nth-child(2), .pages :nth-child(3) {
+    margin-right: 0.5rem;
+  }
 }
 
 .pages a {
@@ -59,9 +71,6 @@ section, article {
   width: 100%;
 }
 
-.pages :nth-child(1), .pages :nth-child(2), .pages :nth-child(3) {
-  margin-right: 0.5rem;
-}
 
 .pages a:hover {
   opacity: 0.67;
