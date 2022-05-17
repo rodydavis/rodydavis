@@ -10,5 +10,11 @@ export default defineConfig({
     sitemap: true,
     site: "https://rodydavis.com/",
   },
+  server: {
+    fs: {
+      // Allow serving files from one level up to the project root
+      allow: [".."],
+    },
+  },
   // plugins: [VitePWA()],
 });
