@@ -17,12 +17,12 @@ export class AppHeader extends LitElement {
     .title {
       display: block;
       white-space: nowrap;
+      overflow: hidden;
     }
     .title-prefix {
       display: block;
     }
     .title-details {
-      max-width: 200px;
       text-overflow: ellipsis;
       overflow: hidden;
     }
@@ -42,6 +42,7 @@ export class AppHeader extends LitElement {
     @media (min-width: 200px) {
       .title {
         display: block;
+       
       }
     }
     @media (min-width: 600px) {
@@ -77,7 +78,7 @@ export class AppHeader extends LitElement {
     return html`
       <link
         rel="stylesheet"
-        href="https://rodydavis.github.io/material-css/all.css"
+        href="https://rodydavis.github.io/material-css/top-app-bar/style.css"
       />
       <header class="top-app-bar">
         <h1 class="title">
