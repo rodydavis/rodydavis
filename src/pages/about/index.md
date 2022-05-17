@@ -69,7 +69,3 @@ Never stop learning and trying to be better.
 
 - [Buy Me A Coffee](https://www.buymeacoffee.com/rodydavis)
 - [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSH3GVC49GNNJ)
-
-## More Info
-
-This blog template is based on [eleventy-high-performance-blog](https://www.industrialempathy.com/posts/eleventy-high-performance-blog/) which itself is based on [eleventy-base-blog](https://github.com/11ty/eleventy-base-blog).
