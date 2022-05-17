@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@lit-labs/ssr": "^2.0.4",
+    "@material/material-color-utilities": "^0.1.2",
     "@material/mwc-base": "^0.26.1",
     "@material/mwc-button": "^0.26.1",
     "@material/mwc-icon-button": "^0.26.1",

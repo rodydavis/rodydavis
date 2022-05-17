@@ -1,7 +1,7 @@
 ---
 import MainLayout from '../components/MainLayout.astro';
 import Posts from '../components/Posts.astro';
-import { Markdown } from 'astro/components';
+import '../components/home-showcase';
 
 const title = 'Rody Davis';
 const description = 'Designer. Developer. Polygot.';
@@ -38,7 +38,6 @@ section, article {
 }
 
 .quote {
-  margin-top: 1rem;
   padding: 1rem;
   background-color: var(--md-sys-color-surface-variant);
   color: var(--md-sys-color-on-surface-variant);
@@ -91,10 +90,8 @@ section, article {
 </style>
 
 <MainLayout {title} {description} {permalink}>
-  <section class="content-section">
-     <div class="banner full-width">
-       <img  src="/img/banner.jpeg" />
-     </div>
+  <section class="content-section full-width">
+     <home-showcase ></home-showcase>
   </section>
 
   <section class="content-section">
