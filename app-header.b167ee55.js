@@ -1,4 +1,4 @@
-import{r as h,e as p,s as f,$ as s,n as m}from"./client-shim.6d491e7a.js";var u=Object.defineProperty,y=Object.getOwnPropertyDescriptor,d=(r,t,a,i)=>{for(var e=i>1?void 0:i?y(t,a):t,n=r.length-1,o;n>=0;n--)(o=r[n])&&(e=(i?o(t,a,e):o(e))||e);return i&&e&&u(t,a,e),e};let l=class extends f{constructor(){super(...arguments);this.icon="add",this.href=""}render(){return this.href?s`
+import{r as h,e as p,s as f,$ as s,n as m}from"./client-shim.6d491e7a.js";var u=Object.defineProperty,y=Object.getOwnPropertyDescriptor,d=(r,t,o,i)=>{for(var e=i>1?void 0:i?y(t,o):t,a=r.length-1,n;a>=0;a--)(n=r[a])&&(e=(i?n(t,o,e):n(e))||e);return i&&e&&u(t,o,e),e};let l=class extends f{constructor(){super(...arguments);this.icon="add",this.href=""}render(){return this.href?s`
         <div class="icon">
           <a href="${this.href}" target="_blank" rel="noopener noreferrer">
             <i class="material-icons">${this.icon}</i>
@@ -50,7 +50,7 @@ import{r as h,e as p,s as f,$ as s,n as m}from"./client-shim.6d491e7a.js";var u=
       align-items: center;
       justify-content: center;
     }
-  `;d([p({type:String})],l.prototype,"icon",2);d([p({type:String})],l.prototype,"href",2);l=d([m("icon-button")],l);var x=Object.defineProperty,g=Object.getOwnPropertyDescriptor,v=(r,t,a,i)=>{for(var e=i>1?void 0:i?g(t,a):t,n=r.length-1,o;n>=0;n--)(o=r[n])&&(e=(i?o(t,a,e):o(e))||e);return i&&e&&x(t,a,e),e};const w="app-header";let c=class extends f{constructor(){super(...arguments);this.title=document.title}render(){let r=!1;try{r=navigator.canShare()}catch{r=!1}const t=(this.title||"").trim();return s`
+  `;d([p({type:String})],l.prototype,"icon",2);d([p({type:String})],l.prototype,"href",2);l=d([m("icon-button")],l);var x=Object.defineProperty,g=Object.getOwnPropertyDescriptor,v=(r,t,o,i)=>{for(var e=i>1?void 0:i?g(t,o):t,a=r.length-1,n;a>=0;a--)(n=r[a])&&(e=(i?n(t,o,e):n(e))||e);return i&&e&&x(t,o,e),e};const b="app-header";let c=class extends f{constructor(){super(...arguments);this.title=document.title}render(){let r=!1;try{r=navigator.canShare()}catch{r=!1}const t=(this.title||"").trim();return s`
       <link
         rel="stylesheet"
         href="https://rodydavis.github.io/material-css/top-app-bar/style.css"
@@ -78,9 +78,10 @@ import{r as h,e as p,s as f,$ as s,n as m}from"./client-shim.6d491e7a.js";var u=
               ></icon-button>`:s``}
         </div>
       </header>
-    `}share(){const t=new URL(window.location.href).toString(),a=`${t}`,i=`${t}`;navigator.share&&navigator.share({text:a,title:i}).catch(e=>{console.error(e)})}};c.styles=h`
+    `}share(){const t=new URL(window.location.href).toString(),o=`${t}`,i=`${t}`;navigator.share&&navigator.share({text:o,title:i}).catch(e=>{console.error(e)})}};c.styles=h`
     header {
       --input-size: 32px;
+      font-family: "Roboto", sans-serif;
     }
     .spacer {
       flex: 1;
@@ -134,4 +135,4 @@ import{r as h,e as p,s as f,$ as s,n as m}from"./client-shim.6d491e7a.js";var u=
         max-width: 450px;
       }
     }
-  `;v([p()],c.prototype,"title",2);c=v([m(w)],c);export{c as AppHeader,w as tagName};
+  `;v([p()],c.prototype,"title",2);c=v([m(b)],c);export{c as AppHeader,b as tagName};
