@@ -10,6 +10,7 @@ export class AppHeader extends LitElement {
   static styles = css`
     header {
       --input-size: 32px;
+      font-family: "Roboto", sans-serif;
     }
     .spacer {
       flex: 1;
