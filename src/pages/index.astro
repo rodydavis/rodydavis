@@ -9,6 +9,10 @@ const permalink = 'https://rodydavis.com/';
 ---
 
 <style>
+section, article {
+  margin: 0;
+  padding: 0;
+}
 .content-section {
   width: 100%;
 }
@@ -38,7 +42,7 @@ const permalink = 'https://rodydavis.com/';
   padding: 1rem;
   background-color: var(--md-sys-color-surface-variant);
   color: var(--md-sys-color-on-surface-variant);
-  border-radius: 20px;
+  border-radius: var(--md-sys-shape-small);
 }
 
 .pages {
@@ -49,13 +53,10 @@ const permalink = 'https://rodydavis.com/';
 
 .pages a {
   flex: 1;
-  text-align: center;
-  background-color: var(--md-sys-color-tertiary-container);
-  color: var(--md-sys-color-on-tertiary-container);
-  padding: 0.5rem;
-  margin-top: 0.5rem;
-  border-radius: 20px;
   cursor: pointer;
+}
+.pages a button {
+  width: 100%;
 }
 
 .pages :nth-child(1), .pages :nth-child(2), .pages :nth-child(3) {
@@ -102,10 +103,10 @@ const permalink = 'https://rodydavis.com/';
 
   <section class="content-section">
     <div class="pages full-width">
-      <a href="/apps">Apps</a>
-      <a href="/posts">Blog</a>
-      <a href="/talks">Talks</a>
-      <a href="/about">About</a>
+      <a href="/apps"><button class="button filled-tonal">Apps</button></a>
+      <a href="/posts"><button class="button filled-tonal">Blog</button></a>
+      <a href="/talks"><button class="button filled-tonal">Talks</button></a>
+      <a href="/about"><button class="button filled-tonal">About</button></a>
     </div>
   </section>
 
