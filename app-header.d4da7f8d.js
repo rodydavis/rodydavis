@@ -1,10 +1,10 @@
-import{r as h,e as p,s as f,$ as o,n as m}from"./client-shim.6d491e7a.js";var u=Object.defineProperty,x=Object.getOwnPropertyDescriptor,d=(r,t,a,i)=>{for(var e=i>1?void 0:i?x(t,a):t,n=r.length-1,s;n>=0;n--)(s=r[n])&&(e=(i?s(t,a,e):s(e))||e);return i&&e&&u(t,a,e),e};let l=class extends f{constructor(){super(...arguments);this.icon="add",this.href=""}render(){return this.href?o`
+import{r as h,e as p,s as f,$ as s,n as m}from"./client-shim.6d491e7a.js";var u=Object.defineProperty,y=Object.getOwnPropertyDescriptor,d=(r,t,a,i)=>{for(var e=i>1?void 0:i?y(t,a):t,n=r.length-1,o;n>=0;n--)(o=r[n])&&(e=(i?o(t,a,e):o(e))||e);return i&&e&&u(t,a,e),e};let l=class extends f{constructor(){super(...arguments);this.icon="add",this.href=""}render(){return this.href?s`
         <div class="icon">
           <a href="${this.href}" target="_blank" rel="noopener noreferrer">
             <i class="material-icons">${this.icon}</i>
           </a>
         </div>
-      `:o`
+      `:s`
       <div class="icon">
         <i class="material-icons">${this.icon}</i>
       </div>
@@ -50,17 +50,17 @@ import{r as h,e as p,s as f,$ as o,n as m}from"./client-shim.6d491e7a.js";var u=
       align-items: center;
       justify-content: center;
     }
-  `;d([p({type:String})],l.prototype,"icon",2);d([p({type:String})],l.prototype,"href",2);l=d([m("icon-button")],l);var y=Object.defineProperty,g=Object.getOwnPropertyDescriptor,v=(r,t,a,i)=>{for(var e=i>1?void 0:i?g(t,a):t,n=r.length-1,s;n>=0;n--)(s=r[n])&&(e=(i?s(t,a,e):s(e))||e);return i&&e&&y(t,a,e),e};const w="app-header";let c=class extends f{constructor(){super(...arguments);this.title=document.title}render(){let r=!1;try{r=navigator.canShare()}catch{r=!1}const t=(this.title||"").trim();return o`
+  `;d([p({type:String})],l.prototype,"icon",2);d([p({type:String})],l.prototype,"href",2);l=d([m("icon-button")],l);var x=Object.defineProperty,g=Object.getOwnPropertyDescriptor,v=(r,t,a,i)=>{for(var e=i>1?void 0:i?g(t,a):t,n=r.length-1,o;n>=0;n--)(o=r[n])&&(e=(i?o(t,a,e):o(e))||e);return i&&e&&x(t,a,e),e};const w="app-header";let c=class extends f{constructor(){super(...arguments);this.title=document.title}render(){let r=!1;try{r=navigator.canShare()}catch{r=!1}const t=(this.title||"").trim();return s`
       <link
         rel="stylesheet"
-        href="https://rodydavis.github.io/material-css/all.css"
+        href="https://rodydavis.github.io/material-css/top-app-bar/style.css"
       />
       <header class="top-app-bar">
         <h1 class="title">
           <a href="/">
             <div class="title-prefix">Rody Davis</div>
-            ${t!=="Rody Davis"?o`<div class="title-prefix">&nbsp;|&nbsp;</div>
-                  <div class="title-details">${t}</div>`:o``}
+            ${t!=="Rody Davis"?s`<div class="title-prefix">&nbsp;|&nbsp;</div>
+                  <div class="title-details">${t}</div>`:s``}
           </a>
         </h1>
 
@@ -72,10 +72,10 @@ import{r as h,e as p,s as f,$ as o,n as m}from"./client-shim.6d491e7a.js";var u=
             <a href="/about"> About </a>
           </div>
           <material-theme-control></material-theme-control>
-          ${r?o` <icon-button
+          ${r?s` <icon-button
                 @click=${this.share}
                 icon="share"
-              ></icon-button>`:o``}
+              ></icon-button>`:s``}
         </div>
       </header>
     `}share(){const t=new URL(window.location.href).toString(),a=`${t}`,i=`${t}`;navigator.share&&navigator.share({text:a,title:i}).catch(e=>{console.error(e)})}};c.styles=h`
@@ -88,12 +88,12 @@ import{r as h,e as p,s as f,$ as o,n as m}from"./client-shim.6d491e7a.js";var u=
     .title {
       display: block;
       white-space: nowrap;
+      overflow: hidden;
     }
     .title-prefix {
       display: block;
     }
     .title-details {
-      max-width: 200px;
       text-overflow: ellipsis;
       overflow: hidden;
     }
@@ -113,6 +113,7 @@ import{r as h,e as p,s as f,$ as o,n as m}from"./client-shim.6d491e7a.js";var u=
     @media (min-width: 200px) {
       .title {
         display: block;
+       
       }
     }
     @media (min-width: 600px) {
