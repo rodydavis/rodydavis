@@ -89,53 +89,31 @@ Open up the `index.html` and update it with the following:
     </style>
   </head>
   <body>
-    <html-element-sandbox manifest="custom-elements.json">
+    <html-element-sandbox>
       <template>
-        <div id="buttons">
-          <button
-            knob-text="label"
-            knob-css-color="fg-color"
-            knob-css-background-color="bg-color"
-            knob-css-border-radius="shape"
-            knob-css-font-size="text-font-size"
-            knob-css-padding="padding"
-            knob-css---shadow-color="shadow"
-            knob-attr-raised="raised"
-            knob-attr-contenteditable="contenteditable"
-          ></button>
-          <mwc-button
-            knob-attr-label="label"
-            knob-css---mdc-theme-on-primary="fg-color"
-            knob-css---mdc-theme-primary="bg-color"
-            knob-css---mdc-shape-small="shape"
-            knob-attr-raised="raised"
-            label="My Button"
-          ></mwc-button>
-        </div>
-        <script type="module">
-          import "https://www.unpkg.com/@material/mwc-button@0.26.1/mwc-button.js?module";
-        </script>
+        <button
+          class="button"
+          knob-text="label"
+          knob-css-color="fg-color"
+          knob-css-background-color="bg-color"
+          knob-css-border-radius="shape"
+          knob-css-font-size="text-font-size"
+          knob-css-padding="padding"
+          knob-css---shadow-color="shadow"
+        >
+          My Button
+        </button>
         <style>
-          button {
+          .button {
             --shadow-color: #000;
             --elevation: 3px;
             display: block;
+            width: 100%;
+            height: 100%;
             border: none;
             background-color: transparent;
             cursor: pointer;
             box-shadow: 0 var(--elevation) calc(var(--elevation) * 2) 0 var(--shadow-color);
-          }
-          mwc-button {
-            --mdc-theme-on-primary: #000;
-            --mdc-theme-primary: #fff;
-            --mdc-shape-small: none;
-          }
-          #buttons {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
           }
         </style>
       </template>
@@ -166,7 +144,7 @@ Open up the `index.html` and update it with the following:
           <knob-number
             id="shape"
             name="Border Radius"
-            value="30"
+            value="100"
             suffix="px"
           ></knob-number>
           <knob-number
@@ -175,13 +153,6 @@ Open up the `index.html` and update it with the following:
             value="12"
             suffix="px"
           ></knob-number>
-        </knob-group>
-        <knob-group name="Attributes" expanded>
-          <knob-boolean id="raised" name="Raised" value="false"></knob-boolean>
-          <knob-list id="contenteditable" name="Content Editable" value="false">
-            <option value="true">true</option>
-            <option value="false">false</option>
-          </knob-list>
         </knob-group>
       </div>
     </html-element-sandbox>
