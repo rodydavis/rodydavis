@@ -162,14 +162,42 @@ Open up the `index.html` and update it with the following:
 
 Here we are defining the markup we want to use in our sandbox. We are using the `html-element-sandbox` component to create a sandbox for our HTML Element.
 
+```html
+<html-element-sandbox></html-element-sandbox>
+```
+
 Each knob is defined by an `id` and a `name`. The `id` is used to identify the knob in the `template` and the `name` is used to display the knob in the UI.
 
+```html
+<knob-number
+  id="shape"
+  name="Border Radius"
+  value="30"
+  suffix="px"
+></knob-number>
+```
+
 For the element inside the `template` we use `knob-*` attributes to get the values of the knobs and set the attributes, CSS style or text content.
+
+```html
+<!-- Attributes -->
+<div knob-attr-disabled="disabled"></div>
+<knob-boolean id="disabled" name="Disable" value="false"></knob-boolean>
+
+<!-- CSS Properties -->
+<div knob-css-color="fg-color" knob-css-background-color="bg-color"></div>
+<knob-color id="bg-color" name="Background Color" value="#ff0000"></knob-color>
+<knob-color id="fg-color" name="Foreground Color" value="#ffffff"></knob-color>
+
+<!-- Text Content -->
+<div knob-text="content"></div>
+<knob-string id="content" name="Text Content" value="Hello World"></knob-string>
+```
 
 A single knob can point to multiple elements:
 
 ```html
-<html-element-sandbox manifest="custom-elements.json">
+<html-element-sandbox>
   <template>
     <div id="buttons">
       <button
