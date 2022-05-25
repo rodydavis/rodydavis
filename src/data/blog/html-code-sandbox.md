@@ -909,6 +909,8 @@ declare global {
 
 ## Conclusion
 
+If everything worked as expected, you should see the following:
+
 ![](/img/html-sandbox/preview.png)
 
 If you want to learn more about building with Lit you can read the docs [here](https://lit.dev).
