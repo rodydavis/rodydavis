@@ -295,9 +295,9 @@ A `style` and `script` can be added to load extra content into the sandbox (e.g.
 
 ## Web Component
 
-Before we update our component we need to rename `my-element.ts` to html-element-sandbox.ts`
+Before we update our component we need to rename `my-element.ts` to `html-element-sandbox.ts`
 
-Open up html-element-sandbox.ts` and update it with the following:
+Open up `html-element-sandbox.ts` and update it with the following:
 
 ```js
 import { css, html, LitElement } from "lit";
