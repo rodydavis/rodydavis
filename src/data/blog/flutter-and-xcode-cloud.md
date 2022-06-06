@@ -78,7 +78,7 @@ Then run the following command which will make the script executable:
 chmod +x ios/ci_scripts/ci_post_clone.sh
 ```
 
-## Step 3:
+## Step 3
 
 Open up the iOS project in Xcode by right clicking on the iOS folder and selecting "Open in Xcode".
 
