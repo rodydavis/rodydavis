@@ -7,7 +7,7 @@ tags:
 - flutter
 - layout
 - design
-- ui/ux
+- ui
 image: /img/flutter/first.png
 ---
 
