@@ -6,6 +6,7 @@ tags:
 - posts
 - flutter
 - apps
+- ci
 image: /img/flutter/fastlane.jpg
 ---
 

@@ -7,6 +7,7 @@ tags:
 - posts
 - flutter
 - ci
+- ci
 image: /img/flutter/fastlane.jpg
 ---
 
