@@ -38,7 +38,7 @@ One nice thing about Flutter is that it is developed in the open as an open sour
 Now that you have Flutter installed it is time to create your first (Of Many 😉) Flutter project! Open up your terminal and navigate to wherever you want the application folder to be created. Once you “cd” into the directory you can type the following:
 
 ```bash
-$ flutter create my_awesome_project
+flutter create my_awesome_project
 ```
 
 You can replace “my_awesome_project” with whatever you want the project to be called. It is important to use snake_case as it is the valid syntax for project names in dart.
@@ -52,7 +52,7 @@ Congratulations you just created your first project!
 So you may be wondering what we just created so let us dive in to the details. You can open up you project in VSCode if you have it installed by typing the following into terminal:
 
 ```bash
-$ cd my_awesome_project && code .
+cd my_awesome_project && code .
 ```
 
 You can open up the folder in your favorite IDE if you prefer. Two important files to notice are the pubspec.yaml and lib/main.dart
@@ -265,7 +265,7 @@ flutter:
 Running the application is very easy too. While there are buttons in all the IDEs you can also run your project from the command line for quick testing. You can also configure [Flutter for Desktop](https://flutter.dev/desktop) and no need to wait for an emulator to warm up. Open your project and enter the following into terminal:
 
 ```bash
-$ flutter run -d macos
+flutter run -d macos
 ```
 
 Notice the “-d macos” as you can customize what device you want to run on. You should see the following in terminal:
@@ -331,7 +331,7 @@ void main() {
 You can run these tests very easily. Open your project and type the following into the terminal:
 
 ```bash
-$ flutter test
+flutter test
 00:07 +1: All tests passed!
 ```
 
@@ -342,7 +342,7 @@ Just like that all your tests will run and you can catch any bugs you missed.
 You can also generate code coverage for your applications easily by typing the following:
 
 ```bash
-$ flutter test --coverage
+flutter test --coverage
 ```
 
 This will generate a new file at “coverage/lcov.info” and will read the following:
