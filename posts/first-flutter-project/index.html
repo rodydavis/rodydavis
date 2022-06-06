@@ -224,13 +224,13 @@ await import("../../app-header.b167ee55.js");
 <img src="/img/gifs/very-interesting.gif" width="100%">
 <h2 id="create-the-project">Create the Project</h2>
 <p>Now that you have Flutter installed it is time to create your first (Of Many 😉) Flutter project! Open up your terminal and navigate to wherever you want the application folder to be created. Once you “cd” into the directory you can type the following:</p>
-<pre class="language-bash"><code class="language-bash">$ flutter create my_awesome_project</code></pre>
+<pre class="language-bash"><code class="language-bash">flutter create my_awesome_project</code></pre>
 <p>You can replace “my_awesome_project” with whatever you want the project to be called. It is important to use snake_case as it is the valid syntax for project names in dart.</p>
 <img src="/img/gifs/super-excited.gif" width="100%">
 <p>Congratulations you just created your first project!</p>
 <h2 id="open-the-project">Open the Project</h2>
 <p>So you may be wondering what we just created so let us dive in to the details. You can open up you project in VSCode if you have it installed by typing the following into terminal:</p>
-<pre class="language-bash"><code class="language-bash">$ <span class="token builtin class-name">cd</span> my_awesome_project <span class="token operator">&amp;&amp;</span> code <span class="token builtin class-name">.</span></code></pre>
+<pre class="language-bash"><code class="language-bash"><span class="token builtin class-name">cd</span> my_awesome_project <span class="token operator">&amp;&amp;</span> code <span class="token builtin class-name">.</span></code></pre>
 <p>You can open up the folder in your favorite IDE if you prefer. Two important files to notice are the pubspec.yaml and lib/main.dart</p>
 <p>Your UI and Logic is located at “lib/main.dart” and you should see the following:</p>
 <pre class="language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:flutter/material.dart'</span></span><span class="token punctuation">;</span>
@@ -429,7 +429,7 @@ await import("../../app-header.b167ee55.js");
   <span class="token comment"># see https://flutter.dev/custom-fonts/#from-packages</span></code></pre>
 <h2 id="running-the-project">Running the Project</h2>
 <p>Running the application is very easy too. While there are buttons in all the IDEs you can also run your project from the command line for quick testing. You can also configure <a href="https://flutter.dev/desktop">Flutter for Desktop</a> and no need to wait for an emulator to warm up. Open your project and enter the following into terminal:</p>
-<pre class="language-bash"><code class="language-bash">$ flutter run -d macos</code></pre>
+<pre class="language-bash"><code class="language-bash">flutter run -d macos</code></pre>
 <p>Notice the “-d macos” as you can customize what device you want to run on. You should see the following in terminal:</p>
 <pre class="language-bash"><code class="language-bash">Building macOS application<span class="token punctuation">..</span>.                                           
 Syncing files to device macOS<span class="token punctuation">..</span>.                                   141ms
@@ -479,12 +479,12 @@ Application finished.</code></pre>
   <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 <p>You can run these tests very easily. Open your project and type the following into the terminal:</p>
-<pre class="language-bash"><code class="language-bash">$ flutter <span class="token builtin class-name">test</span>
+<pre class="language-bash"><code class="language-bash">flutter <span class="token builtin class-name">test</span>
 00:07 +1: All tests passed<span class="token operator">!</span></code></pre>
 <p>Just like that all your tests will run and you can catch any bugs you missed.</p>
 <img src="/img/gifs/broken-door.gif" width="100%">
 <p>You can also generate code coverage for your applications easily by typing the following:</p>
-<pre class="language-bash"><code class="language-bash">$ flutter <span class="token builtin class-name">test</span> --coverage</code></pre>
+<pre class="language-bash"><code class="language-bash">flutter <span class="token builtin class-name">test</span> --coverage</code></pre>
 <p>This will generate a new file at “coverage/lcov.info” and will read the following:</p>
 <pre class="language-bash"><code class="language-bash">SF:lib/main.dart
 DA:3,0
