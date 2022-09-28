@@ -144,7 +144,7 @@ await import("../../app-header.b167ee55.js");
 		<div class="astro-6ZXIMRXV">
 			<header class="astro-6ZXIMRXV">
 				<img width="720" height="420" class="hero-image astro-6ZXIMRXV" loading="lazy" src="/img/static-site/preview.png">
-				<p class="publish-date astro-6ZXIMRXV">28 Sep 2022 ~ 1 min read</p>
+				<p class="publish-date astro-6ZXIMRXV">28 Sep 2022 ~ 8 min read</p>
 				<h1 class="title astro-6ZXIMRXV">File Based Routing for Static Sites</h1>
 				<div class="author astro-KO5QTRDP">
 	<p class="astro-KO5QTRDP"><a href="/about" class="astro-KO5QTRDP">@rodydavis</a></p>
@@ -272,9 +272,489 @@ await import("../../app-header.b167ee55.js");
 			<main class="astro-W2QVQNXU">
 				<p>In this article I will go over how to use file based routing to output as a static site multi page application.</p>
 <p><strong>TLDR</strong> The final source <a href="https://github.com/rodydavis/static-site-file-based-routing">here</a> and an online <a href="https://rodydavis.github.io/static-site-file-based-routing/">demo</a>.</p>
-<h2 id="background">Background</h2>
-<p>This example is to show the minimal setup needed to achieve</p>
+<h2 id="step-1">Step 1</h2>
+<p>Create a new folder called “static-site-file-based-routing” and open it up in VSCode.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">mkdir</span> static-site-file-based-routing
+<span class="token builtin class-name">cd</span> static-site-file-based-routing
+code <span class="token builtin class-name">.</span></code></pre>
+<h2 id="step-2">Step 2</h2>
+<p>Create a <code>tsconfig.json</code> and replace it with the following:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"compilerOptions"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"incremental"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"target"</span><span class="token operator">:</span> <span class="token string">"es5"</span><span class="token punctuation">,</span>
+    <span class="token property">"module"</span><span class="token operator">:</span> <span class="token string">"es2020"</span><span class="token punctuation">,</span>
+    <span class="token property">"outDir"</span><span class="token operator">:</span> <span class="token string">"dist"</span><span class="token punctuation">,</span>
+    <span class="token property">"strict"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"moduleResolution"</span><span class="token operator">:</span> <span class="token string">"node"</span><span class="token punctuation">,</span>
+    <span class="token property">"esModuleInterop"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"skipLibCheck"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"forceConsistentCasingInFileNames"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"typeRoots"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">"node_modules/@types"</span><span class="token punctuation">,</span>
+      <span class="token string">"src/@types"</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"include"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"src/**/*"</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"exclude"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"node_modules"</span><span class="token punctuation">,</span>
+    <span class="token string">"dist"</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="step-3">Step 3</h2>
+<p>Create a <code>package.json</code> and update it with the following:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"static-site-file-based-routing"</span><span class="token punctuation">,</span>
+  <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"1.0.0"</span><span class="token punctuation">,</span>
+  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"File based routing for HTML MPA"</span><span class="token punctuation">,</span>
+  <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"module"</span><span class="token punctuation">,</span>
+  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"start"</span><span class="token operator">:</span> <span class="token string">"wds --node-resolve --root-dir build --base-path /static-site-file-based-routing --open --watch"</span><span class="token punctuation">,</span>
+    <span class="token property">"postinstall"</span><span class="token operator">:</span> <span class="token string">"npm run tsc"</span><span class="token punctuation">,</span>
+    <span class="token property">"build"</span><span class="token operator">:</span> <span class="token string">"node dist/main.js --inputDir ./example --outputDir ./build"</span><span class="token punctuation">,</span>
+    <span class="token property">"dev"</span><span class="token operator">:</span> <span class="token string">"node dist/main.js --inputDir ./example --outputDir ./build -w"</span><span class="token punctuation">,</span>
+    <span class="token property">"tsc"</span><span class="token operator">:</span> <span class="token string">"tsc"</span><span class="token punctuation">,</span>
+    <span class="token property">"tsc:watch"</span><span class="token operator">:</span> <span class="token string">"tsc -w"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"devDependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"@pkgjs/parseargs"</span><span class="token operator">:</span> <span class="token string">"^0.10.0"</span><span class="token punctuation">,</span>
+    <span class="token property">"@types/markdown-it"</span><span class="token operator">:</span> <span class="token string">"^12.2.3"</span><span class="token punctuation">,</span>
+    <span class="token property">"@types/node"</span><span class="token operator">:</span> <span class="token string">"^18.7.23"</span><span class="token punctuation">,</span>
+    <span class="token property">"@web/dev-server"</span><span class="token operator">:</span> <span class="token string">"^0.1.34"</span><span class="token punctuation">,</span>
+    <span class="token property">"chokidar"</span><span class="token operator">:</span> <span class="token string">"^3.5.3"</span><span class="token punctuation">,</span>
+    <span class="token property">"highlight.js"</span><span class="token operator">:</span> <span class="token string">"^11.6.0"</span><span class="token punctuation">,</span>
+    <span class="token property">"html-format"</span><span class="token operator">:</span> <span class="token string">"^1.0.2"</span><span class="token punctuation">,</span>
+    <span class="token property">"markdown-it"</span><span class="token operator">:</span> <span class="token string">"^13.0.1"</span><span class="token punctuation">,</span>
+    <span class="token property">"parse5"</span><span class="token operator">:</span> <span class="token string">"^7.1.1"</span><span class="token punctuation">,</span>
+    <span class="token property">"typescript"</span><span class="token operator">:</span> <span class="token string">"^4.8.4"</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Then run <code>npm install</code> to install all the dependencies.</p>
+<blockquote>
+<p>Note: I am using <code>@web/dev-server</code> to serve the site locally. You can use any server you want.</p>
+</blockquote>
+<p>These dependencies are used for various file transformations such as markdown to HTML, HTML formatting, and file watching.</p>
+<h2 id="step-4">Step 4</h2>
+<p>Create a <code>src</code> folder and add 4 files:</p>
+<h3 id="srcbuildts"><code>src/build.ts</code></h3>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> fs <span class="token keyword">from</span> <span class="token string">"fs"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> compileDir<span class="token punctuation">,</span> compileTarget <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./compile.js"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> path <span class="token keyword">from</span> <span class="token string">"path"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> chokidar <span class="token keyword">from</span> <span class="token string">"chokidar"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> publicDirectory <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./static.js"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Options</span> <span class="token punctuation">{</span>
+    inputDir<span class="token operator">?</span><span class="token operator">:</span> string<span class="token punctuation">;</span>
+    outputDir<span class="token operator">?</span><span class="token operator">:</span> string<span class="token punctuation">;</span>
+    publicDir<span class="token operator">?</span><span class="token operator">:</span> string<span class="token punctuation">;</span>
+    watch<span class="token operator">?</span><span class="token operator">:</span> boolean<span class="token punctuation">;</span>
+    clean<span class="token operator">?</span><span class="token operator">:</span> boolean<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">build</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">options</span><span class="token operator">:</span> Options</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> inputDir <span class="token operator">=</span> options<span class="token punctuation">.</span>inputDir <span class="token operator">||</span> <span class="token string">"www"</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> outputDir <span class="token operator">=</span> options<span class="token punctuation">.</span>outputDir <span class="token operator">||</span> <span class="token string">"build"</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> publicDir <span class="token operator">=</span> options<span class="token punctuation">.</span>publicDir <span class="token operator">||</span> <span class="token string">"public"</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> watch <span class="token operator">=</span> options<span class="token punctuation">.</span>watch <span class="token operator">||</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> clean <span class="token operator">=</span> options<span class="token punctuation">.</span>clean <span class="token operator">||</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>inputDir<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Input directory </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>inputDir<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> does not exist</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>clean<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>outputDir<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            fs<span class="token punctuation">.</span><span class="token function">rmdirSync</span><span class="token punctuation">(</span>outputDir<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">recursive</span><span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>outputDir<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        fs<span class="token punctuation">.</span><span class="token function">mkdirSync</span><span class="token punctuation">(</span>outputDir<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">recursive</span><span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>watch<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Watching for changes..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        chokidar<span class="token punctuation">.</span><span class="token function">watch</span><span class="token punctuation">(</span>inputDir<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">"all"</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">event<span class="token punctuation">,</span> inputFile</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">,</span> inputFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>inputFile<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">const</span> relativePath <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">relative</span><span class="token punctuation">(</span>inputDir<span class="token punctuation">,</span> inputFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">const</span> outputFile <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>outputDir<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>relativePath<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+
+                <span class="token keyword">const</span> stat <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">statSync</span><span class="token punctuation">(</span>inputFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>stat<span class="token punctuation">.</span><span class="token function">isDirectory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">await</span> <span class="token function">compileDir</span><span class="token punctuation">(</span>inputFile<span class="token punctuation">,</span> outputFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>stat<span class="token punctuation">.</span><span class="token function">isFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">const</span> filename <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">basename</span><span class="token punctuation">(</span>inputFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>filename <span class="token operator">===</span> <span class="token string">"layout.html"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        <span class="token comment">// Rebuild all related directories</span>
+                        <span class="token keyword">const</span> dir <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">dirname</span><span class="token punctuation">(</span>inputFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token keyword">const</span> inDir <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">relative</span><span class="token punctuation">(</span>inputDir<span class="token punctuation">,</span> dir<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token keyword">const</span> outDir <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>outputDir<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>inDir<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+                        <span class="token keyword">await</span> <span class="token function">compileDir</span><span class="token punctuation">(</span>dir<span class="token punctuation">,</span> outDir<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                        <span class="token keyword">await</span> <span class="token function">compileTarget</span><span class="token punctuation">(</span>inputFile<span class="token punctuation">,</span> outputFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">await</span> <span class="token function">compileDir</span><span class="token punctuation">(</span>inputDir<span class="token punctuation">,</span> outputDir<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>publicDir<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">','</span><span class="token punctuation">)</span><span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> dir <span class="token keyword">of</span> publicDir<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">','</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">publicDirectory</span><span class="token punctuation">(</span>dir<span class="token punctuation">,</span> outputDir<span class="token punctuation">,</span> watch<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token function">publicDirectory</span><span class="token punctuation">(</span>publicDir<span class="token punctuation">,</span> outputDir<span class="token punctuation">,</span> watch<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="srccompilets"><code>src/compile.ts</code></h3>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> fs <span class="token keyword">from</span> <span class="token string">"fs"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> path <span class="token keyword">from</span> <span class="token string">"path"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> MarkdownIt <span class="token keyword">from</span> <span class="token string">"markdown-it"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> hljs <span class="token keyword">from</span> <span class="token string">"highlight.js"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> parse5 <span class="token keyword">from</span> <span class="token string">"parse5"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> type <span class="token punctuation">{</span> Document <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"parse5/dist/tree-adapters/default.js"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> format <span class="token keyword">from</span> <span class="token string">'html-format'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">compile</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">file</span><span class="token operator">:</span> string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> raw <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">readFileSync</span><span class="token punctuation">(</span>file<span class="token punctuation">,</span> <span class="token string">"utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> ext <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">extname</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>ext<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">case</span> <span class="token string">".md"</span><span class="token operator">:</span>
+        <span class="token keyword">case</span> <span class="token string">".markdown"</span><span class="token operator">:</span>
+            <span class="token keyword">const</span> md <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MarkdownIt</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+                <span class="token literal-property property">html</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">linkify</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">typographer</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+                <span class="token function-variable function">highlight</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">str<span class="token punctuation">,</span> lang</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>lang <span class="token operator">&amp;&amp;</span> hljs<span class="token punctuation">.</span><span class="token function">getLanguage</span><span class="token punctuation">(</span>lang<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                            <span class="token keyword">return</span> <span class="token punctuation">(</span>
+                                <span class="token string">'&lt;pre class="hljs">&lt;code>'</span> <span class="token operator">+</span>
+                                hljs<span class="token punctuation">.</span><span class="token function">highlight</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">language</span><span class="token operator">:</span> lang<span class="token punctuation">,</span> <span class="token literal-property property">ignoreIllegals</span><span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+                                    <span class="token punctuation">.</span>value <span class="token operator">+</span>
+                                <span class="token string">"&lt;/code>&lt;/pre>"</span>
+                            <span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>__<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                            console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>__<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token punctuation">}</span>
+                    <span class="token punctuation">}</span>
+                    <span class="token keyword">return</span> <span class="token string">""</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> parse5<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>md<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>raw<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> <span class="token string">".html"</span><span class="token operator">:</span>
+            <span class="token keyword">return</span> parse5<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>raw<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">default</span><span class="token operator">:</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> raw<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">createHtml</span><span class="token punctuation">(</span><span class="token parameter">options<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">{</span> head<span class="token operator">?</span><span class="token operator">:</span> string<span class="token punctuation">;</span> body<span class="token operator">?</span><span class="token operator">:</span> string<span class="token punctuation">;</span> <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+&lt;!DOCTYPE html>
+&lt;html lang="en">
+&lt;head>
+</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>options<span class="token operator">?.</span>head <span class="token operator">??</span> <span class="token string">""</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">
+&lt;/head>
+&lt;body>
+</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>options<span class="token operator">?.</span>body <span class="token operator">??</span> <span class="token string">"&lt;slot>&lt;/slot>"</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">
+&lt;/body>
+&lt;/html>
+</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">compileFile</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">file</span><span class="token operator">:</span> string<span class="token punctuation">,</span> <span class="token literal-property property">target</span><span class="token operator">:</span> string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Use regex to check if ends with index.*</span>
+    <span class="token keyword">const</span> isIndex <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">index\.([a-z]+)$</span><span class="token regex-delimiter">/</span><span class="token regex-flags">i</span></span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isIndex <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>fs<span class="token punctuation">.</span><span class="token function">statSync</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isDirectory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Skipping for nested layouts</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">const</span> parent <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">dirname</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Render up the directory tree until we hit the root directory</span>
+    <span class="token keyword">const</span> <span class="token literal-property property">files</span><span class="token operator">:</span> string<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>file<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> filePath <span class="token operator">=</span> file<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>filePath <span class="token operator">!==</span> parent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        filePath <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">dirname</span><span class="token punctuation">(</span>filePath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// Check for root level layout</span>
+        <span class="token keyword">const</span> layout <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>filePath<span class="token punctuation">,</span> <span class="token string">"layout.html"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>layout<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            files<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span>layout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>filePath <span class="token operator">===</span> <span class="token string">"."</span><span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Check for root level index markdown or html</span>
+    <span class="token keyword">const</span> layout <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>parent<span class="token punctuation">,</span> <span class="token string">"layout.html"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>layout<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>
+            fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>parent<span class="token punctuation">,</span> <span class="token string">"index.html"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">||</span>
+            fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>parent<span class="token punctuation">,</span> <span class="token string">"index.md"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">||</span>
+            fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>parent<span class="token punctuation">,</span> <span class="token string">"index.markdown"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            files<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span>layout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">let</span> output <span class="token operator">=</span> <span class="token function">createHtml</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> item <span class="token keyword">of</span> files<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> doc <span class="token operator">=</span> <span class="token function">compile</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> doc <span class="token operator">!==</span> <span class="token string">'string'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">const</span> content <span class="token operator">=</span> parse5<span class="token punctuation">.</span><span class="token function">serialize</span><span class="token punctuation">(</span>doc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            output <span class="token operator">=</span> <span class="token function">mergeDocuments</span><span class="token punctuation">(</span>output<span class="token punctuation">,</span> content<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Replace extension</span>
+    <span class="token keyword">const</span> ext <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">extname</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> newFile <span class="token operator">=</span> target<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>ext<span class="token punctuation">,</span> <span class="token string">'.html'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Check if parent directory exists</span>
+    <span class="token keyword">const</span> parentDir <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">dirname</span><span class="token punctuation">(</span>newFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>parentDir<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        fs<span class="token punctuation">.</span><span class="token function">mkdirSync</span><span class="token punctuation">(</span>parentDir<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">recursive</span><span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    fs<span class="token punctuation">.</span><span class="token function">writeFileSync</span><span class="token punctuation">(</span>newFile<span class="token punctuation">,</span> output<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">--> </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>newFile<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">mergeDocuments</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">current</span><span class="token operator">:</span> string<span class="token punctuation">,</span> <span class="token literal-property property">source</span><span class="token operator">:</span> string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> raw <span class="token operator">=</span> current<span class="token punctuation">;</span>
+
+    <span class="token comment">// Merge body</span>
+    <span class="token keyword">const</span> html <span class="token operator">=</span> <span class="token function">extractDoc</span><span class="token punctuation">(</span>parse5<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Check for &lt;slot>&lt;/slot></span>
+    <span class="token keyword">const</span> hasSlot <span class="token operator">=</span> raw<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">"&lt;slot>&lt;/slot>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>hasSlot<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        raw <span class="token operator">=</span> raw<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">"&lt;slot>&lt;/slot>"</span><span class="token punctuation">,</span> parse5<span class="token punctuation">.</span><span class="token function">serialize</span><span class="token punctuation">(</span>html<span class="token punctuation">.</span>body<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Append to body</span>
+        <span class="token keyword">const</span> endBodyIdx <span class="token operator">=</span> raw<span class="token punctuation">.</span><span class="token function">lastIndexOf</span><span class="token punctuation">(</span><span class="token string">"&lt;/body>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> start <span class="token operator">=</span> raw<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> endBodyIdx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> end <span class="token operator">=</span> raw<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>endBodyIdx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> body <span class="token operator">=</span> parse5<span class="token punctuation">.</span><span class="token function">serialize</span><span class="token punctuation">(</span>html<span class="token punctuation">.</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        raw <span class="token operator">=</span> start <span class="token operator">+</span> body <span class="token operator">+</span> end<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Merge head</span>
+    <span class="token keyword">const</span> endHeadIdx <span class="token operator">=</span> raw<span class="token punctuation">.</span><span class="token function">lastIndexOf</span><span class="token punctuation">(</span><span class="token string">"&lt;/head>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> start <span class="token operator">=</span> raw<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> endHeadIdx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> end <span class="token operator">=</span> raw<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>endHeadIdx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> head <span class="token operator">=</span> parse5<span class="token punctuation">.</span><span class="token function">serialize</span><span class="token punctuation">(</span>html<span class="token punctuation">.</span>head<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    raw <span class="token operator">=</span> start <span class="token operator">+</span> head <span class="token operator">+</span> end<span class="token punctuation">;</span>
+
+    <span class="token comment">// Format</span>
+    raw <span class="token operator">=</span> <span class="token function">format</span><span class="token punctuation">(</span>raw<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Remove duplicate title tags</span>
+    <span class="token keyword">const</span> lastTitle <span class="token operator">=</span> raw<span class="token punctuation">.</span><span class="token function">lastIndexOf</span><span class="token punctuation">(</span><span class="token string">"&lt;title>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> lastTitleEnd <span class="token operator">=</span> raw<span class="token punctuation">.</span><span class="token function">lastIndexOf</span><span class="token punctuation">(</span><span class="token string">"&lt;/title>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> title <span class="token operator">=</span> raw<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>lastTitle<span class="token punctuation">,</span> lastTitleEnd <span class="token operator">+</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    raw <span class="token operator">=</span> raw<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">&lt;title>.*&lt;\/title></span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    raw <span class="token operator">=</span> raw<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">"&lt;/head>"</span><span class="token punctuation">,</span> title <span class="token operator">+</span> <span class="token string">"&lt;/head>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> raw<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">extractDoc</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">doc</span><span class="token operator">:</span> Document</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> html <span class="token operator">=</span> <span class="token punctuation">(</span>doc<span class="token punctuation">.</span>childNodes<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">??</span> doc<span class="token punctuation">.</span>childNodes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">as</span> unknown <span class="token keyword">as</span> Document<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> head <span class="token operator">=</span> html<span class="token punctuation">.</span>childNodes<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>
+        <span class="token punctuation">(</span><span class="token parameter">node</span><span class="token punctuation">)</span> <span class="token operator">=></span> node<span class="token punctuation">.</span>nodeName <span class="token operator">===</span> <span class="token string">"head"</span>
+    <span class="token punctuation">)</span> <span class="token keyword">as</span> unknown <span class="token keyword">as</span> Document<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> body <span class="token operator">=</span> html<span class="token punctuation">.</span>childNodes<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>
+        <span class="token punctuation">(</span><span class="token parameter">node</span><span class="token punctuation">)</span> <span class="token operator">=></span> node<span class="token punctuation">.</span>nodeName <span class="token operator">===</span> <span class="token string">"body"</span>
+    <span class="token punctuation">)</span> <span class="token keyword">as</span> unknown <span class="token keyword">as</span> Document<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span> head<span class="token punctuation">,</span> body <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">compileDir</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">inputDir</span><span class="token operator">:</span> string<span class="token punctuation">,</span> <span class="token literal-property property">outputDir</span><span class="token operator">:</span> string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> files <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">readdirSync</span><span class="token punctuation">(</span>inputDir<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> file <span class="token keyword">of</span> files<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> inputFile <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>inputDir<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>file<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> outputFile <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>outputDir<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>file<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+
+        <span class="token keyword">await</span> <span class="token function">compileTarget</span><span class="token punctuation">(</span>inputFile<span class="token punctuation">,</span> outputFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">compileTarget</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">input</span><span class="token operator">:</span> string<span class="token punctuation">,</span> <span class="token literal-property property">output</span><span class="token operator">:</span> string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> stat <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">statSync</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>stat<span class="token punctuation">.</span><span class="token function">isDirectory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>output<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            fs<span class="token punctuation">.</span><span class="token function">mkdirSync</span><span class="token punctuation">(</span>output<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">recursive</span><span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">await</span> <span class="token function">compileDir</span><span class="token punctuation">(</span>input<span class="token punctuation">,</span> output<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>stat<span class="token punctuation">.</span><span class="token function">isFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> ext <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">extname</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'.html'</span><span class="token punctuation">,</span> <span class="token string">'.md'</span><span class="token punctuation">,</span> <span class="token string">'.markdown'</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>ext<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">await</span> <span class="token function">compileFile</span><span class="token punctuation">(</span>input<span class="token punctuation">,</span> output<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">const</span> current <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">readFileSync</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">const</span> parentDir <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">dirname</span><span class="token punctuation">(</span>output<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>parentDir<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                fs<span class="token punctuation">.</span><span class="token function">mkdirSync</span><span class="token punctuation">(</span>parentDir<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">recursive</span><span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>output<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">// Check if content is the same</span>
+                <span class="token keyword">const</span> previous <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">readFileSync</span><span class="token punctuation">(</span>output<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>Buffer<span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span>current<span class="token punctuation">,</span> previous<span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    fs<span class="token punctuation">.</span><span class="token function">writeFileSync</span><span class="token punctuation">(</span>output<span class="token punctuation">,</span> current<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                <span class="token comment">// Copy the file</span>
+                fs<span class="token punctuation">.</span><span class="token function">copyFileSync</span><span class="token punctuation">(</span>input<span class="token punctuation">,</span> output<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="srcstaticts"><code>src/static.ts</code></h3>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> fs <span class="token keyword">from</span> <span class="token string">"fs"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> path <span class="token keyword">from</span> <span class="token string">"path"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> chokidar <span class="token keyword">from</span> <span class="token string">"chokidar"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">publicDirectory</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">publicDir</span><span class="token operator">:</span> string<span class="token punctuation">,</span> <span class="token literal-property property">outputDir</span><span class="token operator">:</span> string<span class="token punctuation">,</span> <span class="token literal-property property">watch</span><span class="token operator">:</span> boolean</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>watch<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>publicDir<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            chokidar<span class="token punctuation">.</span><span class="token function">watch</span><span class="token punctuation">(</span>publicDir<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">"all"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">event<span class="token punctuation">,</span> inputFile</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">,</span> inputFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>inputFile<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">const</span> relativePath <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">relative</span><span class="token punctuation">(</span>publicDir<span class="token punctuation">,</span> inputFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">const</span> outputFile <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>outputDir<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>relativePath<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+
+                    <span class="token keyword">const</span> stat <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">statSync</span><span class="token punctuation">(</span>inputFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>stat<span class="token punctuation">.</span><span class="token function">isDirectory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        <span class="token function">copyStaticFiles</span><span class="token punctuation">(</span>inputFile<span class="token punctuation">,</span> outputFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>stat<span class="token punctuation">.</span><span class="token function">isFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        fs<span class="token punctuation">.</span><span class="token function">copyFileSync</span><span class="token punctuation">(</span>inputFile<span class="token punctuation">,</span> outputFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Copy static files</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>publicDir<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">copyStaticFiles</span><span class="token punctuation">(</span>publicDir<span class="token punctuation">,</span> outputDir<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">copyStaticFiles</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">inDir</span><span class="token operator">:</span> string<span class="token punctuation">,</span> <span class="token literal-property property">outDir</span><span class="token operator">:</span> string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> files <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">readdirSync</span><span class="token punctuation">(</span>inDir<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> file <span class="token keyword">of</span> files<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> inputFile <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>inDir<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>file<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> outputFile <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>outDir<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>file<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+
+        <span class="token keyword">const</span> stat <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">statSync</span><span class="token punctuation">(</span>inputFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>stat<span class="token punctuation">.</span><span class="token function">isDirectory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>outputFile<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                fs<span class="token punctuation">.</span><span class="token function">mkdirSync</span><span class="token punctuation">(</span>outputFile<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">recursive</span><span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+            <span class="token function">copyStaticFiles</span><span class="token punctuation">(</span>inputFile<span class="token punctuation">,</span> outputFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>stat<span class="token punctuation">.</span><span class="token function">isFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            fs<span class="token punctuation">.</span><span class="token function">copyFileSync</span><span class="token punctuation">(</span>inputFile<span class="token punctuation">,</span> outputFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="srcmaints"><code>src/main.ts</code></h3>
+<pre class="language-javascript"><code class="language-javascript"><span class="token hashbang comment">#!/usr/bin/env node</span>
+
+<span class="token comment">// @ts-ignore</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> parseArgs <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@pkgjs/parseargs"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> build <span class="token keyword">from</span> <span class="token string">"./build.js"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">values</span><span class="token operator">:</span> <span class="token punctuation">{</span> inputDir<span class="token punctuation">,</span> outputDir<span class="token punctuation">,</span> watch <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">parseArgs</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">inputDir</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">short</span><span class="token operator">:</span> <span class="token string">"i"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">outputDir</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">short</span><span class="token operator">:</span> <span class="token string">"o"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">watch</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"boolean"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">short</span><span class="token operator">:</span> <span class="token string">"w"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">allowPositional</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>inputDir <span class="token operator">===</span> <span class="token keyword">undefined</span> <span class="token operator">||</span> outputDir <span class="token operator">===</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Usage: build -i &lt;inputDir> -o &lt;outputDir> [-w]"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">await</span> <span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    inputDir<span class="token punctuation">,</span>
+    outputDir<span class="token punctuation">,</span>
+    watch<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="step-5">Step 5</h2>
+<p>Now that the project is setup we can start the typescript compiler in watch mode.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> run ts:watch</code></pre>
+<h2 id="step-6">Step 6</h2>
+<p>Now create a folder that will contain the source files for the website.</p>
+<h3 id="exampleindexmd"><code>example/index.md</code></h3>
+<pre class="language-md"><code class="language-md"><span class="token title important"><span class="token punctuation">#</span> Hello World</span>
+
+This is a test</code></pre>
+<h3 id="examplestylecss"><code>example/style.css</code></h3>
+<pre class="language-css"><code class="language-css"><span class="token selector">body</span> <span class="token punctuation">{</span>
+    <span class="token property">background-color</span><span class="token punctuation">:</span> #000<span class="token punctuation">;</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="examplelayouthtml"><code>example/layout.html</code></h3>
+<pre class="language-html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>X-UA-Compatible<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>IE=edge<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Example<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>style.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>slot</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>slot</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
+<h2 id="step-7">Step 7</h2>
+<p>With the source files created we can now run the build script.</p>
+<p>For a one time build run:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> run build</code></pre>
+<p>For a watch mode run:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> run dev</code></pre>
+<p>Now start the http server:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> run start</code></pre>
 <h2 id="conclusion">Conclusion</h2>
+<p>As you make changes it will only update affected files and be very fast to update.</p>
+<blockquote>
+<p>Note that this does not bundle the javascript and will be up to you if you are using <code>node_modules</code> in any files (for the example in the repo I show how to use <strong>UNPKG</strong>).</p>
+</blockquote>
 <p>If you want to find the source code you can check it out <a href="https://github.com/rodydavis/static-site-file-based-routing">here</a> otherwise thanks for reading and let me know if you have any questions!</p>
 			</main>
 		</div>
