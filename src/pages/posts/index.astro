@@ -1,12 +1,25 @@
 ---
-import MainLayout from '../../components/MainLayout.astro';
-import Posts from '../../components/Posts.astro';
+import MainLayout from "../../components/MainLayout.astro";
+import Posts from "../../components/Posts.astro";
 
-const title = 'Blog';
-const description = 'Personal blog of Rody Davis';
-const permalink = 'https://rodydavis.com/blog';
+const title = "Blog";
+const description = "Personal blog of Rody Davis";
+const permalink = "https://rodydavis.com/blog";
 ---
 
-<MainLayout  {title} {description} {permalink}>
-    <Posts />
+<MainLayout {title} {description} {permalink}>
+  <Posts />
+
+  <a href="https://rodydavis.com/feed/feed.xml" class="feed">RSS Feed</a>
 </MainLayout>
+
+<style>
+  .feed {
+    display: block;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    text-align: center;
+  }
+</style>
