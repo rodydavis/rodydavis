@@ -218,7 +218,8 @@ await import("../../app-header.b167ee55.js");
 <p>Basic knowledge of Graph Databases (Refer to this <a href="https://www.youtube.com/watch?v=GekQqFZm7mA">video</a> if you need to learn more).</p>
 <h2 id="overview">Overview</h2>
 <p>First of all, why do we need a graph database when other storage options exist?</p>
-<p>Why not use key value stores, document stores, or relational databases? Well, the answer is that it depends on the problem you are trying to solve.</p>
+<p>Why not use key value stores, document stores, or relational databases?</p>
+<p>Well, the answer is that it depends on the problem you are trying to solve.</p>
 <p>Graph databases are great for modeling relationships between data.</p>
 <p>A couple examples:</p>
 <ul>
@@ -228,7 +229,7 @@ await import("../../app-header.b167ee55.js");
 </ul>
 <p>The possibilities are endless.</p>
 <p>Instead of storing data in a table for each collection we store the data as a graph in a nodes and edges table with some additional extensions in SQLite to make it easier.</p>
-<p>Here is a <a href="https://www.hytradboi.com/2022/simple-graph-sqlite-as-probably-the-only-graph-database-youll-ever-need">page</a> that goes in to detail about it.</p>
+<p>Here is a <a href="https://www.hytradboi.com/2022/simple-graph-sqlite-as-probably-the-only-graph-database-youll-ever-need">page</a> that goes in to detail about it and showcases what we are trying to build.</p>
 <h2 id="getting-started">Getting Started</h2>
 <p>First we need to create a new Flutter project.</p>
 <pre class="language-bash"><code class="language-bash"><span class="token function">mkdir</span> flutter_graph_database
@@ -409,7 +410,7 @@ getAllNodes:
     <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> nodes<span class="token punctuation">;</span>
 getAllEdges: 
     <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> edges<span class="token punctuation">;</span></code></pre>
-<h3 id="delete-edge">Delete Edge</h3>
+<h4 id="delete-edge">Delete Edge</h4>
 <p>Create a new file at <strong>lib/database/sql/delete-edge.drift</strong> and update it with the following:</p>
 <pre class="language-sql"><code class="language-sql"><span class="token keyword">import</span> <span class="token string">'schema.drift'</span><span class="token punctuation">;</span>
 
