@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="icon" type="image/x-icon" href="/img/favicon/favicon.ico">
+
+<!-- Primary Meta Tags -->
+<title>How to build a graph database with Flutter</title>
+<meta name="title" content="How to build a graph database with Flutter">
+<meta name="description">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url">
+<meta property="og:title" content="How to build a graph database with Flutter">
+<meta property="og:description">
+<meta property="og:image" content="https://astro.build/social.jpg?v=1">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url">
+<meta property="twitter:title" content="How to build a graph database with Flutter">
+<meta property="twitter:description">
+<meta property="twitter:image" content="https://astro.build/social.jpg?v=1">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-lucario.css">
+<script type="module" src="https://rodydavis.github.io/material-theme-control/material-theme-control.es.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JQNPVBL9DR');
+</script>
+	<link rel="stylesheet" href="/assets/BlogContent.6b85ce27.css"></link>
+<link rel="stylesheet" href="/assets/social-links.3dfed482.css"></link>
+<link rel="stylesheet" href="/assets/_slug_.1ed25ffe.css"></link><style astro-style="true">astro-root, astro-fragment { display: contents; }</style><script type="module" astro-script="/posts/flutter-graph-database//script-0">import "../../client-shim.6d491e7a.js";</script>
+<script type="module" data-astro-component-hydration astro-script="/posts/flutter-graph-database//script-1">import setup from '../../load.732510f7.js';
+setup("Z1dyuMq", {name:"app-header",value: true}, async () => {
+  await Promise.all([
+  import("../../hydration-support.3bb20349.js")]);
+await import("../../app-header.b167ee55.js");
+  return () => {};
+
+});
+</script>
+</head>
+
+	<body>
+		<astro-root uid="Z1dyuMq"><app-header><template shadowroot="open"><style>
+    header {
+      --input-size: 32px;
+      font-family: "Roboto", sans-serif;
+    }
+    .spacer {
+      flex: 1;
+    }
+    .title {
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .title-prefix {
+      display: block;
+    }
+    .title-details {
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    a {
+      text-decoration: none;
+      display: inline-flex;
+      color: var(--md-sys-color-on-primary-container);
+      margin-right: 1rem;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .links {
+      display: none;
+      align-items: center;
+    }
+    @media (min-width: 200px) {
+      .title {
+        display: block;
+       
+      }
+    }
+    @media (min-width: 600px) {
+      .links {
+        display: flex;
+      }
+    }
+    @media (min-width: 700px) {
+      .title-prefix {
+        display: block;
+      }
+      .title-details {
+        max-width: 350px;
+      }
+    }
+    @media (min-width: 900px) {
+      .title-details {
+        max-width: 450px;
+      }
+    }
+  </style><!--lit-part kWdd/F2HVPs=-->
+      <link
+        rel="stylesheet"
+        href="https://rodydavis.github.io/material-css/top-app-bar/style.css"
+      />
+      <header class="top-app-bar">
+        <h1 class="title">
+          <a href="/">
+            <div class="title-prefix">Rody Davis</div>
+            <!--lit-part F7wN3VMcQAI=--><div class="title-prefix">&nbsp;|&nbsp;</div>
+                  <div class="title-details"><!--lit-part-->How to build a graph database with Flutter<!--/lit-part--></div><!--/lit-part-->
+          </a>
+        </h1>
+
+        <div class="actions">
+          <div class="links">
+            <a href="/apps"> Apps </a>
+            <a href="/posts"> Blog </a>
+            <a href="/talks"> Talks </a>
+            <a href="/about"> About </a>
+          </div>
+          <material-theme-control></material-theme-control>
+          <!--lit-part BRUAAAUVAAA=--><?><!--/lit-part-->
+        </div>
+      </header>
+    <!--/lit-part--></template></app-header></astro-root>
+		<div class="wrapper">
+			<div class="layout astro-6ZXIMRXV">
+	<article class="content astro-6ZXIMRXV">
+		<div class="astro-6ZXIMRXV">
+			<header class="astro-6ZXIMRXV">
+				<img width="720" height="420" class="hero-image astro-6ZXIMRXV" loading="lazy" src="/img/graph-db/thumbnail.png">
+				<p class="publish-date astro-6ZXIMRXV">10 Oct 2022 ~ 13 min read</p>
+				<h1 class="title astro-6ZXIMRXV">How to build a graph database with Flutter</h1>
+				<div class="author astro-KO5QTRDP">
+	<p class="astro-KO5QTRDP"><a href="/about" class="astro-KO5QTRDP">@rodydavis</a></p>
+</div>
+
+
+
+				 <tag-list class="astro-6ZXIMRXV"><template shadowroot="open"><style>
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-left: 2rem;
+      margin-right: 2rem;
+      width: calc(100% - 4rem);
+    }
+    tag-item {
+      margin-bottom: 0.4rem;
+      margin-top: 0.4rem;
+    }
+    .tags[card] {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" ><!--lit-node 0-->
+      <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/posts"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->posts<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="sqlite"><!--lit-node 0--><template shadowroot="open"><style>
+    .tag {
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      border-radius: 8px;
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style><!--lit-part i7RKEo91zno=--><a href="/tags/sqlite"><!--lit-node 0-->
+      <span class="tag"><!--lit-part-->sqlite<!--/lit-part--></span>
+    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--/lit-part-->
+    </div><!--/lit-part--></template></tag-list>
+			</header>
+			<main class="astro-6ZXIMRXV">
+				<div class="layout astro-W2QVQNXU">
+	<article class="content astro-W2QVQNXU">
+		<div class="astro-W2QVQNXU">
+			<main class="astro-W2QVQNXU">
+				<p>In this article I will go over how to create and use a graph database with <a href="https://flutter.dev">Flutter</a>.</p>
+<p><strong>TLDR</strong> The final source <a href="https://github.com/rodydavis/flutter_graph_database">here</a> and an online <a href="https://rodydavis.github.io/flutter_graph_database/">demo</a>.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Flutter installed and setup (Refer to this <a href="https://rodydavis.com/posts/first-flutter-project/">article</a> if you need help).</p>
+<p>Basic knowledge of <a href="https://www.sqlite.org/index.html">SQLite</a>.</p>
+<p>Basic knowledge of Graph Databases (Refer to this <a href="https://www.youtube.com/watch?v=GekQqFZm7mA">video</a> if you need to learn more).</p>
+<h2 id="overview">Overview</h2>
+<p>First of all, why do we need a graph database when other storage options exist?</p>
+<p>Why not use key value stores, document stores, or relational databases? Well, the answer is that it depends on the problem you are trying to solve.</p>
+<p>Graph databases are great for modeling relationships between data.</p>
+<p>A couple examples:</p>
+<ul>
+<li>A social network app can model the relationships between users and posts</li>
+<li>A game can model the relationships between players and items</li>
+<li>A blog can model the relationships between posts and comments</li>
+</ul>
+<p>The possibilities are endless.</p>
+<p>Instead of storing data in a table for each collection we store the data as a graph in a nodes and edges table with some additional extensions in SQLite to make it easier.</p>
+<p>Here is a <a href="https://www.hytradboi.com/2022/simple-graph-sqlite-as-probably-the-only-graph-database-youll-ever-need">page</a> that goes in to detail about it.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>First we need to create a new Flutter project.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">mkdir</span> flutter_graph_database
+<span class="token builtin class-name">cd</span> flutter_graph_database
+flutter create <span class="token builtin class-name">.</span></code></pre>
+<p>After the project is created open it in your favorite code editor.</p>
+<pre class="language-bash"><code class="language-bash">code <span class="token builtin class-name">.</span></code></pre>
+<h2 id="creating-the-database">Creating the Database</h2>
+<p>We are going to use the <a href="hhttps://pub.dev/packages/drift">drift</a> package to create the database.</p>
+<p>Update the <strong>pubspec.yaml</strong> file with the following:</p>
+<pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">name</span><span class="token punctuation">:</span> flutter_graph_database
+<span class="token key atrule">description</span><span class="token punctuation">:</span> A new Flutter package project.
+<span class="token key atrule">version</span><span class="token punctuation">:</span> 0.0.1
+<span class="token key atrule">publish_to</span><span class="token punctuation">:</span> none
+
+<span class="token key atrule">environment</span><span class="token punctuation">:</span>
+  <span class="token key atrule">sdk</span><span class="token punctuation">:</span> <span class="token string">">=2.19.0-238.0.dev &lt;3.0.0"</span>
+  <span class="token key atrule">flutter</span><span class="token punctuation">:</span> <span class="token string">">=1.17.0"</span>
+
+<span class="token key atrule">dependencies</span><span class="token punctuation">:</span>
+  <span class="token key atrule">flutter</span><span class="token punctuation">:</span>
+    <span class="token key atrule">sdk</span><span class="token punctuation">:</span> flutter
+  <span class="token key atrule">drift</span><span class="token punctuation">:</span> ^2.1.0
+  <span class="token key atrule">sqlite3_flutter_libs</span><span class="token punctuation">:</span> ^0.5.5
+  <span class="token key atrule">http</span><span class="token punctuation">:</span> ^0.13.5
+  <span class="token key atrule">path_provider</span><span class="token punctuation">:</span> ^2.0.0
+  <span class="token key atrule">path</span><span class="token punctuation">:</span> ^1.8.2
+  <span class="token key atrule">sqlite3</span><span class="token punctuation">:</span> ^1.7.0
+
+<span class="token key atrule">dev_dependencies</span><span class="token punctuation">:</span>
+  <span class="token key atrule">flutter_test</span><span class="token punctuation">:</span>
+    <span class="token key atrule">sdk</span><span class="token punctuation">:</span> flutter
+  <span class="token key atrule">flutter_lints</span><span class="token punctuation">:</span> ^2.0.0
+  <span class="token key atrule">build_runner</span><span class="token punctuation">:</span> ^2.2.0
+  <span class="token key atrule">drift_dev</span><span class="token punctuation">:</span> ^2.1.0
+
+<span class="token key atrule">flutter</span><span class="token punctuation">:</span>
+</code></pre>
+<h3 id="database-connection">Database Connection</h3>
+<p>Next we need to create the database.</p>
+<p>Create a new file at <strong>lib/database/connection/unsupported.dart</strong> and update it with the following:</p>
+<pre class="language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:drift/drift.dart'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:drift/native.dart'</span></span><span class="token punctuation">;</span>
+
+<span class="token class-name">DatabaseConnection</span> <span class="token function">connect</span><span class="token punctuation">(</span>
+  <span class="token class-name">String</span> dbName<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  bool useWebWorker <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  bool logStatements <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token class-name">DatabaseConnection</span><span class="token punctuation">(</span><span class="token class-name">NativeDatabase</span><span class="token punctuation">.</span><span class="token function">memory</span><span class="token punctuation">(</span>
+    logStatements<span class="token punctuation">:</span> logStatements<span class="token punctuation">,</span>
+  <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Create a new file at <strong>lib/database/connection/native.dart</strong> and update it with the following:</p>
+<pre class="language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'dart:io'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'dart:isolate'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:drift/drift.dart'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:drift/isolate.dart'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:drift/native.dart'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:path_provider/path_provider.dart'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:path/path.dart'</span></span> <span class="token operator">as</span> p<span class="token punctuation">;</span>
+
+<span class="token class-name">DatabaseConnection</span> <span class="token function">connect</span><span class="token punctuation">(</span>
+  <span class="token class-name">String</span> dbName<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  bool useWebWorker <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  bool logStatements <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token class-name">DatabaseConnection</span><span class="token punctuation">.</span><span class="token function">delayed</span><span class="token punctuation">(</span><span class="token class-name">Future</span><span class="token punctuation">.</span><span class="token keyword">sync</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+    <span class="token keyword">final</span> appDir <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">getApplicationDocumentsDirectory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">final</span> dbPath <span class="token operator">=</span> p<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>appDir<span class="token punctuation">.</span>path<span class="token punctuation">,</span> dbName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">final</span> receiveDriftIsolate <span class="token operator">=</span> <span class="token class-name">ReceivePort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">await</span> <span class="token class-name">Isolate</span><span class="token punctuation">.</span><span class="token function">spawn</span><span class="token punctuation">(</span>_entrypointForDriftIsolate<span class="token punctuation">,</span>
+        <span class="token function">_IsolateStartRequest</span><span class="token punctuation">(</span>receiveDriftIsolate<span class="token punctuation">.</span>sendPort<span class="token punctuation">,</span> dbPath<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">final</span> driftIsolate <span class="token operator">=</span> <span class="token keyword">await</span> receiveDriftIsolate<span class="token punctuation">.</span>first <span class="token operator">as</span> <span class="token class-name">DriftIsolate</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> driftIsolate<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> _IsolateStartRequest <span class="token punctuation">{</span>
+  <span class="token keyword">final</span> <span class="token class-name">SendPort</span> talkToMain<span class="token punctuation">;</span>
+  <span class="token keyword">final</span> <span class="token class-name">String</span> databasePath<span class="token punctuation">;</span>
+
+  <span class="token function">_IsolateStartRequest</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>talkToMain<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>databasePath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">_entrypointForDriftIsolate</span><span class="token punctuation">(</span>_IsolateStartRequest request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">final</span> databaseImpl <span class="token operator">=</span> <span class="token class-name">NativeDatabase</span><span class="token punctuation">(</span>
+    <span class="token class-name">File</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>databasePath<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    logStatements<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">final</span> driftServer <span class="token operator">=</span> <span class="token class-name">DriftIsolate</span><span class="token punctuation">.</span><span class="token function">inCurrent</span><span class="token punctuation">(</span>
+    <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token class-name">DatabaseConnection</span><span class="token punctuation">(</span>databaseImpl<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  request<span class="token punctuation">.</span>talkToMain<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>driftServer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Create a new file at <strong>lib/database/connection/web.dart</strong> and update it with the following:</p>
+<pre class="language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'dart:async'</span></span><span class="token punctuation">;</span>
+
+<span class="token comment">// ignore: avoid_web_libraries_in_flutter</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'dart:html'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:drift/drift.dart'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:drift/remote.dart'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:drift/web.dart'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:drift/wasm.dart'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:http/http.dart'</span></span> <span class="token operator">as</span> http<span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:sqlite3/wasm.dart'</span></span><span class="token punctuation">;</span>
+
+<span class="token class-name">DatabaseConnection</span> <span class="token function">connect</span><span class="token punctuation">(</span>
+  <span class="token class-name">String</span> dbName<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  bool useWebWorker <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  bool logStatements <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>useWebWorker<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">final</span> worker <span class="token operator">=</span> <span class="token class-name">SharedWorker</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'shared_worker.dart.js'</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token function">remote</span><span class="token punctuation">(</span>worker<span class="token punctuation">.</span>port<span class="token operator">!</span><span class="token punctuation">.</span><span class="token function">channel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token class-name">DatabaseConnection</span><span class="token punctuation">.</span><span class="token function">delayed</span><span class="token punctuation">(</span><span class="token class-name">Future</span><span class="token punctuation">.</span><span class="token keyword">sync</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+      <span class="token keyword">final</span> response <span class="token operator">=</span> <span class="token keyword">await</span> http<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token class-name">Uri</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'sqlite3.wasm'</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">final</span> fs <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token class-name">IndexedDbFileSystem</span><span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>dbName<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'/db/'</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">final</span> path <span class="token operator">=</span> <span class="token string-literal"><span class="token string">'/drift/db/</span><span class="token interpolation"><span class="token punctuation">$</span><span class="token expression">dbName</span></span><span class="token string">'</span></span><span class="token punctuation">;</span>
+      <span class="token keyword">final</span> sqlite3 <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token class-name">WasmSqlite3</span><span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span>
+        response<span class="token punctuation">.</span>bodyBytes<span class="token punctuation">,</span>
+        <span class="token class-name">SqliteEnvironment</span><span class="token punctuation">(</span>fileSystem<span class="token punctuation">:</span> fs<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">final</span> databaseImpl <span class="token operator">=</span> <span class="token class-name">WasmDatabase</span><span class="token punctuation">(</span>
+        sqlite3<span class="token punctuation">:</span> sqlite3<span class="token punctuation">,</span>
+        path<span class="token punctuation">:</span> path<span class="token punctuation">,</span>
+        fileSystem<span class="token punctuation">:</span> fs<span class="token punctuation">,</span> <span class="token comment">// &lt;- this is required but not documented</span>
+        logStatements<span class="token punctuation">:</span> logStatements<span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token class-name">DatabaseConnection</span><span class="token punctuation">(</span>databaseImpl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Create a new file at <strong>lib/database/connection/connection.dart</strong> and update it with the following:</p>
+<pre class="language-dart"><code class="language-dart"><span class="token keyword">export</span> <span class="token string-literal"><span class="token string">'unsupported.dart'</span></span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>dart<span class="token punctuation">.</span><span class="token keyword">library</span><span class="token punctuation">.</span>js<span class="token punctuation">)</span> <span class="token string-literal"><span class="token string">'web.dart'</span></span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>dart<span class="token punctuation">.</span><span class="token keyword">library</span><span class="token punctuation">.</span>ffi<span class="token punctuation">)</span> <span class="token string-literal"><span class="token string">'native.dart'</span></span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="database-sql-files">Database SQL Files</h3>
+<h4 id="schema">Schema</h4>
+<p>Create a new file at <strong>lib/database/sql/schema.drift</strong> and update it with the following:</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> nodes <span class="token punctuation">(</span>
+    body <span class="token keyword">TEXT</span><span class="token punctuation">,</span>
+    id   <span class="token keyword">TEXT</span> GENERATED ALWAYS <span class="token keyword">AS</span> <span class="token punctuation">(</span>json_extract<span class="token punctuation">(</span>body<span class="token punctuation">,</span> <span class="token string">'$.id'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> VIRTUAL <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">UNIQUE</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">INDEX</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> id_idx <span class="token keyword">ON</span> nodes<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> edges <span class="token punctuation">(</span>
+    source     <span class="token keyword">TEXT</span><span class="token punctuation">,</span>
+    target     <span class="token keyword">TEXT</span><span class="token punctuation">,</span>
+    properties <span class="token keyword">TEXT</span><span class="token punctuation">,</span>
+    <span class="token keyword">UNIQUE</span><span class="token punctuation">(</span>source<span class="token punctuation">,</span> target<span class="token punctuation">,</span> properties<span class="token punctuation">)</span> <span class="token keyword">ON</span> CONFLICT <span class="token keyword">REPLACE</span><span class="token punctuation">,</span>
+    <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> nodes<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> nodes<span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">INDEX</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> source_idx <span class="token keyword">ON</span> edges<span class="token punctuation">(</span>source<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">INDEX</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> target_idx <span class="token keyword">ON</span> edges<span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<blockquote>
+<p>The ID column is a virtual column that is generated from the body column. This is done so that we can query the database by ID without having to parse the JSON body column.</p>
+</blockquote>
+<h4 id="queries">Queries</h4>
+<p>Create a new file at <strong>lib/database/sql/queries.drift</strong> and update it with the following:</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">import</span> <span class="token string">'schema.drift'</span><span class="token punctuation">;</span>
+
+getAllNodes: 
+    <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> nodes<span class="token punctuation">;</span>
+getAllEdges: 
+    <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> edges<span class="token punctuation">;</span></code></pre>
+<h3 id="delete-edge">Delete Edge</h3>
+<p>Create a new file at <strong>lib/database/sql/delete-edge.drift</strong> and update it with the following:</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">import</span> <span class="token string">'schema.drift'</span><span class="token punctuation">;</span>
+
+deleteEdge:
+    <span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> edges 
+    <span class="token keyword">WHERE</span> source <span class="token operator">=</span> ? <span class="token operator">OR</span> target <span class="token operator">=</span> ?<span class="token punctuation">;</span></code></pre>
+<h4 id="delete-node">Delete Node</h4>
+<p>Create a new file at <strong>lib/database/sql/delete-node.drift</strong> and update it with the following:</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">import</span> <span class="token string">'schema.drift'</span><span class="token punctuation">;</span>
+
+deleteNode: 
+    <span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> nodes 
+    <span class="token keyword">WHERE</span> id <span class="token operator">=</span> ?<span class="token punctuation">;</span></code></pre>
+<h4 id="insert-edge">Insert Edge</h4>
+<p>Create a new file at <strong>lib/database/sql/insert-edge.drift</strong> and update it with the following:</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">import</span> <span class="token string">'schema.drift'</span><span class="token punctuation">;</span>
+
+insertEdge<span class="token punctuation">(</span>:source <span class="token keyword">as</span> <span class="token keyword">TEXT</span><span class="token punctuation">,</span> :target <span class="token keyword">as</span> <span class="token keyword">TEXT</span><span class="token punctuation">,</span> :body <span class="token keyword">as</span> <span class="token keyword">TEXT</span><span class="token punctuation">)</span>: 
+    <span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> edges <span class="token keyword">VALUES</span><span class="token punctuation">(</span>:source<span class="token punctuation">,</span> :target<span class="token punctuation">,</span> json<span class="token punctuation">(</span>:body<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h4 id="insert-node">Insert Node</h4>
+<p>Create a new file at <strong>lib/database/sql/insert-node.drift</strong> and update it with the following:</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">import</span> <span class="token string">'schema.drift'</span><span class="token punctuation">;</span>
+
+insertNode<span class="token punctuation">(</span>:body <span class="token keyword">as</span> <span class="token keyword">TEXT</span><span class="token punctuation">)</span>: 
+    <span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> nodes <span class="token keyword">VALUES</span><span class="token punctuation">(</span>json<span class="token punctuation">(</span>:<span class="token keyword">text</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h4 id="search-edges-inbound">Search Edges Inbound</h4>
+<p>Create a new file at <strong>lib/database/sql/search-edges-inbound.drift</strong> and update it with the following:</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">import</span> <span class="token string">'schema.drift'</span><span class="token punctuation">;</span>
+
+searchEdgesInbound: 
+    <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> edges 
+    <span class="token keyword">WHERE</span> source <span class="token operator">=</span> ?<span class="token punctuation">;</span></code></pre>
+<h4 id="search-edges-outbound">Search Edges Outbound</h4>
+<p>Create a new file at <strong>lib/database/sql/search-edges-outbound.drift</strong> and update it with the following:</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">import</span> <span class="token string">'schema.drift'</span><span class="token punctuation">;</span>
+
+searchEdgesOutbound: 
+    <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> edges 
+    <span class="token keyword">WHERE</span> target <span class="token operator">=</span> ?<span class="token punctuation">;</span></code></pre>
+<h4 id="search-edges">Search Edges</h4>
+<p>Create a new file at <strong>lib/database/sql/search-edges.drift</strong> and update it with the following:</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">import</span> <span class="token string">'schema.drift'</span><span class="token punctuation">;</span>
+
+searchEdges: 
+    <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> edges <span class="token keyword">WHERE</span> source <span class="token operator">=</span> ? 
+    <span class="token keyword">UNION</span> 
+    <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> edges <span class="token keyword">WHERE</span> target <span class="token operator">=</span> ?<span class="token punctuation">;</span></code></pre>
+<h4 id="search-node-by-id">Search Node By ID</h4>
+<p>Create a new file at <strong>lib/database/sql/search-node-by-id.drift</strong> and update it with the following:</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">import</span> <span class="token string">'schema.drift'</span><span class="token punctuation">;</span>
+
+searchNodeById: 
+    <span class="token keyword">SELECT</span> body <span class="token keyword">FROM</span> nodes 
+    <span class="token keyword">WHERE</span> id <span class="token operator">=</span> ?<span class="token punctuation">;</span></code></pre>
+<h4 id="search-node">Search Node</h4>
+<p>Create a new file at <strong>lib/database/sql/search-node.drift</strong> and update it with the following:</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">import</span> <span class="token string">'schema.drift'</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- Create a text index of entries, see https://www.sqlite.org/fts5.html#external_content_tables</span>
+<span class="token keyword">CREATE</span> VIRTUAL <span class="token keyword">TABLE</span> node_entries <span class="token keyword">USING</span> fts5 <span class="token punctuation">(</span>
+    body<span class="token punctuation">,</span>
+    content<span class="token operator">=</span>nodes<span class="token punctuation">,</span>
+    content_rowid<span class="token operator">=</span>id
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- Triggers to keep entries and fts5 index in sync.</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TRIGGER</span> nodes_insert <span class="token keyword">AFTER</span> <span class="token keyword">INSERT</span> <span class="token keyword">ON</span> nodes <span class="token keyword">BEGIN</span>
+  <span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> node_entries<span class="token punctuation">(</span>rowid<span class="token punctuation">,</span> body<span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span>new<span class="token punctuation">.</span>id<span class="token punctuation">,</span> new<span class="token punctuation">.</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">END</span><span class="token punctuation">;</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">TRIGGER</span> nodes_delete <span class="token keyword">AFTER</span> <span class="token keyword">DELETE</span> <span class="token keyword">ON</span> nodes <span class="token keyword">BEGIN</span>
+  <span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> node_entries<span class="token punctuation">(</span>node_entries<span class="token punctuation">,</span> rowid<span class="token punctuation">,</span> body<span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token string">'delete'</span><span class="token punctuation">,</span> old<span class="token punctuation">.</span>id<span class="token punctuation">,</span> old<span class="token punctuation">.</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">END</span><span class="token punctuation">;</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">TRIGGER</span> nodes_update <span class="token keyword">AFTER</span> <span class="token keyword">UPDATE</span> <span class="token keyword">ON</span> nodes <span class="token keyword">BEGIN</span>
+  <span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> node_entries<span class="token punctuation">(</span>node_entries<span class="token punctuation">,</span> rowid<span class="token punctuation">,</span> body<span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token string">'delete'</span><span class="token punctuation">,</span> new<span class="token punctuation">.</span>id<span class="token punctuation">,</span> new<span class="token punctuation">.</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> node_entries<span class="token punctuation">(</span>rowid<span class="token punctuation">,</span> body<span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span>new<span class="token punctuation">.</span>id<span class="token punctuation">,</span> new<span class="token punctuation">.</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">END</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- Full text search query.</span>
+searchNode: <span class="token keyword">SELECT</span> r<span class="token punctuation">.</span><span class="token operator">*</span><span class="token operator">*</span> <span class="token keyword">FROM</span> node_entries
+    <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> nodes r <span class="token keyword">ON</span> r<span class="token punctuation">.</span>id <span class="token operator">=</span> node_entries<span class="token punctuation">.</span>rowid
+    <span class="token keyword">WHERE</span> node_entries <span class="token keyword">MATCH</span> :query
+    <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> rank<span class="token punctuation">;</span></code></pre>
+<blockquote>
+<p>Here we are using the <a href="https://www.sqlite.org/fts5.html">fts5</a> extension to create a full text search index. This is a very powerful feature that allows us to search for nodes by their body text.</p>
+</blockquote>
+<h4 id="traverse-inbound">Traverse Inbound</h4>
+<p>Create a new file at <strong>lib/database/sql/traverse-inbound.drift</strong> and update it with the following:</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">import</span> <span class="token string">'schema.drift'</span><span class="token punctuation">;</span>
+
+traverseInbound<span class="token punctuation">(</span>:source <span class="token keyword">AS</span> <span class="token keyword">TEXT</span><span class="token punctuation">)</span>: 
+  <span class="token keyword">WITH</span> RECURSIVE traverse<span class="token punctuation">(</span>id<span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token punctuation">(</span>
+  <span class="token keyword">SELECT</span> :source
+  <span class="token keyword">UNION</span>
+  <span class="token keyword">SELECT</span> source <span class="token keyword">FROM</span> edges <span class="token keyword">JOIN</span> traverse <span class="token keyword">ON</span> target <span class="token operator">=</span> id
+<span class="token punctuation">)</span> <span class="token keyword">SELECT</span> id <span class="token keyword">FROM</span> traverse<span class="token punctuation">;</span></code></pre>
+<h4 id="traverse-outbound">Traverse Outbound</h4>
+<p>Create a new file at <strong>lib/database/sql/traverse-outbound.drift</strong> and update it with the following:</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">import</span> <span class="token string">'schema.drift'</span><span class="token punctuation">;</span>
+
+traverseOutbound<span class="token punctuation">(</span>:source <span class="token keyword">AS</span> <span class="token keyword">TEXT</span><span class="token punctuation">)</span>: 
+  <span class="token keyword">WITH</span> RECURSIVE traverse<span class="token punctuation">(</span>id<span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token punctuation">(</span>
+  <span class="token keyword">SELECT</span> :source
+  <span class="token keyword">UNION</span>
+  <span class="token keyword">SELECT</span> target <span class="token keyword">FROM</span> edges <span class="token keyword">JOIN</span> traverse <span class="token keyword">ON</span> source <span class="token operator">=</span> id
+<span class="token punctuation">)</span> <span class="token keyword">SELECT</span> id <span class="token keyword">FROM</span> traverse<span class="token punctuation">;</span></code></pre>
+<h4 id="traverse-bodies-inbound">Traverse Bodies Inbound</h4>
+<p>Create a new file at <strong>lib/database/sql/traverse-with-bodies-inbound.drift</strong> and update it with the following:</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">import</span> <span class="token string">'schema.drift'</span><span class="token punctuation">;</span>
+
+traverseWithBodiesInbound<span class="token punctuation">(</span>:source <span class="token keyword">AS</span> <span class="token keyword">TEXT</span><span class="token punctuation">)</span>: 
+  <span class="token keyword">WITH</span> RECURSIVE traverse<span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> obj<span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token punctuation">(</span>
+  <span class="token keyword">SELECT</span> :source<span class="token punctuation">,</span> <span class="token string">'()'</span><span class="token punctuation">,</span> <span class="token string">'{}'</span>
+  <span class="token keyword">UNION</span>
+  <span class="token keyword">SELECT</span> id<span class="token punctuation">,</span> <span class="token string">'()'</span><span class="token punctuation">,</span> body <span class="token keyword">FROM</span> nodes <span class="token keyword">JOIN</span> traverse <span class="token keyword">ON</span> id <span class="token operator">=</span> x
+  <span class="token keyword">UNION</span>
+  <span class="token keyword">SELECT</span> source<span class="token punctuation">,</span> <span class="token string">'&lt;-'</span><span class="token punctuation">,</span> properties <span class="token keyword">FROM</span> edges <span class="token keyword">JOIN</span> traverse <span class="token keyword">ON</span> target <span class="token operator">=</span> x
+<span class="token punctuation">)</span> <span class="token keyword">SELECT</span> x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> obj <span class="token keyword">FROM</span> traverse<span class="token punctuation">;</span></code></pre>
+<h4 id="traverse-bodies-outbound">Traverse Bodies Outbound</h4>
+<p>Create a new file at <strong>lib/database/sql/traverse-with-bodies-outbound.drift</strong> and update it with the following:</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">import</span> <span class="token string">'schema.drift'</span><span class="token punctuation">;</span>
+
+traverseWithBodiesOutbound<span class="token punctuation">(</span>:source <span class="token keyword">AS</span> <span class="token keyword">TEXT</span><span class="token punctuation">)</span>: 
+  <span class="token keyword">WITH</span> RECURSIVE traverse<span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> obj<span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token punctuation">(</span>
+  <span class="token keyword">SELECT</span> :source<span class="token punctuation">,</span> <span class="token string">'()'</span><span class="token punctuation">,</span> <span class="token string">'{}'</span>
+  <span class="token keyword">UNION</span>
+  <span class="token keyword">SELECT</span> id<span class="token punctuation">,</span> <span class="token string">'()'</span><span class="token punctuation">,</span> body <span class="token keyword">FROM</span> nodes <span class="token keyword">JOIN</span> traverse <span class="token keyword">ON</span> id <span class="token operator">=</span> x
+  <span class="token keyword">UNION</span>
+  <span class="token keyword">SELECT</span> target<span class="token punctuation">,</span> <span class="token string">'->'</span><span class="token punctuation">,</span> properties <span class="token keyword">FROM</span> edges <span class="token keyword">JOIN</span> traverse <span class="token keyword">ON</span> source <span class="token operator">=</span> x
+<span class="token punctuation">)</span> <span class="token keyword">SELECT</span> x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> obj <span class="token keyword">FROM</span> traverse<span class="token punctuation">;</span></code></pre>
+<h4 id="traverse-bodies">Traverse Bodies</h4>
+<p>Create a new file at <strong>lib/database/sql/traverse-bodies.drift</strong> and update it with the following:</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">import</span> <span class="token string">'schema.drift'</span><span class="token punctuation">;</span>
+
+traverseWithBodies<span class="token punctuation">(</span>:source <span class="token keyword">AS</span> <span class="token keyword">TEXT</span><span class="token punctuation">)</span>: 
+  <span class="token keyword">WITH</span> RECURSIVE traverse<span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> obj<span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token punctuation">(</span>
+  <span class="token keyword">SELECT</span> :source<span class="token punctuation">,</span> <span class="token string">'()'</span><span class="token punctuation">,</span> <span class="token string">'{}'</span>
+  <span class="token keyword">UNION</span>
+  <span class="token keyword">SELECT</span> id<span class="token punctuation">,</span> <span class="token string">'()'</span><span class="token punctuation">,</span> body <span class="token keyword">FROM</span> nodes <span class="token keyword">JOIN</span> traverse <span class="token keyword">ON</span> id <span class="token operator">=</span> x
+  <span class="token keyword">UNION</span>
+  <span class="token keyword">SELECT</span> source<span class="token punctuation">,</span> <span class="token string">'&lt;-'</span><span class="token punctuation">,</span> properties <span class="token keyword">FROM</span> edges <span class="token keyword">JOIN</span> traverse <span class="token keyword">ON</span> target <span class="token operator">=</span> x
+  <span class="token keyword">UNION</span>
+  <span class="token keyword">SELECT</span> target<span class="token punctuation">,</span> <span class="token string">'->'</span><span class="token punctuation">,</span> properties <span class="token keyword">FROM</span> edges <span class="token keyword">JOIN</span> traverse <span class="token keyword">ON</span> source <span class="token operator">=</span> x
+<span class="token punctuation">)</span> <span class="token keyword">SELECT</span> x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> obj <span class="token keyword">FROM</span> traverse<span class="token punctuation">;</span></code></pre>
+<h4 id="traverse">Traverse</h4>
+<p>Create a new file at <strong>lib/database/sql/traverse.drift</strong> and update it with the following:</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">import</span> <span class="token string">'schema.drift'</span><span class="token punctuation">;</span>
+
+traverse<span class="token punctuation">(</span>:source <span class="token keyword">AS</span> <span class="token keyword">TEXT</span><span class="token punctuation">)</span>: 
+  <span class="token keyword">WITH</span> RECURSIVE traverse<span class="token punctuation">(</span>id<span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token punctuation">(</span>
+  <span class="token keyword">SELECT</span> :source
+  <span class="token keyword">UNION</span>
+  <span class="token keyword">SELECT</span> source <span class="token keyword">FROM</span> edges <span class="token keyword">JOIN</span> traverse <span class="token keyword">ON</span> target <span class="token operator">=</span> id
+  <span class="token keyword">UNION</span>
+  <span class="token keyword">SELECT</span> target <span class="token keyword">FROM</span> edges <span class="token keyword">JOIN</span> traverse <span class="token keyword">ON</span> source <span class="token operator">=</span> id
+<span class="token punctuation">)</span> <span class="token keyword">SELECT</span> id <span class="token keyword">FROM</span> traverse<span class="token punctuation">;</span></code></pre>
+<h4 id="update-node">Update Node</h4>
+<p>Create a new file at <strong>lib/database/sql/update-node.drift</strong> and update it with the following:</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">import</span> <span class="token string">'schema.drift'</span><span class="token punctuation">;</span>
+
+updateNode: 
+    <span class="token keyword">UPDATE</span> nodes <span class="token keyword">SET</span> body <span class="token operator">=</span> json<span class="token punctuation">(</span>?<span class="token punctuation">)</span> 
+    <span class="token keyword">WHERE</span> id <span class="token operator">=</span> ?<span class="token punctuation">;</span></code></pre>
+<h3 id="database-setup">Database Setup</h3>
+<p>Create a new file at <strong>lib/database/database.dart</strong> and update it with the following:</p>
+<pre class="language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'dart:convert'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:drift/drift.dart'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:flutter/foundation.dart'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'connection/connection.dart'</span></span> <span class="token operator">as</span> impl<span class="token punctuation">;</span>
+
+<span class="token keyword">part</span> <span class="token string-literal"><span class="token string">'database.g.dart'</span></span><span class="token punctuation">;</span>
+
+<span class="token metadata function">@DriftDatabase</span><span class="token punctuation">(</span>include<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token string-literal"><span class="token string">'sql/schema.drift'</span></span><span class="token punctuation">,</span>
+  <span class="token string-literal"><span class="token string">'sql/queries.drift'</span></span><span class="token punctuation">,</span>
+  <span class="token string-literal"><span class="token string">'sql/delete-edge.drift'</span></span><span class="token punctuation">,</span>
+  <span class="token string-literal"><span class="token string">'sql/delete-node.drift'</span></span><span class="token punctuation">,</span>
+  <span class="token string-literal"><span class="token string">'sql/insert-edge.drift'</span></span><span class="token punctuation">,</span>
+  <span class="token string-literal"><span class="token string">'sql/insert-node.drift'</span></span><span class="token punctuation">,</span>
+  <span class="token string-literal"><span class="token string">'sql/search-edges-inbound.drift'</span></span><span class="token punctuation">,</span>
+  <span class="token string-literal"><span class="token string">'sql/search-edges-outbound.drift'</span></span><span class="token punctuation">,</span>
+  <span class="token string-literal"><span class="token string">'sql/search-edges.drift'</span></span><span class="token punctuation">,</span>
+  <span class="token string-literal"><span class="token string">'sql/search-node-by-id.drift'</span></span><span class="token punctuation">,</span>
+  <span class="token string-literal"><span class="token string">'sql/search-node.drift'</span></span><span class="token punctuation">,</span>
+  <span class="token string-literal"><span class="token string">'sql/traverse-inbound.drift'</span></span><span class="token punctuation">,</span>
+  <span class="token string-literal"><span class="token string">'sql/traverse-outbound.drift'</span></span><span class="token punctuation">,</span>
+  <span class="token string-literal"><span class="token string">'sql/traverse-with-bodies-inbound.drift'</span></span><span class="token punctuation">,</span>
+  <span class="token string-literal"><span class="token string">'sql/traverse-with-bodies-outbound.drift'</span></span><span class="token punctuation">,</span>
+  <span class="token string-literal"><span class="token string">'sql/traverse-with-bodies.drift'</span></span><span class="token punctuation">,</span>
+  <span class="token string-literal"><span class="token string">'sql/traverse.drift'</span></span><span class="token punctuation">,</span>
+  <span class="token string-literal"><span class="token string">'sql/update-node.drift'</span></span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">GraphDatabase</span> <span class="token keyword">extends</span> _$<span class="token class-name">GraphDatabase</span> <span class="token punctuation">{</span>
+  <span class="token class-name">GraphDatabase</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token class-name">String</span> dbName <span class="token operator">=</span> <span class="token string-literal"><span class="token string">'graph_db.db'</span></span><span class="token punctuation">,</span>
+    <span class="token class-name">DatabaseConnection</span><span class="token operator">?</span> connection<span class="token punctuation">,</span>
+    bool useWebWorker <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    bool logStatements <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>
+          connection <span class="token operator">?</span><span class="token operator">?</span>
+              impl<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>
+                dbName<span class="token punctuation">,</span>
+                useWebWorker<span class="token punctuation">:</span> useWebWorker<span class="token punctuation">,</span>
+                logStatements<span class="token punctuation">:</span> logStatements<span class="token punctuation">,</span>
+              <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token metadata function">@override</span>
+  int <span class="token keyword">get</span> schemaVersion <span class="token operator">=</span><span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+  <span class="token comment">/// Helper method to add graph data from json</span>
+  <span class="token class-name">Future</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token keyword">void</span><span class="token punctuation">></span></span> <span class="token function">addGraphData</span><span class="token punctuation">(</span>
+    <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token keyword">dynamic</span><span class="token punctuation">></span></span> data<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    bool shouldBatch <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">transaction</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+      <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token keyword">final</span> localNodes <span class="token operator">=</span> data<span class="token punctuation">[</span><span class="token string-literal"><span class="token string">'nodes'</span></span><span class="token punctuation">]</span> <span class="token operator">as</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token keyword">dynamic</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
+        <span class="token keyword">final</span> localEdges <span class="token operator">=</span> data<span class="token punctuation">[</span><span class="token string-literal"><span class="token string">'edges'</span></span><span class="token punctuation">]</span> <span class="token operator">as</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token keyword">dynamic</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
+        <span class="token comment">// Update nodes</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">final</span> node <span class="token keyword">in</span> localNodes<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">final</span> id <span class="token operator">=</span> node<span class="token punctuation">[</span><span class="token string-literal"><span class="token string">'id'</span></span><span class="token punctuation">]</span> <span class="token operator">as</span> <span class="token class-name">String</span><span class="token operator">?</span><span class="token punctuation">;</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>id <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">final</span> current <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">searchNodeById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getSingleOrNull</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">final</span> body <span class="token operator">=</span> <span class="token function">jsonEncode</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>current <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token keyword">await</span> <span class="token function">updateNode</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+              <span class="token keyword">await</span> <span class="token function">insertNode</span><span class="token punctuation">(</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// Update edges</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">final</span> edge <span class="token keyword">in</span> localEdges<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">final</span> source <span class="token operator">=</span> edge<span class="token punctuation">[</span><span class="token string-literal"><span class="token string">'from'</span></span><span class="token punctuation">]</span> <span class="token operator">?</span><span class="token operator">?</span> edge<span class="token punctuation">[</span><span class="token string-literal"><span class="token string">'source'</span></span><span class="token punctuation">]</span> <span class="token operator">as</span> <span class="token class-name">String</span><span class="token operator">?</span><span class="token punctuation">;</span>
+          <span class="token keyword">final</span> target <span class="token operator">=</span> edge<span class="token punctuation">[</span><span class="token string-literal"><span class="token string">'to'</span></span><span class="token punctuation">]</span> <span class="token operator">?</span><span class="token operator">?</span> edge<span class="token punctuation">[</span><span class="token string-literal"><span class="token string">'target'</span></span><span class="token punctuation">]</span> <span class="token operator">as</span> <span class="token class-name">String</span><span class="token operator">?</span><span class="token punctuation">;</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>source <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> target <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">final</span> body <span class="token operator">=</span> <span class="token function">jsonEncode</span><span class="token punctuation">(</span>edge<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">await</span> <span class="token function">insertEdge</span><span class="token punctuation">(</span>source<span class="token punctuation">,</span> target<span class="token punctuation">,</span> body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">debugPrint</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'Error adding graph data: </span><span class="token interpolation"><span class="token punctuation">$</span><span class="token expression">e</span></span><span class="token string">'</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token class-name">Future</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token keyword">void</span><span class="token punctuation">></span></span> <span class="token function">deleteAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">transaction</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+      <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token keyword">await</span> <span class="token function">deleteAllEdges</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">await</span> <span class="token function">deleteAllNodes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">debugPrint</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'Error clearing graph data: </span><span class="token interpolation"><span class="token punctuation">$</span><span class="token expression">e</span></span><span class="token string">'</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token class-name">Future</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token keyword">void</span><span class="token punctuation">></span></span> <span class="token function">deleteAllEdges</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">transaction</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+      <span class="token keyword">final</span> edges <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">getAllEdges</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">final</span> edge <span class="token keyword">in</span> edges<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">await</span> <span class="token function">deleteEdge</span><span class="token punctuation">(</span>edge<span class="token punctuation">.</span>source<span class="token punctuation">,</span> edge<span class="token punctuation">.</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token class-name">Future</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token keyword">void</span><span class="token punctuation">></span></span> <span class="token function">deleteAllNodes</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">transaction</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+      <span class="token keyword">final</span> nodes <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">getAllNodes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">final</span> node <span class="token keyword">in</span> nodes<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">await</span> <span class="token function">deleteNode</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Create a new file at <strong>build.yaml</strong> and update it with the following:</p>
+<pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">targets</span><span class="token punctuation">:</span>
+  <span class="token key atrule">$default</span><span class="token punctuation">:</span>
+    <span class="token key atrule">sources</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> lib/<span class="token important">**</span>
+      <span class="token punctuation">-</span> web/<span class="token important">**</span>
+      <span class="token punctuation">-</span> <span class="token string">"tool/**"</span>
+      <span class="token punctuation">-</span> pubspec.yaml
+      <span class="token punctuation">-</span> lib/$lib$
+      <span class="token punctuation">-</span> $package$
+    <span class="token key atrule">builders</span><span class="token punctuation">:</span>
+      <span class="token key atrule">drift_dev</span><span class="token punctuation">:</span>
+        <span class="token key atrule">options</span><span class="token punctuation">:</span>
+          <span class="token key atrule">sql</span><span class="token punctuation">:</span>
+            <span class="token key atrule">dialect</span><span class="token punctuation">:</span> sqlite
+            <span class="token key atrule">options</span><span class="token punctuation">:</span>
+              <span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3.38"</span>
+              <span class="token key atrule">modules</span><span class="token punctuation">:</span>
+                <span class="token punctuation">-</span> json1
+                <span class="token punctuation">-</span> fts5
+          <span class="token key atrule">generate_connect_constructor</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+          <span class="token key atrule">apply_converters_on_variables</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+          <span class="token key atrule">generate_values_in_copy_with</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+          <span class="token key atrule">scoped_dart_components</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></code></pre>
+<p>Now run the following command to generate the database files:</p>
+<pre class="language-bash"><code class="language-bash">flutter pub run build_runner build --delete-conflicting-outputs</code></pre>
+<h2 id="connecting-to-the-database">Connecting to the Database</h2>
+<p>Add a new dependency to your <strong>pubspec.yaml</strong> file:</p>
+<pre class="language-bash"><code class="language-bash">flutter pub <span class="token function">add</span> graphview</code></pre>
+<p>This will be used for the graph visualization.</p>
+<p>Create a new file at <strong>lib/main.dart</strong> and update it with the following:</p>
+<pre class="language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'dart:convert'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:flutter/material.dart'</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:flutter_graph_database/flutter_graph_database.dart'</span></span> <span class="token operator">as</span> db<span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:graphview/GraphView.dart'</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">runApp</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token class-name">MyApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MyApp</span> <span class="token keyword">extends</span> <span class="token class-name">StatelessWidget</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token class-name">MyApp</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token keyword">super</span><span class="token punctuation">.</span>key<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token metadata function">@override</span>
+  <span class="token class-name">Widget</span> <span class="token function">build</span><span class="token punctuation">(</span><span class="token class-name">BuildContext</span> context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token class-name">MaterialApp</span><span class="token punctuation">(</span>
+      title<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'Flutter Graph Database'</span></span><span class="token punctuation">,</span>
+      debugShowCheckedModeBanner<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      theme<span class="token punctuation">:</span> <span class="token class-name">ThemeData</span><span class="token punctuation">.</span><span class="token function">dark</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      home<span class="token punctuation">:</span> <span class="token keyword">const</span> <span class="token class-name">Example</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Example</span> <span class="token keyword">extends</span> <span class="token class-name">StatefulWidget</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token class-name">Example</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token class-name">Key</span><span class="token operator">?</span> key<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword">super</span><span class="token punctuation">(</span>key<span class="token punctuation">:</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token metadata function">@override</span>
+  <span class="token class-name">State</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Example</span><span class="token punctuation">></span></span> <span class="token function">createState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">_ExampleState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> _ExampleState <span class="token keyword">extends</span> <span class="token class-name">State</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Example</span><span class="token punctuation">></span></span> <span class="token punctuation">{</span>
+  <span class="token keyword">final</span> database <span class="token operator">=</span> <span class="token class-name"><span class="token namespace">db<span class="token punctuation">.</span></span>GraphDatabase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token class-name">Graph</span> graph <span class="token operator">=</span> <span class="token class-name">Graph</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token class-name">Algorithm</span> builder <span class="token operator">=</span> <span class="token class-name">FruchtermanReingoldAlgorithm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">final</span> nodes <span class="token operator">=</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name"><span class="token namespace">db<span class="token punctuation">.</span></span>Node</span><span class="token punctuation">></span></span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  bool loaded <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+  <span class="token metadata function">@override</span>
+  <span class="token keyword">void</span> <span class="token function">initState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">initState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">WidgetsBinding</span><span class="token punctuation">.</span>instance<span class="token punctuation">.</span><span class="token function">addPostFrameCallback</span><span class="token punctuation">(</span><span class="token punctuation">(</span>_<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">loadData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token metadata function">@override</span>
+  <span class="token keyword">void</span> <span class="token function">reassemble</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">reassemble</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Needed to reset graph on hot reload</span>
+    <span class="token function">loadData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">void</span> <span class="token function">setLoadedState</span><span class="token punctuation">(</span>bool value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>mounted<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        loaded <span class="token operator">=</span> value<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token class-name">Future</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token keyword">void</span><span class="token punctuation">></span></span> <span class="token function">addDummyData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Load example data</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Optionally reset data</span>
+      <span class="token keyword">await</span> database<span class="token punctuation">.</span><span class="token function">deleteAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// Add example data to database</span>
+      <span class="token keyword">await</span> database<span class="token punctuation">.</span><span class="token function">addGraphData</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token string-literal"><span class="token string">"nodes"</span></span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"id"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'1'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"label"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'circle'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"id"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'2'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"label"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'ellipse'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"id"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'3'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"label"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'database'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"id"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'4'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"label"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'box'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"id"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'5'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"label"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'diamond'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"id"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'6'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"label"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'dot'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"id"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'7'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"label"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'square'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"id"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'8'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"label"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'triangle'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"id"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'9'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"label"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">"star"</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token string-literal"><span class="token string">"edges"</span></span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"from"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'1'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"to"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'2'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"from"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'2'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"to"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'3'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"from"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'2'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"to"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'4'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"from"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'2'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"to"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'5'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"from"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'5'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"to"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'6'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"from"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'5'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"to"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'7'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"from"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'6'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"to"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'8'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"from"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'2'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"to"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'8'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"from"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'1'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"to"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'8'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"from"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'1'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"to"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'7'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"from"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'1'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"to"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'6'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"from"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'1'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"to"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'5'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"from"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'1'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"to"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'4'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"from"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'1'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"to"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'3'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"from"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'1'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"to"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'9'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"from"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'9'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"to"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'8'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"from"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'9'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"to"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'5'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span><span class="token string-literal"><span class="token string">"from"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'9'</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"to"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">'3'</span></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">loadData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">debugPrint</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'Error loading example data: </span><span class="token interpolation"><span class="token punctuation">$</span><span class="token expression">e</span></span><span class="token string">'</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token class-name">Future</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token keyword">void</span><span class="token punctuation">></span></span> <span class="token function">loadData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+    <span class="token function">setLoadedState</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">final</span> nodeMap <span class="token operator">=</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Node</span><span class="token punctuation">></span></span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>nodes<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    graph <span class="token operator">=</span> <span class="token class-name">Graph</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    builder <span class="token operator">=</span> <span class="token class-name">FruchtermanReingoldAlgorithm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Load graph data</span>
+    <span class="token keyword">final</span> nodes <span class="token operator">=</span> <span class="token keyword">await</span> database<span class="token punctuation">.</span><span class="token function">getAllNodes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">final</span> edges <span class="token operator">=</span> <span class="token keyword">await</span> database<span class="token punctuation">.</span><span class="token function">getAllEdges</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">final</span> node <span class="token keyword">in</span> nodes<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">final</span> newNode <span class="token operator">=</span> <span class="token class-name">Node.Id</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      nodeMap<span class="token punctuation">[</span>node<span class="token punctuation">.</span>id<span class="token punctuation">]</span> <span class="token operator">=</span> newNode<span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>nodes<span class="token punctuation">[</span>node<span class="token punctuation">.</span>id<span class="token punctuation">]</span> <span class="token operator">=</span> node<span class="token punctuation">;</span>
+      graph<span class="token punctuation">.</span><span class="token function">addNode</span><span class="token punctuation">(</span>newNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">final</span> edge <span class="token keyword">in</span> edges<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">final</span> source <span class="token operator">=</span> nodeMap<span class="token punctuation">[</span>edge<span class="token punctuation">.</span>source<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token keyword">final</span> target <span class="token operator">=</span> nodeMap<span class="token punctuation">[</span>edge<span class="token punctuation">.</span>target<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>source <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> target <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        graph<span class="token punctuation">.</span><span class="token function">addEdge</span><span class="token punctuation">(</span>source<span class="token punctuation">,</span> target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">setLoadedState</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token class-name">Widget</span> <span class="token function">buildNode</span><span class="token punctuation">(</span><span class="token class-name">Node</span> node<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">final</span> dbNode <span class="token operator">=</span> nodes<span class="token punctuation">[</span>node<span class="token punctuation">.</span>key<span class="token operator">!</span><span class="token punctuation">.</span>value<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">final</span> data <span class="token operator">=</span> <span class="token function">jsonDecode</span><span class="token punctuation">(</span>dbNode<span class="token operator">?</span><span class="token punctuation">.</span>body <span class="token operator">?</span><span class="token operator">?</span> <span class="token string-literal"><span class="token string">'{}'</span></span><span class="token punctuation">)</span> <span class="token operator">as</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token keyword">dynamic</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
+    <span class="token keyword">final</span> label <span class="token operator">=</span> data<span class="token punctuation">[</span><span class="token string-literal"><span class="token string">'label'</span></span><span class="token punctuation">]</span> <span class="token operator">?</span><span class="token operator">?</span> <span class="token string-literal"><span class="token string">''</span></span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token class-name">SizedBox</span><span class="token punctuation">(</span>
+      width<span class="token punctuation">:</span> <span class="token number">80</span><span class="token punctuation">,</span>
+      height<span class="token punctuation">:</span> <span class="token number">80</span><span class="token punctuation">,</span>
+      child<span class="token punctuation">:</span> <span class="token class-name">Center</span><span class="token punctuation">(</span>
+        child<span class="token punctuation">:</span> <span class="token class-name">Text</span><span class="token punctuation">(</span>
+          label<span class="token punctuation">,</span>
+          textAlign<span class="token punctuation">:</span> <span class="token class-name">TextAlign</span><span class="token punctuation">.</span>center<span class="token punctuation">,</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token metadata function">@override</span>
+  <span class="token class-name">Widget</span> <span class="token function">build</span><span class="token punctuation">(</span><span class="token class-name">BuildContext</span> context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token class-name">Scaffold</span><span class="token punctuation">(</span>
+      appBar<span class="token punctuation">:</span> <span class="token class-name">AppBar</span><span class="token punctuation">(</span>
+        title<span class="token punctuation">:</span> <span class="token keyword">const</span> <span class="token class-name">Text</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'Flutter Graph Database'</span></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        actions<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+          <span class="token class-name">IconButton</span><span class="token punctuation">(</span>
+            icon<span class="token punctuation">:</span> <span class="token keyword">const</span> <span class="token class-name">Icon</span><span class="token punctuation">(</span><span class="token class-name">Icons</span><span class="token punctuation">.</span>restore<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            onPressed<span class="token punctuation">:</span> addDummyData<span class="token punctuation">,</span>
+          <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+      body<span class="token punctuation">:</span> <span class="token operator">!</span>loaded
+          <span class="token operator">?</span> <span class="token keyword">const</span> <span class="token class-name">Center</span><span class="token punctuation">(</span>child<span class="token punctuation">:</span> <span class="token class-name">CircularProgressIndicator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+          <span class="token punctuation">:</span> nodes<span class="token punctuation">.</span>isEmpty
+              <span class="token operator">?</span> <span class="token keyword">const</span> <span class="token class-name">Center</span><span class="token punctuation">(</span>child<span class="token punctuation">:</span> <span class="token class-name">Text</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'No Data Loaded'</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+              <span class="token punctuation">:</span> <span class="token class-name">LayoutBuilder</span><span class="token punctuation">(</span>builder<span class="token punctuation">:</span> <span class="token punctuation">(</span>context<span class="token punctuation">,</span> dimens<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  <span class="token keyword">return</span> <span class="token class-name">SizedBox</span><span class="token punctuation">.</span><span class="token function">expand</span><span class="token punctuation">(</span>
+                    child<span class="token punctuation">:</span> <span class="token class-name">InteractiveViewer</span><span class="token punctuation">(</span>
+                      constrained<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+                      boundaryMargin<span class="token punctuation">:</span> <span class="token class-name">EdgeInsets</span><span class="token punctuation">.</span><span class="token function">symmetric</span><span class="token punctuation">(</span>
+                        horizontal<span class="token punctuation">:</span> dimens<span class="token punctuation">.</span>maxWidth <span class="token operator">*</span> <span class="token number">0.75</span><span class="token punctuation">,</span>
+                        vertical<span class="token punctuation">:</span> dimens<span class="token punctuation">.</span>maxHeight <span class="token operator">*</span> <span class="token number">0.75</span><span class="token punctuation">,</span>
+                      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+                      minScale<span class="token punctuation">:</span> <span class="token number">0.01</span><span class="token punctuation">,</span>
+                      maxScale<span class="token punctuation">:</span> <span class="token number">5.6</span><span class="token punctuation">,</span>
+                      child<span class="token punctuation">:</span> <span class="token class-name">GraphView</span><span class="token punctuation">(</span>
+                        key<span class="token punctuation">:</span> <span class="token class-name">UniqueKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                        graph<span class="token punctuation">:</span> graph<span class="token punctuation">,</span>
+                        algorithm<span class="token punctuation">:</span> builder<span class="token punctuation">,</span>
+                        paint<span class="token punctuation">:</span> <span class="token class-name">Paint</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                          <span class="token punctuation">.</span><span class="token punctuation">.</span>color <span class="token operator">=</span> <span class="token class-name">Colors</span><span class="token punctuation">.</span>green
+                          <span class="token punctuation">.</span><span class="token punctuation">.</span>strokeWidth <span class="token operator">=</span> <span class="token number">1</span>
+                          <span class="token punctuation">.</span><span class="token punctuation">.</span>style <span class="token operator">=</span> <span class="token class-name">PaintingStyle</span><span class="token punctuation">.</span>stroke<span class="token punctuation">,</span>
+                        builder<span class="token punctuation">:</span> buildNode<span class="token punctuation">,</span>
+                      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">)</span><span class="token punctuation">,</span>
+                  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>When you run the flutter app you should see the following:</p>
+<p><img src="/img/graph-db/thumbnail.png" alt="Preview"></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>If you want to learn more about building a graph database in Flutter, check out the <a href="https://github.com/rodydavis/flutter_graph_database">source code</a>.</p>
+			</main>
+		</div>
+	</article>
+</div>
+
+
+
+			</main>
+		</div>
+	</article>
+</div>
+
+
+
+		</div>
+		<div style="height: 25px"></div>
+		<social-links><template shadowroot="open"><style>
+    footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: var(--width, 100%);
+      margin-bottom: 2rem;
+    }
+    .fab,
+    svg {
+      --size: 3vw;
+      width: var(--size);
+      height: var(--size);
+      max-width: 30px;
+      max-height: 30px;
+      min-width: 20px;
+      min-height: 20px;
+      margin: 0.5rem;
+      color: var(--md-sys-color-on-surface);
+      font-family: FontAwesome;
+      cursor: pointer;
+    }
+    svg {
+      color: var(--md-sys-color-on-surface);
+    }
+  </style><!--lit-part fkbI1zGBADw=--><footer>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://twitter.com/rodydavis"
+        class="fab fa fa-twitter"
+      >
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="twitter"
+          class="svg-inline--fa fa-twitter fa-w-16"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
+          ></path>
+        </svg>
+      </a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://facebook.com/rodydavisjr"
+        class="fab fa fa-facebook"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="facebook-f"
+          class="svg-inline--fa fa-facebook-f fa-w-10"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+        >
+          <path
+            fill="currentColor"
+            d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.linkedin.com/in/rodydavis"
+        class="fab fa fa-linkedin"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="linkedin-in"
+          class="svg-inline--fa fa-linkedin-in fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.youtube.com/rodydavis"
+        class="fab fa fa-youtube"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="youtube"
+          class="svg-inline--fa fa-youtube fa-w-18"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 576 512"
+        >
+          <path
+            fill="currentColor"
+            d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.instagram.com/rodydavisjr"
+        class="fab fa fa-instagram"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="instagram"
+          class="svg-inline--fa fa-instagram fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.github.com/rodydavis"
+        class="fab fa fa-github"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="github"
+          class="svg-inline--fa fa-github fa-w-16"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 496 512"
+        >
+          <path
+            fill="currentColor"
+            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
+          ></path></svg
+      ></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.tiktok.com/@rodydavisjr"
+        class="fab fa-tiktok"
+        ><svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fab"
+          data-icon="tiktok"
+          class="svg-inline--fa fa-tiktok fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"
+          ></path></svg
+      ></a>
+    </footer><!--/lit-part--></template></social-links>
+	</body></html>
