@@ -24,7 +24,9 @@ Basic knowledge of Graph Databases (Refer to this [video](https://www.youtube.co
 
 First of all, why do we need a graph database when other storage options exist?
 
-Why not use key value stores, document stores, or relational databases? Well, the answer is that it depends on the problem you are trying to solve. 
+Why not use key value stores, document stores, or relational databases?
+
+Well, the answer is that it depends on the problem you are trying to solve. 
 
 Graph databases are great for modeling relationships between data. 
 
@@ -38,7 +40,7 @@ The possibilities are endless.
 
 Instead of storing data in a table for each collection we store the data as a graph in a nodes and edges table with some additional extensions in SQLite to make it easier.
 
-Here is a [page](https://www.hytradboi.com/2022/simple-graph-sqlite-as-probably-the-only-graph-database-youll-ever-need) that goes in to detail about it.
+Here is a [page](https://www.hytradboi.com/2022/simple-graph-sqlite-as-probably-the-only-graph-database-youll-ever-need) that goes in to detail about it and showcases what we are trying to build.
 
 ## Getting Started
 
@@ -262,7 +264,7 @@ getAllEdges:
     SELECT * FROM edges;
 ```
 
-### Delete Edge
+#### Delete Edge
 
 Create a new file at **lib/database/sql/delete-edge.drift** and update it with the following:
 
