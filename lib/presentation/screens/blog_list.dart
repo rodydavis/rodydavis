@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../data/source/module.dart';
+import '../../../data/source/module.dart';
+import '../../data/source/files/files.dart';
 import '../widgets/post_card.dart';
 
 class BlogList extends ConsumerWidget {
@@ -10,7 +12,14 @@ class BlogList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final files = ref.watch(filesProvider).getPosts();
+    List<File> files = ref.watch(filesProvider).getPosts();
+    final location = GoRouter.of(context).location;
+    if (location.contains('?tag=')) {
+      final tag = location.split('?tag=')[1];
+      files = files
+          .where((element) => element.tags?.contains(tag) ?? false)
+          .toList();
+    }
     return LayoutBuilder(
       builder: (context, constraints) {
         const itemWidth = 400;

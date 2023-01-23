@@ -8,7 +8,7 @@ tags:
 - education
 - ios
 - android
-image: /img/hymns-for-worship/icon.png
+image: /assets/images/hymns-for-worship_icon.png
 demo: https://hymnsforworship.app
 apple: https://apps.apple.com/us/app/hymns-for-worship/id1470789635?itsct=apps_box&amp;itscg=30200
 google: https://play.google.com/store/apps/details?id=com.appleeducate.hymns_for_worship&hl=en_US&gl=US
