@@ -36,7 +36,7 @@ Winner of the [Flutter Create Contest](https://flutter.dev/create) and you can s
 
 ## Setting Up
 
-You can either create a new project with Android Studio or VSCode using the GUI or navigate to the location you want your project and using this command in the terminal: `lutter create -i swift -a kotlin flutter_piano`. Make sure to include Swift and Kotlin Support!
+You can either create a new project with Android Studio or VSCode using the GUI or navigate to the location you want your project and using this command in the terminal: `flutter create -i swift -a kotlin flutter_piano`. Make sure to include Swift and Kotlin Support!
 
 Now that you have your project created it should look like this.
 
@@ -366,7 +366,7 @@ Now we can add out `initState()` to our app.
 
 Run the app and make sure you do not get any errors. If you are running this on the iOS Simulator you will get the following error:
 
-`Could Not Load Midi on this Device. (Cannot run on simulator), have you included the sound font?`
+> Could Not Load Midi on this Device. (Cannot run on simulator), have you included the sound font?
 
 It is ok for developing the UI but once we start with the midi you will need to plug in a real device.
 

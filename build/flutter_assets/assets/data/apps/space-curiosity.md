@@ -10,7 +10,7 @@ tags:
 - space
 - ios
 - android
-image: /img/space-curiosity/icon.png
+image: /assets/images/space-curiosity_icon.png
 apple: https://apps.apple.com/us/app/space-curiosity/id1435609944
 google: https://play.google.com/store/apps/details?id=com.chechu.curiosity
 ---
@@ -21,26 +21,26 @@ A brief overview of a new app built with [Flutter](https://Flutter.io) by Rody D
 
 About 6 months ago Jesus Rodriguez launched his app "SpaceX GO!" On Reddit and I had just recently had launched my app "Daily NASA". I messaged him because not many people were building production apps with Flutter yet. I wasn't to see what he thought about collaboration. Over the next 6 months, we would brainstorm and design an app together in Flutter that could reach a larger audience. Him being an Android Dev took Google Play and me being iOS Dev I took the App Store.
 
-![space-x-section](/img/space-curiosity/space-x.PNG)
+![space-x-section](/assets/images/space-curiosity_space-x.png)
 
 ## Development
 
 What was so amazing about Flutter is that for the first time an iOS Dev and Android Dev could collaborate to design an app together that targeted both audiences. In our app, we decided to not go with material design or Cupertino style. 
 With GitHub, it made it so easy to do Pull Requests and pitch and refactor the app without messing up the other. Aside from the occasional merge conflict. Most of the issues were due to Flutter and Dart evolving so fast and lots of hacks or struggles would be solved with an update.
 
-![nasa-images](/img/space-curiosity/nasa-images.PNG)
+![nasa-images](/assets/images/space-curiosity_nasa-images.png)
 
 One great thing about the Flutter plugin system is that if you find a plugin that does almost what you need but not all, you can fork the source and override the dependency in your `pubspec.yaml`. This was extremely useful when we had to update all of our plugins to support AndroidX.
 
-![iss-section](/img/space-curiosity/iss.PNG)
+![iss-section](/assets/images/space-curiosity_iss.png)
 
 When Flare by 2Dimensions came out, I was so inspired and created the "Weight Calculators" as you see in the app. All the 60fps animations are done in the app. This is the first product that allows the designer and developer to work together without messing up each other's workflow. You can view the animation here.
 
-![calc-section](/img/space-curiosity/calc.PNG)
+![calc-section](/assets/images/space-curiosity_calc.png)
 
 For the other parts of the app, we combined what we were working on individually. Jesus brought in and modified SpaceX Go!, and I did the same for daily NASA. Once we had a working prototype it was just a matter of writing a list of features and tackle them 1 by 1.
 
-![news-section](/img/space-curiosity/news.PNG)
+![news-section](/assets/images/space-curiosity_news.png)
 
 ## Release
 

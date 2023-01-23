@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:recase/recase.dart';
 
-import '../../data/source/files/files.dart';
+import '../../../data/source/files/files.dart';
 
 class PostCard extends StatelessWidget {
   const PostCard({Key? key, required this.file}) : super(key: key);

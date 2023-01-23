@@ -1,12 +1,10 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-import '../../data/source/module.dart';
+import '../../../data/source/module.dart';
+import '../widgets/markdown_view.dart';
 
 class BlogPost extends ConsumerWidget {
   const BlogPost({Key? key, required this.id}) : super(key: key);
@@ -34,28 +32,57 @@ class BlogPost extends ConsumerWidget {
         ),
       );
     }
-    return FutureBuilder<String?>(
-      future: rootBundle.loadString('assets/data/blog/$id.md'),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          String content = snapshot.data!;
-          // Remove front matter
-          content = content.split('---').last;
-          return Markdown(
-            data: content,
-            selectable: true,
-            onTapLink: (text, href, title) {
-              final url = Uri.parse(href!);
-              if (url.isScheme('http') || url.isScheme('https')) {
-                launchUrl(url, mode: LaunchMode.externalApplication);
-              } else {
-                context.go(href);
-              }
-            },
-          );
-        }
-        return const Center(child: CircularProgressIndicator());
-      },
+    return Scrollbar(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            if (file.title != null) ...[
+              Text(
+                file.title!,
+                style: Theme.of(context).textTheme.displayMedium,
+              ),
+              const SizedBox(height: 8),
+            ],
+            if (file.image != null) ...[
+              AspectRatio(
+                aspectRatio: 16 / 9,
+                child: Image.asset(
+                  assetImg(file.image!),
+                  fit: BoxFit.contain,
+                  height: 300,
+                ),
+              ),
+              const SizedBox(height: 8),
+            ],
+            if (file.tags != null) ...[
+              Wrap(
+                spacing: 4,
+                children: [
+                  for (final tag in file.tags!)
+                    ActionChip(
+                      label: Text(tag),
+                      onPressed: () => context.go('/blog?tag=$tag'),
+                    ),
+                ],
+              ),
+              const SizedBox(height: 8),
+            ],
+            const SizedBox(height: 8),
+            MarkdownView(
+              path: 'assets/data/blog/$id.md',
+              shrinkWrap: true,
+            ),
+          ],
+        ),
+      ),
     );
+  }
+
+  String assetImg(String url) {
+    if (url.startsWith('/')) {
+      return url.substring(1);
+    } else {
+      return url;
+    }
   }
 }
