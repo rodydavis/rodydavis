@@ -290,10 +290,16 @@
       "languageVersion": "2.17"
     },
     {
-      "name": "seo_renderer",
-      "rootUri": "file:///Users/rodydavis/.pub-cache/hosted/pub.dev/seo_renderer-0.6.0",
+      "name": "rxdart",
+      "rootUri": "file:///Users/rodydavis/.pub-cache/hosted/pub.dev/rxdart-0.27.7",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "seo",
+      "rootUri": "file:///Users/rodydavis/.pub-cache/hosted/pub.dev/seo-0.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
     },
     {
       "name": "shared_preferences",
@@ -470,7 +476,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-01-23T10:51:46.293377Z",
+  "generated": "2023-01-23T11:31:48.196497Z",
   "generator": "pub",
   "generatorVersion": "3.0.0-77.0.dev"
 }

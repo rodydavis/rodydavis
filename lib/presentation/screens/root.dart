@@ -24,6 +24,8 @@ class RootPage extends ConsumerWidget {
           final showBottomBar = constraints.maxWidth < 600;
           return Scaffold(
             appBar: AppBar(
+              automaticallyImplyLeading: true,
+              leading: buildLeading(location),
               title: InkWell(
                 mouseCursor: SystemMouseCursors.click,
                 onTap: () => context.go('/'),
@@ -115,6 +117,20 @@ class RootPage extends ConsumerWidget {
       }
     }
     return 0;
+  }
+
+  Widget? buildLeading(String location) {
+    if (location == '/') {
+      return null;
+    }
+    return Builder(
+      builder: (context) {
+        return IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => context.pop(),
+        );
+      },
+    );
   }
 
   Widget buildFooter(BuildContext context) {

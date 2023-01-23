@@ -178,10 +178,14 @@ riverpod
 2.17
 file:///Users/rodydavis/.pub-cache/hosted/pub.dev/riverpod-2.1.3/
 file:///Users/rodydavis/.pub-cache/hosted/pub.dev/riverpod-2.1.3/lib/
-seo_renderer
+rxdart
 2.12
-file:///Users/rodydavis/.pub-cache/hosted/pub.dev/seo_renderer-0.6.0/
-file:///Users/rodydavis/.pub-cache/hosted/pub.dev/seo_renderer-0.6.0/lib/
+file:///Users/rodydavis/.pub-cache/hosted/pub.dev/rxdart-0.27.7/
+file:///Users/rodydavis/.pub-cache/hosted/pub.dev/rxdart-0.27.7/lib/
+seo
+2.18
+file:///Users/rodydavis/.pub-cache/hosted/pub.dev/seo-0.0.4/
+file:///Users/rodydavis/.pub-cache/hosted/pub.dev/seo-0.0.4/lib/
 shared_preferences
 2.14
 file:///Users/rodydavis/.pub-cache/hosted/pub.dev/shared_preferences-2.0.17/

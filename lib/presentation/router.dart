@@ -1,5 +1,4 @@
 import 'package:go_router/go_router.dart';
-import 'package:seo_renderer/seo_renderer.dart';
 
 import 'screens/about.dart';
 import 'screens/app_details.dart';
@@ -12,7 +11,6 @@ import 'screens/root.dart';
 import 'screens/talks.dart';
 
 final router = GoRouter(
-  observers: [seoRouteObserver],
   routes: [
     ShellRoute(
       builder: (context, state, child) => RootPage(child: child),

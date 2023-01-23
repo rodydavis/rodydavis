@@ -15,7 +15,7 @@ class PostCard extends StatelessWidget {
     return Card(
       color: colors.surface,
       child: InkWell(
-        onTap: () => context.go('/blog/${file.name}'),
+        onTap: () => context.push('/blog/${file.name}'),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
