@@ -15,6 +15,7 @@ class BlogPost extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final files = ref.watch(filesProvider).getPosts();
     final file = files.firstWhereOrNull((element) => element.name == id);
+    final colors = Theme.of(context).colorScheme;
     if (file == null) {
       return Center(
         child: Column(
@@ -35,21 +36,32 @@ class BlogPost extends ConsumerWidget {
     return Scrollbar(
       child: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const SizedBox(height: 8),
             if (file.title != null) ...[
-              Text(
-                file.title!,
-                style: Theme.of(context).textTheme.displayMedium,
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Text(
+                  file.title!,
+                  style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                        color: colors.onSurface,
+                      ),
+                ),
               ),
               const SizedBox(height: 8),
             ],
             if (file.image != null) ...[
-              AspectRatio(
-                aspectRatio: 16 / 9,
-                child: Image.asset(
-                  assetImg(file.image!),
-                  fit: BoxFit.contain,
-                  height: 300,
+              Hero(
+                tag: ValueKey(file.image!),
+                child: AspectRatio(
+                  aspectRatio: 16 / 9,
+                  child: Image.asset(
+                    assetImg(file.image!),
+                    fit: BoxFit.contain,
+                    height: 300,
+                  ),
                 ),
               ),
               const SizedBox(height: 8),
@@ -62,6 +74,10 @@ class BlogPost extends ConsumerWidget {
                     ActionChip(
                       label: Text(tag),
                       onPressed: () => context.go('/blog?tag=$tag'),
+                      backgroundColor: colors.tertiary,
+                      labelStyle: TextStyle(
+                        color: colors.onTertiary,
+                      ),
                     ),
                 ],
               ),

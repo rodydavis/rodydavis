@@ -27,6 +27,7 @@ dependencies:
   flutter_highlighter: ^0.1.1
   google_fonts: ^3.0.1
   shared_preferences: ^2.0.17
+  seo_renderer: ^0.6.0
 
 dev_dependencies:
   flutter_test:
@@ -40,6 +41,7 @@ flutter:
   assets:
     - assets/data/apps/
     - assets/data/blog/
+    - assets/data/static/
     - assets/images/
 
 scripts:

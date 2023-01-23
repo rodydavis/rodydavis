@@ -21,12 +21,15 @@ class PostCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             if (file.image != null) ...[
-              AspectRatio(
-                aspectRatio: 16 / 9,
-                child: Image.asset(
-                  assetImg(file.image!),
-                  fit: BoxFit.contain,
-                  height: 300,
+              Hero(
+                tag: ValueKey(file.image!),
+                child: AspectRatio(
+                  aspectRatio: 16 / 9,
+                  child: Image.asset(
+                    assetImg(file.image!),
+                    fit: BoxFit.contain,
+                    height: 300,
+                  ),
                 ),
               ),
               const SizedBox(height: 8),
@@ -48,6 +51,10 @@ class PostCard extends StatelessWidget {
                         for (final tag in file.tags!) ...[
                           Chip(
                             label: Text(tag),
+                            backgroundColor: colors.tertiary,
+                            labelStyle: TextStyle(
+                              color: colors.onTertiary,
+                            ),
                           ),
                         ],
                       ],

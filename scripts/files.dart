@@ -16,6 +16,11 @@ void main() {
   for (final post in posts) {
     out['posts']!.add(getInfo(post));
   }
+  final extra = Directory('${inDir.path}/static').listSync().whereType<File>();
+  out['static'] = [];
+  for (final file in extra) {
+    out['static']!.add(getInfo(file));
+  }
   final result = jsonEncode(out);
   if (!outFile.existsSync()) outFile.createSync(recursive: true);
   final sb = StringBuffer();

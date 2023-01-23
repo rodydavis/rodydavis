@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'presentation/module.dart';
 
@@ -25,12 +26,14 @@ class MyApp extends ConsumerWidget {
           seedColor: theme.sourceColor,
           brightness: Brightness.light,
         ),
+        textTheme: GoogleFonts.spaceMonoTextTheme(),
       ),
       darkTheme: ThemeData.dark(useMaterial3: true).copyWith(
         colorScheme: ColorScheme.fromSeed(
           seedColor: theme.sourceColor,
           brightness: Brightness.dark,
         ),
+        textTheme: GoogleFonts.spaceMonoTextTheme(),
       ),
       themeMode: theme.themeMode,
       routeInformationParser: router.routeInformationParser,
