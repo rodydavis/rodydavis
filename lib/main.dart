@@ -1,14 +1,19 @@
-import 'package:flutter/foundation.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seo/seo.dart';
 
+import 'firebase_options.dart';
 import 'presentation/module.dart';
 
-void main() {
-  if (!kDebugMode) usePathUrlStrategy();
+Future<void> main() async {
+  usePathUrlStrategy();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const ProviderScope(child: MyApp()));
 }
 

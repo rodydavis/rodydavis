@@ -29,6 +29,9 @@ dependencies:
   shared_preferences: ^2.0.17
   seo: ^0.0.4
   reading_time: ^2.0.0
+  rss_generator: ^1.0.0
+  firebase_core: ^2.4.1
+  firebase_analytics: ^10.1.0
 
 dev_dependencies:
   flutter_test:
@@ -48,3 +51,4 @@ flutter:
 
 scripts:
   files: dart scripts/files.dart
+  rss: dart scripts/rss.dart

@@ -6,6 +6,7 @@ import 'package:flutter_highlighter/themes/atom-one-light.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../extensions.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:markdown/markdown.dart' as md;
 
@@ -144,7 +145,7 @@ class MarkdownView extends StatelessWidget {
                   if (url.isScheme('http') || url.isScheme('https')) {
                     launchUrl(url, mode: LaunchMode.externalApplication);
                   } else {
-                    context.go(href);
+                    context.navigate(href);
                   }
                 },
                 builders: {

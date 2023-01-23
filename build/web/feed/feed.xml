@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Rody's Blog</title>
+    <description>Rody Davis personal blog with all my apps, examples and crazy explorations.</description>
+    <link>https://rodydavis.com/</link>
+    <atom:link href="https://rodydavis.com/feed/feed.xml" rel="self"/>
+    <copyright>Copyright 2023</copyright>
+    <generator>Dart RSS Generator</generator>
+    <pubDate>Mon, 23 Jan 2023 16:47:36 +0300</pubDate>
+    <ttl>60</ttl>
+    <item>
+      <title>Building A Piano with Flutter</title>
+      <link>https://rodydavis.com/blog/making-a-piano</link>
+      <description>------ **TLDR** The final source [here](https://github.com/rodydavis/flutter_piano/tree/5k) and an online [demo](https://pocketpiano.app). &lt;iframe class="app" src="https://pocketpiano.app">&lt;/iframe> This piano uses only `5032` bytes of Dart Code! Winner of the [Flutter Create Contest](https://flutter.dev/create) and you can see the certificate [here](https://www.credential.net/exbvca0q?key=8be94f32ad2f56882045e013e960fa888afa4edd52edb963c48df351c7d1e443)! ## What you will learn * Working w</description>
+      <guid isPermaLink="false">5zmgJuWNBDedMzbF</guid>
+    </item>
+    <item>
+      <title>Lit Sheet Music</title>
+      <link>https://rodydavis.com/blog/lit-sheet-music</link>
+      <description>------ In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to render [musicxml](https://www.musicxml.com/) from a src attribute or inline xml using [opensheetmusicdisplay](https://github.com/opensheetmusicdisplay/opensheetmusicdisplay). ![](/assets/images/gifs_nod_yes.gif) Now any sheet music can be rendered based on the browser width as an svg or canvas (and will resize when the viewport changes). **TLDR** The final source [here](https://github.com</description>
+      <guid isPermaLink="false">3vM0gfU3zrqlwaCB</guid>
+    </item>
+    <item>
+      <title>2D/3D Force Graph with Lit</title>
+      <link>https://rodydavis.com/blog/lit-force-graph</link>
+      <description>------ In this article we will cover how to create a 2D/3D force graph using [Lit](https://lit.dev). **TLDR** The final source [here](https://github.com/rodydavis/lit-force-graph) and an online [demo](https://rodydavis.github.io/lit-force-graph/). ## Prerequisites - Vscode - Node >= 16 - Typescript ## Getting Started We can start off by navigating in terminal to the location of the project and run the following: ```bash npm init @vitejs/app --template lit-ts ``` Then enter a project name</description>
+      <guid isPermaLink="false">fteRijt1j2cgNN43</guid>
+    </item>
+    <item>
+      <title>Lit and Flutter</title>
+      <link>https://rodydavis.com/blog/flutter-and-lit</link>
+      <description>------ In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it inline in the Flutter widget tree. **TLDR** You can find the final source [here](https://github.com/rodydavis/flutter_hybrid_template). The reason you would want this integration is so you can take an existing web app, or just a single part of it and embed it in the widget tree. With it wrapped in Flutter you can call device APIs from event listeners on your web component. For example you</description>
+      <guid isPermaLink="false">m9ROsOOv2HWoivcw</guid>
+    </item>
+    <item>
+      <title>Dynamic Themes with CodeMirror</title>
+      <link>https://rodydavis.com/blog/codemirror-dynamic-theme</link>
+      <description>------ In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a a code window that uses [CodeMirror](https://codemirror.net) and apply a dynamic theme with [Material Design](https://material.io). **TLDR** The final source [here](https://github.com/rodydavis/codemirror-dynamic-theme) and an online [demo](https://rodydavis.github.io/codemirror-dynamic-theme/). ## Prerequisites - Vscode - Node >= 16 - Typescript ## Getting Started We can start</description>
+      <guid isPermaLink="false">qxd1d05XMe4rMbx0</guid>
+    </item>
+    <item>
+      <title>Flutter + Fastlane (One Click Beta)</title>
+      <link>https://rodydavis.com/blog/flutter-one-click-release</link>
+      <description>------ ## 1. Install Flutter [Download Flutter](https://flutter.io/get-started/install/) ![flutter](/assets/images/flutter_logo.jpg) ## 2. Create new Flutter Project If you are pretty new to Flutter you can check out [this useful guide](https://flutter.io/get-started/codelab/) on how to create a new project step by step. ![cross-platform](/assets/images/flutter_cross-platform.jpg) ## 3. Create App in iTunes Connect If you are not familiar with iTunes Connect, check out [this article](ht</description>
+      <guid isPermaLink="false">3dDvRQRXUTows552</guid>
+    </item>
+    <item>
+      <title>Lit and Figma</title>
+      <link>https://rodydavis.com/blog/figma-and-lit</link>
+      <description>------ In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a figma plugin. **TLDR** You can find the final source [here](https://github.com/rodydavis/figma_lit_example). ## Prerequisites - Vscode - Figma Desktop - Node - Typescript ## Getting Started We can start off by creating a empty directory and naming it with `snake_case` whatever we want. ```bash mkdir figma_lit_example cd figma_lit_example ``` ### Web Setup Now we are in the `</description>
+      <guid isPermaLink="false">9dmzcHFYvG3jDlow</guid>
+    </item>
+    <item>
+      <title>File Based Routing for Static Sites</title>
+      <link>https://rodydavis.com/blog/static-site-file-based-routing</link>
+      <description>------ In this article I will go over how to use file based routing to output as a static site multi page application. **TLDR** The final source [here](https://github.com/rodydavis/static-site-file-based-routing) and an online [demo](https://rodydavis.github.io/static-site-file-based-routing/). ## Step 1 Create a new folder called “static-site-file-based-routing” and open it up in VSCode. ```bash mkdir static-site-file-based-routing cd static-site-file-based-routing code . ``` ## Step 2 C</description>
+      <guid isPermaLink="false">XQQvLxOufLXEfsJr</guid>
+    </item>
+    <item>
+      <title>Flutter Cheat Sheet — Terminal</title>
+      <link>https://rodydavis.com/blog/flutter-cheat-sheet</link>
+      <description>------ Run Flutter web with SKIA ```bash flutter run -d web --release --dart-define=FLUTTER_WEB_USE_SKIA=true ``` * Run Flutter web with Canvas Kit ```bash flutter run -d chrome --release --dart-define=FLUTTER_WEB_USE_EXPERIMENTAL_CANVAS_TEXT=true ``` * Build your Flutter web app to Github Pages to the docs folder ```bash flutter build web &amp;&amp; rm -rf ./docs &amp;&amp; mkdir ./docs &amp;&amp; cp -a ./build/web/. ./docs/ ``` * Clean rebuild CocoaPods ```bash cd ios &amp;&amp; pod deintegrate &amp;&amp; pod cache clean —al</description>
+      <guid isPermaLink="false">Y7BCDKJy08b5X8Bo</guid>
+    </item>
+    <item>
+      <title>Automate Flutter App Releases</title>
+      <link>https://rodydavis.com/blog/automate-flutter-apps</link>
+      <description>------ **TLDR** You can find the script [here](https://gist.github.com/rodydavis/774b36e32d7efa882cca8dd16da6e74c). ```bash #!/bin/bash echo "App Release Automator by @rodydavis" action="$1" red=`tput setaf 1` green=`tput setaf 2` reset=`tput sgr0` if [ ${action} = "build" ]; then echo "${green}Generating built files.. ${reset}" flutter packages pub run build_runner clean flutter packages pub run build_runner build --delete-conflicting-outputs pub global activate pubspec_v</description>
+      <guid isPermaLink="false">vHNvvWO4Tbo1ZHEA</guid>
+    </item>
+    <item>
+      <title>How To Host Your Podcast For Free On Github Pages</title>
+      <link>https://rodydavis.com/blog/podcast-github-pages</link>
+      <description>------ Do you have a story to tell and want to share it with the world but do not know where to start? Are you a developer looking to start a tech podcast? Are you looking to save money for hosting? Well this article is for you! > TL;DR; You can fork this repo and customize it for your podcast! [Github source](https://github.com/rodydavis/podcast-player) ![](/assets/images/podcast-github_gh-pages.jpeg) [Github Pages](https://pages.github.com/) allows you to host any website for free on Gith</description>
+      <guid isPermaLink="false">ZNqNYgWZpcXHrJhs</guid>
+    </item>
+    <item>
+      <title>How to deploy PocketBase to Cloud Run</title>
+      <link>https://rodydavis.com/blog/pocketbase-cloudrun</link>
+      <description>------ **TLDR** Fork this [repo](https://github.com/bscott/pocketbase-litestream) to setup Google Cloud Build and setup environment variables. This is a quick guide on how to deploy PocketBase to Cloud Run. ## PocketBase Setup Follow the [setup guide](https://pocketbase.io/docs/) to get PocketBase setup on your local machine. Create a new database and add some data. ## Google Cloud Setup First you need to setup a Google Cloud Project. You can use the [free tier](https://cloud.google.com/f</description>
+      <guid isPermaLink="false">txudlD5Pns8umcYz</guid>
+    </item>
+    <item>
+      <title>Using Fastlane in Flutter and CI</title>
+      <link>https://rodydavis.com/blog/fastlane-and-flutter</link>
+      <description>------ Prerequisites: * Understand what [Fastlane](https://fastlane.tools/) is and how it works * Project builds correctly following these [docs](https://flutter.dev/docs/deployment/cd) * Android app setup in [Google Play Console](https://developer.android.com/distribute/console) * iOS app setup in [AppStore Connect](https://appstoreconnect.apple.com/) * [Flutter is installed](https://flutter.dev/docs/get-started/install) and your project is created 1. Open your Flutter project 1. Run: c</description>
+      <guid isPermaLink="false">nud4n7ocWLpHr7Ki</guid>
+    </item>
+    <item>
+      <title>Building a HTML Element Sandbox with Lit</title>
+      <link>https://rodydavis.com/blog/html-code-sandbox</link>
+      <description>------ In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a HTML Element sandbox that can be used to update a live component. **TLDR** The final source [here](https://github.com/rodydavis/html-element-sandbox) and an online [demo](https://rodydavis.github.io/html-element-sandbox/). ## Prerequisites - Vscode - Node >= 16 - Typescript ## Getting Started We can start off by navigating in terminal to the location of the project and run the</description>
+      <guid isPermaLink="false">hiXXU8NS0v0uyZfY</guid>
+    </item>
+    <item>
+      <title>Lit and VSCode Extensions</title>
+      <link>https://rodydavis.com/blog/lit-vscode-extension</link>
+      <description>------ In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a VSCode extension. **TLDR** You can find the final source [here](https://github.com/rodydavis/lit-vscode-extension). ## Prerequisites - Vscode - Node >= 16 - Typescript ## Getting Started We can start off by navigating in terminal to the location of the project and run the following: ```bash npm init @vitejs/app --template lit-ts ``` Then enter a project name `lit-vscode-exten</description>
+      <guid isPermaLink="false">wsJH5xV1V2AWb8Po</guid>
+    </item>
+    <item>
+      <title>Lit and Monaco Editor</title>
+      <link>https://rodydavis.com/blog/lit-monaco-editor</link>
+      <description>------ In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to wrap the [Monaco Editor](https://microsoft.github.io/monaco-editor/) that powers [VSCode](https://code.visualstudio.com/). **TLDR** You can find the final source [here](https://github.com/rodydavis/lit-code-editor) and an online demo [here](https://rodydavis.github.io/lit-code-editor/). To learn how to build an extension with VSCode and Lit check out the blog post [here](https://rodydavis.</description>
+      <guid isPermaLink="false">JQOPw6s5MXGxZZ12</guid>
+    </item>
+    <item>
+      <title>Building a Rich Text Editor with Lit</title>
+      <link>https://rodydavis.com/blog/lit-rich-text-editor</link>
+      <description>------ In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a rich text editor. **TLDR** The final source [here](https://github.com/rodydavis/lit-html-editor) and an online [demo](https://rodydavis.github.io/lit-html-editor/). &lt;div id="playground" hidden>&lt;/div> &lt;script> addFiles('lit-html-editor', 'rich-text-editor.ts', 'master') &lt;/script> ## Prerequisites - Vscode - Node >= 16 - Typescript ## Getting Started We can start off by naviga</description>
+      <guid isPermaLink="false">N3TeGRwxhrATLXTY</guid>
+    </item>
+    <item>
+      <title>Building a Master / Detail list with Flutter</title>
+      <link>https://rodydavis.com/blog/flutter-master-detail</link>
+      <description>------ In this article we will go over how to build a master / detail list with Flutter. ## Behind the widget When building mobile, desktop and web applications with Flutter often times you are faced with what to do with lists and the content when selected. Depending on the data you may have a list that renders another list before resolving to a detail view. On tablet or desktop this can be achieved with multi-column layouts. // TODO: Images of multi column On mobile you will still need to</description>
+      <guid isPermaLink="false">mX2ctfsxCpjF8lEg</guid>
+    </item>
+    <item>
+      <title>How To Send Push Notifications on Flutter Web (FCM)</title>
+      <link>https://rodydavis.com/blog/push-notifications-flutter-web</link>
+      <description>------ If you are using Firebase then you are probably familiar with Firebase Cloud Messaging. The setup on Flutter web is very different than mobile and other plugins you are probably used to. ![](/assets/images/firebase_banner.png) ## Setting Up Open your web/index.html and look for the following script. If you do not have one you can add it now in the &lt;body> tag. ```js &lt;script> if ("serviceWorker" in navigator) { window.addEventListener("load", function () { navigator.serviceWorker</description>
+      <guid isPermaLink="false">ST3uWstTuW5pPCwe</guid>
+    </item>
+    <item>
+      <title>JSON to HTML Table with Lit</title>
+      <link>https://rodydavis.com/blog/lit-html-table</link>
+      <description>------ In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a HTML [Table](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table) from json url or inline json. **TLDR** The final source [here](https://github.com/rodydavis/lit-html-table) and an online [demo](https://rodydavis.github.io/lit-html-table/). ## Prerequisites - Vscode - Node >= 16 - Typescript ## Getting Started We can start off by navigating in terminal to the locati</description>
+      <guid isPermaLink="false">P7ahCf3yDUjSDqGt</guid>
+    </item>
+    <item>
+      <title>Host your Flutter Project as a REST API</title>
+      <link>https://rodydavis.com/blog/host-flutter-rest-api</link>
+      <description>------ After you build your flutter project you may want to reuse the models and business logic from your lib folder. I will show you how to go about setting up the project to have iOS, Android, Web, Windows, MacOS, Linux and a REST API interface with one project. The REST API can also be deploy to Google Cloud Run for Dart everywhere. ![](/assets/images/gifs_mind_blown.gif) > One Codebase for Client and Sever. This will allow you to expose your Dart models as a REST API and run your busines</description>
+      <guid isPermaLink="false">wtZhuEcXWedqscz1</guid>
+    </item>
+    <item>
+      <title>Creating Your First Flutter Project</title>
+      <link>https://rodydavis.com/blog/first-flutter-project</link>
+      <description>------ Flutter is a UI Toolkit from Google allowing you to create expressive and unique experiences unmatched on any platform. You can write your UI once and run it everywhere. Yes everywhere! Web, iOS, Android, Windows, Linux, MacOS, Raspberry PI and much more… &lt;img src="/assets/images/gifs_check-it-out.webp" width="100%" > If you prefer a video you can follow the YouTube series I am doing called “Flutter Take 5” where I explore topics that you encounter when building a Flutter application.</description>
+      <guid isPermaLink="false">Kmx48PJQxXT57ZzT</guid>
+    </item>
+    <item>
+      <title>Deep Linking for Flutter Web</title>
+      <link>https://rodydavis.com/blog/deep-linking-flutter-web</link>
+      <description>------ In this article I will show you how to have proper URL navigation for your application. Open links to specific pages, protected routes and custom transitions. There is a online demo here: [https://rodydavis.github.io/flutter_deep_linking/](https://rodydavis.github.io/flutter_deep_linking/) Here is the source code: [https://github.com/rodydavis/flutter_deep_linking](https://github.com/rodydavis/flutter_deep_linking) ## Setup * Create a new flutter project called “flutter_deep_linkin</description>
+      <guid isPermaLink="false">ESP1pigIRaWppFjd</guid>
+    </item>
+    <item>
+      <title>Draggable DOM with Lit</title>
+      <link>https://rodydavis.com/blog/lit-draggable-dom</link>
+      <description>------ In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a interactive dom with CSS transforms and slots. **TLDR** The final source [here](https://github.com/rodydavis/lit-draggable-dom) and an online [demo](https://rodydavis.github.io/lit-draggable-dom/). &lt;div id="playground" hidden>&lt;/div> &lt;script> addFiles('lit-draggable-dom', 'draggable-dom.ts') &lt;/script> ## Prerequisites - Vscode - Node >= 16 - Typescript ## Getting Started We c</description>
+      <guid isPermaLink="false">qeltFiEReUlnK9PS</guid>
+    </item>
+    <item>
+      <title>How to build a Flutter app on Xcode Cloud</title>
+      <link>https://rodydavis.com/blog/flutter-and-xcode-cloud</link>
+      <description>------ In this article we are going to go over how to setup [Xcode Cloud](https://developer.apple.com/xcode-cloud/) to build your [Flutter](https://flutter.dev/) application for [TestFlight](https://developer.apple.com/testflight/) and the [AppStore](https://developer.apple.com/app-store/). ## Step 1 Before we begin Flutter needs to be installed, and you can check by running the following: ```bash flutter doctor -v ``` After it is installed we can run the following command to create and ope</description>
+      <guid isPermaLink="false">4CtUVK7a0HftvpNa</guid>
+    </item>
+    <item>
+      <title>How to build a native cross platform project with Flutter</title>
+      <link>https://rodydavis.com/blog/native-cross-platform-flutter</link>
+      <description>------ Import dart:html and dart:io in the same project! **TLDR** The final source [here](https://github.com/rodydavis/flutter_x/tree/finish). &lt;iframe class="demo" src="https://dartpad.dev/embed-flutter.html?id=09b230b972b9b5575a63345006fd1833&amp;split=80&amp;theme=dark&amp;null_safety=false&amp;split=50&amp;ga_id=flutter-multi-touch-canvas&amp;run=true">&lt;/iframe> Up to now you have been able to create projects with Flutter that run on iOS/Android, Web and Desktop but only sharing pure dart plugins. Flutter launch</description>
+      <guid isPermaLink="false">h3LFM4QDikX07Ogd</guid>
+    </item>
+    <item>
+      <title>Displaying HTML in Flutter</title>
+      <link>https://rodydavis.com/blog/display-html-in-flutter</link>
+      <description>------ Sometimes you have content in HTML that needs to be displayed and interacted with in Flutter. Online Demo:[https://rodydavis.github.io/easy_web_view/#/](https://rodydavis.github.io/easy_web_view/#/) ![](/assets/images/flutter_html_preview.png) For those impatient I created a package for you to get all the following functionally and more here: [https://pub.dev/packages/easy_web_view](https://pub.dev/packages/easy_web_view) ## Getting Started Create a new flutter project named whateve</description>
+      <guid isPermaLink="false">9snNSJ9CPsfNkf2O</guid>
+    </item>
+    <item>
+      <title>Multi-touch Canvas with Flutter</title>
+      <link>https://rodydavis.com/blog/flutter-multi-touch-canvas</link>
+      <description>------ If you ever wanted to create a canvas in [Flutter](https://flutter.dev) that needs to be panned in any direction and allow zoom then you also probably tried to create a [MultiGestureRecognizer](https://api.flutter.dev/flutter/gestures/MultiDragGestureRecognizer-class.html) or under a [GestureDetector](https://api.flutter.dev/flutter/widgets/GestureDetector-class.html) added onPanUpdate and onScaleUpdate and received an error because both can not work at the same time. Even if you have to</description>
+      <guid isPermaLink="false">FNG64ej4dlcDHaYw</guid>
+    </item>
+  </channel>
+</rss>
