@@ -28,7 +28,7 @@ class AppDetails extends ConsumerWidget {
             const Text('App not found'),
             const SizedBox(height: 8),
             ElevatedButton(
-              onPressed: () => context.navigate('/apps'),
+              onPressed: () => context.$go('/apps'),
               child: const Text('Go back'),
             ),
           ],

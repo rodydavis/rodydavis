@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:go_router/go_router.dart';
 import 'package:recase/recase.dart';
 
 import '../../../data/source/module.dart';
 import '../../data/source/files/files.dart';
 import '../module.dart';
-import '../widgets/post_card.dart';
+import '../widgets/file_card.dart';
 
 class BlogList extends ConsumerStatefulWidget {
   const BlogList({Key? key}) : super(key: key);
@@ -17,23 +16,32 @@ class BlogList extends ConsumerStatefulWidget {
 }
 
 class _BlogListState extends ConsumerState<BlogList> {
-  late List<File> files = ref.watch(filesProvider).getPosts();
+  List<File> files = [];
   final controller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    final router = ref.read(routerProvider);
-    if (router.location.contains('?tag=')) {
-      if (mounted) {
-        setState(() {
-          final tag = router.location.split('?tag=')[1];
-          files = files
-              .where((element) => element.tags?.contains(tag) ?? false)
-              .toList();
-        });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final router = ref.read(routerProvider);
+      final all = ref.watch(filesProvider).getPosts();
+      if (router.location.contains('?tag=')) {
+        if (mounted) {
+          setState(() {
+            final tag = router.location.split('?tag=')[1];
+            files = all
+                .where((element) => element.tags?.contains(tag) ?? false)
+                .toList();
+          });
+        }
+      } else {
+        if (mounted) {
+          setState(() {
+            files = all;
+          });
+        }
       }
-    }
+    });
   }
 
   @override
@@ -89,11 +97,18 @@ class _BlogListState extends ConsumerState<BlogList> {
               const itemWidth = 400;
               final count = (constraints.maxWidth / itemWidth).floor();
               return MasonryGridView.count(
+                padding: const EdgeInsets.all(8),
                 crossAxisCount: count,
                 mainAxisSpacing: 4,
                 crossAxisSpacing: 4,
                 itemCount: files.length,
-                itemBuilder: (context, index) => PostCard(file: files[index]),
+                itemBuilder: (context, index) {
+                  final file = files[index];
+                  return FileCard(
+                    file: file,
+                    link: '/blog/${file.name}',
+                  );
+                },
               );
             },
           ),

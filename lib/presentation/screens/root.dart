@@ -41,11 +41,15 @@ class RootPage extends ConsumerWidget {
                                   .toList(),
                               selectedIndex: getIndex(location),
                               onDestinationSelected: (index) {
-                                context.navigate(destinations[index].path);
+                                context.$go(destinations[index].path);
                               },
                             ),
                             const VerticalDivider(thickness: 1, width: 1),
-                            Expanded(child: child),
+                            Expanded(
+                              child: ClipRect(
+                                child: child,
+                              ),
+                            ),
                           ],
                         ),
                 ),
@@ -65,7 +69,7 @@ class RootPage extends ConsumerWidget {
                         .toList(),
                     selectedIndex: getIndex(location),
                     onDestinationSelected: (index) {
-                      context.navigate(destinations[index].path);
+                      context.$go(destinations[index].path);
                     },
                   )
                 : null,
@@ -85,7 +89,7 @@ class RootPage extends ConsumerWidget {
       leading: buildLeading(location),
       title: InkWell(
         mouseCursor: SystemMouseCursors.click,
-        onTap: () => context.navigate('/'),
+        onTap: () => context.$go('/'),
         child: Text.rich(
           TextSpan(
             children: [

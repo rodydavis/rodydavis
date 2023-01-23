@@ -50,5 +50,7 @@ flutter:
     - assets/images/social/
 
 scripts:
-  files: dart scripts/files.dart
-  rss: dart scripts/rss.dart
+  build:
+    - dart scripts/files.dart
+    - dart scripts/rss.dart
+    - flutter build web --web-renderer=html

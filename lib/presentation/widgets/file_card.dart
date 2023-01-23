@@ -5,10 +5,15 @@ import '../../../data/source/files/files.dart';
 import '../extensions.dart';
 import 'tag.dart';
 
-class PostCard extends StatelessWidget {
-  const PostCard({Key? key, required this.file}) : super(key: key);
+class FileCard extends StatelessWidget {
+  const FileCard({
+    Key? key,
+    required this.file,
+    required this.link,
+  }) : super(key: key);
 
   final File file;
+  final String link;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +21,7 @@ class PostCard extends StatelessWidget {
     return Card(
       color: colors.surface,
       child: InkWell(
-        onTap: () => context.navigatePush('/blog/${file.name}'),
+        onTap: () => context.$push(link),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -50,6 +55,7 @@ class PostCard extends StatelessWidget {
                   if (file.tags != null) ...[
                     Wrap(
                       spacing: 4,
+                      runSpacing: 4,
                       children: [
                         for (final tag in file.tags!) ...[
                           Tag(text: tag),

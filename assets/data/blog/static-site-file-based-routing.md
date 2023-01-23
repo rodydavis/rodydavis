@@ -14,7 +14,7 @@ image: /assets/images/static-site_preview.png
 
 In this article I will go over how to use file based routing to output as a static site multi page application.
 
-**TLDR** The final source [here](https://github.com/rodydavis/static-site-file-based-routing) and an online [demo](https://rodydavis.github.io/static-site-file-based-routing/).
+> **TLDR** The final source [here](https://github.com/rodydavis/static-site-file-based-routing) and an online [demo](https://rodydavis.github.io/static-site-file-based-routing/).
 
 ## Step 1
 

@@ -16,7 +16,7 @@ image: /assets/images/rich-text_editor-finish.png
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a rich text editor.
 
-**TLDR** The final source [here](https://github.com/rodydavis/lit-html-editor) and an online [demo](https://rodydavis.github.io/lit-html-editor/).
+> **TLDR** The final source [here](https://github.com/rodydavis/lit-html-editor) and an online [demo](https://rodydavis.github.io/lit-html-editor/).
 
 <div id="playground" hidden></div>
 <script>

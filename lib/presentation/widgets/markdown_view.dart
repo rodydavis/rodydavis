@@ -145,7 +145,7 @@ class MarkdownView extends StatelessWidget {
                   if (url.isScheme('http') || url.isScheme('https')) {
                     launchUrl(url, mode: LaunchMode.externalApplication);
                   } else {
-                    context.navigate(href);
+                    context.$go(href);
                   }
                 },
                 builders: {

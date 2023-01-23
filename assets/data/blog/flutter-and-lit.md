@@ -14,7 +14,7 @@ image: /assets/images/flutter_first.png
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it inline in the Flutter widget tree.
 
-**TLDR** You can find the final source [here](https://github.com/rodydavis/flutter_hybrid_template).
+> **TLDR** You can find the final source [here](https://github.com/rodydavis/flutter_hybrid_template).
 
 The reason you would want this integration is so you can take an existing web app, or just a single part of it and embed it in the widget tree.
 
