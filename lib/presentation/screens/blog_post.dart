@@ -2,10 +2,14 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:reading_time/reading_time.dart';
 import 'package:seo/seo.dart';
 
 import '../../../data/source/module.dart';
+import '../widgets/file_header.dart';
+import '../widgets/footer.dart';
 import '../widgets/markdown_view.dart';
+import '../widgets/tag.dart';
 
 class BlogPost extends ConsumerWidget {
   const BlogPost({Key? key, required this.id}) : super(key: key);
@@ -40,66 +44,18 @@ class BlogPost extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 8),
-            if (file.title != null) ...[
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Text(
-                  file.title!,
-                  style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                        color: colors.onSurface,
-                      ),
-                ),
-              ),
-              const SizedBox(height: 8),
-            ],
-            if (file.image != null) ...[
-              Hero(
-                tag: ValueKey(file.image!),
-                child: AspectRatio(
-                  aspectRatio: 16 / 9,
-                  child: Image.asset(
-                    assetImg(file.image!),
-                    fit: BoxFit.contain,
-                    height: 300,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 8),
-            ],
-            if (file.tags != null) ...[
-              Wrap(
-                spacing: 4,
-                children: [
-                  for (final tag in file.tags!)
-                    ActionChip(
-                      label: Text(tag),
-                      onPressed: () => context.go('/blog?tag=$tag'),
-                      backgroundColor: colors.tertiary,
-                      labelStyle: TextStyle(
-                        color: colors.onTertiary,
-                      ),
-                    ),
-                ],
-              ),
-              const SizedBox(height: 8),
-            ],
+            FileHeader(file: file),
             const SizedBox(height: 8),
             MarkdownView(
               path: 'assets/data/blog/$id.md',
               shrinkWrap: true,
             ),
+            const SizedBox(height: 8),
+            const Footer(),
+            const SizedBox(height: 8),
           ],
         ),
       ),
     );
-  }
-
-  String assetImg(String url) {
-    if (url.startsWith('/')) {
-      return url.substring(1);
-    } else {
-      return url;
-    }
   }
 }

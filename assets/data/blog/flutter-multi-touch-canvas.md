@@ -7,7 +7,7 @@ tags:
 - posts
 - flutter
 - graphics
-image: /img/flutter/multi-touch.png
+image: /assets/images/flutter_multi-touch.png
 ---
 
 If you ever wanted to create a canvas in [Flutter](https://flutter.dev) that needs to be panned in any direction and allow zoom then you also probably tried to create a [MultiGestureRecognizer](https://api.flutter.dev/flutter/gestures/MultiDragGestureRecognizer-class.html) or under a [GestureDetector](https://api.flutter.dev/flutter/widgets/GestureDetector-class.html) added onPanUpdate and onScaleUpdate and received an error because both can not work at the same time. Even if you have to GestureDetectors then you will still find it does not work how you want and one will always win.

@@ -9,7 +9,7 @@ tags:
   - json
   - html
   - vite
-image: /img/json-to-table/finished.png
+image: /assets/images/json-to-table_finished.png
 ---
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a HTML [Table](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table) from json url or inline json.
@@ -193,7 +193,7 @@ We have defined a few [CSS Custom Properties](https://developer.mozilla.org/en-U
 
 If everything goes well run the command `npm run dev` and the follow should appear:
 
-<img width="100%" src="/img/json-to-table/finished.png">
+<img width="100%" src="/assets/images/json-to-table_finished.png">
 
 ## Editing
 
@@ -254,7 +254,7 @@ Add the `editable` attribute to the `index.html`:
 
 After a reload the table should look like this and any cell can be edited.
 
-<img width="100%" src="/img/json-to-table/editor.png">
+<img width="100%" src="/assets/images/json-to-table_editor.png">
 
 An event listener can be added just before the closing `body` tag in `index.html` to grab the latest values or cell information:
 

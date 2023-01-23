@@ -8,7 +8,7 @@ tags:
 - flutter
 - podcast
 - github
-image: /img/podcast-github/gh-pages.jpeg
+image: /assets/images/podcast-github_gh-pages.jpeg
 ---
 
 Do you have a story to tell and want to share it with the world but do not know where to start? Are you a developer looking to start a tech podcast? Are you looking to save money for hosting? Well this article is for you!
@@ -17,7 +17,7 @@ Do you have a story to tell and want to share it with the world but do not know 
 
 [Github source](https://github.com/rodydavis/podcast-player)
 
-![](/img/podcast-github/gh-pages.jpeg)
+![](/assets/images/podcast-github_gh-pages.jpeg)
 
 [Github Pages](https://pages.github.com/) allows you to host any website for free on Github. You can host any kind of file or content and will be distributed with Github CDN around the world. You can even setup your Podcast to release new content with [Github Actions](https://github.com/features/actions) for each new episode.
 
@@ -29,7 +29,7 @@ If you  already familiar with Github you can skip this step.
 
 Login or Create a free account for [Github](https://github.com/) and follow the instructions for creating the repo.
 
-![](/img/gifs/fast-typing.webp)
+![](/assets/images/gifs_fast-typing.webp)
 
 ## Clone the Repo
 
@@ -166,7 +166,7 @@ For every episode you just have to add a new item to the feed and change the inf
 </item>
 ```
 
-<img src="/img/gifs/yes_yes_yes.gif" width="100%">
+<img src="/assets/images/gifs_yes_yes_yes.gif" width="100%">
 
 ## Publishing
 
@@ -178,7 +178,7 @@ https://GITHUB\_USERNAME.github.io/GITHUB\_REPO/feed.xml
 
 You can also use this RSS Feed link to support any podcast player!
 
-<img src="/img/gifs/thinking.gif" width="100%">
+<img src="/assets/images/gifs_thinking.gif" width="100%">
 
 ## Conclusion
 

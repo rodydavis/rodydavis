@@ -6,7 +6,7 @@ tags:
 - posts
 - flutter
 - scripting
-image: /img/flutter/first.png
+image: /assets/images/flutter_first.png
 ---
 
 Run Flutter web with SKIA

@@ -4,6 +4,7 @@ import 'package:recase/recase.dart';
 import 'package:seo/seo.dart';
 
 import '../../../data/source/files/files.dart';
+import 'tag.dart';
 
 class AppCard extends StatelessWidget {
   const AppCard({Key? key, required this.file}) : super(key: key);
@@ -39,7 +40,9 @@ class AppCard extends StatelessWidget {
                 children: [
                   Text(
                     file.title ?? file.name.titleCase,
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          color: colors.onSurface,
+                        ),
                   ),
                   const SizedBox(height: 4),
                   if (file.tags != null) ...[
@@ -47,9 +50,7 @@ class AppCard extends StatelessWidget {
                       spacing: 4,
                       children: [
                         for (final tag in file.tags!) ...[
-                          Chip(
-                            label: Text(tag),
-                          ),
+                          Tag(text: tag, link: false),
                         ],
                       ],
                     ),

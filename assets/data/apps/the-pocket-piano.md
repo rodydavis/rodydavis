@@ -6,7 +6,7 @@ tags:
 - piano
 - ios
 - android
-image: /img/the-pocket-piano/icon.png
+image: /assets/images/the-pocket-piano_icon.png
 demo: https://pocketpiano.app
 apple: https://apps.apple.com/us/app/the-pocket-piano/id1453992672
 google: https://play.google.com/store/apps/details?id=com.appleeducate.flutter_piano&hl=en_US&gl=US
