@@ -15,7 +15,7 @@ image: /assets/images/html-sandbox_preview.png
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a HTML Element sandbox that can be used to update a live component.
 
-**TLDR** The final source [here](https://github.com/rodydavis/html-element-sandbox) and an online [demo](https://rodydavis.github.io/html-element-sandbox/).
+> **TLDR** The final source [here](https://github.com/rodydavis/html-element-sandbox) and an online [demo](https://rodydavis.github.io/html-element-sandbox/).
 
 ## Prerequisites
 

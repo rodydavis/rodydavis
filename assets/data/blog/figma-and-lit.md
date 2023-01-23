@@ -15,7 +15,7 @@ image: /assets/images/figma_rectangles.png
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a figma plugin.
 
-**TLDR** You can find the final source [here](https://github.com/rodydavis/figma_lit_example).
+> **TLDR** You can find the final source [here](https://github.com/rodydavis/figma_lit_example).
 
 ## Prerequisites
 

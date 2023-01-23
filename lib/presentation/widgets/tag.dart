@@ -20,7 +20,7 @@ class Tag extends StatelessWidget {
       label: Text(text),
       backgroundColor: colors.tertiary,
       labelStyle: TextStyle(color: colors.onTertiary),
-      onPressed: link ? () => context.navigate('/blog?tag=$text') : () {},
+      onPressed: link ? () => context.$go('/blog?tag=$text') : () {},
     );
   }
 }

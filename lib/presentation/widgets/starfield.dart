@@ -24,7 +24,8 @@ class _StarFieldState extends AnimatedState<StarField> {
           draw: (canvas, size) {
             // Draw animated star field
             for (final star in stars) {
-              final paint = Paint()..color = Colors.white;
+              final paint = Paint()
+                ..color = Colors.white.withOpacity(star.brightness);
               final offset = Offset(star.x, star.y);
               canvas.drawCircle(offset, star.radius, paint);
             }
@@ -59,16 +60,18 @@ class _StarFieldState extends AnimatedState<StarField> {
       final y = Random().nextDouble() * constraints.biggest.height;
       final radius = Random().nextDouble() * 2;
       final speed = Random().nextDouble() * 10;
-      stars.add(Star(x, y, radius, speed));
+      final brightness = Random().nextDouble();
+      stars.add(Star(x, y, radius, speed, brightness));
     }
   }
 }
 
 class Star {
-  Star(this.x, this.y, this.radius, this.speed);
+  Star(this.x, this.y, this.radius, this.speed, this.brightness);
   double x, y;
   final double radius;
   final double speed;
+  final double brightness;
 }
 
 List<Star> createStars(Size size) {
@@ -78,7 +81,8 @@ List<Star> createStars(Size size) {
     final y = Random().nextDouble() * size.height;
     final radius = Random().nextDouble() * 2;
     final speed = Random().nextDouble() * 10;
-    stars.add(Star(x, y, radius, speed));
+    final brightness = Random().nextDouble();
+    stars.add(Star(x, y, radius, speed, brightness));
   }
   return stars;
 }

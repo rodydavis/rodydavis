@@ -4,12 +4,12 @@ import 'package:go_router/go_router.dart';
 import 'package:recase/recase.dart';
 
 extension BuildContextUtils on BuildContext {
-  void navigate(String url) {
+  void $go(String url) {
     go(url);
     _log(url);
   }
 
-  void navigatePush(String url) {
+  void $push(String url) {
     push(url);
     _log(url, true);
   }

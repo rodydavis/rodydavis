@@ -17,7 +17,7 @@ image: /assets/images/dynamic-theme_purple-dark.png
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a a code window that uses [CodeMirror](https://codemirror.net) and apply a dynamic theme with [Material Design](https://material.io).
 
-**TLDR** The final source [here](https://github.com/rodydavis/codemirror-dynamic-theme) and an online [demo](https://rodydavis.github.io/codemirror-dynamic-theme/).
+> **TLDR** The final source [here](https://github.com/rodydavis/codemirror-dynamic-theme) and an online [demo](https://rodydavis.github.io/codemirror-dynamic-theme/).
 
 ## Prerequisites
 

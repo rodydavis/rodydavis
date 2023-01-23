@@ -16,7 +16,7 @@ image: /assets/images/draggable-dom_canvas.png
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a interactive dom with CSS transforms and slots.
 
-**TLDR** The final source [here](https://github.com/rodydavis/lit-draggable-dom) and an online [demo](https://rodydavis.github.io/lit-draggable-dom/).
+> **TLDR** The final source [here](https://github.com/rodydavis/lit-draggable-dom) and an online [demo](https://rodydavis.github.io/lit-draggable-dom/).
 
 <div id="playground" hidden></div>
 <script>

@@ -25,6 +25,7 @@ class _HomeState extends State<Home> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 padding: const EdgeInsets.all(16),
+                margin: const EdgeInsets.all(16),
                 child: DefaultTextStyle(
                   style: Theme.of(context)
                       .textTheme

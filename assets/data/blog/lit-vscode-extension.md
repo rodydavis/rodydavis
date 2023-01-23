@@ -16,7 +16,7 @@ image: /assets/images/vscode_final.png
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a VSCode extension.
 
-**TLDR** You can find the final source [here](https://github.com/rodydavis/lit-vscode-extension).
+> **TLDR** You can find the final source [here](https://github.com/rodydavis/lit-vscode-extension).
 
 ## Prerequisites
 

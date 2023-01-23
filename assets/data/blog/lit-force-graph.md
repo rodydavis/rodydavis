@@ -16,7 +16,7 @@ image: /assets/images/force-graph_3d-dark.png
 
 In this article we will cover how to create a 2D/3D force graph using [Lit](https://lit.dev).
 
-**TLDR** The final source [here](https://github.com/rodydavis/lit-force-graph) and an online [demo](https://rodydavis.github.io/lit-force-graph/).
+> **TLDR** The final source [here](https://github.com/rodydavis/lit-force-graph) and an online [demo](https://rodydavis.github.io/lit-force-graph/).
 
 ## Prerequisites
 

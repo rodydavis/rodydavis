@@ -8,7 +8,7 @@ tags:
 image: /assets/images/pocketbase_thumbnail.png
 ---
 
-**TLDR** Fork this [repo](https://github.com/bscott/pocketbase-litestream) to setup Google Cloud Build and setup environment variables.
+> **TLDR** Fork this [repo](https://github.com/bscott/pocketbase-litestream) to setup Google Cloud Build and setup environment variables.
 
 This is a quick guide on how to deploy PocketBase to Cloud Run.
 

@@ -20,7 +20,7 @@ In this article I will go over how to set up a [Lit](https://lit.dev) web compon
 
 Now any sheet music can be rendered based on the browser width as an svg or canvas (and will resize when the viewport changes).
 
-**TLDR** The final source [here](https://github.com/rodydavis/lit-sheet-music) and an online [demo](https://rodydavis.github.io/lit-sheet-music/).
+> **TLDR** The final source [here](https://github.com/rodydavis/lit-sheet-music) and an online [demo](https://rodydavis.github.io/lit-sheet-music/).
 
 ## Prerequisites
 

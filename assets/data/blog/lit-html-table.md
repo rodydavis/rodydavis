@@ -14,7 +14,7 @@ image: /assets/images/json-to-table_finished.png
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a HTML [Table](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table) from json url or inline json.
 
-**TLDR** The final source [here](https://github.com/rodydavis/lit-html-table) and an online [demo](https://rodydavis.github.io/lit-html-table/).
+> **TLDR** The final source [here](https://github.com/rodydavis/lit-html-table) and an online [demo](https://rodydavis.github.io/lit-html-table/).
 
 ## Prerequisites
 

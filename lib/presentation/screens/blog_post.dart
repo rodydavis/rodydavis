@@ -28,7 +28,7 @@ class BlogPost extends ConsumerWidget {
             const Text('Post not found'),
             const SizedBox(height: 8),
             ElevatedButton(
-              onPressed: () => context.navigate('/blog'),
+              onPressed: () => context.$go('/blog'),
               child: const Text('Go back'),
             ),
           ],
