@@ -6,6 +6,7 @@ import 'package:flutter_highlighter/themes/atom-one-light.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:seo_renderer/seo_renderer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:markdown/markdown.dart' as md;
 
@@ -174,12 +175,17 @@ class CodeElementBuilder extends MarkdownElementBuilder {
     final contents = element.textContent;
     if (contents.split('\n').isEmpty || contents.split('\n').length == 1) {
       // Bold text
-      return Text(
-        contents,
-        style: const TextStyle(
-          fontFamily: 'monospace',
-          fontWeight: FontWeight.bold,
-        ),
+      return Builder(
+        builder: (context) {
+          return Text(
+            contents,
+            style: GoogleFonts.robotoMono().copyWith(
+              fontWeight: FontWeight.bold,
+              backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
+          );
+        },
       );
     }
 

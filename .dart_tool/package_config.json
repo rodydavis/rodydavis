@@ -290,6 +290,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "seo_renderer",
+      "rootUri": "file:///Users/rodydavis/.pub-cache/hosted/pub.dev/seo_renderer-0.6.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "shared_preferences",
       "rootUri": "file:///Users/rodydavis/.pub-cache/hosted/pub.dev/shared_preferences-2.0.17",
       "packageUri": "lib/",
@@ -464,7 +470,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-01-23T08:58:30.319440Z",
+  "generated": "2023-01-23T10:51:46.293377Z",
   "generator": "pub",
   "generatorVersion": "3.0.0-77.0.dev"
 }

@@ -30,7 +30,7 @@
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
-  <title>rodydavis</title>
+  <title>Rody Davis</title>
   <link rel="manifest" href="manifest.json">
 
   <script>
@@ -65,6 +65,13 @@
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-JQNPVBL9DR');
+  </script>
+
+  <script>
+    const regExp = new RegExp("bot|google|baidu|bing|msn|teoma|slurp|yandex", "i");
+    if (regExp.test(navigator.userAgent)) {
+      window.flutterWebRenderer = "html";
+    }
   </script>
 </body>
 
