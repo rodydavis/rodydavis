@@ -13,7 +13,7 @@ class AppList extends ConsumerWidget {
     final files = ref.watch(filesProvider).getApps();
     return LayoutBuilder(
       builder: (context, constraints) {
-        const itemWidth = 400;
+        const itemWidth = 250;
         final count = (constraints.maxWidth / itemWidth).floor();
         return MasonryGridView.count(
           crossAxisCount: count,

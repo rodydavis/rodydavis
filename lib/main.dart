@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:seo/seo.dart';
 
 import 'presentation/module.dart';
 
@@ -18,27 +19,31 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
     final theme = ref.watch(themeProvider);
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      title: 'Rody Davis',
-      theme: ThemeData.light(useMaterial3: true).copyWith(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: theme.sourceColor,
-          brightness: Brightness.light,
+    return SeoController(
+      enabled: true,
+      tree: SemanticsTree(),
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        title: 'Rody Davis',
+        theme: ThemeData.light(useMaterial3: true).copyWith(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: theme.sourceColor,
+            brightness: Brightness.light,
+          ),
+          textTheme: GoogleFonts.spaceMonoTextTheme(),
         ),
-        textTheme: GoogleFonts.spaceMonoTextTheme(),
-      ),
-      darkTheme: ThemeData.dark(useMaterial3: true).copyWith(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: theme.sourceColor,
-          brightness: Brightness.dark,
+        darkTheme: ThemeData.dark(useMaterial3: true).copyWith(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: theme.sourceColor,
+            brightness: Brightness.dark,
+          ),
+          textTheme: GoogleFonts.spaceMonoTextTheme(),
         ),
-        textTheme: GoogleFonts.spaceMonoTextTheme(),
+        themeMode: theme.themeMode,
+        routeInformationParser: router.routeInformationParser,
+        routeInformationProvider: router.routeInformationProvider,
+        routerDelegate: router.routerDelegate,
       ),
-      themeMode: theme.themeMode,
-      routeInformationParser: router.routeInformationParser,
-      routeInformationProvider: router.routeInformationProvider,
-      routerDelegate: router.routerDelegate,
     );
   }
 }
