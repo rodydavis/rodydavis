@@ -12,7 +12,7 @@ image: https://cdn-images-1.medium.com/max/2336/1*qFZepZBtk0RhEojjGsI85g.png
 
 After you build your flutter project you may want to reuse the models and business logic from your lib folder. I will show you how to go about setting up the project to have iOS, Android, Web, Windows, MacOS, Linux and a REST API interface with one project. The REST API can also be deploy to Google Cloud Run for Dart everywhere.
 
-![](/img/gifs/mind_blown.gif)
+![](/assets/images/gifs_mind_blown.gif)
 
 > One Codebase for Client and Sever.
 

@@ -6,7 +6,6 @@ import 'package:flutter_highlighter/themes/atom-one-light.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:seo/seo.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:markdown/markdown.dart' as md;
 
@@ -32,9 +31,15 @@ class MarkdownView extends StatelessWidget {
       future: rootBundle.loadString(path),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          String content = snapshot.data!;
+          String content = snapshot.data!.trim();
+          final lines = content.split('\n');
           // Remove front matter
-          content = content.split('---').last;
+          if (lines.first.trim() == '---') {
+            final idx = lines.indexWhere((line) => line.trim() == '---', 1);
+            if (idx != -1) {
+              content = lines.skip(idx + 1).join('\n');
+            }
+          }
           return Center(
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 800),

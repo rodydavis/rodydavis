@@ -8,7 +8,7 @@ tags:
 - education
 - ios
 - android
-image: /img/the-pitch-pipe/icon.png
+image: /assets/images/the-pitch-pipe_icon.png
 demo: https://pitchpipe.app
 apple: https://apps.apple.com/us/app/the-pitch-pipe/id1244972865
 google: https://play.google.com/store/apps/details?id=com.appleeducate.thepitchpipe&hl=en_US&gl=US

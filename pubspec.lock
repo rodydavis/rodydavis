@@ -360,6 +360,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.4"
+  reading_time:
+    dependency: "direct main"
+    description:
+      name: reading_time
+      sha256: "25169dd8bc85350b8ba81a05e865b33f5bc6edd74504f51e0d667393f28b93ca"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   recase:
     dependency: "direct main"
     description:

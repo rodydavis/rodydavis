@@ -11,7 +11,7 @@ tags:
 - plugin
 - vite
 - extension
-image: /img/vscode/final.png
+image: /assets/images/vscode_final.png
 ---
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a VSCode extension.
@@ -570,15 +570,15 @@ To build the extension run `npm run compile`.
 
 To open the extension and debug hit `F5`.
 
-<img width="100%" src="/img/vscode/final.png">
+<img width="100%" src="/assets/images/vscode_final.png">
 
 To run the commands to open the extension run `lit: open plugin` or `lit: reset`:
 
-<img width="100%" src="/img/vscode/commands.png">
+<img width="100%" src="/assets/images/vscode_commands.png">
 
 To debug the extension when it is open run `Developer: Open Webview Developer Tools` from the command pallet.
 
-<img width="100%" src="/img/vscode/tools.png">
+<img width="100%" src="/assets/images/vscode_tools.png">
 
 ## Conclusion
 

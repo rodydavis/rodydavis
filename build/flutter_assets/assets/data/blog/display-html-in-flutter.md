@@ -7,14 +7,14 @@ tags:
 - posts
 - flutter
 - web
-image: https://cdn-images-1.medium.com/max/4112/1*4vexucSoyjRip7TBQZhkog.png
+image: /assets/images/flutter_html_preview.png
 ---
 
 Sometimes you have content in HTML that needs to be displayed and interacted with in Flutter.
 
 Online Demo:[https://rodydavis.github.io/easy_web_view/#/](https://rodydavis.github.io/easy_web_view/#/)
 
-![](https://cdn-images-1.medium.com/max/4112/1*4vexucSoyjRip7TBQZhkog.png)
+![](/assets/images/flutter_html_preview.png)
 
 For those impatient I created a package for you to get all the following functionally and more here: [https://pub.dev/packages/easy_web_view](https://pub.dev/packages/easy_web_view)
 
@@ -31,13 +31,13 @@ dependencies:
 
 ## Web
 
-Reference: [https://github.com/rodydavis/easy_web_view/blob/master/lib/src/web.dart](https://github.com/rodydavis/easy_web_view/blob/master/lib/src/web.dart)
+Reference: [/lib/src/web.dart](https://github.com/rodydavis/easy_web_view/blob/master/lib/src/web.dart)
 
 To show html on Flutter web we need to use an HTMLElementView. This is a platform view that allows us to display native content.
 
 We first need to register the Element and add all the options we need. Here we are creating an iFrame element and setting the source based on if it is markdown, html or a url.
 
-![](https://cdn-images-1.medium.com/max/2000/1*NRDDwVIppMFu1MHpPNHYmA.png)
+![](/assets/images/flutter_html_iframe.png)
 
 To display valid HTML you can set the src field to the following:
 
@@ -49,7 +49,7 @@ _src = "data:text/html;charset=utf-8," + Uri.encodeComponent("HTML_CONTENT_HERE"
 
 After you call the setup method it is now time to display your new platform view:
 
-![](https://cdn-images-1.medium.com/max/2000/1*4YtrCKZYr6e1bCBZ-aoLZg.png)
+![](/assets/images/flutter_html_setup.png)
 
 You need to use the same viewType string as you registered for “registerViewFactory” method earlier.
 
@@ -61,7 +61,7 @@ Reference: [https://github.com/rodydavis/easy_web_view/blob/master/lib/src/mobil
 
 Mobile setup should be easier. Let’s add a method for updating the url that we will pass to the web view.
 
-![](https://cdn-images-1.medium.com/max/2000/1*6xLbxuNL69Xx6XioN56YWA.png)
+![](/assets/images/flutter_html_update_url.png)
 
 Create the controller:
 
@@ -77,7 +77,7 @@ _controller.loadUrl(_updateUrl(widget.src), headers: widget.headers);
 
 Finally lets show the html in the widget tree:
 
-![](https://cdn-images-1.medium.com/max/2000/1*uvsRUE_sReCOZhsXOLiLaQ.png)
+![](/assets/images/flutter_html_return.png)
 
 ## Conclusion
 

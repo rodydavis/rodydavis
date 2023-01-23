@@ -29,6 +29,9 @@ class FileImpl extends File {
     this.publishDate,
     this.tags,
     this.image,
+    this.demo,
+    this.apple,
+    this.google,
   });
 
   factory FileImpl.fromJson(Map<String, dynamic> json) => FileImpl(
@@ -38,6 +41,9 @@ class FileImpl extends File {
         publishDate: json['publishDate'] as String?,
         tags: (json['tags'] as List<dynamic>? ?? []).cast<String>(),
         image: json['image'] as String?,
+        demo: json['demo'] as String?,
+        apple: json['apple'] as String?,
+        google: json['google'] as String?,
       );
 
   @override
@@ -52,4 +58,10 @@ class FileImpl extends File {
   final List<String>? tags;
   @override
   final String? image;
+  @override
+  final String? demo;
+  @override
+  final String? apple;
+  @override
+  final String? google;
 }

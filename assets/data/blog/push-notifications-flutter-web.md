@@ -7,12 +7,12 @@ tags:
 - posts
 - flutter
 - web
-image: /img/firebase/banner.png
+image: /assets/images/firebase_banner.png
 ---
 
 If you are using Firebase then you are probably familiar with Firebase Cloud Messaging. The setup on Flutter web is very different than mobile and other plugins you are probably used to.
 
-![](/img/firebase/banner.png)
+![](/assets/images/firebase_banner.png)
 
 ## Setting Up
 
@@ -148,7 +148,7 @@ _messaging.stream.listen((event) {
 
 Now when you run your application and request permissions you will get a token back. With this token you can open the firebase console and sent a test message to the token.
 
-<img width="100%" src="/img/firebase/notification.png">
+<img width="100%" src="/assets/images/firebase_notification.png">
 
 ## Conclusion
 

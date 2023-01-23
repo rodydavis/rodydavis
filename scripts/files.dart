@@ -42,7 +42,7 @@ Map<String, dynamic> getInfo(File file) {
 // - flutter
 // - apps
 // - ci
-// image: /img/flutter/fastlane.jpg
+// image: /assets/images/flutter_fastlane.jpg
 // ---
   final name = file.path.split('/').last.split('.').first;
   final contents = file.readAsStringSync();
@@ -56,11 +56,17 @@ Map<String, dynamic> getInfo(File file) {
     final lines = frontMatter.split('\n');
     for (final line in lines) {
       final parts = line.split(':');
-      if (parts.length == 2) {
+      if (parts.length >= 2) {
         final key = parts[0].trim();
-        final value = parts[1].trim();
+        final value = parts.sublist(1).join(':').trim();
         if (key == 'title') {
           output['title'] = removeQuotes(value);
+        } else if (key == 'demo') {
+          output['demo'] = value;
+        } else if (key == 'apple') {
+          output['apple'] = value;
+        } else if (key == 'google') {
+          output['google'] = value;
         } else if (key == 'date') {
           output['date'] = value;
         } else if (key == 'publishDate') {

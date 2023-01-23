@@ -10,4 +10,7 @@ abstract class File {
   String? get publishDate;
   List<String>? get tags;
   String? get image;
+  String? get demo;
+  String? get apple;
+  String? get google;
 }

@@ -5,7 +5,7 @@ publishDate: 6 Sep 2019
 tags:
 - posts
 - flutter
-image: /img/flutter/first.png
+image: /assets/images/flutter_first.png
 ---
 
 Import dart:html and dart:io in the same project!
@@ -16,7 +16,7 @@ Import dart:html and dart:io in the same project!
 
 Up to now you have been able to create projects with Flutter that run on iOS/Android, Web and Desktop but only sharing pure dart plugins. Flutter launched Flutter for web at Google I/O and was a temporary fork that required you to change imports from import 'package:flutter/material.dart'; to import 'package:flutter_web/material.dart';. As you can image this was really difficult for a code base as you had to create a fork and change the imports. This also meant that you could not import any package that needed on a path or depended on flutter. The time as come and the merge is complete. Now you no longer need to change the imports!
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*epSHkw0msNuaisyHy9yYAA.gif">
+![yes yes yes](/assets/images/gifs_yes_yes_yes.gif)
 
 You can use any plugin now, have a debugger, create new flutter projects with the web folder added, web plugins, and so much more..
 
@@ -26,15 +26,17 @@ You will need to be on the latest flutter for this to work.
 
 [Download Flutter](https://flutter.io/get-started/install/)
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*1PVcOkDgx2p_G3Bou3IFsg.jpeg">
+![flutter logo](/assets/images/flutter_logo.jpg)
 
 If you are pretty new to Flutter you can check out [this useful guide](https://flutter.io/get-started/codelab/) on how to create a new project step by step.
 
 <img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*d6qN8hoGMwldMtIsQYIqrg.jpeg">
 
+![mobile device](/assets/images/flutter_cross-platform.jpg)
+
 Create a new project named flutter_x and it should look like this:
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2628/1*xe6ubLj5psVH4JQd-VqSAQ.png">
+![vscode pubspec.yaml open](/assets/images/flutter_x_new_project.png)
 
 You can also down the starter project [here](https://github.com/rodydavis/flutter_x/tree/starter).
 
@@ -156,17 +158,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
 Just to make sure everything is working go ahead and run the project on iOS/Android.
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/5464/1*teDs_OqHkRdhwyuzyb2rVA.png">
+![flutter counter mobile example](/assets/images/flutter_x_starter_ipad.png)
 
 You should have the counter application running and working correctly. Now quit and run on Chrome. It should be listed as a device. You can also run from the command line flutter run -d chrome.
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/5248/1*CzZ28crDYxBEMaNVq9CtvQ.png">
-> *You do not get hot reload yet on web so be aware of that.*
-> *This is optional but I use this structure in all my apps*
+![flutter counter web example](/assets/images/flutter_x_starter_web.png)
 
-<iframe src="https://medium.com/media/139a52e7b9117765d41bf34d5813f57c" frameborder=0></iframe>
+> You do not get hot reload yet on web so be aware of that.
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*zr22DdSlEXlluwcki-ahEQ.png">
+![vscode folder structure](/assets/images/flutter_x_structure.png)
 
 Your project should now look like this.
 
@@ -210,7 +210,7 @@ uses-material-design: true
 
 By default if you were to check if the device was mobile or web you will get an error at compile time when trying to import a plugin that is not meant for the platform. To get around this we will use dynamic imports.
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*YCLt5ItFmyOmrd-CKgOQFQ.png">
+![vscode folder structure](/assets/images/flutter_x_url_launcher.png)
 
 Create a url_launcher folder and file url_launcher.dart, mobile.dart, web.dart, unsupported.dart inside the plugins folder.
 
@@ -319,11 +319,11 @@ onPressed: () {
 
 Now when you go to import the UrlUtils it is important to import the correct URI.
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2140/1*7OyxZG6557DYE1XiBscCtA.png">
+![vscode folder structure](/assets/images/flutter_x_import.png)
 
 Make sure to import import 'package:flutter_x/plugins/url_launcher/url_launcher.dart'; only.
 
-> _You can use the relative import if you wish._
+> You can use the relative import if you wish.
 
 You UI code will now read the following:
 
@@ -366,23 +366,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
 Your app on the web should look like this:
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/5248/1*6ni24NpLIULqi_Cd5NHh3Q.png">
+![web example 1](/assets/images/flutter_x_web_1.png)
 
 And when you tap the button..
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/5248/1*tgcfnrgu9O4joiPeKFmqKw.png">
+![web example 2](/assets/images/flutter_x_web_2.png)
 
 And when you run it on iOS/Android it should look like this:
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/5036/1*QEFw3xDevKMsjke4Dd06VA.png">
+![mobile example 1](/assets/images/flutter_x_mobile_1.png)
 
 And when you tap the button..
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/5036/1*lCvTvAvu0nI_dhgUUFHkWA.png">
+![mobile example 2](/assets/images/flutter_x_mobile_2.png)
 
 Congratulations! You made it :)
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*KowWujusMfDjlkjeeOFEBg.gif">
+![mobile example 2](/assets/images/gifs_congratulations.gif)
 
 Here is the final project located [here](https://github.com/rodydavis/flutter_x/tree/finish).
 

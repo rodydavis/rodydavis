@@ -10,7 +10,7 @@ tags:
   - css
   - html
   - playground
-image: /img/html-sandbox/preview.png
+image: /assets/images/html-sandbox_preview.png
 ---
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a HTML Element sandbox that can be used to update a live component.
@@ -939,7 +939,7 @@ declare global {
 
 If everything worked as expected, you should see the following:
 
-![](/img/html-sandbox/preview.png)
+![](/assets/images/html-sandbox_preview.png)
 
 If you want to learn more about building with Lit you can read the docs [here](https://lit.dev).
 

@@ -28,6 +28,7 @@ dependencies:
   google_fonts: ^3.0.1
   shared_preferences: ^2.0.17
   seo: ^0.0.4
+  reading_time: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -43,6 +44,7 @@ flutter:
     - assets/data/blog/
     - assets/data/static/
     - assets/images/
+    - assets/images/social/
 
 scripts:
   files: dart scripts/files.dart

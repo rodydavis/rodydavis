@@ -11,7 +11,7 @@ tags:
   - vite
   - force-graph
   - graph
-image: /img/lit/force-graph/3d-dark.png
+image: /assets/images/force-graph_3d-dark.png
 ---
 
 In this article we will cover how to create a 2D/3D force graph using [Lit](https://lit.dev).
@@ -899,19 +899,19 @@ declare global {
 
 2D Light:
 
-![](/img/lit/force-graph/2d-light.png)
+![](/assets/images/force-graph_2d-light.png)
 
 2D dark:
 
-![](/img/lit/force-graph/2d-dark.png)
+![](/assets/images/force-graph_2d-dark.png)
 
 3D Light:
 
-![](/img/lit/force-graph/3d-light.png)
+![](/assets/images/force-graph_3d-light.png)
 
 3D dark:
 
-![](/img/lit/force-graph/3d-dark.png)
+![](/assets/images/force-graph_3d-dark.png)
 
 ## Conclusion
 

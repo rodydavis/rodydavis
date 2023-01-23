@@ -11,12 +11,12 @@ tags:
 - music
 - html
 - vite
-image: https://media.giphy.com/media/KbTUp85em6hdmmgTfK/giphy.gif
+image: /assets/images/sheet-music_preview.gif
 ---
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to render [musicxml](https://www.musicxml.com/) from a src attribute or inline xml using [opensheetmusicdisplay](https://github.com/opensheetmusicdisplay/opensheetmusicdisplay).
 
-<img width="100%" src="https://media.giphy.com/media/Qe0sYiS7fpdRjOisK4/giphy.gif">
+![](/assets/images/gifs_nod_yes.gif)
 
 Now any sheet music can be rendered based on the browser width as an svg or canvas (and will resize when the viewport changes).
 
@@ -339,7 +339,7 @@ declare global {
 
 Run `npm run dev` and the following should appear if all went well:
 
-<img width="100%" src="/img/sheet-music/finished.png">
+![](/assets/images/sheet-music_finished.png)
 
 ## Conclusion
 
@@ -347,4 +347,4 @@ If you want to learn more about building with Lit you can read the docs [here](h
 
 The source for this example can be found [here](https://github.com/rodydavis/lit-sheet-music).
 
-<img width="100%" src="https://media.giphy.com/media/KbTUp85em6hdmmgTfK/giphy.gif">
+![](/assets/images/sheet-music_preview.gif)

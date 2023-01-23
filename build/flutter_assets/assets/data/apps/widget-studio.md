@@ -10,16 +10,16 @@ tags:
 - ios
 - android
 - desktop
-image: /img/widget-studio/icon.png
+image: /assets/images/widget-studio_icon.png
 demo: https://widget.studio
 google: https://play.google.com/store/apps/details?id=com.appleeducate.widgetstudio&hl=en_US
 apple: https://apps.apple.com/us/app/widget-studio/id1516549273
 screenshots:
-- /img/widget-studio/1.png
-- /img/widget-studio/2.png
-- /img/widget-studio/3.png
-- /img/widget-studio/4.png
-- /img/widget-studio/5.png
+- /assets/images/widget-studio_1.png
+- /assets/images/widget-studio_2.png
+- /assets/images/widget-studio_3.png
+- /assets/images/widget-studio_4.png
+- /assets/images/widget-studio_5.png
 ---
 
 Working with declarative frameworks can be great building layouts very quickly and predicting how the screen will look from code. This has its challenges as you lose out on UI builders such as Xcode Storyboards or Adobe XD.

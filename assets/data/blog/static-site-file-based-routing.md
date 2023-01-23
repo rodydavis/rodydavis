@@ -9,7 +9,7 @@ tags:
 - multi-page-application
 - web
 - css
-image: /img/static-site/preview.png
+image: /assets/images/static-site_preview.png
 ---
 
 In this article I will go over how to use file based routing to output as a static site multi page application.

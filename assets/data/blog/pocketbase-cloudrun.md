@@ -5,7 +5,7 @@ publishDate: 24 Sep 2022
 tags:
 - posts
 - sqlite
-image: /img/pocketbase/thumbnail.png
+image: /assets/images/pocketbase_thumbnail.png
 ---
 
 **TLDR** Fork this [repo](https://github.com/bscott/pocketbase-litestream) to setup Google Cloud Build and setup environment variables.
@@ -46,7 +46,7 @@ Set the minimum instances to 1 and the maximum to 1.
 
 You can also set CPU to always be allocated.
 
-![](/img/pocketbase/settings.png)
+![](/assets/images/pocketbase_settings.png)
 
 ### Environment Variables
 

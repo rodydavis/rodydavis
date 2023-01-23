@@ -6,12 +6,12 @@ publishDate: 28 Apr 2019
 tags:
 - posts
 - flutter
-image: /img/flutter/first.png
+image: /assets/images/flutter_first.png
 ---
 
 Flutter is a UI Toolkit from Google allowing you to create expressive and unique experiences unmatched on any platform. You can write your UI once and run it everywhere. Yes everywhere! Web, iOS, Android, Windows, Linux, MacOS, Raspberry PI and much more…
 
-<img src="/img/gifs/check-it-out.webp" width="100%" >
+<img src="/assets/images/gifs_check-it-out.webp" width="100%" >
 
 If you prefer a video you can follow the YouTube series I am doing called “Flutter Take 5” where I explore topics that you encounter when building a Flutter application. I will also give you tips and tricks as I go through the series.
 
@@ -31,7 +31,7 @@ Getting started is very easy once you get the SDK installed. After it is install
 
 One nice thing about Flutter is that it is developed in the open as an open source project that anyone can contribute to. If there is something missing you can easily fork the repo and make a PR for the missing functionality.
 
-<img src="/img/gifs/very-interesting.gif" width="100%">
+<img src="/assets/images/gifs_very-interesting.gif" width="100%">
 
 ## Create the Project
 
@@ -43,7 +43,7 @@ flutter create my_awesome_project
 
 You can replace “my_awesome_project” with whatever you want the project to be called. It is important to use snake_case as it is the valid syntax for project names in dart.
 
-<img src="/img/gifs/super-excited.gif" width="100%">
+<img src="/assets/images/gifs_super-excited.gif" width="100%">
 
 Congratulations you just created your first project!
 
@@ -287,7 +287,7 @@ Application finished.
 
 You can also run multiple devices at the same time. You can find more info on the [Flutter Octopus here](https://github.com/flutter/flutter/wiki/Multi-device-debugging-in-VS-Code). If everything went well you should see the following application launch:
 
-<img width="100%" src="/img/flutter/first.png">
+<img width="100%" src="/assets/images/flutter_first.png">
 
 It is a pretty basic application at this point but it is important to show how easy it is to change the state in the application. You can rebuild the UI just by calling “setState()”.
 
@@ -337,7 +337,7 @@ flutter test
 
 Just like that all your tests will run and you can catch any bugs you missed.
 
-<img src="/img/gifs/broken-door.gif" width="100%">
+<img src="/assets/images/gifs_broken-door.gif" width="100%">
 
 You can also generate code coverage for your applications easily by typing the following:
 

@@ -9,7 +9,7 @@ tags:
 - web
 - vite
 - lit
-image: /img/flutter/first.png
+image: /assets/images/flutter_first.png
 ---
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it inline in the Flutter widget tree.

@@ -8,7 +8,7 @@ tags:
 - layout
 - design
 - ui
-image: /img/flutter/first.png
+image: /assets/images/flutter_first.png
 ---
 
 In this article we will go over how to build a master / detail list with Flutter.
