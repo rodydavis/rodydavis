@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../extensions.dart';
 import '../module.dart';
 
 class RootPage extends ConsumerWidget {
@@ -40,7 +41,7 @@ class RootPage extends ConsumerWidget {
                                   .toList(),
                               selectedIndex: getIndex(location),
                               onDestinationSelected: (index) {
-                                context.go(destinations[index].path);
+                                context.navigate(destinations[index].path);
                               },
                             ),
                             const VerticalDivider(thickness: 1, width: 1),
@@ -64,7 +65,7 @@ class RootPage extends ConsumerWidget {
                         .toList(),
                     selectedIndex: getIndex(location),
                     onDestinationSelected: (index) {
-                      context.go(destinations[index].path);
+                      context.navigate(destinations[index].path);
                     },
                   )
                 : null,
@@ -84,7 +85,7 @@ class RootPage extends ConsumerWidget {
       leading: buildLeading(location),
       title: InkWell(
         mouseCursor: SystemMouseCursors.click,
-        onTap: () => context.go('/'),
+        onTap: () => context.navigate('/'),
         child: Text.rich(
           TextSpan(
             children: [

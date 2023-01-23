@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+
+import '../extensions.dart';
 
 class Tag extends StatelessWidget {
   const Tag({
@@ -19,7 +20,7 @@ class Tag extends StatelessWidget {
       label: Text(text),
       backgroundColor: colors.tertiary,
       labelStyle: TextStyle(color: colors.onTertiary),
-      onPressed: link ? () => context.go('/blog?tag=$text') : () {},
+      onPressed: link ? () => context.navigate('/blog?tag=$text') : () {},
     );
   }
 }

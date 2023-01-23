@@ -69,6 +69,11 @@ class Footer extends StatelessWidget {
             url: 'https://www.tiktok.com/@rodydavisjr',
             path: 'assets/images/social/tiktok.svg',
           ),
+          SocialIcon(
+            tooltip: 'RSS Feed',
+            url: 'https://rodydavis.com/feed/feed.xml',
+            path: 'assets/images/social/rss.svg',
+          ),
         ],
       ),
     );

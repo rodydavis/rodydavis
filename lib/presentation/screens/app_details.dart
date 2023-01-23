@@ -1,10 +1,10 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../data/source/module.dart';
+import '../extensions.dart';
 import '../widgets/file_header.dart';
 import '../widgets/footer.dart';
 import '../widgets/markdown_view.dart';
@@ -28,7 +28,7 @@ class AppDetails extends ConsumerWidget {
             const Text('App not found'),
             const SizedBox(height: 8),
             ElevatedButton(
-              onPressed: () => context.go('/apps'),
+              onPressed: () => context.navigate('/apps'),
               child: const Text('Go back'),
             ),
           ],

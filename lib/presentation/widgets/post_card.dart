@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:recase/recase.dart';
 
 import '../../../data/source/files/files.dart';
+import '../extensions.dart';
 import 'tag.dart';
 
 class PostCard extends StatelessWidget {
@@ -16,7 +16,7 @@ class PostCard extends StatelessWidget {
     return Card(
       color: colors.surface,
       child: InkWell(
-        onTap: () => context.push('/blog/${file.name}'),
+        onTap: () => context.navigatePush('/blog/${file.name}'),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
