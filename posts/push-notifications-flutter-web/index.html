@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<!-- Global Metadata --><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link rel="icon" type="image/x-icon" href="/img/favicon/favicon.ico">
+<html lang="en" class="astro-MDYSN4OI">
+  <head>
+    <!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="generator" content="Astro v2.0.4">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://rodydavis.com/posts/push-notifications-flutter-web/">
 
 <!-- Primary Meta Tags -->
 <title>How To Send Push Notifications on Flutter Web (FCM)</title>
@@ -12,514 +16,231 @@
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
-<meta property="og:url">
+<meta property="og:url" content="https://rodydavis.com/posts/push-notifications-flutter-web/">
 <meta property="og:title" content="How To Send Push Notifications on Flutter Web (FCM)">
 <meta property="og:description">
-<meta property="og:image" content="https://astro.build/social.jpg?v=1">
+<meta property="og:image" content="https://rodydavis.com/placeholder-social.jpg">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url">
+<meta property="twitter:url" content="https://rodydavis.com/posts/push-notifications-flutter-web/">
 <meta property="twitter:title" content="How To Send Push Notifications on Flutter Web (FCM)">
 <meta property="twitter:description">
-<meta property="twitter:image" content="https://astro.build/social.jpg?v=1">
+<meta property="twitter:image" content="https://rodydavis.com/placeholder-social.jpg">
+    
+  <link rel="stylesheet" href="/_astro/_...slug_.53535a8b.css" />
+<link rel="stylesheet" href="/_astro/_...slug_.7a06253d.css" /></head>
 
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;700&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-lucario.css">
-<script type="module" src="https://rodydavis.github.io/material-theme-control/material-theme-control.es.js"></script>
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-JQNPVBL9DR');
-</script>
-	<link rel="stylesheet" href="/assets/_slug_.1ed25ffe.css"></link>
-<link rel="stylesheet" href="/assets/social-links.3dfed482.css"></link>
-<link rel="stylesheet" href="/assets/BlogContent.6b85ce27.css"></link><style astro-style="true">astro-root, astro-fragment { display: contents; }</style><script type="module" astro-script="/posts/push-notifications-flutter-web//script-0">import "../../client-shim.6d491e7a.js";</script>
-<script type="module" data-astro-component-hydration astro-script="/posts/push-notifications-flutter-web//script-1">import setup from '../../load.732510f7.js';
-setup("27M1Tz", {name:"app-header",value: true}, async () => {
-  await Promise.all([
-  import("../../hydration-support.3bb20349.js")]);
-await import("../../app-header.b167ee55.js");
-  return () => {};
-
-});
-</script>
-</head>
-
-	<body>
-		<astro-root uid="27M1Tz"><app-header><template shadowroot="open"><style>
-    header {
-      --input-size: 32px;
-      font-family: "Roboto", sans-serif;
-    }
-    .spacer {
-      flex: 1;
-    }
-    .title {
-      display: block;
-      white-space: nowrap;
-      overflow: hidden;
-    }
-    .title-prefix {
-      display: block;
-    }
-    .title-details {
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-    a {
-      text-decoration: none;
-      display: inline-flex;
-      color: var(--md-sys-color-on-primary-container);
-      margin-right: 1rem;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .links {
-      display: none;
-      align-items: center;
-    }
-    @media (min-width: 200px) {
-      .title {
-        display: block;
-       
-      }
-    }
-    @media (min-width: 600px) {
-      .links {
-        display: flex;
-      }
-    }
-    @media (min-width: 700px) {
-      .title-prefix {
-        display: block;
-      }
-      .title-details {
-        max-width: 350px;
-      }
-    }
-    @media (min-width: 900px) {
-      .title-details {
-        max-width: 450px;
-      }
-    }
-  </style><!--lit-part kWdd/F2HVPs=-->
-      <link
-        rel="stylesheet"
-        href="https://rodydavis.github.io/material-css/top-app-bar/style.css"
-      />
-      <header class="top-app-bar">
-        <h1 class="title">
-          <a href="/">
-            <div class="title-prefix">Rody Davis</div>
-            <!--lit-part F7wN3VMcQAI=--><div class="title-prefix">&nbsp;|&nbsp;</div>
-                  <div class="title-details"><!--lit-part-->How To Send Push Notifications on Flutter Web (FCM)<!--/lit-part--></div><!--/lit-part-->
-          </a>
-        </h1>
-
-        <div class="actions">
-          <div class="links">
-            <a href="/apps"> Apps </a>
-            <a href="/posts"> Blog </a>
-            <a href="/talks"> Talks </a>
-            <a href="/about"> About </a>
-          </div>
-          <material-theme-control></material-theme-control>
-          <!--lit-part BRUAAAUVAAA=--><?><!--/lit-part-->
-        </div>
-      </header>
-    <!--/lit-part--></template></app-header></astro-root>
-		<div class="wrapper">
-			<div class="layout astro-6ZXIMRXV">
-	<article class="content astro-6ZXIMRXV">
-		<div class="astro-6ZXIMRXV">
-			<header class="astro-6ZXIMRXV">
-				<img width="720" height="420" class="hero-image astro-6ZXIMRXV" loading="lazy" src="/img/firebase/banner.png">
-				<p class="publish-date astro-6ZXIMRXV">01 May 2020 ~ 3 min read</p>
-				<h1 class="title astro-6ZXIMRXV">How To Send Push Notifications on Flutter Web (FCM)</h1>
-				<div class="author astro-KO5QTRDP">
-	<p class="astro-KO5QTRDP"><a href="/about" class="astro-KO5QTRDP">@rodydavis</a></p>
-</div>
-
-
-
-				 <tag-list class="astro-6ZXIMRXV"><template shadowroot="open"><style>
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      margin-left: 2rem;
-      margin-right: 2rem;
-      width: calc(100% - 4rem);
-    }
-    tag-item {
-      margin-bottom: 0.4rem;
-      margin-top: 0.4rem;
-    }
-    .tags[card] {
-      align-items: flex-start;
-      justify-content: flex-start;
-      margin-left: 0;
-    }
-  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" ><!--lit-node 0-->
-      <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts"><!--lit-node 0--><template shadowroot="open"><style>
-    .tag {
-      margin-right: 0.5rem;
-      padding: 0.25rem 0.5rem;
-      background-color: var(--md-sys-color-tertiary);
-      color: var(--md-sys-color-on-tertiary);
-      border-radius: 8px;
-    }
-
-    a {
-      text-decoration: none;
-      cursor: pointer;
-    }
-  </style><!--lit-part i7RKEo91zno=--><a href="/tags/posts"><!--lit-node 0-->
-      <span class="tag"><!--lit-part-->posts<!--/lit-part--></span>
-    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="flutter"><!--lit-node 0--><template shadowroot="open"><style>
-    .tag {
-      margin-right: 0.5rem;
-      padding: 0.25rem 0.5rem;
-      background-color: var(--md-sys-color-tertiary);
-      color: var(--md-sys-color-on-tertiary);
-      border-radius: 8px;
-    }
-
-    a {
-      text-decoration: none;
-      cursor: pointer;
-    }
-  </style><!--lit-part i7RKEo91zno=--><a href="/tags/flutter"><!--lit-node 0-->
-      <span class="tag"><!--lit-part-->flutter<!--/lit-part--></span>
-    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="web"><!--lit-node 0--><template shadowroot="open"><style>
-    .tag {
-      margin-right: 0.5rem;
-      padding: 0.25rem 0.5rem;
-      background-color: var(--md-sys-color-tertiary);
-      color: var(--md-sys-color-on-tertiary);
-      border-radius: 8px;
-    }
-
-    a {
-      text-decoration: none;
-      cursor: pointer;
-    }
-  </style><!--lit-part i7RKEo91zno=--><a href="/tags/web"><!--lit-node 0-->
-      <span class="tag"><!--lit-part-->web<!--/lit-part--></span>
-    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--/lit-part-->
-    </div><!--/lit-part--></template></tag-list>
-			</header>
-			<main class="astro-6ZXIMRXV">
-				<div class="layout astro-W2QVQNXU">
-	<article class="content astro-W2QVQNXU">
-		<div class="astro-W2QVQNXU">
-			<main class="astro-W2QVQNXU">
-				<p>If you are using Firebase then you are probably familiar with Firebase Cloud Messaging. The setup on Flutter web is very different than mobile and other plugins you are probably used to.</p>
-<p><img src="/img/firebase/banner.png" alt=""></p>
-<h2 id="setting-up">Setting Up</h2>
-Open your web/index.html and look for the following script. If you do not have one you can add it now in the 
-
- tag.
-<pre class="language-js"><code class="language-js"><span class="token operator">&lt;</span>script<span class="token operator">></span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">"serviceWorker"</span> <span class="token keyword">in</span> navigator<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"load"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    navigator<span class="token punctuation">.</span>serviceWorker<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">"/flutter_service_worker.js"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre>
+  <body class="markdown-body astro-MDYSN4OI">
+    <header class="astro-3EF6KSR2">
+  <h2 class="astro-3EF6KSR2">
+    <a href="/" class="astro-3EF6KSR2">Rody Davis</a>
+  </h2>
+  <nav class="astro-3EF6KSR2">
+    <a href="/search?tags=app" class="astro-3EF6KSR2 astro-EIMMU3LG" style="display:flex;flex-direction:row;align-items:center">
+  
+  <div class="astro-EIMMU3LG"> Apps</div>
+</a><a href="/search?tags=posts" class="astro-3EF6KSR2 astro-EIMMU3LG" style="display:flex;flex-direction:row;align-items:center">
+  
+  <div class="astro-EIMMU3LG"> Blog</div>
+</a><a href="/talks" class="astro-3EF6KSR2 astro-EIMMU3LG" style="display:flex;flex-direction:row;align-items:center">
+  
+  <div class="astro-EIMMU3LG"> Talks</div>
+</a><a href="/about" class="astro-3EF6KSR2 astro-EIMMU3LG" style="display:flex;flex-direction:row;align-items:center">
+  
+  <div class="astro-EIMMU3LG"> About</div>
+</a><a href="/search" class="astro-3EF6KSR2 astro-EIMMU3LG" style="display:flex;flex-direction:row;align-items:center">
+  
+  <div class="astro-EIMMU3LG"> Search</div>
+</a>
+  </nav>
+</header>
+    <main class="astro-MDYSN4OI">
+      <style>
+	@media (min-width: 860px) {
+		main {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+		}
+		article {
+			flex: 1;
+		}
+		aside {
+			display: block;
+			position: sticky;
+			top: 0;
+			right: 0;
+			max-height: 100vh;
+			overflow-y: auto;
+		}
+	}
+	</style><main class="astro-BVZIHDZO">
+    <article class="astro-BVZIHDZO">
+      
+      <h1 class="title astro-BVZIHDZO">How To Send Push Notifications on Flutter Web (FCM)</h1>
+      
+      
+      <hr class="astro-BVZIHDZO">
+      <p>If you are using Firebase then you are probably familiar with Firebase Cloud Messaging. The setup on Flutter web is very different than mobile and other plugins you are probably used to.</p>
+<p><img src="/attachments/firebase_banner.png" alt=""></p>
+<h2 id=""><a aria-hidden="true" tabindex="-1" href="#"><span class="icon icon-link"></span></a>Setting Up</h2>
+<p>Open your web/index.html and look for the following script. If you do not have one you can add it now in the  tag.</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #C9D1D9">&#x3C;</span><span style="color: #7EE787">script</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">if ("serviceWorker" in navigator) </span><span style="color: #FF7B72">{</span></span>
+<span class="line"><span style="color: #C9D1D9">  window.</span><span style="color: #D2A8FF">addEventListener</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">"load"</span><span style="color: #C9D1D9">, </span><span style="color: #FF7B72">function</span><span style="color: #C9D1D9"> () {</span></span>
+<span class="line"><span style="color: #C9D1D9">    navigator.serviceWorker.</span><span style="color: #D2A8FF">register</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">"/flutter_service_worker.js"</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">  });</span></span>
+<span class="line"><span style="color: #FF7B72">}</span></span>
+<span class="line"><span style="color: #C9D1D9">&#x3C;/</span><span style="color: #7EE787">script</span><span style="color: #C9D1D9">></span></span></code></pre>
 <p>We need to modify it to support the FCM service worker. The important thing we need to do is comment out the flutter_service_worker.js so that we will not get 404 errors when registering the FCM service worker.</p>
-<pre class="language-js"><code class="language-js"><span class="token operator">&lt;</span>script<span class="token operator">></span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">"serviceWorker"</span> <span class="token keyword">in</span> navigator<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"load"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment">// navigator.serviceWorker.register("/flutter_service_worker.js");</span>
-    navigator<span class="token punctuation">.</span>serviceWorker<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">"/firebase-messaging-sw.js"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #C9D1D9">&#x3C;</span><span style="color: #7EE787">script</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">if ("serviceWorker" in navigator) </span><span style="color: #FF7B72">{</span></span>
+<span class="line"><span style="color: #C9D1D9">  window.</span><span style="color: #D2A8FF">addEventListener</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">"load"</span><span style="color: #C9D1D9">, </span><span style="color: #FF7B72">function</span><span style="color: #C9D1D9"> () {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// navigator.serviceWorker.register("/flutter_service_worker.js");</span></span>
+<span class="line"><span style="color: #C9D1D9">    navigator.serviceWorker.</span><span style="color: #D2A8FF">register</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">"/firebase-messaging-sw.js"</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">  });</span></span>
+<span class="line"><span style="color: #FF7B72">}</span></span>
+<span class="line"><span style="color: #C9D1D9">&#x3C;/</span><span style="color: #7EE787">script</span><span style="color: #C9D1D9">></span></span></code></pre>
 <p>Now create a new file called firebase-messaging-sw.js in the web folder with the following contents:</p>
-<pre class="language-js"><code class="language-js"><span class="token function">importScripts</span><span class="token punctuation">(</span><span class="token string">"https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">importScripts</span><span class="token punctuation">(</span><span class="token string">"https://www.gstatic.com/firebasejs/7.5.0/firebase-messaging.js"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-firebase<span class="token punctuation">.</span><span class="token function">initializeApp</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-    <span class="token literal-property property">apiKey</span><span class="token operator">:</span> <span class="token string">"API_KEY"</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">authDomain</span><span class="token operator">:</span> <span class="token string">"AUTH_DOMAIN"</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">databaseURL</span><span class="token operator">:</span> <span class="token string">"DATABASE_URL"</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">projectId</span><span class="token operator">:</span> <span class="token string">"PROJECT_ID"</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">storageBucket</span><span class="token operator">:</span> <span class="token string">"STORAGE_BUCKET"</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">messagingSenderId</span><span class="token operator">:</span> <span class="token string">"MESSAGING_SENDER_ID"</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">appId</span><span class="token operator">:</span> <span class="token string">"APP_ID"</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">measurementId</span><span class="token operator">:</span> <span class="token string">"MEASUREMENT_ID"</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> messaging <span class="token operator">=</span> firebase<span class="token punctuation">.</span><span class="token function">messaging</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-messaging<span class="token punctuation">.</span><span class="token function">setBackgroundMessageHandler</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">payload</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">const</span> promiseChain <span class="token operator">=</span> clients
-        <span class="token punctuation">.</span><span class="token function">matchAll</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-            <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"window"</span><span class="token punctuation">,</span>
-            <span class="token literal-property property">includeUncontrolled</span><span class="token operator">:</span> <span class="token boolean">true</span>
-        <span class="token punctuation">}</span><span class="token punctuation">)</span>
-        <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">windowClients</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> windowClients<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">const</span> windowClient <span class="token operator">=</span> windowClients<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-                windowClient<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span>payload<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span><span class="token punctuation">)</span>
-        <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> registration<span class="token punctuation">.</span><span class="token function">showNotification</span><span class="token punctuation">(</span><span class="token string">"New Message"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> promiseChain<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-self<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'notificationclick'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'notification received: '</span><span class="token punctuation">,</span> event<span class="token punctuation">)</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #D2A8FF">importScripts</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">"https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #D2A8FF">importScripts</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">"https://www.gstatic.com/firebasejs/7.5.0/firebase-messaging.js"</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">firebase.</span><span style="color: #D2A8FF">initializeApp</span><span style="color: #C9D1D9">({</span></span>
+<span class="line"><span style="color: #C9D1D9">    apiKey: </span><span style="color: #A5D6FF">"API_KEY"</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">    authDomain: </span><span style="color: #A5D6FF">"AUTH_DOMAIN"</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">    databaseURL: </span><span style="color: #A5D6FF">"DATABASE_URL"</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">    projectId: </span><span style="color: #A5D6FF">"PROJECT_ID"</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">    storageBucket: </span><span style="color: #A5D6FF">"STORAGE_BUCKET"</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">    messagingSenderId: </span><span style="color: #A5D6FF">"MESSAGING_SENDER_ID"</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">    appId: </span><span style="color: #A5D6FF">"APP_ID"</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">    measurementId: </span><span style="color: #A5D6FF">"MEASUREMENT_ID"</span></span>
+<span class="line"><span style="color: #C9D1D9">});</span></span>
+<span class="line"><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">messaging</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> firebase.</span><span style="color: #D2A8FF">messaging</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">messaging.</span><span style="color: #D2A8FF">setBackgroundMessageHandler</span><span style="color: #C9D1D9">(</span><span style="color: #FF7B72">function</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">payload</span><span style="color: #C9D1D9">) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">promiseChain</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> clients</span></span>
+<span class="line"><span style="color: #C9D1D9">        .</span><span style="color: #D2A8FF">matchAll</span><span style="color: #C9D1D9">({</span></span>
+<span class="line"><span style="color: #C9D1D9">            type: </span><span style="color: #A5D6FF">"window"</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">            includeUncontrolled: </span><span style="color: #79C0FF">true</span></span>
+<span class="line"><span style="color: #C9D1D9">        })</span></span>
+<span class="line"><span style="color: #C9D1D9">        .</span><span style="color: #D2A8FF">then</span><span style="color: #C9D1D9">(</span><span style="color: #FFA657">windowClients</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">            </span><span style="color: #FF7B72">for</span><span style="color: #C9D1D9"> (</span><span style="color: #FF7B72">let</span><span style="color: #C9D1D9"> i </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">; i </span><span style="color: #FF7B72">&#x3C;</span><span style="color: #C9D1D9"> windowClients.</span><span style="color: #79C0FF">length</span><span style="color: #C9D1D9">; i</span><span style="color: #FF7B72">++</span><span style="color: #C9D1D9">) {</span></span>
+<span class="line"><span style="color: #C9D1D9">                </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">windowClient</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> windowClients[i];</span></span>
+<span class="line"><span style="color: #C9D1D9">                windowClient.</span><span style="color: #D2A8FF">postMessage</span><span style="color: #C9D1D9">(payload);</span></span>
+<span class="line"><span style="color: #C9D1D9">            }</span></span>
+<span class="line"><span style="color: #C9D1D9">        })</span></span>
+<span class="line"><span style="color: #C9D1D9">        .</span><span style="color: #D2A8FF">then</span><span style="color: #C9D1D9">(() </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">            </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> registration.</span><span style="color: #D2A8FF">showNotification</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">"New Message"</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">        });</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> promiseChain;</span></span>
+<span class="line"><span style="color: #C9D1D9">});</span></span>
+<span class="line"><span style="color: #C9D1D9">self.</span><span style="color: #D2A8FF">addEventListener</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'notificationclick'</span><span style="color: #C9D1D9">, </span><span style="color: #FF7B72">function</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">event</span><span style="color: #C9D1D9">) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    console.</span><span style="color: #D2A8FF">log</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'notification received: '</span><span style="color: #C9D1D9">, event)</span></span>
+<span class="line"><span style="color: #C9D1D9">});</span></span></code></pre>
 <p>Make sure to replace the config keys with your firebase keys.</p>
-<h2 id="helper-methods">Helper Methods</h2>
+<h2 id="-1"><a aria-hidden="true" tabindex="-1" href="#-1"><span class="icon icon-link"></span></a>Helper Methods</h2>
 <p>Create a new dart file wherever you like named firebase_messaging.dart with the following:</p>
-<pre class="language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'dart:async'</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token string-literal"><span class="token string">'package:firebase/firebase.dart'</span></span> <span class="token operator">as</span> firebase<span class="token punctuation">;</span>
-
-<span class="token keyword">class</span> <span class="token class-name">FBMessaging</span> <span class="token punctuation">{</span>
-  <span class="token class-name">FBMessaging</span><span class="token punctuation">.</span><span class="token function">_</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">static</span> <span class="token class-name">FBMessaging</span> _instance <span class="token operator">=</span> <span class="token class-name">FBMessaging</span><span class="token punctuation">.</span><span class="token function">_</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">static</span> <span class="token class-name">FBMessaging</span> <span class="token keyword">get</span> instance <span class="token operator">=</span><span class="token operator">></span> _instance<span class="token punctuation">;</span>
-  <span class="token class-name"><span class="token namespace">firebase<span class="token punctuation">.</span></span>Messaging</span> _mc<span class="token punctuation">;</span>
-  <span class="token class-name">String</span> _token<span class="token punctuation">;</span>
-
-  <span class="token keyword">final</span> _controller <span class="token operator">=</span> <span class="token class-name">StreamController</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Map</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token keyword">dynamic</span><span class="token punctuation">></span><span class="token punctuation">></span></span><span class="token punctuation">.</span><span class="token function">broadcast</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token class-name">Stream</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Map</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token keyword">dynamic</span><span class="token punctuation">></span><span class="token punctuation">></span></span> <span class="token keyword">get</span> stream <span class="token operator">=</span><span class="token operator">></span> _controller<span class="token punctuation">.</span>stream<span class="token punctuation">;</span>
-
-  <span class="token keyword">void</span> <span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    _controller<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-
-  <span class="token class-name">Future</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token keyword">void</span><span class="token punctuation">></span></span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
-    _mc <span class="token operator">=</span> firebase<span class="token punctuation">.</span><span class="token function">messaging</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    _mc<span class="token punctuation">.</span><span class="token function">usePublicVapidKey</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'FCM_SERVER_KEY'</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    _mc<span class="token punctuation">.</span>onMessage<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      _controller<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>event<span class="token operator">?</span><span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-
-  <span class="token class-name">Future</span> <span class="token function">requestPermission</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> _mc<span class="token punctuation">.</span><span class="token function">requestPermission</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-
-  <span class="token class-name">Future</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> <span class="token function">getToken</span><span class="token punctuation">(</span><span class="token punctuation">[</span>bool force <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>force <span class="token operator">||</span> _token <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">await</span> <span class="token function">requestPermission</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      _token <span class="token operator">=</span> <span class="token keyword">await</span> _mc<span class="token punctuation">.</span><span class="token function">getToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> _token<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'dart:async'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:firebase/firebase.dart'</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">as</span><span style="color: #C9D1D9"> firebase;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">class</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">FBMessaging</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">FBMessaging</span><span style="color: #C9D1D9">._();</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">static</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">FBMessaging</span><span style="color: #C9D1D9"> _instance </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">FBMessaging</span><span style="color: #C9D1D9">._();</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">static</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">FBMessaging</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">get</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">instance</span><span style="color: #C9D1D9"> => _instance;</span></span>
+<span class="line"><span style="color: #C9D1D9">  firebase.</span><span style="color: #79C0FF">Messaging</span><span style="color: #C9D1D9"> _mc;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">String</span><span style="color: #C9D1D9"> _token;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> _controller </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">StreamController</span><span style="color: #C9D1D9">&#x3C;</span><span style="color: #79C0FF">Map</span><span style="color: #C9D1D9">&#x3C;</span><span style="color: #79C0FF">String</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">dynamic</span><span style="color: #C9D1D9">>>.</span><span style="color: #D2A8FF">broadcast</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">Stream</span><span style="color: #C9D1D9">&#x3C;</span><span style="color: #79C0FF">Map</span><span style="color: #C9D1D9">&#x3C;</span><span style="color: #79C0FF">String</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">dynamic</span><span style="color: #C9D1D9">>> </span><span style="color: #FF7B72">get</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">stream</span><span style="color: #C9D1D9"> => _controller.stream;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">close</span><span style="color: #C9D1D9">() {</span></span>
+<span class="line"><span style="color: #C9D1D9">    _controller</span><span style="color: #FF7B72">?</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">close</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">Future</span><span style="color: #C9D1D9">&#x3C;</span><span style="color: #FF7B72">void</span><span style="color: #C9D1D9">> </span><span style="color: #D2A8FF">init</span><span style="color: #C9D1D9">() </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">    _mc </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> firebase.</span><span style="color: #D2A8FF">messaging</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">    _mc.</span><span style="color: #D2A8FF">usePublicVapidKey</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'FCM_SERVER_KEY'</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">    _mc.onMessage.</span><span style="color: #D2A8FF">listen</span><span style="color: #C9D1D9">((event) {</span></span>
+<span class="line"><span style="color: #C9D1D9">      _controller.</span><span style="color: #D2A8FF">add</span><span style="color: #C9D1D9">(event</span><span style="color: #FF7B72">?</span><span style="color: #C9D1D9">.data);</span></span>
+<span class="line"><span style="color: #C9D1D9">    });</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">Future</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">requestPermission</span><span style="color: #C9D1D9">() {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> _mc.</span><span style="color: #D2A8FF">requestPermission</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">Future</span><span style="color: #C9D1D9">&#x3C;</span><span style="color: #79C0FF">String</span><span style="color: #C9D1D9">> </span><span style="color: #D2A8FF">getToken</span><span style="color: #C9D1D9">([</span><span style="color: #79C0FF">bool</span><span style="color: #C9D1D9"> force </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">false</span><span style="color: #C9D1D9">]) </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (force </span><span style="color: #FF7B72">||</span><span style="color: #C9D1D9"> _token </span><span style="color: #FF7B72">==</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">null</span><span style="color: #C9D1D9">) {</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">requestPermission</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">      _token </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> _mc.</span><span style="color: #D2A8FF">getToken</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">    }</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> _token;</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
 <p>Create a button in the app that will be used to request permissions. While it is possible to request for permission when the app launches this is usually bad practice as the user is unlikely to accept and there is no trust built yet. You can request permissions with the following:</p>
-<pre class="language-dart"><code class="language-dart"><span class="token keyword">final</span> _messaging <span class="token operator">=</span> <span class="token class-name">FBMessaging</span><span class="token punctuation">.</span>instance<span class="token punctuation">;</span>
-_messaging<span class="token punctuation">.</span><span class="token function">requestPermission</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>_<span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
-  <span class="token keyword">final</span> _token <span class="token operator">=</span> <span class="token keyword">await</span> _messaging<span class="token punctuation">.</span><span class="token function">getToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'Token: </span><span class="token interpolation"><span class="token punctuation">$</span><span class="token expression">_token</span></span><span class="token string">'</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> _messaging </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">FBMessaging</span><span style="color: #C9D1D9">.instance;</span></span>
+<span class="line"><span style="color: #C9D1D9">_messaging.</span><span style="color: #D2A8FF">requestPermission</span><span style="color: #C9D1D9">().</span><span style="color: #D2A8FF">then</span><span style="color: #C9D1D9">((_) </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> _token </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> _messaging.</span><span style="color: #D2A8FF">getToken</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #D2A8FF">print</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'Token: $</span><span style="color: #79C0FF">_token</span><span style="color: #A5D6FF">'</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">});</span></span></code></pre>
 <p>You can listen to messages with the following:</p>
-<pre class="language-dart"><code class="language-dart"><span class="token keyword">final</span> _messaging <span class="token operator">=</span> <span class="token class-name">FBMessaging</span><span class="token punctuation">.</span>instance<span class="token punctuation">;</span>
-_messaging<span class="token punctuation">.</span>stream<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'New Message: </span><span class="token interpolation"><span class="token punctuation">${</span><span class="token expression">event</span><span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h2 id="testing">Testing</h2>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> _messaging </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">FBMessaging</span><span style="color: #C9D1D9">.instance;</span></span>
+<span class="line"><span style="color: #C9D1D9">_messaging.stream.</span><span style="color: #D2A8FF">listen</span><span style="color: #C9D1D9">((event) {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #D2A8FF">print</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'New Message: ${</span><span style="color: #79C0FF">event</span><span style="color: #A5D6FF">}'</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">});</span></span></code></pre>
+<h2 id="-2"><a aria-hidden="true" tabindex="-1" href="#-2"><span class="icon icon-link"></span></a>Testing</h2>
 <p>Now when you run your application and request permissions you will get a token back. With this token you can open the firebase console and sent a test message to the token.</p>
-<img width="100%" src="/img/firebase/notification.png">
-<h2 id="conclusion">Conclusion</h2>
+<img width="100%" src="/attachments/firebase_notification.png">
+<h2 id="-3"><a aria-hidden="true" tabindex="-1" href="#-3"><span class="icon icon-link"></span></a>Conclusion</h2>
 <p>Now you can send push notifications to Flutter apps! You still need to use conditional imports to support the mobile side as well but stay tuned for an example with that. Let me know your questions and any feedback you may have.</p>
-			</main>
-		</div>
-	</article>
+    </article>
+    <aside class="astro-BVZIHDZO">
+      <nav class="astro-XVRFUPWN">
+  <h2 class="astro-XVRFUPWN">Table of Contents</h2>
+  <ul class="astro-XVRFUPWN">
+    <li class="astro-XVRFUPWN">
+          <a href="#" class="heading-depth-2 astro-XVRFUPWN">
+            Setting Up
+          </a>
+        </li><li class="astro-XVRFUPWN">
+          <a href="#-1" class="heading-depth-2 astro-XVRFUPWN">
+            Helper Methods
+          </a>
+        </li><li class="astro-XVRFUPWN">
+          <a href="#-2" class="heading-depth-2 astro-XVRFUPWN">
+            Testing
+          </a>
+        </li><li class="astro-XVRFUPWN">
+          <a href="#-3" class="heading-depth-2 astro-XVRFUPWN">
+            Conclusion
+          </a>
+        </li>
+  </ul>
+</nav>
+    </aside>
+  </main>
+    </main>
+    <footer class="astro-SZ7XMLTE">
+  <div class="links astro-AUSHCPD5">
+  <a class="social-icon astro-AUSHCPD5" href="https://github.com/rodydavis" target="_blank" rel="noopener">
+            <img src="/social/github.svg" alt="github" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://twitter.com/rodydavis" target="_blank" rel="noopener">
+            <img src="/social/twitter.svg" alt="twitter" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://facebook.com/rodydavisjr" target="_blank" rel="noopener">
+            <img src="/social/facebook.svg" alt="facebook" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://instagram.com/rodydavisjr" target="_blank" rel="noopener">
+            <img src="/social/instagram.svg" alt="instagram" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://youtube.com/rodydavis" target="_blank" rel="noopener">
+            <img src="/social/youtube.svg" alt="youtube" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://tiktok.com/@rodydavisjr" target="_blank" rel="noopener">
+            <img src="/social/tiktok.svg" alt="tiktok" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://linkedin.com/in/rodydavis" target="_blank" rel="noopener">
+            <img src="/social/linkedin.svg" alt="linkedin" class="astro-AUSHCPD5">
+          </a>
 </div>
 
-
-
-			</main>
-		</div>
-	</article>
-</div>
-
-
-
-		</div>
-		<div style="height: 25px"></div>
-		<social-links><template shadowroot="open"><style>
-    footer {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: var(--width, 100%);
-      margin-bottom: 2rem;
-    }
-    .fab,
-    svg {
-      --size: 3vw;
-      width: var(--size);
-      height: var(--size);
-      max-width: 30px;
-      max-height: 30px;
-      min-width: 20px;
-      min-height: 20px;
-      margin: 0.5rem;
-      color: var(--md-sys-color-on-surface);
-      font-family: FontAwesome;
-      cursor: pointer;
-    }
-    svg {
-      color: var(--md-sys-color-on-surface);
-    }
-  </style><!--lit-part fkbI1zGBADw=--><footer>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://twitter.com/rodydavis"
-        class="fab fa fa-twitter"
-      >
-        <svg
-          aria-hidden="true"
-          focusable="false"
-          data-prefix="fab"
-          data-icon="twitter"
-          class="svg-inline--fa fa-twitter fa-w-16"
-          role="img"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 512 512"
-        >
-          <path
-            fill="currentColor"
-            d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
-          ></path>
-        </svg>
-      </a>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://facebook.com/rodydavisjr"
-        class="fab fa fa-facebook"
-        ><svg
-          aria-hidden="true"
-          focusable="false"
-          data-prefix="fab"
-          data-icon="facebook-f"
-          class="svg-inline--fa fa-facebook-f fa-w-10"
-          role="img"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 320 512"
-        >
-          <path
-            fill="currentColor"
-            d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
-          ></path></svg
-      ></a>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.linkedin.com/in/rodydavis"
-        class="fab fa fa-linkedin"
-        ><svg
-          aria-hidden="true"
-          focusable="false"
-          data-prefix="fab"
-          data-icon="linkedin-in"
-          class="svg-inline--fa fa-linkedin-in fa-w-14"
-          role="img"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512"
-        >
-          <path
-            fill="currentColor"
-            d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
-          ></path></svg
-      ></a>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.youtube.com/rodydavis"
-        class="fab fa fa-youtube"
-        ><svg
-          aria-hidden="true"
-          focusable="false"
-          data-prefix="fab"
-          data-icon="youtube"
-          class="svg-inline--fa fa-youtube fa-w-18"
-          role="img"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 576 512"
-        >
-          <path
-            fill="currentColor"
-            d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
-          ></path></svg
-      ></a>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.instagram.com/rodydavisjr"
-        class="fab fa fa-instagram"
-        ><svg
-          aria-hidden="true"
-          focusable="false"
-          data-prefix="fab"
-          data-icon="instagram"
-          class="svg-inline--fa fa-instagram fa-w-14"
-          role="img"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512"
-        >
-          <path
-            fill="currentColor"
-            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
-          ></path></svg
-      ></a>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.github.com/rodydavis"
-        class="fab fa fa-github"
-        ><svg
-          aria-hidden="true"
-          focusable="false"
-          data-prefix="fab"
-          data-icon="github"
-          class="svg-inline--fa fa-github fa-w-16"
-          role="img"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 496 512"
-        >
-          <path
-            fill="currentColor"
-            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
-          ></path></svg
-      ></a>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.tiktok.com/@rodydavisjr"
-        class="fab fa-tiktok"
-        ><svg
-          aria-hidden="true"
-          focusable="false"
-          data-prefix="fab"
-          data-icon="tiktok"
-          class="svg-inline--fa fa-tiktok fa-w-14"
-          role="img"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512"
-        >
-          <path
-            fill="currentColor"
-            d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"
-          ></path></svg
-      ></a>
-    </footer><!--/lit-part--></template></social-links>
-	</body></html>
+  <div class="copyright astro-SZ7XMLTE">
+    &copy; 2023
+    Rody Davis. All rights reserved.
+  </div>
+</footer>
+  </body></html>

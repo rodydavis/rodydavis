@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<!-- Global Metadata --><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link rel="icon" type="image/x-icon" href="/img/favicon/favicon.ico">
+<html lang="en" class="astro-MDYSN4OI">
+  <head>
+    <!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="generator" content="Astro v2.0.4">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://rodydavis.com/posts/display-html-in-flutter/">
 
 <!-- Primary Meta Tags -->
 <title>Displaying HTML in Flutter</title>
@@ -12,442 +16,161 @@
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
-<meta property="og:url">
+<meta property="og:url" content="https://rodydavis.com/posts/display-html-in-flutter/">
 <meta property="og:title" content="Displaying HTML in Flutter">
 <meta property="og:description">
-<meta property="og:image" content="https://astro.build/social.jpg?v=1">
+<meta property="og:image" content="https://rodydavis.com/placeholder-social.jpg">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url">
+<meta property="twitter:url" content="https://rodydavis.com/posts/display-html-in-flutter/">
 <meta property="twitter:title" content="Displaying HTML in Flutter">
 <meta property="twitter:description">
-<meta property="twitter:image" content="https://astro.build/social.jpg?v=1">
+<meta property="twitter:image" content="https://rodydavis.com/placeholder-social.jpg">
+    
+  <link rel="stylesheet" href="/_astro/_...slug_.53535a8b.css" />
+<link rel="stylesheet" href="/_astro/_...slug_.7a06253d.css" /></head>
 
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;700&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-lucario.css">
-<script type="module" src="https://rodydavis.github.io/material-theme-control/material-theme-control.es.js"></script>
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-JQNPVBL9DR');
-</script>
-	<link rel="stylesheet" href="/assets/BlogContent.6b85ce27.css"></link>
-<link rel="stylesheet" href="/assets/social-links.3dfed482.css"></link>
-<link rel="stylesheet" href="/assets/_slug_.1ed25ffe.css"></link><style astro-style="true">astro-root, astro-fragment { display: contents; }</style><script type="module" astro-script="/posts/display-html-in-flutter//script-0">import "../../client-shim.6d491e7a.js";</script>
-<script type="module" data-astro-component-hydration astro-script="/posts/display-html-in-flutter//script-1">import setup from '../../load.732510f7.js';
-setup("Z1V5T92", {name:"app-header",value: true}, async () => {
-  await Promise.all([
-  import("../../hydration-support.3bb20349.js")]);
-await import("../../app-header.b167ee55.js");
-  return () => {};
-
-});
-</script>
-</head>
-
-	<body>
-		<astro-root uid="Z1V5T92"><app-header><template shadowroot="open"><style>
-    header {
-      --input-size: 32px;
-      font-family: "Roboto", sans-serif;
-    }
-    .spacer {
-      flex: 1;
-    }
-    .title {
-      display: block;
-      white-space: nowrap;
-      overflow: hidden;
-    }
-    .title-prefix {
-      display: block;
-    }
-    .title-details {
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-    a {
-      text-decoration: none;
-      display: inline-flex;
-      color: var(--md-sys-color-on-primary-container);
-      margin-right: 1rem;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .links {
-      display: none;
-      align-items: center;
-    }
-    @media (min-width: 200px) {
-      .title {
-        display: block;
-       
-      }
-    }
-    @media (min-width: 600px) {
-      .links {
-        display: flex;
-      }
-    }
-    @media (min-width: 700px) {
-      .title-prefix {
-        display: block;
-      }
-      .title-details {
-        max-width: 350px;
-      }
-    }
-    @media (min-width: 900px) {
-      .title-details {
-        max-width: 450px;
-      }
-    }
-  </style><!--lit-part kWdd/F2HVPs=-->
-      <link
-        rel="stylesheet"
-        href="https://rodydavis.github.io/material-css/top-app-bar/style.css"
-      />
-      <header class="top-app-bar">
-        <h1 class="title">
-          <a href="/">
-            <div class="title-prefix">Rody Davis</div>
-            <!--lit-part F7wN3VMcQAI=--><div class="title-prefix">&nbsp;|&nbsp;</div>
-                  <div class="title-details"><!--lit-part-->Displaying HTML in Flutter<!--/lit-part--></div><!--/lit-part-->
-          </a>
-        </h1>
-
-        <div class="actions">
-          <div class="links">
-            <a href="/apps"> Apps </a>
-            <a href="/posts"> Blog </a>
-            <a href="/talks"> Talks </a>
-            <a href="/about"> About </a>
-          </div>
-          <material-theme-control></material-theme-control>
-          <!--lit-part BRUAAAUVAAA=--><?><!--/lit-part-->
-        </div>
-      </header>
-    <!--/lit-part--></template></app-header></astro-root>
-		<div class="wrapper">
-			<div class="layout astro-6ZXIMRXV">
-	<article class="content astro-6ZXIMRXV">
-		<div class="astro-6ZXIMRXV">
-			<header class="astro-6ZXIMRXV">
-				<img width="720" height="420" class="hero-image astro-6ZXIMRXV" loading="lazy" src="https://cdn-images-1.medium.com/max/4112/1*4vexucSoyjRip7TBQZhkog.png">
-				<p class="publish-date astro-6ZXIMRXV">10 Mar 2020 ~ 2 min read</p>
-				<h1 class="title astro-6ZXIMRXV">Displaying HTML in Flutter</h1>
-				<div class="author astro-KO5QTRDP">
-	<p class="astro-KO5QTRDP"><a href="/about" class="astro-KO5QTRDP">@rodydavis</a></p>
-</div>
-
-
-
-				 <tag-list class="astro-6ZXIMRXV"><template shadowroot="open"><style>
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      margin-left: 2rem;
-      margin-right: 2rem;
-      width: calc(100% - 4rem);
-    }
-    tag-item {
-      margin-bottom: 0.4rem;
-      margin-top: 0.4rem;
-    }
-    .tags[card] {
-      align-items: flex-start;
-      justify-content: flex-start;
-      margin-left: 0;
-    }
-  </style><!--lit-part dtEA4j2r9MY=--> <div class="tags" ><!--lit-node 0-->
-      <!--lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="posts"><!--lit-node 0--><template shadowroot="open"><style>
-    .tag {
-      margin-right: 0.5rem;
-      padding: 0.25rem 0.5rem;
-      background-color: var(--md-sys-color-tertiary);
-      color: var(--md-sys-color-on-tertiary);
-      border-radius: 8px;
-    }
-
-    a {
-      text-decoration: none;
-      cursor: pointer;
-    }
-  </style><!--lit-part i7RKEo91zno=--><a href="/tags/posts"><!--lit-node 0-->
-      <span class="tag"><!--lit-part-->posts<!--/lit-part--></span>
-    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="flutter"><!--lit-node 0--><template shadowroot="open"><style>
-    .tag {
-      margin-right: 0.5rem;
-      padding: 0.25rem 0.5rem;
-      background-color: var(--md-sys-color-tertiary);
-      color: var(--md-sys-color-on-tertiary);
-      border-radius: 8px;
-    }
-
-    a {
-      text-decoration: none;
-      cursor: pointer;
-    }
-  </style><!--lit-part i7RKEo91zno=--><a href="/tags/flutter"><!--lit-node 0-->
-      <span class="tag"><!--lit-part-->flutter<!--/lit-part--></span>
-    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--lit-part VvgdIGM/dSs=--><tag-item  name="web"><!--lit-node 0--><template shadowroot="open"><style>
-    .tag {
-      margin-right: 0.5rem;
-      padding: 0.25rem 0.5rem;
-      background-color: var(--md-sys-color-tertiary);
-      color: var(--md-sys-color-on-tertiary);
-      border-radius: 8px;
-    }
-
-    a {
-      text-decoration: none;
-      cursor: pointer;
-    }
-  </style><!--lit-part i7RKEo91zno=--><a href="/tags/web"><!--lit-node 0-->
-      <span class="tag"><!--lit-part-->web<!--/lit-part--></span>
-    </a><!--/lit-part--></template></tag-item><!--/lit-part--><!--/lit-part-->
-    </div><!--/lit-part--></template></tag-list>
-			</header>
-			<main class="astro-6ZXIMRXV">
-				<div class="layout astro-W2QVQNXU">
-	<article class="content astro-W2QVQNXU">
-		<div class="astro-W2QVQNXU">
-			<main class="astro-W2QVQNXU">
-				<p>Sometimes you have content in HTML that needs to be displayed and interacted with in Flutter.</p>
-<p>Online Demo:<a href="https://rodydavis.github.io/easy_web_view/#/">https://rodydavis.github.io/easy_web_view/#/</a></p>
-<p><img src="https://cdn-images-1.medium.com/max/4112/1*4vexucSoyjRip7TBQZhkog.png" alt=""></p>
+  <body class="markdown-body astro-MDYSN4OI">
+    <header class="astro-3EF6KSR2">
+  <h2 class="astro-3EF6KSR2">
+    <a href="/" class="astro-3EF6KSR2">Rody Davis</a>
+  </h2>
+  <nav class="astro-3EF6KSR2">
+    <a href="/search?tags=app" class="astro-3EF6KSR2 astro-EIMMU3LG" style="display:flex;flex-direction:row;align-items:center">
+  
+  <div class="astro-EIMMU3LG"> Apps</div>
+</a><a href="/search?tags=posts" class="astro-3EF6KSR2 astro-EIMMU3LG" style="display:flex;flex-direction:row;align-items:center">
+  
+  <div class="astro-EIMMU3LG"> Blog</div>
+</a><a href="/talks" class="astro-3EF6KSR2 astro-EIMMU3LG" style="display:flex;flex-direction:row;align-items:center">
+  
+  <div class="astro-EIMMU3LG"> Talks</div>
+</a><a href="/about" class="astro-3EF6KSR2 astro-EIMMU3LG" style="display:flex;flex-direction:row;align-items:center">
+  
+  <div class="astro-EIMMU3LG"> About</div>
+</a><a href="/search" class="astro-3EF6KSR2 astro-EIMMU3LG" style="display:flex;flex-direction:row;align-items:center">
+  
+  <div class="astro-EIMMU3LG"> Search</div>
+</a>
+  </nav>
+</header>
+    <main class="astro-MDYSN4OI">
+      <style>
+	@media (min-width: 860px) {
+		main {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+		}
+		article {
+			flex: 1;
+		}
+		aside {
+			display: block;
+			position: sticky;
+			top: 0;
+			right: 0;
+			max-height: 100vh;
+			overflow-y: auto;
+		}
+	}
+	</style><main class="astro-BVZIHDZO">
+    <article class="astro-BVZIHDZO">
+      
+      <h1 class="title astro-BVZIHDZO">Displaying HTML in Flutter</h1>
+      
+      
+      <hr class="astro-BVZIHDZO">
+      <p>Sometimes you have content in HTML that needs to be displayed and interacted with in Flutter.</p>
+<p>Online Demo:<a href="https://rodydavis.github.io/easy_web_view/#/">https://rodydavis.github.io/easy_web_view/</a><a href="/tags//">#/</a></p>
+<p><img src="/attachments/flutter_html_preview.png" alt=""></p>
 <p>For those impatient I created a package for you to get all the following functionally and more here: <a href="https://pub.dev/packages/easy_web_view">https://pub.dev/packages/easy_web_view</a></p>
-<h2 id="getting-started">Getting Started</h2>
+<h2 id=""><a aria-hidden="true" tabindex="-1" href="#"><span class="icon icon-link"></span></a>Getting Started</h2>
 <p>Create a new flutter project named whatever you want.</p>
 <blockquote>
 <p>If you plan on showing HTML content on iOS/Android you will need to add the following to your pubspec.yaml</p>
 </blockquote>
-<pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">dependencies</span><span class="token punctuation">:</span>
-    <span class="token key atrule">webview_flutter</span><span class="token punctuation">:</span> ^0.3.15+1</code></pre>
-<h2 id="web">Web</h2>
-<p>Reference: <a href="https://github.com/rodydavis/easy_web_view/blob/master/lib/src/web.dart">https://github.com/rodydavis/easy_web_view/blob/master/lib/src/web.dart</a></p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #7EE787">dependencies</span><span style="color: #C9D1D9">:</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #7EE787">webview_flutter</span><span style="color: #C9D1D9">: </span><span style="color: #A5D6FF">^0.3.15+1</span></span></code></pre>
+<h2 id="-1"><a aria-hidden="true" tabindex="-1" href="#-1"><span class="icon icon-link"></span></a>Web</h2>
+<p>Reference: <a href="https://github.com/rodydavis/easy_web_view/blob/master/lib/src/web.dart">/lib/src/web.dart</a></p>
 <p>To show html on Flutter web we need to use an HTMLElementView. This is a platform view that allows us to display native content.</p>
 <p>We first need to register the Element and add all the options we need. Here we are creating an iFrame element and setting the source based on if it is markdown, html or a url.</p>
-<p><img src="https://cdn-images-1.medium.com/max/2000/1*NRDDwVIppMFu1MHpPNHYmA.png" alt=""></p>
+<p><img src="/attachments/flutter_html_iframe.png" alt=""></p>
 <p>To display valid HTML you can set the src field to the following:</p>
-<pre class="language-dart"><code class="language-dart">_src <span class="token operator">=</span> <span class="token string-literal"><span class="token string">"data:text/html;charset=utf-8,"</span></span> <span class="token operator">+</span> <span class="token class-name">Uri</span><span class="token punctuation">.</span><span class="token function">encodeComponent</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"HTML_CONTENT_HERE"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #C9D1D9">_src </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">"data:text/html;charset=utf-8,"</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Uri</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">encodeComponent</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">"HTML_CONTENT_HERE"</span><span style="color: #C9D1D9">);</span></span></code></pre>
 <blockquote>
 <p>For the package you can also pass markdown to the src and it will convert it for you.</p>
 </blockquote>
 <p>After you call the setup method it is now time to display your new platform view:</p>
-<p><img src="https://cdn-images-1.medium.com/max/2000/1*4YtrCKZYr6e1bCBZ-aoLZg.png" alt=""></p>
+<p><img src="/attachments/flutter_html_setup.png" alt=""></p>
 <p>You need to use the same viewType string as you registered for “registerViewFactory” method earlier.</p>
 <p>Finally you need to wrap it in a container or sized box with an explicit width and height!</p>
-<h2 id="mobile">Mobile</h2>
+<h2 id="-2"><a aria-hidden="true" tabindex="-1" href="#-2"><span class="icon icon-link"></span></a>Mobile</h2>
 <p>Reference: <a href="https://github.com/rodydavis/easy_web_view/blob/master/lib/src/mobile.dart">https://github.com/rodydavis/easy_web_view/blob/master/lib/src/mobile.dart</a></p>
 <p>Mobile setup should be easier. Let’s add a method for updating the url that we will pass to the web view.</p>
-<p><img src="https://cdn-images-1.medium.com/max/2000/1*6xLbxuNL69Xx6XioN56YWA.png" alt=""></p>
+<p><img src="/attachments/flutter_html_update_url.png" alt=""></p>
 <p>Create the controller:</p>
-<pre class="language-dart"><code class="language-dart"><span class="token class-name">WebViewController</span> _controller<span class="token punctuation">;</span></code></pre>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #79C0FF">WebViewController</span><span style="color: #C9D1D9"> _controller;</span></span></code></pre>
 <p>And when ever the src changes call this method:</p>
-<pre class="language-dart"><code class="language-dart">_controller<span class="token punctuation">.</span><span class="token function">loadUrl</span><span class="token punctuation">(</span><span class="token function">_updateUrl</span><span class="token punctuation">(</span>widget<span class="token punctuation">.</span>src<span class="token punctuation">)</span><span class="token punctuation">,</span> headers<span class="token punctuation">:</span> widget<span class="token punctuation">.</span>headers<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #C9D1D9">_controller.</span><span style="color: #D2A8FF">loadUrl</span><span style="color: #C9D1D9">(</span><span style="color: #D2A8FF">_updateUrl</span><span style="color: #C9D1D9">(widget.src), headers</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> widget.headers);</span></span></code></pre>
 <p>Finally lets show the html in the widget tree:</p>
-<p><img src="https://cdn-images-1.medium.com/max/2000/1*uvsRUE_sReCOZhsXOLiLaQ.png" alt=""></p>
-<h2 id="conclusion">Conclusion</h2>
+<p><img src="/attachments/flutter_html_return.png" alt=""></p>
+<h2 id="-3"><a aria-hidden="true" tabindex="-1" href="#-3"><span class="icon icon-link"></span></a>Conclusion</h2>
 <p>If you want to see a complete example and advanced use case view the source here: <a href="https://github.com/rodydavis/easy_web_view">https://github.com/rodydavis/easy_web_view</a></p>
 <p>And if you just want to have it all done for you use this package: <a href="https://pub.dev/packages/easy_web_view">https://pub.dev/packages/easy_web_view</a></p>
 <p>Feel free to make PRs if you have anything that could help make it better too (Or if you find bugs).</p>
 <p>When you show HTML this way you will find that you can interact, select text and work with it just like you would it it were a regular web page. If you are using the package you can also just pass embedded content or html elements too without needing a full html valid file (YouTube video for example).</p>
-			</main>
-		</div>
-	</article>
+    </article>
+    <aside class="astro-BVZIHDZO">
+      <nav class="astro-XVRFUPWN">
+  <h2 class="astro-XVRFUPWN">Table of Contents</h2>
+  <ul class="astro-XVRFUPWN">
+    <li class="astro-XVRFUPWN">
+          <a href="#" class="heading-depth-2 astro-XVRFUPWN">
+            Getting Started
+          </a>
+        </li><li class="astro-XVRFUPWN">
+          <a href="#-1" class="heading-depth-2 astro-XVRFUPWN">
+            Web
+          </a>
+        </li><li class="astro-XVRFUPWN">
+          <a href="#-2" class="heading-depth-2 astro-XVRFUPWN">
+            Mobile
+          </a>
+        </li><li class="astro-XVRFUPWN">
+          <a href="#-3" class="heading-depth-2 astro-XVRFUPWN">
+            Conclusion
+          </a>
+        </li>
+  </ul>
+</nav>
+    </aside>
+  </main>
+    </main>
+    <footer class="astro-SZ7XMLTE">
+  <div class="links astro-AUSHCPD5">
+  <a class="social-icon astro-AUSHCPD5" href="https://github.com/rodydavis" target="_blank" rel="noopener">
+            <img src="/social/github.svg" alt="github" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://twitter.com/rodydavis" target="_blank" rel="noopener">
+            <img src="/social/twitter.svg" alt="twitter" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://facebook.com/rodydavisjr" target="_blank" rel="noopener">
+            <img src="/social/facebook.svg" alt="facebook" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://instagram.com/rodydavisjr" target="_blank" rel="noopener">
+            <img src="/social/instagram.svg" alt="instagram" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://youtube.com/rodydavis" target="_blank" rel="noopener">
+            <img src="/social/youtube.svg" alt="youtube" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://tiktok.com/@rodydavisjr" target="_blank" rel="noopener">
+            <img src="/social/tiktok.svg" alt="tiktok" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://linkedin.com/in/rodydavis" target="_blank" rel="noopener">
+            <img src="/social/linkedin.svg" alt="linkedin" class="astro-AUSHCPD5">
+          </a>
 </div>
 
-
-
-			</main>
-		</div>
-	</article>
-</div>
-
-
-
-		</div>
-		<div style="height: 25px"></div>
-		<social-links><template shadowroot="open"><style>
-    footer {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: var(--width, 100%);
-      margin-bottom: 2rem;
-    }
-    .fab,
-    svg {
-      --size: 3vw;
-      width: var(--size);
-      height: var(--size);
-      max-width: 30px;
-      max-height: 30px;
-      min-width: 20px;
-      min-height: 20px;
-      margin: 0.5rem;
-      color: var(--md-sys-color-on-surface);
-      font-family: FontAwesome;
-      cursor: pointer;
-    }
-    svg {
-      color: var(--md-sys-color-on-surface);
-    }
-  </style><!--lit-part fkbI1zGBADw=--><footer>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://twitter.com/rodydavis"
-        class="fab fa fa-twitter"
-      >
-        <svg
-          aria-hidden="true"
-          focusable="false"
-          data-prefix="fab"
-          data-icon="twitter"
-          class="svg-inline--fa fa-twitter fa-w-16"
-          role="img"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 512 512"
-        >
-          <path
-            fill="currentColor"
-            d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
-          ></path>
-        </svg>
-      </a>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://facebook.com/rodydavisjr"
-        class="fab fa fa-facebook"
-        ><svg
-          aria-hidden="true"
-          focusable="false"
-          data-prefix="fab"
-          data-icon="facebook-f"
-          class="svg-inline--fa fa-facebook-f fa-w-10"
-          role="img"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 320 512"
-        >
-          <path
-            fill="currentColor"
-            d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
-          ></path></svg
-      ></a>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.linkedin.com/in/rodydavis"
-        class="fab fa fa-linkedin"
-        ><svg
-          aria-hidden="true"
-          focusable="false"
-          data-prefix="fab"
-          data-icon="linkedin-in"
-          class="svg-inline--fa fa-linkedin-in fa-w-14"
-          role="img"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512"
-        >
-          <path
-            fill="currentColor"
-            d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
-          ></path></svg
-      ></a>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.youtube.com/rodydavis"
-        class="fab fa fa-youtube"
-        ><svg
-          aria-hidden="true"
-          focusable="false"
-          data-prefix="fab"
-          data-icon="youtube"
-          class="svg-inline--fa fa-youtube fa-w-18"
-          role="img"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 576 512"
-        >
-          <path
-            fill="currentColor"
-            d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
-          ></path></svg
-      ></a>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.instagram.com/rodydavisjr"
-        class="fab fa fa-instagram"
-        ><svg
-          aria-hidden="true"
-          focusable="false"
-          data-prefix="fab"
-          data-icon="instagram"
-          class="svg-inline--fa fa-instagram fa-w-14"
-          role="img"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512"
-        >
-          <path
-            fill="currentColor"
-            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
-          ></path></svg
-      ></a>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.github.com/rodydavis"
-        class="fab fa fa-github"
-        ><svg
-          aria-hidden="true"
-          focusable="false"
-          data-prefix="fab"
-          data-icon="github"
-          class="svg-inline--fa fa-github fa-w-16"
-          role="img"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 496 512"
-        >
-          <path
-            fill="currentColor"
-            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
-          ></path></svg
-      ></a>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.tiktok.com/@rodydavisjr"
-        class="fab fa-tiktok"
-        ><svg
-          aria-hidden="true"
-          focusable="false"
-          data-prefix="fab"
-          data-icon="tiktok"
-          class="svg-inline--fa fa-tiktok fa-w-14"
-          role="img"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512"
-        >
-          <path
-            fill="currentColor"
-            d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"
-          ></path></svg
-      ></a>
-    </footer><!--/lit-part--></template></social-links>
-	</body></html>
+  <div class="copyright astro-SZ7XMLTE">
+    &copy; 2023
+    Rody Davis. All rights reserved.
+  </div>
+</footer>
+  </body></html>
