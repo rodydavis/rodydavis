@@ -7,7 +7,6 @@ specifiers:
   '@astrojs/sitemap': ^1.0.1
   '@types/node': ^18.11.18
   astro: ^2.0.2
-  github-markdown-css: ^5.1.0
   preact: ^10.6.5
   rehype-accessible-emojis: ^0.3.2
   rehype-autolink-headings: ^6.1.1
@@ -23,7 +22,6 @@ dependencies:
   '@astrojs/sitemap': 1.0.1
   '@types/node': 18.11.18
   astro: 2.0.4_@types+node@18.11.18
-  github-markdown-css: 5.1.0
   preact: 10.11.3
   rehype-accessible-emojis: 0.3.2
   rehype-autolink-headings: 6.1.1
@@ -1391,10 +1389,6 @@ packages:
   /get-stream/6.0.1:
     resolution: {integrity: sha512-ts6Wi+2j3jQjqi70w5AlN8DFnkSwC+MqmxEzdEALB2qXZYV3X/b1CTfgPLGJNMeAWxdPfU8FO1ms3NUfaHCPYg==}
     engines: {node: '>=10'}
-    dev: false
-
-  /github-markdown-css/5.1.0:
-    resolution: {integrity: sha512-QLtORwHHtUHhPMHu7i4GKfP6Vx5CWZn+NKQXe+cBhslY1HEt0CTEkP4d/vSROKV0iIJSpl4UtlQ16AD8C6lMug==}
     dev: false
 
   /github-slugger/1.5.0:
