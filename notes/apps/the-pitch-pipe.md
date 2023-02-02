@@ -10,11 +10,10 @@ tags:
     - ios
     - android
 image: /attachments/the-pitch-pipe_icon.png
-demo: https://pitchpipe.app
-apple: https://apps.apple.com/us/app/the-pitch-pipe/id1244972865
-google: https://play.google.com/store/apps/details?id=com.appleeducate.thepitchpipe&hl=en_US&gl=US
 skip: true
 ---
+
+![](/attachments/the-pitch-pipe_icon.png)
 
 > Sheet Music Made Easy
 
@@ -47,3 +46,11 @@ Features:
 - Share Button for Song List
 - Today Widget for Sheet Music Help
 - In app rating for a better App Store rating experience
+
+## Download
+
+[![](/attachments/app_store.png)](https://apps.apple.com/us/app/the-pitch-pipe/id1244972865)
+
+[![](/attachments/google_play.png)](https://play.google.com/store/apps/details?id=com.appleeducate.thepitchpipe&hl=en_US&gl=US)
+
+[Open Web App](https://pitchpipe.app)

@@ -10,11 +10,10 @@ tags:
     - ios
     - android
 image: /attachments/hymns-for-worship_icon.png
-demo: https://hymnsforworship.app
-apple: https://apps.apple.com/us/app/hymns-for-worship/id1470789635?itsct=apps_box&amp;itscg=30200
-google: https://play.google.com/store/apps/details?id=com.appleeducate.hymns_for_worship&hl=en_US&gl=US
 skip: true
 ---
+
+![](/attachments/hymns-for-worship_icon.png)
 
 Hymns for Worship is now digital. Enjoy all the features from the book plus rich search, integrated pitch pipe, and large easy-to-read text.
 
@@ -41,3 +40,10 @@ This collection of hymns, gospel songs, and contemporary praise and worship song
 
 [Terms and Conditions](https://hymnsforworship.app/termsandconditions.html)
 
+## Download
+
+[![](/attachments/app_store.png)](https://apps.apple.com/us/app/hymns-for-worship/id1470789635?itsct=apps_box&amp;itscg=30200)
+
+[![](/attachments/google_play.png)](https://play.google.com/store/apps/details?id=com.appleeducate.hymns_for_worship&hl=en_US&gl=US)
+
+[Open Web App](https://hymnsforworship.app)

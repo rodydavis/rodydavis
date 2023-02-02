@@ -19,7 +19,7 @@ function TagChips(props: { tags: string[], active: string[], onClick: (tag: stri
     flexDirection: "row",
     overflowX: "auto",
     gap: "0.5rem",
-    margin: "0.5rem 0",
+    margin: "1rem 0",
     padding: "0 0 1rem 0",
   }}>
     {props.tags.map((tag) => {
