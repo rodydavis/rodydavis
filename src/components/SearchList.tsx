@@ -89,7 +89,7 @@ function SearchList(props: Props) {
     <div style={{
       padding: "0.5rem 0r",
     }}>
-      Showing {results.length} results for {search}
+      Showing {results.length} results for "{search}"
     </div>
     <NoteCards notes={results} />
   </div>;
