@@ -6,6 +6,7 @@
 
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown.min.css");
 
 :root {
   --tags-background: #eee;
@@ -58,6 +59,11 @@ body {
   color: var(--body-color);
   color-scheme: light dark;
 }
+
+.markdown-body article {
+  box-sizing: border-box;
+}
+
 h1,
 h2,
 h3,
@@ -102,12 +108,15 @@ pre > code {
   all: unset;
 }
 blockquote {
-  border: 1px solid var(--blockquote-border);
+  border-left: 5px solid var(--blockquote-border);
+  padding-left: 1rem;
   color: var(--blockquote-color);
-  padding: 2px 0px 2px 20px;
-  margin: 0px;
-  font-style: italic;
 }
 li div {
   display: inline-block;
+}
+
+iframe {
+  border: 0;
+  aspect-ratio: 16 / 9;
 }

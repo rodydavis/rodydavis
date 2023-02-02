@@ -62,7 +62,7 @@ Never stop learning and trying to be better.
 - [Dev.to](https://dev.to/rodydavis)
 - [Medium](https://rodydavis.medium.com/)
 - [Email](mailto:rody.davis.jr@gmail.com)
-- [RSS Feed](/feed/feed.xml)
+<!-- - [RSS Feed](/feed/feed.xml) -->
 
 ## Support
 
