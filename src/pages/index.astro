@@ -1,124 +1,37 @@
 ---
-import MainLayout from '../components/MainLayout.astro';
-import Posts from '../components/Posts.astro';
-import '../components/home-showcase';
+import Layout from "../layouts/RootLayout.astro";
+import NoteList from "../components/NoteList.astro";
 
-const title = 'Rody Davis';
-const description = 'Designer. Developer. Polygot.';
-const permalink = 'https://rodydavis.com/';
+import { getConfig } from "../consts";
+import type { MarkdownInstance } from "astro";
+
+const { title, description } = getConfig().site;
+
+// Check for readme in notes
+let readme: MarkdownInstance<Record<string, any>> | null = null;
+try {
+  const readmes = await Promise.all([
+    Astro.glob("../../notes/README.md"),
+    Astro.glob("../../notes/readme.md"),
+    Astro.glob("../../notes/Readme.md"),
+  ]).then((results) => results.flat());
+  const hasReadme = readmes.length > 0;
+  readme = hasReadme ? readmes[0] : null;
+} catch (error) {}
+const { Content } = readme || { Content: () => null };
 ---
 
-<style>
-section, article {
-  margin: 0;
-  padding: 0;
-}
-.content-section {
-  width: 100%;
-}
-.full-width {
-  margin-left: 1rem;
-  margin-right: 1rem;
-  width: calc(100% - 2rem) !important;
-  max-width: 960px;
-}
-
-@media (min-width: 960px) {
-  .full-width {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-.banner  {
-  margin-top: 1rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.quote {
-  padding: 1rem;
-  background-color: var(--md-sys-color-surface-variant);
-  color: var(--md-sys-color-on-surface-variant);
-  border-radius: var(--md-sys-shape-small);
-}
-.pages {
-  margin-top: 0.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  gap: 0.5rem;
-}
-@media (min-width: 960px) {
- .pages {
-    display: flex;
-    flex-direction: row;
-  }
-  .pages :nth-child(1), .pages :nth-child(2), .pages :nth-child(3) {
-    margin-right: 0.5rem;
-  }
-}
-
-.pages a {
-  flex: 1;
-  cursor: pointer;
-}
-.pages a button {
-  width: 100%;
-}
-
-
-.pages a:hover {
-  opacity: 0.67;
-}
-
-.links {
-  margin-top: 2rem;
-  margin-left: 1rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
-}
-
-.links .dontate {
-  margin-right: 0.5rem;
-}
-</style>
-
-<MainLayout {title} {description} {permalink}>
-  <section class="content-section full-width">
-     <home-showcase ></home-showcase>
-  </section>
-
-  <section class="content-section">
-  <div class="quote full-width">
-      <q
-      >Your work is going to fill a large part of your life, and the only
-      way to be truly satisfied is to do what you believe is great work.
-      And the only way to do great work is to love what you do. If you
-      haven't found it yet, keep looking. Don't settle. As with all
-      matters of the heart, you'll know when you find it.</q
-      >
-      <p>- Steve Jobs</p>
-  </div>
-  </section>
-
-  <section class="content-section">
-    <div class="pages full-width">
-      <a href="/apps"><button class="button filled-tonal">Apps</button></a>
-      <a href="/posts"><button class="button filled-tonal">Blog</button></a>
-      <a href="/talks"><button class="button filled-tonal">Talks</button></a>
-      <a href="/about"><button class="button filled-tonal">About</button></a>
+<Layout title={title} description={description}>
+  <main>
+    {
+      readme && (
+        <article>
+          <Content />
+        </article>
+      )
+    }
+    <div class="notes">
+      <NoteList />
     </div>
-  </section>
-
-  <section>
-    <div class="full-width info">
-      <Posts />
-    </div>
-  </section>
-</MainLayout>
+  </main>
+</Layout>

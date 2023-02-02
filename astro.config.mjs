@@ -1,20 +1,27 @@
 import { defineConfig } from "astro/config";
-// import { VitePWA } from "vite-plugin-pwa";
-import customElements from "custom-elements-ssr/astro.js";
+import sitemap from "@astrojs/sitemap";
+import { rehypeAccessibleEmojis } from "rehype-accessible-emojis";
+import remarkObsidian from "remark-obsidian";
+import { obsidianTags } from "./obsidian-tags.mjs";
+
+// https://astro.build/config
+import preact from "@astrojs/preact";
 
 // https://astro.build/config
 export default defineConfig({
-  renderers: ["@astrojs/renderer-preact", "@astrojs/renderer-lit"],
-  integrations: [customElements()],
-  buildOptions: {
-    sitemap: true,
-    site: "https://rodydavis.com/",
+  site: "https://rodydavis.com/",
+  integrations: [sitemap(), preact({ compat: true })],
+  markdown: {
+    remarkPlugins: [rehypeAccessibleEmojis, obsidianTags],
+    rehypePlugins: [
+      "rehype-slug",
+      [
+        "rehype-autolink-headings",
+        {
+          behavior: "prepend",
+        },
+      ],
+      //   ["rehype-toc", { headings: ["h2", "h3"] }],
+    ],
   },
-  server: {
-    fs: {
-      // Allow serving files from one level up to the project root
-      allow: [".."],
-    },
-  },
-  // plugins: [VitePWA()],
 });
