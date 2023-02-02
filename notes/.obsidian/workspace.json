@@ -33,7 +33,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "recipies/the-perfect-brisket.md",
+                "file": "recipes/the-perfect-brisket.md",
                 "mode": "source",
                 "source": false
               }
@@ -106,7 +106,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "recipies/the-perfect-brisket.md",
+                "file": "recipes/the-perfect-brisket.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +123,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "recipies/the-perfect-brisket.md",
+                "file": "recipes/the-perfect-brisket.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -146,7 +146,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "recipies/the-perfect-brisket.md"
+                "file": "recipes/the-perfect-brisket.md"
               }
             }
           }
@@ -167,11 +167,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "1846ea008eb136e9",
+  "active": "c93b3991944cd9ca",
   "lastOpenFiles": [
     "apps/widget-studio.md",
     "privacy.md",
-    "recipies/the-perfect-brisket.md",
+    "recipes/the-perfect-brisket.md",
     "apps/the-pocket-piano.md",
     "apps/the-pitch-pipe.md",
     "apps/space-curiosity.md",
