@@ -8,12 +8,12 @@ const { social } = config;
 ---
 
 <footer>
+  <SocialBar links={social} />
+
   <div class="copyright">
     &copy; {today.getFullYear()}
     {copyright_name}. All rights reserved.
   </div>
-
-  <SocialBar links={social} />
 </footer>
 
 <style>

@@ -8,10 +8,23 @@ social:
     username: "rodydavis"
   twitter:
     username: "rodydavis"
+  facebook:
+    username: "rodydavisjr"
+  instagram:
+    username: "rodydavisjr"
+  youtube:
+    username: "rodydavis"
+  tiktok:
+    username: "rodydavisjr"
+  linkedin:
+    username: "rodydavis"
 menu:
   apps:
     label: Apps
     link: /search?tags=app
+  blog:
+    label: Blog
+    link: /search?tags=posts
   talks:
     label: Talks
     link: /talks
