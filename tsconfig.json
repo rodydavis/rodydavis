@@ -1,7 +1,7 @@
 {
+  "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "moduleResolution": "node",
-    "skipLibCheck": true,
-    "experimentalDecorators": true
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
   }
 }

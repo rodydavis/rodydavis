@@ -1,0 +1,63 @@
+---
+interface SocialLink {
+  link: string;
+  icon: string;
+}
+
+interface Props {
+  links: SocialLink[];
+}
+
+const { links } = Astro.props;
+
+const socialSvgs = {
+  email: "/social/email.svg",
+  facebook: "/social/facebook.svg",
+  github: "/social/github.svg",
+  instagram: "/social/instagram.svg",
+  linkedin: "/social/linkedin.svg",
+  twitter: "/social/twitter.svg",
+  youtube: "/social/youtube.svg",
+  tiktok: "/social/tiktok.svg",
+  rss: "/social/rss.svg",
+};
+---
+
+<div class="links">
+  {
+    links.map(({ link, icon }) => {
+      const svg = Object(socialSvgs)[icon];
+      if (svg) {
+        return (
+          <a class="social-icon" href={link} target="_blank" rel="noopener">
+            <img src={svg} alt={icon} />
+          </a>
+        );
+      } else {
+        return (
+          <a class="social-icon" href={link} target="_blank" rel="noopener">
+            <i class="material-icons">{icon}</i>
+          </a>
+        );
+      }
+    })
+  }
+</div>
+
+<style>
+  .social-icon,
+  img {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--body-color);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+</style>

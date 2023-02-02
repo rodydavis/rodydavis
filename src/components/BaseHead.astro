@@ -1,18 +1,27 @@
 ---
-import '../styles/blog.css';
+// Import the global.css file here so that it is included on
+// all pages through the use of the <BaseHead /> component.
+import "../styles/global.css";
 
 export interface Props {
-	title: string;
-	description: string;
-	permalink: string;
+  title: string;
+  description: string;
+  image?: string;
 }
-const { title, description, permalink } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const { title, description, image = "/placeholder-social.jpg" } = Astro.props;
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<link rel="icon" type="image/x-icon" href="/img/favicon/favicon.ico" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
@@ -21,31 +30,14 @@ const { title, description, permalink } = Astro.props;
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content={permalink} />
+<meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content="https://astro.build/social.jpg?v=1" />
+<meta property="og:image" content={new URL(image, Astro.url)} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={permalink} />
+<meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content="https://astro.build/social.jpg?v=1" />
-
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.gstatic.com" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;700&display=swap" />
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-lucario.css"/>
-<script type="module" src="https://rodydavis.github.io/material-theme-control/material-theme-control.es.js"></script>
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-JQNPVBL9DR');
-</script>
+<meta property="twitter:image" content={new URL(image, Astro.url)} />

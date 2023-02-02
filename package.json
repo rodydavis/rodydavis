@@ -1,38 +1,30 @@
 {
-  "name": "@rodydavis/website",
+  "name": "@example/minimal",
+  "type": "module",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "npm run start",
-    "start": "astro dev",
-    "external": "astro dev --host",
-    "build": "astro build",
-    "preview": "astro preview"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/rodydavis/rodydavis.git"
-  },
-  "bugs": {
-    "url": "https://github.com/rodydavis/rodydavis/issues"
-  },
-  "homepage": "https://github.com/rodydavis/rodydavis#readme",
-  "devDependencies": {
-    "@astrojs/renderer-lit": "^0.4.0",
-    "@astrojs/renderer-preact": "^0.5.0",
-    "astro": "^0.24.3",
-    "vite-plugin-pwa": "^0.11.13"
+    "start": "pnpm dev",
+    "copy": "cp -r notes/attachments/ public/attachments/",
+    "sync": "astro sync",
+    "dev": "pnpm copy && astro dev",
+    "build": "pnpm copy && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "@lit-labs/ssr": "^2.0.4",
-    "@material/material-color-utilities": "^0.1.2",
-    "@material/mwc-base": "^0.26.1",
-    "@material/mwc-button": "^0.26.1",
-    "@material/mwc-icon-button": "^0.26.1",
-    "@webcomponents/template-shadowroot": "^0.1.0",
-    "custom-elements-ssr": "0.0.11",
-    "playground-elements": "^0.16.0",
-    "reading-time": "^1.5.0",
-    "tslib": "^2.4.0"
+    "@astrojs/markdown-remark": "^2.0.1",
+    "@astrojs/preact": "^2.0.1",
+    "@astrojs/rss": "^2.1.0",
+    "@astrojs/sitemap": "^1.0.1",
+    "@types/node": "^18.11.18",
+    "astro": "^2.0.2",
+    "preact": "^10.6.5",
+    "rehype-accessible-emojis": "^0.3.2",
+    "rehype-autolink-headings": "^6.1.1",
+    "rehype-slug": "^5.1.0",
+    "remark": "^14.0.2",
+    "remark-obsidian": "^1.4.0",
+    "yaml": "^2.2.1"
   }
 }
