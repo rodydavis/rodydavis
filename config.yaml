@@ -31,6 +31,3 @@ menu:
   about:
     label: About
     link: /about
-  search:
-    label: Search
-    link: /search
