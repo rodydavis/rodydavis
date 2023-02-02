@@ -17,11 +17,18 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2
 
-      # Install dependencies with npm
-      - name: Install dependencies
-        run: pnpm install
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 7
+          run_install: true
 
       # Build the project and add .nojekyll file to supress default behaviour
       - name: Build
