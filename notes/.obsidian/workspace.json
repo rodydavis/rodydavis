@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "readme.md",
+                "file": "privacy.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "readme.md",
+                "file": "privacy.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "readme.md",
+                "file": "privacy.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "readme.md"
+                "file": "privacy.md"
               }
             }
           }
@@ -146,17 +146,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c93b3991944cd9ca",
+  "active": "13f2f59d3b6643a7",
   "lastOpenFiles": [
+    "readme.md",
     "talks.md",
+    "privacy.md",
     "about.md",
     "posts/flutter-and-lit.md",
     "posts/flutter-cheat-sheet.md",
     "posts/display-html-in-flutter.md",
     "posts/deep-linking-flutter-web.md",
     "posts/first-flutter-project.md",
-    "posts/automate-flutter-apps.md",
-    "posts/pocketbase-cloudrun.md",
-    "posts/flutter-multi-touch-canvas.md"
+    "posts/automate-flutter-apps.md"
   ]
 }
