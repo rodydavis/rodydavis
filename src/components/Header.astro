@@ -22,13 +22,13 @@ const { title } = site;
 </header>
 <style>
   header {
+    flex-direction: column;
+    align-items: flex-start;
     background-color: var(--header-background);
     color: var(--header-color);
     padding: 1em;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
     border-bottom: 1px solid var(--border-color);
   }
   h2 {
@@ -47,11 +47,10 @@ const { title } = site;
     align-items: center;
     gap: 1em;
   }
-  /* Mobile display column */
-  @media (max-width: 600px) {
+  @media (min-width: 720px) {
     header {
-      flex-direction: column;
-      align-items: flex-start;
+      flex-direction: row;
+      align-items: center;
     }
   }
 </style>
