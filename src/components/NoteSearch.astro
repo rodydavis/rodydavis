@@ -1,0 +1,26 @@
+---
+import NoteList from "./NoteList.astro";
+---
+
+<div class="search">
+  <input type="text" placeholder="Search" id="search" />
+  <label for="search">Search</label>
+</div>
+
+<div class="notes">
+  <NoteList client:load />
+</div>
+
+<script>
+  const search = document.getElementById("search") as HTMLInputElement;
+  const notes = document.querySelector(".notes") as HTMLElement;
+  let filter = "";
+  search.addEventListener("input", (e) => {
+    filter = search.value;
+    notes.setAttribute("filter", filter);
+    // const query = e.target.value;
+    // const url = new URL(window.location);
+    // url.searchParams.set("q", query);
+    // window.history.pushState({}, "", url);
+  });
+</script>

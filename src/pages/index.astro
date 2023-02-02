@@ -1,0 +1,37 @@
+---
+import Layout from "../layouts/RootLayout.astro";
+import NoteList from "../components/NoteList.astro";
+
+import { getConfig } from "../consts";
+import type { MarkdownInstance } from "astro";
+
+const { title, description } = getConfig().site;
+
+// Check for readme in notes
+let readme: MarkdownInstance<Record<string, any>> | null = null;
+try {
+  const readmes = await Promise.all([
+    Astro.glob("../../notes/README.md"),
+    Astro.glob("../../notes/readme.md"),
+    Astro.glob("../../notes/Readme.md"),
+  ]).then((results) => results.flat());
+  const hasReadme = readmes.length > 0;
+  readme = hasReadme ? readmes[0] : null;
+} catch (error) {}
+const { Content } = readme || { Content: () => null };
+---
+
+<Layout title={title} description={description}>
+  <main>
+    {
+      readme && (
+        <article>
+          <Content />
+        </article>
+      )
+    }
+    <div class="notes">
+      <NoteList />
+    </div>
+  </main>
+</Layout>

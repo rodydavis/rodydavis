@@ -1,0 +1,50 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+import { getConfig } from "../consts.js";
+const { site, menu } = getConfig();
+const { title } = site;
+---
+
+<header>
+  <h2>
+    <a href="/">{title}</a>
+  </h2>
+  <nav>
+    {
+      menu.map(({ name, link, icon }) => (
+        <HeaderLink href={link} icon={icon}>
+          {" "}
+          {name}
+        </HeaderLink>
+      ))
+    }
+  </nav>
+</header>
+<style>
+  header {
+    background-color: var(--header-background);
+    color: var(--header-color);
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+  }
+  h2 {
+    margin: 0;
+  }
+  h2 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  h2 a:hover {
+    text-decoration: underline;
+  }
+  nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+  }
+</style>

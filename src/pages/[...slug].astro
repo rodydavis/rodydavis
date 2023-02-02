@@ -1,0 +1,17 @@
+---
+import type { MarkdownInstance } from "astro";
+import Layout from "../layouts/BlogPost.astro";
+import { getNotes } from "../components/NoteList.astro";
+
+export async function getStaticPaths() {
+  return getNotes({ includeSkip: true });
+}
+
+type Props = MarkdownInstance<Record<string, any>>;
+const post = Astro.props;
+const { Content } = post;
+---
+
+<Layout {...post}>
+  <Content />
+</Layout>

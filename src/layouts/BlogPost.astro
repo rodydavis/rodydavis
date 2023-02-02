@@ -1,0 +1,76 @@
+---
+import Layout from "./RootLayout.astro";
+import TableOfContents from "../components/TableOfContents.astro";
+import type { MarkdownHeading, MarkdownInstance } from "astro";
+
+type Props = MarkdownInstance<Record<string, any>>;
+const { frontmatter, getHeadings } = Astro.props;
+const { title, pubDate, updatedDate, heroImage } = frontmatter;
+const headings = getHeadings();
+
+---
+
+<Layout {...Astro.props}>
+  <style>
+	main {
+		width: 100%;
+	}
+    aside {
+      display: none;
+    }
+    article {
+      max-width: 860px;
+	  margin: 0 auto;
+    }
+    img {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+  {
+	headings.length > 0 && 
+	<style>
+	@media (min-width: 860px) {
+		main {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+		}
+		article {
+			flex: 1;
+		}
+		aside {
+			display: block;
+			position: sticky;
+			top: 0;
+			right: 0;
+			max-height: 100vh;
+			overflow-y: auto;
+		}
+	}
+	</style>
+  }
+  <main>
+    <article>
+      {
+        heroImage !== undefined && (
+          <img width={720} height={360} src={heroImage} alt="" />
+        )
+      }
+      <h1 class="title">{title}</h1>
+      {pubDate && <time>{pubDate}</time>}
+      {
+        updatedDate && (
+          <div>
+            Last updated on <time>{updatedDate}</time>
+          </div>
+        )
+      }
+      <hr />
+      <slot />
+    </article>
+    <aside>
+      <TableOfContents headings={headings} />
+    </aside>
+  </main>
+</Layout>
