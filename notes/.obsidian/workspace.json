@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "privacy.md",
+                "file": "apps/widget-studio.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "privacy.md",
+                "file": "apps/widget-studio.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "privacy.md",
+                "file": "apps/widget-studio.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "privacy.md"
+                "file": "apps/widget-studio.md"
               }
             }
           }
@@ -148,15 +148,15 @@
   },
   "active": "13f2f59d3b6643a7",
   "lastOpenFiles": [
+    "apps/the-pocket-piano.md",
+    "apps/the-pitch-pipe.md",
+    "apps/space-curiosity.md",
+    "apps/hymns-for-worship.md",
+    "privacy.md",
     "readme.md",
     "talks.md",
-    "privacy.md",
     "about.md",
     "posts/flutter-and-lit.md",
-    "posts/flutter-cheat-sheet.md",
-    "posts/display-html-in-flutter.md",
-    "posts/deep-linking-flutter-web.md",
-    "posts/first-flutter-project.md",
-    "posts/automate-flutter-apps.md"
+    "posts/flutter-cheat-sheet.md"
   ]
 }

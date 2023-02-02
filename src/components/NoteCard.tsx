@@ -42,10 +42,10 @@ function NoteCard(props: Props) {
       borderRadius: "0.25rem",
       margin: "0.5rem 0",
     }} /> : null}
-    <div style={{
+    {description && <div style={{
       fontSize: "1rem",
       color: "var(--text-color)",
-    }}>{description}</div>
+    }}>{description}</div>}
     <div style={{
       display: "flex",
       flexWrap: "wrap",

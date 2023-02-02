@@ -12,10 +12,10 @@ tags:
     - ios
     - android
 image: /attachments/space-curiosity_icon.png
-apple: https://apps.apple.com/us/app/space-curiosity/id1435609944
-google: https://play.google.com/store/apps/details?id=com.chechu.curiosity
 skip: true
 ---
+
+![](/attachments/space-curiosity_icon.png)
 
 A brief overview of a new app built with [Flutter](https://Flutter.io) by Rody Davis and Jesus Rodriguez.
 
@@ -58,3 +58,9 @@ All this work would not be possible without the incredible community behind Flut
 
 Big thanks to Jesus Rodriguez to the awesome collaboration and ideas set forth.
 You can find [Rody Davis](https://www.github.com/rodydavis) and [Jesus Rodriguez](https://www.github.com/jesusrp98) on Github.
+
+## Download
+
+[![](/attachments/app_store.png)](https://apps.apple.com/us/app/space-curiosity/id1435609944)
+
+[![](/attachments/google_play.png)](https://play.google.com/store/apps/details?id=com.chechu.curiosity)

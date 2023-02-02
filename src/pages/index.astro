@@ -10,7 +10,8 @@ const { title, description } = getConfig().site;
 // Check for readme in notes
 let readme: MarkdownInstance<Record<string, any>> | null = null;
 try {
-  readme = await Astro.glob("../../notes/readme.md");
+  const items = await Astro.glob("../../notes/readme.md");
+  readme = items[0];
 } catch (error) {}
 const { Content } = readme || { Content: () => null };
 ---
@@ -18,7 +19,7 @@ const { Content } = readme || { Content: () => null };
 <Layout title={title} description={description}>
   <main>
     {
-      readme && (
+      readme != null && (
         <article>
           <Content />
         </article>
@@ -29,3 +30,10 @@ const { Content } = readme || { Content: () => null };
     </div>
   </main>
 </Layout>
+
+<style>
+  article {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+</style>

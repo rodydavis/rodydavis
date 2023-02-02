@@ -12,17 +12,10 @@ tags:
     - android
     - desktop
 image: /attachments/widget-studio_icon.png
-demo: https://widget.studio
-google: https://play.google.com/store/apps/details?id=com.appleeducate.widgetstudio&hl=en_US
-apple: https://apps.apple.com/us/app/widget-studio/id1516549273
-screenshots:
-    - /attachments/widget-studio_1.png
-    - /attachments/widget-studio_2.png
-    - /attachments/widget-studio_3.png
-    - /attachments/widget-studio_4.png
-    - /attachments/widget-studio_5.png
 skip: true
 ---
+
+![](/attachments/widget-studio_icon.png)
 
 Working with declarative frameworks can be great building layouts very quickly and predicting how the screen will look from code. This has its challenges as you lose out on UI builders such as Xcode Storyboards or Adobe XD.
 
@@ -31,3 +24,19 @@ With Widget Studio, you have the flexibility to prototype a layout with a drag a
 Layouts can be hard, but they don't have to be! As of this version of the app it is optimised for Flutter widgets and layouts but in the future could support other frameworks too!
 
 Flutter is a powerful toolkit for creating app that run on iOS, Web and MacOS. You can find more about Flutter at https://flutter.dev/.
+
+## Screenshots
+
+![](/attachments/widget-studio_1.png)
+![](/attachments/widget-studio_2.png)
+![](/attachments/widget-studio_3.png)
+![](/attachments/widget-studio_4.png)
+![](/attachments/widget-studio_5.png)
+
+## Download
+
+[![](/attachments/app_store.png)](https://apps.apple.com/us/app/widget-studio/id1516549273)
+
+[![](/attachments/google_play.png)](https://play.google.com/store/apps/details?id=com.appleeducate.widgetstudio&hl=en_US)
+
+[Open Web App](https://widget.studio)

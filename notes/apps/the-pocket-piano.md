@@ -8,11 +8,10 @@ tags:
     - ios
     - android
 image: /attachments/the-pocket-piano_icon.png
-demo: https://pocketpiano.app
-apple: https://apps.apple.com/us/app/the-pocket-piano/id1453992672
-google: https://play.google.com/store/apps/details?id=com.appleeducate.flutter_piano&hl=en_US&gl=US
 skip: true
 ---
+
+![](/attachments/the-pocket-piano_icon.png)
 
 The Pocket Piano is a fully featured piano optimized for all screen sizes. Features: 
 
@@ -24,3 +23,11 @@ The Pocket Piano is a fully featured piano optimized for all screen sizes. Featu
 - Octave section to jump to any section 
 - Disable Scroll 
 - Haptic Feedback on key press Award winning app for the 2019 Flutter Create Contest!
+
+## Download
+
+[![](/attachments/app_store.png)](https://apps.apple.com/us/app/the-pocket-piano/id1453992672)
+
+[![](/attachments/google_play.png)](https://play.google.com/store/apps/details?id=com.appleeducate.flutter_piano&hl=en_US&gl=US)
+
+[Open Web App](https://pocketpiano.app)
