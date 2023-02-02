@@ -3,6 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "private": true,
+  "pre-commit": [
+    "copy"
+  ],
   "scripts": {
     "start": "pnpm dev",
     "copy": "cp -r notes/attachments/ public/attachments/",
@@ -19,6 +22,7 @@
     "@astrojs/sitemap": "^1.0.1",
     "@types/node": "^18.11.18",
     "astro": "^2.0.2",
+    "pre-commit": "^1.2.2",
     "preact": "^10.6.5",
     "rehype-accessible-emojis": "^0.3.2",
     "rehype-autolink-headings": "^6.1.1",
