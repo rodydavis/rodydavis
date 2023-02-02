@@ -1,0 +1,40 @@
+---
+export interface Props extends astroHTML.JSX.AnchorHTMLAttributes {
+  icon?: string;
+}
+
+const { href, class: className, ...props } = Astro.props;
+
+const { pathname } = Astro.url;
+const isActive = href === pathname || href === pathname.replace(/\/$/, "");
+---
+
+<a
+  href={href}
+  class:list={[className, { active: isActive }]}
+  {...props}
+  style={{
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  }}
+>
+  {props.icon && <i class="material-icons">{props.icon}</i>}
+  <div><slot /></div>
+</a>
+<style>
+  a {
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  a.active div {
+    font-weight: bolder;
+    text-decoration: underline;
+  }
+  i {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+    text-decoration: none;
+  }
+</style>

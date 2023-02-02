@@ -1,0 +1,50 @@
+---
+import path from "path";
+import NoteCard from "./NoteCard";
+import NoteCards from "./NoteCards";
+import { getTagsFromSource } from "./TagList.astro";
+
+export async function getNotes(options?: { includeSkip?: boolean }) {
+  // Get all notes recursively from the notes directory
+  const notesPath = path.join(process.cwd(), "notes");
+  const targets = await Astro.glob("../../notes/**/*.md");
+  const results = [];
+  for (const target of targets) {
+    const filePath = target.file || "";
+    let slug = filePath.replace(notesPath, "").replace(/\.md$/, "");
+    slug = slug.replace(/^\//, "");
+    const skipped = target.frontmatter?.skip === true;
+    const includeSkip = options?.includeSkip ?? false;
+    if (includeSkip || !skipped) {
+      results.push({ params: { slug }, props: target });
+    }
+  }
+  // Sort skip notes to the end
+  results.sort((a, b) => {
+    const aSkip = a.props.frontmatter?.skip === true;
+    const bSkip = b.props.frontmatter?.skip === true;
+    if (aSkip && !bSkip) {
+      return 1;
+    } else if (!aSkip && bSkip) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
+  return results;
+}
+
+const notes = await getNotes().then((notes) =>
+  notes.map((item) => {
+    const slug = item.params.slug;
+    const tags = getTagsFromSource(item.props);
+    return {
+      article: item.props,
+      slug,
+      tags,
+    };
+  })
+);
+---
+
+<NoteCards notes={notes} client:idle />
