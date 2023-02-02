@@ -10,13 +10,7 @@ const { title, description } = getConfig().site;
 // Check for readme in notes
 let readme: MarkdownInstance<Record<string, any>> | null = null;
 try {
-  const readmes = await Promise.all([
-    Astro.glob("../../notes/README.md"),
-    Astro.glob("../../notes/readme.md"),
-    Astro.glob("../../notes/Readme.md"),
-  ]).then((results) => results.flat());
-  const hasReadme = readmes.length > 0;
-  readme = hasReadme ? readmes[0] : null;
+  readme = await Astro.glob("../../notes/readme.md");
 } catch (error) {}
 const { Content } = readme || { Content: () => null };
 ---
