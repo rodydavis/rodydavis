@@ -27,7 +27,7 @@ function NoteCard(props: Props) {
     overflow: "hidden",
   }}
     onClick={() => {
-      window.location.href = `${props.slug}`;
+      window.location.href = `/${props.slug}`;
     }}
   >
     <div style={{
