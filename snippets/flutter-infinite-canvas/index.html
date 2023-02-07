@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en" class="astro-MDYSN4OI">
+  <head>
+    <!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="generator" content="Astro v2.0.4">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://rodydavis.com/snippets/flutter-infinite-canvas/">
+
+<!-- Primary Meta Tags -->
+<title>Flutter Infinite Canvas</title>
+<meta name="title" content="Flutter Infinite Canvas">
+<meta name="description">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rodydavis.com/snippets/flutter-infinite-canvas/">
+<meta property="og:title" content="Flutter Infinite Canvas">
+<meta property="og:description">
+<meta property="og:image" content="https://rodydavis.com/placeholder-social.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://rodydavis.com/snippets/flutter-infinite-canvas/">
+<meta property="twitter:title" content="Flutter Infinite Canvas">
+<meta property="twitter:description">
+<meta property="twitter:image" content="https://rodydavis.com/placeholder-social.jpg">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
+
+    
+  <link rel="stylesheet" href="/_astro/_...slug_.75960322.css" />
+<link rel="stylesheet" href="/_astro/_...slug_.7a06253d.css" /><script type="module">window.dataLayer=window.dataLayer||[];function a(){dataLayer.push(arguments)}a("js",new Date);a("config","G-JQNPVBL9DR");
+</script></head>
+
+  <body class="markdown-body astro-MDYSN4OI">
+    <header class="astro-3EF6KSR2">
+  <h2 class="astro-3EF6KSR2">
+    <a href="/" class="astro-3EF6KSR2">Rody Davis</a>
+  </h2>
+  <nav class="astro-3EF6KSR2">
+    <a href="/search?tags=app" class="astro-3EF6KSR2 astro-EIMMU3LG" style="display:flex;flex-direction:row;align-items:center">
+  
+  <div class="astro-EIMMU3LG"> Apps</div>
+</a><a href="/search?tags=posts" class="astro-3EF6KSR2 astro-EIMMU3LG" style="display:flex;flex-direction:row;align-items:center">
+  
+  <div class="astro-EIMMU3LG"> Blog</div>
+</a><a href="/talks" class="astro-3EF6KSR2 astro-EIMMU3LG" style="display:flex;flex-direction:row;align-items:center">
+  
+  <div class="astro-EIMMU3LG"> Talks</div>
+</a><a href="/about" class="astro-3EF6KSR2 astro-EIMMU3LG" style="display:flex;flex-direction:row;align-items:center">
+  
+  <div class="astro-EIMMU3LG"> About</div>
+</a>
+  </nav>
+</header>
+    <main class="astro-MDYSN4OI">
+      <style>
+	@media (min-width: 860px) {
+		main {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+		}
+		article {
+			flex: 1;
+		}
+		aside {
+			display: block;
+			position: sticky;
+			top: 0;
+			right: 0;
+			max-height: 100vh;
+			overflow-y: auto;
+		}
+	}
+	</style><main class="astro-BVZIHDZO">
+    <article class="astro-BVZIHDZO">
+      
+      <h1 class="title astro-BVZIHDZO">Flutter Infinite Canvas</h1>
+      
+      
+      <hr class="astro-BVZIHDZO">
+      <h2 id=""><a aria-hidden="true" tabindex="-1" href="#"><span class="icon icon-link"></span></a>Overview</h2>
+<p>Thie following is an example of how to build an infinite canvas with <a href="https://api.flutter.dev/flutter/widgets/InteractiveViewer-class.html">InteractiveViewer</a> and <a href="https://api.flutter.dev/flutter/widgets/CustomMultiChildLayout-class.html">CustomMultiChildLayout</a>.</p>
+<p>Online demo <a href="https://dartpad.dev/?id=a7c821504b9760dcd618f7639da68a20&#x26;channel=master">here</a>.</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:flutter/material.dart'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:vector_math/vector_math_64.dart'</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">hide</span><span style="color: #C9D1D9"> Colors;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">main</span><span style="color: #C9D1D9">() {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> controller </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">WidgetCanvasController</span><span style="color: #C9D1D9">([</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">WidgetCanvasChild</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">      key</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">UniqueKey</span><span style="color: #C9D1D9">(),</span></span>
+<span class="line"><span style="color: #C9D1D9">      offset</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Offset</span><span style="color: #C9D1D9">.zero,</span></span>
+<span class="line"><span style="color: #C9D1D9">      size</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Size</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">400</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">800</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">      child</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Scaffold</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">        appBar</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">AppBar</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">          title</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Text</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'Scaffold 1'</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">        ),</span></span>
+<span class="line"><span style="color: #C9D1D9">        body</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Placeholder</span><span style="color: #C9D1D9">(),</span></span>
+<span class="line"><span style="color: #C9D1D9">      ),</span></span>
+<span class="line"><span style="color: #C9D1D9">    ),</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">WidgetCanvasChild</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">      key</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">UniqueKey</span><span style="color: #C9D1D9">(),</span></span>
+<span class="line"><span style="color: #C9D1D9">      offset</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Offset</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">200</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">200</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">      size</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Size</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">400</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">800</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">      child</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Scaffold</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">        appBar</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">AppBar</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">          title</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Text</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'Scaffold 2'</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">        ),</span></span>
+<span class="line"><span style="color: #C9D1D9">        body</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Placeholder</span><span style="color: #C9D1D9">(),</span></span>
+<span class="line"><span style="color: #C9D1D9">      ),</span></span>
+<span class="line"><span style="color: #C9D1D9">    ),</span></span>
+<span class="line"><span style="color: #C9D1D9">  ]);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #D2A8FF">runApp</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">MaterialApp</span><span style="color: #C9D1D9">(home</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">WidgetCanvas</span><span style="color: #C9D1D9">(controller</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> controller)));</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">class</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">WidgetCanvas</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">extends</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">StatefulWidget</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">WidgetCanvas</span><span style="color: #C9D1D9">({</span><span style="color: #79C0FF">super</span><span style="color: #C9D1D9">.key, </span><span style="color: #FF7B72">required</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.controller});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">WidgetCanvasController</span><span style="color: #C9D1D9"> controller;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">@override</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">State</span><span style="color: #C9D1D9">&#x3C;</span><span style="color: #79C0FF">WidgetCanvas</span><span style="color: #C9D1D9">> </span><span style="color: #D2A8FF">createState</span><span style="color: #C9D1D9">() </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">WidgetCanvasState</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">class</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">WidgetCanvasState</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">extends</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">State</span><span style="color: #C9D1D9">&#x3C;</span><span style="color: #79C0FF">WidgetCanvas</span><span style="color: #C9D1D9">> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">@override</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">initState</span><span style="color: #C9D1D9">() {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">super</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">initState</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">    controller.</span><span style="color: #D2A8FF">addListener</span><span style="color: #C9D1D9">(onUpdate);</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">@override</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">dispose</span><span style="color: #C9D1D9">() {</span></span>
+<span class="line"><span style="color: #C9D1D9">    controller.</span><span style="color: #D2A8FF">removeListener</span><span style="color: #C9D1D9">(onUpdate);</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">super</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">dispose</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">onUpdate</span><span style="color: #C9D1D9">() {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (mounted) </span><span style="color: #D2A8FF">setState</span><span style="color: #C9D1D9">(() {});</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">static</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Size</span><span style="color: #C9D1D9"> _gridSize </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Size</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">square</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">50</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">WidgetCanvasController</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">get</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">controller</span><span style="color: #C9D1D9"> => widget.controller;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">Rect</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">axisAlignedBoundingBox</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">Quad</span><span style="color: #C9D1D9"> quad) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">double</span><span style="color: #C9D1D9"> xMin </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> quad.point0.x;</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">double</span><span style="color: #C9D1D9"> xMax </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> quad.point0.x;</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">double</span><span style="color: #C9D1D9"> yMin </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> quad.point0.y;</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">double</span><span style="color: #C9D1D9"> yMax </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> quad.point0.y;</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">for</span><span style="color: #C9D1D9"> (</span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Vector3</span><span style="color: #C9D1D9"> point </span><span style="color: #FF7B72">in</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">&#x3C;</span><span style="color: #79C0FF">Vector3</span><span style="color: #FF7B72">></span><span style="color: #C9D1D9">[</span></span>
+<span class="line"><span style="color: #C9D1D9">      quad.point1,</span></span>
+<span class="line"><span style="color: #C9D1D9">      quad.point2,</span></span>
+<span class="line"><span style="color: #C9D1D9">      quad.point3,</span></span>
+<span class="line"><span style="color: #C9D1D9">    ]) {</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (point.x </span><span style="color: #FF7B72">&#x3C;</span><span style="color: #C9D1D9"> xMin) {</span></span>
+<span class="line"><span style="color: #C9D1D9">        xMin </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> point.x;</span></span>
+<span class="line"><span style="color: #C9D1D9">      } </span><span style="color: #FF7B72">else</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (point.x </span><span style="color: #FF7B72">></span><span style="color: #C9D1D9"> xMax) {</span></span>
+<span class="line"><span style="color: #C9D1D9">        xMax </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> point.x;</span></span>
+<span class="line"><span style="color: #C9D1D9">      }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (point.y </span><span style="color: #FF7B72">&#x3C;</span><span style="color: #C9D1D9"> yMin) {</span></span>
+<span class="line"><span style="color: #C9D1D9">        yMin </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> point.y;</span></span>
+<span class="line"><span style="color: #C9D1D9">      } </span><span style="color: #FF7B72">else</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (point.y </span><span style="color: #FF7B72">></span><span style="color: #C9D1D9"> yMax) {</span></span>
+<span class="line"><span style="color: #C9D1D9">        yMax </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> point.y;</span></span>
+<span class="line"><span style="color: #C9D1D9">      }</span></span>
+<span class="line"><span style="color: #C9D1D9">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Rect</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">fromLTRB</span><span style="color: #C9D1D9">(xMin, yMin, xMax, yMax);</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">@override</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">Widget</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">build</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">BuildContext</span><span style="color: #C9D1D9"> context) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> inset </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">2.0</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Listener</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">      onPointerDown</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> (details) {</span></span>
+<span class="line"><span style="color: #C9D1D9">        controller.mouseDown </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">true</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">        controller.</span><span style="color: #D2A8FF">checkSelection</span><span style="color: #C9D1D9">(details.localPosition);</span></span>
+<span class="line"><span style="color: #C9D1D9">      },</span></span>
+<span class="line"><span style="color: #C9D1D9">      onPointerUp</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> (details) {</span></span>
+<span class="line"><span style="color: #C9D1D9">        controller.mouseDown </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">false</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">      },</span></span>
+<span class="line"><span style="color: #C9D1D9">      onPointerCancel</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> (details) {</span></span>
+<span class="line"><span style="color: #C9D1D9">        controller.mouseDown </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">false</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">      },</span></span>
+<span class="line"><span style="color: #C9D1D9">      onPointerMove</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> (details) {},</span></span>
+<span class="line"><span style="color: #C9D1D9">      child</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">LayoutBuilder</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">        builder</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> (context, constraints) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">InteractiveViewer</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">builder</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">          transformationController</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> controller.transform,</span></span>
+<span class="line"><span style="color: #C9D1D9">          panEnabled</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> controller.canvasMoveEnabled,</span></span>
+<span class="line"><span style="color: #C9D1D9">          scaleEnabled</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> controller.canvasMoveEnabled,</span></span>
+<span class="line"><span style="color: #C9D1D9">          onInteractionStart</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> (details) {</span></span>
+<span class="line"><span style="color: #C9D1D9">            controller.mousePosition </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> details.focalPoint;</span></span>
+<span class="line"><span style="color: #C9D1D9">          },</span></span>
+<span class="line"><span style="color: #C9D1D9">          onInteractionUpdate</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> (details) {</span></span>
+<span class="line"><span style="color: #C9D1D9">            </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (</span><span style="color: #FF7B72">!</span><span style="color: #C9D1D9">controller.mouseDown) {</span></span>
+<span class="line"><span style="color: #C9D1D9">              controller.scale </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> details.scale;</span></span>
+<span class="line"><span style="color: #C9D1D9">            } </span><span style="color: #FF7B72">else</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">              controller.</span><span style="color: #D2A8FF">moveSelection</span><span style="color: #C9D1D9">(details.focalPoint);</span></span>
+<span class="line"><span style="color: #C9D1D9">            }</span></span>
+<span class="line"><span style="color: #C9D1D9">            controller.mousePosition </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> details.focalPoint;</span></span>
+<span class="line"><span style="color: #C9D1D9">          },</span></span>
+<span class="line"><span style="color: #C9D1D9">          onInteractionEnd</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> (details) {},</span></span>
+<span class="line"><span style="color: #C9D1D9">          minScale</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">0.4</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">          maxScale</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">4</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">          boundaryMargin</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">EdgeInsets</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">all</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">double</span><span style="color: #C9D1D9">.infinity),</span></span>
+<span class="line"><span style="color: #C9D1D9">          builder</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> (context, viewport) {</span></span>
+<span class="line"><span style="color: #C9D1D9">            </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">SizedBox</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">              width</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">              height</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">              child</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Stack</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">                clipBehavior</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Clip</span><span style="color: #C9D1D9">.none,</span></span>
+<span class="line"><span style="color: #C9D1D9">                children</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> [</span></span>
+<span class="line"><span style="color: #C9D1D9">                  </span><span style="color: #79C0FF">Positioned</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">fill</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">                    child</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">GridBackgroundBuilder</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">                      cellWidth</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> _gridSize.width,</span></span>
+<span class="line"><span style="color: #C9D1D9">                      cellHeight</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> _gridSize.height,</span></span>
+<span class="line"><span style="color: #C9D1D9">                      viewport</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">axisAlignedBoundingBox</span><span style="color: #C9D1D9">(viewport),</span></span>
+<span class="line"><span style="color: #C9D1D9">                    ),</span></span>
+<span class="line"><span style="color: #C9D1D9">                  ),</span></span>
+<span class="line"><span style="color: #C9D1D9">                  </span><span style="color: #79C0FF">Positioned</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">fill</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">                    child</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">CustomMultiChildLayout</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">                      delegate</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">WidgetCanvasDelegate</span><span style="color: #C9D1D9">(controller),</span></span>
+<span class="line"><span style="color: #C9D1D9">                      children</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> controller.children.</span><span style="color: #D2A8FF">map</span><span style="color: #C9D1D9">((e) {</span></span>
+<span class="line"><span style="color: #C9D1D9">                        </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">LayoutId</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">                            id</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> e,</span></span>
+<span class="line"><span style="color: #C9D1D9">                            child</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Stack</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">                              clipBehavior</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Clip</span><span style="color: #C9D1D9">.none,</span></span>
+<span class="line"><span style="color: #C9D1D9">                              children</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> [</span></span>
+<span class="line"><span style="color: #C9D1D9">                                </span><span style="color: #79C0FF">Positioned</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">fill</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">                                  child</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Material</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">                                    elevation</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">4</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">                                    child</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">SizedBox</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">fromSize</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">                                      size</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> e.size,</span></span>
+<span class="line"><span style="color: #C9D1D9">                                      child</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> e.child,</span></span>
+<span class="line"><span style="color: #C9D1D9">                                    ),</span></span>
+<span class="line"><span style="color: #C9D1D9">                                  ),</span></span>
+<span class="line"><span style="color: #C9D1D9">                                ),</span></span>
+<span class="line"><span style="color: #C9D1D9">                                </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (controller.</span><span style="color: #D2A8FF">isSelected</span><span style="color: #C9D1D9">(e.key</span><span style="color: #FF7B72">!</span><span style="color: #C9D1D9">))</span></span>
+<span class="line"><span style="color: #C9D1D9">                                  </span><span style="color: #79C0FF">Positioned</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">fill</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">                                    top</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">-</span><span style="color: #C9D1D9">inset,</span></span>
+<span class="line"><span style="color: #C9D1D9">                                    left</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">-</span><span style="color: #C9D1D9">inset,</span></span>
+<span class="line"><span style="color: #C9D1D9">                                    right</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">-</span><span style="color: #C9D1D9">inset,</span></span>
+<span class="line"><span style="color: #C9D1D9">                                    bottom</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">-</span><span style="color: #C9D1D9">inset,</span></span>
+<span class="line"><span style="color: #C9D1D9">                                    child</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Container</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">                                      decoration</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">BoxDecoration</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">                                        border</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Border</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">all</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">                                          color</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Colors</span><span style="color: #C9D1D9">.blue,</span></span>
+<span class="line"><span style="color: #C9D1D9">                                          width</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">                                        ),</span></span>
+<span class="line"><span style="color: #C9D1D9">                                      ),</span></span>
+<span class="line"><span style="color: #C9D1D9">                                    ),</span></span>
+<span class="line"><span style="color: #C9D1D9">                                  ),</span></span>
+<span class="line"><span style="color: #C9D1D9">                              ],</span></span>
+<span class="line"><span style="color: #C9D1D9">                            ));</span></span>
+<span class="line"><span style="color: #C9D1D9">                      }).</span><span style="color: #D2A8FF">toList</span><span style="color: #C9D1D9">(),</span></span>
+<span class="line"><span style="color: #C9D1D9">                    ),</span></span>
+<span class="line"><span style="color: #C9D1D9">                  ),</span></span>
+<span class="line"><span style="color: #C9D1D9">                ],</span></span>
+<span class="line"><span style="color: #C9D1D9">              ),</span></span>
+<span class="line"><span style="color: #C9D1D9">            );</span></span>
+<span class="line"><span style="color: #C9D1D9">          },</span></span>
+<span class="line"><span style="color: #C9D1D9">        ),</span></span>
+<span class="line"><span style="color: #C9D1D9">      ),</span></span>
+<span class="line"><span style="color: #C9D1D9">    );</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">class</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">GridBackgroundBuilder</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">extends</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">StatelessWidget</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">GridBackgroundBuilder</span><span style="color: #C9D1D9">({</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">super</span><span style="color: #C9D1D9">.key,</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">required</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.cellWidth,</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">required</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.cellHeight,</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">required</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.viewport,</span></span>
+<span class="line"><span style="color: #C9D1D9">  });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">double</span><span style="color: #C9D1D9"> cellWidth;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">double</span><span style="color: #C9D1D9"> cellHeight;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Rect</span><span style="color: #C9D1D9"> viewport;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">@override</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">Widget</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">build</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">BuildContext</span><span style="color: #C9D1D9"> context) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">int</span><span style="color: #C9D1D9"> firstRow </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> (viewport.top </span><span style="color: #FF7B72">/</span><span style="color: #C9D1D9"> cellHeight).</span><span style="color: #D2A8FF">floor</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">int</span><span style="color: #C9D1D9"> lastRow </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> (viewport.bottom </span><span style="color: #FF7B72">/</span><span style="color: #C9D1D9"> cellHeight).</span><span style="color: #D2A8FF">ceil</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">int</span><span style="color: #C9D1D9"> firstCol </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> (viewport.left </span><span style="color: #FF7B72">/</span><span style="color: #C9D1D9"> cellWidth).</span><span style="color: #D2A8FF">floor</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">int</span><span style="color: #C9D1D9"> lastCol </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> (viewport.right </span><span style="color: #FF7B72">/</span><span style="color: #C9D1D9"> cellWidth).</span><span style="color: #D2A8FF">ceil</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Stack</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">      clipBehavior</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Clip</span><span style="color: #C9D1D9">.none,</span></span>
+<span class="line"><span style="color: #C9D1D9">      children</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">&#x3C;</span><span style="color: #79C0FF">Widget</span><span style="color: #FF7B72">></span><span style="color: #C9D1D9">[</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #FF7B72">for</span><span style="color: #C9D1D9"> (</span><span style="color: #79C0FF">int</span><span style="color: #C9D1D9"> row </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> firstRow; row </span><span style="color: #FF7B72">&#x3C;</span><span style="color: #C9D1D9"> lastRow; row</span><span style="color: #FF7B72">++</span><span style="color: #C9D1D9">)</span></span>
+<span class="line"><span style="color: #C9D1D9">          </span><span style="color: #FF7B72">for</span><span style="color: #C9D1D9"> (</span><span style="color: #79C0FF">int</span><span style="color: #C9D1D9"> col </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> firstCol; col </span><span style="color: #FF7B72">&#x3C;</span><span style="color: #C9D1D9"> lastCol; col</span><span style="color: #FF7B72">++</span><span style="color: #C9D1D9">)</span></span>
+<span class="line"><span style="color: #C9D1D9">            </span><span style="color: #79C0FF">Positioned</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">              left</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> col </span><span style="color: #FF7B72">*</span><span style="color: #C9D1D9"> cellWidth,</span></span>
+<span class="line"><span style="color: #C9D1D9">              top</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> row </span><span style="color: #FF7B72">*</span><span style="color: #C9D1D9"> cellHeight,</span></span>
+<span class="line"><span style="color: #C9D1D9">              child</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Container</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">                height</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> cellHeight,</span></span>
+<span class="line"><span style="color: #C9D1D9">                width</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> cellWidth,</span></span>
+<span class="line"><span style="color: #C9D1D9">                decoration</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">BoxDecoration</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">                  border</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Border</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">all</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">                    color</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Colors</span><span style="color: #C9D1D9">.grey.</span><span style="color: #D2A8FF">withOpacity</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">0.1</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">                    width</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">                  ),</span></span>
+<span class="line"><span style="color: #C9D1D9">                ),</span></span>
+<span class="line"><span style="color: #C9D1D9">              ),</span></span>
+<span class="line"><span style="color: #C9D1D9">            ),</span></span>
+<span class="line"><span style="color: #C9D1D9">      ],</span></span>
+<span class="line"><span style="color: #C9D1D9">    );</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">class</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">WidgetCanvasDelegate</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">extends</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">MultiChildLayoutDelegate</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">WidgetCanvasDelegate</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.controller);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">WidgetCanvasController</span><span style="color: #C9D1D9"> controller;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">List</span><span style="color: #C9D1D9">&#x3C;</span><span style="color: #79C0FF">WidgetCanvasChild</span><span style="color: #C9D1D9">> </span><span style="color: #FF7B72">get</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">children</span><span style="color: #C9D1D9"> => controller.children;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">Size</span><span style="color: #C9D1D9"> backgroundSize </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Size</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">100000</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">100000</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">late</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Offset</span><span style="color: #C9D1D9"> backgroundOffset </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Offset</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">-</span><span style="color: #C9D1D9">backgroundSize.width </span><span style="color: #FF7B72">/</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">2</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">-</span><span style="color: #C9D1D9">backgroundSize.height </span><span style="color: #FF7B72">/</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">2</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">  );</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">@override</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">performLayout</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">Size</span><span style="color: #C9D1D9"> size) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #8B949E">// Then draw the screens.</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">for</span><span style="color: #C9D1D9"> (</span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> widget </span><span style="color: #FF7B72">in</span><span style="color: #C9D1D9"> children) {</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #D2A8FF">layoutChild</span><span style="color: #C9D1D9">(widget, </span><span style="color: #79C0FF">BoxConstraints</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">tight</span><span style="color: #C9D1D9">(widget.size));</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #D2A8FF">positionChild</span><span style="color: #C9D1D9">(widget, widget.offset);</span></span>
+<span class="line"><span style="color: #C9D1D9">    }</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">@override</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">bool</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">shouldRelayout</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">WidgetCanvasDelegate</span><span style="color: #C9D1D9"> oldDelegate) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">true</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">class</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">WidgetCanvasChild</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">extends</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">StatelessWidget</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">WidgetCanvasChild</span><span style="color: #C9D1D9">({</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">required</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Key</span><span style="color: #C9D1D9"> key,</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">required</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.size,</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">required</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.offset,</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">required</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.child,</span></span>
+<span class="line"><span style="color: #C9D1D9">  }) </span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">super</span><span style="color: #C9D1D9">(key</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> key);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Size</span><span style="color: #C9D1D9"> size;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Offset</span><span style="color: #C9D1D9"> offset;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Widget</span><span style="color: #C9D1D9"> child;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">Rect</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">get</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">rect</span><span style="color: #C9D1D9"> => offset </span><span style="color: #FF7B72">&#x26;</span><span style="color: #C9D1D9"> size;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">WidgetCanvasChild</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">copyWith</span><span style="color: #C9D1D9">({</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">Size</span><span style="color: #FF7B72">?</span><span style="color: #C9D1D9"> size,</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">Offset</span><span style="color: #FF7B72">?</span><span style="color: #C9D1D9"> offset,</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">Widget</span><span style="color: #FF7B72">?</span><span style="color: #C9D1D9"> child,</span></span>
+<span class="line"><span style="color: #C9D1D9">  }) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">WidgetCanvasChild</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">      key</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> key</span><span style="color: #FF7B72">!</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">      size</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> size </span><span style="color: #FF7B72">??</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.size,</span></span>
+<span class="line"><span style="color: #C9D1D9">      offset</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> offset </span><span style="color: #FF7B72">??</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.offset,</span></span>
+<span class="line"><span style="color: #C9D1D9">      child</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> child </span><span style="color: #FF7B72">??</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.child,</span></span>
+<span class="line"><span style="color: #C9D1D9">    );</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">@override</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">Widget</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">build</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">BuildContext</span><span style="color: #C9D1D9"> context) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> child;</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">class</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">WidgetCanvasController</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">extends</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">ChangeNotifier</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">WidgetCanvasController</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.children);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">List</span><span style="color: #C9D1D9">&#x3C;</span><span style="color: #79C0FF">WidgetCanvasChild</span><span style="color: #C9D1D9">> children;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Set</span><span style="color: #C9D1D9">&#x3C;</span><span style="color: #79C0FF">Key</span><span style="color: #C9D1D9">> _selected </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> {};</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">late</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> transform </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">TransformationController</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">Matrix4</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">get</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">matrix</span><span style="color: #C9D1D9"> => transform.value;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">double</span><span style="color: #C9D1D9"> scale </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">Offset</span><span style="color: #C9D1D9"> mousePosition </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Offset</span><span style="color: #C9D1D9">.zero;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">bool</span><span style="color: #C9D1D9"> _mouseDown </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">false</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">bool</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">get</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">mouseDown</span><span style="color: #C9D1D9"> => _mouseDown;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">set</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">mouseDown</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">bool</span><span style="color: #C9D1D9"> value) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    _mouseDown </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> value;</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #D2A8FF">notifyListeners</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">bool</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">isSelected</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">Key</span><span style="color: #C9D1D9"> key) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> _selected.</span><span style="color: #D2A8FF">contains</span><span style="color: #C9D1D9">(key);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">bool</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">get</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">hasSelection</span><span style="color: #C9D1D9"> => _selected.isNotEmpty;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">bool</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">get</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">canvasMoveEnabled</span><span style="color: #C9D1D9"> => </span><span style="color: #FF7B72">!</span><span style="color: #C9D1D9">mouseDown;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">Offset</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">toLocal</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">Offset</span><span style="color: #C9D1D9"> global) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> transform.</span><span style="color: #D2A8FF">toScene</span><span style="color: #C9D1D9">(global);</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">checkSelection</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">Offset</span><span style="color: #C9D1D9"> localPosition) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> offset </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">toLocal</span><span style="color: #C9D1D9">(localPosition);</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> selection </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">&#x3C;</span><span style="color: #79C0FF">Key</span><span style="color: #FF7B72">></span><span style="color: #C9D1D9">[];</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">for</span><span style="color: #C9D1D9"> (</span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> child </span><span style="color: #FF7B72">in</span><span style="color: #C9D1D9"> children) {</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> rect </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> child.rect;</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (rect.</span><span style="color: #D2A8FF">contains</span><span style="color: #C9D1D9">(offset)) {</span></span>
+<span class="line"><span style="color: #C9D1D9">        selection.</span><span style="color: #D2A8FF">add</span><span style="color: #C9D1D9">(child.key</span><span style="color: #FF7B72">!</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">      }</span></span>
+<span class="line"><span style="color: #C9D1D9">    }</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (selection.isNotEmpty) {</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #D2A8FF">setSelection</span><span style="color: #C9D1D9">({selection.last});</span></span>
+<span class="line"><span style="color: #C9D1D9">    } </span><span style="color: #FF7B72">else</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #D2A8FF">deselectAll</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">    }</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">moveSelection</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">Offset</span><span style="color: #C9D1D9"> position) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> delta </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">toLocal</span><span style="color: #C9D1D9">(position) </span><span style="color: #FF7B72">-</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">toLocal</span><span style="color: #C9D1D9">(mousePosition);</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">for</span><span style="color: #C9D1D9"> (</span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> key </span><span style="color: #FF7B72">in</span><span style="color: #C9D1D9"> _selected) {</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> index </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> children.</span><span style="color: #D2A8FF">indexWhere</span><span style="color: #C9D1D9">((e) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> e.key </span><span style="color: #FF7B72">==</span><span style="color: #C9D1D9"> key);</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (index </span><span style="color: #FF7B72">==</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">-</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">continue</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> current </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> children[index];</span></span>
+<span class="line"><span style="color: #C9D1D9">      children[index] </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> current.</span><span style="color: #D2A8FF">copyWith</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">        offset</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> current.offset </span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9"> delta,</span></span>
+<span class="line"><span style="color: #C9D1D9">      );</span></span>
+<span class="line"><span style="color: #C9D1D9">    }</span></span>
+<span class="line"><span style="color: #C9D1D9">    mousePosition </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> position;</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #D2A8FF">notifyListeners</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">select</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">Key</span><span style="color: #C9D1D9"> key) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    _selected.</span><span style="color: #D2A8FF">add</span><span style="color: #C9D1D9">(key);</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #D2A8FF">notifyListeners</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">setSelection</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">Set</span><span style="color: #C9D1D9">&#x3C;</span><span style="color: #79C0FF">Key</span><span style="color: #C9D1D9">> keys) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    _selected.</span><span style="color: #D2A8FF">clear</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">    _selected.</span><span style="color: #D2A8FF">addAll</span><span style="color: #C9D1D9">(keys);</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #D2A8FF">notifyListeners</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">deselect</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">Key</span><span style="color: #C9D1D9"> key) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    _selected.</span><span style="color: #D2A8FF">remove</span><span style="color: #C9D1D9">(key);</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #D2A8FF">notifyListeners</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">deselectAll</span><span style="color: #C9D1D9">() {</span></span>
+<span class="line"><span style="color: #C9D1D9">    _selected.</span><span style="color: #D2A8FF">clear</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #D2A8FF">notifyListeners</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">add</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">WidgetCanvasChild</span><span style="color: #C9D1D9"> child) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    children.</span><span style="color: #D2A8FF">add</span><span style="color: #C9D1D9">(child);</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #D2A8FF">notifyListeners</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">remove</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">Key</span><span style="color: #C9D1D9"> key) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    children.</span><span style="color: #D2A8FF">removeWhere</span><span style="color: #C9D1D9">((e) </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> e.key </span><span style="color: #FF7B72">==</span><span style="color: #C9D1D9"> key);</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #D2A8FF">notifyListeners</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<h2 id="-1"><a aria-hidden="true" tabindex="-1" href="#-1"><span class="icon icon-link"></span></a>Related</h2>
+<ul>
+<li><a href="/posts/flutter-multi-touch-canvas">Create a multi touch canvas in Flutter</a></li>
+</ul>
+    </article>
+    <aside class="astro-BVZIHDZO">
+      <nav class="astro-XVRFUPWN">
+  <h2 class="astro-XVRFUPWN">Table of Contents</h2>
+  <ul class="astro-XVRFUPWN">
+    <li class="astro-XVRFUPWN">
+          <a href="#" class="heading-depth-2 astro-XVRFUPWN">
+            Overview
+          </a>
+        </li><li class="astro-XVRFUPWN">
+          <a href="#-1" class="heading-depth-2 astro-XVRFUPWN">
+            Related
+          </a>
+        </li>
+  </ul>
+</nav>
+    </aside>
+  </main>
+    </main>
+    <footer class="astro-SZ7XMLTE">
+  <div class="links astro-AUSHCPD5">
+  <a class="social-icon astro-AUSHCPD5" href="https://github.com/rodydavis" target="_blank" rel="noopener">
+            <img src="/social/github.svg" alt="github" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://twitter.com/rodydavis" target="_blank" rel="noopener">
+            <img src="/social/twitter.svg" alt="twitter" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://facebook.com/rodydavisjr" target="_blank" rel="noopener">
+            <img src="/social/facebook.svg" alt="facebook" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://instagram.com/rodydavisjr" target="_blank" rel="noopener">
+            <img src="/social/instagram.svg" alt="instagram" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://youtube.com/rodydavis" target="_blank" rel="noopener">
+            <img src="/social/youtube.svg" alt="youtube" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://tiktok.com/@rodydavisjr" target="_blank" rel="noopener">
+            <img src="/social/tiktok.svg" alt="tiktok" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://linkedin.com/in/rodydavis" target="_blank" rel="noopener">
+            <img src="/social/linkedin.svg" alt="linkedin" class="astro-AUSHCPD5">
+          </a>
+</div>
+
+  <div class="copyright astro-SZ7XMLTE">
+    &copy; 2023
+    Rody Davis. All rights reserved.
+  </div>
+</footer>
+  </body></html>

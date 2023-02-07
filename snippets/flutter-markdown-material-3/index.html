@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" class="astro-MDYSN4OI">
+  <head>
+    <!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="generator" content="Astro v2.0.4">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://rodydavis.com/snippets/flutter-markdown-material-3/">
+
+<!-- Primary Meta Tags -->
+<title>Flutter markdown with Material 3</title>
+<meta name="title" content="Flutter markdown with Material 3">
+<meta name="description">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rodydavis.com/snippets/flutter-markdown-material-3/">
+<meta property="og:title" content="Flutter markdown with Material 3">
+<meta property="og:description">
+<meta property="og:image" content="https://rodydavis.com/placeholder-social.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://rodydavis.com/snippets/flutter-markdown-material-3/">
+<meta property="twitter:title" content="Flutter markdown with Material 3">
+<meta property="twitter:description">
+<meta property="twitter:image" content="https://rodydavis.com/placeholder-social.jpg">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
+
+    
+  <link rel="stylesheet" href="/_astro/_...slug_.75960322.css" />
+<link rel="stylesheet" href="/_astro/_...slug_.7a06253d.css" /><script type="module">window.dataLayer=window.dataLayer||[];function a(){dataLayer.push(arguments)}a("js",new Date);a("config","G-JQNPVBL9DR");
+</script></head>
+
+  <body class="markdown-body astro-MDYSN4OI">
+    <header class="astro-3EF6KSR2">
+  <h2 class="astro-3EF6KSR2">
+    <a href="/" class="astro-3EF6KSR2">Rody Davis</a>
+  </h2>
+  <nav class="astro-3EF6KSR2">
+    <a href="/search?tags=app" class="astro-3EF6KSR2 astro-EIMMU3LG" style="display:flex;flex-direction:row;align-items:center">
+  
+  <div class="astro-EIMMU3LG"> Apps</div>
+</a><a href="/search?tags=posts" class="astro-3EF6KSR2 astro-EIMMU3LG" style="display:flex;flex-direction:row;align-items:center">
+  
+  <div class="astro-EIMMU3LG"> Blog</div>
+</a><a href="/talks" class="astro-3EF6KSR2 astro-EIMMU3LG" style="display:flex;flex-direction:row;align-items:center">
+  
+  <div class="astro-EIMMU3LG"> Talks</div>
+</a><a href="/about" class="astro-3EF6KSR2 astro-EIMMU3LG" style="display:flex;flex-direction:row;align-items:center">
+  
+  <div class="astro-EIMMU3LG"> About</div>
+</a>
+  </nav>
+</header>
+    <main class="astro-MDYSN4OI">
+      <style>
+	@media (min-width: 860px) {
+		main {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+		}
+		article {
+			flex: 1;
+		}
+		aside {
+			display: block;
+			position: sticky;
+			top: 0;
+			right: 0;
+			max-height: 100vh;
+			overflow-y: auto;
+		}
+	}
+	</style><main class="astro-BVZIHDZO">
+    <article class="astro-BVZIHDZO">
+      
+      <h1 class="title astro-BVZIHDZO">Flutter markdown with Material 3</h1>
+      
+      
+      <hr class="astro-BVZIHDZO">
+      <h2 id=""><a aria-hidden="true" tabindex="-1" href="#"><span class="icon icon-link"></span></a>Overview</h2>
+<p>How to style the <a href="https://pub.dev/packages/flutter_markdown">Flutter markdown</a> widget with <a href="https://m3.material.io/">Material 3</a> text and color styles:</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:flutter/material.dart'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:flutter_markdown/flutter_markdown.dart'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:go_router/go_router.dart'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:markdown/markdown.dart'</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">as</span><span style="color: #C9D1D9"> md;</span></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:url_launcher/url_launcher.dart'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">class</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">MarkdownView</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">extends</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">StatelessWidget</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">MarkdownView</span><span style="color: #C9D1D9">({</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">Key</span><span style="color: #FF7B72">?</span><span style="color: #C9D1D9"> key,</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">required</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.markdown,</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.textScaleFactor </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">  }) </span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">super</span><span style="color: #C9D1D9">(key</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> key);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">String</span><span style="color: #C9D1D9"> markdown;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">double</span><span style="color: #C9D1D9"> textScaleFactor;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">@override</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">Widget</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">build</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">BuildContext</span><span style="color: #C9D1D9"> context) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> colors </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Theme</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">of</span><span style="color: #C9D1D9">(context).colorScheme;</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> textTheme </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Theme</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">of</span><span style="color: #C9D1D9">(context).textTheme;</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Markdown</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">        data</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> markdown,</span></span>
+<span class="line"><span style="color: #C9D1D9">        selectable</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">true</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">        softLineBreak</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">true</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">        onTapLink</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> (text, link, _) {</span></span>
+<span class="line"><span style="color: #C9D1D9">          </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> url </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> link </span><span style="color: #FF7B72">??</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'/'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">          </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (url.</span><span style="color: #D2A8FF">startsWith</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'http'</span><span style="color: #C9D1D9">)) {</span></span>
+<span class="line"><span style="color: #C9D1D9">            </span><span style="color: #D2A8FF">launchUrl</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">Uri</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">parse</span><span style="color: #C9D1D9">(url));</span></span>
+<span class="line"><span style="color: #C9D1D9">          } </span><span style="color: #FF7B72">else</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">            context.</span><span style="color: #D2A8FF">push</span><span style="color: #C9D1D9">(url);</span></span>
+<span class="line"><span style="color: #C9D1D9">          }</span></span>
+<span class="line"><span style="color: #C9D1D9">        },</span></span>
+<span class="line"><span style="color: #C9D1D9">        extensionSet</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> md.</span><span style="color: #79C0FF">ExtensionSet</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">          md.</span><span style="color: #79C0FF">ExtensionSet</span><span style="color: #C9D1D9">.gitHubFlavored.blockSyntaxes,</span></span>
+<span class="line"><span style="color: #C9D1D9">          [md.</span><span style="color: #79C0FF">EmojiSyntax</span><span style="color: #C9D1D9">(), ...md.</span><span style="color: #79C0FF">ExtensionSet</span><span style="color: #C9D1D9">.gitHubFlavored.inlineSyntaxes],</span></span>
+<span class="line"><span style="color: #C9D1D9">        ),</span></span>
+<span class="line"><span style="color: #C9D1D9">        styleSheet</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">MarkdownStyleSheet</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">            textScaleFactor</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> textScaleFactor,</span></span>
+<span class="line"><span style="color: #C9D1D9">            p</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> textTheme.bodyLarge</span><span style="color: #FF7B72">!</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">copyWith</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">              fontSize</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">16</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">              color</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.onSurface.</span><span style="color: #D2A8FF">withOpacity</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">0.72</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">            ),</span></span>
+<span class="line"><span style="color: #C9D1D9">            a</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">TextStyle</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">              decoration</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">TextDecoration</span><span style="color: #C9D1D9">.underline,</span></span>
+<span class="line"><span style="color: #C9D1D9">              color</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.onSurface.</span><span style="color: #D2A8FF">withOpacity</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">0.72</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">            ),</span></span>
+<span class="line"><span style="color: #C9D1D9">            h1</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> textTheme.displaySmall</span><span style="color: #FF7B72">!</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">copyWith</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">              fontSize</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">25</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">              color</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.onSurface,</span></span>
+<span class="line"><span style="color: #C9D1D9">            ),</span></span>
+<span class="line"><span style="color: #C9D1D9">            h2</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> textTheme.headlineLarge</span><span style="color: #FF7B72">!</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">copyWith</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">              fontSize</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">20</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">              color</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.onSurface,</span></span>
+<span class="line"><span style="color: #C9D1D9">            ),</span></span>
+<span class="line"><span style="color: #C9D1D9">            h3</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> textTheme.headlineMedium</span><span style="color: #FF7B72">!</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">copyWith</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">              fontSize</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">18</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">              color</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.onSurface,</span></span>
+<span class="line"><span style="color: #C9D1D9">            ),</span></span>
+<span class="line"><span style="color: #C9D1D9">            h4</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> textTheme.headlineSmall</span><span style="color: #FF7B72">!</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">copyWith</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">              fontSize</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">16</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">              color</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.onSurface,</span></span>
+<span class="line"><span style="color: #C9D1D9">            ),</span></span>
+<span class="line"><span style="color: #C9D1D9">            h5</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> textTheme.titleLarge</span><span style="color: #FF7B72">!</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">copyWith</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">              fontSize</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">16</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">              color</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.onSurface,</span></span>
+<span class="line"><span style="color: #C9D1D9">            ),</span></span>
+<span class="line"><span style="color: #C9D1D9">            h6</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> textTheme.titleMedium</span><span style="color: #FF7B72">!</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">copyWith</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">              fontSize</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">16</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">              color</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.onSurface,</span></span>
+<span class="line"><span style="color: #C9D1D9">            ),</span></span>
+<span class="line"><span style="color: #C9D1D9">            listBullet</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> textTheme.bodyLarge</span><span style="color: #FF7B72">!</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">copyWith</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">              color</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.onSurface,</span></span>
+<span class="line"><span style="color: #C9D1D9">            ),</span></span>
+<span class="line"><span style="color: #C9D1D9">            em</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">TextStyle</span><span style="color: #C9D1D9">(fontStyle</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">FontStyle</span><span style="color: #C9D1D9">.italic),</span></span>
+<span class="line"><span style="color: #C9D1D9">            strong</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">TextStyle</span><span style="color: #C9D1D9">(fontWeight</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">FontWeight</span><span style="color: #C9D1D9">.bold),</span></span>
+<span class="line"><span style="color: #C9D1D9">            blockquote</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">TextStyle</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">              fontStyle</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">FontStyle</span><span style="color: #C9D1D9">.italic,</span></span>
+<span class="line"><span style="color: #C9D1D9">              fontWeight</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">FontWeight</span><span style="color: #C9D1D9">.w500,</span></span>
+<span class="line"><span style="color: #C9D1D9">              color</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.onSurfaceVariant,</span></span>
+<span class="line"><span style="color: #C9D1D9">            ),</span></span>
+<span class="line"><span style="color: #C9D1D9">            blockquoteDecoration</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">BoxDecoration</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">              color</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.surfaceVariant,</span></span>
+<span class="line"><span style="color: #C9D1D9">              borderRadius</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">BorderRadius</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">circular</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">4</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">            ),</span></span>
+<span class="line"><span style="color: #C9D1D9">            code</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">TextStyle</span><span style="color: #C9D1D9">(fontFamily</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'monospace'</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">            tableHead</span><span style="color: #FF7B72">:</span></span>
+<span class="line"><span style="color: #C9D1D9">                </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">TextStyle</span><span style="color: #C9D1D9">(fontSize</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">16</span><span style="color: #C9D1D9">, fontWeight</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">FontWeight</span><span style="color: #C9D1D9">.w500),</span></span>
+<span class="line"><span style="color: #C9D1D9">            tableBody</span><span style="color: #FF7B72">:</span></span>
+<span class="line"><span style="color: #C9D1D9">                </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">TextStyle</span><span style="color: #C9D1D9">(fontSize</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">16</span><span style="color: #C9D1D9">, fontWeight</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">FontWeight</span><span style="color: #C9D1D9">.w500),</span></span>
+<span class="line"><span style="color: #C9D1D9">            blockSpacing</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">8</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">            listIndent</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">32</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">            blockquotePadding</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">EdgeInsets</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">all</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">8</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">            h1Padding</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">EdgeInsets</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">symmetric</span><span style="color: #C9D1D9">(vertical</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">8</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">            h2Padding</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">EdgeInsets</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">symmetric</span><span style="color: #C9D1D9">(vertical</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">8</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">            h3Padding</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">EdgeInsets</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">symmetric</span><span style="color: #C9D1D9">(vertical</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">8</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">            h4Padding</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">EdgeInsets</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">symmetric</span><span style="color: #C9D1D9">(vertical</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">8</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">            h5Padding</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">EdgeInsets</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">symmetric</span><span style="color: #C9D1D9">(vertical</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">8</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">            h6Padding</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">EdgeInsets</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">symmetric</span><span style="color: #C9D1D9">(vertical</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">8</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">            codeblockPadding</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">EdgeInsets</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">all</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">8</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">            codeblockDecoration</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">BoxDecoration</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">              borderRadius</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">BorderRadius</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">circular</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">4</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">              color</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.surfaceVariant,</span></span>
+<span class="line"><span style="color: #C9D1D9">            ),</span></span>
+<span class="line"><span style="color: #C9D1D9">            horizontalRuleDecoration</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">BoxDecoration</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">              border</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Border</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">                top</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">BorderSide</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">                  color</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.outline.</span><span style="color: #D2A8FF">withOpacity</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">0.4</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">                  width</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">                ),</span></span>
+<span class="line"><span style="color: #C9D1D9">              ),</span></span>
+<span class="line"><span style="color: #C9D1D9">            )),</span></span>
+<span class="line"><span style="color: #C9D1D9">    );</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+    </article>
+    <aside class="astro-BVZIHDZO">
+      <nav class="astro-XVRFUPWN">
+  <h2 class="astro-XVRFUPWN">Table of Contents</h2>
+  <ul class="astro-XVRFUPWN">
+    <li class="astro-XVRFUPWN">
+          <a href="#" class="heading-depth-2 astro-XVRFUPWN">
+            Overview
+          </a>
+        </li>
+  </ul>
+</nav>
+    </aside>
+  </main>
+    </main>
+    <footer class="astro-SZ7XMLTE">
+  <div class="links astro-AUSHCPD5">
+  <a class="social-icon astro-AUSHCPD5" href="https://github.com/rodydavis" target="_blank" rel="noopener">
+            <img src="/social/github.svg" alt="github" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://twitter.com/rodydavis" target="_blank" rel="noopener">
+            <img src="/social/twitter.svg" alt="twitter" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://facebook.com/rodydavisjr" target="_blank" rel="noopener">
+            <img src="/social/facebook.svg" alt="facebook" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://instagram.com/rodydavisjr" target="_blank" rel="noopener">
+            <img src="/social/instagram.svg" alt="instagram" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://youtube.com/rodydavis" target="_blank" rel="noopener">
+            <img src="/social/youtube.svg" alt="youtube" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://tiktok.com/@rodydavisjr" target="_blank" rel="noopener">
+            <img src="/social/tiktok.svg" alt="tiktok" class="astro-AUSHCPD5">
+          </a><a class="social-icon astro-AUSHCPD5" href="https://linkedin.com/in/rodydavis" target="_blank" rel="noopener">
+            <img src="/social/linkedin.svg" alt="linkedin" class="astro-AUSHCPD5">
+          </a>
+</div>
+
+  <div class="copyright astro-SZ7XMLTE">
+    &copy; 2023
+    Rody Davis. All rights reserved.
+  </div>
+</footer>
+  </body></html>

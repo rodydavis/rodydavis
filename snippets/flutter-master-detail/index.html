@@ -7,24 +7,24 @@
 <meta name="generator" content="Astro v2.0.4">
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://rodydavis.com/posts/flutter-master-detail/">
+<link rel="canonical" href="https://rodydavis.com/snippets/flutter-master-detail/">
 
 <!-- Primary Meta Tags -->
-<title>Building a Master / Detail list with Flutter</title>
-<meta name="title" content="Building a Master / Detail list with Flutter">
+<title>Flutter Master-detail view</title>
+<meta name="title" content="Flutter Master-detail view">
 <meta name="description">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://rodydavis.com/posts/flutter-master-detail/">
-<meta property="og:title" content="Building a Master / Detail list with Flutter">
+<meta property="og:url" content="https://rodydavis.com/snippets/flutter-master-detail/">
+<meta property="og:title" content="Flutter Master-detail view">
 <meta property="og:description">
 <meta property="og:image" content="https://rodydavis.com/placeholder-social.jpg">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://rodydavis.com/posts/flutter-master-detail/">
-<meta property="twitter:title" content="Building a Master / Detail list with Flutter">
+<meta property="twitter:url" content="https://rodydavis.com/snippets/flutter-master-detail/">
+<meta property="twitter:title" content="Flutter Master-detail view">
 <meta property="twitter:description">
 <meta property="twitter:image" content="https://rodydavis.com/placeholder-social.jpg">
 
@@ -80,22 +80,12 @@
 	</style><main class="astro-BVZIHDZO">
     <article class="astro-BVZIHDZO">
       
-      <h1 class="title astro-BVZIHDZO">Building a Master / Detail list with Flutter</h1>
+      <h1 class="title astro-BVZIHDZO">Flutter Master-detail view</h1>
       
       
       <hr class="astro-BVZIHDZO">
-      <p>In this article we will go over how to build a master / detail list with Flutter.</p>
-<h2 id=""><a aria-hidden="true" tabindex="-1" href="#"><span class="icon icon-link"></span></a>Behind the widget</h2>
-<p>When building mobile, desktop and web applications with Flutter often times you are faced with what to do with lists and the content when selected. Depending on the data you may have a list that renders another list before resolving to a detail view. On tablet or desktop this can be achieved with multi-column layouts.</p>
-<p>// TODO: Images of multi column</p>
-<p>On mobile you will still need to push to the details screen since the space is constrained.</p>
-<p>// TODO: Mobile demo</p>
-<h2 id="-1"><a aria-hidden="true" tabindex="-1" href="#-1"><span class="icon icon-link"></span></a>Getting started</h2>
-<p>First we need to create our Flutter project and that is possible with the following command:</p>
-<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #C9D1D9">flutter create flutter_master_detail_example</span></span></code></pre>
-<p>After the project is created you can open it in your favorite IDE.</p>
-<h2 id="-2"><a aria-hidden="true" tabindex="-1" href="#-2"><span class="icon icon-link"></span></a>Master Detail Widget</h2>
-<p>Create a new file at <code>/lib/widgets/master_detail.dart</code> and add the following:</p>
+      <h2 id=""><a aria-hidden="true" tabindex="-1" href="#"><span class="icon icon-link"></span></a>Overview</h2>
+<p>How to build a <a href="https://en.wikipedia.org/wiki/Master%E2%80%93detail_interface">Master-detail</a> view with Flutter:</p>
 <pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:flutter/material.dart'</span><span style="color: #C9D1D9">;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color: #FF7B72">class</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">MasterDetail</span><span style="color: #C9D1D9">&#x3C;</span><span style="color: #79C0FF">T</span><span style="color: #C9D1D9">> </span><span style="color: #FF7B72">extends</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">StatefulWidget</span><span style="color: #C9D1D9"> {</span></span>
@@ -105,14 +95,12 @@
 <span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">required</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.detailBuilder,</span></span>
 <span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">required</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.onPush,</span></span>
 <span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.emptyBuilder,</span></span>
-<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">.width </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">350</span><span style="color: #C9D1D9">,</span></span>
 <span class="line"><span style="color: #C9D1D9">  }) </span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">super</span><span style="color: #C9D1D9">(key</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> key);</span></span>
 <span class="line"></span>
 <span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Widget</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Function</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">BuildContext</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">ValueChanged</span><span style="color: #C9D1D9">&#x3C;</span><span style="color: #79C0FF">T</span><span style="color: #C9D1D9">?>, </span><span style="color: #79C0FF">T</span><span style="color: #FF7B72">?</span><span style="color: #C9D1D9">) listBuilder;</span></span>
 <span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Widget</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Function</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">BuildContext</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">T</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">bool</span><span style="color: #C9D1D9">) detailBuilder;</span></span>
 <span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Function</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">BuildContext</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">T</span><span style="color: #C9D1D9">) onPush;</span></span>
 <span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">WidgetBuilder</span><span style="color: #FF7B72">?</span><span style="color: #C9D1D9"> emptyBuilder;</span></span>
-<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">double</span><span style="color: #C9D1D9"> width;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">@override</span></span>
 <span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">State</span><span style="color: #C9D1D9">&#x3C;</span><span style="color: #79C0FF">MasterDetail</span><span style="color: #C9D1D9">&#x3C;</span><span style="color: #79C0FF">T</span><span style="color: #C9D1D9">>> </span><span style="color: #D2A8FF">createState</span><span style="color: #C9D1D9">() </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">_MasterDetailState</span><span style="color: #C9D1D9">&#x3C;</span><span style="color: #79C0FF">T</span><span style="color: #C9D1D9">>();</span></span>
@@ -125,9 +113,10 @@
 <span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">@override</span></span>
 <span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">Widget</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">build</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">BuildContext</span><span style="color: #C9D1D9"> context) {</span></span>
 <span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Scaffold</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">      primary</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">false</span><span style="color: #C9D1D9">,</span></span>
 <span class="line"><span style="color: #C9D1D9">      body</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">LayoutBuilder</span><span style="color: #C9D1D9">(</span></span>
 <span class="line"><span style="color: #C9D1D9">        builder</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> (context, dimens) {</span></span>
-<span class="line"><span style="color: #C9D1D9">          </span><span style="color: #79C0FF">double</span><span style="color: #C9D1D9"> minWidth </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> widget.width;</span></span>
+<span class="line"><span style="color: #C9D1D9">          </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">double</span><span style="color: #C9D1D9"> minWidth </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">350</span><span style="color: #C9D1D9">;</span></span>
 <span class="line"><span style="color: #C9D1D9">          </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> maxWidth </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> dimens.maxWidth </span><span style="color: #FF7B72">-</span><span style="color: #C9D1D9"> minWidth;</span></span>
 <span class="line"><span style="color: #C9D1D9">          </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (detailsWidth </span><span style="color: #FF7B72">!=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">null</span><span style="color: #C9D1D9">) {</span></span>
 <span class="line"><span style="color: #C9D1D9">            </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (detailsWidth</span><span style="color: #FF7B72">!</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">></span><span style="color: #C9D1D9"> maxWidth) {</span></span>
@@ -140,7 +129,7 @@
 <span class="line"><span style="color: #C9D1D9">          </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">ValueListenableBuilder</span><span style="color: #C9D1D9">&#x3C;</span><span style="color: #79C0FF">T</span><span style="color: #C9D1D9">?>(</span></span>
 <span class="line"><span style="color: #C9D1D9">            valueListenable</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> selected,</span></span>
 <span class="line"><span style="color: #C9D1D9">            builder</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> (context, item, child) {</span></span>
-<span class="line"><span style="color: #C9D1D9">              </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> canShowDetails </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> dimens.maxWidth </span><span style="color: #FF7B72">></span><span style="color: #C9D1D9"> widget.width </span><span style="color: #FF7B72">*</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">2</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">              </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> canShowDetails </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> dimens.maxWidth </span><span style="color: #FF7B72">></span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">800</span><span style="color: #C9D1D9">;</span></span>
 <span class="line"><span style="color: #C9D1D9">              </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> showDetails </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> item </span><span style="color: #FF7B72">!=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">null</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">&#x26;&#x26;</span><span style="color: #C9D1D9"> canShowDetails;</span></span>
 <span class="line"><span style="color: #C9D1D9">              </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Row</span><span style="color: #C9D1D9">(</span></span>
 <span class="line"><span style="color: #C9D1D9">                children</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> [</span></span>
@@ -202,10 +191,7 @@
 <span class="line"><span style="color: #C9D1D9">      ),</span></span>
 <span class="line"><span style="color: #C9D1D9">    );</span></span>
 <span class="line"><span style="color: #C9D1D9">  }</span></span>
-<span class="line"><span style="color: #C9D1D9">}</span></span>
-<span class="line"></span></code></pre>
-<p>This widget will size itself after layout and try to size the list as small as possible with the details filling up the rest. This is important for later when we nest multiple of these to create progressively adapting layouts.</p>
-<h2 id="-3"><a aria-hidden="true" tabindex="-1" href="#-3"><span class="icon icon-link"></span></a>Using the widget</h2>
+<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
     </article>
     <aside class="astro-BVZIHDZO">
       <nav class="astro-XVRFUPWN">
@@ -213,19 +199,7 @@
   <ul class="astro-XVRFUPWN">
     <li class="astro-XVRFUPWN">
           <a href="#" class="heading-depth-2 astro-XVRFUPWN">
-            Behind the widget
-          </a>
-        </li><li class="astro-XVRFUPWN">
-          <a href="#-1" class="heading-depth-2 astro-XVRFUPWN">
-            Getting started
-          </a>
-        </li><li class="astro-XVRFUPWN">
-          <a href="#-2" class="heading-depth-2 astro-XVRFUPWN">
-            Master Detail Widget
-          </a>
-        </li><li class="astro-XVRFUPWN">
-          <a href="#-3" class="heading-depth-2 astro-XVRFUPWN">
-            Using the widget
+            Overview
           </a>
         </li>
   </ul>
