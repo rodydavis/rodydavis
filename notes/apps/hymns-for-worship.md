@@ -3,10 +3,7 @@ title: "Hymns for Worship"
 date: 2019-01-01
 tags:
     - app
-    - pitch pipe
     - music
-    - teachers
-    - education
     - ios
     - android
 image: /attachments/hymns-for-worship_icon.png
