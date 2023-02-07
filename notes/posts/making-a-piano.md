@@ -6,7 +6,7 @@ tags:
 - posts
 - flutter
 - music
-image: /attachments/flutter_piano_final.png
+image: /attachments/flutter_piano_final.webp
 ---
 
 > **TLDR** The final source [here](https://github.com/rodydavis/flutter_piano/tree/5k) and an online [demo](https://pocketpiano.app).
@@ -40,7 +40,7 @@ You can either create a new project with Android Studio or VSCode using the GUI 
 
 Now that you have your project created it should look like this.
 
-![app-icon](/attachments/flutter_piano_starter.png)
+![app-icon](/attachments/flutter_piano_starter.webp)
 
 Let's start by adding some dependencies to our `pubspec.yaml'
 
@@ -122,18 +122,18 @@ navigate to `/ios/Runner/info.plist` and change:
 
 Now we can start with the UI! When you run the application now it should start in landscape!
 
-![landscape](/attachments/flutter_piano_landscape.png)
+![landscape](/attachments/flutter_piano_landscape.webp)
 
 
 ## Step 1
 
 To make it eaiser to read lets remove the comments. Use "find and replace" and search for `\/\/.*`
 
-![comments](/attachments/flutter_piano_comments.png)
+![comments](/attachments/flutter_piano_comments.webp)
 
 choose the "select all occurrances" button and hit `backspace` to delete.
 
-![select all](/attachments/flutter_piano_selectall.png)
+![select all](/attachments/flutter_piano_selectall.webp)
 
 Hit save and you should see the code format for you.
 
@@ -260,7 +260,7 @@ class MyApp extends StatelessWidget {
 
 Change `MyApp` to a `StatefulWidget`. You can do this quickly by selecting `MyApp` and choose "Convert to StatefulWidget" with the helper.
 
-![convert](/attachments/flutter_piano_convert.png)
+![convert](/attachments/flutter_piano_convert.webp)
 
 It should look like this now:
 
@@ -336,7 +336,7 @@ class _MyAppState extends State<MyApp> {
 
 Now build and run your app, it should look like this.
 
-![dark-mode](/attachments/flutter_piano_darkmode.png)
+![dark-mode](/attachments/flutter_piano_darkmode.webp)
 
 
 ## Step 5
@@ -424,7 +424,7 @@ Lets start by adding a `Drawer` with a `ListView` to our `Scaffold`.
 
 You should now get a menu icon that when you press looks like this.
 
-![menu](/attachments/flutter_piano_menu.png)
+![menu](/attachments/flutter_piano_menu.webp)
 
 
 Now lets add a ListView that scrolls Horizontially to the body of the `Scaffold`
@@ -628,7 +628,7 @@ const BorderRadiusGeometry borderRadius = BorderRadius.only(
 
 Your app should look like this:
 
-![keys](/attachments/flutter_piano_keys.png)
+![keys](/attachments/flutter_piano_keys.webp)
 
 Your code should look like this:
 
@@ -850,7 +850,7 @@ The complete function should look like this:
 
 Now when you run the app it should look like this:
 
-![labels](/attachments/flutter_piano_labels.png)
+![labels](/attachments/flutter_piano_labels.webp)
 
 Almost there! Now let's give our user some control.
 
@@ -882,7 +882,7 @@ Divider(),
 
 Now you should see this:
 
-![settings](/attachments/flutter_piano_settings.png)
+![settings](/attachments/flutter_piano_settings.webp)
 
 
 ## Step 11
@@ -895,7 +895,7 @@ Now when we start the app it should co to C4.
 
 The final App should look like this:
 
-![final](/attachments/flutter_piano_final.png)
+![final](/attachments/flutter_piano_final.webp)
 
 The final code should look like this:
 

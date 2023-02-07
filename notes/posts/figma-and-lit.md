@@ -10,7 +10,7 @@ tags:
 - plugin
 - webpack
 - web
-image: /attachments/figma_rectangles.png
+image: /attachments/figma_rectangles.webp
 ---
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a figma plugin.
@@ -324,33 +324,33 @@ https://www.figma.com/downloads/
 
 Open the menu and navigate to “Plugins > Manage plugins”
 
-<img width="100%" src="/attachments/figma_manage-plugin.png">
+<img width="100%" src="/attachments/figma_manage-plugin.webp">
 
 #### Step 3
 
 Click on the plus icon to add a local plugin.
 
-<img width="100%" src="/attachments/figma_add-plugin.png">
+<img width="100%" src="/attachments/figma_add-plugin.webp">
 
 Click on the box to link to an existing plugin to navigate to the `lit-plugin` folder that was created after the build process in your source code and select `manifest.json`.
 
-<img width="100%" src="/attachments/figma_create-plugin.png">
+<img width="100%" src="/attachments/figma_create-plugin.webp">
 
 #### Step 4
 
 To run the plugin navigate to “Plugins > Development > figma_lit_example” to launch your plugin.
 
-<img width="100%" src="/attachments/figma_run-lit-plugin.png">
+<img width="100%" src="/attachments/figma_run-lit-plugin.webp">
 
 #### Step 5
 
 Now your plugin should launch and you can create 5 rectangles on the canvas.
 
-<img width="100%" src="/attachments/figma_plugin-overview.png">
+<img width="100%" src="/attachments/figma_plugin-overview.webp">
 
 If everything worked you will have 5 new rectangles on the canvas focused by figma.
 
-<img width="100%" src="/attachments/figma_rectangles.png">
+<img width="100%" src="/attachments/figma_rectangles.webp">
 
 ## WASM Support
 

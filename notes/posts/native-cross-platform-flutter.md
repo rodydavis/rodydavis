@@ -5,7 +5,7 @@ publishDate: 6 Sep 2019
 tags:
 - posts
 - flutter
-image: /attachments/flutter_first.png
+image: /attachments/flutter_first.webp
 ---
 
 Import dart:html and dart:io in the same project!
@@ -26,17 +26,17 @@ You will need to be on the latest flutter for this to work.
 
 [Download Flutter](https://flutter.io/get-started/install/)
 
-![flutter logo](/attachments/flutter_logo.jpg)
+![flutter logo](/attachments/flutter_logo.webp)
 
 If you are pretty new to Flutter you can check out [this useful guide](https://flutter.io/get-started/codelab/) on how to create a new project step by step.
 
-<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*d6qN8hoGMwldMtIsQYIqrg.jpeg">
+<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*d6qN8hoGMwldMtIsQYIqrg.webp">
 
-![mobile device](/attachments/flutter_cross-platform.jpg)
+![mobile device](/attachments/flutter_cross-platform.webp)
 
 Create a new project named flutter_x and it should look like this:
 
-![vscode pubspec.yaml open](/attachments/flutter_x_new_project.png)
+![vscode pubspec.yaml open](/attachments/flutter_x_new_project.webp)
 
 You can also down the starter project [here](https://github.com/rodydavis/flutter_x/tree/starter).
 
@@ -158,15 +158,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
 Just to make sure everything is working go ahead and run the project on iOS/Android.
 
-![flutter counter mobile example](/attachments/flutter_x_starter_ipad.png)
+![flutter counter mobile example](/attachments/flutter_x_starter_ipad.webp)
 
 You should have the counter application running and working correctly. Now quit and run on Chrome. It should be listed as a device. You can also run from the command line flutter run -d chrome.
 
-![flutter counter web example](/attachments/flutter_x_starter_web.png)
+![flutter counter web example](/attachments/flutter_x_starter_web.webp)
 
 > You do not get hot reload yet on web so be aware of that.
 
-![vscode folder structure](/attachments/flutter_x_structure.png)
+![vscode folder structure](/attachments/flutter_x_structure.webp)
 
 Your project should now look like this.
 
@@ -210,7 +210,7 @@ uses-material-design: true
 
 By default if you were to check if the device was mobile or web you will get an error at compile time when trying to import a plugin that is not meant for the platform. To get around this we will use dynamic imports.
 
-![vscode folder structure](/attachments/flutter_x_url_launcher.png)
+![vscode folder structure](/attachments/flutter_x_url_launcher.webp)
 
 Create a url_launcher folder and file url_launcher.dart, mobile.dart, web.dart, unsupported.dart inside the plugins folder.
 
@@ -319,7 +319,7 @@ onPressed: () {
 
 Now when you go to import the UrlUtils it is important to import the correct URI.
 
-![vscode folder structure](/attachments/flutter_x_import.png)
+![vscode folder structure](/attachments/flutter_x_import.webp)
 
 Make sure to import import 'package:flutter_x/plugins/url_launcher/url_launcher.dart'; only.
 
@@ -366,19 +366,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
 Your app on the web should look like this:
 
-![web example 1](/attachments/flutter_x_web_1.png)
+![web example 1](/attachments/flutter_x_web_1.webp)
 
 And when you tap the button..
 
-![web example 2](/attachments/flutter_x_web_2.png)
+![web example 2](/attachments/flutter_x_web_2.webp)
 
 And when you run it on iOS/Android it should look like this:
 
-![mobile example 1](/attachments/flutter_x_mobile_1.png)
+![mobile example 1](/attachments/flutter_x_mobile_1.webp)
 
 And when you tap the button..
 
-![mobile example 2](/attachments/flutter_x_mobile_2.png)
+![mobile example 2](/attachments/flutter_x_mobile_2.webp)
 
 Congratulations! You made it :)
 

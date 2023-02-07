@@ -128,12 +128,7 @@ li div {
   display: inline-block;
 }
 
-.video {
-  width: 100%;
-  height: 500px;
-}
-
-.demo {
+:is(iframe) {
   width: 100%;
   height: 500px;
 }

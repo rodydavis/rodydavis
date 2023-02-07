@@ -6,11 +6,11 @@ tags:
     - music
     - ios
     - android
-image: /attachments/the-pitch-pipe_icon.png
+image: /attachments/the-pitch-pipe_icon.webp
 skip: true
 ---
 
-![](/attachments/the-pitch-pipe_icon.png)
+![](/attachments/the-pitch-pipe_icon.webp)
 
 > Sheet Music Made Easy
 
@@ -46,8 +46,8 @@ Features:
 
 ## Download
 
-[![](/attachments/app_store.png)](https://apps.apple.com/us/app/the-pitch-pipe/id1244972865)
+[![](/attachments/app_store.webp)](https://apps.apple.com/us/app/the-pitch-pipe/id1244972865)
 
-[![](/attachments/google_play.png)](https://play.google.com/store/apps/details?id=com.appleeducate.thepitchpipe&hl=en_US&gl=US)
+[![](/attachments/google_play.webp)](https://play.google.com/store/apps/details?id=com.appleeducate.thepitchpipe&hl=en_US&gl=US)
 
 [Open Web App](https://pitchpipe.app)

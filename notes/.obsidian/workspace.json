@@ -122,9 +122,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "2c38cbca26e444b1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "travel/narobi-national-park.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 7
+        "currentTab": 10
       }
     ],
     "direction": "vertical"
@@ -251,17 +263,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "136f4dc30c8e041e",
+  "active": "2c38cbca26e444b1",
   "lastOpenFiles": [
-    "privacy.md",
     "travel/narobi-national-park.md",
-    "snippets/shortcuts-nasa-wallpaper.md",
+    "snippets/flutter-animated-state.md",
+    "snippets/flutter-infinite-canvas.md",
+    "snippets/flutter-markdown-material-3.md",
+    "snippets/flutter-master-detail.md",
     "snippets/material-web-theme-adapter.md",
-    "attachments/shortcuts-nasa-overview.png",
-    "attachments/rich-text_editor-start.png",
-    "apps/hymns-for-worship.md",
-    "apps/widget-studio.md",
-    "apps/the-pocket-piano.md",
-    "apps/the-pitch-pipe.md"
+    "snippets/shortcuts-nasa-wallpaper.md",
+    "posts/automate-flutter-apps.md",
+    "privacy.md",
+    "attachments/shortcuts-nasa-overview.png"
   ]
 }

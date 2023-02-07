@@ -12,7 +12,7 @@ tags:
   - material-design
   - dynamic-color
   - playground
-image: /attachments/dynamic-theme_purple-dark.png
+image: /attachments/dynamic-theme_purple-dark.webp
 ---
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a a code window that uses [CodeMirror](https://codemirror.net) and apply a dynamic theme with [Material Design](https://material.io).
@@ -305,7 +305,7 @@ Here we are setting up some of the editor basics to load in the styles needed fo
 
 There are also few methods that handle updating of properties on the element such as `toggleDark` and `setColor`. When you run the application you should see the following:
 
-![start](/attachments/dynamic-theme_start.png)
+![start](/attachments/dynamic-theme_start.webp)
 
 It doesn't look great yet, but now we can add a CodeMirror theme to import. Create a file `src/theme.ts` and update it with the following:
 
@@ -521,16 +521,16 @@ Here we are using the [Material Color Utilities](https://github.com/material-fou
 
 After the theme is generated we can apply them to the root element and have the custom properties update the editor.
 
-![purple theme light](/attachments/dynamic-theme_purple-light.png)
+![purple theme light](/attachments/dynamic-theme_purple-light.webp)
 
 Changing the source color can update the theme:
 
-![green theme light](/attachments/dynamic-theme_green-light.png)
+![green theme light](/attachments/dynamic-theme_green-light.webp)
 
 Changing the brightness can set the colors as well:
 
-![purple theme dark](/attachments/dynamic-theme_purple-dark.png)
-![green theme dark](/attachments/dynamic-theme_green-dark.png)
+![purple theme dark](/attachments/dynamic-theme_purple-dark.webp)
+![green theme dark](/attachments/dynamic-theme_green-dark.webp)
 
 ## Conclusion
 

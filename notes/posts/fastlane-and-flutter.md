@@ -8,7 +8,7 @@ tags:
 - flutter
 - ci
 - ci
-image: /attachments/flutter_fastlane.jpg
+image: /attachments/flutter_fastlane.webp
 ---
 
 Prerequisites:
