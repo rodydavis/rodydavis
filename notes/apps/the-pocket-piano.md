@@ -4,7 +4,6 @@ date: 2018-06-08
 tags:
     - app
     - music
-    - piano
     - ios
     - android
 image: /attachments/the-pocket-piano_icon.png

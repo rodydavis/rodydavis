@@ -4,10 +4,6 @@ date:   2019-03-10
 tags:
     - app
     - flutter
-    - spacex
-    - nasa
-    - iss
-    - planets
     - space
     - ios
     - android

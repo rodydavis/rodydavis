@@ -3,10 +3,7 @@ title: 'The Pitch Pipe'
 date: 2017-03-10
 tags:
     - app
-    - pitch pipe
     - music
-    - teachers
-    - education
     - ios
     - android
 image: /attachments/the-pitch-pipe_icon.png

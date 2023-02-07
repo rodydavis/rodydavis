@@ -3,10 +3,6 @@ title: "Widget Studio"
 date: 2018-06-08
 tags:
     - app
-    - ide
-    - editor
-    - code
-    - drag-and-drop
     - flutter
     - ios
     - android

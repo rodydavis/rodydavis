@@ -14,6 +14,9 @@ interface Props {
 }
 
 function TagChips(props: { tags: string[], active: string[], onClick: (tag: string) => void }) {
+  let tags = props.tags;
+  // Move selected tags to front
+  tags = tags.filter((tag) => props.active.includes(tag)).concat(tags.filter((tag) => !props.active.includes(tag)));
   return <div style={{
     display: "flex",
     flexDirection: "row",
@@ -22,7 +25,7 @@ function TagChips(props: { tags: string[], active: string[], onClick: (tag: stri
     margin: "1rem 0",
     padding: "0 0 1rem 0",
   }}>
-    {props.tags.map((tag) => {
+    {tags.map((tag) => {
       const isActive = props.active.includes(tag);
       return <TagChip tag={tag} active={isActive} onClick={() => props.onClick(tag)} />
     })}
