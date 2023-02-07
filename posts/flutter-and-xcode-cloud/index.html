@@ -32,7 +32,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
 
     
-  <link rel="stylesheet" href="/_astro/_...slug_.75960322.css" />
+  <link rel="stylesheet" href="/_astro/_...slug_.ea98f1ee.css" />
 <link rel="stylesheet" href="/_astro/_...slug_.7a06253d.css" /><script type="module">window.dataLayer=window.dataLayer||[];function a(){dataLayer.push(arguments)}a("js",new Date);a("config","G-JQNPVBL9DR");
 </script></head>
 
@@ -97,7 +97,7 @@
 <pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #C9D1D9">code </span><span style="color: #79C0FF">.</span></span></code></pre>
 <h2 id="-1"><a aria-hidden="true" tabindex="-1" href="#-1"><span class="icon icon-link"></span></a>Step 2</h2>
 <p>The generated files should look like the following:</p>
-<p><img src="/attachments/flutter_files.png" alt="flutter files"></p>
+<p><img src="/attachments/flutter_files.webp" alt="flutter files"></p>
 <p>Create a new file at <code>ios/ci_scripts/ci_post_install.sh</code> and update it with the following:</p>
 <pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #8B949E">#!/bin/sh</span></span>
 <span class="line"></span>
@@ -123,11 +123,11 @@
 <pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #c9d1d9">chmod +x ios/ci_scripts/ci_post_clone.sh</span></span></code></pre>
 <h2 id="-2"><a aria-hidden="true" tabindex="-1" href="#-2"><span class="icon icon-link"></span></a>Step 3</h2>
 <p>Open up the iOS project in Xcode by right clicking on the iOS folder and selecting “Open in Xcode”.</p>
-<p><img src="/attachments/flutter_xcode-open.png" alt="flutter xcode open"></p>
+<p><img src="/attachments/flutter_xcode-open.webp" alt="flutter xcode open"></p>
 <p>You can also open the project by double clicking on the <code>ios/Runner.xcworkspace</code> file.</p>
-<p><img src="/attachments/flutter_xcode-launch.png" alt="flutter xcode launch"></p>
+<p><img src="/attachments/flutter_xcode-launch.webp" alt="flutter xcode launch"></p>
 <p>Make sure you have the latest version of Xcode Cloud install and that you have <a href="https://developer.apple.com/xcode-cloud/beta/">access to the beta</a>. Create a new workflow by the menu <code>Product > Xcode Cloud > Create Workflow</code>:</p>
-<p><img src="/attachments/flutter_workflow-create.png" alt="flutter workflow create"></p>
+<p><img src="/attachments/flutter_workflow-create.webp" alt="flutter workflow create"></p>
 <p>Follow the flow to add the project and choose which type of build you want.</p>
 <p>Make sure to remove MacOS as a target in the workflow by selecting <code>Archive - MacOS</code> and the delete icon on the top right.</p>
 <p>If you want to build and release the MacOS app you will need to do that with another script in the macos folder and a workflow in that Xcode workspace.</p>
@@ -155,7 +155,7 @@
 <span class="line"><span style="color: #8B949E"># Build ios app</span></span>
 <span class="line"><span style="color: #C9D1D9">flutter build ios --no-codesign</span></span></code></pre>
 <p>If all goes well it will look like the following after a successful build:</p>
-<p><img src="/attachments/flutter_workflow-done.png" alt="flutter workflow done"></p>
+<p><img src="/attachments/flutter_workflow-done.webp" alt="flutter workflow done"></p>
 <h2 id="-3"><a aria-hidden="true" tabindex="-1" href="#-3"><span class="icon icon-link"></span></a>Conclusion</h2>
 <p>Flutter makes it ease to build and deploy to multiple platforms and Xcode Cloud takes care of the signing for Apple platforms.</p>
 <p>You can learn more about cd and flutter <a href="https://docs.flutter.dev/deployment/cd">here</a>.</p>

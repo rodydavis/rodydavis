@@ -32,7 +32,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
 
     
-  <link rel="stylesheet" href="/_astro/_...slug_.75960322.css" />
+  <link rel="stylesheet" href="/_astro/_...slug_.ea98f1ee.css" />
 <link rel="stylesheet" href="/_astro/_...slug_.7a06253d.css" /><script type="module">window.dataLayer=window.dataLayer||[];function a(){dataLayer.push(arguments)}a("js",new Date);a("config","G-JQNPVBL9DR");
 </script></head>
 
@@ -95,12 +95,12 @@
 <h2 id=""><a aria-hidden="true" tabindex="-1" href="#"><span class="icon icon-link"></span></a>Disclaimer</h2>
 <p>You will need to be on the latest flutter for this to work.</p>
 <p><a href="https://flutter.io/get-started/install/">Download Flutter</a></p>
-<p><img src="/attachments/flutter_logo.jpg" alt="flutter logo"></p>
+<p><img src="/attachments/flutter_logo.webp" alt="flutter logo"></p>
 <p>If you are pretty new to Flutter you can check out <a href="https://flutter.io/get-started/codelab/">this useful guide</a> on how to create a new project step by step.</p>
-<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*d6qN8hoGMwldMtIsQYIqrg.jpeg">
-<p><img src="/attachments/flutter_cross-platform.jpg" alt="mobile device"></p>
+<img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*d6qN8hoGMwldMtIsQYIqrg.webp">
+<p><img src="/attachments/flutter_cross-platform.webp" alt="mobile device"></p>
 <p>Create a new project named flutter_x and it should look like this:</p>
-<p><img src="/attachments/flutter_x_new_project.png" alt="vscode pubspec.yaml open"></p>
+<p><img src="/attachments/flutter_x_new_project.webp" alt="vscode pubspec.yaml open"></p>
 <p>You can also down the starter project <a href="https://github.com/rodydavis/flutter_x/tree/starter">here</a>.</p>
 <p>Your code should look like this:</p>
 <pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:flutter/material.dart'</span><span style="color: #C9D1D9">;</span></span>
@@ -215,13 +215,13 @@
 <span class="line"><span style="color: #C9D1D9">  }</span></span>
 <span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
 <p>Just to make sure everything is working go ahead and run the project on iOS/Android.</p>
-<p><img src="/attachments/flutter_x_starter_ipad.png" alt="flutter counter mobile example"></p>
+<p><img src="/attachments/flutter_x_starter_ipad.webp" alt="flutter counter mobile example"></p>
 <p>You should have the counter application running and working correctly. Now quit and run on Chrome. It should be listed as a device. You can also run from the command line flutter run -d chrome.</p>
-<p><img src="/attachments/flutter_x_starter_web.png" alt="flutter counter web example"></p>
+<p><img src="/attachments/flutter_x_starter_web.webp" alt="flutter counter web example"></p>
 <blockquote>
 <p>You do not get hot reload yet on web so be aware of that.</p>
 </blockquote>
-<p><img src="/attachments/flutter_x_structure.png" alt="vscode folder structure"></p>
+<p><img src="/attachments/flutter_x_structure.webp" alt="vscode folder structure"></p>
 <p>Your project should now look like this.</p>
 <p>Open your pubspec.yaml and import the following packages.</p>
 <pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #7EE787">dependencies</span><span style="color: #C9D1D9">:</span></span>
@@ -255,7 +255,7 @@
 <span class="line"></span>
 <span class="line"><span style="color: #7EE787">uses-material-design</span><span style="color: #C9D1D9">: </span><span style="color: #79C0FF">true</span></span></code></pre>
 <p>By default if you were to check if the device was mobile or web you will get an error at compile time when trying to import a plugin that is not meant for the platform. To get around this we will use dynamic imports.</p>
-<p><img src="/attachments/flutter_x_url_launcher.png" alt="vscode folder structure"></p>
+<p><img src="/attachments/flutter_x_url_launcher.webp" alt="vscode folder structure"></p>
 <p>Create a url_launcher folder and file url_launcher.dart, mobile.dart, web.dart, unsupported.dart inside the plugins folder.</p>
 <p>In the file url_launcher.dart add the following:</p>
 <pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">export</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'unsupported.dart'</span></span>
@@ -332,7 +332,7 @@
 <span class="line"><span style="color: #C9D1D9">    }</span></span>
 <span class="line"><span style="color: #C9D1D9">},</span></span></code></pre>
 <p>Now when you go to import the UrlUtils it is important to import the correct URI.</p>
-<p><img src="/attachments/flutter_x_import.png" alt="vscode folder structure"></p>
+<p><img src="/attachments/flutter_x_import.webp" alt="vscode folder structure"></p>
 <p>Make sure to import import ‘package:flutter_x/plugins/url_launcher/url_launcher.dart’; only.</p>
 <blockquote>
 <p>You can use the relative import if you wish.</p>
@@ -373,13 +373,13 @@
 <span class="line"><span style="color: #C9D1D9">  }</span></span>
 <span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
 <p>Your app on the web should look like this:</p>
-<p><img src="/attachments/flutter_x_web_1.png" alt="web example 1"></p>
+<p><img src="/attachments/flutter_x_web_1.webp" alt="web example 1"></p>
 <p>And when you tap the button..</p>
-<p><img src="/attachments/flutter_x_web_2.png" alt="web example 2"></p>
+<p><img src="/attachments/flutter_x_web_2.webp" alt="web example 2"></p>
 <p>And when you run it on iOS/Android it should look like this:</p>
-<p><img src="/attachments/flutter_x_mobile_1.png" alt="mobile example 1"></p>
+<p><img src="/attachments/flutter_x_mobile_1.webp" alt="mobile example 1"></p>
 <p>And when you tap the button..</p>
-<p><img src="/attachments/flutter_x_mobile_2.png" alt="mobile example 2"></p>
+<p><img src="/attachments/flutter_x_mobile_2.webp" alt="mobile example 2"></p>
 <p>Congratulations! You made it :)</p>
 <p><img src="/attachments/gifs_congratulations.gif" alt="mobile example 2"></p>
 <p>Here is the final project located <a href="https://github.com/rodydavis/flutter_x/tree/finish">here</a>.</p>

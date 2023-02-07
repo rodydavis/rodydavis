@@ -32,7 +32,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
 
     
-  <link rel="stylesheet" href="/_astro/_...slug_.75960322.css" />
+  <link rel="stylesheet" href="/_astro/_...slug_.ea98f1ee.css" />
 <link rel="stylesheet" href="/_astro/_...slug_.7a06253d.css" /><script type="module">window.dataLayer=window.dataLayer||[];function a(){dataLayer.push(arguments)}a("js",new Date);a("config","G-JQNPVBL9DR");
 </script></head>
 
@@ -348,7 +348,7 @@
 <span class="line"></span></code></pre>
 <p>Here we are setting up some of the editor basics to load in the styles needed for the basic layout.</p>
 <p>There are also few methods that handle updating of properties on the element such as <code>toggleDark</code> and <code>setColor</code>. When you run the application you should see the following:</p>
-<p><img src="/attachments/dynamic-theme_start.png" alt="start"></p>
+<p><img src="/attachments/dynamic-theme_start.webp" alt="start"></p>
 <p>It doesn’t look great yet, but now we can add a CodeMirror theme to import. Create a file <code>src/theme.ts</code> and update it with the following:</p>
 <pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> { css } </span><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">"lit"</span><span style="color: #C9D1D9">;</span></span>
 <span class="line"></span>
@@ -548,12 +548,12 @@
 <span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
 <p>Here we are using the <a href="https://github.com/material-foundation/material-color-utilities">Material Color Utilities</a> package and generating a theme from a source color. We can take advantage of Custom Colors to blend the values to the theme.</p>
 <p>After the theme is generated we can apply them to the root element and have the custom properties update the editor.</p>
-<p><img src="/attachments/dynamic-theme_purple-light.png" alt="purple theme light"></p>
+<p><img src="/attachments/dynamic-theme_purple-light.webp" alt="purple theme light"></p>
 <p>Changing the source color can update the theme:</p>
-<p><img src="/attachments/dynamic-theme_green-light.png" alt="green theme light"></p>
+<p><img src="/attachments/dynamic-theme_green-light.webp" alt="green theme light"></p>
 <p>Changing the brightness can set the colors as well:</p>
-<p><img src="/attachments/dynamic-theme_purple-dark.png" alt="purple theme dark">
-<img src="/attachments/dynamic-theme_green-dark.png" alt="green theme dark"></p>
+<p><img src="/attachments/dynamic-theme_purple-dark.webp" alt="purple theme dark">
+<img src="/attachments/dynamic-theme_green-dark.webp" alt="green theme dark"></p>
 <h2 id="-4"><a aria-hidden="true" tabindex="-1" href="#-4"><span class="icon icon-link"></span></a>Conclusion</h2>
 <p>If you want to learn more about building with Lit you can read the docs <a href="https://lit.dev">here</a>.</p>
 <p>The source for this example can be found <a href="https://github.com/rodydavis/codemirror-dynamic-theme">here</a>.</p>

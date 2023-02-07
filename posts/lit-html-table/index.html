@@ -32,7 +32,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
 
     
-  <link rel="stylesheet" href="/_astro/_...slug_.75960322.css" />
+  <link rel="stylesheet" href="/_astro/_...slug_.ea98f1ee.css" />
 <link rel="stylesheet" href="/_astro/_...slug_.7a06253d.css" /><script type="module">window.dataLayer=window.dataLayer||[];function a(){dataLayer.push(arguments)}a("js",new Date);a("config","G-JQNPVBL9DR");
 </script></head>
 
@@ -237,7 +237,7 @@
 <span class="line"></span></code></pre>
 <p>We have defined a few <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*">CSS Custom Properties</a> to style the table cell but many more can be added here.</p>
 <p>If everything goes well run the command <code>npm run dev</code> and the follow should appear:</p>
-<img width="100%" src="/attachments/json-to-table_finished.png">
+<img width="100%" src="/attachments/json-to-table_finished.webp">
 <h2 id="-4"><a aria-hidden="true" tabindex="-1" href="#-4"><span class="icon icon-link"></span></a>Editing</h2>
 <p>What if we wanted to support editing of any cell? With Lit and Web Components we can progressively enhance the experience without changing the html.</p>
 <p>At the top of the class add the following boolean property:</p>
@@ -281,7 +281,7 @@
 <p>Add the <code>editable</code> attribute to the <code>index.html</code>:</p>
 <pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #C9D1D9">&#x3C;</span><span style="color: #7EE787">lit-html-table</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">editable</span><span style="color: #C9D1D9">> ... &#x3C;/</span><span style="color: #7EE787">lit-html-table</span><span style="color: #C9D1D9">></span></span></code></pre>
 <p>After a reload the table should look like this and any cell can be edited.</p>
-<img width="100%" src="/attachments/json-to-table_editor.png">
+<img width="100%" src="/attachments/json-to-table_editor.webp">
 <p>An event listener can be added just before the closing <code>body</code> tag in <code>index.html</code> to grab the latest values or cell information:</p>
 <pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #C9D1D9">&#x3C;</span><span style="color: #7EE787">script</span><span style="color: #C9D1D9">></span></span>
 <span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">elem</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> document.</span><span style="color: #D2A8FF">querySelector</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">"lit-html-table"</span><span style="color: #C9D1D9">);</span></span>

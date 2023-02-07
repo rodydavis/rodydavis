@@ -32,7 +32,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
 
     
-  <link rel="stylesheet" href="/_astro/_...slug_.75960322.css" />
+  <link rel="stylesheet" href="/_astro/_...slug_.ea98f1ee.css" />
 <link rel="stylesheet" href="/_astro/_...slug_.7a06253d.css" /><script type="module">window.dataLayer=window.dataLayer||[];function a(){dataLayer.push(arguments)}a("js",new Date);a("config","G-JQNPVBL9DR");
 </script></head>
 
@@ -109,7 +109,7 @@
 <h2 id="-2"><a aria-hidden="true" tabindex="-1" href="#-2"><span class="icon icon-link"></span></a>Setting Up</h2>
 <p>You can either create a new project with Android Studio or VSCode using the GUI or navigate to the location you want your project and using this command in the terminal: <code>flutter create -i swift -a kotlin flutter_piano</code>. Make sure to include Swift and Kotlin Support!</p>
 <p>Now that you have your project created it should look like this.</p>
-<p><img src="/attachments/flutter_piano_starter.png" alt="app-icon"></p>
+<p><img src="/attachments/flutter_piano_starter.webp" alt="app-icon"></p>
 <p>Let’s start by adding some dependencies to our `pubspec.yaml’</p>
 <pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #7EE787">dependencies</span><span style="color: #C9D1D9">:</span></span>
 <span class="line"><span style="color: #C9D1D9">  </span><span style="color: #7EE787">flutter</span><span style="color: #C9D1D9">:</span></span>
@@ -167,12 +167,12 @@
 <span class="line"><span style="color: #c9d1d9">    &#x3C;string>UIInterfaceOrientationLandscapeRight&#x3C;/string></span></span>
 <span class="line"><span style="color: #c9d1d9">&#x3C;/array></span></span></code></pre>
 <p>Now we can start with the UI! When you run the application now it should start in landscape!</p>
-<p><img src="/attachments/flutter_piano_landscape.png" alt="landscape"></p>
+<p><img src="/attachments/flutter_piano_landscape.webp" alt="landscape"></p>
 <h2 id="-3"><a aria-hidden="true" tabindex="-1" href="#-3"><span class="icon icon-link"></span></a>Step 1</h2>
 <p>To make it eaiser to read lets remove the comments. Use “find and replace” and search for <code>\/\/.*</code></p>
-<p><img src="/attachments/flutter_piano_comments.png" alt="comments"></p>
+<p><img src="/attachments/flutter_piano_comments.webp" alt="comments"></p>
 <p>choose the “select all occurrances” button and hit <code>backspace</code> to delete.</p>
-<p><img src="/attachments/flutter_piano_selectall.png" alt="select all"></p>
+<p><img src="/attachments/flutter_piano_selectall.webp" alt="select all"></p>
 <p>Hit save and you should see the code format for you.</p>
 <p>The ‘main.dart’ file should look like this:</p>
 <pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:flutter/material.dart'</span><span style="color: #C9D1D9">;</span></span>
@@ -279,7 +279,7 @@
 <span class="line"></span></code></pre>
 <h2 id="-5"><a aria-hidden="true" tabindex="-1" href="#-5"><span class="icon icon-link"></span></a>Step 3</h2>
 <p>Change <code>MyApp</code> to a <code>StatefulWidget</code>. You can do this quickly by selecting <code>MyApp</code> and choose “Convert to StatefulWidget” with the helper.</p>
-<p><img src="/attachments/flutter_piano_convert.png" alt="convert"></p>
+<p><img src="/attachments/flutter_piano_convert.webp" alt="convert"></p>
 <p>It should look like this now:</p>
 <pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:flutter/material.dart'</span><span style="color: #C9D1D9">;</span></span>
 <span class="line"></span>
@@ -336,7 +336,7 @@
 <span class="line"><span style="color: #C9D1D9">}</span></span>
 <span class="line"></span></code></pre>
 <p>Now build and run your app, it should look like this.</p>
-<p><img src="/attachments/flutter_piano_darkmode.png" alt="dark-mode"></p>
+<p><img src="/attachments/flutter_piano_darkmode.webp" alt="dark-mode"></p>
 <h2 id="-7"><a aria-hidden="true" tabindex="-1" href="#-7"><span class="icon icon-link"></span></a>Step 5</h2>
 <p>We need to add some imports to the top:</p>
 <pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:flutter/services.dart'</span><span style="color: #C9D1D9">;</span></span>
@@ -399,7 +399,7 @@
 <span class="line"><span style="color: #C9D1D9">        drawer</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Drawer</span><span style="color: #C9D1D9">(child</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">SafeArea</span><span style="color: #C9D1D9">(child</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">ListView</span><span style="color: #C9D1D9">(children</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">&#x3C;</span><span style="color: #79C0FF">Widget</span><span style="color: #FF7B72">></span><span style="color: #C9D1D9">[]))),</span></span>
 <span class="line"><span style="color: #C9D1D9">      ),</span></span></code></pre>
 <p>You should now get a menu icon that when you press looks like this.</p>
-<p><img src="/attachments/flutter_piano_menu.png" alt="menu"></p>
+<p><img src="/attachments/flutter_piano_menu.webp" alt="menu"></p>
 <p>Now lets add a ListView that scrolls Horizontially to the body of the <code>Scaffold</code></p>
 <pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #C9D1D9"> body</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">ListView</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">builder</span><span style="color: #C9D1D9">(</span></span>
 <span class="line"><span style="color: #C9D1D9">            itemCount</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">7</span><span style="color: #C9D1D9">,</span></span>
@@ -564,7 +564,7 @@
 <span class="line"><span style="color: #C9D1D9">    bottomLeft</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Radius</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">circular</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">10.0</span><span style="color: #C9D1D9">), bottomRight</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Radius</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">circular</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">10.0</span><span style="color: #C9D1D9">));</span></span>
 <span class="line"></span></code></pre>
 <p>Your app should look like this:</p>
-<p><img src="/attachments/flutter_piano_keys.png" alt="keys"></p>
+<p><img src="/attachments/flutter_piano_keys.webp" alt="keys"></p>
 <p>Your code should look like this:</p>
 <pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:flutter/material.dart'</span><span style="color: #C9D1D9">;</span></span>
 <span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:flutter/services.dart'</span><span style="color: #C9D1D9">;</span></span>
@@ -758,7 +758,7 @@
 <span class="line"><span style="color: #C9D1D9">       margin</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">EdgeInsets</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">symmetric</span><span style="color: #C9D1D9">(horizontal</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">2.0</span><span style="color: #C9D1D9">));</span></span>
 <span class="line"><span style="color: #C9D1D9"> }</span></span></code></pre>
 <p>Now when you run the app it should look like this:</p>
-<p><img src="/attachments/flutter_piano_labels.png" alt="labels"></p>
+<p><img src="/attachments/flutter_piano_labels.webp" alt="labels"></p>
 <p>Almost there! Now let’s give our user some control.</p>
 <h2 id="-12"><a aria-hidden="true" tabindex="-1" href="#-12"><span class="icon icon-link"></span></a>Step 10</h2>
 <p>Add these settings to the <code>Drawer</code></p>
@@ -781,13 +781,13 @@
 <span class="line"><span style="color: #C9D1D9">        </span><span style="color: #D2A8FF">setState</span><span style="color: #C9D1D9">(() </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> _showLabels </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> value))),</span></span>
 <span class="line"><span style="color: #79C0FF">Divider</span><span style="color: #C9D1D9">(),</span></span></code></pre>
 <p>Now you should see this:</p>
-<p><img src="/attachments/flutter_piano_settings.png" alt="settings"></p>
+<p><img src="/attachments/flutter_piano_settings.webp" alt="settings"></p>
 <h2 id="-13"><a aria-hidden="true" tabindex="-1" href="#-13"><span class="icon icon-link"></span></a>Step 11</h2>
 <p>To start with <code>Middle C</code> lets add an inital scroll offset to the <code>ListView</code></p>
 <p><code>  controller: ScrollController(initialScrollOffset: 1500.0),</code></p>
 <p>Now when we start the app it should co to C4.</p>
 <p>The final App should look like this:</p>
-<p><img src="/attachments/flutter_piano_final.png" alt="final"></p>
+<p><img src="/attachments/flutter_piano_final.webp" alt="final"></p>
 <p>The final code should look like this:</p>
 <pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:flutter/material.dart'</span><span style="color: #C9D1D9">;</span></span>
 <span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:flutter/services.dart'</span><span style="color: #C9D1D9">;</span></span>
