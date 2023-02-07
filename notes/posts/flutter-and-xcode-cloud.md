@@ -8,7 +8,7 @@ tags:
   - scripting
   - ci
   - apps
-image: /attachments/flutter_xcode-cloud.png
+image: /attachments/flutter_xcode-cloud.webp
 related:
   - /posts/flutter-one-click-release/
   - /posts/fastlane-and-flutter/
@@ -44,7 +44,7 @@ code .
 
 The generated files should look like the following:
 
-![flutter files](/attachments/flutter_files.png)
+![flutter files](/attachments/flutter_files.webp)
 
 Create a new file at `ios/ci_scripts/ci_post_install.sh` and update it with the following:
 
@@ -82,15 +82,15 @@ chmod +x ios/ci_scripts/ci_post_clone.sh
 
 Open up the iOS project in Xcode by right clicking on the iOS folder and selecting "Open in Xcode".
 
-![flutter xcode open](/attachments/flutter_xcode-open.png)
+![flutter xcode open](/attachments/flutter_xcode-open.webp)
 
 You can also open the project by double clicking on the `ios/Runner.xcworkspace` file.
 
-![flutter xcode launch](/attachments/flutter_xcode-launch.png)
+![flutter xcode launch](/attachments/flutter_xcode-launch.webp)
 
 Make sure you have the latest version of Xcode Cloud install and that you have [access to the beta](https://developer.apple.com/xcode-cloud/beta/). Create a new workflow by the menu `Product > Xcode Cloud > Create Workflow`:
 
-![flutter workflow create](/attachments/flutter_workflow-create.png)
+![flutter workflow create](/attachments/flutter_workflow-create.webp)
 
 Follow the flow to add the project and choose which type of build you want.
 
@@ -127,7 +127,7 @@ flutter build ios --no-codesign
 
 If all goes well it will look like the following after a successful build:
 
-![flutter workflow done](/attachments/flutter_workflow-done.png)
+![flutter workflow done](/attachments/flutter_workflow-done.webp)
 
 ## Conclusion
 

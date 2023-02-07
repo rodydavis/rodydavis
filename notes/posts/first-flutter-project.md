@@ -6,7 +6,7 @@ publishDate: 28 Apr 2019
 tags:
 - posts
 - flutter
-image: /attachments/flutter_first.png
+image: /attachments/flutter_first.webp
 ---
 
 Flutter is a UI Toolkit from Google allowing you to create expressive and unique experiences unmatched on any platform. You can write your UI once and run it everywhere. Yes everywhere! Web, iOS, Android, Windows, Linux, MacOS, Raspberry PI and much more…
@@ -230,8 +230,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  #   - images/a_dot_burr.webp
+  #   - images/a_dot_ham.webp
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -287,7 +287,7 @@ Application finished.
 
 You can also run multiple devices at the same time. You can find more info on the [Flutter Octopus here](https://github.com/flutter/flutter/wiki/Multi-device-debugging-in-VS-Code). If everything went well you should see the following application launch:
 
-<img width="100%" src="/attachments/flutter_first.png">
+<img width="100%" src="/attachments/flutter_first.webp">
 
 It is a pretty basic application at this point but it is important to show how easy it is to change the state in the application. You can rebuild the UI just by calling “setState()”.
 

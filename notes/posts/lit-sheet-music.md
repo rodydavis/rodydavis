@@ -339,7 +339,7 @@ declare global {
 
 Run `npm run dev` and the following should appear if all went well:
 
-![](/attachments/sheet-music_finished.png)
+![](/attachments/sheet-music_finished.webp)
 
 ## Conclusion
 

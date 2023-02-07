@@ -7,7 +7,7 @@ tags:
 - posts
 - flutter
 - web
-image: /attachments/deep-linking_0.png
+image: /attachments/deep-linking_0.webp
 ---
 
 In this article I will show you how to have proper URL navigation for your application. Open links to specific pages, protected routes and custom transitions.
@@ -28,21 +28,21 @@ Here is the source code:
 
 * Update your “pubspec.yaml” with the following:
 
-![](/attachments/deep-linking_0.png)
+![](/attachments/deep-linking_0.webp)
 
 ## Step 1
 
 * Create a file at “lib/ui/home/screen.dart” and add the following:
 
-![](/attachments/deep-linking_1.png)
+![](/attachments/deep-linking_1.webp)
 
 * Update your “lib/main.dart” with the following:
 
-![](/attachments/deep-linking_2.png)
+![](/attachments/deep-linking_2.webp)
 
 * Run your application and you should see the following:
 
-![](/attachments/deep-linking_3.png)
+![](/attachments/deep-linking_3.webp)
 
 ## Step 2
 
@@ -52,19 +52,19 @@ Now we need to grab the url the user enters into the address bar.
 
 * Create a file inside named: “web.dart” with the following:
 
-![](/attachments/deep-linking_4.png)
+![](/attachments/deep-linking_4.webp)
 
 * Create a file inside named: “unsupported.dart” with the following:
 
-![](/attachments/deep-linking_5.png)
+![](/attachments/deep-linking_5.webp)
 
 * Create a file inside named: “navigator.dart” with the following:
 
-![](/attachments/deep-linking_6.png)
+![](/attachments/deep-linking_6.webp)
 
 * Now go back to your “lib/main.dart” file and add the navigator:
 
-![](/attachments/deep-linking_7.png)
+![](/attachments/deep-linking_7.webp)
 
 > It’s important to import the navigator as shown as this will have the conditional import for web compiling.
 
@@ -76,11 +76,11 @@ Now let’s add the proper routing.
 
 * Create a new file “lib/ui/router.dart” and add the following:
 
-![](/attachments/deep-linking_8.png)
+![](/attachments/deep-linking_8.webp)
 
 * Also update “lib/main.dart” with the following:
 
-![](/attachments/deep-linking_9.png)
+![](/attachments/deep-linking_9.webp)
 
 > Notice how we removed the “home” field for MaterialApp. This is because the router will handle everything. By default we will go home on “/”
 
@@ -90,35 +90,35 @@ Now let’s add multiple screens to put this to the test! Add the following fold
 
 * Create a file “lib/ui/account/screen.dart” and add the following:
 
-![](/attachments/deep-linking_10.png)
+![](/attachments/deep-linking_10.webp)
 
 * Create a file “lib/ui/settings/screen.dart” and add the following:
 
-![](/attachments/deep-linking_11.png)
+![](/attachments/deep-linking_11.webp)
 
 * Create a file “lib/ui/about/screen.dart” and add the following:
 
-![](/attachments/deep-linking_12.png)
+![](/attachments/deep-linking_12.webp)
 
 * Add the following to “lib/ui/router.dart”:
 
-![](/attachments/deep-linking_13.png)
+![](/attachments/deep-linking_13.webp)
 
 * Now when you navigate to /about, /account and /settings you will go to the new pages!
 
-![](/attachments/deep-linking_14.png)
+![](/attachments/deep-linking_14.webp)
 
 ## Step 5
 
 Now let’s tie into the browser navigation buttons! Update “lib/ui/home/screen.dart” with the following:
 
-![](/attachments/deep-linking_15.png)
+![](/attachments/deep-linking_15.webp)
 
 * Now when you run the application and click on the settings icon it will launch the new screen as expected. But if you click your browsers back button it will go back to the home screen!
 
-![](/attachments/deep-linking_16.png)
+![](/attachments/deep-linking_16.webp)
 
-![](/attachments/deep-linking_17.png)
+![](/attachments/deep-linking_17.webp)
 
 ## Step 6
 
@@ -126,15 +126,15 @@ These urls are great but what if you want to pass data such as an ID that is not
 
 * Update “lib/ui/account/screen.dart” with the following:
 
-![](/attachments/deep-linking_18.png)
+![](/attachments/deep-linking_18.webp)
 
 * Let’s update our “lib/ui/router.dart” with the following:
 
-![](/attachments/deep-linking_19.png)
+![](/attachments/deep-linking_19.webp)
 
 * Now when you run your application and navigate to “/account/40” you will see the following:
 
-![](/attachments/deep-linking_20.png)
+![](/attachments/deep-linking_20.webp)
 
 ## Conclusion
 

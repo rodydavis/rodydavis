@@ -7,7 +7,7 @@ tags:
 - posts
 - flutter
 - api
-image: /attachments/flutter_first.png
+image: /attachments/flutter_first.webp
 ---
 
 After you build your flutter project you may want to reuse the models and business logic from your lib folder. I will show you how to go about setting up the project to have iOS, Android, Web, Windows, MacOS, Linux and a REST API interface with one project. The REST API can also be deploy to Google Cloud Run for Dart everywhere.
@@ -120,7 +120,7 @@ This is just a basic screen and should look very normal.
 
 ### Counter Example
 
-![](https://cdn-images-1.medium.com/max/2336/1*qFZepZBtk0RhEojjGsI85g.png)
+![](https://cdn-images-1.medium.com/max/2336/1*qFZepZBtk0RhEojjGsI85g.webp)
 
 Now create a file ui/counter/screen.dart and add the following:
 
@@ -225,7 +225,7 @@ As you can see it is really easy to expose only what we want to while still havi
 
 ### Todo Example
 
-![](https://cdn-images-1.medium.com/max/2336/1*47x4TDkyWCo8-qMCfYaeng.png)
+![](https://cdn-images-1.medium.com/max/2336/1*47x4TDkyWCo8-qMCfYaeng.webp)
 
 Lets create a file at ui/todos/screen.dart and add the following:
 
@@ -368,9 +368,9 @@ Here we just get dummy data from a url that emits json and convert them to our c
 
 ### Run the Project (Web)
 
-![](https://cdn-images-1.medium.com/max/5248/1*et2kG6_skauXJ6rogFy_ZQ.png)
+![](https://cdn-images-1.medium.com/max/5248/1*et2kG6_skauXJ6rogFy_ZQ.webp)
 
-![](https://cdn-images-1.medium.com/max/5248/1*za20ru3G18DUFob07Cjv2A.png)
+![](https://cdn-images-1.medium.com/max/5248/1*za20ru3G18DUFob07Cjv2A.webp)
 
 As you can see when you run your project on chrome you will get the same application that you got on mobile. Even the networking is working in the web. You can call the model and retrieve the list just like you would expect.
 
@@ -657,21 +657,21 @@ If you are using [VSCode](https://code.visualstudio.com/) then you will need to 
 
 Now when you hit run with Server selected you will see the output:
 
-![](https://cdn-images-1.medium.com/max/2000/1*akfcrkLuxit4vZdtHJty_Q.png)
+![](https://cdn-images-1.medium.com/max/2000/1*akfcrkLuxit4vZdtHJty_Q.webp)
 
 You can navigate to this in a browser but you can also work with this in [Postman](https://www.getpostman.com/).
 
-![](https://cdn-images-1.medium.com/max/4796/1*zJR2ZNZfCmvLg3y5wByLNA.png)
+![](https://cdn-images-1.medium.com/max/4796/1*zJR2ZNZfCmvLg3y5wByLNA.webp)
 
-![](https://cdn-images-1.medium.com/max/4788/1*Z2vnHjHEfYe8yWajGWVLOw.png)
+![](https://cdn-images-1.medium.com/max/4788/1*Z2vnHjHEfYe8yWajGWVLOw.webp)
 
 Just by adding to the url todos and todos/1 it will return different responses.
 
 For the counter model we can use query parameters too!
 
-![](https://cdn-images-1.medium.com/max/4768/1*YMwQEOoaCjngYpidKBbADg.png)
+![](https://cdn-images-1.medium.com/max/4768/1*YMwQEOoaCjngYpidKBbADg.webp)
 
-![](https://cdn-images-1.medium.com/max/4760/1*vPYs9780bcVrlIPBMjF4eQ.png)
+![](https://cdn-images-1.medium.com/max/4760/1*vPYs9780bcVrlIPBMjF4eQ.webp)
 
 Just by adding ?count=22 it will update the model with the input.
 
@@ -679,9 +679,9 @@ Just by adding ?count=22 it will update the model with the input.
 
 As a side benefit we can also run this project on Desktop. Check out the final project for the desktop folders needed from [Flutter Desktop Embedding](https://github.com/google/flutter-desktop-embedding).
 
-![](https://cdn-images-1.medium.com/max/3648/1*Mk_6Rlq2qMbpk79OPo_QBw.png)
+![](https://cdn-images-1.medium.com/max/3648/1*Mk_6Rlq2qMbpk79OPo_QBw.webp)
 
-![](https://cdn-images-1.medium.com/max/3648/1*hWirIWGRQjN8hVvUZsB2Nw.png)
+![](https://cdn-images-1.medium.com/max/3648/1*hWirIWGRQjN8hVvUZsB2Nw.webp)
 
 ## Conclusion
 

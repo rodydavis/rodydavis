@@ -11,7 +11,7 @@ tags:
 - canvas
 - vite
 - playground
-image: /attachments/draggable-dom_canvas.png
+image: /attachments/draggable-dom_canvas.webp
 ---
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a interactive dom with CSS transforms and slots.
@@ -257,7 +257,7 @@ The order of the slots defines what renders on top of each other. For each item 
 
 Currently nothing is happening when we interact with the elements but things should be rendering.
 
-<img width="100%" src="/attachments/draggable-dom_canvas.png">
+<img width="100%" src="/attachments/draggable-dom_canvas.webp">
 
 Now let's add the event handlers for the [pointer events](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events) by appending the following to the class:
 

@@ -7,7 +7,7 @@ tags:
 - flutter
 - apps
 - ci
-image: /attachments/flutter_fastlane.jpg
+image: /attachments/flutter_fastlane.webp
 ---
 
 > **TLDR** You can find the script [here](https://gist.github.com/rodydavis/774b36e32d7efa882cca8dd16da6e74c).

@@ -6,11 +6,11 @@ tags:
     - music
     - ios
     - android
-image: /attachments/the-pocket-piano_icon.png
+image: /attachments/the-pocket-piano_icon.webp
 skip: true
 ---
 
-![](/attachments/the-pocket-piano_icon.png)
+![](/attachments/the-pocket-piano_icon.webp)
 
 The Pocket Piano is a fully featured piano optimized for all screen sizes. Features: 
 
@@ -25,8 +25,8 @@ The Pocket Piano is a fully featured piano optimized for all screen sizes. Featu
 
 ## Download
 
-[![](/attachments/app_store.png)](https://apps.apple.com/us/app/the-pocket-piano/id1453992672)
+[![](/attachments/app_store.webp)](https://apps.apple.com/us/app/the-pocket-piano/id1453992672)
 
-[![](/attachments/google_play.png)](https://play.google.com/store/apps/details?id=com.appleeducate.flutter_piano&hl=en_US&gl=US)
+[![](/attachments/google_play.webp)](https://play.google.com/store/apps/details?id=com.appleeducate.flutter_piano&hl=en_US&gl=US)
 
 [Open Web App](https://pocketpiano.app)

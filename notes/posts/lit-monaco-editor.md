@@ -10,7 +10,7 @@ tags:
 - editor
 - web
 - vite
-image: /attachments/code-editor_dark.png
+image: /attachments/code-editor_dark.webp
 ---
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to wrap the [Monaco Editor](https://microsoft.github.io/monaco-editor/) that powers [VSCode](https://code.visualstudio.com/).
@@ -235,11 +235,11 @@ firstUpdated() {
 
 Now the editor should be running and able to be interacted with:
 
-<img width="100%" src="/attachments/code-editor_light.png">
+<img width="100%" src="/attachments/code-editor_light.webp">
 
 When the system changes to dark mode it will [switch](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) as well!
 
-<img width="100%" src="/attachments/code-editor_dark.png">
+<img width="100%" src="/attachments/code-editor_dark.webp">
 
 To get and set the value from the editor we can add 2 helper methods:
 

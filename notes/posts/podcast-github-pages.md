@@ -8,7 +8,7 @@ tags:
 - flutter
 - podcast
 - github
-image: /attachments/podcast-github_gh-pages.jpeg
+image: /attachments/podcast-github_gh-pages.webp
 ---
 
 Do you have a story to tell and want to share it with the world but do not know where to start? Are you a developer looking to start a tech podcast? Are you looking to save money for hosting? Well this article is for you!
@@ -17,7 +17,7 @@ Do you have a story to tell and want to share it with the world but do not know 
 
 [Github source](https://github.com/rodydavis/podcast-player)
 
-![](/attachments/podcast-github_gh-pages.jpeg)
+![](/attachments/podcast-github_gh-pages.webp)
 
 [Github Pages](https://pages.github.com/) allows you to host any website for free on Github. You can host any kind of file or content and will be distributed with Github CDN around the world. You can even setup your Podcast to release new content with [Github Actions](https://github.com/features/actions) for each new episode.
 
@@ -95,7 +95,7 @@ Put the new mp3 audio file in the “player/web/audio” folder. Now edit the RS
     <itunes:email>rody.davis.jr@gmail.com</itunes:email>
     <itunes:category text="Technology" />
     <image>
-      <url>https://rodydavis.github.io/podcast-player/img/icon.jpg</url>
+      <url>https://rodydavis.github.io/podcast-player/img/icon.webp</url>
       <title>Creative Engineering</title>
       <link>https://rodydavis.github.io/podcast-player/</link>
     </image>
@@ -106,12 +106,12 @@ Put the new mp3 audio file in the “player/web/audio” folder. Now edit the RS
     <itunes:keywords>flutter,dart,github,vr,ar,web</itunes:keywords>
     <copyright>Rody Davis Productions 2020</copyright>
     <description>Exploring Flutter, VR, AR, Cross-Platform Projects</description>
-    <googleplay:image href="https://rodydavis.github.io/podcast-player/img/icon.jpg" />
+    <googleplay:image href="https://rodydavis.github.io/podcast-player/img/icon.webp" />
     <language>en-us</language>
     <itunes:explicit>no</itunes:explicit>
     <pubDate>Mon, 13 Apr 2020 13:00:00 PDT</pubDate>
     <link>https://rodydavis.github.io/podcast-player/feed.xml</link>
-    <itunes:image href="https://rodydavis.github.io/podcast-player/img/icon.jpg" />
+    <itunes:image href="https://rodydavis.github.io/podcast-player/img/icon.webp" />
     <item>
       <author>Rody Davis, Norbert Kozsir</author>
       <itunes:author>Rody Davis, Norbert Kozsir</itunes:author>

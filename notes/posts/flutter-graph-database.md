@@ -5,7 +5,7 @@ publishDate: 10 Oct 2022
 tags:
 - posts
 - sqlite
-image: /img/graph-db/thumbnail.png
+image: /img/graph-db/thumbnail.webp
 ---
 
 In this article I will go over how to create and use a graph database with [Flutter](https://flutter.dev).
@@ -872,7 +872,7 @@ class _ExampleState extends State<Example> {
 
 When you run the flutter app you should see the following:
 
-![Preview](/img/graph-db/thumbnail.png)
+![Preview](/img/graph-db/thumbnail.webp)
 
 ## Conclusion
 

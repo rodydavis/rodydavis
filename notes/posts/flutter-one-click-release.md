@@ -8,20 +8,20 @@ tags:
 - flutter
 - ci
 - scripting
-image: /attachments/flutter_first.png
+image: /attachments/flutter_first.webp
 ---
 
 ## 1. Install Flutter
 
 [Download Flutter](https://flutter.io/get-started/install/)
 
-![flutter](/attachments/flutter_logo.jpg)
+![flutter](/attachments/flutter_logo.webp)
 
 ## 2. Create new Flutter Project
 
 If you are pretty new to Flutter you can check out [this useful guide](https://flutter.io/get-started/codelab/) on how to create a new project step by step. 
 
-![cross-platform](/attachments/flutter_cross-platform.jpg)
+![cross-platform](/attachments/flutter_cross-platform.webp)
 
 ## 3. Create App in iTunes Connect
 
@@ -32,7 +32,7 @@ If you are not familiar with iTunes Connect, check out [this article](https://cl
 
 Setting up an app in the Google Play Console can be tricky, make sure to check out the [official reference](https://support.google.com/googleplay/android-developer/answer/113469?hl=en-GB) and [this guide](https://medium.com/mindorks/upload-your-first-android-app-on-play-store-step-by-step-ee0de9123ac0) if you are having trouble. 
 
-![fastlane](/attachments/flutter_fastlane.jpg)
+![fastlane](/attachments/flutter_fastlane.webp)
 
 ## 5. Navigate to Project > ios and Setup Fastlane
 
@@ -142,7 +142,7 @@ Right now everything is working just by the command line. If you navigate to you
 
 If you want to be able to submit your app to Google Play and the App Store with one click we will be using [Automator](http://www.applegazette.com/os-x/getting-started-automator-workflows-mac/). Create a new Automator Application. And Search for "Ask for Confirmation" and "Run AppleScript" and drag in.
 
-![fastlane](/attachments/flutter_automator.jpg)
+![fastlane](/attachments/flutter_automator.webp)
 
 Here is the Script for beta and release. You will need to create a Automator Application for both Beta and Release for each app you want automated. Save it where ever you want and create an Alias to be but on the Desktop.
 

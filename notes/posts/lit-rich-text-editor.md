@@ -11,7 +11,7 @@ tags:
 - wysiwyg
 - vite
 - playground
-image: /attachments/rich-text_editor-finish.png
+image: /attachments/rich-text_editor-finish.webp
 ---
 
 In this article I will go over how to set up a [Lit](https://lit.dev) web component and use it to create a rich text editor.
@@ -254,7 +254,7 @@ export class LitRichTextEditor extends LitElement {
 
 With everything updated run `npm run dev` and the following should appear in the browser:
 
-![](/attachments/rich-text_editor-start.png)
+![](/attachments/rich-text_editor-start.webp)
 
 Nothing special is happening yet, but the template is being read and passed into the element, parsed and setting the [`contenteditable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable) attribute to `true`. 
 
@@ -652,7 +652,7 @@ Following this great suggestion [here](https://stackoverflow.com/a/62755574/7303
 
 If everything went well when the command `npm run dev` is run the following should appear in the viewport:
 
-![](/attachments/rich-text_editor-finish.png)
+![](/attachments/rich-text_editor-finish.webp)
 
 ## Conclusion
 

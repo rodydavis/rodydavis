@@ -6,7 +6,7 @@ tags:
 - posts
 - flutter
 - scripting
-image: /attachments/flutter_first.png
+image: /attachments/flutter_first.webp
 ---
 
 Run Flutter web with SKIA

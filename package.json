@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "start": "pnpm dev",
+    "images": "./scripts/images.sh",
     "copy": "cp -r notes/attachments/ public/attachments/",
     "sync": "astro sync",
     "dev": "pnpm copy && astro dev",

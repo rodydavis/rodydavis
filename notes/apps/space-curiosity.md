@@ -7,11 +7,11 @@ tags:
     - space
     - ios
     - android
-image: /attachments/space-curiosity_icon.png
+image: /attachments/space-curiosity_icon.webp
 skip: true
 ---
 
-![](/attachments/space-curiosity_icon.png)
+![](/attachments/space-curiosity_icon.webp)
 
 A brief overview of a new app built with [Flutter](https://Flutter.io) by Rody Davis and Jesus Rodriguez.
 
@@ -19,26 +19,26 @@ A brief overview of a new app built with [Flutter](https://Flutter.io) by Rody D
 
 About 6 months ago Jesus Rodriguez launched his app "SpaceX GO!" On Reddit and I had just recently had launched my app "Daily NASA". I messaged him because not many people were building production apps with Flutter yet. I wasn't to see what he thought about collaboration. Over the next 6 months, we would brainstorm and design an app together in Flutter that could reach a larger audience. Him being an Android Dev took Google Play and me being iOS Dev I took the App Store.
 
-![space-x-section](/attachments/space-curiosity_space-x.png)
+![space-x-section](/attachments/space-curiosity_space-x.webp)
 
 ## Development
 
 What was so amazing about Flutter is that for the first time an iOS Dev and Android Dev could collaborate to design an app together that targeted both audiences. In our app, we decided to not go with material design or Cupertino style. 
 With GitHub, it made it so easy to do Pull Requests and pitch and refactor the app without messing up the other. Aside from the occasional merge conflict. Most of the issues were due to Flutter and Dart evolving so fast and lots of hacks or struggles would be solved with an update.
 
-![nasa-images](/attachments/space-curiosity_nasa-images.png)
+![nasa-images](/attachments/space-curiosity_nasa-images.webp)
 
 One great thing about the Flutter plugin system is that if you find a plugin that does almost what you need but not all, you can fork the source and override the dependency in your `pubspec.yaml`. This was extremely useful when we had to update all of our plugins to support AndroidX.
 
-![iss-section](/attachments/space-curiosity_iss.png)
+![iss-section](/attachments/space-curiosity_iss.webp)
 
 When Flare by 2Dimensions came out, I was so inspired and created the "Weight Calculators" as you see in the app. All the 60fps animations are done in the app. This is the first product that allows the designer and developer to work together without messing up each other's workflow. You can view the animation here.
 
-![calc-section](/attachments/space-curiosity_calc.png)
+![calc-section](/attachments/space-curiosity_calc.webp)
 
 For the other parts of the app, we combined what we were working on individually. Jesus brought in and modified SpaceX Go!, and I did the same for daily NASA. Once we had a working prototype it was just a matter of writing a list of features and tackle them 1 by 1.
 
-![news-section](/attachments/space-curiosity_news.png)
+![news-section](/attachments/space-curiosity_news.webp)
 
 ## Release
 
@@ -57,6 +57,6 @@ You can find [Rody Davis](https://www.github.com/rodydavis) and [Jesus Rodriguez
 
 ## Download
 
-[![](/attachments/app_store.png)](https://apps.apple.com/us/app/space-curiosity/id1435609944)
+[![](/attachments/app_store.webp)](https://apps.apple.com/us/app/space-curiosity/id1435609944)
 
-[![](/attachments/google_play.png)](https://play.google.com/store/apps/details?id=com.chechu.curiosity)
+[![](/attachments/google_play.webp)](https://play.google.com/store/apps/details?id=com.chechu.curiosity)
