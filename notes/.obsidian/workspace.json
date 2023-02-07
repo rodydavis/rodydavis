@@ -13,7 +13,67 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "apps/widget-studio.md",
+                "file": "privacy.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "4ba9c0b264a83591",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "snippets/flutter-infinite-canvas.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "9e6ea1e8c711889b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "snippets/flutter-markdown-material-3.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "bd7aabcd63497f35",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "snippets/flutter-infinite-canvas.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "4fdcae0141575cf7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "snippets/flutter-animated-state.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "71ec5d57ff306047",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "posts/flutter-multi-touch-canvas.md",
                 "mode": "source",
                 "source": false
               }
@@ -40,7 +100,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -106,7 +166,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "recipes/the-perfect-brisket.md",
+                "file": "posts/flutter-multi-touch-canvas.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +183,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "recipes/the-perfect-brisket.md",
+                "file": "posts/flutter-multi-touch-canvas.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -146,7 +206,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "recipes/the-perfect-brisket.md"
+                "file": "posts/flutter-multi-touch-canvas.md"
               }
             }
           }
@@ -167,17 +227,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c93b3991944cd9ca",
+  "active": "71ec5d57ff306047",
   "lastOpenFiles": [
-    "apps/widget-studio.md",
+    "snippets/material-web-theme-adapter.md",
+    "snippets/flutter-master-detail.md",
+    "snippets/flutter-markdown-material-3.md",
+    "snippets/flutter-infinite-canvas.md",
+    "snippets/flutter-animated-state.md",
+    "about.md",
     "privacy.md",
-    "recipes/the-perfect-brisket.md",
-    "apps/the-pocket-piano.md",
-    "apps/the-pitch-pipe.md",
-    "apps/space-curiosity.md",
-    "apps/hymns-for-worship.md",
-    "readme.md",
-    "talks.md",
-    "about.md"
+    "posts/automate-flutter-apps.md",
+    "apps/widget-studio.md",
+    "recipes/the-perfect-brisket.md"
   ]
 }
