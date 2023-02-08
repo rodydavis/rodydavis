@@ -2,6 +2,12 @@
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSH3GVC49GNNJ)
 [![Github Pages Astro CI](https://github.com/rodydavis/rodydavis/actions/workflows/main.yml/badge.svg)](https://github.com/rodydavis/rodydavis/actions/workflows/main.yml)
 
+## Stats
+
+![](https://github-readme-stats.vercel.app/api?username=rodydavis&count_private=true&theme=default&show_icons=true)
+
+## Overview
+
 - 🕹 Fascinated by [VR/AR](https://aframe.io/)
 - 🤓 Working on [Web Componenets](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
 - 🥳 Developer Advocate for [@material-components](https://github.com/material-components)
@@ -15,8 +21,6 @@
 - 📹 Subscribe on [YouTube](https://www.youtube.com/rodydavis)
 - 📖 Read on [Medium](https://medium.com/@rody.davis.jr)
 
-
-![](https://github-readme-stats.vercel.app/api?username=rodydavis&count_private=true&theme=default&show_icons=true)
-
+## Recently Played
 
 ![Alt text](https://spotify-recently-played-readme.vercel.app/api?user=1240938184)
