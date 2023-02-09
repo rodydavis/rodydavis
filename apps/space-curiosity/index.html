@@ -32,8 +32,8 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
 
     
-  <link rel="stylesheet" href="/_astro/_...slug_.ea98f1ee.css" />
-<link rel="stylesheet" href="/_astro/_...slug_.7a06253d.css" /><script type="module">window.dataLayer=window.dataLayer||[];function a(){dataLayer.push(arguments)}a("js",new Date);a("config","G-JQNPVBL9DR");
+  <link rel="stylesheet" href="/_astro/_...slug_.a5420181.css" />
+<link rel="stylesheet" href="/_astro/_...slug_.55121d5d.css" /><script type="module">window.dataLayer=window.dataLayer||[];function a(){dataLayer.push(arguments)}a("js",new Date);a("config","G-JQNPVBL9DR");
 </script></head>
 
   <body class="markdown-body astro-MDYSN4OI">
@@ -58,62 +58,22 @@
   </nav>
 </header>
     <main class="astro-MDYSN4OI">
-      <style>
-	@media (min-width: 860px) {
-		main {
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-		}
-		article {
-			flex: 1;
-		}
-		aside {
-			display: block;
-			position: sticky;
-			top: 0;
-			right: 0;
-			max-height: 100vh;
-			overflow-y: auto;
-		}
-	}
-	</style><main class="astro-BVZIHDZO">
+      <style>astro-island,astro-slot{display:contents}</style><script>(self.Astro=self.Astro||{}).idle=t=>{const e=async()=>{await(await t())()};"requestIdleCallback"in window?window.requestIdleCallback(e):setTimeout(e,200)},window.dispatchEvent(new Event("astro:idle"));var l;{const c={0:t=>t,1:t=>JSON.parse(t,o),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(JSON.parse(t,o)),5:t=>new Set(JSON.parse(t,o)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(JSON.parse(t)),9:t=>new Uint16Array(JSON.parse(t)),10:t=>new Uint32Array(JSON.parse(t))},o=(t,s)=>{if(t===""||!Array.isArray(s))return s;const[e,n]=s;return e in c?c[e](n):void 0};customElements.get("astro-island")||customElements.define("astro-island",(l=class extends HTMLElement{constructor(){super(...arguments);this.hydrate=()=>{if(!this.hydrator||this.parentElement&&this.parentElement.closest("astro-island[ssr]"))return;const s=this.querySelectorAll("astro-slot"),e={},n=this.querySelectorAll("template[data-astro-template]");for(const r of n){const i=r.closest(this.tagName);!i||!i.isSameNode(this)||(e[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(const r of s){const i=r.closest(this.tagName);!i||!i.isSameNode(this)||(e[r.getAttribute("name")||"default"]=r.innerHTML)}const a=this.hasAttribute("props")?JSON.parse(this.getAttribute("props"),o):{};this.hydrator(this)(this.Component,a,e,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),window.removeEventListener("astro:hydrate",this.hydrate),window.dispatchEvent(new CustomEvent("astro:hydrate"))}}connectedCallback(){!this.hasAttribute("await-children")||this.firstChild?this.childrenConnectedCallback():new MutationObserver((s,e)=>{e.disconnect(),this.childrenConnectedCallback()}).observe(this,{childList:!0})}async childrenConnectedCallback(){window.addEventListener("astro:hydrate",this.hydrate);let s=this.getAttribute("before-hydration-url");s&&await import(s),this.start()}start(){const s=JSON.parse(this.getAttribute("opts")),e=this.getAttribute("client");if(Astro[e]===void 0){window.addEventListener(`astro:${e}`,()=>this.start(),{once:!0});return}Astro[e](async()=>{const n=this.getAttribute("renderer-url"),[a,{default:r}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),i=this.getAttribute("component-export")||"default";if(!i.includes("."))this.Component=a[i];else{this.Component=a;for(const d of i.split("."))this.Component=this.Component[d]}return this.hydrator=r,this.hydrate},s,this)}attributeChangedCallback(){this.hydrator&&this.hydrate()}},l.observedAttributes=["props"],l))}</script><main class="astro-BVZIHDZO">
     <article class="astro-BVZIHDZO">
-      
+      <!-- {
+        image !== undefined && (
+          <img width={720} height={360} src={image} alt="" />
+        )
+      } -->
       <h1 class="title astro-BVZIHDZO">Launching... Space Curiosity</h1>
+      <time class="astro-BVZIHDZO">March 10, 2019</time>
       
-      
-      <hr class="astro-BVZIHDZO">
-      <p><img src="/attachments/space-curiosity_icon.webp" alt=""></p>
-<p>A brief overview of a new app built with <a href="https://Flutter.io">Flutter</a> by Rody Davis and Jesus Rodriguez.</p>
-<h2 id=""><a aria-hidden="true" tabindex="-1" href="#"><span class="icon icon-link"></span></a>Background</h2>
-<p>About 6 months ago Jesus Rodriguez launched his app “SpaceX GO!” On Reddit and I had just recently had launched my app “Daily NASA”. I messaged him because not many people were building production apps with Flutter yet. I wasn’t to see what he thought about collaboration. Over the next 6 months, we would brainstorm and design an app together in Flutter that could reach a larger audience. Him being an Android Dev took Google Play and me being iOS Dev I took the App Store.</p>
-<p><img src="/attachments/space-curiosity_space-x.webp" alt="space-x-section"></p>
-<h2 id="-1"><a aria-hidden="true" tabindex="-1" href="#-1"><span class="icon icon-link"></span></a>Development</h2>
-<p>What was so amazing about Flutter is that for the first time an iOS Dev and Android Dev could collaborate to design an app together that targeted both audiences. In our app, we decided to not go with material design or Cupertino style. 
-With GitHub, it made it so easy to do Pull Requests and pitch and refactor the app without messing up the other. Aside from the occasional merge conflict. Most of the issues were due to Flutter and Dart evolving so fast and lots of hacks or struggles would be solved with an update.</p>
-<p><img src="/attachments/space-curiosity_nasa-images.webp" alt="nasa-images"></p>
-<p>One great thing about the Flutter plugin system is that if you find a plugin that does almost what you need but not all, you can fork the source and override the dependency in your <code>pubspec.yaml</code>. This was extremely useful when we had to update all of our plugins to support AndroidX.</p>
-<p><img src="/attachments/space-curiosity_iss.webp" alt="iss-section"></p>
-<p>When Flare by 2Dimensions came out, I was so inspired and created the “Weight Calculators” as you see in the app. All the 60fps animations are done in the app. This is the first product that allows the designer and developer to work together without messing up each other’s workflow. You can view the animation here.</p>
-<p><img src="/attachments/space-curiosity_calc.webp" alt="calc-section"></p>
-<p>For the other parts of the app, we combined what we were working on individually. Jesus brought in and modified SpaceX Go!, and I did the same for daily NASA. Once we had a working prototype it was just a matter of writing a list of features and tackle them 1 by 1.</p>
-<p><img src="/attachments/space-curiosity_news.webp" alt="news-section"></p>
-<h2 id="-2"><a aria-hidden="true" tabindex="-1" href="#-2"><span class="icon icon-link"></span></a>Release</h2>
-<p>All this work would not be possible without the incredible community behind Flutter, and the tools at our disposal. Because we love you guys so much we are making the app free and open source. If there is a feature we do not have yet, feel free to dive into the code and make a Pull Request! We have a lot more to add and you can expect some pretty cool updated coming soon.</p>
-<h2 id="-3"><a aria-hidden="true" tabindex="-1" href="#-3"><span class="icon icon-link"></span></a>Download Now (Beta)</h2>
-<p><a href="https://github.com/jesusrp98/space-curiosity">Source</a></p>
-<p><a href="https://testflight.apple.com/join/uIwSD3Rj">TestFlight</a></p>
-<h2 id="-4"><a aria-hidden="true" tabindex="-1" href="#-4"><span class="icon icon-link"></span></a>Other</h2>
-<p>Big thanks to Jesus Rodriguez to the awesome collaboration and ideas set forth.
-You can find <a href="https://www.github.com/rodydavis">Rody Davis</a> and <a href="https://www.github.com/jesusrp98">Jesus Rodriguez</a> on Github.</p>
-<h2 id="-5"><a aria-hidden="true" tabindex="-1" href="#-5"><span class="icon icon-link"></span></a>Download</h2>
-<p><a href="https://apps.apple.com/us/app/space-curiosity/id1435609944"><img src="/attachments/app_store.webp" alt=""></a></p>
-<p><a href="https://play.google.com/store/apps/details?id=com.chechu.curiosity"><img src="/attachments/google_play.webp" alt=""></a></p>
-    </article>
-    <aside class="astro-BVZIHDZO">
-      <nav class="astro-XVRFUPWN">
-  <h2 class="astro-XVRFUPWN">Table of Contents</h2>
+      <div class="tags astro-BVZIHDZO">
+        <astro-island uid="ZNFhXL" component-url="/_astro/TagChip.aa70bafd.js" component-export="default" renderer-url="/_astro/client.15ddb572.js" props="{&quot;tag&quot;:[0,&quot;app&quot;],&quot;active&quot;:[0,false],&quot;onClick&quot;:[0,null],&quot;class&quot;:[0,&quot;astro-BVZIHDZO&quot;]}" ssr="" client="idle" opts="{&quot;name&quot;:&quot;TagChip&quot;,&quot;value&quot;:true}" await-children=""><div style="padding: 0.25rem 0.5rem; border-radius: 0.25rem; background-color: var(--tag-background); color: var(--tag-color); cursor: pointer; white-space: nowrap; display: flex; flex-direction: row; align-items: center; gap: 0.25rem;">app</div></astro-island><astro-island uid="2iAH0o" component-url="/_astro/TagChip.aa70bafd.js" component-export="default" renderer-url="/_astro/client.15ddb572.js" props="{&quot;tag&quot;:[0,&quot;flutter&quot;],&quot;active&quot;:[0,false],&quot;onClick&quot;:[0,null],&quot;class&quot;:[0,&quot;astro-BVZIHDZO&quot;]}" ssr="" client="idle" opts="{&quot;name&quot;:&quot;TagChip&quot;,&quot;value&quot;:true}" await-children=""><div style="padding: 0.25rem 0.5rem; border-radius: 0.25rem; background-color: var(--tag-background); color: var(--tag-color); cursor: pointer; white-space: nowrap; display: flex; flex-direction: row; align-items: center; gap: 0.25rem;">flutter</div></astro-island><astro-island uid="DUOu4" component-url="/_astro/TagChip.aa70bafd.js" component-export="default" renderer-url="/_astro/client.15ddb572.js" props="{&quot;tag&quot;:[0,&quot;space&quot;],&quot;active&quot;:[0,false],&quot;onClick&quot;:[0,null],&quot;class&quot;:[0,&quot;astro-BVZIHDZO&quot;]}" ssr="" client="idle" opts="{&quot;name&quot;:&quot;TagChip&quot;,&quot;value&quot;:true}" await-children=""><div style="padding: 0.25rem 0.5rem; border-radius: 0.25rem; background-color: var(--tag-background); color: var(--tag-color); cursor: pointer; white-space: nowrap; display: flex; flex-direction: row; align-items: center; gap: 0.25rem;">space</div></astro-island><astro-island uid="Z11xbFW" component-url="/_astro/TagChip.aa70bafd.js" component-export="default" renderer-url="/_astro/client.15ddb572.js" props="{&quot;tag&quot;:[0,&quot;ios&quot;],&quot;active&quot;:[0,false],&quot;onClick&quot;:[0,null],&quot;class&quot;:[0,&quot;astro-BVZIHDZO&quot;]}" ssr="" client="idle" opts="{&quot;name&quot;:&quot;TagChip&quot;,&quot;value&quot;:true}" await-children=""><div style="padding: 0.25rem 0.5rem; border-radius: 0.25rem; background-color: var(--tag-background); color: var(--tag-color); cursor: pointer; white-space: nowrap; display: flex; flex-direction: row; align-items: center; gap: 0.25rem;">ios</div></astro-island><astro-island uid="ZtAMBz" component-url="/_astro/TagChip.aa70bafd.js" component-export="default" renderer-url="/_astro/client.15ddb572.js" props="{&quot;tag&quot;:[0,&quot;android&quot;],&quot;active&quot;:[0,false],&quot;onClick&quot;:[0,null],&quot;class&quot;:[0,&quot;astro-BVZIHDZO&quot;]}" ssr="" client="idle" opts="{&quot;name&quot;:&quot;TagChip&quot;,&quot;value&quot;:true}" await-children=""><div style="padding: 0.25rem 0.5rem; border-radius: 0.25rem; background-color: var(--tag-background); color: var(--tag-color); cursor: pointer; white-space: nowrap; display: flex; flex-direction: row; align-items: center; gap: 0.25rem;">android</div></astro-island>
+      </div>
+      <div class="headings astro-BVZIHDZO">
+            <details class="astro-XVRFUPWN">
+  <summary class="astro-XVRFUPWN">Table of Contents</summary>
   <ul class="astro-XVRFUPWN">
     <li class="astro-XVRFUPWN">
           <a href="#" class="heading-depth-2 astro-XVRFUPWN">
@@ -141,8 +101,35 @@ You can find <a href="https://www.github.com/rodydavis">Rody Davis</a> and <a hr
           </a>
         </li>
   </ul>
-</nav>
-    </aside>
+</details>
+          </div>
+      <p><img src="/attachments/space-curiosity_icon.webp" alt=""></p>
+<p>A brief overview of a new app built with <a href="https://Flutter.io">Flutter</a> by Rody Davis and Jesus Rodriguez.</p>
+<h2 id=""><a aria-hidden="true" tabindex="-1" href="#"><span class="icon icon-link"></span></a>Background</h2>
+<p>About 6 months ago Jesus Rodriguez launched his app “SpaceX GO!” On Reddit and I had just recently had launched my app “Daily NASA”. I messaged him because not many people were building production apps with Flutter yet. I wasn’t to see what he thought about collaboration. Over the next 6 months, we would brainstorm and design an app together in Flutter that could reach a larger audience. Him being an Android Dev took Google Play and me being iOS Dev I took the App Store.</p>
+<p><img src="/attachments/space-curiosity_space-x.webp" alt="space-x-section"></p>
+<h2 id="-1"><a aria-hidden="true" tabindex="-1" href="#-1"><span class="icon icon-link"></span></a>Development</h2>
+<p>What was so amazing about Flutter is that for the first time an iOS Dev and Android Dev could collaborate to design an app together that targeted both audiences. In our app, we decided to not go with material design or Cupertino style. 
+With GitHub, it made it so easy to do Pull Requests and pitch and refactor the app without messing up the other. Aside from the occasional merge conflict. Most of the issues were due to Flutter and Dart evolving so fast and lots of hacks or struggles would be solved with an update.</p>
+<p><img src="/attachments/space-curiosity_nasa-images.webp" alt="nasa-images"></p>
+<p>One great thing about the Flutter plugin system is that if you find a plugin that does almost what you need but not all, you can fork the source and override the dependency in your <code>pubspec.yaml</code>. This was extremely useful when we had to update all of our plugins to support AndroidX.</p>
+<p><img src="/attachments/space-curiosity_iss.webp" alt="iss-section"></p>
+<p>When Flare by 2Dimensions came out, I was so inspired and created the “Weight Calculators” as you see in the app. All the 60fps animations are done in the app. This is the first product that allows the designer and developer to work together without messing up each other’s workflow. You can view the animation here.</p>
+<p><img src="/attachments/space-curiosity_calc.webp" alt="calc-section"></p>
+<p>For the other parts of the app, we combined what we were working on individually. Jesus brought in and modified SpaceX Go!, and I did the same for daily NASA. Once we had a working prototype it was just a matter of writing a list of features and tackle them 1 by 1.</p>
+<p><img src="/attachments/space-curiosity_news.webp" alt="news-section"></p>
+<h2 id="-2"><a aria-hidden="true" tabindex="-1" href="#-2"><span class="icon icon-link"></span></a>Release</h2>
+<p>All this work would not be possible without the incredible community behind Flutter, and the tools at our disposal. Because we love you guys so much we are making the app free and open source. If there is a feature we do not have yet, feel free to dive into the code and make a Pull Request! We have a lot more to add and you can expect some pretty cool updated coming soon.</p>
+<h2 id="-3"><a aria-hidden="true" tabindex="-1" href="#-3"><span class="icon icon-link"></span></a>Download Now (Beta)</h2>
+<p><a href="https://github.com/jesusrp98/space-curiosity">Source</a></p>
+<p><a href="https://testflight.apple.com/join/uIwSD3Rj">TestFlight</a></p>
+<h2 id="-4"><a aria-hidden="true" tabindex="-1" href="#-4"><span class="icon icon-link"></span></a>Other</h2>
+<p>Big thanks to Jesus Rodriguez to the awesome collaboration and ideas set forth.
+You can find <a href="https://www.github.com/rodydavis">Rody Davis</a> and <a href="https://www.github.com/jesusrp98">Jesus Rodriguez</a> on Github.</p>
+<h2 id="-5"><a aria-hidden="true" tabindex="-1" href="#-5"><span class="icon icon-link"></span></a>Download</h2>
+<p><a href="https://apps.apple.com/us/app/space-curiosity/id1435609944"><img src="/attachments/app_store.webp" alt=""></a></p>
+<p><a href="https://play.google.com/store/apps/details?id=com.chechu.curiosity"><img src="/attachments/google_play.webp" alt=""></a></p>
+    </article>
   </main>
     </main>
     <footer class="astro-SZ7XMLTE">
