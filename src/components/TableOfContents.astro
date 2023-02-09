@@ -8,8 +8,8 @@ interface Props {
 const { headings } = Astro.props;
 ---
 
-<nav>
-  <h2>Table of Contents</h2>
+<details>
+  <summary>Table of Contents</summary>
   <ul>
     {
       headings.map((heading: MarkdownHeading) => (
@@ -21,7 +21,7 @@ const { headings } = Astro.props;
       ))
     }
   </ul>
-</nav>
+</details>
 
 <style>
   nav {
@@ -31,5 +31,23 @@ const { headings } = Astro.props;
   h2 {
     margin: 0;
     white-space: nowrap;
+  }
+  details {
+    background: var(--tag-background);
+    color: var(--tag-color);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+
+  details[open] {
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  summary {
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
   }
 </style>

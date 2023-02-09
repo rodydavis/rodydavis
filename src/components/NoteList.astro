@@ -19,6 +19,13 @@ export async function getNotes(options?: { includeSkip?: boolean }) {
       results.push({ params: { slug }, props: target });
     }
   }
+  // Sort by date
+  results.sort((a, b) => {
+    const aDate = new Date(a.props.frontmatter?.date);
+    const bDate = new Date(b.props.frontmatter?.date);
+    return bDate.getTime() - aDate.getTime();
+  });
+
   // Sort skip notes to the end
   results.sort((a, b) => {
     const aSkip = a.props.frontmatter?.skip === true;
