@@ -19,56 +19,52 @@ function convertDate(date: string) {
 ---
 
 <Layout {...Astro.props}>
-  <main>
-    <article class="markdown-body">
-      <!-- {
+  <article class="markdown-body">
+    <!-- {
         image !== undefined && (
           <img width={720} height={360} src={image} alt="" />
         )
       } -->
-      <h1 class="title">{title}</h1>
-      {date && <time>{convertDate(date)}</time>}
+    <h1 class="title">{title}</h1>
+    {date && <time>{convertDate(date)}</time>}
+    {
+      updatedDate && (
+        <div>
+          Last updated on <time>{updatedDate}</time>
+        </div>
+      )
+    }
+    <div class="tags">
       {
-        updatedDate && (
-          <div>
-            Last updated on <time>{updatedDate}</time>
-          </div>
-        )
+        tags &&
+          tags.map((tag: string) => (
+            <TagChip
+              tag={tag}
+              active={false}
+              client:idle
+              onClick={() => {
+                window.location.href = `/tags/${tag}`;
+              }}
+            />
+          ))
       }
-      <div class="tags">
-        {
-          tags &&
-            tags.map((tag: string) => (
-              <TagChip
-                tag={tag}
-                active={false}
-                client:idle
-                onClick={() => {
-                  window.location.href = `/tags/${tag}`;
-                }}
-              />
-            ))
-        }
-      </div>
-      {
-        headings && (
-          <div class="headings">
-            <TableOfContents headings={headings} />
-          </div>
-        )
-      }
-      <slot />
-    </article>
-  </main>
+    </div>
+    {
+      headings && (
+        <div class="headings">
+          <TableOfContents headings={headings} />
+        </div>
+      )
+    }
+    <slot />
+  </article>
 </Layout>
 
 <style>
-  main {
-    width: 100%;
-  }
   article {
     max-width: 860px;
     margin: 0 auto;
+    padding: 1rem;
   }
   img {
     height: auto;
@@ -137,6 +133,10 @@ function convertDate(date: string) {
     code[data-theme="dark"] {
       display: none;
     }
+  }
+
+  article.markdown-body {
+    margin: 0 auto;
   }
 </style>
 

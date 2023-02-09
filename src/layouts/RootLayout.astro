@@ -17,19 +17,11 @@ const { title, description } = frontmatter ?? Astro.props;
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} />
-    <style>
-      main {
-        margin: auto;
-        padding: 20px;
-      }
-    </style>
   </head>
 
   <body class="markdown-body">
     <Header />
-    <main>
-      <slot />
-    </main>
+    <slot />
     <Footer />
   </body>
 </html>
