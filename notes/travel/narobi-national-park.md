@@ -38,7 +38,7 @@ Hippos are so powerful and can be very dangerous. It's easy to forget that they 
 
 ## Impalas
 
-The impalas are so cute and are the most common animal in the park. They are very fast and can jump up to 10 feet in the air. They are also very territorial and will fight to the death if they need to.
+The impalas are so cute and are the most common animal in the park. They are very fast and can jump up to 10 feet in the air.
 
 ![](/attachments/travel/narobi-national-park/impala.webp)
 
