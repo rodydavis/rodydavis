@@ -1,64 +1,33 @@
 ---
 import Layout from "./RootLayout.astro";
 import TableOfContents from "../components/TableOfContents.astro";
-import type { MarkdownHeading, MarkdownInstance } from "astro";
+import TagChip from "../components/TagChip";
+import type { MarkdownInstance } from "astro";
 
 type Props = MarkdownInstance<Record<string, any>>;
 const { frontmatter, getHeadings } = Astro.props;
-const { title, pubDate, updatedDate, heroImage } = frontmatter;
+const { title, date, updatedDate, image, tags } = frontmatter;
 const headings = getHeadings();
 
+function convertDate(date: string) {
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
 ---
 
 <Layout {...Astro.props}>
-  <style>
-	main {
-		width: 100%;
-	}
-    aside {
-      display: none;
-    }
-    article {
-      max-width: 860px;
-	  margin: 0 auto;
-    }
-    img {
-      width: 100%;
-      height: auto;
-    }
-  </style>
-  {
-	headings.length > 0 && 
-	<style>
-	@media (min-width: 860px) {
-		main {
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-		}
-		article {
-			flex: 1;
-		}
-		aside {
-			display: block;
-			position: sticky;
-			top: 0;
-			right: 0;
-			max-height: 100vh;
-			overflow-y: auto;
-		}
-	}
-	</style>
-  }
   <main>
     <article>
-      {
-        heroImage !== undefined && (
-          <img width={720} height={360} src={heroImage} alt="" />
+      <!-- {
+        image !== undefined && (
+          <img width={720} height={360} src={image} alt="" />
         )
-      }
+      } -->
       <h1 class="title">{title}</h1>
-      {pubDate && <time>{pubDate}</time>}
+      {date && <time>{convertDate(date)}</time>}
       {
         updatedDate && (
           <div>
@@ -66,11 +35,64 @@ const headings = getHeadings();
           </div>
         )
       }
-      <hr />
+      <div class="tags">
+        {
+          tags &&
+            tags.map((tag: string) => (
+              <TagChip
+                tag={tag}
+                active={false}
+                client:idle
+                onClick={() => {
+                  window.location.href = `/tags/${tag}`;
+                }}
+              />
+            ))
+        }
+      </div>
+      {
+        headings && (
+          <div class="headings">
+            <TableOfContents headings={headings} />
+          </div>
+        )
+      }
       <slot />
     </article>
-    <aside>
-      <TableOfContents headings={headings} />
-    </aside>
   </main>
 </Layout>
+
+<style>
+  main {
+    width: 100%;
+  }
+  article {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  img {
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    object-position: center;
+    margin-bottom: 2rem;
+    display: block;
+    width: 100%;
+  }
+  time {
+    font-size: 0.9rem;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .headings {
+    margin: 1.5rem 0;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    margin-bottom: 1.5rem;
+  }
+</style>

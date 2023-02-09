@@ -114,7 +114,7 @@ pre {
   padding: 1rem;
 }
 
-pre>code {
+pre > code {
   all: unset;
 }
 
@@ -133,7 +133,10 @@ li div {
   height: 500px;
 }
 
-:is(img[src="/attachments/app_store.png"], img[src="/attachments/google_play.png"]) {
+:is(
+    img[src="/attachments/app_store.png"],
+    img[src="/attachments/google_play.png"]
+  ) {
   width: 200px;
   height: auto;
 }
