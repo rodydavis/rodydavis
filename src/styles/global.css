@@ -17,8 +17,8 @@
   --code-background: #f2f2f2;
   --blockquote-color: #222;
   --blockquote-border: #999;
-  --header-background: #fff;
-  --header-color: #444;
+  --header-background: #222;
+  --header-color: #fff;
   --tag-background: #eee;
   --tag-color: #222;
   --border-color: #eee;
@@ -35,8 +35,8 @@
     --code-background: #333;
     --blockquote-color: #eee;
     --blockquote-border: #999;
-    --header-background: #222;
-    --header-color: #eee;
+    --header-background: #eee;
+    --header-color: #222;
     --tag-background: #222;
     --tag-color: #eee;
     --border-color: #222;

@@ -6,10 +6,10 @@ const { title } = site;
 ---
 
 <header>
-  <h2>
+  <span id="title">
     <a href="/">{title}</a>
-  </h2>
-  <nav>
+  </span>
+  <nav id="navigation">
     {
       menu.map(({ name, link, icon }) => (
         <HeaderLink href={link} icon={icon}>
@@ -31,21 +31,31 @@ const { title } = site;
     justify-content: space-between;
     border-bottom: 1px solid var(--border-color);
   }
-  h2 {
+  #title {
     margin: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--header-color);
   }
-  h2 a {
-    color: var(--link-color);
+  #title a {
+    color: var(--header-color);
     text-decoration: none;
   }
-  h2 a:hover {
+  #title a:hover {
     text-decoration: underline;
   }
-  nav {
+  #navigation {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 1em;
+  }
+  #navigation a {
+    color: var(--header-color);
+    text-decoration: none;
+  }
+  #navigation a:hover {
+    text-decoration: underline;
   }
   @media (min-width: 720px) {
     header {
