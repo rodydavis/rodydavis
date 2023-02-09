@@ -20,7 +20,7 @@ function convertDate(date: string) {
 
 <Layout {...Astro.props}>
   <main>
-    <article>
+    <article class="markdown-body">
       <!-- {
         image !== undefined && (
           <img width={720} height={360} src={image} alt="" />
@@ -96,3 +96,69 @@ function convertDate(date: string) {
     margin-bottom: 1.5rem;
   }
 </style>
+
+<style is:global>
+  @import url("https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown.css");
+
+  pre.astro-code {
+    position: relative;
+    margin: 5px 0;
+    padding: 1.75rem 0 1.75rem 1rem;
+  }
+  pre.astro-code button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-family: inherit;
+    font-size: 0.8rem;
+    background: var(--tag-color);
+    color: var(--tag-background);
+    border: 1px solid var(--tag-background);
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+  }
+
+  pre.astro-code button:hover {
+    background: var(--tag-background);
+    color: var(--tag-color);
+    border-color: var(--tag-color);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    pre[data-theme="light"],
+    code[data-theme="light"] {
+      display: none;
+    }
+  }
+
+  @media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+    pre[data-theme="dark"],
+    code[data-theme="dark"] {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const copyButtonLabel = "Copy Code";
+  const blocks = document.querySelectorAll("pre");
+
+  blocks.forEach((block) => {
+    if (navigator.clipboard) {
+      let button = document.createElement("button");
+      button.innerText = copyButtonLabel;
+      block.appendChild(button);
+      button.addEventListener("click", async () => {
+        await copyCode(block);
+      });
+    }
+  });
+
+  async function copyCode(block: HTMLElement) {
+    let code = block.querySelector("code");
+    if (!code) return;
+    let text = code.innerText;
+    await navigator.clipboard.writeText(text);
+  }
+</script>

@@ -27,9 +27,12 @@
     "preact": "^10.6.5",
     "rehype-accessible-emojis": "^0.3.2",
     "rehype-autolink-headings": "^6.1.1",
+    "rehype-pretty-code": "^0.9.3",
+    "rehype-shiki-reloaded": "^0.0.11",
     "rehype-slug": "^5.1.0",
     "remark": "^14.0.2",
     "remark-obsidian": "^1.4.0",
+    "shiki": "^0.14.1",
     "yaml": "^2.2.1"
   }
 }
