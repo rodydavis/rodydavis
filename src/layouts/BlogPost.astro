@@ -20,42 +20,39 @@ function convertDate(date: string) {
 
 <Layout {...Astro.props}>
   <article class="markdown-body">
-    <!-- {
-        image !== undefined && (
-          <img width={720} height={360} src={image} alt="" />
-        )
-      } -->
-    <h1 class="title">{title}</h1>
-    {date && <time>{convertDate(date)}</time>}
-    {
-      updatedDate && (
-        <div>
-          Last updated on <time>{updatedDate}</time>
-        </div>
-      )
-    }
-    <div class="tags">
+    <div class="header">
+      <h1 class="title">{title}</h1>
+      {date && <time>{convertDate(date)}</time>}
       {
-        tags &&
-          tags.map((tag: string) => (
-            <TagChip
-              tag={tag}
-              active={false}
-              client:idle
-              onClick={() => {
-                window.location.href = `/tags/${tag}`;
-              }}
-            />
-          ))
+        updatedDate && (
+          <div>
+            Last updated on <time>{updatedDate}</time>
+          </div>
+        )
+      }
+      <div class="tags">
+        {
+          tags &&
+            tags.map((tag: string) => (
+              <TagChip
+                tag={tag}
+                active={false}
+                client:idle
+                onClick={() => {
+                  window.location.href = `/tags/${tag}`;
+                }}
+              />
+            ))
+        }
+      </div>
+      {
+        headings && (
+          <div class="headings">
+            <TableOfContents headings={headings} />
+          </div>
+        )
       }
     </div>
-    {
-      headings && (
-        <div class="headings">
-          <TableOfContents headings={headings} />
-        </div>
-      )
-    }
     <slot />
   </article>
 </Layout>
@@ -90,6 +87,10 @@ function convertDate(date: string) {
     gap: 0.5rem;
     margin: 1rem 0;
     margin-bottom: 1.5rem;
+  }
+  .header {
+    padding: 1rem;
+    display: block;
   }
 </style>
 
