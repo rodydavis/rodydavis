@@ -29,13 +29,13 @@ const socialSvgs = {
       const svg = Object(socialSvgs)[icon];
       if (svg) {
         return (
-          <a class="social-icon" href={link} target="_blank" rel="noopener">
+          <a id="social-icon" href={link} target="_blank" rel="noopener">
             <img src={svg} alt={icon} />
           </a>
         );
       } else {
         return (
-          <a class="social-icon" href={link} target="_blank" rel="noopener">
+          <a id="social-icon" href={link} target="_blank" rel="noopener">
             <i class="material-icons">{icon}</i>
           </a>
         );
@@ -45,18 +45,18 @@ const socialSvgs = {
 </div>
 
 <style>
-  .social-icon,
+  #social-icon,
   img {
     width: 1.5rem;
     height: 1.5rem;
     text-decoration: none;
     cursor: pointer;
   }
-  :is(.social-icon) {
+  #social-icon {
     padding: 0.25rem;
     border-radius: 50%;
   }
-  :is(.social-icon) img {
+  #social-icon img {
     background-color: transparent;
   }
   .links {
@@ -67,7 +67,7 @@ const socialSvgs = {
     gap: 1rem;
   }
   @media (prefers-color-scheme: dark) {
-    :is(.social-icon) img {
+    #social-icon img {
       filter: invert(1);
     }
   }

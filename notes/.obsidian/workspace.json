@@ -8,122 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "13f2f59d3b6643a7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "privacy.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "4ba9c0b264a83591",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "snippets/flutter-infinite-canvas.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "9e6ea1e8c711889b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "snippets/flutter-markdown-material-3.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "bd7aabcd63497f35",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "snippets/flutter-infinite-canvas.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "4fdcae0141575cf7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "snippets/flutter-animated-state.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "71ec5d57ff306047",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "apps/hymns-for-worship.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "6ea5417109b2e1a9",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "snippets/shortcuts-nasa-wallpaper.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "136f4dc30c8e041e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "travel/narobi-national-park.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "9c98ba355bb0bdb1",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {}
-            }
-          },
-          {
-            "id": "1846ea008eb136e9",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "recipes/the-perfect-brisket.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "2c38cbca26e444b1",
             "type": "leaf",
             "state": {
@@ -146,9 +30,17 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "6f6241a89672d5dd",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
           }
         ],
-        "currentTab": 11
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -214,7 +106,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "snippets/typescript-color-utilities.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -231,7 +122,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "snippets/typescript-color-utilities.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -253,9 +143,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "snippets/typescript-color-utilities.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -275,17 +163,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d4ddd9949ea9f18d",
+  "active": "6f6241a89672d5dd",
   "lastOpenFiles": [
+    "posts/color-science-and-neural-networks.md",
+    "posts/static-site-file-based-routing.md",
+    "snippets/typescript-color-utilities.md",
     "snippets/shortcuts-nasa-wallpaper.md",
     "snippets/flutter-master-detail.md",
-    "snippets/typescript-color-utilities.md",
     "snippets/flutter-animated-state.md",
     "travel/narobi-national-park.md",
     "events/flutter-forward.md",
     "snippets/material-web-theme-adapter.md",
-    "snippets/flutter-infinite-canvas.md",
-    "snippets/flutter-markdown-material-3.md",
-    "posts/automate-flutter-apps.md"
+    "snippets/flutter-infinite-canvas.md"
   ]
 }
