@@ -9,6 +9,7 @@ tags:
 - design
 - ui
 image: /attachments/flutter_first.webp
+draft: true
 ---
 
 In this article we will go over how to build a master / detail list with Flutter.

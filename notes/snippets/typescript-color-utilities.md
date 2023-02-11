@@ -4,6 +4,7 @@ tags:
 - typescript
 - javascript
 - color
+- snippets
 ---
 
 ## Overview

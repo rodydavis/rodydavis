@@ -8,7 +8,7 @@ export async function getNotes(options?: { includeSkip?: boolean }) {
   // Get all notes recursively from the notes directory
   const notesPath = path.join(process.cwd(), "notes");
   const targets = await Astro.glob("../../notes/**/*.md");
-  const results = [];
+  let results = [];
   for (const target of targets) {
     const filePath = target.file || "";
     let slug = filePath.replace(notesPath, "").replace(/\.md$/, "");
@@ -38,6 +38,13 @@ export async function getNotes(options?: { includeSkip?: boolean }) {
       return 0;
     }
   });
+
+  // Remove draft
+  results = results.filter((item) => {
+    const isDraft = item.props.frontmatter?.draft === true;
+    return !isDraft;
+  });
+  
   return results;
 }
 
