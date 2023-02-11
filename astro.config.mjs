@@ -37,7 +37,7 @@ export default defineConfig({
     // shikiConfig: { theme: "css-variables" },
     remarkPlugins: [rehypeAccessibleEmojis, obsidianTags],
     rehypePlugins: [
-      [rehypePrettyCode, prettyCodeOptions],
+      // [rehypePrettyCode, prettyCodeOptions],
       "rehype-slug",
       [
         "rehype-autolink-headings",
