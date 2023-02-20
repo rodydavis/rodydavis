@@ -15,11 +15,21 @@
 - 🎧 Podcast "Creative Engineering" [Apple Podcasts](https://podcasts.apple.com/us/podcast/creative-engineering/id1507852833), [Google Podcasts](https://podcasts.google.com/feed/aHR0cHM6Ly9yb2R5ZGF2aXMuZ2l0aHViLmlvL2NyZWF0aXZlX2VuZ2luZWVyaW5nL2ZlZWQueG1s?ved=2ahUKEwiw5anO0dLqAhU2lZ4KHR3FDtcQ4aUDegQIARAC&hl=en-GB), [Spotify Podcasts](https://open.spotify.com/show/3UTiK34aDOOSHFpGQ0RglN), [Amazon Music](https://music.amazon.com/podcasts/8884a5cb-a92a-4ba5-a3ef-906ac334386d/Creative-Engineering?ref=dm_wcp_pp_link_pr_s)
 - ⚒️ Creator of [Widget Studio](https://widget.studio/)
 - 📦 Dart/Flutter [Packages](https://pub.dev/publishers/rodydavis.com/packages) on [pub.dev](https://pub.dev)
-- 😎 Find me on [Glitch](https://glitch.com/@rodydavis)
-- 🗣 Follow on [Twitter](https://twitter.com/rodydavis)
-- 📸 Follow me on [Instagram](https://instagram.com/rodydavisjr?r=nametag)
-- 📹 Subscribe on [YouTube](https://www.youtube.com/rodydavis)
-- 📖 Read on [Medium](https://medium.com/@rody.davis.jr)
+
+## Social
+
+- [Glitch](https://glitch.com/@rodydavis)
+- [Github](https://github.com/rodydavis)
+- [StackOverflow](https://stackoverflow.com/users/7303311/rody-davis)
+- [Twitter](https://twitter.com/rodydavis)
+- [YouTube](https://youtube.com/rodydavis)
+- [Instagram](https://instagram.com/rodydavisjr)
+- [Facebook](https://facebook.com/rodydavisjr)
+- [LinkedIn](https://www.linkedin.com/in/rodydavis)
+- [TikTok](https://tiktok.com/@rodydavisjr)
+- [Dev.to](https://dev.to/rodydavis)
+- [Medium](https://rodydavis.medium.com/)
+- [Email](mailto:rody.davis.jr@gmail.com)
 
 ## Recently Played
 
