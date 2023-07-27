@@ -24,3 +24,6 @@ pnpm-debug.log*
 *.png
 *.jpg
 *.jpeg
+
+.temp
+pb_data
