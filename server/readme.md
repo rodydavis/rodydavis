@@ -1,0 +1,4 @@
+- https://pocketbase.io/docs/use-as-framework/
+- http://127.0.0.1:8090/template
+- https://rodydavis.com/
+- http://127.0.0.1:8090/_/?#/collections?collectionId=v2zoe4eyjgp37ga&filter=&sort=-created
