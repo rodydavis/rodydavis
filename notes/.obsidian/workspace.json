@@ -35,8 +35,12 @@
             "id": "6f6241a89672d5dd",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "posts/flutter-ssr.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ],
@@ -85,6 +89,14 @@
               "type": "starred",
               "state": {}
             }
+          },
+          {
+            "id": "c3e3a0adb7b1e824",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
           }
         ]
       }
@@ -106,6 +118,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "posts/flutter-ssr.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -122,6 +135,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "posts/flutter-ssr.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -143,7 +157,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "posts/flutter-ssr.md"
+              }
             }
           }
         ]
@@ -165,6 +181,15 @@
   },
   "active": "6f6241a89672d5dd",
   "lastOpenFiles": [
+    "posts/figma-and-lit.md",
+    "posts/flutter-ssr.md",
+    "posts/flutter-one-click-release.md",
+    "attachments/flutter-ssr-counter.png",
+    "posts/first-flutter-project.md",
+    "first-flutter-project.md",
+    "posts/deep-linking-flutter-web.md",
+    "posts/flutter-and-lit.md",
+    "posts/host-flutter-rest-api.md",
     "posts/color-science-and-neural-networks.md",
     "posts/static-site-file-based-routing.md",
     "snippets/typescript-color-utilities.md",
