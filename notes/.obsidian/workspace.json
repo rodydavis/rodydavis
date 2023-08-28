@@ -102,7 +102,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 237.5
   },
   "right": {
     "id": "41166be83dbeaa6e",
@@ -181,6 +181,8 @@
   },
   "active": "6f6241a89672d5dd",
   "lastOpenFiles": [
+    "attachments/flutter-ssr-finish.webp",
+    "attachments/flutter-ssr-finish.png",
     "posts/figma-and-lit.md",
     "posts/flutter-ssr.md",
     "posts/flutter-one-click-release.md",
