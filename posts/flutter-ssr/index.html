@@ -113,6 +113,10 @@
           </a>
         </li><li class="astro-XVRFUPWN">
           <a href="#-11" class="heading-depth-2 astro-XVRFUPWN">
+            What about the logic?
+          </a>
+        </li><li class="astro-XVRFUPWN">
+          <a href="#-12" class="heading-depth-2 astro-XVRFUPWN">
             Conclusion
           </a>
         </li>
@@ -1948,7 +1952,223 @@
 <p><img src="/attachments/flutter-ssr-counter.webp" alt=""></p>
 <p>This will trigger network requests for each button press and the UI will reflect the logic done on the server.</p>
 <p>You could also call a database and update the UI based on the response.</p>
-<h2 id="-11"><a aria-hidden="true" tabindex="-1" href="#-11"><span class="icon icon-link"></span></a>Conclusion</h2>
+<h2 id="-11"><a aria-hidden="true" tabindex="-1" href="#-11"><span class="icon icon-link"></span></a>What about the logic?</h2>
+<p>We can also choose to ship the logic from the server along with the UI. The <a href="https://github.com/flutter/packages/tree/main/packages/rfw/example/wasm">rfw example</a> uses <a href="https://pub.dev/packages/wasm_run_flutter">wasm</a> but in this example we will use JS which will use <a href="https://developer.apple.com/documentation/javascriptcore">JavaScriptCore</a> on iOS/MacOS and <a href="https://bellard.org/quickjs/">QuickJS</a> on all other platforms.</p>
+<p>We can start by updating the server with 2 routes that will return the UI and logic.</p>
+<p>Create and update the following file located at <code>server/routes/counter.rfw.dart</code>:</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:dart_frog/dart_frog.dart'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:rfw/formats.dart'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #79C0FF">Response</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">onRequest</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">RequestContext</span><span style="color: #C9D1D9"> context) {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Response</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">bytes</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">    body</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">encodeLibraryBlob</span><span style="color: #C9D1D9">(</span><span style="color: #D2A8FF">parseLibraryFile</span><span style="color: #C9D1D9">(template)),</span></span>
+<span class="line"><span style="color: #C9D1D9">    headers</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> {</span><span style="color: #A5D6FF">'Content-Type'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'text/rfw'</span><span style="color: #C9D1D9">},</span></span>
+<span class="line"><span style="color: #C9D1D9">  );</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> template </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'''</span></span>
+<span class="line"><span style="color: #A5D6FF">import widgets;</span></span>
+<span class="line"><span style="color: #A5D6FF">import material;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #A5D6FF">widget root = Scaffold(</span></span>
+<span class="line"><span style="color: #A5D6FF">  appBar: AppBar(</span></span>
+<span class="line"><span style="color: #A5D6FF">    title: Text(text: ['Counter Example']),</span></span>
+<span class="line"><span style="color: #A5D6FF">    centerTitle: true,</span></span>
+<span class="line"><span style="color: #A5D6FF">    backgroundColor: data.colorScheme.inversePrimary,</span></span>
+<span class="line"><span style="color: #A5D6FF">  ),</span></span>
+<span class="line"><span style="color: #A5D6FF">  body: Center(</span></span>
+<span class="line"><span style="color: #A5D6FF">    child: Column(</span></span>
+<span class="line"><span style="color: #A5D6FF">      mainAxisAlignment: "center",</span></span>
+<span class="line"><span style="color: #A5D6FF">      children: [</span></span>
+<span class="line"><span style="color: #A5D6FF">        Text(text: ["You have pushed the button this many times:"]),</span></span>
+<span class="line"><span style="color: #A5D6FF">        Text(</span></span>
+<span class="line"><span style="color: #A5D6FF">          text: [data.state.value],</span></span>
+<span class="line"><span style="color: #A5D6FF">          style: {</span></span>
+<span class="line"><span style="color: #A5D6FF">            fontSize: 20.0,</span></span>
+<span class="line"><span style="color: #A5D6FF">          },</span></span>
+<span class="line"><span style="color: #A5D6FF">        ),</span></span>
+<span class="line"><span style="color: #A5D6FF">      ],</span></span>
+<span class="line"><span style="color: #A5D6FF">    ),</span></span>
+<span class="line"><span style="color: #A5D6FF">  ),</span></span>
+<span class="line"><span style="color: #A5D6FF">  floatingActionButton: Row(</span></span>
+<span class="line"><span style="color: #A5D6FF">    mainAxisSize: "min",</span></span>
+<span class="line"><span style="color: #A5D6FF">    children: [</span></span>
+<span class="line"><span style="color: #A5D6FF">      IconButton(</span></span>
+<span class="line"><span style="color: #A5D6FF">        onPressed: event "decrement" {},</span></span>
+<span class="line"><span style="color: #A5D6FF">        tooltip: ["Decrement"],</span></span>
+<span class="line"><span style="color: #A5D6FF">        icon: Icon(</span></span>
+<span class="line"><span style="color: #A5D6FF">            icon: 0xe516,</span></span>
+<span class="line"><span style="color: #A5D6FF">            fontFamily: 'MaterialIcons',</span></span>
+<span class="line"><span style="color: #A5D6FF">        ),</span></span>
+<span class="line"><span style="color: #A5D6FF">      ),</span></span>
+<span class="line"><span style="color: #A5D6FF">      IconButton(</span></span>
+<span class="line"><span style="color: #A5D6FF">        onPressed: event "increment" {},</span></span>
+<span class="line"><span style="color: #A5D6FF">        tooltip: ["Increment"],</span></span>
+<span class="line"><span style="color: #A5D6FF">        icon: Icon(</span></span>
+<span class="line"><span style="color: #A5D6FF">            icon: 0xe047,</span></span>
+<span class="line"><span style="color: #A5D6FF">            fontFamily: 'MaterialIcons',</span></span>
+<span class="line"><span style="color: #A5D6FF">        ),</span></span>
+<span class="line"><span style="color: #A5D6FF">      ),</span></span>
+<span class="line"><span style="color: #A5D6FF">    ],</span></span>
+<span class="line"><span style="color: #A5D6FF">  ),</span></span>
+<span class="line"><span style="color: #A5D6FF">);</span></span>
+<span class="line"><span style="color: #A5D6FF">'''</span><span style="color: #C9D1D9">;</span></span></code></pre>
+<p>This should look almost the same as before. Now create and update the following file located at <code>server/routes/counter.js.dart</code>:</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:dart_frog/dart_frog.dart'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #79C0FF">Response</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">onRequest</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">RequestContext</span><span style="color: #C9D1D9"> context) {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Response</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">    body</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> template,</span></span>
+<span class="line"><span style="color: #C9D1D9">    headers</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> {</span><span style="color: #A5D6FF">'Content-Type'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'application/javascript'</span><span style="color: #C9D1D9">},</span></span>
+<span class="line"><span style="color: #C9D1D9">  );</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> template </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'''</span></span>
+<span class="line"><span style="color: #A5D6FF">var state = {</span></span>
+<span class="line"><span style="color: #A5D6FF">  value: "0",</span></span>
+<span class="line"><span style="color: #A5D6FF">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #A5D6FF">function increment() {</span></span>
+<span class="line"><span style="color: #A5D6FF">  const current = parseInt(state.value);</span></span>
+<span class="line"><span style="color: #A5D6FF">  setValue(current + 1);</span></span>
+<span class="line"><span style="color: #A5D6FF">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #A5D6FF">function decrement() {</span></span>
+<span class="line"><span style="color: #A5D6FF">  const current = parseInt(state.value);</span></span>
+<span class="line"><span style="color: #A5D6FF">  setValue(current - 1);</span></span>
+<span class="line"><span style="color: #A5D6FF">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #A5D6FF">function setValue(value) {</span></span>
+<span class="line"><span style="color: #A5D6FF">  state.value = value.toString();</span></span>
+<span class="line"><span style="color: #A5D6FF">}</span></span>
+<span class="line"><span style="color: #A5D6FF">'''</span><span style="color: #C9D1D9">;</span></span></code></pre>
+<p>This creates a template containing valid JS which we will use to ship the counter logic for the UI.</p>
+<p>Navigate to the app directory and run the following command:</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #c9d1d9">flutter pub add flutter_js</span></span></code></pre>
+<p>Update the following file located at <code>app/lib/network.dart</code>:</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'dart:convert'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:flutter/material.dart'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:flutter_js/flutter_js.dart'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:http/http.dart'</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">as</span><span style="color: #C9D1D9"> http;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'package:rfw/rfw.dart'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'rfw/material.dart'</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">as</span><span style="color: #C9D1D9"> m;</span></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'rfw/core.dart'</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">as</span><span style="color: #C9D1D9"> c;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">class</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">NetworkExample</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">extends</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">StatefulWidget</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">NetworkExample</span><span style="color: #C9D1D9">({</span><span style="color: #79C0FF">super</span><span style="color: #C9D1D9">.key});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">@override</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">State</span><span style="color: #C9D1D9">&#x3C;</span><span style="color: #79C0FF">NetworkExample</span><span style="color: #C9D1D9">> </span><span style="color: #D2A8FF">createState</span><span style="color: #C9D1D9">() </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">_NetworkExampleState</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">class</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">_NetworkExampleState</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">extends</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">State</span><span style="color: #C9D1D9">&#x3C;</span><span style="color: #79C0FF">NetworkExample</span><span style="color: #C9D1D9">> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> _runtime </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Runtime</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> _data </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">DynamicContent</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> _logic </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">getJavascriptRuntime</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">bool</span><span style="color: #C9D1D9"> loaded </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">false</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">static</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> remoteName </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">LibraryName</span><span style="color: #C9D1D9">([</span><span style="color: #A5D6FF">'remote'</span><span style="color: #C9D1D9">]);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">@override</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">initState</span><span style="color: #C9D1D9">() {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">super</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">initState</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">    _runtime.</span><span style="color: #D2A8FF">update</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">LibraryName</span><span style="color: #C9D1D9">([</span><span style="color: #A5D6FF">'widgets'</span><span style="color: #C9D1D9">]),</span></span>
+<span class="line"><span style="color: #C9D1D9">      c.</span><span style="color: #D2A8FF">createCoreWidgets</span><span style="color: #C9D1D9">(),</span></span>
+<span class="line"><span style="color: #C9D1D9">    );</span></span>
+<span class="line"><span style="color: #C9D1D9">    _runtime.</span><span style="color: #D2A8FF">update</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">LibraryName</span><span style="color: #C9D1D9">([</span><span style="color: #A5D6FF">'material'</span><span style="color: #C9D1D9">]),</span></span>
+<span class="line"><span style="color: #C9D1D9">      m.</span><span style="color: #D2A8FF">createMaterialWidgets</span><span style="color: #C9D1D9">(),</span></span>
+<span class="line"><span style="color: #C9D1D9">    );</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #D2A8FF">_update</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">@override</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">reassemble</span><span style="color: #C9D1D9">() {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #79C0FF">super</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">reassemble</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #D2A8FF">_update</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">_update</span><span style="color: #C9D1D9">() </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> url </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'http://localhost:8080'</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> results </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">await</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Future</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">wait</span><span style="color: #C9D1D9">([</span></span>
+<span class="line"><span style="color: #C9D1D9">      http.</span><span style="color: #FF7B72">get</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">Uri</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">parse</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'$</span><span style="color: #79C0FF">url</span><span style="color: #A5D6FF">/counter.js'</span><span style="color: #C9D1D9">)),</span></span>
+<span class="line"><span style="color: #C9D1D9">      http.</span><span style="color: #FF7B72">get</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">Uri</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">parse</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'$</span><span style="color: #79C0FF">url</span><span style="color: #A5D6FF">/counter.rfw'</span><span style="color: #C9D1D9">)),</span></span>
+<span class="line"><span style="color: #C9D1D9">    ]);</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> logicRes </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> results[</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">];</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> uiRes </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> results[</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">];</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (logicRes.statusCode </span><span style="color: #FF7B72">!=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">200</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">||</span><span style="color: #C9D1D9"> uiRes.statusCode </span><span style="color: #FF7B72">!=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">200</span><span style="color: #C9D1D9">) {</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">    }</span></span>
+<span class="line"><span style="color: #C9D1D9">    _logic.</span><span style="color: #D2A8FF">evaluate</span><span style="color: #C9D1D9">(logicRes.body, sourceUrl</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'script.js'</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #D2A8FF">$state</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">    _runtime.</span><span style="color: #D2A8FF">update</span><span style="color: #C9D1D9">(remoteName, </span><span style="color: #D2A8FF">decodeLibraryBlob</span><span style="color: #C9D1D9">(uiRes.bodyBytes));</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (mounted) </span><span style="color: #D2A8FF">setState</span><span style="color: #C9D1D9">(() </span><span style="color: #FF7B72">=></span><span style="color: #C9D1D9"> loaded </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">true</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">$state</span><span style="color: #C9D1D9">() {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> local </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> _logic.</span><span style="color: #D2A8FF">jsonStringify</span><span style="color: #C9D1D9">(_logic.</span><span style="color: #D2A8FF">evaluate</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'state'</span><span style="color: #C9D1D9">));</span></span>
+<span class="line"><span style="color: #C9D1D9">    _data.</span><span style="color: #D2A8FF">update</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'state'</span><span style="color: #C9D1D9">, </span><span style="color: #D2A8FF">jsonDecode</span><span style="color: #C9D1D9">(local));</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">onEvent</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">String</span><span style="color: #C9D1D9"> name, </span><span style="color: #79C0FF">DynamicMap</span><span style="color: #C9D1D9"> arguments) </span><span style="color: #FF7B72">async</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #D2A8FF">debugPrint</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'event $</span><span style="color: #79C0FF">name</span><span style="color: #A5D6FF">($</span><span style="color: #79C0FF">arguments</span><span style="color: #A5D6FF">)'</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">    _logic.</span><span style="color: #D2A8FF">evaluate</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'$</span><span style="color: #79C0FF">name</span><span style="color: #A5D6FF">()'</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #D2A8FF">$state</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #FF7B72">@override</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">Widget</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">build</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">BuildContext</span><span style="color: #C9D1D9"> context) {</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> (</span><span style="color: #FF7B72">!</span><span style="color: #C9D1D9">loaded) {</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Center</span><span style="color: #C9D1D9">(child</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">CircularProgressIndicator</span><span style="color: #C9D1D9">());</span></span>
+<span class="line"><span style="color: #C9D1D9">    }</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">final</span><span style="color: #C9D1D9"> colors </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Theme</span><span style="color: #C9D1D9">.</span><span style="color: #D2A8FF">of</span><span style="color: #C9D1D9">(context).colorScheme;</span></span>
+<span class="line"><span style="color: #C9D1D9">    _data.</span><span style="color: #D2A8FF">update</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'colorScheme'</span><span style="color: #C9D1D9">, </span><span style="color: #FF7B72">&#x3C;</span><span style="color: #79C0FF">String</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">Object</span><span style="color: #FF7B72">></span><span style="color: #C9D1D9">{</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'inversePrimary'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.inversePrimary.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'inverseSurface'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.inverseSurface.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'onInverseSurface'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.onInverseSurface.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'primary'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.primary.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'onPrimary'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.onPrimary.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'primaryContainer'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.primaryContainer.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'onPrimaryContainer'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.onPrimaryContainer.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'secondary'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.secondary.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'onSecondary'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.onSecondary.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'secondaryContainer'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.secondaryContainer.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'onSecondaryContainer'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.onSecondaryContainer.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'tertiary'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.tertiary.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'onTertiary'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.onTertiary.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'tertiaryContainer'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.tertiaryContainer.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'onTertiaryContainer'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.onTertiaryContainer.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'error'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.error.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'onError'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.onError.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'errorContainer'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.errorContainer.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'onErrorContainer'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.onErrorContainer.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'background'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.background.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'onBackground'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.onBackground.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'surface'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.surface.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'onSurface'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.onSurface.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'outline'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.outline.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'outlineVariant'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.outlineVariant.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'scrim'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.scrim.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">      </span><span style="color: #A5D6FF">'shadow'</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.shadow.value,</span></span>
+<span class="line"><span style="color: #C9D1D9">    });</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">Container</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">      color</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> colors.background,</span></span>
+<span class="line"><span style="color: #C9D1D9">      child</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">RemoteWidget</span><span style="color: #C9D1D9">(</span></span>
+<span class="line"><span style="color: #C9D1D9">        runtime</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> _runtime,</span></span>
+<span class="line"><span style="color: #C9D1D9">        data</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> _data,</span></span>
+<span class="line"><span style="color: #C9D1D9">        widget</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">const</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">FullyQualifiedWidgetName</span><span style="color: #C9D1D9">(remoteName, </span><span style="color: #A5D6FF">'root'</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">        onEvent</span><span style="color: #FF7B72">:</span><span style="color: #C9D1D9"> onEvent,</span></span>
+<span class="line"><span style="color: #C9D1D9">      ),</span></span>
+<span class="line"><span style="color: #C9D1D9">    );</span></span>
+<span class="line"><span style="color: #C9D1D9">  }</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<p>Now instead of keeping the counter state local we setup the JS engine and update based on events. This could get a lot more complex but this should be a minimal example of how to ship updates to both the UI and logic.</p>
+<p>Running the application will show two icon buttons instead of the FAB and will increment/decrement the counter when pressed.</p>
+<p><img src="/attachments/flutter-ssr-finish.webp" alt=""></p>
+<h2 id="-12"><a aria-hidden="true" tabindex="-1" href="#-12"><span class="icon icon-link"></span></a>Conclusion</h2>
 <p>There is a lot more we can do with this example but after doing a deep dive on the format I thought it would be useful for others to understand and see some examples.</p>
 <p>The final code can be found <a href="https://github.com/rodydavis/flutter_ssr">here</a>.</p>
 <p>If you have any questions reach out to me on <a href="https://twitter.com/rodydavis">Twitter</a> or <a href="https://github.com/rodydavis">Github</a>!</p>
