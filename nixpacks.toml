@@ -1,7 +1,7 @@
-[providers]
-nixpkgs = ['...', 'go']
+[phases.setup]
+nixPkgs = ['...', 'go']
 
-[build]
+[phases.build]
 cmd = "go build -o ./bin/app ."
 
 [start]
