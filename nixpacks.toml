@@ -1,9 +1,8 @@
 [providers]
-  nixpkgs = { }
-  gomod2nix = { }
+nixpkgs = { '...', 'go' }
 
 [build]
-  cmd = "go build -o ./bin/app ."
+cmd = "go build -o ./bin/app ."
 
 [start]
-  cmd = "./bin/app serve"
+cmd = "./bin/app serve"
