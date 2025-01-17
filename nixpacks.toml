@@ -1,5 +1,5 @@
 [providers]
-nixpkgs = { '...', 'go' }
+nixpkgs = ['...', 'go']
 
 [build]
 cmd = "go build -o ./bin/app ."
