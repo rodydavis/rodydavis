@@ -23,6 +23,10 @@ export class AppHeader extends mix(HTMLElement).with(
         flex-direction: row;
         align-items: center;
         gap: 8px;
+        a {
+          color: var(--md-sys-color-on-primary);
+          text-decoration: none;
+        }
       }
       .title {
         font-weight: semi-bold;
@@ -86,13 +90,16 @@ export class AppHeader extends mix(HTMLElement).with(
     ];
   }
 
+  menu = html` <icon-button @click=${this.toggleMenu.bind(this)}
+    >${menu("24px")}
+  </icon-button>`;
+
   builder = computed(
     () => html`
       <header>
-        <icon-button @click=${this.toggleMenu.bind(this)}
-          >${menu("24px")}</icon-button
-        >
-        <span class="title">${this.title$}</span>
+        <a href="/">
+          <span class="title">${this.title$}</span>
+        </a>
         <div class="spacer"></div>
         ${this.getSocialLinks().map(
           ({ link, src }) => html`

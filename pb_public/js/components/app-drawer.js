@@ -7,9 +7,7 @@ import "/js/components/icon-button.js";
 
 export const isDrawerOpen = signal(false);
 
-export class AppDrawer extends mix(HTMLElement).with(
-  LitTemplateMixin
-) {
+export class AppDrawer extends mix(HTMLElement).with(LitTemplateMixin) {
   builder = computed(
     () => html`
       <style>
