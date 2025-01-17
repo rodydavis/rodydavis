@@ -1,0 +1,101 @@
+/* @import url('https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/default.min.css'); */
+/* @import url('/css/code-themes/dark.css') screen and (prefers-color-scheme: dark); */
+/* @import url('/css/code-themes/light.css') screen and (prefers-color-scheme: light); */
+@import url("//unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css");
+@import url("/css/code-themes/auto.css");
+@import url("/css/github-markdown.css");
+
+:root {
+  --padding: 16px;
+  --color: light-dark(rgba(226, 226, 226, 0.86), rgba(173, 186, 199, 0.18));
+  --line-number-color: light-dark(
+    rgba(36, 41, 46, 0.48),
+    rgba(173, 186, 199, 0.51)
+  );
+  --radius: 12px;
+  --code-bg: light-dark(#ffffff, #22272e);
+  --code-fg: light-dark(#24292e, #adbac7);
+}
+
+pre {
+  color-scheme: light dark;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background: var(--code-bg);
+  color: var(--code-fg);
+  border: 1px solid var(--color);
+  width: calc(100% - var(--padding) * 2);
+  padding: var(--padding);
+  border-radius: var(--radius);
+}
+
+img {
+  border-radius: var(--radius);
+}
+
+.hljs-copy-container .hljs-copy-button {
+  /* margin-right: 20px;
+  margin-top: 20px; */
+  --hljs-theme-padding: 20px;
+}
+
+/* for block of numbers */
+.hljs-ln-numbers {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  text-align: center;
+  color: var(--line-number-color);
+  border-right: 1px solid var(--color);
+  vertical-align: top;
+  padding-right: 5px;
+
+  /* your custom style here */
+  .hljs-ln-n {
+    margin-right: 6px;
+  }
+}
+
+/* for block of code */
+.hljs-ln td.hljs-ln-code {
+  padding-left: 6px;
+}
+
+code {
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
+}
+
+article {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  &:is(.markdown-body) {
+    --bgColor-default: unset;
+    --fgColor-default: unset;
+  }
+}
+
+:where(a) {
+  color: var(--md-sys-color-primary);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  /* &:visited {
+  color: var(--md-sys-color-secondary);
+} */
+}
+
+iframe {
+  width: 100%;
+  min-height: 600px;
+  border-radius: var(--radius);
+  border: 1px solid var(--color);
+}

@@ -1,0 +1,22 @@
+{{define "head"}}
+<link rel="stylesheet" href="/css/markdown.css">
+{{end}}
+
+{{define "body"}}
+<article class="markdown-body">
+    <h1>{{.title}}</h1>
+    {{.content|raw}}
+</article>
+<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/javascript.min.js"></script>
+<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/sql.min.js"></script>
+<script src="//unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.9.0/highlightjs-line-numbers.min.js"></script> -->
+<script>
+    hljs.addPlugin(new CopyButtonPlugin());
+    hljs.highlightAll();
+    // hljs.initLineNumbersOnLoad({
+    //     singleLine: true,
+    // });
+</script>
+{{end}}
