@@ -1,0 +1,13 @@
+{{define "title"}}
+{{.title}}
+{{end}}
+
+{{define "body"}}
+<ul>
+    {{range .links}}
+    <li>
+        <a href="{{.link}}">{{.name}}</a>
+    </li>
+    {{end}}
+</ul>
+{{end}}

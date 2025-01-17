@@ -1,38 +1,36 @@
 {
-  "name": "@example/minimal",
-  "type": "module",
-  "version": "0.0.1",
-  "private": true,
-  "pre-commit": [
-    "copy"
-  ],
-  "scripts": {
-    "start": "pnpm dev",
-    "images": "./scripts/images.sh",
-    "copy": "cp -r notes/attachments/ public/attachments/",
-    "sync": "astro sync",
-    "dev": "pnpm copy && astro dev",
-    "build": "pnpm copy && astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
+  "name": "rodydavis",
+  "version": "1.0.0",
+  "main": "index.js",
   "dependencies": {
-    "@astrojs/markdown-remark": "^2.0.1",
-    "@astrojs/preact": "^2.0.1",
-    "@astrojs/rss": "^2.1.0",
-    "@astrojs/sitemap": "^1.0.1",
-    "@types/node": "^18.11.18",
-    "astro": "^2.0.2",
-    "pre-commit": "^1.2.2",
-    "preact": "^10.6.5",
-    "rehype-accessible-emojis": "^0.3.2",
-    "rehype-autolink-headings": "^6.1.1",
-    "rehype-pretty-code": "^0.9.3",
-    "rehype-shiki-reloaded": "^0.0.11",
-    "rehype-slug": "^5.1.0",
-    "remark": "^14.0.2",
-    "remark-obsidian": "^1.4.0",
-    "shiki": "^0.14.1",
-    "yaml": "^2.2.1"
-  }
+    "@lit-labs/preact-signals": "^1.0.2",
+    "@preact/signals-core": "^1.8.0",
+    "lit": "^3.2.1",
+    "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.16",
+    "ts-to-jsdoc": "^2.4.0"
+  },
+  "scripts": {
+    "dev": "go run . serve",
+    "ts:src:mixwith": "bun ts-to-jsdoc src/mixwith.ts -o pb_public/js -f",
+    "ts:src:mixins": "bun ts-to-jsdoc src/mixins.ts -o pb_public/js -f",
+    "build": "bun run build:signals && bun run build:lit && bun run build:ts",
+    "build:signals": "bun build --minify ./deps/signals.ts --outfile ./pb_public/js/signals.min.js",
+    "build:lit": "bun build --minify ./deps/lit.ts --outfile ./pb_public/js/lit.min.js",
+    "build:ts": "npx tsc src/**/*.ts --outDir pb_public/js --target esnext --noCheck --skipLibCheck"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rodydavis/rodydavis.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rodydavis/rodydavis/issues"
+  },
+  "homepage": "https://github.com/rodydavis/rodydavis#readme",
+  "description": ""
 }

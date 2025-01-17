@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>{{block "title" .}}Rody Davis{{end}}</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "lit": "https://esm.run/lit",
+        "@lit-labs/preact-signals": "https://esm.run/@lit-labs/preact-signals",
+        "@preact/signals-core": "https://esm.run/@preact/signals-core"
+      }
+    }
+  </script>
+  <!-- <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-alpha.8/dist/styles/themes/default.css" />
+  <script type="module" src="https://early.webawesome.com/webawesome@3.0.0-alpha.8/dist/webawesome.loader.js"></script> -->
+  {{block "head" .}}
+  {{end}}
+</head>
+
+<body>
+  {{block "header" .}}
+  <app-header title="Rody Davis"></app-header>
+  <app-drawer></app-drawer>
+  <script type="module" src="/js/components/app-header.js"></script>
+  <script type="module" src="/js/components/app-drawer.js"></script>
+  {{end}}
+  {{block "body" .}}
+  {{end}}
+  <script src="/js/theme.js"></script>
+</body>
+
+</html>
