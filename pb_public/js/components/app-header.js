@@ -4,6 +4,7 @@ import { mix } from "/js/mixwith.js";
 import { LitTemplateMixin, ShadowRootMixin } from "/js/mixins.js";
 import { menu } from "/js/components/icons.js";
 import { isDrawerOpen } from "/js/components/app-drawer.js";
+import { icons } from "/js/icons.js";
 import "/js/components/icon-button.js";
 
 export class AppHeader extends mix(HTMLElement).with(
@@ -44,6 +45,7 @@ export class AppHeader extends mix(HTMLElement).with(
           width: 18px;
           height: 18px;
           color: var(--md-sys-color-on-primary);
+          color: white;
         }
       }
     `
@@ -54,38 +56,39 @@ export class AppHeader extends mix(HTMLElement).with(
   }
 
   getSocialLinks() {
+    const svgs = icons('18');
     return [
       {
         link: `https://facebook.com/rodydavisjr`,
-        src: "/media/svg/facebook.svg",
+        src: svgs.facebook,
       },
       {
         link: `https://tiktok.com/@rodydavisjr`,
-        src: "/media/svg/tiktok.svg",
+        src: svgs.tiktok,
       },
       {
         link: `https://instagram.com/rodydavisjr`,
-        src: "/media/svg/instagram.svg",
+        src: svgs.instagram,
       },
       {
         link: `https://linkedin.com/in/rodydavis`,
-        src: "/media/svg/linkedin.svg",
+        src: svgs.linkedin,
       },
       {
         link: `https://twitter.com/rodydavis`,
-        src: "/media/svg/twitter.svg",
+        src: svgs.twitter,
       },
       {
         link: `https://bsky.app/profile/rodydavis.com`,
-        src: "/media/svg/bluesky.svg",
+        src: svgs.bluesky,
       },
       {
         link: `https://youtube.com/rodydavis`,
-        src: "/media/svg/youtube.svg",
+        src: svgs.youtube,
       },
       {
         link: `https://github.com/rodydavis`,
-        src: "/media/svg/github.svg",
+        src: svgs.github,
       },
     ];
   }
@@ -104,7 +107,7 @@ export class AppHeader extends mix(HTMLElement).with(
         ${this.getSocialLinks().map(
           ({ link, src }) => html`
             <a class="social-link" href=${link} target="_blank" rel="noopener">
-              <img src=${src} />
+              ${src}
             </a>
           `
         )}
