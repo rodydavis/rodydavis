@@ -47,15 +47,26 @@
 </article>
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/javascript.min.js"></script>
+<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/markdown.min.js"></script>
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/sql.min.js"></script>
+<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/dart.min.js"></script>
+<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/go.min.js"></script>
+<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/python.min.js"></script>
+<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/yaml.min.js"></script>
+<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/json.min.js"></script>
+<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/html.min.js"></script>
+<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/xml.min.js"></script>
 <script src="//unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
 <script type="module" src="/js/components/tag-item.js"></script>
 <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.9.0/highlightjs-line-numbers.min.js"></script> -->
 <script>
+    // get all tags with language-markup and add language-html
+    document.querySelectorAll('pre.language-markup').forEach((block) => {
+        block.classList.remove('language-markup');
+        block.classList.add('language-html');
+    });
     hljs.addPlugin(new CopyButtonPlugin());
     hljs.highlightAll();
-    // hljs.initLineNumbersOnLoad({
-    //     singleLine: true,
-    // });
+    // hljs.initLineNumbersOnLoad({ singleLine: true });
 </script>
 {{end}}

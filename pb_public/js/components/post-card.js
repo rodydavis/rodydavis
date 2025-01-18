@@ -101,6 +101,7 @@ export class PostCard extends mix(HTMLElement).with(
       }
       .tags {
         display: flex;
+        flex-wrap: wrap;
         gap: 0.5rem;
         margin-bottom: 1rem;
         margin-top: 1rem;

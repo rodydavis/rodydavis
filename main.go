@@ -21,7 +21,12 @@ func main() {
 		// se.Router.GET("/{path...}", apis.Static(os.DirFS("./pb_public"), false))
 		se.Router.GET("/posts/{path...}", func(e *core.RequestEvent) error {
 			slug := e.Request.PathValue("path")
-			records, err := app.FindAllRecords("posts", dbx.NewExp("slug = {:slug}", dbx.Params{"slug": slug}))
+			records := []*core.Record{}
+			err := app.RecordQuery("posts").
+				Where(dbx.NewExp("slug = {:slug}", dbx.Params{"slug": slug})).
+				AndWhere(dbx.NewExp("draft = false")).
+				OrderBy("updated DESC").
+				All(&records)
 			if err != nil {
 				return err
 			}
@@ -68,9 +73,12 @@ func main() {
 				"templates/base.html",
 				"templates/posts.html",
 			)
-			records, err := app.FindAllRecords("posts",
-				dbx.NewExp("draft = false"),
-			)
+			records := []*core.Record{}
+			err := app.RecordQuery("posts").
+				Select("id", "title", "description", "tags", "slug").
+				Where(dbx.NewExp("draft = false")).
+				OrderBy("updated DESC").
+				All(&records)
 			if err != nil {
 				return err
 			}
