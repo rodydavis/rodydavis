@@ -13,24 +13,7 @@
   --neutral-variant-saturation: 8%;
   --error-hue: 0;
   --error-saturation: 84%;
-}
 
-:where(body).content-color {
-  --primary-hue: var(--source-hue);
-  --primary-saturation: var(--source-saturation);
-  --secondary-hue: var(--source-hue);
-  --secondary-saturation: calc(var(--source-saturation) / 3);
-  --tertiary-hue: calc(var(--source-hue) + 60);
-  --tertiary-saturation: calc(var(--source-saturation) / 2);
-  --neutral-hue: var(--source-hue);
-  --neutral-saturation: calc(min(var(--source-saturation) / 12), 4);
-  --neutral-variant-hue: var(--source-hue);
-  --neutral-variant-saturation: calc(min(var(--source-saturation) / 6, 8));
-  --error-hue: 0;
-  --error-saturation: 84%;
-}
-
-:where(body) {
   /* Primary Palette */
   --md-ref-palette-primary-0: hsl(
     var(--primary-hue) var(--primary-saturation) 0%

@@ -856,6 +856,7 @@
   color: var(--fgColor-default);
   background-color: var(--bgColor-muted);
   border-radius: 6px;
+  width: 100%;
 }
 
 .markdown-body pre code,
@@ -869,6 +870,7 @@
   word-wrap: normal;
   background-color: transparent;
   border: 0;
+  width: 100%;
 }
 
 .markdown-body .csv-data td,
