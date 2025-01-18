@@ -1,8 +1,0 @@
-[phases.setup]
-nixPkgs = ['...', 'go']
-
-[phases.build]
-cmd = "go build -o ./bin/app ."
-
-[start]
-cmd = "./bin/app serve --http=0.0.0.0:8080"

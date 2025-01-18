@@ -105,3 +105,59 @@ iframe {
   border-radius: var(--radius);
   border: 1px solid var(--color);
 }
+
+.markdown-body {
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+
+    .tag {
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      text-decoration: none;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  blockquote {
+    --borderColor: rgb(0, 121, 191);
+    --bgColor: rgb(232, 244, 253);
+    --fgColor: rgb(0, 121, 191);
+
+    &:where(.warn, .info, .error) {
+      padding: 1rem;
+      border-left: 4px solid var(--borderColor);
+      background-color: var(--bgColor);
+      color: var(--fgColor);
+
+      a {
+        color: var(--borderColor);
+      }
+
+      &.warn {
+        --borderColor: rgb(255, 152, 0);
+        --bgColor: rgb(255, 248, 225);
+        --fgColor: rgb(255, 152, 0);
+      }
+
+      &.info {
+        --borderColor: rgb(0, 121, 191);
+        --bgColor: rgb(232, 244, 253);
+        --fgColor: rgb(0, 121, 191);
+      }
+
+      &.error {
+        --borderColor: rgb(211, 47, 47);
+        --bgColor: rgb(253, 236, 234);
+        --fgColor: rgb(211, 47, 47);
+      }
+    }
+  }
+}
