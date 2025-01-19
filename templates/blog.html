@@ -57,6 +57,7 @@
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/html.min.js"></script>
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/xml.min.js"></script>
 <script src="//unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+<script src="/js/open-heart.js" type="module"></script>
 <script type="module" src="/js/components/tag-item.js"></script>
 <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.9.0/highlightjs-line-numbers.min.js"></script> -->
 <script>
@@ -69,4 +70,14 @@
     hljs.highlightAll();
     // hljs.initLineNumbersOnLoad({ singleLine: true });
 </script>
+<div class="reactions">
+    {{range .emojis}}
+    <open-heart href="{{.Target}}" emoji="{{.Emoji}}" count="0">
+        {{.Emoji}}
+    </open-heart>
+    {{end}}
+</div>
+<div class="view-count">
+    <span>{{.views}}</span> view(s)
+</div>
 {{end}}
