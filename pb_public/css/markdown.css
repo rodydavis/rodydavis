@@ -106,7 +106,46 @@ iframe {
   border: 1px solid var(--color);
 }
 
+.reactions {
+  width: 100%;
+  display: flex;
+  gap: 0.2rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  justify-content: center;
+  & > * {
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  open-heart {
+    padding: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:not([count="0"]) {
+      background-color: var(--md-sys-color-surface-bright);
+      border-radius: 50%;
+    }
+  }
+}
+
+.view-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+
+  span {
+    margin-right: 0.5rem;
+  }
+}
+
 .markdown-body {
+  font-size: 1rem;
+
   .tags {
     display: flex;
     flex-wrap: wrap;

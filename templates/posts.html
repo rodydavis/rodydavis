@@ -7,7 +7,7 @@
     <h1>{{.title}}</h1>
     <div class="posts">
         {{range .posts}}
-        <post-card title="{{.title}}" description="{{.description}}" date="{{.updated}}"
+        <post-card title="{{.title}}" description="{{.description}}" date="{{.date}}"
             link="/posts/{{.slug}}">
             {{range .tags_json}}
             <tag-item slot="tags" link="/tags/{{.id}}" name="{{.name}}"></tag-item>
