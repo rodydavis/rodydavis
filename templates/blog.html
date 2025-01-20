@@ -26,13 +26,6 @@
 {{if .image}}
 <meta property="twitter:image" content={{.image}} />
 {{end}}
-<style>
-    @media print {
-        :is(app-header, app-footer) {
-            display: none;
-        }
-    }
-</style>
 {{end}}
 
 {{define "body"}}
@@ -54,6 +47,7 @@
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/python.min.js"></script>
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/yaml.min.js"></script>
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/json.min.js"></script>
+<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/ruby.min.js"></script>
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/html.min.js"></script>
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/xml.min.js"></script>
 <script src="//unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>

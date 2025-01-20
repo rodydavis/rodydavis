@@ -1,0 +1,64 @@
+{{define "title"}}
+{{.title}}
+{{end}}
+
+{{define "body"}}
+<main>
+    <h1>{{.title}}</h1>
+    <div class="apps">
+        {{range .apps}}
+        <div class="app-icon">
+            <a href="{{.link}}">
+                <img src="{{.app_icon}}" alt="{{.name}}">
+                <h2>{{.name}}</h2>
+            </a>
+        </div>
+        {{end}}
+    </div>
+</main>
+<style>
+    .apps {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+
+        .app-icon {
+            width: 200px;
+            height: 200px;
+            background: var(--md-sys-color-surface-dim);
+            border-radius: 20px;
+            overflow: hidden;
+
+            a {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            img {
+                width: 100px;
+                height: 100px;
+                border-radius: 20%;
+                object-fit: contain;
+                aspect-ratio: 1/1;
+            }
+
+            h2 {
+                margin-top: 0.5rem;
+            }
+        }
+    }
+
+    main {
+        padding: 1rem;
+        margin: 0 auto;
+        max-width: 800px;
+        min-height: 90vh;
+    }
+</style>
+<script type="module" src="/js/components/post-card.js"></script>
+<script type="module" src="/js/components/tag-item.js"></script>
+{{end}}
