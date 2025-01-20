@@ -16,7 +16,7 @@ import (
 
 func main() {
 	app := pocketbase.New()
-	baseUrl := "https://rodydavis.dev"
+	baseUrl := "https://rodydavis.com"
 
 	type Reaction struct {
 		Emoji  string
