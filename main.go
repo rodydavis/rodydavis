@@ -26,7 +26,7 @@ func main() {
 
 	type DownloadLink struct {
 		Name string
-		Link     string
+		Link string
 	}
 
 	postsTemplate := template.NewRegistry().LoadFiles(
@@ -216,6 +216,7 @@ func main() {
 				if err != nil {
 					return err
 				}
+				setCacheControl(e)
 				return e.HTML(http.StatusOK, html)
 			}
 			return e.NotFoundError("Post not found", errors.New("post not found"))
@@ -258,6 +259,7 @@ func main() {
 			if err != nil {
 				return err
 			}
+			setCacheControl(e)
 			return e.HTML(http.StatusOK, html)
 		})
 		se.Router.GET("/apps", func(e *core.RequestEvent) error {
@@ -291,6 +293,7 @@ func main() {
 			if err != nil {
 				return err
 			}
+			setCacheControl(e)
 			return e.HTML(http.StatusOK, html)
 		})
 		se.Router.GET("/apps/{path...}", func(e *core.RequestEvent) error {
@@ -323,31 +326,31 @@ func main() {
 				if webApp != "" {
 					downloadLinks = append(downloadLinks, DownloadLink{
 						Name: "Web App",
-						Link:     webApp,
+						Link: webApp,
 					})
 				}
 				if appStore != "" {
 					downloadLinks = append(downloadLinks, DownloadLink{
 						Name: "App Store",
-						Link:     appStore,
+						Link: appStore,
 					})
 				}
 				if playStore != "" {
 					downloadLinks = append(downloadLinks, DownloadLink{
 						Name: "Play Store",
-						Link:     playStore,
+						Link: playStore,
 					})
 				}
 				if windowsStore != "" {
 					downloadLinks = append(downloadLinks, DownloadLink{
 						Name: "Windows Store",
-						Link:     windowsStore,
+						Link: windowsStore,
 					})
 				}
 				if sourceCode != "" {
 					downloadLinks = append(downloadLinks, DownloadLink{
 						Name: "Source Code",
-						Link:     sourceCode,
+						Link: sourceCode,
 					})
 				}
 
@@ -372,6 +375,7 @@ func main() {
 				if err != nil {
 					return err
 				}
+				setCacheControl(e)
 				return e.HTML(http.StatusOK, html)
 			}
 			return e.NotFoundError("Post not found", errors.New("post not found"))
@@ -431,6 +435,7 @@ func main() {
 			if err != nil {
 				return err
 			}
+			setCacheControl(e)
 			return e.HTML(http.StatusOK, html)
 		})
 		se.Router.GET("/{path...}", func(e *core.RequestEvent) error {
@@ -454,6 +459,7 @@ func main() {
 					if err != nil {
 						return err
 					}
+					setCacheControl(e)
 					return e.HTML(http.StatusOK, html)
 				}
 				// check posts
@@ -467,6 +473,7 @@ func main() {
 				}
 				return e.NotFoundError("Not found", errors.New("route not found"))
 			}
+			setCacheControl(e)
 			return apis.Static(os.DirFS("./pb_public"), false)(e)
 		})
 
@@ -476,4 +483,9 @@ func main() {
 	if err := app.Start(); err != nil {
 		log.Fatal(err)
 	}
+}
+
+func setCacheControl(e *core.RequestEvent) {
+	// Cache control of 1 week with a 1 minute stale-while-revalidate
+	e.Response.Header().Set("Cache-Control", "public, max-age=60, stale-while-revalidate=604800, stale-if-error=604800")
 }
