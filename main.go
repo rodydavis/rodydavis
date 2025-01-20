@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/gorilla/feeds"
@@ -527,13 +528,16 @@ func generateFeed(app *pocketbase.PocketBase) (*feeds.Feed, error) {
 	now := time.Now()
 	year := now.Year()
 
-	author := feeds.Author{Name: "Rody Davis", Email: "rody.davis.jr@gmail.com"}
+	author := feeds.Author{
+		Name:  "Rody Davis",
+		Email: "rody.davis.jr@gmail.com",
+	}
 
 	feed := &feeds.Feed{
 		Id:          "https://rodydavis.com",
-		Title:       "Rody Davis - Blog",
+		Title:       "Rody Davis",
 		Link:        &feeds.Link{Href: "https://rodydavis.com/posts"},
-		Image:       &feeds.Image{Url: "https://rodydavis.com/favicon.ico", Title: "Rody Davis", Link: "https://rodydavis.com"},
+		Image:       &feeds.Image{Url: "https://rodydavis.com/media/banner.jpeg", Title: "Rody Davis", Link: "https://rodydavis.com"},
 		Description: "music, photos, food, and code",
 		Author:      &author,
 		Created:     now,
@@ -554,15 +558,21 @@ func generateFeed(app *pocketbase.PocketBase) (*feeds.Feed, error) {
 
 	feed.Items = []*feeds.Item{}
 	for _, post := range posts {
+		html := post.GetString("content")
+
+		// Replace all src="/_/../ with src="https://rodydavis.com/_/../
+		html = strings.ReplaceAll(html, `src="/_/../`, `src="https://rodydavis.com/_/../`)
+		target := "https://rodydavis.com/posts/" + post.GetString("slug")
+
 		item := feeds.Item{
 			Title:       post.GetString("title"),
-			Link:        &feeds.Link{Href: "https://rodydavis.com/posts/" + post.GetString("slug")},
+			Link:        &feeds.Link{Href: target},
 			Description: post.GetString("description"),
 			Author:      &author,
 			Created:     post.GetDateTime("updated").Time(),
-			Id:          post.Id,
-			Content:     post.GetString("content"),
-			Source:      &feeds.Link{Href: "https://rodydavis.com/posts/" + post.GetString("slug")},
+			Id:          target,
+			Content:     html,
+			Source:      &feeds.Link{Href: target},
 		}
 		img := post.GetString("image")
 		if img != "" {
