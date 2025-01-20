@@ -60,6 +60,7 @@ func main() {
 			if err != nil {
 				return err
 			}
+			setCacheControl(e)
 			e.Response.Header().Set("Content-Type", "text/xml;charset=UTF-8")
 			return e.String(http.StatusOK, rss)
 		})
@@ -72,6 +73,7 @@ func main() {
 			if err != nil {
 				return err
 			}
+			setCacheControl(e)
 			e.Response.Header().Set("Content-Type", "text/xml;charset=UTF-8")
 			return e.String(http.StatusOK, rss)
 		})
