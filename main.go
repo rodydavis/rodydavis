@@ -2,11 +2,14 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
 	"os"
+	"time"
 
+	"github.com/gorilla/feeds"
 	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/apis"
@@ -41,6 +44,34 @@ func main() {
 
 	app.OnServe().BindFunc(func(se *core.ServeEvent) error {
 		// se.Router.GET("/{path...}", apis.Static(os.DirFS("./pb_public"), false))
+		se.Router.GET("/feed", func(e *core.RequestEvent) error {
+			return e.Redirect(http.StatusMovedPermanently, "/feed.rss")
+		})
+		se.Router.GET("/feed.xml", func(e *core.RequestEvent) error {
+			return e.Redirect(http.StatusMovedPermanently, "/feed.rss")
+		})
+		se.Router.GET("/feed.rss", func(e *core.RequestEvent) error {
+			feed, err := generateFeed(app)
+			if err != nil {
+				return err
+			}
+			rss, err := feed.ToRss()
+			if err != nil {
+				return err
+			}
+			return e.XML(http.StatusOK, rss)
+		})
+		se.Router.GET("/feed.atom", func(e *core.RequestEvent) error {
+			feed, err := generateFeed(app)
+			if err != nil {
+				return err
+			}
+			rss, err := feed.ToAtom()
+			if err != nil {
+				return err
+			}
+			return e.XML(http.StatusOK, rss)
+		})
 		se.Router.POST("/api/posts/{postId}/reactions", func(e *core.RequestEvent) error {
 			postId := e.Request.PathValue("postId")
 			body, err := io.ReadAll(e.Request.Body)
@@ -488,4 +519,55 @@ func main() {
 func setCacheControl(e *core.RequestEvent) {
 	// Cache control of 1 week with a 1 minute stale-while-revalidate
 	e.Response.Header().Set("Cache-Control", "public, max-age=60, stale-while-revalidate=604800, stale-if-error=604800")
+}
+
+func generateFeed(app *pocketbase.PocketBase) (*feeds.Feed, error) {
+	now := time.Now()
+	year := now.Year()
+
+	author := feeds.Author{Name: "Rody Davis", Email: "rody.davis.jr@gmail.com"}
+
+	feed := &feeds.Feed{
+		Id:          "https://rodydavis.com",
+		Title:       "Rody Davis - Blog",
+		Link:        &feeds.Link{Href: "https://rodydavis.com/posts"},
+		Image:       &feeds.Image{Url: "https://rodydavis.com/favicon.ico", Title: "Rody Davis", Link: "https://rodydavis.com"},
+		Description: "music, photos, food, and code",
+		Author:      &author,
+		Created:     now,
+		Copyright:   "All rights reserved " + fmt.Sprint(year) + ", Rody Davis",
+	}
+
+	posts, err := app.FindRecordsByFilter(
+		"posts",
+		"draft = false",
+		"-updated",
+		1000,
+		0,
+		nil,
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	feed.Items = []*feeds.Item{}
+	for _, post := range posts {
+		item := feeds.Item{
+			Title:       post.GetString("title"),
+			Link:        &feeds.Link{Href: "https://rodydavis.com/posts/" + post.GetString("slug")},
+			Description: post.GetString("description"),
+			Author:      &author,
+			Created:     post.GetDateTime("updated").Time(),
+			Id:          post.Id,
+			Content:     post.GetString("content"),
+			Source:      &feeds.Link{Href: "https://rodydavis.com/posts/" + post.GetString("slug")},
+		}
+		img := post.GetString("image")
+		if img != "" {
+			item.Enclosure = &feeds.Enclosure{Url: "https://rodydavis.com/api/files/posts/" + post.Id + "/" + img}
+		}
+		feed.Items = append(feed.Items, &item)
+	}
+
+	return feed, nil
 }

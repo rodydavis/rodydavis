@@ -19,7 +19,7 @@ export class AppFooter extends mix(HTMLElement).with(
         <div class="links">
           <a href="/about">About</a>
           <a href="/apps">Apps</a>
-          <a href="/privacy">Privacy Policy</a>
+          <a href="/feed.rss">RSS</a>
         </div>
         <div class="copyright">
           <p>&copy; ${this.copyrightStr} Rody Davis Productions</p>
