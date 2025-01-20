@@ -3,7 +3,6 @@ module github.com/rodydavis/rodydavis
 go 1.23.0
 
 require (
-	github.com/googleapis/enterprise-certificate-proxy v0.3.4
 	github.com/pocketbase/dbx v1.11.0
 	github.com/pocketbase/pocketbase v0.24.3
 )
