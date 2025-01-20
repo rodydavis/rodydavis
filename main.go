@@ -24,6 +24,11 @@ func main() {
 		Target string
 	}
 
+	type DownloadLink struct {
+		Name string
+		Link     string
+	}
+
 	postsTemplate := template.NewRegistry().LoadFiles(
 		"templates/base.html",
 		"templates/posts.html",
@@ -139,7 +144,7 @@ func main() {
 
 				img := record.GetString("image")
 				if img != "" {
-					img = "/api/media/" + record.Id + "/" + img
+					img = "/api/files/posts/" + record.Id + "/" + img
 				}
 				tags := record.ExpandedAll("tags")
 				tagJson := []map[string]any{}
@@ -255,6 +260,122 @@ func main() {
 			}
 			return e.HTML(http.StatusOK, html)
 		})
+		se.Router.GET("/apps", func(e *core.RequestEvent) error {
+			records := []*core.Record{}
+			err := app.RecordQuery("apps").
+				Select("id", "name", "description", "icon", "slug", "updated").
+				OrderBy("updated DESC").
+				All(&records)
+			if err != nil {
+				return err
+			}
+			apps := []map[string]any{}
+			for _, item := range records {
+				img := item.GetString("icon")
+				if img != "" {
+					img = "/api/files/apps/" + item.Id + "/" + img
+				}
+				export := item.PublicExport()
+				export["app_icon"] = img
+				export["link"] = "/apps/" + item.GetString("slug")
+				apps = append(apps, export)
+			}
+			apsTemplate := template.NewRegistry().LoadFiles(
+				"templates/base.html",
+				"templates/apps.html",
+			)
+			html, err := apsTemplate.Render(map[string]any{
+				"title": "Apps",
+				"apps":  apps,
+			})
+			if err != nil {
+				return err
+			}
+			return e.HTML(http.StatusOK, html)
+		})
+		se.Router.GET("/apps/{path...}", func(e *core.RequestEvent) error {
+			slug := e.Request.PathValue("path")
+			records := []*core.Record{}
+			err := app.RecordQuery("apps").
+				Where(dbx.NewExp("slug = {:slug}", dbx.Params{"slug": slug})).
+				OrderBy("updated DESC").
+				All(&records)
+			if err != nil {
+				return err
+			}
+			if len(records) == 1 {
+				record := records[0]
+				img := record.GetString("icon")
+				if img != "" {
+					img = "/api/files/apps/" + record.Id + "/" + img
+				}
+				screenshots := record.GetStringSlice("screenshots")
+				for i, screenshot := range screenshots {
+					screenshots[i] = "/api/files/apps/" + record.Id + "/" + screenshot
+				}
+
+				webApp := record.GetString("web_app")
+				appStore := record.GetString("app_store")
+				playStore := record.GetString("play_store")
+				windowsStore := record.GetString("windows_store")
+				sourceCode := record.GetString("source_code")
+				downloadLinks := []DownloadLink{}
+				if webApp != "" {
+					downloadLinks = append(downloadLinks, DownloadLink{
+						Name: "Web App",
+						Link:     webApp,
+					})
+				}
+				if appStore != "" {
+					downloadLinks = append(downloadLinks, DownloadLink{
+						Name: "App Store",
+						Link:     appStore,
+					})
+				}
+				if playStore != "" {
+					downloadLinks = append(downloadLinks, DownloadLink{
+						Name: "Play Store",
+						Link:     playStore,
+					})
+				}
+				if windowsStore != "" {
+					downloadLinks = append(downloadLinks, DownloadLink{
+						Name: "Windows Store",
+						Link:     windowsStore,
+					})
+				}
+				if sourceCode != "" {
+					downloadLinks = append(downloadLinks, DownloadLink{
+						Name: "Source Code",
+						Link:     sourceCode,
+					})
+				}
+
+				appTemplate := template.NewRegistry().LoadFiles(
+					"templates/base.html",
+					"templates/app.html",
+				)
+				html, err := appTemplate.Render(map[string]any{
+					"title":         record.GetString("name"),
+					"description":   record.GetString("description"),
+					"content":       record.GetString("content"),
+					"image":         img,
+					"screenshots":   screenshots,
+					"web_app":       webApp,
+					"app_store":     appStore,
+					"play_store":    playStore,
+					"windows_store": windowsStore,
+					"source_code":   sourceCode,
+					"downloads":     downloadLinks,
+					"url":           baseUrl + "/apps/" + slug,
+				})
+				if err != nil {
+					return err
+				}
+				return e.HTML(http.StatusOK, html)
+			}
+			return e.NotFoundError("Post not found", errors.New("post not found"))
+		})
 		se.Router.GET("/tags/{id}", func(e *core.RequestEvent) error {
 			tag := e.Request.PathValue("id")
 			tagRecord, err := app.FindRecordById("tags", tag)
@@ -335,7 +456,16 @@ func main() {
 					}
 					return e.HTML(http.StatusOK, html)
 				}
-				return e.NotFoundError("Page not found", errors.New("page not found"))
+				// check posts
+				records, err = app.FindAllRecords("posts", dbx.NewExp("slug = {:slug}", dbx.Params{"slug": slug}))
+				if err != nil {
+					return err
+				}
+				if len(records) == 1 {
+					// permanent redirect to /posts/slug
+					return e.Redirect(http.StatusMovedPermanently, "/posts/"+slug)
+				}
+				return e.NotFoundError("Not found", errors.New("route not found"))
 			}
 			return apis.Static(os.DirFS("./pb_public"), false)(e)
 		})

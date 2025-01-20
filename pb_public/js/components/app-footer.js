@@ -18,6 +18,7 @@ export class AppFooter extends mix(HTMLElement).with(
       <footer>
         <div class="links">
           <a href="/about">About</a>
+          <a href="/apps">Apps</a>
           <a href="/privacy">Privacy Policy</a>
         </div>
         <div class="copyright">

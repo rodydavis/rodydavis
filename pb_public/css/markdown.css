@@ -5,6 +5,12 @@
 @import url("/css/code-themes/auto.css");
 @import url("/css/github-markdown.css");
 
+@media print {
+  :is(app-header, app-footer) {
+    display: none;
+  }
+}
+
 :root {
   --padding: 16px;
   --color: light-dark(rgba(226, 226, 226, 0.86), rgba(173, 186, 199, 0.18));
@@ -141,6 +147,7 @@ iframe {
   justify-content: center;
   align-items: center;
   margin-top: 1rem;
+  margin-bottom: 1rem;
 
   span {
     margin-right: 0.5rem;
