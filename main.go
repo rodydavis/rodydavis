@@ -59,7 +59,8 @@ func main() {
 			if err != nil {
 				return err
 			}
-			return e.XML(http.StatusOK, rss)
+			e.Response.Header().Set("Content-Type", "text/xml;charset=UTF-8")
+			return e.String(http.StatusOK, rss)
 		})
 		se.Router.GET("/feed.atom", func(e *core.RequestEvent) error {
 			feed, err := generateFeed(app)
@@ -70,7 +71,8 @@ func main() {
 			if err != nil {
 				return err
 			}
-			return e.XML(http.StatusOK, rss)
+			e.Response.Header().Set("Content-Type", "text/xml;charset=UTF-8")
+			return e.String(http.StatusOK, rss)
 		})
 		se.Router.POST("/api/posts/{postId}/reactions", func(e *core.RequestEvent) error {
 			postId := e.Request.PathValue("postId")
