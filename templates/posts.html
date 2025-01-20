@@ -1,0 +1,35 @@
+{{define "title"}}
+{{.title}}
+{{end}}
+
+{{define "body"}}
+<main>
+    <h1>{{.title}}</h1>
+    <div class="posts">
+        {{range .posts}}
+        <post-card title="{{.title}}" description="{{.description}}" date="{{.date}}"
+            link="/posts/{{.slug}}">
+            {{range .tags_json}}
+            <tag-item slot="tags" link="/tags/{{.id}}" name="{{.name}}"></tag-item>
+            {{end}}
+        </post-card>
+        {{end}}
+    </div>
+</main>
+<style>
+    .posts {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1rem;
+    }
+
+    main {
+        padding: 1rem;
+        margin: 0 auto;
+        max-width: 800px;
+        min-height: 90vh;
+    }
+</style>
+<script type="module" src="/js/components/post-card.js"></script>
+<script type="module" src="/js/components/tag-item.js"></script>
+{{end}}

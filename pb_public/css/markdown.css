@@ -1,0 +1,213 @@
+/* @import url('https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/default.min.css'); */
+/* @import url('/css/code-themes/dark.css') screen and (prefers-color-scheme: dark); */
+/* @import url('/css/code-themes/light.css') screen and (prefers-color-scheme: light); */
+@import url("//unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css");
+@import url("/css/code-themes/auto.css");
+@import url("/css/github-markdown.css");
+
+@media print {
+  :is(app-header, app-footer) {
+    display: none;
+  }
+}
+
+:root {
+  --padding: 16px;
+  --color: light-dark(rgba(226, 226, 226, 0.86), rgba(173, 186, 199, 0.18));
+  --line-number-color: light-dark(
+    rgba(36, 41, 46, 0.48),
+    rgba(173, 186, 199, 0.51)
+  );
+  --radius: 12px;
+  --code-bg: light-dark(#ffffff, #22272e);
+  --code-fg: light-dark(#24292e, #adbac7);
+}
+
+pre {
+  color-scheme: light dark;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background: var(--code-bg);
+  color: var(--code-fg);
+  border: 1px solid var(--color);
+  padding: var(--padding);
+  border-radius: var(--radius);
+  width: calc(100% - (var(--padding) * 2));
+  overflow-x: hidden;
+}
+
+img {
+  border-radius: var(--radius);
+
+  /* display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%; */
+}
+
+.hljs-copy-container .hljs-copy-button {
+  /* margin-right: 20px;
+  margin-top: 20px; */
+  --hljs-theme-padding: 20px;
+}
+
+/* for block of numbers */
+.hljs-ln-numbers {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  text-align: center;
+  color: var(--line-number-color);
+  border-right: 1px solid var(--color);
+  vertical-align: top;
+  padding-right: 5px;
+
+  /* your custom style here */
+  .hljs-ln-n {
+    margin-right: 6px;
+  }
+}
+
+/* for block of code */
+.hljs-ln td.hljs-ln-code {
+  padding-left: 6px;
+}
+
+code {
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
+}
+
+article {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1rem;
+  &:is(.markdown-body) {
+    --bgColor-default: unset;
+    --fgColor-default: unset;
+  }
+}
+
+:where(a) {
+  color: var(--md-sys-color-primary);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  /* &:visited {
+  color: var(--md-sys-color-secondary);
+} */
+}
+
+iframe {
+  width: 100%;
+  min-height: 600px;
+  border-radius: var(--radius);
+  border: 1px solid var(--color);
+}
+
+.reactions {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  /* max-width: 400px; */
+  margin-bottom: 1rem;
+  align-items: center;
+  justify-content: center;
+  & > * {
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  open-heart {
+    padding: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:not([count="0"]) {
+      background-color: var(--md-sys-color-surface-bright);
+      border-radius: 50%;
+    }
+  }
+}
+
+.view-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  span {
+    margin-right: 0.5rem;
+  }
+}
+
+.markdown-body {
+  font-size: 1rem;
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+
+    .tag {
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      background-color: var(--md-sys-color-tertiary);
+      color: var(--md-sys-color-on-tertiary);
+      text-decoration: none;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  blockquote {
+    --borderColor: rgb(0, 121, 191);
+    --bgColor: rgb(232, 244, 253);
+    --fgColor: rgb(0, 121, 191);
+
+    &:where(.warn, .info, .error) {
+      padding: 1rem;
+      border-left: 4px solid var(--borderColor);
+      background-color: var(--bgColor);
+      color: var(--fgColor);
+
+      a {
+        color: var(--borderColor);
+      }
+
+      &.warn {
+        --borderColor: rgb(255, 152, 0);
+        --bgColor: rgb(255, 248, 225);
+        --fgColor: rgb(255, 152, 0);
+      }
+
+      &.info {
+        --borderColor: rgb(0, 121, 191);
+        --bgColor: rgb(232, 244, 253);
+        --fgColor: rgb(0, 121, 191);
+      }
+
+      &.error {
+        --borderColor: rgb(211, 47, 47);
+        --bgColor: rgb(253, 236, 234);
+        --fgColor: rgb(211, 47, 47);
+      }
+    }
+  }
+}
