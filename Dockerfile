@@ -11,9 +11,10 @@ RUN go mod download
 # https://docs.docker.com/reference/dockerfile/#copy
 COPY . .
 
+RUN apt-get update && apt-get install -y libsqlite3-dev
 # Build
 # RUN CGO_ENABLED=0 GOOS=linux go build -o /docker-gs-ping
-RUN go build -o /app/pocketbase .
+RUN CGO_ENABLED=1 go build -o /app/pocketbase .
 
 # Optional:
 # To bind to a TCP port, runtime parameters must be supplied to the docker command.
