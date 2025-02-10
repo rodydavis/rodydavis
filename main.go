@@ -632,10 +632,6 @@ func main() {
 			app.Logger().Error(fmt.Sprintf("error creating vec_posts table: %v", err))
 		}
 
-		posts, err := app.FindAllRecords("posts")
-		if err != nil {
-			app.Logger().Error(fmt.Sprintf("error finding posts: %v", err))
-		}
 		// Insert current posts into embeddings table
 		// INSERT INTO vec_posts(id, embedding) SELECT id, embedding FROM posts;
 		_, err = app.DB().NewQuery(`INSERT INTO vec_posts(id, embedding) SELECT id, embedding_values FROM posts;`).Execute()
@@ -643,13 +639,17 @@ func main() {
 			app.Logger().Error(fmt.Sprintf("error inserting posts into vec_posts table: %v", err))
 		}
 
-		for idx, post := range posts {
-			err := updatePostMeta(app, m, em, post)
-			if err != nil {
-				app.Logger().Error(fmt.Sprintf("error saving post: %v", err))
-			}
-			app.Logger().Info("saved post " + fmt.Sprint(idx+1) + "/" + fmt.Sprint(len(posts)))
-		}
+		// posts, err := app.FindAllRecords("posts")
+		// if err != nil {
+		// 	app.Logger().Error(fmt.Sprintf("error finding posts: %v", err))
+		// }
+		// for idx, post := range posts {
+		// 	err := updatePostMeta(app, m, em, post)
+		// 	if err != nil {
+		// 		app.Logger().Error(fmt.Sprintf("error saving post: %v", err))
+		// 	}
+		// 	app.Logger().Info("saved post " + fmt.Sprint(idx+1) + "/" + fmt.Sprint(len(posts)))
+		// }
 
 		app.OnRecordAfterCreateSuccess("posts").BindFunc(func(e *core.RecordEvent) error {
 			post := e.Record
@@ -709,6 +709,20 @@ func updatePostMeta(
 			post.Set("embedding_model", "text-embedding-004")
 			post.Set("embedding_values", vector)
 			needsSave = true
+
+			// delete and insert vec_posts
+			_, err = app.DB().NewQuery(`DELETE FROM vec_posts WHERE id = {:id};`).Bind(
+				dbx.Params{"id": post.Id},
+			).Execute()
+			if err != nil {
+				app.Logger().Error(fmt.Sprintf("error deleting post from vec_posts table: %v", err))
+			}
+			_, err = app.DB().NewQuery(`INSERT INTO vec_posts(id, embedding) VALUES ({:id}, {:embedding});`).Bind(
+				dbx.Params{"id": post.Id, "embedding": vector},
+			).Execute()
+			if err != nil {
+				app.Logger().Error(fmt.Sprintf("error inserting post into vec_posts table: %v", err))
+			}
 		}
 	}
 	if needsSave {
