@@ -585,9 +585,11 @@ func main() {
 		se.Router.POST("/check-posts-metadata", func(e *core.RequestEvent) error {
 			posts, err := app.FindAllRecords("posts")
 			count := 0
+			total := 0
 			if err != nil {
 				app.Logger().Error(fmt.Sprintf("error finding posts: %v", err))
 			} else {
+				total = len(posts)
 				for idx, post := range posts {
 					err := updatePostMeta(app, m, em, post)
 					if err != nil {
@@ -600,7 +602,7 @@ func main() {
 			}
 			return e.JSON(http.StatusOK, map[string]any{
 				"count": count,
-				"total": len(posts),
+				"total": total,
 			})
 		})
 
