@@ -581,6 +581,29 @@ func main() {
 			setCacheControl(e)
 			return e.HTML(http.StatusOK, html)
 		})
+
+		se.Router.POST("/check-posts-metadata", func(e *core.RequestEvent) error {
+			posts, err := app.FindAllRecords("posts")
+			count := 0
+			if err != nil {
+				app.Logger().Error(fmt.Sprintf("error finding posts: %v", err))
+			} else {
+				for idx, post := range posts {
+					err := updatePostMeta(app, m, em, post)
+					if err != nil {
+						app.Logger().Error(fmt.Sprintf("error saving post: %v", err))
+					} else {
+						app.Logger().Info("saved post " + fmt.Sprint(idx+1) + "/" + fmt.Sprint(len(posts)))
+						count++
+					}
+				}
+			}
+			return e.JSON(http.StatusOK, map[string]any{
+				"count": count,
+				"total": len(posts),
+			})
+		})
+
 		se.Router.GET("/{path...}", func(e *core.RequestEvent) error {
 			slug := e.Request.PathValue("path")
 			if slug == "" {
@@ -638,18 +661,6 @@ func main() {
 		if err != nil {
 			app.Logger().Error(fmt.Sprintf("error inserting posts into vec_posts table: %v", err))
 		}
-
-		// posts, err := app.FindAllRecords("posts")
-		// if err != nil {
-		// 	app.Logger().Error(fmt.Sprintf("error finding posts: %v", err))
-		// }
-		// for idx, post := range posts {
-		// 	err := updatePostMeta(app, m, em, post)
-		// 	if err != nil {
-		// 		app.Logger().Error(fmt.Sprintf("error saving post: %v", err))
-		// 	}
-		// 	app.Logger().Info("saved post " + fmt.Sprint(idx+1) + "/" + fmt.Sprint(len(posts)))
-		// }
 
 		app.OnRecordAfterCreateSuccess("posts").BindFunc(func(e *core.RecordEvent) error {
 			post := e.Record
