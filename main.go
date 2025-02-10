@@ -97,8 +97,6 @@ func main() {
 
 		ctx := context.Background()
 		apiKey := os.Getenv("GOOGLE_AI_API_KEY")
-		// apiKey = "***REMOVED***"
-		apiKey = "***REMOVED***"
 		client, err := genai.NewClient(ctx, option.WithAPIKey(apiKey))
 		if err != nil {
 			return err
