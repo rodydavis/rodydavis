@@ -1,8 +1,8 @@
 {{define "head"}}
-<link rel="stylesheet" href="/css/markdown.css">
-<link rel="stylesheet" href="/css/blog.css">
+<link rel="stylesheet" href="/css/markdown.css" />
+<link rel="stylesheet" href="/css/blog.css" />
 <!-- Canonical URL -->
-<link rel="canonical" href={{.url}} />
+<link rel="canonical" href="{{.url}}" />
 
 <!-- Primary Meta Tags -->
 <title>{{.title}}</title>
@@ -24,11 +24,8 @@
 <meta property="twitter:title" content="{{.title}}" />
 <meta property="twitter:description" content="{{.description}}" />
 {{if .image}}
-<meta property="twitter:image" content={{.image}} />
-{{end}}
-{{end}}
-
-{{define "body"}}
+<meta property="twitter:image" content="{{.image}}" />
+{{end}} {{end}} {{define "body"}}
 <article class="markdown-body">
     <h1>{{.title}}</h1>
     <div class="tags">
@@ -37,7 +34,42 @@
         {{end}}
     </div>
     {{.content|raw}}
+    <section class="related">
+        <h2>Related Posts</h2>
+        <ul>
+            {{range .related}}
+            <li>
+                <a href="{{.Url}}">{{.Title}}</a>
+            </li>
+            {{end}}
+        </ul>
+    </section>
 </article>
+<style>
+    section.related {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        & h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        & ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            & li {
+                margin-bottom: 0.5rem;
+                & a {
+                    color: var(--text-color);
+                    text-decoration: none;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+</style>
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/javascript.min.js"></script>
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/markdown.min.js"></script>
@@ -56,9 +88,9 @@
 <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.9.0/highlightjs-line-numbers.min.js"></script> -->
 <script>
     // get all tags with language-markup and add language-html
-    document.querySelectorAll('pre.language-markup').forEach((block) => {
-        block.classList.remove('language-markup');
-        block.classList.add('language-html');
+    document.querySelectorAll("pre.language-markup").forEach((block) => {
+        block.classList.remove("language-markup");
+        block.classList.add("language-html");
     });
     hljs.addPlugin(new CopyButtonPlugin());
     hljs.highlightAll();
@@ -71,7 +103,5 @@
     </open-heart>
     {{end}}
 </div>
-<div class="view-count">
-    <span>{{.views}}</span> view(s)
-</div>
+<div class="view-count"><span>{{.views}}</span> view(s)</div>
 {{end}}

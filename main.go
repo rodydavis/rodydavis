@@ -1,6 +1,9 @@
 package main
 
 import (
+	"context"
+	"database/sql"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
@@ -10,16 +13,54 @@ import (
 	"strings"
 	"time"
 
+	sqlite_vec "github.com/asg017/sqlite-vec-go-bindings/cgo"
+	"github.com/google/generative-ai-go/genai"
 	"github.com/gorilla/feeds"
+	"github.com/mattn/go-sqlite3"
 	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
 	"github.com/pocketbase/pocketbase/tools/template"
+	"google.golang.org/api/option"
 )
 
+// register a new driver with default PRAGMAs and the same query
+// builder implementation as the already existing sqlite3 builder
+func init() {
+	sql.Register("pb_sqlite3",
+		&sqlite3.SQLiteDriver{
+			Extensions: []string{
+				// "your_extension", // <-- must refer to a so/dll library
+			},
+			ConnectHook: func(conn *sqlite3.SQLiteConn) error {
+				_, err := conn.Exec(`
+                    PRAGMA busy_timeout       = 10000;
+                    PRAGMA journal_mode       = WAL;
+                    PRAGMA journal_size_limit = 200000000;
+                    PRAGMA synchronous        = NORMAL;
+                    PRAGMA foreign_keys       = ON;
+                    PRAGMA temp_store         = MEMORY;
+                    PRAGMA cache_size         = -16000;
+                `, nil)
+
+				return err
+			},
+		},
+	)
+
+	dbx.BuilderFuncMap["pb_sqlite3"] = dbx.BuilderFuncMap["sqlite3"]
+}
+
 func main() {
-	app := pocketbase.New()
+	sqlite_vec.Auto()
+
+	// app := pocketbase.New()
+	app := pocketbase.NewWithConfig(pocketbase.Config{
+		DBConnect: func(dbPath string) (*dbx.DB, error) {
+			return dbx.Open("pb_sqlite3", dbPath)
+		},
+	})
 	baseUrl := "https://rodydavis.com"
 
 	type Reaction struct {
@@ -44,6 +85,40 @@ func main() {
 	)
 
 	app.OnServe().BindFunc(func(se *core.ServeEvent) error {
+		type VecVersion struct {
+			Version string `db:"version"`
+		}
+		vecVersion := VecVersion{}
+		err := app.DB().NewQuery("select vec_version() as version").One(&vecVersion)
+		if err != nil {
+			return err
+		}
+		app.Logger().Info("vec_version=" + vecVersion.Version)
+
+		ctx := context.Background()
+		apiKey := os.Getenv("GOOGLE_AI_API_KEY")
+		// apiKey = "***REMOVED***"
+		apiKey = "***REMOVED***"
+		client, err := genai.NewClient(ctx, option.WithAPIKey(apiKey))
+		if err != nil {
+			return err
+		}
+		defer client.Close()
+		em := client.EmbeddingModel("text-embedding-004")
+		m := client.GenerativeModel("gemini-2.0-flash")
+		// res, err := em.EmbedContent(ctx, genai.Text("What is the meaning of life?"))
+
+		// desc, err := generateDescription(m, "What is the meaning of life?")
+		// if err != nil {
+		// 	return err
+		// }
+		// fmt.Println(desc)
+
+		// if err != nil {
+		// 	panic(err)
+		// }
+		// fmt.Println(res.Embedding.Values)
+
 		// se.Router.GET("/{path...}", apis.Static(os.DirFS("./pb_public"), false))
 		se.Router.GET("/feed", func(e *core.RequestEvent) error {
 			return e.Redirect(http.StatusMovedPermanently, "/feed.rss")
@@ -178,6 +253,39 @@ func main() {
 					return err
 				}
 
+				embedding := record.GetString("embedding_values")
+				related := []struct {
+					Id    string `db:"id" json:"id"`
+					Title string `db:"title" json:"title"`
+					Slug  string `db:"slug" json:"slug"`
+					Url   string `json:"url"`
+				}{}
+				if embedding != "" {
+					err := app.DB().Select(
+						"vec_posts.id as id",
+						"vec_posts.embedding as embedding",
+						"posts.title as title",
+						"posts.description as description",
+						"posts.slug as slug",
+					).
+						From("vec_posts").
+						InnerJoin("posts", dbx.NewExp("vec_posts.id = posts.id")).
+						Where(dbx.NewExp("embedding match {:v}", dbx.Params{
+							"v": embedding,
+						})).
+						AndWhere(dbx.NewExp("k = 5")).
+						OrderBy("distance").
+						All(&related)
+					if err != nil {
+						app.Logger().Error(fmt.Sprintf("error finding related posts: %v", err))
+					} else {
+						app.Logger().Info("found related posts: " + fmt.Sprint(len(related)))
+					}
+					for i, item := range related {
+						related[i].Url = "/posts/" + item.Slug
+					}
+				}
+
 				img := record.GetString("image")
 				if img != "" {
 					img = "/api/files/posts/" + record.Id + "/" + img
@@ -248,6 +356,7 @@ func main() {
 					"tags":        tagJson,
 					"emojis":      emojiTargets,
 					"views":       views,
+					"related":     related,
 				})
 				if err != nil {
 					return err
@@ -513,12 +622,140 @@ func main() {
 			return apis.Static(os.DirFS("./pb_public"), false)(e)
 		})
 
+		// Create embeddings table
+		// create virtual table vec_movies using vec0(
+		//   synopsis_embedding float[768]
+		// );
+		_, err = app.DB().NewQuery(`CREATE VIRTUAL TABLE IF NOT EXISTS vec_posts USING vec0(
+			id TEXT PRIMARY KEY,
+			embedding float[768]
+		);`).Execute()
+		if err != nil {
+			app.Logger().Error(fmt.Sprintf("error creating vec_posts table: %v", err))
+		}
+
+		posts, err := app.FindAllRecords("posts")
+		if err != nil {
+			app.Logger().Error(fmt.Sprintf("error finding posts: %v", err))
+		}
+		// Insert current posts into embeddings table
+		// INSERT INTO vec_posts(id, embedding) SELECT id, embedding FROM posts;
+		_, err = app.DB().NewQuery(`INSERT INTO vec_posts(id, embedding) SELECT id, embedding_values FROM posts;`).Execute()
+		if err != nil {
+			app.Logger().Error(fmt.Sprintf("error inserting posts into vec_posts table: %v", err))
+		}
+
+		for idx, post := range posts {
+			err := updatePostMeta(app, m, em, post)
+			if err != nil {
+				app.Logger().Error(fmt.Sprintf("error saving post: %v", err))
+			}
+			app.Logger().Info("saved post " + fmt.Sprint(idx+1) + "/" + fmt.Sprint(len(posts)))
+		}
+
+		app.OnRecordAfterCreateSuccess("posts").BindFunc(func(e *core.RecordEvent) error {
+			post := e.Record
+			err := updatePostMeta(app, m, em, post)
+			if err != nil {
+				app.Logger().Error(fmt.Sprintf("error saving post: %v", err))
+			}
+			return e.Next()
+		})
+
+		app.OnRecordAfterUpdateSuccess("posts").BindFunc(func(e *core.RecordEvent) error {
+			post := e.Record
+			err := updatePostMeta(app, m, em, post)
+			if err != nil {
+				app.Logger().Error(fmt.Sprintf("error saving post: %v", err))
+			}
+			return e.Next()
+		})
+
 		return se.Next()
 	})
 
 	if err := app.Start(); err != nil {
 		log.Fatal(err)
 	}
+}
+
+func updatePostMeta(
+	app *pocketbase.PocketBase,
+	m *genai.GenerativeModel,
+	em *genai.EmbeddingModel,
+	post *core.Record,
+) error {
+	needsSave := false
+	force := false
+	if post.GetString("description") == "" || force {
+		desc, err := generateDescription(m, post.GetString("content"))
+		if err != nil {
+			app.Logger().Error(fmt.Sprintf("error generating description: %v", err))
+		} else {
+			post.Set("description", desc)
+			needsSave = true
+		}
+	}
+	if post.GetRaw("embedding_model") == "" || force {
+		v, err := embedText(em, post.GetString("description"))
+		if err != nil {
+			app.Logger().Error(fmt.Sprintf("error generating description: %v", err))
+		} else {
+			vector := ""
+			jsonVec, err := json.Marshal(v)
+			if err != nil {
+				vector = "[]"
+			} else {
+				vector = string(jsonVec)
+			}
+			post.Set("embedding_model", "text-embedding-004")
+			post.Set("embedding_values", vector)
+			needsSave = true
+		}
+	}
+	if needsSave {
+		err := app.UnsafeWithoutHooks().Save(post)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func embedText(m *genai.EmbeddingModel, text string) ([]float32, error) {
+	ctx := context.Background()
+	res, err := m.EmbedContent(ctx, genai.Text(text))
+	if err != nil {
+		return nil, err
+	}
+	values := res.Embedding.Values
+	// v, err := sqlite_vec.SerializeFloat32(values)
+	// if err != nil {
+	// 	return nil, err
+	// }
+	return values, nil
+}
+
+func generateDescription(m *genai.GenerativeModel, text string) (string, error) {
+	prompt := "Create a short 1 sentence description for a blog post about the following: " + text
+	ctx := context.Background()
+	res, err := m.GenerateContent(ctx, genai.Text(prompt))
+	if err != nil {
+		return "", err
+	}
+	if len(res.Candidates) == 0 {
+		return "", errors.New("no candidates found")
+	}
+	parts := res.Candidates[0].Content.Parts
+	if len(parts) == 0 {
+		return "", errors.New("no parts found")
+	}
+	part, ok := parts[0].(genai.Text)
+	if !ok {
+		return "", errors.New("part is not text")
+	}
+	return string(part), nil
+
 }
 
 func setCacheControl(e *core.RequestEvent) {
