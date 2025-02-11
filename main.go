@@ -590,22 +590,9 @@ func main() {
 		})
 
 		se.Router.POST("/check-posts-metadata", func(e *core.RequestEvent) error {
-			posts, err := app.FindAllRecords("posts")
-			count := 0
-			total := 0
+			count, total, err := updateAllPosts(app)
 			if err != nil {
-				app.Logger().Error(fmt.Sprintf("error finding posts: %v", err))
-			} else {
-				total = len(posts)
-				for idx, post := range posts {
-					err := updatePostMeta(app, post)
-					if err != nil {
-						app.Logger().Error(fmt.Sprintf("error saving post: %v", err))
-					} else {
-						app.Logger().Info("saved post " + fmt.Sprint(idx+1) + "/" + fmt.Sprint(len(posts)))
-						count++
-					}
-				}
+				return err
 			}
 			return e.JSON(http.StatusOK, map[string]any{
 				"count": count,
@@ -675,6 +662,15 @@ func main() {
 		return se.Next()
 	})
 
+	app.Cron().MustAdd("update-posts", "*/1 1 * * *", func() {
+		count, total, err := updateAllPosts(app)
+		if err != nil {
+			app.Logger().Error(fmt.Sprintf("error updating posts: %v", err))
+		} else {
+			app.Logger().Info("updated " + fmt.Sprint(count) + "/" + fmt.Sprint(total) + " posts")
+		}
+	})
+
 	if err := app.Start(); err != nil {
 		log.Fatal(err)
 	}
@@ -696,7 +692,8 @@ func initPosts(app *pocketbase.PocketBase) error {
 	_, err = app.DB().NewQuery(`
 	INSERT INTO vec_posts(id, embedding)
 	SELECT id, embedding_values FROM posts
-	WHERE embedding_values != '';
+	WHERE embedding_values IS NOT NULL
+	AND embedding_values != '';
 	`).Execute()
 	if err != nil {
 		app.Logger().Error(fmt.Sprintf("error inserting posts into vec_posts table: %v", err))
@@ -720,6 +717,28 @@ func initPosts(app *pocketbase.PocketBase) error {
 	}()
 
 	return nil
+}
+
+func updateAllPosts(app *pocketbase.PocketBase) (int, int, error) {
+	posts, err := app.FindAllRecords("posts")
+	count := 0
+	total := 0
+	if err != nil {
+		app.Logger().Error(fmt.Sprintf("error finding posts: %v", err))
+		return count, total, err
+	} else {
+		total = len(posts)
+		for idx, post := range posts {
+			err := updatePostMeta(app, post)
+			if err != nil {
+				app.Logger().Error(fmt.Sprintf("error saving post: %v", err))
+			} else {
+				app.Logger().Info("saved post " + fmt.Sprint(idx+1) + "/" + fmt.Sprint(len(posts)))
+				count++
+			}
+		}
+	}
+	return count, total, nil
 }
 
 func updatePostMeta(
