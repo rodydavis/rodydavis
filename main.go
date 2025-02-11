@@ -95,15 +95,6 @@ func main() {
 		}
 		app.Logger().Info("vec_version=" + vecVersion.Version)
 
-		ctx := context.Background()
-		apiKey := os.Getenv("GOOGLE_AI_API_KEY")
-		client, err := genai.NewClient(ctx, option.WithAPIKey(apiKey))
-		if err != nil {
-			return err
-		}
-		defer client.Close()
-		em := client.EmbeddingModel("text-embedding-004")
-		m := client.GenerativeModel("gemini-2.0-flash")
 		// res, err := em.EmbedContent(ctx, genai.Text("What is the meaning of life?"))
 
 		// desc, err := generateDescription(m, "What is the meaning of life?")
@@ -607,7 +598,7 @@ func main() {
 			} else {
 				total = len(posts)
 				for idx, post := range posts {
-					err := updatePostMeta(app, m, em, post)
+					err := updatePostMeta(app, post)
 					if err != nil {
 						app.Logger().Error(fmt.Sprintf("error saving post: %v", err))
 					} else {
@@ -686,7 +677,7 @@ func main() {
 
 		app.OnRecordAfterCreateSuccess("posts").BindFunc(func(e *core.RecordEvent) error {
 			post := e.Record
-			err := updatePostMeta(app, m, em, post)
+			err := updatePostMeta(app, post)
 			if err != nil {
 				app.Logger().Error(fmt.Sprintf("error saving post: %v", err))
 			}
@@ -695,7 +686,7 @@ func main() {
 
 		app.OnRecordAfterUpdateSuccess("posts").BindFunc(func(e *core.RecordEvent) error {
 			post := e.Record
-			err := updatePostMeta(app, m, em, post)
+			err := updatePostMeta(app, post)
 			if err != nil {
 				app.Logger().Error(fmt.Sprintf("error saving post: %v", err))
 			}
@@ -712,10 +703,17 @@ func main() {
 
 func updatePostMeta(
 	app *pocketbase.PocketBase,
-	m *genai.GenerativeModel,
-	em *genai.EmbeddingModel,
 	post *core.Record,
 ) error {
+	ctx := context.Background()
+	apiKey := os.Getenv("GOOGLE_AI_API_KEY")
+	client, err := genai.NewClient(ctx, option.WithAPIKey(apiKey))
+	if err != nil {
+		return err
+	}
+	defer client.Close()
+	em := client.EmbeddingModel("text-embedding-004")
+	m := client.GenerativeModel("gemini-2.0-flash")
 	needsSave := false
 	force := false
 	if post.GetString("description") == "" || force {
