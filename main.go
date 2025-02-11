@@ -249,12 +249,14 @@ func main() {
 				}
 
 				embedding := record.GetString("embedding_values")
-				related := []struct {
+				type Related struct {
 					Id    string `db:"id" json:"id"`
 					Title string `db:"title" json:"title"`
 					Slug  string `db:"slug" json:"slug"`
 					Url   string `json:"url"`
-				}{}
+				}
+				related := []Related{}
+				relatedFiltered := []Related{}
 				if embedding != "" {
 					err := app.DB().Select(
 						"vec_posts.id as id",
@@ -284,6 +286,7 @@ func main() {
 							continue
 						}
 						related[i].Url = "/posts/" + item.Slug
+						relatedFiltered = append(relatedFiltered, related[i])
 					}
 				}
 
@@ -357,7 +360,7 @@ func main() {
 					"tags":        tagJson,
 					"emojis":      emojiTargets,
 					"views":       views,
-					"related":     related,
+					"related":     relatedFiltered,
 				})
 				if err != nil {
 					return err
