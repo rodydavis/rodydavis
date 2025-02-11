@@ -271,10 +271,10 @@ func main() {
 						Where(dbx.NewExp("embedding match {:v}", dbx.Params{
 							"v": embedding,
 						})).
-						AndWhere(dbx.NewExp("k = 5")).
-						AndWhere(dbx.NewExp("id != {:id}", dbx.Params{
-							"id": record.Id,
-						})).
+						AndWhere(dbx.NewExp("k = 6")).
+						// AndWhere(dbx.NewExp("id != {:id}", dbx.Params{
+						// 	"id": record.Id,
+						// })).
 						OrderBy("distance").
 						All(&related)
 					if err != nil {
@@ -283,6 +283,9 @@ func main() {
 						app.Logger().Info("found related posts: " + fmt.Sprint(len(related)))
 					}
 					for i, item := range related {
+						if item.Id == record.Id {
+							continue
+						}
 						related[i].Url = "/posts/" + item.Slug
 					}
 				}
