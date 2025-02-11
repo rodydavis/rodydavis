@@ -652,28 +652,7 @@ func main() {
 			return apis.Static(os.DirFS("./pb_public"), false)(e)
 		})
 
-		// Create embeddings table
-		// create virtual table vec_movies using vec0(
-		//   synopsis_embedding float[768]
-		// );
-		_, err = app.DB().NewQuery(`CREATE VIRTUAL TABLE IF NOT EXISTS vec_posts USING vec0(
-			id TEXT PRIMARY KEY,
-			embedding float[768]
-		);`).Execute()
-		if err != nil {
-			app.Logger().Error(fmt.Sprintf("error creating vec_posts table: %v", err))
-		}
-
-		// Insert current posts into embeddings table
-		// INSERT INTO vec_posts(id, embedding) SELECT id, embedding FROM posts;
-		_, err = app.DB().NewQuery(`DELETE FROM vec_posts;`).Execute()
-		if err != nil {
-			app.Logger().Error(fmt.Sprintf("error deleting posts into vec_posts table: %v", err))
-		}
-		_, err = app.DB().NewQuery(`INSERT INTO vec_posts(id, embedding) SELECT id, embedding_values FROM posts;`).Execute()
-		if err != nil {
-			app.Logger().Error(fmt.Sprintf("error inserting posts into vec_posts table: %v", err))
-		}
+		initPosts(app)
 
 		app.OnRecordAfterCreateSuccess("posts").BindFunc(func(e *core.RecordEvent) error {
 			post := e.Record
@@ -699,6 +678,48 @@ func main() {
 	if err := app.Start(); err != nil {
 		log.Fatal(err)
 	}
+}
+
+func initPosts(app *pocketbase.PocketBase) error {
+	_, err := app.DB().NewQuery(`CREATE VIRTUAL TABLE IF NOT EXISTS vec_posts USING vec0(
+		id TEXT PRIMARY KEY,
+		embedding float[768]
+	);`).Execute()
+	if err != nil {
+		app.Logger().Error(fmt.Sprintf("error creating vec_posts table: %v", err))
+	}
+	_, err = app.DB().NewQuery(`DELETE FROM vec_posts;`).Execute()
+	if err != nil {
+		app.Logger().Error(fmt.Sprintf("error deleting posts into vec_posts table: %v", err))
+	}
+
+	_, err = app.DB().NewQuery(`
+	INSERT INTO vec_posts(id, embedding)
+	SELECT id, embedding_values FROM posts
+	WHERE embedding_values != '';
+	`).Execute()
+	if err != nil {
+		app.Logger().Error(fmt.Sprintf("error inserting posts into vec_posts table: %v", err))
+	}
+
+	go func() {
+		posts := []*core.Record{}
+		err := app.RecordQuery("posts").Where(dbx.NewExp("draft = false")).AndWhere(dbx.NewExp("embedding_values = ''")).All(&posts)
+		if err != nil {
+			app.Logger().Error(fmt.Sprintf("error finding posts: %v", err))
+		} else {
+			for idx, post := range posts {
+				err := updatePostMeta(app, post)
+				if err != nil {
+					app.Logger().Error(fmt.Sprintf("error saving post: %v", err))
+				} else {
+					app.Logger().Info("saved post " + fmt.Sprint(idx+1) + "/" + fmt.Sprint(len(posts)))
+				}
+			}
+		}
+	}()
+
+	return nil
 }
 
 func updatePostMeta(
