@@ -272,6 +272,9 @@ func main() {
 							"v": embedding,
 						})).
 						AndWhere(dbx.NewExp("k = 5")).
+						AndWhere(dbx.NewExp("id != {:id}", dbx.Params{
+							"id": record.Id,
+						})).
 						OrderBy("distance").
 						All(&related)
 					if err != nil {
