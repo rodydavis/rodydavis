@@ -236,10 +236,7 @@ func main() {
 		se.Router.GET("/posts/{path...}", func(e *core.RequestEvent) error {
 			slug := e.Request.PathValue("path")
 			records := []*core.Record{}
-			err := app.RecordQuery("posts").
-				Where(dbx.NewExp("slug = {:slug}", dbx.Params{"slug": slug})).
-				AndWhere(dbx.NewExp("draft = false")).
-				OrderBy("updated DESC").
+			err := app.RecordQuery("posts").Where(dbx.NewExp("draft = false")).AndWhere(dbx.NewExp("slug = {:slug}", dbx.Params{"slug": slug})).OrderBy("updated DESC").
 				All(&records)
 			if err != nil {
 				return err
@@ -372,9 +369,18 @@ func main() {
 		})
 		se.Router.GET("/posts", func(e *core.RequestEvent) error {
 			records := []*core.Record{}
-			err := app.RecordQuery("posts").
+			q := e.Request.URL.Query().Get("q")
+			query := app.RecordQuery("posts").
 				Select("id", "title", "description", "tags", "slug", "updated", "date").
-				Where(dbx.NewExp("draft = false")).
+				Where(dbx.NewExp("draft = false"))
+			if q != "" {
+				// query = query.AndWhere(dbx.NewExp("(LOWER(title) LIKE {:q} OR LOWER(description) LIKE {:q})", dbx.Params{"q": q}))
+				query = query.AndWhere(dbx.Or(
+					dbx.NewExp("LOWER(title) LIKE {:q}", dbx.Params{"q": "%" + strings.ToLower(q) + "%"}),
+					dbx.NewExp("LOWER(description) LIKE {:q}", dbx.Params{"q": "%" + strings.ToLower(q) + "%"}),
+				))
+			}
+			err := query.
 				OrderBy("updated DESC").
 				All(&records)
 			if err != nil {
@@ -402,8 +408,9 @@ func main() {
 				posts = append(posts, export)
 			}
 			html, err := postsTemplate.Render(map[string]any{
-				"title": "Posts",
-				"posts": posts,
+				"title":  "Posts",
+				"posts":  posts,
+				"search": q,
 			})
 			if err != nil {
 				return err
@@ -665,6 +672,10 @@ func main() {
 
 		// Insert current posts into embeddings table
 		// INSERT INTO vec_posts(id, embedding) SELECT id, embedding FROM posts;
+		_, err = app.DB().NewQuery(`DELETE FROM vec_posts;`).Execute()
+		if err != nil {
+			app.Logger().Error(fmt.Sprintf("error deleting posts into vec_posts table: %v", err))
+		}
 		_, err = app.DB().NewQuery(`INSERT INTO vec_posts(id, embedding) SELECT id, embedding_values FROM posts;`).Execute()
 		if err != nil {
 			app.Logger().Error(fmt.Sprintf("error inserting posts into vec_posts table: %v", err))
