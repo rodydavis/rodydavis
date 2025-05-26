@@ -1,9 +1,6 @@
 package main
 
 import (
-	"context"
-	"database/sql"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
@@ -13,54 +10,17 @@ import (
 	"strings"
 	"time"
 
-	sqlite_vec "github.com/asg017/sqlite-vec-go-bindings/cgo"
-	"github.com/google/generative-ai-go/genai"
+	md "github.com/JohannesKaufmann/html-to-markdown"
 	"github.com/gorilla/feeds"
-	"github.com/mattn/go-sqlite3"
 	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
 	"github.com/pocketbase/pocketbase/tools/template"
-	"google.golang.org/api/option"
 )
 
-// register a new driver with default PRAGMAs and the same query
-// builder implementation as the already existing sqlite3 builder
-func init() {
-	sql.Register("pb_sqlite3",
-		&sqlite3.SQLiteDriver{
-			Extensions: []string{
-				// "your_extension", // <-- must refer to a so/dll library
-			},
-			ConnectHook: func(conn *sqlite3.SQLiteConn) error {
-				_, err := conn.Exec(`
-                    PRAGMA busy_timeout       = 10000;
-                    PRAGMA journal_mode       = WAL;
-                    PRAGMA journal_size_limit = 200000000;
-                    PRAGMA synchronous        = NORMAL;
-                    PRAGMA foreign_keys       = ON;
-                    PRAGMA temp_store         = MEMORY;
-                    PRAGMA cache_size         = -16000;
-                `, nil)
-
-				return err
-			},
-		},
-	)
-
-	dbx.BuilderFuncMap["pb_sqlite3"] = dbx.BuilderFuncMap["sqlite3"]
-}
-
 func main() {
-	sqlite_vec.Auto()
-
-	// app := pocketbase.New()
-	app := pocketbase.NewWithConfig(pocketbase.Config{
-		DBConnect: func(dbPath string) (*dbx.DB, error) {
-			return dbx.Open("pb_sqlite3", dbPath)
-		},
-	})
+	app := pocketbase.New()
 	baseUrl := "https://rodydavis.com"
 
 	type Reaction struct {
@@ -85,29 +45,6 @@ func main() {
 	)
 
 	app.OnServe().BindFunc(func(se *core.ServeEvent) error {
-		type VecVersion struct {
-			Version string `db:"version"`
-		}
-		vecVersion := VecVersion{}
-		err := app.DB().NewQuery("select vec_version() as version").One(&vecVersion)
-		if err != nil {
-			return err
-		}
-		app.Logger().Info("vec_version=" + vecVersion.Version)
-
-		// res, err := em.EmbedContent(ctx, genai.Text("What is the meaning of life?"))
-
-		// desc, err := generateDescription(m, "What is the meaning of life?")
-		// if err != nil {
-		// 	return err
-		// }
-		// fmt.Println(desc)
-
-		// if err != nil {
-		// 	panic(err)
-		// }
-		// fmt.Println(res.Embedding.Values)
-
 		// se.Router.GET("/{path...}", apis.Static(os.DirFS("./pb_public"), false))
 		se.Router.GET("/feed", func(e *core.RequestEvent) error {
 			return e.Redirect(http.StatusMovedPermanently, "/feed.rss")
@@ -202,13 +139,12 @@ func main() {
 				dbx.NewExp("post_id = {:postId}", dbx.Params{"postId": postId}),
 			)
 			if err != nil {
-				return err
+				return e.JSON(http.StatusOK, map[string]any{})
 			}
-			errs := app.ExpandRecords(postReactionRecords, []string{"reaction_id"}, nil)
-			if len(errs) > 0 {
-				return err
+			errMap := app.ExpandRecords(postReactionRecords, []string{"reaction_id"}, nil)
+			if len(errMap) > 0 {
+				return e.JSON(http.StatusOK, map[string]any{})
 			}
-
 			counts := []ReactionCount{}
 			for _, record := range postReactionRecords {
 				count := record.GetInt("count")
@@ -224,10 +160,95 @@ func main() {
 			}
 			return e.JSON(http.StatusOK, reactionJson)
 		})
+		se.Router.GET("/api/available-reactions", func(e *core.RequestEvent) error {
+			type AvailableReaction struct {
+				Emoji string `json:"emoji"`
+				Alt   string `json:"alt"`
+			}
+			availableReactions := []AvailableReaction{}
+			reactions, err := app.FindAllRecords("reactions")
+			if err != nil {
+				// If the "reactions" collection doesn't exist or is empty, return an empty list.
+				// This is not an error for the client, just means no reactions are configured.
+				if strings.Contains(err.Error(), "no rows in result set") || strings.Contains(err.Error(), "collection not found") {
+					return e.JSON(http.StatusOK, availableReactions)
+				}
+				return apis.NewApiError(http.StatusInternalServerError, "Failed to fetch available reactions", err)
+			}
+			for _, reaction := range reactions {
+				availableReactions = append(availableReactions, AvailableReaction{
+					Emoji: reaction.GetString("value"),
+					Alt:   reaction.GetString("alt"),
+				})
+			}
+			// Consider adding cache control if this data doesn't change often
+			// setCacheControl(e)
+			return e.JSON(http.StatusOK, availableReactions)
+		})
+		se.Router.GET("/api/posts/{postId}/views", func(e *core.RequestEvent) error {
+			postId := e.Request.PathValue("postId")
+			col, err := app.FindCollectionByNameOrId("post_views")
+			if err != nil {
+				return apis.NewApiError(http.StatusInternalServerError, "Failed to find post_views collection", err)
+			}
+
+			postViewsRecords, err := app.FindAllRecords("post_views",
+				dbx.NewExp("post_id = {:postId}",
+					dbx.Params{"postId": postId},
+				),
+			)
+			if err != nil && !strings.Contains(err.Error(), "no rows in result set") { // Allow "no rows" as we'll create it
+				return apis.NewApiError(http.StatusInternalServerError, "Failed to query post_views", err)
+			}
+
+			views := 0
+			var record *core.Record
+
+			if len(postViewsRecords) == 0 {
+				// create new post view entry
+				record = core.NewRecord(col)
+				record.Set("post_id", postId)
+				views = 1
+				record.Set("count", views)
+			} else {
+				record = postViewsRecords[0]
+				viewCount := record.GetInt("count")
+				views = viewCount + 1
+				record.Set("count", views)
+			}
+
+			if err := app.Save(record); err != nil {
+				return apis.NewApiError(http.StatusInternalServerError, "Failed to save post_views", err)
+			}
+
+			return e.JSON(http.StatusOK, map[string]any{
+				"views": views,
+			})
+		})
+		// START NEW ROUTE FOR MARKDOWN CONTENT
+		se.Router.GET("/api/posts/{postId}/markdown", func(e *core.RequestEvent) error {
+			postId := e.Request.PathValue("postId")
+			record, err := app.FindRecordById("posts", postId)
+			if err != nil {
+				return apis.NewNotFoundError("Post not found.", err)
+			}
+			htmlContent := record.GetString("content") // This is the HTML content
+			converter := md.NewConverter("", true, nil)
+			markdownContent, err := converter.ConvertString(htmlContent)
+			if err != nil {
+				return apis.NewApiError(http.StatusInternalServerError, "Failed to convert HTML to Markdown", err)
+			}
+			// Return converted markdown content as JSON
+			return e.JSON(http.StatusOK, map[string]any{"markdown": markdownContent})
+		})
+		// END NEW ROUTE
 		se.Router.GET("/posts/{path...}", func(e *core.RequestEvent) error {
 			slug := e.Request.PathValue("path")
 			records := []*core.Record{}
-			err := app.RecordQuery("posts").Where(dbx.NewExp("draft = false")).AndWhere(dbx.NewExp("slug = {:slug}", dbx.Params{"slug": slug})).OrderBy("updated DESC").
+			err := app.RecordQuery("posts").
+				Where(dbx.NewExp("slug = {:slug}", dbx.Params{"slug": slug})).
+				AndWhere(dbx.NewExp("draft = false")).
+				OrderBy("updated DESC").
 				All(&records)
 			if err != nil {
 				return err
@@ -237,48 +258,6 @@ func main() {
 				errs := app.ExpandRecord(record, []string{"tags"}, nil)
 				if len(errs) > 0 {
 					return err
-				}
-
-				embedding := record.GetString("embedding_values")
-				type Related struct {
-					Id    string `db:"id" json:"id"`
-					Title string `db:"title" json:"title"`
-					Slug  string `db:"slug" json:"slug"`
-					Url   string `json:"url"`
-				}
-				related := []Related{}
-				relatedFiltered := []Related{}
-				if embedding != "" {
-					err := app.DB().Select(
-						"vec_posts.id as id",
-						"vec_posts.embedding as embedding",
-						"posts.title as title",
-						"posts.description as description",
-						"posts.slug as slug",
-					).
-						From("vec_posts").
-						InnerJoin("posts", dbx.NewExp("vec_posts.id = posts.id")).
-						Where(dbx.NewExp("embedding match {:v}", dbx.Params{
-							"v": embedding,
-						})).
-						AndWhere(dbx.NewExp("k = 6")).
-						// AndWhere(dbx.NewExp("id != {:id}", dbx.Params{
-						// 	"id": record.Id,
-						// })).
-						OrderBy("distance").
-						All(&related)
-					if err != nil {
-						app.Logger().Error(fmt.Sprintf("error finding related posts: %v", err))
-					} else {
-						app.Logger().Info("found related posts: " + fmt.Sprint(len(related)))
-					}
-					for i, item := range related {
-						if item.Id == record.Id {
-							continue
-						}
-						related[i].Url = "/posts/" + item.Slug
-						relatedFiltered = append(relatedFiltered, related[i])
-					}
 				}
 
 				img := record.GetString("image")
@@ -343,6 +322,7 @@ func main() {
 				}
 
 				html, err := blogTemplate.Render(map[string]any{
+					"id":          record.Id,
 					"title":       record.GetString("title"),
 					"content":     record.GetString("content"),
 					"image":       img,
@@ -351,7 +331,6 @@ func main() {
 					"tags":        tagJson,
 					"emojis":      emojiTargets,
 					"views":       views,
-					"related":     relatedFiltered,
 				})
 				if err != nil {
 					return err
@@ -363,18 +342,9 @@ func main() {
 		})
 		se.Router.GET("/posts", func(e *core.RequestEvent) error {
 			records := []*core.Record{}
-			q := e.Request.URL.Query().Get("q")
-			query := app.RecordQuery("posts").
+			err := app.RecordQuery("posts").
 				Select("id", "title", "description", "tags", "slug", "updated", "date").
-				Where(dbx.NewExp("draft = false"))
-			if q != "" {
-				// query = query.AndWhere(dbx.NewExp("(LOWER(title) LIKE {:q} OR LOWER(description) LIKE {:q})", dbx.Params{"q": q}))
-				query = query.AndWhere(dbx.Or(
-					dbx.NewExp("LOWER(title) LIKE {:q}", dbx.Params{"q": "%" + strings.ToLower(q) + "%"}),
-					dbx.NewExp("LOWER(description) LIKE {:q}", dbx.Params{"q": "%" + strings.ToLower(q) + "%"}),
-				))
-			}
-			err := query.
+				Where(dbx.NewExp("draft = false")).
 				OrderBy("updated DESC").
 				All(&records)
 			if err != nil {
@@ -402,9 +372,8 @@ func main() {
 				posts = append(posts, export)
 			}
 			html, err := postsTemplate.Render(map[string]any{
-				"title":  "Posts",
-				"posts":  posts,
-				"search": q,
+				"title": "Posts",
+				"posts": posts,
 			})
 			if err != nil {
 				return err
@@ -588,18 +557,6 @@ func main() {
 			setCacheControl(e)
 			return e.HTML(http.StatusOK, html)
 		})
-
-		se.Router.POST("/check-posts-metadata", func(e *core.RequestEvent) error {
-			count, total, err := updateAllPosts(app)
-			if err != nil {
-				return err
-			}
-			return e.JSON(http.StatusOK, map[string]any{
-				"count": count,
-				"total": total,
-			})
-		})
-
 		se.Router.GET("/{path...}", func(e *core.RequestEvent) error {
 			slug := e.Request.PathValue("path")
 			if slug == "" {
@@ -633,212 +590,28 @@ func main() {
 					// permanent redirect to /posts/slug
 					return e.Redirect(http.StatusMovedPermanently, "/posts/"+slug)
 				}
-				return e.NotFoundError("Not found", errors.New("route not found"))
+				// check if slug matches a nested post path (e.g. /sqlite/nosql)
+				records, err = app.FindAllRecords("posts", dbx.NewExp("slug = {:slug}", dbx.Params{"slug": "/" + slug}))
+				if err != nil {
+					return err
+				}
+				if len(records) == 1 {
+					// permanent redirect to /posts/slug (with nested path)
+					return e.Redirect(http.StatusMovedPermanently, "/posts/"+slug)
+				}
+				// Redirect to home if not found
+				return e.Redirect(http.StatusTemporaryRedirect, "/")
 			}
 			setCacheControl(e)
 			return apis.Static(os.DirFS("./pb_public"), false)(e)
 		})
 
-		initPosts(app)
-
-		app.OnRecordAfterCreateSuccess("posts").BindFunc(func(e *core.RecordEvent) error {
-			post := e.Record
-			err := updatePostMeta(app, post)
-			if err != nil {
-				app.Logger().Error(fmt.Sprintf("error saving post: %v", err))
-			}
-			return e.Next()
-		})
-
-		app.OnRecordAfterUpdateSuccess("posts").BindFunc(func(e *core.RecordEvent) error {
-			post := e.Record
-			err := updatePostMeta(app, post)
-			if err != nil {
-				app.Logger().Error(fmt.Sprintf("error saving post: %v", err))
-			}
-			return e.Next()
-		})
-
 		return se.Next()
-	})
-
-	app.Cron().MustAdd("update-posts", "*/1 1 * * *", func() {
-		count, total, err := updateAllPosts(app)
-		if err != nil {
-			app.Logger().Error(fmt.Sprintf("error updating posts: %v", err))
-		} else {
-			app.Logger().Info("updated " + fmt.Sprint(count) + "/" + fmt.Sprint(total) + " posts")
-		}
 	})
 
 	if err := app.Start(); err != nil {
 		log.Fatal(err)
 	}
-}
-
-func initPosts(app *pocketbase.PocketBase) error {
-	_, err := app.DB().NewQuery(`CREATE VIRTUAL TABLE IF NOT EXISTS vec_posts USING vec0(
-		id TEXT PRIMARY KEY,
-		embedding float[768]
-	);`).Execute()
-	if err != nil {
-		app.Logger().Error(fmt.Sprintf("error creating vec_posts table: %v", err))
-	}
-	_, err = app.DB().NewQuery(`DELETE FROM vec_posts;`).Execute()
-	if err != nil {
-		app.Logger().Error(fmt.Sprintf("error deleting posts into vec_posts table: %v", err))
-	}
-
-	_, err = app.DB().NewQuery(`
-	INSERT INTO vec_posts(id, embedding)
-	SELECT id, embedding_values FROM posts
-	WHERE embedding_values IS NOT NULL
-	AND embedding_values != '';
-	`).Execute()
-	if err != nil {
-		app.Logger().Error(fmt.Sprintf("error inserting posts into vec_posts table: %v", err))
-	}
-
-	go func() {
-		posts := []*core.Record{}
-		err := app.RecordQuery("posts").Where(dbx.NewExp("draft = false")).AndWhere(dbx.NewExp("embedding_values = ''")).All(&posts)
-		if err != nil {
-			app.Logger().Error(fmt.Sprintf("error finding posts: %v", err))
-		} else {
-			for idx, post := range posts {
-				err := updatePostMeta(app, post)
-				if err != nil {
-					app.Logger().Error(fmt.Sprintf("error saving post: %v", err))
-				} else {
-					app.Logger().Info("saved post " + fmt.Sprint(idx+1) + "/" + fmt.Sprint(len(posts)))
-				}
-			}
-		}
-	}()
-
-	return nil
-}
-
-func updateAllPosts(app *pocketbase.PocketBase) (int, int, error) {
-	posts, err := app.FindAllRecords("posts")
-	count := 0
-	total := 0
-	if err != nil {
-		app.Logger().Error(fmt.Sprintf("error finding posts: %v", err))
-		return count, total, err
-	} else {
-		total = len(posts)
-		for idx, post := range posts {
-			err := updatePostMeta(app, post)
-			if err != nil {
-				app.Logger().Error(fmt.Sprintf("error saving post: %v", err))
-			} else {
-				app.Logger().Info("saved post " + fmt.Sprint(idx+1) + "/" + fmt.Sprint(len(posts)))
-				count++
-			}
-		}
-	}
-	return count, total, nil
-}
-
-func updatePostMeta(
-	app *pocketbase.PocketBase,
-	post *core.Record,
-) error {
-	ctx := context.Background()
-	apiKey := os.Getenv("GOOGLE_AI_API_KEY")
-	client, err := genai.NewClient(ctx, option.WithAPIKey(apiKey))
-	if err != nil {
-		return err
-	}
-	defer client.Close()
-	em := client.EmbeddingModel("text-embedding-004")
-	m := client.GenerativeModel("gemini-2.0-flash")
-	needsSave := false
-	force := false
-	if post.GetString("description") == "" || force {
-		desc, err := generateDescription(m, post.GetString("content"))
-		if err != nil {
-			app.Logger().Error(fmt.Sprintf("error generating description: %v", err))
-		} else {
-			post.Set("description", desc)
-			needsSave = true
-		}
-	}
-	if post.GetRaw("embedding_model") == "" || force {
-		v, err := embedText(em, post.GetString("description"))
-		if err != nil {
-			app.Logger().Error(fmt.Sprintf("error generating description: %v", err))
-		} else {
-			vector := ""
-			jsonVec, err := json.Marshal(v)
-			if err != nil {
-				vector = "[]"
-			} else {
-				vector = string(jsonVec)
-			}
-			post.Set("embedding_model", "text-embedding-004")
-			post.Set("embedding_values", vector)
-			needsSave = true
-
-			// delete and insert vec_posts
-			_, err = app.DB().NewQuery(`DELETE FROM vec_posts WHERE id = {:id};`).Bind(
-				dbx.Params{"id": post.Id},
-			).Execute()
-			if err != nil {
-				app.Logger().Error(fmt.Sprintf("error deleting post from vec_posts table: %v", err))
-			}
-			_, err = app.DB().NewQuery(`INSERT INTO vec_posts(id, embedding) VALUES ({:id}, {:embedding});`).Bind(
-				dbx.Params{"id": post.Id, "embedding": vector},
-			).Execute()
-			if err != nil {
-				app.Logger().Error(fmt.Sprintf("error inserting post into vec_posts table: %v", err))
-			}
-		}
-	}
-	if needsSave {
-		err := app.UnsafeWithoutHooks().Save(post)
-		if err != nil {
-			return err
-		}
-	}
-	return nil
-}
-
-func embedText(m *genai.EmbeddingModel, text string) ([]float32, error) {
-	ctx := context.Background()
-	res, err := m.EmbedContent(ctx, genai.Text(text))
-	if err != nil {
-		return nil, err
-	}
-	values := res.Embedding.Values
-	// v, err := sqlite_vec.SerializeFloat32(values)
-	// if err != nil {
-	// 	return nil, err
-	// }
-	return values, nil
-}
-
-func generateDescription(m *genai.GenerativeModel, text string) (string, error) {
-	prompt := "Create a short 1 sentence description for a blog post about the following: " + text
-	ctx := context.Background()
-	res, err := m.GenerateContent(ctx, genai.Text(prompt))
-	if err != nil {
-		return "", err
-	}
-	if len(res.Candidates) == 0 {
-		return "", errors.New("no candidates found")
-	}
-	parts := res.Candidates[0].Content.Parts
-	if len(parts) == 0 {
-		return "", errors.New("no parts found")
-	}
-	part, ok := parts[0].(genai.Text)
-	if !ok {
-		return "", errors.New("part is not text")
-	}
-	return string(part), nil
-
 }
 
 func setCacheControl(e *core.RequestEvent) {

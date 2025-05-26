@@ -31,30 +31,15 @@ export class AppFooter extends mix(HTMLElement).with(
   styles = computed(
     () => css`
       footer {
-        background-color: var(--md-sys-color-surface-dim);
-        color: var(--md-sys-color-on-surface);
-        padding: 8px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+        padding: 20px;
+        text-align: center;
+        background-color: var(--app-footer-background);
+        color: var(--app-footer-text);
+        font-size: 0.9rem;
       }
-      .links {
-        display: flex;
-        flex-direction: row;
-        gap: 8px;
-      }
-      a {
-        color: var(--md-sys-color-on-surface);
+      footer a {
+        color: var(--app-footer-link-text);
         text-decoration: none;
-      }
-      p {
-        font-size: 14px;
-      }
-      .copyright {
-        display: flex;
-        flex-direction: row;
-        gap: 8px;
       }
     `
   );

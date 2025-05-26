@@ -61,7 +61,7 @@
         .app-icon {
             width: 200px;
             height: 200px;
-            background: var(--md-sys-color-surface-dim);
+            background: var(--app-header-icon-background);
             border-radius: 20px;
             overflow: hidden;
             margin: 0 auto;
@@ -103,10 +103,51 @@
 
         a {
             padding: 0.5rem 1rem;
-            background: var(--md-sys-color-secondary);
+            background: var(--download-link-background);
             border-radius: 20px;
             text-decoration: none;
-            color: var(--md-sys-color-on-secondary);
+            color: var(--download-link-text);
+        }
+    }
+
+    .app-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+
+    .app-card {
+        background: var(--app-card-background);
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin: 0.5rem 0;
+        }
+
+        p {
+            font-size: 1rem;
+            color: var(--app-card-text);
+            margin: 0 0.5rem 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--app-card-btn-background);
+            border-radius: 1rem;
+            color: var(--app-card-btn-text);
+            text-decoration: none;
+            text-align: center;
+            margin: 0.5rem;
         }
     }
 </style>

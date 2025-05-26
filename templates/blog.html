@@ -1,7 +1,8 @@
 {{define "head"}}
-<link rel="stylesheet" href="/css/markdown.css" />
+<link rel="stylesheet" href="/css/markdown.css">
+<link rel="stylesheet" href="/css/blog.css">
 <!-- Canonical URL -->
-<link rel="canonical" href="{{.url}}" />
+<link rel="canonical" href={{.url}} />
 
 <!-- Primary Meta Tags -->
 <title>{{.title}}</title>
@@ -23,52 +24,32 @@
 <meta property="twitter:title" content="{{.title}}" />
 <meta property="twitter:description" content="{{.description}}" />
 {{if .image}}
-<meta property="twitter:image" content="{{.image}}" />
-{{end}} {{end}} {{define "body"}}
-<article class="markdown-body">
-    <h1>{{.title}}</h1>
-    <div class="tags">
-        {{range .tags}}
-        <tag-item slot="tags" link="/tags/{{.id}}" name="{{.name}}"></tag-item>
-        {{end}}
-    </div>
-    {{.content|raw}}
-    <section class="related">
-        <h2>Related Posts</h2>
-        <ul>
-            {{range .related}}
-            <li>
-                <a href="{{.Url}}">{{.Title}}</a>
-            </li>
-            {{end}}
-        </ul>
-    </section>
-</article>
+<meta property="twitter:image" content={{.image}} />
+{{end}}
 <style>
-    section.related {
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-        & h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        & ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            & li {
-                margin-bottom: 0.5rem;
-                & a {
-                    color: var(--text-color);
-                    text-decoration: none;
-                    &:hover {
-                        text-decoration: underline;
-                    }
-                }
-            }
+    @media (max-width: 991px) { /* Breakpoint for smaller screens */
+        .blog-sidebar {
+            display: none;
         }
     }
 </style>
+{{end}}
+
+{{define "body"}}
+<div style="display: flex;">
+  <article class="markdown-body" style="flex-grow: 1;">
+      <h1>{{.title}}</h1>
+      <div class="tags">
+          {{range .tags}}
+          <tag-item slot="tags" link="/tags/{{.id}}" name="{{.name}}"></tag-item>
+          {{end}}
+      </div>
+      {{.content|raw}}
+  </article>
+  <aside class="blog-sidebar" style="width: 250px; /* Adjust width as needed */ flex-shrink: 0;">
+    <post-headings-nav post-id="{{.id}}"></post-headings-nav>
+  </aside>
+</div>
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/javascript.min.js"></script>
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/markdown.min.js"></script>
@@ -84,23 +65,62 @@
 <script src="//unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
 <script src="/js/open-heart.js" type="module"></script>
 <script type="module" src="/js/components/tag-item.js"></script>
+<script type="module" src="/js/components/post-emoji-reaction.js"></script>
+<script type="module" src="/js/components/post-view-count.js"></script>
+<script type="module" src="/js/components/post-headings-nav.js"></script> <!-- Add this line -->
 <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.9.0/highlightjs-line-numbers.min.js"></script> -->
 <script>
     // get all tags with language-markup and add language-html
-    document.querySelectorAll("pre.language-markup").forEach((block) => {
-        block.classList.remove("language-markup");
-        block.classList.add("language-html");
+    document.querySelectorAll('pre.language-markup').forEach((block) => {
+        block.classList.remove('language-markup');
+        block.classList.add('language-html');
     });
     hljs.addPlugin(new CopyButtonPlugin());
     hljs.highlightAll();
     // hljs.initLineNumbersOnLoad({ singleLine: true });
 </script>
-<div class="reactions">
-    {{range .emojis}}
-    <open-heart href="{{.Target}}" emoji="{{.Emoji}}" count="0">
-        {{.Emoji}}
-    </open-heart>
-    {{end}}
-</div>
-<div class="view-count"><span>{{.views}}</span> view(s)</div>
+<post-emoji-reaction post-id="{{.id}}"></post-emoji-reaction>
+<br />
+<post-view-count post-id="{{.id}}"></post-view-count>
+<div style="height: 20px;"></div>
+<!-- Utility to add missing heading IDs in the main article (for legacy posts or if JS runs before nav component) -->
+<script>
+  (function addMissingHeadingIds() {
+  // Only run if article.markdown-body exists
+  const article = document.querySelector('article.markdown-body');
+  if (!article) return;
+
+  // Helper slugify function (matches nav component)
+  function slugify(text) {
+    if (!text) return '';
+    return String(text).toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w-]+/g, '')
+      .replace(/--+/g, '-')
+      .replace(/^-+/, '')
+      .replace(/-+$/, '');
+  }
+
+  // Track used IDs to avoid duplicates
+  const usedIds = new Set();
+  article.querySelectorAll('[id]').forEach(el => usedIds.add(el.id));
+
+  // For each heading, add an ID if missing
+  for (let level = 1; level <= 6; level++) {
+    article.querySelectorAll(`h${level}:not([id])`).forEach(h => {
+      let base = slugify(h.textContent.trim());
+      let slug = base;
+      let counter = 1;
+      while (usedIds.has(slug) && slug) {
+        slug = `${base}-${counter}`;
+        counter++;
+      }
+      if (slug) {
+        h.id = slug;
+        usedIds.add(slug);
+      }
+    });
+  }
+})();
+</script>
 {{end}}

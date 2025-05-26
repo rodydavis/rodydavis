@@ -17,11 +17,23 @@ export class TagItem extends mix(HTMLElement).with(
 
   styles = computed(
     () => css`
+      :host {
+        display: inline-block;
+        margin: 4px;
+        padding: 8px 12px;
+        border-radius: 16px;
+        background-color: var(--tag-item-background);
+        color: var(--tag-item-text);
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: filter 0.2s ease-in-out;
+      }
+
       .tag {
         padding: 0.25rem 0.5rem;
         border-radius: 0.25rem;
-        background-color: var(--md-sys-color-tertiary);
-        color: var(--md-sys-color-on-tertiary);
+        background-color: var(--tag-item-background);
+        color: var(--tag-item-text);
         text-decoration: none;
 
         &:hover {

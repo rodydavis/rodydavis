@@ -25,12 +25,6 @@ export class PostCard extends mix(HTMLElement).with(
 
   styles = computed(
     () => css`
-      :root {
-        --yellow: hsl(47, 88%, 63%);
-        --white: hsl(0, 0%, 100%);
-        --grey: hsl(0, 0%, 50%);
-        --black: hsl(0, 0%, 7%);
-      }
       * {
         box-sizing: border-box;
         font-family: "Figtree", sans-serif;
@@ -41,70 +35,110 @@ export class PostCard extends mix(HTMLElement).with(
         text-decoration: none;
         color: inherit;
       }
-      .wrapper {
-        display: grid;
-        max-width: 380px;
+      .wrapper { /* This is the <a> tag */
+        display: flex;
+        flex-direction: column;
+        height: 100%; /* Fill allocated space by masonry item */
+        width: 100%; /* Take full width of masonry item */
         padding: 1.25rem;
-        border: 1px solid black;
+        border: 1px solid var(--theme-sys-color-outline);
         border-radius: 1rem;
-        background-color: var(--white);
-        box-shadow: 10px 10px 0px -3px rgba(0, 0, 0, 1);
+        background-color: var(--theme-sys-color-surface-container-lowest);
+        box-shadow: 6px 6px 0px 0px var(--theme-sys-color-primary);
+        transition: box-shadow 0.2s ease-in-out;
+
+        &:hover {
+          box-shadow: 8px 8px 0px 0px var(--theme-sys-color-primary-container);
+        }
+
         img {
           display: block;
           width: 100%;
           object-fit: cover;
           border-radius: 0.75rem;
-          max-height: 400px;
+          max-height: 200px; /* Max height for the image */
         }
-        button {
-          background-color: var(--yellow);
+
+        & > section { /* Targets the <section> holding content */
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1; /* Allows section to grow and push tags down */
+          padding-top: 1rem; /* Space below image or at top of card content */
+        }
+
+        button { /* Type button */
+          background-color: var(--theme-sys-color-primary-container);
+          color: var(--theme-sys-color-on-primary-container);
           padding: 0.5rem 1rem;
-          margin: 1rem 0;
+          margin-bottom: 1rem; /* Space below button */
           border-radius: 0.25rem;
           border: none;
+          align-self: flex-start; /* Prevent stretching */
           &:hover {
             cursor: pointer;
-            background-color: var(--black);
-            color: var(--white);
+            background-color: var(--theme-sys-color-primary);
+            color: var(--theme-sys-color-on-primary);
           }
         }
-        h3 {
+
+        h3 { /* Title */
           font-size: 1.5rem;
           font-weight: 600;
+          color: var(--theme-sys-color-on-surface);
+          margin-top: 0.5rem; /* Adjusted spacing */
+          margin-bottom: 0.5rem; /* Adjusted spacing */
           &:hover {
-            color: var(--yellow);
+            color: var(--theme-sys-color-primary);
             cursor: pointer;
           }
         }
-        p {
+
+        p { /* Date and Description */
           line-height: 1.5;
-          color: var(--grey);
-          padding: 0.5rem 0rem;
-          font-weight: 300;
+          color: var(--theme-sys-color-on-surface-variant);
+          font-weight: 400; /* Regular weight */
         }
+        
+        /* Assuming date is the first <p> directly in <section> if type button is not present, or after button */
+        /* Description <p> styling (if it's the one after title) */
+        h3 + p { /* Targets a p directly after h3, likely description */
+            margin-bottom: 1rem; /* Space before user profile or tags */
+        }
+
+
         .user_profile {
           display: flex;
           align-items: center;
           gap: 0.75rem;
-          padding-top: 1.5rem;
-          img {
-            width: 10%;
+          margin-top: 1rem; /* Space above user profile */
+          img { /* Avatar */
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+          }
+          h4 { /* Author name */
+            color: var(--theme-sys-color-on-surface-variant);
+            font-weight: 500; /* Medium weight */
+          }
+        }
+      } /* End of .wrapper */
+
+      /* Media query for responsiveness inside card if needed, masonry handles overall layout */
+      @media (max-width: 480px) { /* Example: adjust padding on very small cards */
+        .wrapper {
+          padding: 1rem;
+          h3 {
+            font-size: 1.25rem;
           }
         }
       }
-      @media (max-width: 768px) {
-        .wrapper {
-          max-width: 100%;
-          height: 100%;
-          margin: 0 1rem;
-        }
-      }
+
       .tags {
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
-        margin-bottom: 1rem;
-        margin-top: 1rem;
+        margin-top: auto; /* Pushes tags to the bottom of the flex section */
+        padding-top: 1rem; /* Space above tags */
       }
     `
   );

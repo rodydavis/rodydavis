@@ -17,15 +17,15 @@ export class AppHeader extends mix(HTMLElement).with(
       header {
         --padding: 8px;
         width: calc(100% - (var(--padding) * 2));
-        background-color: var(--md-sys-color-primary);
-        color: var(--md-sys-color-on-primary);
+        background-color: var(--app-header-background);
+        color: var(--app-header-text);
         padding: var(--padding);
         display: flex;
         flex-direction: row;
         align-items: center;
         gap: 8px;
         a {
-          color: var(--md-sys-color-on-primary);
+          color: var(--app-header-link-text);
           text-decoration: none;
         }
       }
@@ -44,8 +44,7 @@ export class AppHeader extends mix(HTMLElement).with(
         img {
           width: 18px;
           height: 18px;
-          color: var(--md-sys-color-on-primary);
-          color: white;
+          color: var(--app-header-social-icon-color);
         }
       }
     `

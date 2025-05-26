@@ -1,36 +1,50 @@
-{{define "title"}} {{.title}} {{end}} {{define "body"}}
-<link rel="stylesheet" href="/css/posts.css" />
-<main class="posts">
-    <div class="search">
-        <h1>{{.title}}</h1>
-        <div class="spacer"></div>
-        <input
-            type="search"
-            placeholder="Search"
-            id="search"
-            value="{{.search}}"
-        />
-    </div>
-    <div class="grid">
+{{define "title"}}
+{{.title}}
+{{end}}
+
+{{define "body"}}
+<main>
+    <h1>{{.title}}</h1>
+    <div class="posts">
         {{range .posts}}
-        <post-card
-            title="{{.title}}"
-            description="{{.description}}"
-            date="{{.date}}"
-            link="/posts/{{.slug}}"
-        >
+        <post-card class="item" title="{{.title}}" description="{{.description}}" date="{{.date}}"
+            link="/posts/{{.slug}}">
             {{range .tags_json}}
-            <tag-item
-                slot="tags"
-                link="/tags/{{.id}}"
-                name="{{.name}}"
-            ></tag-item>
+            <tag-item slot="tags" link="/tags/{{.id}}" name="{{.name}}"></tag-item>
             {{end}}
         </post-card>
         {{end}}
     </div>
 </main>
+<style>
+    .posts {
+        display: flex; /* Changed from grid/column-count to flex */
+        flex-wrap: wrap; /* Allow items to wrap to the next line */
+        justify-content: center; /* Center items on the line */
+        gap: 1.5rem; /* Spacing between items */
+        width: 100%;
+        max-width: 100vw; /* Ensure it doesn\'t exceed viewport width */
+        margin: 0 auto;
+        padding: 1rem 0;
+    }
+
+    .posts .item {
+        /* Removed break-inside and margin-bottom */
+        /* width: 100% is removed as flex property handles sizing */
+        flex: 1 1 320px; /* Items will have a base of 320px, can grow and shrink */
+        min-block-size: 12em; /* Moved from inline style */
+        /* block-size: auto; is default, so not explicitly needed */
+        display: block; /* Ensure post-card behaves as a block */
+    }
+
+    main {
+        padding: 1rem;
+        margin: 0 auto;
+        max-width: 1200px;
+        min-height: 90vh;
+        width: 100%;
+    }
+</style>
 <script type="module" src="/js/components/post-card.js"></script>
 <script type="module" src="/js/components/tag-item.js"></script>
-<script type="application/javascript" src="/js/posts.js"></script>
 {{end}}
