@@ -23,5 +23,7 @@ RUN CGO_ENABLED=1 go build -o /app/pocketbase .
 # https://docs.docker.com/reference/dockerfile/#expose
 EXPOSE 8080
 
+VOLUME /app/pb_data
+
 
 ENTRYPOINT ["/app/pocketbase", "serve", "--http=0.0.0.0:8080"]
