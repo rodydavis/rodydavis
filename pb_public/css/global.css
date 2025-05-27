@@ -42,3 +42,15 @@ body {
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
+
+.social-tile {
+  border: 1px solid var(--theme-sys-color-outline);
+  border-radius: 1rem;
+  background-color: var(--theme-sys-color-surface-container-lowest);
+  box-shadow: 6px 6px 0px 0px var(--theme-sys-color-primary);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.social-tile:hover {
+  box-shadow: 8px 8px 0px 0px var(--theme-sys-color-primary-container);
+}

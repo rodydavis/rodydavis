@@ -1,64 +1,24 @@
-{% extends "base.html" %}
+{{define "title"}}
+Apps
+{{end}}
 
-{% block title %}Apps{% endblock %}
-
-{% block head %}
-<style>
-    .app-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1rem;
-    }
-
-    .app-card {
-        width: 200px;
-        height: 200px;
-        background: var(--template-surface-dim-background);
-        border-radius: 20px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .app-card img {
-        width: 100px;
-        height: 100px;
-        border-radius: 20%;
-        object-fit: contain;
-        aspect-ratio: 1/1;
-    }
-
-    .app-card h3 {
-        margin-top: 0.5rem;
-    }
-
-    .app-card p {
-        margin: 0.5rem 0;
-    }
-
-    main {
-        padding: 1rem;
-        margin: 0 auto;
-        max-width: 800px;
-        min-height: 90vh;
-    }
-</style>
-{% endblock %}
-
-{% block content %}
+{{define "body"}}
 <main>
     <h1>{{.title}}</h1>
-    <div class="app-grid">
+    <apps-list>
         {{range .apps}}
-        <div class="app-card">
-            <a href="{{.link}}">
-                <img src="{{.app_icon}}" alt="{{.name}}">
-                <h3>{{.name}}</h3>
-            </a>
-        </div>
+        <app-tile icon="{{.app_icon}}" name="{{.name}}" link="{{.link}}"></app-tile>
         {{end}}
-    </div>
+    </apps-list>
 </main>
-{% endblock %}
+<style>
+main {
+  padding: 1rem;
+  margin: 0 auto;
+  max-width: 800px;
+  min-height: 90vh;
+}
+</style>
+<script type="module" src="/js/components/apps-list.js"></script>
+<script type="module" src="/js/components/app-tile.js"></script>
+{{end}}

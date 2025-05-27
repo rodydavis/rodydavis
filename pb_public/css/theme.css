@@ -71,4 +71,14 @@
   --app-card-btn-text: oklch(0.98 0.01 258); /* was var(--template-button-on-secondary-text) */
   --download-link-background: oklch(0.45 0.20 258); /* was var(--md-sys-color-secondary) */
   --download-link-text: oklch(0.98 0.01 258); /* was var(--md-sys-color-on-secondary) */
+
+  /* Post Card Tokens */
+  --theme-sys-color-primary: oklch(0.60 0.20 258); /* Prominent color, e.g., for main shadow */
+  --theme-sys-color-on-primary: oklch(0.98 0.01 258); /* Text on primary color */
+  --theme-sys-color-primary-container: oklch(0.45 0.20 258); /* A container related to primary, e.g., button bg or hover shadow */
+  --theme-sys-color-on-primary-container: oklch(0.98 0.01 258); /* Text on primary-container */
+  --theme-sys-color-surface-container-lowest: oklch(0.25 0.05 258); /* Card background */
+  --theme-sys-color-on-surface: oklch(0.98 0.01 258); /* Main text on card */
+  --theme-sys-color-on-surface-variant: oklch(0.80 0.01 258); /* Dimmer text on card */
+  --theme-sys-color-outline: oklch(0.45 0.10 258); /* Card border color */
 }

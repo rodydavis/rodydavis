@@ -1,47 +1,39 @@
-import { computed } from "@preact/signals-core";
 import { css, html } from "lit";
+import { computed } from "@preact/signals-core";
 import { mix } from "/js/mixwith.js";
 import { LitTemplateMixin, ShadowRootMixin } from "/js/mixins.js";
-import "/js/components/icon-button.js";
 
-export class TagItem extends mix(HTMLElement).with(
-  LitTemplateMixin,
-  ShadowRootMixin
-) {
-  name = this.attr("name", "Tag");
-  link = this.attr("link", "#");
+export class TagItem extends mix(HTMLElement).with(LitTemplateMixin, ShadowRootMixin) {
+  link$ = this.attr("link", "");
+  name$ = this.attr("name", "");
 
-  builder = computed(
-    () => html` <a class="tag" href="${this.link}">${this.name}</a> `
-  );
+  styles = computed(() => css`
+    :host {
+      display: inline-block;
+      margin: 0.2em 0.3em;
+    }
+    a {
+      display: inline-block;
+      padding: 0.3em 0.9em;
+      border-radius: 1em;
+      background: var(--theme-sys-color-primary-container, #e0e7ff);
+      color: var(--theme-sys-color-on-primary-container, #222);
+      font-size: 0.98em;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+      border: 1px solid var(--theme-sys-color-outline, #b3b3b3);
+      cursor: pointer;
+    }
+    a:hover {
+      background: var(--theme-sys-color-primary, #6366f1);
+      color: var(--theme-sys-color-on-primary, #fff);
+    }
+  `);
 
-  styles = computed(
-    () => css`
-      :host {
-        display: inline-block;
-        margin: 4px;
-        padding: 8px 12px;
-        border-radius: 16px;
-        background-color: var(--tag-item-background);
-        color: var(--tag-item-text);
-        font-size: 0.85rem;
-        cursor: pointer;
-        transition: filter 0.2s ease-in-out;
-      }
-
-      .tag {
-        padding: 0.25rem 0.5rem;
-        border-radius: 0.25rem;
-        background-color: var(--tag-item-background);
-        color: var(--tag-item-text);
-        text-decoration: none;
-
-        &:hover {
-          opacity: 0.8;
-        }
-      }
-    `
-  );
+  builder = computed(() => html`
+    <a href=${this.link$}>${this.name$}</a>
+  `);
 }
 
 customElements.define("tag-item", TagItem);

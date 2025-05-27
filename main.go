@@ -469,7 +469,94 @@ func main() {
 		se.Router.GET("/{path...}", func(e *core.RequestEvent) error {
 			slug := e.Request.PathValue("path")
 			if slug == "" {
-				return e.Redirect(http.StatusTemporaryRedirect, "/posts")
+				// Render landing page (was previously GET / handler)
+				// Fetch posts
+				postRecords := []*core.Record{}
+				err := app.RecordQuery("posts").
+					Select("id", "title", "description", "tags", "slug", "updated", "date").
+					Where(dbx.NewExp("draft = false")).
+					OrderBy("updated DESC").
+					All(&postRecords)
+				if err != nil {
+					return err
+				}
+				errMap := app.ExpandRecords(postRecords, []string{"tags"}, nil)
+				if len(errMap) > 0 {
+					return errors.New("failed to expand tags for posts")
+				}
+				posts := []map[string]any{}
+				for _, item := range postRecords {
+					tags := item.ExpandedAll("tags")
+					tagItems := []map[string]any{}
+					for _, t := range tags {
+						tagItems = append(tagItems, map[string]any{
+							"id":   t.GetString("id"),
+							"name": t.GetString("name"),
+						})
+					}
+					date := item.GetString("date")
+					if date == "" {
+						date = item.GetString("updated")
+					}
+					export := item.PublicExport()
+					export["tags_json"] = tagItems
+					export["date"] = date
+					posts = append(posts, export)
+				}
+
+				// Fetch all tags
+				tagRecords := []*core.Record{}
+				err = app.RecordQuery("tags").
+					Select("id", "name").
+					OrderBy("name ASC").
+					All(&tagRecords)
+				if err != nil {
+					return err
+				}
+				allTags := []map[string]any{}
+				for _, t := range tagRecords {
+					allTags = append(allTags, map[string]any{
+						"id":   t.GetString("id"),
+						"name": t.GetString("name"),
+					})
+				}
+
+				// Fetch apps
+				appRecords := []*core.Record{}
+				err = app.RecordQuery("apps").
+					Select("id", "name", "icon", "slug").
+					OrderBy("updated DESC").
+					All(&appRecords)
+				if err != nil {
+					return err
+				}
+				apps := []map[string]any{}
+				for _, item := range appRecords {
+					img := item.GetString("icon")
+					if img != "" {
+						img = "/api/files/apps/" + item.Id + "/" + img
+					}
+					export := item.PublicExport()
+					export["app_icon"] = img
+					export["link"] = "/apps/" + item.GetString("slug")
+					apps = append(apps, export)
+				}
+
+				indexTemplate := template.NewRegistry().LoadFiles(
+					"templates/base.html",
+					"templates/index.html",
+				)
+				html, err := indexTemplate.Render(map[string]any{
+					"title":    "Rody Davis - Developer, Advocate, Creator",
+					"posts":    posts,
+					"all_tags": allTags,
+					"apps":     apps,
+				})
+				if err != nil {
+					return err
+				}
+				setCacheControl(e)
+				return e.HTML(http.StatusOK, html)
 			}
 			_, err := os.Stat("./pb_public/" + slug)
 			if err != nil {
