@@ -1,17 +1,16 @@
 package main
 
 import (
+	"database/sql"
 	"errors"
-	"fmt"
-	"io"
 	"log"
 	"net/http"
 	"os"
 	"strings"
-	"time"
 
 	md "github.com/JohannesKaufmann/html-to-markdown"
-	"github.com/gorilla/feeds"
+	sqlite_vec "github.com/asg017/sqlite-vec-go-bindings/cgo"
+	"github.com/mattn/go-sqlite3"
 	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/apis"
@@ -19,8 +18,42 @@ import (
 	"github.com/pocketbase/pocketbase/tools/template"
 )
 
+// register a new driver with default PRAGMAs and the same query
+// builder implementation as the already existing sqlite3 builder
+func init() {
+	sql.Register("pb_sqlite3",
+		&sqlite3.SQLiteDriver{
+			Extensions: []string{
+				// "your_extension", // <-- must refer to a so/dll library
+			},
+			ConnectHook: func(conn *sqlite3.SQLiteConn) error {
+				_, err := conn.Exec(`
+                    PRAGMA busy_timeout       = 10000;
+                    PRAGMA journal_mode       = WAL;
+                    PRAGMA journal_size_limit = 200000000;
+                    PRAGMA synchronous        = NORMAL;
+                    PRAGMA foreign_keys       = ON;
+                    PRAGMA temp_store         = MEMORY;
+                    PRAGMA cache_size         = -16000;
+                `, nil)
+
+				return err
+			},
+		},
+	)
+
+	dbx.BuilderFuncMap["pb_sqlite3"] = dbx.BuilderFuncMap["sqlite3"]
+}
+
 func main() {
-	app := pocketbase.New()
+	sqlite_vec.Auto()
+
+	// app := pocketbase.New()
+	app := pocketbase.NewWithConfig(pocketbase.Config{
+		DBConnect: func(dbPath string) (*dbx.DB, error) {
+			return dbx.Open("pb_sqlite3", dbPath)
+		},
+	})
 	baseUrl := "https://rodydavis.com"
 
 	type Reaction struct {
@@ -44,147 +77,12 @@ func main() {
 		"templates/blog.html",
 	)
 
+	initAi(app)
+	initFeed(app)
+	initReactions(app)
+
 	app.OnServe().BindFunc(func(se *core.ServeEvent) error {
 		// se.Router.GET("/{path...}", apis.Static(os.DirFS("./pb_public"), false))
-		se.Router.GET("/feed", func(e *core.RequestEvent) error {
-			return e.Redirect(http.StatusMovedPermanently, "/feed.rss")
-		})
-		se.Router.GET("/feed.xml", func(e *core.RequestEvent) error {
-			return e.Redirect(http.StatusMovedPermanently, "/feed.rss")
-		})
-		se.Router.GET("/feed.rss", func(e *core.RequestEvent) error {
-			feed, err := generateFeed(app)
-			if err != nil {
-				return err
-			}
-			rss, err := feed.ToRss()
-			if err != nil {
-				return err
-			}
-			setCacheControl(e)
-			e.Response.Header().Set("Content-Type", "text/xml;charset=UTF-8")
-			return e.String(http.StatusOK, rss)
-		})
-		se.Router.GET("/feed.atom", func(e *core.RequestEvent) error {
-			feed, err := generateFeed(app)
-			if err != nil {
-				return err
-			}
-			rss, err := feed.ToAtom()
-			if err != nil {
-				return err
-			}
-			setCacheControl(e)
-			e.Response.Header().Set("Content-Type", "text/xml;charset=UTF-8")
-			return e.String(http.StatusOK, rss)
-		})
-		se.Router.POST("/api/posts/{postId}/reactions", func(e *core.RequestEvent) error {
-			postId := e.Request.PathValue("postId")
-			body, err := io.ReadAll(e.Request.Body)
-			if err != nil {
-				return err
-			}
-			reaction, err := app.FindFirstRecordByFilter("reactions", "value = {:value}", dbx.Params{"value": string(body)})
-			if err != nil {
-				return err
-			}
-			_, err = app.FindRecordById("posts", postId)
-			if err != nil {
-				return err
-			}
-			postReactionRecords, err := app.FindAllRecords("post_reactions",
-				dbx.NewExp("post_id = {:postId} AND reaction_id = {:reactionId}",
-					dbx.Params{"postId": postId, "reactionId": reaction.Id},
-				),
-			)
-			if err != nil {
-				return err
-			}
-			col, err := app.FindCollectionByNameOrId("post_reactions")
-			if err != nil {
-				return err
-			}
-			count := 0
-			if len(postReactionRecords) == 0 {
-				// create new post reaction
-				record := core.NewRecord(col)
-				record.Set("post_id", postId)
-				record.Set("reaction_id", reaction.Id)
-				record.Set("count", 1)
-				count = 1
-				err = app.Save(record)
-				if err != nil {
-					return err
-				}
-			} else {
-				record := postReactionRecords[0]
-				count = record.GetInt("count")
-				record.Set("count", count+1)
-				err = app.Save(record)
-				if err != nil {
-					return err
-				}
-			}
-			return e.JSON(http.StatusOK, map[string]any{
-				reaction.GetString("value"): count,
-			})
-		})
-		se.Router.GET("/api/posts/{postId}/reactions", func(e *core.RequestEvent) error {
-			postId := e.Request.PathValue("postId")
-			type ReactionCount struct {
-				Emoji string `json:"emoji"`
-				Count int    `json:"count"`
-			}
-			postReactionRecords, err := app.FindAllRecords("post_reactions",
-				dbx.NewExp("post_id = {:postId}", dbx.Params{"postId": postId}),
-			)
-			if err != nil {
-				return e.JSON(http.StatusOK, map[string]any{})
-			}
-			errMap := app.ExpandRecords(postReactionRecords, []string{"reaction_id"}, nil)
-			if len(errMap) > 0 {
-				return e.JSON(http.StatusOK, map[string]any{})
-			}
-			counts := []ReactionCount{}
-			for _, record := range postReactionRecords {
-				count := record.GetInt("count")
-				emoji := record.ExpandedOne("reaction_id")
-				counts = append(counts, ReactionCount{
-					Emoji: emoji.GetString("value"),
-					Count: count,
-				})
-			}
-			reactionJson := map[string]any{}
-			for _, count := range counts {
-				reactionJson[count.Emoji] = count.Count
-			}
-			return e.JSON(http.StatusOK, reactionJson)
-		})
-		se.Router.GET("/api/available-reactions", func(e *core.RequestEvent) error {
-			type AvailableReaction struct {
-				Emoji string `json:"emoji"`
-				Alt   string `json:"alt"`
-			}
-			availableReactions := []AvailableReaction{}
-			reactions, err := app.FindAllRecords("reactions")
-			if err != nil {
-				// If the "reactions" collection doesn't exist or is empty, return an empty list.
-				// This is not an error for the client, just means no reactions are configured.
-				if strings.Contains(err.Error(), "no rows in result set") || strings.Contains(err.Error(), "collection not found") {
-					return e.JSON(http.StatusOK, availableReactions)
-				}
-				return apis.NewApiError(http.StatusInternalServerError, "Failed to fetch available reactions", err)
-			}
-			for _, reaction := range reactions {
-				availableReactions = append(availableReactions, AvailableReaction{
-					Emoji: reaction.GetString("value"),
-					Alt:   reaction.GetString("alt"),
-				})
-			}
-			// Consider adding cache control if this data doesn't change often
-			// setCacheControl(e)
-			return e.JSON(http.StatusOK, availableReactions)
-		})
 		se.Router.GET("/api/posts/{postId}/views", func(e *core.RequestEvent) error {
 			postId := e.Request.PathValue("postId")
 			col, err := app.FindCollectionByNameOrId("post_views")
@@ -259,6 +157,7 @@ func main() {
 				if len(errs) > 0 {
 					return err
 				}
+				relatedFiltered := getRelatedPosts(app, record)
 
 				img := record.GetString("image")
 				if img != "" {
@@ -331,6 +230,7 @@ func main() {
 					"tags":        tagJson,
 					"emojis":      emojiTargets,
 					"views":       views,
+					"related":     relatedFiltered,
 				})
 				if err != nil {
 					return err
@@ -617,64 +517,4 @@ func main() {
 func setCacheControl(e *core.RequestEvent) {
 	// Cache control of 1 week with a 1 minute stale-while-revalidate
 	e.Response.Header().Set("Cache-Control", "public, max-age=60, stale-while-revalidate=604800, stale-if-error=604800")
-}
-
-func generateFeed(app *pocketbase.PocketBase) (*feeds.Feed, error) {
-	now := time.Now()
-	year := now.Year()
-
-	author := feeds.Author{
-		Name:  "Rody Davis",
-		Email: "rody.davis.jr@gmail.com",
-	}
-
-	feed := &feeds.Feed{
-		Id:          "https://rodydavis.com",
-		Title:       "Rody Davis",
-		Link:        &feeds.Link{Href: "https://rodydavis.com/posts"},
-		Image:       &feeds.Image{Url: "https://rodydavis.com/media/banner.jpeg", Title: "Rody Davis", Link: "https://rodydavis.com"},
-		Description: "music, photos, food, and code",
-		Author:      &author,
-		Created:     now,
-		Copyright:   "All rights reserved " + fmt.Sprint(year) + ", Rody Davis",
-	}
-
-	posts, err := app.FindRecordsByFilter(
-		"posts",
-		"draft = false",
-		"-updated",
-		1000,
-		0,
-		nil,
-	)
-	if err != nil {
-		return nil, err
-	}
-
-	feed.Items = []*feeds.Item{}
-	for _, post := range posts {
-		html := post.GetString("content")
-
-		// Replace all src="/_/../ with src="https://rodydavis.com/_/../
-		html = strings.ReplaceAll(html, `src="/_/../`, `src="https://rodydavis.com/_/../`)
-		target := "https://rodydavis.com/posts/" + post.GetString("slug")
-
-		item := feeds.Item{
-			Title:       post.GetString("title"),
-			Link:        &feeds.Link{Href: target},
-			Description: post.GetString("description"),
-			Author:      &author,
-			Created:     post.GetDateTime("updated").Time(),
-			Id:          target,
-			Content:     html,
-			Source:      &feeds.Link{Href: target},
-		}
-		img := post.GetString("image")
-		if img != "" {
-			item.Enclosure = &feeds.Enclosure{Url: "https://rodydavis.com/api/files/posts/" + post.Id + "/" + img}
-		}
-		feed.Items = append(feed.Items, &item)
-	}
-
-	return feed, nil
 }

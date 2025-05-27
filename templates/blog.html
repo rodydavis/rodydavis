@@ -27,7 +27,9 @@
 <meta property="twitter:image" content={{.image}} />
 {{end}}
 <style>
-    @media (max-width: 991px) { /* Breakpoint for smaller screens */
+    @media (max-width: 991px) {
+
+        /* Breakpoint for smaller screens */
         .blog-sidebar {
             display: none;
         }
@@ -37,19 +39,63 @@
 
 {{define "body"}}
 <div style="display: flex;">
-  <article class="markdown-body" style="flex-grow: 1;">
-      <h1>{{.title}}</h1>
-      <div class="tags">
-          {{range .tags}}
-          <tag-item slot="tags" link="/tags/{{.id}}" name="{{.name}}"></tag-item>
-          {{end}}
-      </div>
-      {{.content|raw}}
-  </article>
-  <aside class="blog-sidebar" style="width: 250px; /* Adjust width as needed */ flex-shrink: 0;">
-    <post-headings-nav post-id="{{.id}}"></post-headings-nav>
-  </aside>
+    <article class="markdown-body" style="flex-grow: 1;">
+        <h1>{{.title}}</h1>
+        <div class="tags">
+            {{range .tags}}
+            <tag-item slot="tags" link="/tags/{{.id}}" name="{{.name}}"></tag-item>
+            {{end}}
+        </div>
+        {{.content|raw}}
+        <section class="related">
+            <h2>Related Posts</h2>
+            <ul>
+                {{range .related}}
+                <li>
+                    <a href="{{.Url}}">{{.Title}}</a>
+                </li>
+                {{end}}
+            </ul>
+        </section>
+        <post-emoji-reaction post-id="{{.id}}"></post-emoji-reaction>
+        <br />
+        <post-view-count post-id="{{.id}}"></post-view-count>
+        <div style="height: 20px;"></div>
+    </article>
+    <aside class="blog-sidebar" style="width: 250px; /* Adjust width as needed */ flex-shrink: 0;">
+        <post-headings-nav post-id="{{.id}}"></post-headings-nav>
+    </aside>
 </div>
+<style>
+    section.related {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+
+        & h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        & ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            & li {
+                margin-bottom: 0.5rem;
+
+                & a {
+                    color: var(--text-color);
+                    text-decoration: none;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+</style>
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/javascript.min.js"></script>
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/markdown.min.js"></script>
@@ -79,48 +125,44 @@
     hljs.highlightAll();
     // hljs.initLineNumbersOnLoad({ singleLine: true });
 </script>
-<post-emoji-reaction post-id="{{.id}}"></post-emoji-reaction>
-<br />
-<post-view-count post-id="{{.id}}"></post-view-count>
-<div style="height: 20px;"></div>
 <!-- Utility to add missing heading IDs in the main article (for legacy posts or if JS runs before nav component) -->
 <script>
-  (function addMissingHeadingIds() {
-  // Only run if article.markdown-body exists
-  const article = document.querySelector('article.markdown-body');
-  if (!article) return;
+    (function addMissingHeadingIds() {
+        // Only run if article.markdown-body exists
+        const article = document.querySelector('article.markdown-body');
+        if (!article) return;
 
-  // Helper slugify function (matches nav component)
-  function slugify(text) {
-    if (!text) return '';
-    return String(text).toLowerCase()
-      .replace(/\s+/g, '-')
-      .replace(/[^\w-]+/g, '')
-      .replace(/--+/g, '-')
-      .replace(/^-+/, '')
-      .replace(/-+$/, '');
-  }
+        // Helper slugify function (matches nav component)
+        function slugify(text) {
+            if (!text) return '';
+            return String(text).toLowerCase()
+                .replace(/\s+/g, '-')
+                .replace(/[^\w-]+/g, '')
+                .replace(/--+/g, '-')
+                .replace(/^-+/, '')
+                .replace(/-+$/, '');
+        }
 
-  // Track used IDs to avoid duplicates
-  const usedIds = new Set();
-  article.querySelectorAll('[id]').forEach(el => usedIds.add(el.id));
+        // Track used IDs to avoid duplicates
+        const usedIds = new Set();
+        article.querySelectorAll('[id]').forEach(el => usedIds.add(el.id));
 
-  // For each heading, add an ID if missing
-  for (let level = 1; level <= 6; level++) {
-    article.querySelectorAll(`h${level}:not([id])`).forEach(h => {
-      let base = slugify(h.textContent.trim());
-      let slug = base;
-      let counter = 1;
-      while (usedIds.has(slug) && slug) {
-        slug = `${base}-${counter}`;
-        counter++;
-      }
-      if (slug) {
-        h.id = slug;
-        usedIds.add(slug);
-      }
-    });
-  }
-})();
+        // For each heading, add an ID if missing
+        for (let level = 1; level <= 6; level++) {
+            article.querySelectorAll(`h${level}:not([id])`).forEach(h => {
+                let base = slugify(h.textContent.trim());
+                let slug = base;
+                let counter = 1;
+                while (usedIds.has(slug) && slug) {
+                    slug = `${base}-${counter}`;
+                    counter++;
+                }
+                if (slug) {
+                    h.id = slug;
+                    usedIds.add(slug);
+                }
+            });
+        }
+    })();
 </script>
 {{end}}

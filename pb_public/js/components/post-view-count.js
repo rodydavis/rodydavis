@@ -1,10 +1,10 @@
 class PostViewCount extends HTMLElement {
-  static get observedAttributes() { return ['post-id']; }
+    static get observedAttributes() { return ['post-id']; }
 
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-    this.shadowRoot.innerHTML = `
+    constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML = `
       <style>
         .view-count-container {
           text-align: center;
@@ -17,24 +17,28 @@ class PostViewCount extends HTMLElement {
       </style>
       <div class="view-count-container"><span>Loading...</span></div>
     `;
-  }
+    }
 
-  connectedCallback() {
-    this.fetchAndRender();
-  }
+    connectedCallback() {
+        this.fetchAndRender();
+    }
 
-  attributeChangedCallback() {
-    this.fetchAndRender();
-  }
+    attributeChangedCallback() {
+        this.fetchAndRender();
+    }
 
-  async fetchAndRender() {
-    const postId = this.getAttribute('post-id');
-    if (!postId) return;
-    try {
-      const res = await fetch(`/api/posts/${postId}/views`);
-      if (!res.ok) throw new Error('Failed to fetch');
-      const data = await res.json();
-      this.shadowRoot.innerHTML = `
+    async fetchAndRender() {
+        const postId = this.getAttribute('post-id');
+        if (!postId) return;
+        try {
+            const res = await fetch(`/api/posts/${postId}/views`);
+            if (!res.ok) throw new Error('Failed to fetch');
+            const data = await res.json();
+            let suffix = 'views';
+            if (data.views === 1) {
+                suffix = 'view'; // Use singular form for 1 view
+            }
+            this.shadowRoot.innerHTML = `
         <style>
           .view-count-container {
             text-align: center;
@@ -45,10 +49,10 @@ class PostViewCount extends HTMLElement {
             font-family: sans-serif;
           }
         </style>
-        <div class="view-count-container"><span>${data.views}</span> view(s)</div>
+        <div class="view-count-container"><span>${data.views}</span> ${suffix}</div>
       `;
-    } catch (e) {
-      this.shadowRoot.innerHTML = `
+        } catch (e) {
+            this.shadowRoot.innerHTML = `
         <style>
           .view-count-container {
             text-align: center;
@@ -60,9 +64,9 @@ class PostViewCount extends HTMLElement {
             color: red;
           }
         </style>
-        <div class="view-count-container"><span>Error loading views</span></div>
+        <div class="view-count-container"><span>Error loading ${suffix}</span></div>
       `;
+        }
     }
-  }
 }
 customElements.define('post-view-count', PostViewCount);

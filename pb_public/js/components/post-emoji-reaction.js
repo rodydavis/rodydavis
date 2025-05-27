@@ -96,6 +96,7 @@ class PostEmojiReaction extends HTMLElement {
         });
       });
     } catch (e) {
+      console.error('Error fetching reactions:', e);
       this.shadowRoot.innerHTML = `
         <style>
           :host { /* Style the host element itself */
