@@ -38,35 +38,38 @@
 {{end}}
 
 {{define "body"}}
-<div style="display: flex;">
-    <article class="markdown-body" style="flex-grow: 1;">
-        <h1>{{.title}}</h1>
-        <div class="tags">
-            {{range .tags}}
-            <tag-item slot="tags" link="/tags/{{.id}}" name="{{.name}}"></tag-item>
+<article class="markdown-body">
+    <h1>{{.title}}</h1>
+    <div class="tags">
+        {{range .tags}}
+        <tag-item slot="tags" link="/tags/{{.id}}" name="{{.name}}"></tag-item>
+        {{end}}
+    </div>
+    {{.content|raw}}
+    <section class="related">
+        <h2>Related Posts</h2>
+        <ul>
+            {{range .related}}
+            <li>
+                <a href="{{.Url}}">{{.Title}}</a>
+            </li>
             {{end}}
-        </div>
-        {{.content|raw}}
-        <section class="related">
-            <h2>Related Posts</h2>
-            <ul>
-                {{range .related}}
-                <li>
-                    <a href="{{.Url}}">{{.Title}}</a>
-                </li>
-                {{end}}
-            </ul>
-        </section>
-        <post-emoji-reaction post-id="{{.id}}"></post-emoji-reaction>
-        <br />
-        <post-view-count post-id="{{.id}}"></post-view-count>
-        <div style="height: 20px;"></div>
-    </article>
-    <aside class="blog-sidebar" style="width: 250px; /* Adjust width as needed */ flex-shrink: 0;">
-        <post-headings-nav post-id="{{.id}}"></post-headings-nav>
-    </aside>
-</div>
+        </ul>
+    </section>
+    <post-emoji-reaction post-id="{{.id}}"></post-emoji-reaction>
+    <br />
+    <post-view-count post-id="{{.id}}"></post-view-count>
+    <div style="height: 20px;"></div>
+</article>
+<aside class="blog-sidebar" style="width: 250px; /* Adjust width as needed */ flex-shrink: 0;">
+    <post-headings-nav post-id="{{.id}}"></post-headings-nav>
+</aside>
 <style>
+    article {
+        max-width: 800px; /* Adjust as needed */
+        margin: 0 auto;
+        padding: 1rem;
+    }
     section.related {
         margin-top: 2rem;
         margin-bottom: 2rem;
