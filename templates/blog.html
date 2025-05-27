@@ -26,76 +26,156 @@
 {{if .image}}
 <meta property="twitter:image" content={{.image}} />
 {{end}}
-<style>
-    @media (max-width: 991px) {
-
-        /* Breakpoint for smaller screens */
-        .blog-sidebar {
-            display: none;
-        }
-    }
-</style>
 {{end}}
 
 {{define "body"}}
-<article class="markdown-body">
-    <h1>{{.title}}</h1>
-    <div class="tags">
-        {{range .tags}}
-        <tag-item slot="tags" link="/tags/{{.id}}" name="{{.name}}"></tag-item>
-        {{end}}
-    </div>
-    {{.content|raw}}
-    <section class="related">
-        <h2>Related Posts</h2>
-        <ul>
-            {{range .related}}
-            <li>
-                <a href="{{.Url}}">{{.Title}}</a>
-            </li>
+<div class="blog-content-wrapper">
+    <article class="markdown-body">
+        <h1>{{.title}}</h1>
+        <div class="tags"> <!-- Tags in article, shown on mobile -->
+            {{range .tags}}
+            <tag-item link="/tags/{{.id}}" name="{{.name}}"></tag-item>
             {{end}}
-        </ul>
-    </section>
-    <post-emoji-reaction post-id="{{.id}}"></post-emoji-reaction>
-    <br />
-    <post-view-count post-id="{{.id}}"></post-view-count>
-    <div style="height: 20px;"></div>
-</article>
-<aside class="blog-sidebar" style="width: 250px; /* Adjust width as needed */ flex-shrink: 0;">
-    <post-headings-nav post-id="{{.id}}"></post-headings-nav>
-</aside>
+        </div>
+        {{.content|raw}}
+        <!-- Mobile-only sections -->
+        <div class="mobile-only-content">
+            <div class="related-posts-mobile"> <!-- Specific container for related posts -->
+                <related-posts post-id="{{.id}}"></related-posts>
+            </div>
+        </div>
+        <div style="height: 20px;"></div>
+        <post-emoji-reaction post-id="{{.id}}"></post-emoji-reaction>
+        <br />
+        <post-view-count post-id="{{.id}}"></post-view-count>
+        <div style="height: 20px;"></div>
+    </article>
+    <aside class="blog-sidebar">
+        <h3>Headings</h3>
+        <post-headings-nav post-id="{{.id}}"></post-headings-nav>
+        <!-- New Tags Section for Sidebar -->
+        <h3>Tags</h3>
+        <div class="sidebar-tags-container">
+            <div class="tags-list">
+                {{range .tags}}
+                <tag-item link="/tags/{{.id}}" name="{{.name}}"></tag-item>
+                {{end}}
+            </div>
+        </div>
+        <related-posts post-id="{{.id}}"></related-posts>
+    </aside>
+</div>
+
 <style>
-    article {
-        max-width: 800px; /* Adjust as needed */
-        margin: 0 auto;
+    .blog-content-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1rem;
+        /* Adjust as needed for space between article and sidebar */
+    }
+
+    article.markdown-body {
+        /* Changed selector from 'article' and updated margin */
+        flex-grow: 1;
+        max-width: 800px;
+        margin: 0;
+        /* Changed from 'auto' for flex layout */
         padding: 1rem;
     }
-    section.related {
-        margin-top: 2rem;
-        margin-bottom: 2rem;
 
-        & h2 {
-            font-size: 1.5rem;
+    article.markdown-body .tags {
+        /* Hidden by default on larger screens, shown on mobile via media query */
+        display: none;
+    }
+
+    .blog-sidebar {
+        width: 250px;
+        flex-shrink: 0;
+        position: sticky;
+        /* Changed from 'absolute' */
+        /* right: 0; Removed, flexbox handles positioning */
+        top: 1rem;
+        max-height: calc(100vh - 2rem);
+        overflow-y: auto;
+        background: light-dark(var(--nav-bg, #fff), var(--nav-bg-dark, #181a1b));
+        border-left: 1px solid #eee;
+
+        h3 {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: light-dark(var(--nav-link-color, #222), var(--nav-link-color-dark, #eee));
+            padding: 0;
+            margin: 0;
+            margin-left: 1rem;
+            margin-top: 1rem;
+        }
+    }
+
+    /* Styles for the new tags container in the sidebar */
+    .sidebar-tags-container {
+        display: block;
+        padding: 1rem;
+        width: 100%;
+    }
+
+    .sidebar-tags-container .tags-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5em;
+    }
+
+    /* Default styles for mobile content containers */
+    .mobile-only-content {
+        display: none;
+        /* Hidden by default on larger screens */
+        width: 100%;
+    }
+
+    .related-posts-mobile {
+        max-width: 800px;
+        /* Match article's max-width */
+        margin: 2rem auto 0 auto;
+        /* Top margin, and centered horizontally */
+    }
+
+    @media (max-width: 768px) {
+        article.markdown-body {
+            /* Changed selector from 'article' */
+            max-width: 100%;
+            padding: 1rem;
+        }
+
+        .blog-sidebar {
+            display: none;
+            /* Hides the entire sidebar, including .sidebar-tags-container */
+        }
+
+        article.markdown-body .tags {
+            display: flex;
+            /* Show tags in article on mobile */
+            flex-wrap: wrap;
+            gap: 0.5em;
+            margin-top: 1rem;
             margin-bottom: 1rem;
         }
 
-        & ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .mobile-only-content {
+            display: block;
+            /* Show the main mobile container */
+        }
 
-            & li {
-                margin-bottom: 0.5rem;
-
-                & a {
-                    color: var(--text-color);
-                    text-decoration: none;
-
-                    &:hover {
-                        text-decoration: underline;
-                    }
-                }
-            }
+        /* Override host styles for the related-posts component when in mobile view */
+        .related-posts-mobile>related-posts {
+            margin-left: 0 !important;
+            border-left: none !important;
+            padding: 0 !important;
+            /* Remove padding that created the box effect */
+            background: transparent !important;
+            /* Remove sidebar background */
+            margin-top: 0 !important;
+            /* Container provides margin */
         }
     }
 </style>
@@ -117,6 +197,7 @@
 <script type="module" src="/js/components/post-emoji-reaction.js"></script>
 <script type="module" src="/js/components/post-view-count.js"></script>
 <script type="module" src="/js/components/post-headings-nav.js"></script> <!-- Add this line -->
+<script type="module" src="/js/components/related-posts.js"></script>
 <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.9.0/highlightjs-line-numbers.min.js"></script> -->
 <script>
     // get all tags with language-markup and add language-html

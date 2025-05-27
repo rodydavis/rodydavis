@@ -140,6 +140,15 @@ func main() {
 			return e.JSON(http.StatusOK, map[string]any{"markdown": markdownContent})
 		})
 		// END NEW ROUTE
+		se.Router.GET("/api/posts/{postId}/related", func(e *core.RequestEvent) error {
+			postId := e.Request.PathValue("postId")
+			record, err := app.FindRecordById("posts", postId)
+			if err != nil {
+				return apis.NewNotFoundError("Post not found.", err)
+			}
+			relatedFiltered := getRelatedPosts(app, record)
+			return e.JSON(http.StatusOK, relatedFiltered)
+		})
 		se.Router.GET("/posts/{path...}", func(e *core.RequestEvent) error {
 			slug := e.Request.PathValue("path")
 			records := []*core.Record{}
