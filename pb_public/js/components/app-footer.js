@@ -38,6 +38,7 @@ export class AppFooter extends mix(HTMLElement).with(
               <li><a href="/about">About</a></li>
               <li><a href="/feed.rss">RSS</a></li>
               <li><a href="/posts">Posts</a></li>
+              <li><a href="/graph">Graph</a></li>
             </ul>
           </div>
           <div class="footer-section social-media-section">

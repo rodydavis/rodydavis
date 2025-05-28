@@ -67,6 +67,24 @@ func main() {
 		Link string
 	}
 
+	type GraphNode struct {
+		Id    string `json:"id"`
+		Label string `json:"label"` // Added for title/name
+		Group int    `json:"group"`
+		Val   int    `json:"val"`            // Kept as int for numerical properties
+		Link  string `json:"link,omitempty"` // Link for navigation
+	}
+
+	type GraphLink struct {
+		Source string `json:"source"`
+		Target string `json:"target"`
+	}
+
+	type GraphData struct {
+		Nodes []GraphNode `json:"nodes"`
+		Links []GraphLink `json:"links"`
+	}
+
 	postsTemplate := template.NewRegistry().LoadFiles(
 		"templates/base.html",
 		"templates/posts.html",
@@ -407,6 +425,88 @@ func main() {
 				return e.HTML(http.StatusOK, html)
 			}
 			return e.NotFoundError("Post not found", errors.New("post not found"))
+		})
+		se.Router.GET("/graph.json", func(e *core.RequestEvent) error {
+			nodes := []GraphNode{}
+			links := []GraphLink{}
+			tagNodeExists := make(map[string]bool) // To track unique tag nodes
+
+			// Fetch all posts
+			postRecords := []*core.Record{}
+			err := app.RecordQuery("posts").
+				Select("id", "title", "tags", "slug"). // Ensure 'tags' and 'slug' are selected
+				Where(dbx.NewExp("draft = false")).
+				All(&postRecords)
+			if err != nil {
+				return apis.NewApiError(http.StatusInternalServerError, "Failed to fetch posts", err)
+			}
+
+			// Expand tags for each post
+			errMap := app.ExpandRecords(postRecords, []string{"tags"}, nil)
+			if len(errMap) > 0 {
+				// Concatenate errors for a more informative message, or handle them as needed
+				var errorMessages []string
+				for _, expErr := range errMap {
+					errorMessages = append(errorMessages, expErr.Error())
+				}
+				return apis.NewApiError(http.StatusInternalServerError, "Failed to expand tags: "+strings.Join(errorMessages, "; "), nil)
+			}
+
+			for _, post := range postRecords {
+				// Add post node
+				postNode := GraphNode{
+					Id:    post.Id,
+					Label: post.GetString("title"),
+					Group: 1,  // Group 1 for posts
+					Val:   10, // Default numerical value for posts
+					Link:  "/posts/" + post.GetString("slug"),
+				}
+				nodes = append(nodes, postNode)
+
+				// Process tags for the current post
+				expandedTags := post.ExpandedAll("tags")
+				for _, tag := range expandedTags {
+					tagId := tag.Id
+					tagName := tag.GetString("name")
+
+					// Add tag node if it doesn't exist yet
+					if _, exists := tagNodeExists[tagId]; !exists {
+						tagNode := GraphNode{
+							Id:    tagId,
+							Label: tagName,
+							Group: 2, // Group 2 for tags
+							Val:   5, // Default numerical value for tags
+							Link:  "/tags/" + tagId,
+						}
+						nodes = append(nodes, tagNode)
+						tagNodeExists[tagId] = true
+					}
+
+					// Add link from tag to post
+					link := GraphLink{
+						Source: tagId,   // Tag is the source
+						Target: post.Id, // Post is the target
+					}
+					links = append(links, link)
+				}
+			}
+
+			data := GraphData{Nodes: nodes, Links: links}
+			return e.JSON(http.StatusOK, data)
+		})
+		se.Router.GET("/graph", func(e *core.RequestEvent) error {
+			graphTemplate := template.NewRegistry().LoadFiles(
+				"templates/base.html",
+				"templates/graph.html",
+			)
+			html, err := graphTemplate.Render(map[string]any{
+				"title": "Graph",
+			})
+			if err != nil {
+				return apis.NewBadRequestError("Failed to render template", err)
+			}
+			setCacheControl(e)
+			return e.HTML(http.StatusOK, html)
 		})
 		se.Router.GET("/tags/{id}", func(e *core.RequestEvent) error {
 			tag := e.Request.PathValue("id")
