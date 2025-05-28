@@ -658,46 +658,46 @@ func main() {
 				setCacheControl(e)
 				return e.HTML(http.StatusOK, html)
 			}
-			_, err := os.Stat("./pb_public/" + slug)
-			if err != nil {
-				// check for match on slug in pages collection
-				records, err := app.FindAllRecords("pages", dbx.NewExp("slug = {:slug}", dbx.Params{"slug": slug}))
-				if err != nil {
-					return err
-				}
-				if len(records) == 1 {
-					record := records[0]
-					html, err := blogTemplate.Render(map[string]any{
-						"title":   record.GetString("title"),
-						"content": record.GetString("content"),
-					})
-					if err != nil {
-						return err
-					}
-					setCacheControl(e)
-					return e.HTML(http.StatusOK, html)
-				}
-				// check posts
-				records, err = app.FindAllRecords("posts", dbx.NewExp("slug = {:slug}", dbx.Params{"slug": slug}))
-				if err != nil {
-					return err
-				}
-				if len(records) == 1 {
-					// permanent redirect to /posts/slug
-					return e.Redirect(http.StatusMovedPermanently, "/posts/"+slug)
-				}
-				// check if slug matches a nested post path (e.g. /sqlite/nosql)
-				records, err = app.FindAllRecords("posts", dbx.NewExp("slug = {:slug}", dbx.Params{"slug": "/" + slug}))
-				if err != nil {
-					return err
-				}
-				if len(records) == 1 {
-					// permanent redirect to /posts/slug (with nested path)
-					return e.Redirect(http.StatusMovedPermanently, "/posts/"+slug)
-				}
-				// Redirect to home if not found
-				return e.Redirect(http.StatusTemporaryRedirect, "/")
-			}
+			// _, err := os.Stat("./pb_public/" + slug)
+			// if err != nil {
+			// 	// check for match on slug in pages collection
+			// 	records, err := app.FindAllRecords("pages", dbx.NewExp("slug = {:slug}", dbx.Params{"slug": slug}))
+			// 	if err != nil {
+			// 		return err
+			// 	}
+			// 	if len(records) == 1 {
+			// 		record := records[0]
+			// 		html, err := blogTemplate.Render(map[string]any{
+			// 			"title":   record.GetString("title"),
+			// 			"content": record.GetString("content"),
+			// 		})
+			// 		if err != nil {
+			// 			return err
+			// 		}
+			// 		setCacheControl(e)
+			// 		return e.HTML(http.StatusOK, html)
+			// 	}
+			// 	// check posts
+			// 	records, err = app.FindAllRecords("posts", dbx.NewExp("slug = {:slug}", dbx.Params{"slug": slug}))
+			// 	if err != nil {
+			// 		return err
+			// 	}
+			// 	if len(records) == 1 {
+			// 		// permanent redirect to /posts/slug
+			// 		return e.Redirect(http.StatusMovedPermanently, "/posts/"+slug)
+			// 	}
+			// 	// check if slug matches a nested post path (e.g. /sqlite/nosql)
+			// 	records, err = app.FindAllRecords("posts", dbx.NewExp("slug = {:slug}", dbx.Params{"slug": "/" + slug}))
+			// 	if err != nil {
+			// 		return err
+			// 	}
+			// 	if len(records) == 1 {
+			// 		// permanent redirect to /posts/slug (with nested path)
+			// 		return e.Redirect(http.StatusMovedPermanently, "/posts/"+slug)
+			// 	}
+			// 	// Redirect to home if not found
+			// 	return e.Redirect(http.StatusTemporaryRedirect, "/")
+			// }
 			setCacheControl(e)
 			return apis.Static(os.DirFS("./pb_public"), false)(e)
 		})
