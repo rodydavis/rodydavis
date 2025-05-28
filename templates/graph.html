@@ -90,7 +90,8 @@ Graph
     let currentLink = '';
 
     fetch('/graph.json').then(res => res.json()).then(data => {
-        const Graph = new ForceGraph3D()(document.getElementById('graph'))
+        const graphDiv = document.getElementById('graph');
+        const Graph = new ForceGraph3D()(graphDiv)
             .graphData(data)
             .nodeId('id')
             .nodeVal('val')
@@ -107,6 +108,16 @@ Graph
                     banner.style.display = 'none';
                 }
             });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            Graph.width(graphDiv.offsetWidth);
+            Graph.height(graphDiv.offsetHeight);
+        });
+
+        // Initial size setup
+        Graph.width(graphDiv.offsetWidth);
+        Graph.height(graphDiv.offsetHeight);
     });
 
     navigateButton.addEventListener('click', () => {
