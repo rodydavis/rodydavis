@@ -3,12 +3,16 @@
 {{end}}
 
 {{define "body"}}
-<main>
+<vscode-layout>
+  <vscode-sidebar slot="sidebar"></vscode-sidebar>
+  <vscode-header slot="header">
+    <div class="posts-search-bar" slot="search">
+      <input type="search" id="posts-search" placeholder="Search posts..." autocomplete="off" />
+    </div>
+  </vscode-header>
+  <main>
     <div class="posts-title-bar">
       <h1>{{.title}}</h1>
-      <div class="posts-search-bar">
-        <input type="search" id="posts-search" placeholder="Search posts..." autocomplete="off" />
-      </div>
     </div>
     <section class="posts-list-section">
       <posts-list id="posts-list">
@@ -21,7 +25,8 @@
         {{end}}
       </posts-list>
     </section>
-</main>
+  </main>
+</vscode-layout>
 <style>
 /* Remove .posts and .posts .item styles, as they're now in the component */
 main {
@@ -62,23 +67,10 @@ main {
   color: var(--theme-sys-color-on-surface, #222);
   outline: none;
   transition: border 0.15s;
+  margin: 4px;
 }
 .posts-search-bar input[type="search"]:focus {
   border: 1.5px solid var(--theme-sys-color-primary, #007aff);
-}
-@media (max-width: 600px) {
-  .posts-title-bar {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
-  }
-  .posts-title-bar h1 {
-    font-size: 1.5rem;
-  }
-  .posts-search-bar {
-    max-width: 100%;
-    flex: 1 1 100%;
-  }
 }
 </style>
 <script type="module" src="/js/components/tag-item.js"></script>

@@ -10,9 +10,6 @@ class RelatedPosts extends HTMLElement {
           display: block;
           /* Match post-headings-nav styles */
           padding: 1rem;
-          border-left: 1px solid #eee;
-          margin-left: 1rem; /* This might be too much if blog-sidebar already has gap/padding */
-          background: var(--nav-bg, #fff);
           margin-top: 1rem; /* Keep some separation from headings nav */
         }
         h2 {
@@ -49,25 +46,24 @@ class RelatedPosts extends HTMLElement {
         }
         @media (prefers-color-scheme: dark) {
           :host {
-            background: var(--nav-bg-dark, #181a1b);
-            border-left: 1px solid #333;
+            /* background: var(--nav-bg-dark, #181a1b); -- Removed */
+            /* border-left: 1px solid #333; -- Removed */
           }
           h2 {
-            color: var(--nav-link-color-dark, #eee);
+            color: var(--theme-sys-color-on-surface, #eee);
           }
           li a {
-            color: var(--nav-link-color-dark, #eee);
+            color: var(--theme-sys-color-on-surface, #eee);
           }
           li a:hover, li a:focus {
-            background: var(--nav-link-hover-bg-dark, #23272a);
-            color: var(--nav-link-hover-color-dark, #66aaff);
+            background: var(--nav-link-hover-bg-dark, #23272a); /* Keeping existing hover background for now */
+            color: var(--theme-sys-color-primary, #66aaff);
           }
           .loading, .error {
-            color: #aaa;
+            color: var(--theme-sys-color-on-surface-variant, #aaa);
           }
         }
       </style>
-      <h2>Related Posts</h2>
       <ul class="related-posts-list"><li class="loading">Loading related posts...</li></ul>
     `;
   }

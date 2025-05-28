@@ -1,0 +1,32 @@
+{{define "title"}}
+Tags
+{{end}}
+
+{{define "body"}}
+<vscode-layout>
+  <vscode-sidebar slot="sidebar"></vscode-sidebar>
+  <main>
+    <h1>Tags</h1>
+    <div class="tags-list">
+      {{range .tags}}
+      <tag-item link="/tags/{{.id}}" name="{{.name}}"></tag-item>
+      {{end}}
+    </div>
+  </main>
+</vscode-layout>
+<style>
+main {
+  padding: 1rem;
+  margin: 0 auto;
+  max-width: 800px;
+  min-height: 90vh;
+}
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin-top: 1rem;
+}
+</style>
+<script type="module" src="/js/components/tag-item.js"></script>
+{{end}}

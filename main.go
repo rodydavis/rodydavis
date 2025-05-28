@@ -1,11 +1,16 @@
 package main
 
 import (
+	"crypto/sha1"
 	"database/sql"
+	"encoding/hex"
 	"errors"
+	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"strings"
 
 	md "github.com/JohannesKaufmann/html-to-markdown"
@@ -466,6 +471,61 @@ func main() {
 			setCacheControl(e)
 			return e.HTML(http.StatusOK, html)
 		})
+		se.Router.GET("/tags", func(e *core.RequestEvent) error {
+			tagRecords := []*core.Record{}
+			err := app.RecordQuery("tags").
+				Select("id", "name").
+				OrderBy("name ASC").
+				All(&tagRecords)
+			if err != nil {
+				return err
+			}
+			tags := []map[string]any{}
+			for _, t := range tagRecords {
+				tags = append(tags, map[string]any{
+					"id":   t.GetString("id"),
+					"name": t.GetString("name"),
+				})
+			}
+			tagsTemplate := template.NewRegistry().LoadFiles(
+				"templates/base.html",
+				"templates/tags.html",
+			)
+			html, err := tagsTemplate.Render(map[string]any{
+				"title": "Tags",
+				"tags":  tags,
+			})
+			if err != nil {
+				return err
+			}
+			setCacheControl(e)
+			return e.HTML(http.StatusOK, html)
+		})
+		se.Router.GET("/social", func(e *core.RequestEvent) error {
+			socialLinks := []map[string]any{
+				{"title": "GitHub", "link": "https://github.com/rodydavis", "icon": "github"},
+				{"title": "Twitter", "link": "https://twitter.com/rodydavis", "icon": "twitter"},
+				{"title": "Facebook", "link": "https://facebook.com/rodydavisjr", "icon": "facebook"},
+				{"title": "Instagram", "link": "https://instagram.com/rodydavisjr", "icon": "instagram"},
+				{"title": "LinkedIn", "link": "https://linkedin.com/in/rodydavis", "icon": "linkedin"},
+				{"title": "YouTube", "link": "https://youtube.com/rodydavis", "icon": "youtube"},
+				{"title": "TikTok", "link": "https://tiktok.com/@rodydavisjr", "icon": "tiktok"},
+				{"title": "Bluesky", "link": "https://bsky.app/profile/rodydavis.com", "icon": "bluesky"},
+			}
+			socialTemplate := template.NewRegistry().LoadFiles(
+				"templates/base.html",
+				"templates/social.html",
+			)
+			html, err := socialTemplate.Render(map[string]any{
+				"title":   "Social",
+				"socials": socialLinks,
+			})
+			if err != nil {
+				return err
+			}
+			setCacheControl(e)
+			return e.HTML(http.StatusOK, html)
+		})
 		se.Router.GET("/{path...}", func(e *core.RequestEvent) error {
 			slug := e.Request.PathValue("path")
 			if slug == "" {
@@ -598,8 +658,69 @@ func main() {
 				// Redirect to home if not found
 				return e.Redirect(http.StatusTemporaryRedirect, "/")
 			}
+			// Custom static file handler with ETag support
+			filePath := filepath.Join("./pb_public", slug)
+			fileInfo, err := os.Stat(filePath)
+			if err != nil {
+				if os.IsNotExist(err) {
+					return apis.NewNotFoundError("File not found", err)
+				}
+				return apis.NewApiError(http.StatusInternalServerError, "Failed to get file info", err)
+			}
+
+			// Generate ETag based on file name, size and modification time
+			etag := fmt.Sprintf("%s-%d-%d", fileInfo.Name(), fileInfo.Size(), fileInfo.ModTime().UnixNano())
+			hasher := sha1.New()
+			hasher.Write([]byte(etag))
+			generatedETag := hex.EncodeToString(hasher.Sum(nil))
+
+			// Check If-None-Match header
+			if match := e.Request.Header.Get("If-None-Match"); match != "" {
+				if strings.Contains(match, generatedETag) {
+					e.Response.WriteHeader(http.StatusNotModified)
+					return nil
+				}
+			}
+
+			e.Response.Header().Set("ETag", generatedETag)
 			setCacheControl(e)
-			return apis.Static(os.DirFS("./pb_public"), false)(e)
+
+			file, err := os.Open(filePath)
+			if err != nil {
+				return apis.NewApiError(http.StatusInternalServerError, "Failed to open file", err)
+			}
+			defer file.Close()
+
+			// Set content type based on file extension
+			contentType := "application/octet-stream" // Default content type
+			switch filepath.Ext(filePath) {
+			case ".html":
+				contentType = "text/html; charset=utf-8"
+			case ".css":
+				contentType = "text/css; charset=utf-8"
+			case ".js":
+				contentType = "application/javascript; charset=utf-8"
+			case ".json":
+				contentType = "application/json; charset=utf-8"
+			case ".png":
+				contentType = "image/png"
+			case ".jpg", ".jpeg":
+				contentType = "image/jpeg"
+			case ".gif":
+				contentType = "image/gif"
+			case ".svg":
+				contentType = "image/svg+xml"
+			case ".ico":
+				contentType = "image/x-icon"
+			}
+			e.Response.Header().Set("Content-Type", contentType)
+
+			_, err = io.Copy(e.Response, file)
+			if err != nil {
+				return apis.NewApiError(http.StatusInternalServerError, "Failed to serve file", err)
+			}
+			return nil
+			// return apis.Static(os.DirFS("./pb_public"), false)(e)
 		})
 
 		return se.Next()

@@ -11,6 +11,9 @@ class PostEmojiReaction extends HTMLElement {
         }
         .reaction-buttons-container {
           text-align: center; /* Center the buttons */
+          white-space: nowrap; /* Prevent wrapping */
+          overflow-x: auto; /* Allow horizontal scrolling */
+          overflow-y: hidden; /* Hide vertical scrollbar if any */
         }
         button {
           background: none;
@@ -25,6 +28,19 @@ class PostEmojiReaction extends HTMLElement {
         }
         span {
           font-family: sans-serif;
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 600px) {
+          button {
+            padding: 0.15em 0.3em; /* Drastically reduce padding */
+            font-size: 0.75em; /* Significantly reduce font size */
+            margin: 0 1px; /* Add minimal horizontal margin to prevent touching */
+          }
+          button span {
+            font-size: 0.85em; /* Adjust count font size relative to new button font size */
+            margin-left: 2px; /* Small space between emoji and count */
+          }
         }
       </style>
       <div class="reaction-buttons-container"><span>Loading...</span></div>
@@ -67,20 +83,44 @@ class PostEmojiReaction extends HTMLElement {
           }
           .reaction-buttons-container {
             text-align: center; /* Center the buttons */
+            white-space: nowrap; /* Prevent wrapping */
+            display: flex; /* Use flexbox for layout */
+            flex-wrap: nowrap; /* Prevent wrapping */
+            align-items: center; /* Center items vertically */
           }
           button {
             background: none;
             border: none; /* Removed border */
             border-radius: 4px;
-            padding: 0.5em 1em;
+            padding: 0.15em 0.3em;
+            margin: 0 1px;
             cursor: pointer;
             transition: background-color 0.2s ease;
+            font-size: 0.75em;
+            display: inline-flex;
+            align-items: center;
+            gap: 2px; /* Space between emoji and count */
           }
           button:hover {
             background-color: #f0f0f0;
           }
           span {
+            font-size: 0.85em;
             font-family: sans-serif;
+            margin-left: 2px;
+          }
+
+          /* Media query for smaller screens */
+          @media (max-width: 600px) {
+            button {
+              padding: 0.15em 0.3em; /* Drastically reduce padding */
+              font-size: 0.75em; /* Significantly reduce font size */
+              margin: 0 1px; /* Add minimal horizontal margin to prevent touching */
+            }
+            button span {
+              font-size: 0.85em; /* Adjust count font size relative to new button font size */
+              margin-left: 2px; /* Small space between emoji and count */
+            }
           }
         </style>
         <div class="reaction-buttons-container">${html}</div>

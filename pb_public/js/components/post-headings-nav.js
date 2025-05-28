@@ -13,9 +13,7 @@ class PostHeadingsNav extends HTMLElement {
           max-height: calc(100vh - 2rem);
           overflow-y: auto;
           padding: 1rem;
-          border-left: 1px solid #eee;
           margin-left: 1rem;
-          background: var(--nav-bg, #fff);
         }
         nav ul {
           list-style: none;
@@ -46,15 +44,15 @@ class PostHeadingsNav extends HTMLElement {
         .h6 a { font-size: 0.8em; padding-left: 2em; }
         @media (prefers-color-scheme: dark) {
           :host {
-            background: var(--nav-bg-dark, #181a1b);
-            border-left: 1px solid #333;
+            /* background: var(--nav-bg-dark, #181a1b); */ /* Removed */
+            /* border-left: 1px solid #333; */ /* Removed */
           }
           nav a {
-            color: var(--nav-link-color-dark, #eee);
+            color: var(--theme-sys-color-on-surface); /* Updated from var(--nav-link-color-dark, #eee) */
           }
           nav a:hover, nav a:focus {
             background: var(--nav-link-hover-bg-dark, #23272a);
-            color: var(--nav-link-hover-color-dark, #66aaff);
+            color: var(--theme-sys-color-primary); /* Updated from var(--nav-link-hover-color-dark, #66aaff) */
           }
         }
       </style>

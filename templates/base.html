@@ -25,16 +25,15 @@
 
 <body>
   {{block "header" .}}
-  <app-header title="Rody Davis"></app-header>
   <!-- <app-drawer></app-drawer> -->
-  <script type="module" src="/js/components/app-header.js"></script>
-  <script type="module" src="/js/components/app-footer.js"></script>
+  <script src="/js/theme.js"></script>
+  <script type="module" src="/js/vscode-theme.js"></script>
+  <script type="module" src="/js/components/vscode/vscode-layout.js"></script>
   <!-- <script type="module" src="/js/components/app-drawer.js"></script> -->
   {{end}}
   {{block "body" .}}
   {{end}}
-  <app-footer></app-footer>
-  <script src="/js/theme.js"></script>
+  <!-- <app-footer></app-footer> removed, now accessible via activity bar -->
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
   <script>

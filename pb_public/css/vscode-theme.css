@@ -1,0 +1,201 @@
+/*
+VS Code Theme CSS for Blog
+*/
+:root {
+  --vscode-bg: #1e1e1e;
+  --vscode-sidebar-bg: #252526;
+  --vscode-activitybar-bg: #2c2c32;
+  --vscode-statusbar-bg: #007acc;
+  --vscode-titlebar-bg: #23232e;
+  --vscode-editor-bg: #1e1e1e;
+  --vscode-foreground: #d4d4d4;
+  --vscode-accent: #3794ff;
+  --vscode-border: #333;
+  --vscode-icon: #c5c5c5;
+  --vscode-icon-active: #fff;
+}
+
+body, .vscode-root {
+  background: var(--vscode-bg);
+  color: var(--vscode-foreground);
+  font-family: 'Segoe UI', 'Fira Mono', 'Menlo', 'monospace', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.vscode-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.vscode-titlebar {
+  background: var(--vscode-titlebar-bg);
+  color: var(--vscode-foreground);
+  display: flex;
+  align-items: center;
+  height: 38px;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--vscode-border);
+  z-index: 10;
+}
+.vscode-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.03em;
+}
+.vscode-search {
+  margin-left: auto;
+}
+.vscode-search input[type="search"] {
+  background: #22242a;
+  color: var(--vscode-foreground);
+  border: 1px solid var(--vscode-border);
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-size: 1em;
+}
+
+.vscode-main-layout {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.vscode-activitybar {
+  background: var(--vscode-activitybar-bg);
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0;
+  border-right: 1px solid var(--vscode-border);
+  z-index: 2;
+}
+.activity-icon {
+  background: none;
+  border: none;
+  color: var(--vscode-icon);
+  margin: 6px 0;
+  padding: 8px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.activity-icon:hover, .activity-icon.active {
+  background: var(--vscode-accent);
+  color: var(--vscode-icon-active);
+}
+.activity-icon .codicon {
+  font-size: 1.5em;
+}
+
+.vscode-activitybar .codicon {
+  font-family: 'codicon', 'Segoe UI Symbol', sans-serif;
+  font-size: 1.7em;
+  line-height: 1;
+  display: block;
+}
+
+/* Highlight active icon */
+.activity-icon.active .codicon {
+  color: var(--vscode-icon-active);
+}
+
+.vscode-sidebar {
+  background: var(--vscode-sidebar-bg);
+  width: 260px;
+  padding: 1rem 0.7rem;
+  border-left: 1px solid var(--vscode-border);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 180px;
+  max-width: 320px;
+}
+.sidebar-section h3 {
+  color: var(--vscode-accent);
+  font-size: 1em;
+  margin-bottom: 0.5em;
+  font-weight: 500;
+}
+
+.vscode-editor {
+  background: var(--vscode-editor-bg);
+  flex: 1 1 auto;
+  padding: 2rem 2.5rem 2rem 2.5rem;
+  min-width: 0;
+  min-height: 0;
+  overflow-x: auto;
+}
+
+.vscode-statusbar {
+  background: var(--vscode-statusbar-bg);
+  color: #fff;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  font-size: 0.95em;
+  border-top: 1px solid var(--vscode-border);
+  z-index: 10;
+}
+
+/* Utility: Hide scrollbars for a cleaner look */
+.vscode-editor, .vscode-sidebar {
+  scrollbar-width: thin;
+  scrollbar-color: #333 #23232e;
+}
+.vscode-editor::-webkit-scrollbar, .vscode-sidebar::-webkit-scrollbar {
+  width: 8px;
+  background: #23232e;
+}
+.vscode-editor::-webkit-scrollbar-thumb, .vscode-sidebar::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+/* Add subtle shadow to main panels for depth */
+.vscode-titlebar, .vscode-statusbar, .vscode-sidebar, .vscode-activitybar {
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.07);
+}
+
+/* Make sure main content is scrollable if needed */
+.vscode-editor {
+  overflow-y: auto;
+}
+
+/* Optional: Slightly round corners for sidebar and activity bar */
+.vscode-sidebar, .vscode-activitybar {
+  border-radius: 0 0 8px 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .vscode-sidebar {
+    display: none;
+  }
+  .vscode-editor {
+    padding: 1rem 0.5rem;
+  }
+}
+@media (max-width: 600px) {
+  .vscode-main-layout {
+    flex-direction: column;
+  }
+  .vscode-activitybar {
+    flex-direction: row;
+    width: 100%;
+    height: 44px;
+    border-right: none;
+    border-bottom: 1px solid var(--vscode-border);
+    padding: 0 0.5rem;
+  }
+  .activity-icon {
+    margin: 0 6px;
+    padding: 0 8px;
+  }
+}

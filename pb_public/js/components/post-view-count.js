@@ -10,6 +10,7 @@ class PostViewCount extends HTMLElement {
           text-align: center;
           padding-top: 0.5em; /* Added padding */
           padding-bottom: 0.5em; /* Added padding */
+          white-space: nowrap;
         }
         .view-count-container span {
           font-family: sans-serif;
@@ -44,6 +45,7 @@ class PostViewCount extends HTMLElement {
             text-align: center;
             padding-top: 0.5em; /* Added padding */
             padding-bottom: 0.5em; /* Added padding */
+            white-space: nowrap;
           }
           .view-count-container span {
             font-family: sans-serif;
@@ -58,6 +60,7 @@ class PostViewCount extends HTMLElement {
             text-align: center;
             padding-top: 0.5em; /* Added padding */
             padding-bottom: 0.5em; /* Added padding */
+            white-space: nowrap;
           }
           .view-count-container span {
             font-family: sans-serif;

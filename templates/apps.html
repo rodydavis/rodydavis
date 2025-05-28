@@ -3,14 +3,17 @@ Apps
 {{end}}
 
 {{define "body"}}
-<main>
-    <h1>{{.title}}</h1>
-    <apps-list>
-        {{range .apps}}
-        <app-tile icon="{{.app_icon}}" name="{{.name}}" link="{{.link}}"></app-tile>
-        {{end}}
-    </apps-list>
-</main>
+<vscode-layout>
+  <vscode-sidebar slot="sidebar"></vscode-sidebar>
+  <main>
+      <h1>{{.title}}</h1>
+      <apps-list>
+          {{range .apps}}
+          <app-tile icon="{{.app_icon}}" name="{{.name}}" link="{{.link}}"></app-tile>
+          {{end}}
+      </apps-list>
+  </main>
+</vscode-layout>
 <style>
 main {
   padding: 1rem;

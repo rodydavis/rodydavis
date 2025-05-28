@@ -28,42 +28,47 @@
 {{end}}
 
 {{define "body"}}
-<div class="blog-content-wrapper">
-    <article class="markdown-body">
-        <h1>{{.title}}</h1>
-        <div class="tags"> <!-- Tags in article, shown on mobile -->
-            {{range .tags}}
-            <tag-item link="/tags/{{.id}}" name="{{.name}}"></tag-item>
-            {{end}}
-        </div>
-        {{.content|raw}}
-        <!-- Mobile-only sections -->
-        <div class="mobile-only-content">
-            <div class="related-posts-mobile"> <!-- Specific container for related posts -->
-                <related-posts post-id="{{.id}}"></related-posts>
-            </div>
-        </div>
-        <div style="height: 20px;"></div>
-        <post-emoji-reaction post-id="{{.id}}"></post-emoji-reaction>
-        <br />
-        <post-view-count post-id="{{.id}}"></post-view-count>
-        <div style="height: 20px;"></div>
-    </article>
-    <aside class="blog-sidebar">
-        <h3>Headings</h3>
-        <post-headings-nav post-id="{{.id}}"></post-headings-nav>
-        <!-- New Tags Section for Sidebar -->
-        <h3>Tags</h3>
-        <div class="sidebar-tags-container">
-            <div class="tags-list">
-                {{range .tags}}
-                <tag-item link="/tags/{{.id}}" name="{{.name}}"></tag-item>
-                {{end}}
-            </div>
-        </div>
+<vscode-layout>
+  <vscode-sidebar slot="sidebar"></vscode-sidebar>
+  <article class="markdown-body">
+    <h1>{{.title}}</h1>
+    <div class="tags"> <!-- Tags in article, shown on mobile -->
+      {{range .tags}}
+      <tag-item link="/tags/{{.id}}" name="{{.name}}"></tag-item>
+      {{end}}
+    </div>
+    {{.content|raw}}
+    <!-- Mobile-only sections -->
+    <div class="mobile-only-content">
+      <div class="related-posts-mobile"> <!-- Specific container for related posts -->
         <related-posts post-id="{{.id}}"></related-posts>
-    </aside>
-</div>
+      </div>
+    </div>
+    <div style="height: 20px;"></div>
+    <div style="height: 20px;"></div>
+  </article>
+  <vscode-outline slot="outline">
+    <vscode-outline-section title="Headings">
+      <post-headings-nav post-id="{{.id}}"></post-headings-nav>
+    </vscode-outline-section>
+    <vscode-outline-section title="Tags">
+      <div class="sidebar-tags-container">
+        <div class="tags-list">
+          {{range .tags}}
+          <tag-item link="/tags/{{.id}}" name="{{.name}}"></tag-item>
+          {{end}}
+        </div>
+      </div>
+    </vscode-outline-section>
+    <vscode-outline-section title="Related Posts">
+      <related-posts post-id="{{.id}}"></related-posts>
+    </vscode-outline-section>
+  </vscode-outline>
+  <vscode-footer slot="footer">
+    <post-emoji-reaction post-id="{{.id}}"></post-emoji-reaction>
+    <post-view-count post-id="{{.id}}"></post-view-count>
+  </vscode-footer>
+</vscode-layout>
 
 <style>
     .blog-content-wrapper {
@@ -188,7 +193,7 @@
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/yaml.min.js"></script>
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/json.min.js"></script>
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/ruby.min.js"></script>
-<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/html.min.js"></script>
+<!-- <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/html.min.js"></script> -->
 <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/xml.min.js"></script>
 <script src="//unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
 <script src="/js/open-heart.js" type="module"></script>
@@ -197,6 +202,7 @@
 <script type="module" src="/js/components/post-view-count.js"></script>
 <script type="module" src="/js/components/post-headings-nav.js"></script> <!-- Add this line -->
 <script type="module" src="/js/components/related-posts.js"></script>
+<script type="module" src="/js/components/vscode/vscode-outline-section.js"></script>
 <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.9.0/highlightjs-line-numbers.min.js"></script> -->
 <script>
     // get all tags with language-markup and add language-html

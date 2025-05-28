@@ -29,126 +29,131 @@
 {{end}}
 
 {{define "body"}}
-<article class="markdown-body">
-    <div class="app-header">
-        <div class="app-icon">
-            <img src="{{.image}}" alt="App Icon">
+<vscode-layout>
+  <vscode-sidebar slot="sidebar"></vscode-sidebar>
+  <main>
+    <article class="markdown-body">
+        <div class="app-header">
+            <div class="app-icon">
+                <img src="{{.image}}" alt="App Icon">
+            </div>
+            <h1>{{.title}}</h1>
         </div>
-        <h1>{{.title}}</h1>
-    </div>
-    {{.content|raw}}
-    <div class="screenshots">
-        {{range .screenshots}}
-        <div class="screenshot">
-            <img src="{{.}}" alt="Screenshot">
+        {{.content|raw}}
+        <div class="screenshots">
+            {{range .screenshots}}
+            <div class="screenshot">
+                <img src="{{.}}" alt="Screenshot">
+            </div>
+            {{end}}
         </div>
-        {{end}}
-    </div>
-    <div class="download-links">
-        {{range .downloads}}
-        <a href="{{.Link}}" download="{{.Name}}">{{.Name}}</a>
-        {{end}}
-    </div>
-</article>
-<style>
-    .app-header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
+        <div class="download-links">
+            {{range .downloads}}
+            <a href="{{.Link}}" download="{{.Name}}">{{.Name}}</a>
+            {{end}}
+        </div>
+    </article>
+    <style>
+        .app-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
 
-        .app-icon {
-            width: 200px;
-            height: 200px;
-            background: var(--app-header-icon-background);
-            border-radius: 20px;
-            overflow: hidden;
-            margin: 0 auto;
+            .app-icon {
+                width: 200px;
+                height: 200px;
+                background: var(--app-header-icon-background);
+                border-radius: 20px;
+                overflow: hidden;
+                margin: 0 auto;
+            }
         }
-    }
 
-    .screenshots {
-        /* horizontal scrolling images */
-        display: flex;
-        gap: 1rem;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        scroll-padding: 1rem;
-        height: 500px;
+        .screenshots {
+            /* horizontal scrolling images */
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-padding: 1rem;
+            height: 500px;
 
-        .screenshot {
-            flex: 0 0 auto;
-            scroll-snap-align: start;
-            width: 100%;
-            height: 100%;
-            border-radius: 20px;
+            .screenshot {
+                flex: 0 0 auto;
+                scroll-snap-align: start;
+                width: 100%;
+                height: 100%;
+                border-radius: 20px;
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    max-width: unset;
+                    object-fit: contain;
+                    border-radius: 20px;
+                }
+            }
+        }
+
+        .download-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+
+            a {
+                padding: 0.5rem 1rem;
+                background: var(--download-link-background);
+                border-radius: 20px;
+                text-decoration: none;
+                color: var(--download-link-text);
+            }
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .app-card {
+            background: var(--app-card-background);
+            border-radius: 1rem;
             overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
             img {
                 width: 100%;
-                height: 100%;
-                max-width: unset;
-                object-fit: contain;
-                border-radius: 20px;
+                height: 150px;
+                object-fit: cover;
+            }
+
+            h3 {
+                font-size: 1.25rem;
+                margin: 0.5rem 0;
+            }
+
+            p {
+                font-size: 1rem;
+                color: var(--app-card-text);
+                margin: 0 0.5rem 1rem;
+            }
+
+            .btn {
+                display: inline-block;
+                padding: 0.5rem 1rem;
+                background: var(--app-card-btn-background);
+                border-radius: 1rem;
+                color: var(--app-card-btn-text);
+                text-decoration: none;
+                text-align: center;
+                margin: 0.5rem;
             }
         }
-    }
-
-    .download-links {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        margin-top: 1rem;
-
-        a {
-            padding: 0.5rem 1rem;
-            background: var(--download-link-background);
-            border-radius: 20px;
-            text-decoration: none;
-            color: var(--download-link-text);
-        }
-    }
-
-    .app-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 1rem;
-    }
-
-    .app-card {
-        background: var(--app-card-background);
-        border-radius: 1rem;
-        overflow: hidden;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-        img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
-
-        h3 {
-            font-size: 1.25rem;
-            margin: 0.5rem 0;
-        }
-
-        p {
-            font-size: 1rem;
-            color: var(--app-card-text);
-            margin: 0 0.5rem 1rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: var(--app-card-btn-background);
-            border-radius: 1rem;
-            color: var(--app-card-btn-text);
-            text-decoration: none;
-            text-align: center;
-            margin: 0.5rem;
-        }
-    }
-</style>
+    </style>
+  </main>
+</vscode-layout>
 {{end}}
