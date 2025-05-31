@@ -1,60 +1,47 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
+# This workflow builds a Docker image and pushes it to Docker Hub
+# when a new Git tag is pushed.
 
-# GitHub recommends pinning actions to a commit SHA.
-# To get a newer version, you will need to update the SHA.
-# You can also reference a tag or branch, but the action may change without warning.
-
-name: Publish Docker image
+name: Build and Push Docker Image to Docker Hub
 
 on:
-  release:
-    types: [published]
+  # Trigger the workflow when a push occurs on the 'main' branch
   push:
     branches:
-      - main
       - master
+      - main
+
+env:
+  DOCKER_HUB_USERNAME: rodydavis
+  DOCKER_HUB_REPO: rodydavis
 
 jobs:
-  push_to_registry:
-    name: Push Docker image to Docker Hub
-    runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
-      attestations: write
-      id-token: write
+  build_and_push:
+    runs-on: ubuntu-latest # Use the latest Ubuntu runner
+
     steps:
-      - name: Check out the repo
+      - name: Checkout repository
+        # Action to check out your repository code
         uses: actions/checkout@v4
 
       - name: Log in to Docker Hub
-        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+        # Action to log in to Docker Hub using provided credentials
+        # DOCKER_USERNAME and DOCKER_PASSWORD should be stored as GitHub Secrets
+        # Go to your repository settings -> Secrets and variables -> Actions
+        # Add new repository secrets: DOCKER_USERNAME and DOCKER_PASSWORD
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-        with:
-          images: rodydavis/website
+      - name: Set up Docker Buildx
+        # Action to set up Docker Buildx, which provides enhanced build capabilities
+        uses: docker/setup-buildx-action@v3
 
       - name: Build and push Docker image
-        id: push
-        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+        # This step builds the Docker image and pushes it to Docker Hub.
+        # It will only push the image with the 'latest' tag.
+        uses: docker/build-push-action@v5
         with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-
-      - name: Generate artifact attestation
-        uses: actions/attest-build-provenance@v2
-        with:
-          subject-name: index.docker.io/rodydavis/website
-          subject-digest: ${{ steps.push.outputs.digest }}
-          push-to-registry: true
+          context: . # Build context is the current directory
+          push: true # Push the image to the registry
+          tags: ${{ env.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_HUB_REPO }}:latest
