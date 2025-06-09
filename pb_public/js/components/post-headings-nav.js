@@ -103,8 +103,8 @@ class PostHeadingsNav extends HTMLElement {
       if (!res.ok) {
         throw new Error(`Failed to fetch markdown: ${res.status}`);
       }
-      const data = await res.json();
-      const markdown = data.markdown;
+      const data = await res.text();
+      const markdown = data;
 
       if (!markdown) {
         this.shadowRoot.querySelector('nav ul').innerHTML = '<li>No markdown content found.</li>';

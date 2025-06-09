@@ -62,6 +62,10 @@
             </div>
         </div>
         <related-posts post-id="{{.id}}"></related-posts>
+        <h3>Misc</h3>
+        <div class="section">
+            <a href="/api/posts/{{.id}}/markdown">View as markdown</a>
+        </div>
     </aside>
 </div>
 
@@ -99,7 +103,7 @@
         max-height: calc(100vh - 2rem);
         overflow-y: auto;
         background: light-dark(var(--nav-bg, #fff), var(--nav-bg-dark, #181a1b));
-        border-left: 1px solid #eee;
+        border-left: 1px solid light-dark(var(--nav-bg, #eee), var(--nav-bg-dark, #222));
 
         h3 {
             font-weight: bold;
@@ -109,6 +113,11 @@
             margin: 0;
             margin-left: 1rem;
             margin-top: 1rem;
+        }
+
+        .section {
+            margin-left: 1rem;
+            margin-bottom: 1rem;
         }
     }
 

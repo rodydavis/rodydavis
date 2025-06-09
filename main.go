@@ -151,11 +151,17 @@ func main() {
 			htmlContent := record.GetString("content") // This is the HTML content
 			converter := md.NewConverter("", true, nil)
 			markdownContent, err := converter.ConvertString(htmlContent)
+			// post title
+			title := "# " + record.GetString("title") + "\n\n"
+			// description
+			description := "> " + record.GetString("description") + "\n\n"
+			markdownContent = title + description + markdownContent
 			if err != nil {
 				return apis.NewApiError(http.StatusInternalServerError, "Failed to convert HTML to Markdown", err)
 			}
-			// Return converted markdown content as JSON
-			return e.JSON(http.StatusOK, map[string]any{"markdown": markdownContent})
+			// Return converted markdown content as text/markdown
+			e.Response.Header().Set("Content-Type", "text/markdown; charset=utf-8")
+			return e.String(http.StatusOK, markdownContent)
 		})
 		// END NEW ROUTE
 		se.Router.GET("/api/posts/{postId}/related", func(e *core.RequestEvent) error {
@@ -169,6 +175,11 @@ func main() {
 		})
 		se.Router.GET("/posts/{path...}", func(e *core.RequestEvent) error {
 			slug := e.Request.PathValue("path")
+			// check if suffix ends with .md and redirect to markdown slug
+			isMarkdown := strings.HasSuffix(slug, ".md")
+			if isMarkdown {
+				slug = strings.TrimSuffix(slug, ".md")
+			}
 			records := []*core.Record{}
 			err := app.RecordQuery("posts").
 				Where(dbx.NewExp("slug = {:slug}", dbx.Params{"slug": slug})).
@@ -180,6 +191,10 @@ func main() {
 			}
 			if len(records) == 1 {
 				record := records[0]
+				if isMarkdown {
+					// Redirect to markdown version
+					return e.Redirect(http.StatusMovedPermanently, "/api/posts/"+record.Id+"/markdown")
+				}
 				errs := app.ExpandRecord(record, []string{"tags"}, nil)
 				if len(errs) > 0 {
 					return err
