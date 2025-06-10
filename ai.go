@@ -232,10 +232,12 @@ func generateDescription(m *genai.GenerativeModel, text string) (string, error) 
 }
 
 type Related struct {
-	Id    string `db:"id" json:"id"`
-	Title string `db:"title" json:"title"`
-	Slug  string `db:"slug" json:"slug"`
-	Url   string `json:"url"`
+	Id          string `db:"id" json:"id"`
+	Title       string `db:"title" json:"title"`
+	Slug        string `db:"slug" json:"slug"`
+	Description string `db:"description" json:"description"`
+	Date        string `db:"date" json:"date"`
+	Url         string `json:"url"`
 }
 
 func getRelatedPosts(app *pocketbase.PocketBase, record *core.Record) []Related {
@@ -250,6 +252,7 @@ func getRelatedPosts(app *pocketbase.PocketBase, record *core.Record) []Related 
 			"posts.title as title",
 			"posts.description as description",
 			"posts.slug as slug",
+			"posts.date as date",
 		).
 			From("vec_posts").
 			InnerJoin("posts", dbx.NewExp("vec_posts.id = posts.id")).
@@ -258,7 +261,7 @@ func getRelatedPosts(app *pocketbase.PocketBase, record *core.Record) []Related 
 			})).
 			AndWhere(dbx.NewExp("k = 6")).
 			// AndWhere(dbx.NewExp("id != {:id}", dbx.Params{
-			// 	"id": record.Id,
+			//  "id": record.Id,
 			// })).
 			OrderBy("distance").
 			All(&related)
@@ -272,6 +275,13 @@ func getRelatedPosts(app *pocketbase.PocketBase, record *core.Record) []Related 
 				continue
 			}
 			related[i].Url = "/posts/" + item.Slug
+			// Ensure description and date are set (fallback if needed)
+			if related[i].Description == "" {
+				related[i].Description = "No description available."
+			}
+			if related[i].Date == "" {
+				related[i].Date = record.GetString("date")
+			}
 			relatedFiltered = append(relatedFiltered, related[i])
 		}
 	}

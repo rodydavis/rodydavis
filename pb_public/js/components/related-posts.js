@@ -1,5 +1,5 @@
 class RelatedPosts extends HTMLElement {
-  static get observedAttributes() { return ['post-id']; }
+  static get observedAttributes() { return ['post-id', 'card']; }
 
   constructor() {
     super();
@@ -8,67 +8,73 @@ class RelatedPosts extends HTMLElement {
       <style>
         :host {
           display: block;
-          /* Match post-headings-nav styles */
-          padding: 1rem;
-          border-left: 1px solid #eee;
-          margin-left: 1rem; /* This might be too much if blog-sidebar already has gap/padding */
-          background: var(--nav-bg, #fff);
-          margin-top: 1rem; /* Keep some separation from headings nav */
+          width: 100%;
+          margin: 0 auto;
+        }
+        .bento-box {
+          background: none;
+          border-radius: 1rem;
+          box-shadow: none;
+          padding: 0;
+          margin: 0;
+          transition: none;
+          &:hover {
+            transform: none;
+            box-shadow: none;
+          }
         }
         h2 {
-          /* Match .h1 a from post-headings-nav for prominence */
-          font-weight: bold;
-          font-size: 1.1em; 
-          margin-bottom: 0.5em;
-          color: var(--nav-link-color, #222);
-          padding: 0; /* Reset padding if any */
+          display: none;
+          /* If h2 were to be displayed, its color would adapt: */
+          color: light-dark(initial, var(--nav-link-color-dark, #fff));
         }
         ul {
           list-style: none;
           padding-left: 0;
           margin: 0;
         }
-        /* Match nav a from post-headings-nav */
         li a {
           text-decoration: none;
-          color: var(--nav-link-color, #222);
+          color: light-dark(var(--nav-link-color, #2563eb), var(--nav-link-color-dark, #60a5fa));
           display: block;
-          padding: 0.25em 0; /* Consistent padding */
-          font-size: 0.95em; /* Consistent font size */
-          border-radius: 4px;
+          padding: 0.5em 0;
+          font-size: 1rem;
+          border-radius: 0.5rem;
           transition: background 0.15s, color 0.15s;
+          font-weight: 500;
         }
         li a:hover, li a:focus {
-          background: var(--nav-link-hover-bg, #f0f0f0);
-          color: var(--nav-link-hover-color, #007bff);
+          background: light-dark(#f1f5f9, #23272a);
+          color: light-dark(#1d4ed8, #3b82f6);
         }
         .loading, .error {
-          font-size: 0.9em; /* Keep specific styles for loading/error */
-          color: #777;
-          padding: 0.25em 0; /* Align with link padding */
+          font-size: 1em;
+          color: light-dark(#64748b, #a1a1aa);
+          padding: 0.5em 0;
         }
-        @media (prefers-color-scheme: dark) {
-          :host {
-            background: var(--nav-bg-dark, #181a1b);
-            border-left: 1px solid #333;
-          }
-          h2 {
-            color: var(--nav-link-color-dark, #eee);
-          }
-          li a {
-            color: var(--nav-link-color-dark, #eee);
-          }
-          li a:hover, li a:focus {
-            background: var(--nav-link-hover-bg-dark, #23272a);
-            color: var(--nav-link-hover-color-dark, #66aaff);
-          }
-          .loading, .error {
-            color: #aaa;
-          }
+        /* Card mode styles */
+        .related-posts-cards {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 1rem;
+          width: 100%;
+          margin: 0 auto;
+          box-sizing: border-box;
+          padding-block: 0.5rem;
+          /* Remove horizontal scroll and snap */
+        }
+        .related-posts-cards post-card {
+          min-width: 0;
+          max-width: 100%;
+          flex: 1 1 0%;
+          scroll-snap-align: unset;
         }
       </style>
-      <h2>Related Posts</h2>
-      <ul class="related-posts-list"><li class="loading">Loading related posts...</li></ul>
+      <div class="bento-box">
+        <h2>Related Posts</h2>
+        <ul class="related-posts-list"><li class="loading">Loading related posts...</li></ul>
+        <div class="related-posts-cards" style="display:none;"></div>
+      </div>
     `;
   }
 
@@ -79,42 +85,74 @@ class RelatedPosts extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (name === 'post-id' && oldValue !== newValue && newValue) {
+    if ((name === 'post-id' && oldValue !== newValue && newValue) || (name === 'card' && oldValue !== newValue)) {
       this.fetchAndRenderRelatedPosts();
     }
   }
 
   async fetchAndRenderRelatedPosts() {
     const postId = this.getAttribute('post-id');
+    const cardMode = this.hasAttribute('card');
+    const listElement = this.shadowRoot.querySelector('.related-posts-list');
+    const cardsElement = this.shadowRoot.querySelector('.related-posts-cards');
     if (!postId) {
-      this.shadowRoot.querySelector('.related-posts-list').innerHTML = '<li class="error">Post ID not provided.</li>';
+      listElement.innerHTML = '<li class="error">Post ID not provided.</li>';
+      cardsElement.style.display = 'none';
+      listElement.style.display = '';
       return;
     }
-
-    const listElement = this.shadowRoot.querySelector('.related-posts-list');
     listElement.innerHTML = '<li class="loading">Loading related posts...</li>';
-
+    listElement.style.display = cardMode ? 'none' : '';
+    cardsElement.style.display = cardMode ? '' : 'none';
+    if (cardMode) {
+      cardsElement.innerHTML = '<div class="loading">Loading related posts...</div>';
+    }
     try {
       const res = await fetch(`/api/posts/${postId}/related`);
       if (!res.ok) {
         throw new Error(`Failed to fetch related posts: ${res.status}`);
       }
       const relatedPosts = await res.json();
-
       if (!relatedPosts || relatedPosts.length === 0) {
-        listElement.innerHTML = '<li>No related posts found.</li>';
+        if (cardMode) {
+          cardsElement.innerHTML = '<div>No related posts found.</div>';
+        } else {
+          listElement.innerHTML = '<li>No related posts found.</li>';
+        }
         return;
       }
-
-      let html = '';
-      relatedPosts.forEach(post => {
-        html += `<li><a href="${post.url}">${post.title}</a></li>`;
-      });
-      listElement.innerHTML = html;
-
+      if (cardMode) {
+        // Render as post-card elements
+        cardsElement.innerHTML = relatedPosts.map(post => {
+          // Escape attributes
+          const esc = (s) => String(s || '').replace(/"/g, '&quot;');
+          return `<post-card
+            title="${esc(post.title)}"
+            description="${esc(post.description)}"
+            date="${esc(post.date)}"
+            link="${esc(post.url)}"
+            ${post.img ? `img="${esc(post.img)}"` : ''}
+            ${post.author ? `author="${esc(post.author)}"` : ''}
+            ${post.avatar ? `avatar="${esc(post.avatar)}"` : ''}
+          >
+            ${(post.tags || []).map(tag => `<tag-item slot="tags" link="/tags/${esc(tag.id)}" name="${esc(tag.name)}"></tag-item>`).join('')}
+          </post-card>`;
+        }).join('');
+      } else {
+        // Render as bullet list
+        let html = '';
+        relatedPosts.forEach(post => {
+          html += `<li><a href="${post.url}">${post.title}</a></li>`;
+        });
+        listElement.innerHTML = html;
+      }
     } catch (e) {
       console.error('Error fetching or rendering related posts:', e);
-      listElement.innerHTML = `<li class="error">Error loading related posts.</li>`;
+      if (cardMode) {
+        cardsElement.innerHTML = `<div class="error">Error loading related posts.</div>`;
+      } else {
+        listElement.innerHTML = `<li class="error">Error loading related posts.</li>`;
+      }
     }
   }
 }

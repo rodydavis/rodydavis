@@ -30,44 +30,62 @@
 {{define "body"}}
 <div class="blog-content-wrapper">
     <article class="markdown-body">
-        <h1>{{.title}}</h1>
+        <div class="title">
+            <h1>{{.title}}</h1>
+            <a href="/api/posts/{{.id}}/markdown" title="View as markdown"
+                class="ml-4 inline-flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                aria-label="View as markdown">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                    fill="#e8eaed">
+                    <path
+                        d="m640-360 120-120-42-43-48 48v-125h-60v125l-48-48-42 43 120 120ZM160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-480H160v480Zm0 0v-480 480Zm60-120h60v-180h40v120h60v-120h40v180h60v-200q0-17-11.5-28.5T440-600H260q-17 0-28.5 11.5T220-560v200Z" />
+                </svg>
+            </a>
+        </div>
         <div class="tags"> <!-- Tags in article, shown on mobile -->
             {{range .tags}}
             <tag-item link="/tags/{{.id}}" name="{{.name}}"></tag-item>
             {{end}}
         </div>
         {{.content|raw}}
-        <!-- Mobile-only sections -->
-        <div class="mobile-only-content">
-            <div class="related-posts-mobile"> <!-- Specific container for related posts -->
+    </article>
+    <aside class="blog-sidebar">
+        <div class="blog-sidebar-inner bento vertical">
+            <div class="box">
+                <h3>Headings</h3>
+                <post-headings-nav post-id="{{.id}}"></post-headings-nav>
+            </div>
+            <div class="box">
+                <h3>Tags</h3>
+                <div class="sidebar-tags-container">
+                    <div class="tags-list">
+                        {{range .tags}}
+                        <tag-item link="/tags/{{.id}}" name="{{.name}}"></tag-item>
+                        {{end}}
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <h3>Related Posts</h3>
                 <related-posts post-id="{{.id}}"></related-posts>
             </div>
         </div>
-        <div style="height: 20px;"></div>
-        <post-emoji-reaction post-id="{{.id}}"></post-emoji-reaction>
-        <br />
-        <post-view-count post-id="{{.id}}"></post-view-count>
-        <div style="height: 20px;"></div>
-    </article>
-    <aside class="blog-sidebar">
-        <h3>Headings</h3>
-        <post-headings-nav post-id="{{.id}}"></post-headings-nav>
-        <!-- New Tags Section for Sidebar -->
-        <h3>Tags</h3>
-        <div class="sidebar-tags-container">
-            <div class="tags-list">
-                {{range .tags}}
-                <tag-item link="/tags/{{.id}}" name="{{.name}}"></tag-item>
-                {{end}}
-            </div>
-        </div>
-        <related-posts post-id="{{.id}}"></related-posts>
-        <h3>Misc</h3>
-        <div class="section">
-            <a href="/api/posts/{{.id}}/markdown">View as markdown</a>
-        </div>
     </aside>
 </div>
+<section class="bento mobile-only-content">
+    <div class="related-posts-mobile box">
+        <h3>Related Posts</h3>
+        <related-posts post-id="{{.id}}" card></related-posts>
+    </div>
+</section>
+<section class="bento">
+    <div class="box" style="flex: 5">
+        <post-emoji-reaction post-id="{{.id}}"></post-emoji-reaction>
+    </div>
+    <div class="box" style="flex: 2">
+        <post-view-count post-id="{{.id}}"></post-view-count>
+    </div>
+</section>
 
 <style>
     .blog-content-wrapper {
@@ -79,6 +97,65 @@
         /* Adjust as needed for space between article and sidebar */
     }
 
+    .title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        /* Space between title and markdown link */
+        margin-bottom: 1rem;
+
+        & h1 {
+            margin: 0;
+            font-size: 2em;
+            /* Adjust as needed */
+            color: light-dark(var(--text-color, #222), var(--text-color-dark, #eee));
+        }
+
+        & a {
+            color: light-dark(var(--link-color, #1a0dab), var(--link-color-dark, #8ab4f8));
+            text-decoration: none;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: light-dark(var(--link-hover-color, #d9304c), var(--link-hover-color-dark, #ff6f61));
+                /* Change hover color as needed */
+            }
+        }
+    }
+
+    .bento {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        border-top: 1px solid var(--app-footer-border-color, #e0e0e0);
+
+        & .box {
+            margin: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            &:not(:last-child) {
+                border-right: 1px solid var(--app-footer-border-color, #e0e0e0);
+            }
+        }
+
+        .vertical {
+            & .box {
+                flex-direction: column;
+                align-items: stretch;
+
+                &:not(:last-child) {
+                    border-right: none;
+                    border-bottom: 1px solid var(--app-footer-border-color, #e0e0e0);
+                }
+            }
+        }
+    }
+
     article.markdown-body {
         /* Changed selector from 'article' and updated margin */
         flex-grow: 1;
@@ -86,26 +163,29 @@
         margin: auto;
         /* Changed from 'auto' for flex layout */
         padding: 1rem;
-    }
 
-    article.markdown-body .tags {
-        /* Hidden by default on larger screens, shown on mobile via media query */
-        display: none;
+        /* border-bottom: 1px solid var(--app-footer-border-color, #e0e0e0); */
+
+        & .tags {
+            /* Hidden by default on larger screens, shown on mobile via media query */
+            display: none;
+        }
     }
 
     .blog-sidebar {
-        width: 250px;
+        width: 300px;
         flex-shrink: 0;
         position: sticky;
-        /* Changed from 'absolute' */
-        /* right: 0; Removed, flexbox handles positioning */
         top: 1rem;
         max-height: calc(100vh - 2rem);
-        overflow-y: auto;
-        background: light-dark(var(--nav-bg, #fff), var(--nav-bg-dark, #181a1b));
-        border-left: 1px solid light-dark(var(--nav-bg, #eee), var(--nav-bg-dark, #222));
+        /* background: light-dark(var(--nav-bg, #fff), var(--nav-bg-dark, #181a1b)); */
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        border-left: 1px solid var(--app-footer-border-color, #e0e0e0);
 
         h3 {
+            /* This will be overridden by the more specific rule below */
             font-weight: bold;
             font-size: 1.1em;
             color: light-dark(var(--nav-link-color, #222), var(--nav-link-color-dark, #eee));
@@ -115,23 +195,109 @@
             margin-top: 1rem;
         }
 
+        .bento {
+            border-top: none;
+        }
+
         .section {
+            /* This class is no longer used */
             margin-left: 1rem;
             margin-bottom: 1rem;
         }
     }
 
+    .blog-sidebar-inner {
+        overflow-y: auto;
+        max-height: 100%;
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        /* border-top will come from .bento if this element also has .bento */
+    }
+
+    /* START NEW BENTO SIDEBAR STYLES */
+    /* No specific overrides for .blog-sidebar-inner.bento itself are immediately needed,
+       as its existing flex-direction: column and the generic .bento gap work well.
+       The generic .bento border-top will apply. */
+
+    .blog-sidebar-inner.bento .box {
+        margin: 0;
+        /* Override generic .bento .box margin:auto */
+        width: 100%;
+        /* Ensure boxes take full width of sidebar */
+        align-items: flex-start;
+        /* Align content to the start, override center */
+        border-right: none;
+        /* Remove generic right border from .bento .box */
+    }
+
+    .blog-sidebar-inner.bento .box:not(:last-child) {
+        border-bottom: 1px solid var(--app-footer-border-color, #e0e0e0);
+        /* Add bottom border for separation */
+        /* border-right: none; is covered by the rule above */
+    }
+
+    /* Adjust h3 styling within sidebar bento boxes */
+    .blog-sidebar-inner.bento .box h3 {
+        font-weight: bold;
+        font-size: 1.1em;
+        color: light-dark(var(--nav-link-color, #222), var(--nav-link-color-dark, #eee));
+        margin: 0 0 0.75rem 0;
+        /* No top/left/right margin, add some bottom margin */
+        padding: 0;
+    }
+
+    /* Adjust components inside bento boxes to respect box padding */
+    .blog-sidebar-inner.bento .box :where(post-headings-nav, related-posts) {
+        margin-left: 0;
+        /* Remove specific margin if box provides padding */
+        width: 100%;
+        /* Ensure they fill the box width */
+    }
+
+    .blog-sidebar-inner.bento .box .sidebar-tags-container {
+        padding: 0;
+        /* Remove its own padding as the .box parent provides it */
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    /* END NEW BENTO SIDEBAR STYLES */
+
+    /* Style overrides for related-posts when in list mode within a sidebar bento box */
+    .blog-sidebar-inner.bento .box related-posts:not([card]) {
+        background: transparent;
+        border-left: none;
+        padding: 0;
+        /* margin-left: 0 and width: 100% are already handled by a more general rule:
+           .blog-sidebar-inner.bento .box :where(post-headings-nav, related-posts) */
+    }
+
+    :where(post-headings-nav, related-posts) {
+        margin-left: 1rem;
+        /* This will be overridden by the more specific rule below */
+    }
+
+    /* Adjustments for components within the new .box structure */
+    .blog-sidebar-inner.bento .box :where(post-headings-nav, related-posts, .sidebar-tags-container) {
+        margin-left: 0;
+        /* Remove previous indentation */
+    }
+
     /* Styles for the new tags container in the sidebar */
     .sidebar-tags-container {
         display: block;
-        padding: 1rem;
+        /* padding: 1rem; */
+        /* Padding is now handled by the .box */
+        padding: 0;
+        /* Remove its own padding */
         width: 100%;
-    }
 
-    .sidebar-tags-container .tags-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5em;
+        & .tags-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5em;
+        }
     }
 
     /* Default styles for mobile content containers */
@@ -148,25 +314,26 @@
         /* Top margin, and centered horizontally */
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 950px) {
         article.markdown-body {
             /* Changed selector from 'article' */
             max-width: 100%;
             padding: 1rem;
+            border-right: none;
+
+            & .tags {
+                display: flex;
+                /* Show tags in article on mobile */
+                flex-wrap: wrap;
+                gap: 0.5em;
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+            }
         }
 
         .blog-sidebar {
             display: none;
             /* Hides the entire sidebar, including .sidebar-tags-container */
-        }
-
-        article.markdown-body .tags {
-            display: flex;
-            /* Show tags in article on mobile */
-            flex-wrap: wrap;
-            gap: 0.5em;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
         }
 
         .mobile-only-content {
@@ -187,25 +354,25 @@
         }
     }
 </style>
-<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
-<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/javascript.min.js"></script>
-<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/markdown.min.js"></script>
-<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/sql.min.js"></script>
-<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/dart.min.js"></script>
-<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/go.min.js"></script>
-<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/python.min.js"></script>
-<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/yaml.min.js"></script>
-<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/json.min.js"></script>
-<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/ruby.min.js"></script>
-<!-- <script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/html.min.js"></script> -->
-<script src="//unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/xml.min.js"></script>
-<script src="//unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+<script src="/js/highlight/highlight.min.js"></script>
+<script src="/js/highlight/languages/javascript.min.js"></script>
+<script src="/js/highlight/languages/markdown.min.js"></script>
+<script src="/js/highlight/languages/sql.min.js"></script>
+<script src="/js/highlight/languages/dart.min.js"></script>
+<script src="/js/highlight/languages/go.min.js"></script>
+<script src="/js/highlight/languages/python.min.js"></script>
+<script src="/js/highlight/languages/yaml.min.js"></script>
+<script src="/js/highlight/languages/json.min.js"></script>
+<script src="/js/highlight/languages/ruby.min.js"></script>
+<script src="/js/highlight/languages/xml.min.js"></script>
+<script src="/js/highlight/copy.min.js"></script>
 <script src="/js/open-heart.js" type="module"></script>
 <script type="module" src="/js/components/tag-item.js"></script>
 <script type="module" src="/js/components/post-emoji-reaction.js"></script>
 <script type="module" src="/js/components/post-view-count.js"></script>
 <script type="module" src="/js/components/post-headings-nav.js"></script> <!-- Add this line -->
 <script type="module" src="/js/components/related-posts.js"></script>
+<script type="module" src="/js/components/post-card.js"></script>
 <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.9.0/highlightjs-line-numbers.min.js"></script> -->
 <script>
     // get all tags with language-markup and add language-html

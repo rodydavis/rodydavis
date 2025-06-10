@@ -67,7 +67,7 @@ export class AppFooter extends mix(HTMLElement).with(
     () => css`
       footer {
         padding: 40px 20px;
-        color: var(--app-footer-text, #333);
+        color: light-dark(var(--app-footer-text, oklch(0.98 0.01 258)), oklch(0.98 0.01 258));
         font-size: 0.9rem;
         border-top: 1px solid var(--app-footer-border-color, #e0e0e0);
       }
@@ -87,7 +87,7 @@ export class AppFooter extends mix(HTMLElement).with(
       .footer-section h3 {
         font-size: 1.1em;
         margin-bottom: 15px;
-        color: var(--app-footer-heading-color, var(--app-footer-text)); /* Fallback to main text color */
+        color: light-dark(var(--app-footer-heading-color, var(--app-footer-text, oklch(0.98 0.01 258))), var(--app-footer-text, oklch(0.98 0.01 258)));
         font-weight: bold;
       }
       .footer-section ul {
@@ -100,12 +100,12 @@ export class AppFooter extends mix(HTMLElement).with(
       }
       .footer-section a,
       .copyright-section p {
-        color: var(--app-footer-link-text, #555);
+        color: light-dark(var(--app-footer-link-text, oklch(0.98 0.01 258)), oklch(0.98 0.01 258));
         text-decoration: none;
       }
       .footer-section a:hover {
         text-decoration: underline;
-        color: var(--app-footer-link-hover-text, #007bff);
+        color: light-dark(var(--app-footer-link-hover-text, oklch(0.60 0.20 258)), oklch(0.60 0.20 258));
       }
       .copyright-section {
         text-align: center;

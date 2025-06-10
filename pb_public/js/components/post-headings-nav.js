@@ -8,14 +8,21 @@ class PostHeadingsNav extends HTMLElement {
       <style>
         :host {
           display: block;
-          position: sticky;
-          top: 1rem;
-          max-height: calc(100vh - 2rem);
-          overflow-y: auto;
-          padding: 1rem;
-          border-left: 1px solid #eee;
-          margin-left: 1rem;
-          background: var(--nav-bg, #fff);
+        }
+        .bento-box {
+          background: none;
+          border-radius: 1rem;
+          box-shadow: none;
+          padding: 0;
+          margin: 0;
+          transition: none;
+        }
+        .bento-box:hover {
+          transform: none;
+          box-shadow: none;
+        }
+        h2 {
+          display: none;
         }
         nav ul {
           list-style: none;
@@ -27,16 +34,17 @@ class PostHeadingsNav extends HTMLElement {
         }
         nav a {
           text-decoration: none;
-          color: var(--nav-link-color, #222);
+          color: var(--nav-link-color, #2563eb);
           display: block;
-          padding: 0.25em 0;
-          font-size: 0.95em;
-          border-radius: 4px;
+          padding: 0.5em 0;
+          font-size: 1rem;
+          border-radius: 0.5rem;
           transition: background 0.15s, color 0.15s;
+          font-weight: 500;
         }
         nav a:hover, nav a:focus {
-          background: var(--nav-link-hover-bg, #f0f0f0);
-          color: var(--nav-link-hover-color, #007bff);
+          background: #f1f5f9;
+          color: #1d4ed8;
         }
         .h1 a { font-weight: bold; font-size: 1.1em; }
         .h2 a { font-size: 1em; }
@@ -44,21 +52,35 @@ class PostHeadingsNav extends HTMLElement {
         .h4 a { font-size: 0.9em; padding-left: 1em; }
         .h5 a { font-size: 0.85em; padding-left: 1.5em; }
         .h6 a { font-size: 0.8em; padding-left: 2em; }
+        .loading, .error {
+          font-size: 1em;
+          color: #64748b;
+          padding: 0.5em 0;
+        }
         @media (prefers-color-scheme: dark) {
-          :host {
-            background: var(--nav-bg-dark, #181a1b);
-            border-left: 1px solid #333;
+          .bento-box {
+            background: none;
+            box-shadow: none;
+          }
+          h2 {
+            color: var(--nav-link-color-dark, #fff);
           }
           nav a {
-            color: var(--nav-link-color-dark, #eee);
+            color: var(--nav-link-color-dark, #60a5fa);
           }
           nav a:hover, nav a:focus {
-            background: var(--nav-link-hover-bg-dark, #23272a);
-            color: var(--nav-link-hover-color-dark, #66aaff);
+            background: #23272a;
+            color: #3b82f6;
+          }
+          .loading, .error {
+            color: #a1a1aa;
           }
         }
       </style>
-      <nav><ul><li>Loading headings...</li></ul></nav>
+      <div class="bento-box">
+        <h2>Headings</h2>
+        <nav><ul><li>Loading headings...</li></ul></nav>
+      </div>
     `;
   }
 
@@ -136,16 +158,17 @@ class PostHeadingsNav extends HTMLElement {
 
   async ensureIdsOnHtmlHeadings(parsedHeadings) {
     if (!document.body.contains(this)) {
-        // If the component is not connected, wait for DOMContentLoaded.
-        // This might happen if the script is in <head> and not deferred.
-        await new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve, { once: true }));
+      // If the component is not connected, wait for DOMContentLoaded.
+      // This might happen if the script is in <head> and not deferred.
+      await new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve, { once: true }));
     }
 
     const existingIds = new Set();
     // First, scan existing IDs in the relevant scope to avoid conflicts if some IDs are pre-set
     document.querySelectorAll('article.markdown-body [id]').forEach(el => existingIds.add(el.id));
 
-    for (const heading of parsedHeadings) {
+    if (parsedHeadings)
+      for (const heading of parsedHeadings) {
         const { level, title } = heading;
         let slug = this.slugify(title);
         let counter = 1;
@@ -153,8 +176,8 @@ class PostHeadingsNav extends HTMLElement {
 
         // Ensure generated slug is unique
         while (existingIds.has(slug)) {
-            slug = `${originalSlug}-${counter}`;
-            counter++;
+          slug = `${originalSlug}-${counter}`;
+          counter++;
         }
         existingIds.add(slug); // Add the newly generated/confirmed unique slug to our set
 
@@ -164,21 +187,21 @@ class PostHeadingsNav extends HTMLElement {
         // Find the corresponding heading in the DOM by matching text content
         // This is a simple heuristic. More robust matching might be needed for complex cases.
         const domHeadingToUpdate = domHeadings.find(dh => {
-            // Normalize text content for comparison (e.g., trim whitespace, ignore case if necessary)
-            const domTitle = dh.textContent.trim();
-            const parsedTitle = title.trim();
-            // A simple direct comparison. Consider more sophisticated matching if needed.
-            return domTitle === parsedTitle && !dh.id; // Only update if it doesn't have an ID yet or if we want to override
+          // Normalize text content for comparison (e.g., trim whitespace, ignore case if necessary)
+          const domTitle = dh.textContent.trim();
+          const parsedTitle = title.trim();
+          // A simple direct comparison. Consider more sophisticated matching if needed.
+          return domTitle === parsedTitle && !dh.id; // Only update if it doesn't have an ID yet or if we want to override
         });
 
         if (domHeadingToUpdate) {
-            domHeadingToUpdate.id = slug;
-            heading.slug = slug; // Update the slug in parsedHeadings to reflect the one actually set
+          domHeadingToUpdate.id = slug;
+          heading.slug = slug; // Update the slug in parsedHeadings to reflect the one actually set
         } else {
-            console.warn(`Could not find DOM element for heading: "${title}" (h${level}) to set ID.`);
+          console.warn(`Could not find DOM element for heading: "${title}" (h${level}) to set ID.`);
         }
-    }
-}
+      }
+  }
 
   renderNavLinks(parsedHeadings) {
     const navUl = this.shadowRoot.querySelector('nav ul');
