@@ -16,7 +16,7 @@ services:
       update_config:
         parallelism: 1
         delay: 10s
-        order: start-first
+        order: stop-first
         failure_action: rollback
       placement:
         constraints:

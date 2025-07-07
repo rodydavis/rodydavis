@@ -40,7 +40,7 @@ echo "✅ Image pushed successfully."
 # This command deploys your application stack based on the docker-compose.yml file.
 # It will create or update the services defined in the compose file.
 echo "4/5 - Deploying stack '$STACK_NAME' from $COMPOSE_FILE..."
-docker stack deploy -c docker-compose.yml -c "$COMPOSE_FILE" "$STACK_NAME"
+docker stack deploy --resolve-image always -c docker-compose.yml -c "$COMPOSE_FILE" "$STACK_NAME"
 echo "✅ Stack deployment initiated."
 
 # 5. List the services in the stack
