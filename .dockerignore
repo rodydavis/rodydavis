@@ -1,0 +1,14 @@
+.dockerignore
+Dockerfile
+build/
+.dart_tool/
+.git/
+.github/
+.gitignore
+.idea/
+.packages
+api/
+third_party/
+docker-data/*
+node_modules/*
+pb_data/
