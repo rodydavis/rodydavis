@@ -1,26 +1,15 @@
-version: '3.8'
-
 services:
   pocketbase:
-    networks:
-      - npm_network
+    build: .
     volumes:
-      - pb_data:/app/pb_data
-    healthcheck:
-      test: wget --no-verbose --tries=1 --spider http://localhost:8090/api/health || exit 1
-      interval: 5s
-      timeout: 5s
-      retries: 5
-
-volumes:
-  pb_data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /mnt/rodydavis/pb_data
+      - /mnt/docker-storage/rodydavis/pb_data:/app/pb_data
+    networks:
+      - caddy
+    labels:
+      caddy: rodydavis.com
+      caddy.reverse_proxy: "{{upstreams 80}}"
+    restart: unless-stopped
 
 networks:
-  npm_network:
-    name: nginx-proxy-manager_default
+  caddy:
     external: true
