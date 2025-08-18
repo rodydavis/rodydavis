@@ -7,7 +7,7 @@ services:
       - caddy
     labels:
       caddy: rodydavis.com
-      caddy.reverse_proxy: "{{upstreams 80}}"
+      caddy.reverse_proxy: "{{upstreams 8090}}"
     restart: unless-stopped
 
 networks:
