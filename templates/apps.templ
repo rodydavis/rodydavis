@@ -1,0 +1,32 @@
+package templates
+
+type AppData struct {
+	AppIcon string
+	Name    string
+	Link    string
+}
+
+templ Apps(title string, apps []AppData) {
+	@Base(title, AppsContent(title, apps))
+}
+
+templ AppsContent(title string, apps []AppData) {
+	<main>
+		<h1>{ title }</h1>
+		<apps-list>
+			for _, app := range apps {
+				<app-tile icon={ app.AppIcon } name={ app.Name } link={ app.Link }></app-tile>
+			}
+		</apps-list>
+	</main>
+	<style>
+		main {
+			padding: 1rem;
+			margin: 0 auto;
+			max-width: 800px;
+			min-height: 90vh;
+		}
+	</style>
+	<script type="module" src="/js/components/apps-list.js"></script>
+	<script type="module" src="/js/components/app-tile.js"></script>
+}

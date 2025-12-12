@@ -9,13 +9,14 @@ import (
 	"strings"
 
 	md "github.com/JohannesKaufmann/html-to-markdown"
+	"github.com/a-h/templ"
 	sqlite_vec "github.com/asg017/sqlite-vec-go-bindings/cgo"
 	"github.com/mattn/go-sqlite3"
 	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
-	"github.com/pocketbase/pocketbase/tools/template"
+	"github.com/rodydavis/rodydavis/templates"
 )
 
 // register a new driver with default PRAGMAs and the same query
@@ -62,11 +63,6 @@ func main() {
 		Target string
 	}
 
-	type DownloadLink struct {
-		Name string
-		Link string
-	}
-
 	type GraphNode struct {
 		Id    string `json:"id"`
 		Label string `json:"label"` // Added for title/name
@@ -84,16 +80,6 @@ func main() {
 		Nodes []GraphNode `json:"nodes"`
 		Links []GraphLink `json:"links"`
 	}
-
-	postsTemplate := template.NewRegistry().LoadFiles(
-		"templates/base.html",
-		"templates/posts.html",
-	)
-
-	blogTemplate := template.NewRegistry().LoadFiles(
-		"templates/base.html",
-		"templates/blog.html",
-	)
 
 	initAi(app)
 	initFeed(app)
@@ -262,23 +248,46 @@ func main() {
 					}
 				}
 
-				html, err := blogTemplate.Render(map[string]any{
-					"id":          record.Id,
-					"title":       record.GetString("title"),
-					"content":     record.GetString("content"),
-					"image":       img,
-					"description": record.GetString("description"),
-					"url":         baseUrl + "/posts/" + slug,
-					"tags":        tagJson,
-					"emojis":      emojiTargets,
-					"views":       views,
-					"related":     relatedFiltered,
-				})
-				if err != nil {
-					return err
+				// Convert HTML content to templ component
+				contentHTML := record.GetString("content")
+				contentComponent := templ.Raw(contentHTML)
+
+				// Convert tags to template data
+				templTags := make([]templates.TagData, 0, len(tagJson))
+				for _, tag := range tagJson {
+					templTags = append(templTags, templates.TagData{
+						ID:   tag["id"].(string),
+						Name: tag["name"].(string),
+					})
 				}
+
+				// Convert related posts
+				templRelated := make([]templates.RelatedPost, 0, len(relatedFiltered))
+				for _, rel := range relatedFiltered {
+					templRelated = append(templRelated, templates.RelatedPost{
+						ID:          rel.Id,
+						Title:       rel.Title,
+						Slug:        rel.Slug,
+						Description: rel.Description,
+						Date:        rel.Date,
+						URL:         rel.Url,
+					})
+				}
+
+				blogData := templates.BlogData{
+					ID:          record.Id,
+					Title:       record.GetString("title"),
+					Content:     contentComponent,
+					Image:       img,
+					Description: record.GetString("description"),
+					URL:         baseUrl + "/posts/" + slug,
+					Tags:        templTags,
+					Views:       views,
+					Related:     templRelated,
+				}
+
 				setCacheControl(e)
-				return e.HTML(http.StatusOK, html)
+				return templates.Blog(blogData).Render(e.Request.Context(), e.Response)
 			}
 			return e.NotFoundError("Post not found", errors.New("post not found"))
 		})
@@ -296,32 +305,30 @@ func main() {
 			if len(errs) > 0 {
 				return err
 			}
-			posts := []map[string]any{}
+			posts := []templates.PostData{}
 			for _, item := range records {
 				tags := item.ExpandedAll("tags")
-				tagItems := []map[string]any{}
+				tagItems := []templates.TagData{}
 				for _, t := range tags {
-					result := t.PublicExport()
-					tagItems = append(tagItems, result)
+					tagItems = append(tagItems, templates.TagData{
+						ID:   t.Id,
+						Name: t.GetString("name"),
+					})
 				}
 				date := item.GetString("date")
 				if date == "" {
 					date = item.GetString("updated")
 				}
-				export := item.PublicExport()
-				export["tags_json"] = tagItems
-				export["date"] = date
-				posts = append(posts, export)
-			}
-			html, err := postsTemplate.Render(map[string]any{
-				"title": "Posts",
-				"posts": posts,
-			})
-			if err != nil {
-				return err
+				posts = append(posts, templates.PostData{
+					Title:       item.GetString("title"),
+					Description: item.GetString("description"),
+					Date:        date,
+					Slug:        item.GetString("slug"),
+					TagsJson:    tagItems,
+				})
 			}
 			setCacheControl(e)
-			return e.HTML(http.StatusOK, html)
+			return templates.Posts("Posts", posts).Render(e.Request.Context(), e.Response)
 		})
 		se.Router.GET("/apps", func(e *core.RequestEvent) error {
 			records := []*core.Record{}
@@ -332,30 +339,20 @@ func main() {
 			if err != nil {
 				return err
 			}
-			apps := []map[string]any{}
+			apps := []templates.AppData{}
 			for _, item := range records {
 				img := item.GetString("icon")
 				if img != "" {
 					img = "/api/files/apps/" + item.Id + "/" + img
 				}
-				export := item.PublicExport()
-				export["app_icon"] = img
-				export["link"] = "/apps/" + item.GetString("slug")
-				apps = append(apps, export)
-			}
-			apsTemplate := template.NewRegistry().LoadFiles(
-				"templates/base.html",
-				"templates/apps.html",
-			)
-			html, err := apsTemplate.Render(map[string]any{
-				"title": "Apps",
-				"apps":  apps,
-			})
-			if err != nil {
-				return err
+				apps = append(apps, templates.AppData{
+					AppIcon: img,
+					Name:    item.GetString("name"),
+					Link:    "/apps/" + item.GetString("slug"),
+				})
 			}
 			setCacheControl(e)
-			return e.HTML(http.StatusOK, html)
+			return templates.Apps("Apps", apps).Render(e.Request.Context(), e.Response)
 		})
 		se.Router.GET("/apps/{path...}", func(e *core.RequestEvent) error {
 			slug := e.Request.PathValue("path")
@@ -383,61 +380,59 @@ func main() {
 				playStore := record.GetString("play_store")
 				windowsStore := record.GetString("windows_store")
 				sourceCode := record.GetString("source_code")
-				downloadLinks := []DownloadLink{}
+				downloadLinks := []templates.DownloadLink{}
 				if webApp != "" {
-					downloadLinks = append(downloadLinks, DownloadLink{
+					downloadLinks = append(downloadLinks, templates.DownloadLink{
 						Name: "Web App",
 						Link: webApp,
 					})
 				}
 				if appStore != "" {
-					downloadLinks = append(downloadLinks, DownloadLink{
+					downloadLinks = append(downloadLinks, templates.DownloadLink{
 						Name: "App Store",
 						Link: appStore,
 					})
 				}
 				if playStore != "" {
-					downloadLinks = append(downloadLinks, DownloadLink{
+					downloadLinks = append(downloadLinks, templates.DownloadLink{
 						Name: "Play Store",
 						Link: playStore,
 					})
 				}
 				if windowsStore != "" {
-					downloadLinks = append(downloadLinks, DownloadLink{
+					downloadLinks = append(downloadLinks, templates.DownloadLink{
 						Name: "Windows Store",
 						Link: windowsStore,
 					})
 				}
 				if sourceCode != "" {
-					downloadLinks = append(downloadLinks, DownloadLink{
+					downloadLinks = append(downloadLinks, templates.DownloadLink{
 						Name: "Source Code",
 						Link: sourceCode,
 					})
 				}
 
-				appTemplate := template.NewRegistry().LoadFiles(
-					"templates/base.html",
-					"templates/app.html",
-				)
-				html, err := appTemplate.Render(map[string]any{
-					"title":         record.GetString("name"),
-					"description":   record.GetString("description"),
-					"content":       record.GetString("content"),
-					"image":         img,
-					"screenshots":   screenshots,
-					"web_app":       webApp,
-					"app_store":     appStore,
-					"play_store":    playStore,
-					"windows_store": windowsStore,
-					"source_code":   sourceCode,
-					"downloads":     downloadLinks,
-					"url":           baseUrl + "/apps/" + slug,
-				})
-				if err != nil {
-					return err
+				// Convert HTML content to templ component
+				contentHTML := record.GetString("content")
+				contentComponent := templ.Raw(contentHTML)
+
+				appData := templates.AppDetailData{
+					Title:        record.GetString("name"),
+					Description:  record.GetString("description"),
+					Content:      contentComponent,
+					Image:        img,
+					Screenshots:  screenshots,
+					WebApp:       webApp,
+					AppStore:     appStore,
+					PlayStore:    playStore,
+					WindowsStore: windowsStore,
+					SourceCode:   sourceCode,
+					Downloads:    downloadLinks,
+					URL:          baseUrl + "/apps/" + slug,
 				}
+
 				setCacheControl(e)
-				return e.HTML(http.StatusOK, html)
+				return templates.AppDetail(appData).Render(e.Request.Context(), e.Response)
 			}
 			return e.NotFoundError("Post not found", errors.New("post not found"))
 		})
@@ -510,18 +505,8 @@ func main() {
 			return e.JSON(http.StatusOK, data)
 		})
 		se.Router.GET("/graph", func(e *core.RequestEvent) error {
-			graphTemplate := template.NewRegistry().LoadFiles(
-				"templates/base.html",
-				"templates/graph.html",
-			)
-			html, err := graphTemplate.Render(map[string]any{
-				"title": "Graph",
-			})
-			if err != nil {
-				return apis.NewBadRequestError("Failed to render template", err)
-			}
 			setCacheControl(e)
-			return e.HTML(http.StatusOK, html)
+			return templates.Graph("Graph").Render(e.Request.Context(), e.Response)
 		})
 		se.Router.GET("/tags/{id}", func(e *core.RequestEvent) error {
 			tag := e.Request.PathValue("id")
@@ -554,32 +539,30 @@ func main() {
 			if len(errs) > 0 {
 				return err
 			}
-			posts := []map[string]any{}
+			posts := []templates.PostData{}
 			for _, item := range records {
 				tags := item.ExpandedAll("tags")
-				tagItems := []map[string]any{}
+				tagItems := []templates.TagData{}
 				for _, t := range tags {
-					result := t.PublicExport()
-					tagItems = append(tagItems, result)
+					tagItems = append(tagItems, templates.TagData{
+						ID:   t.Id,
+						Name: t.GetString("name"),
+					})
 				}
 				date := item.GetString("date")
 				if date == "" {
 					date = item.GetString("updated")
 				}
-				export := item.PublicExport()
-				export["tags_json"] = tagItems
-				export["date"] = date
-				posts = append(posts, export)
-			}
-			html, err := postsTemplate.Render(map[string]any{
-				"title": tagRecord.GetString("name"),
-				"posts": posts,
-			})
-			if err != nil {
-				return err
+				posts = append(posts, templates.PostData{
+					Title:       item.GetString("title"),
+					Description: item.GetString("description"),
+					Date:        date,
+					Slug:        item.GetString("slug"),
+					TagsJson:    tagItems,
+				})
 			}
 			setCacheControl(e)
-			return e.HTML(http.StatusOK, html)
+			return templates.Posts(tagRecord.GetString("name"), posts).Render(e.Request.Context(), e.Response)
 		})
 		se.Router.GET("/{path...}", func(e *core.RequestEvent) error {
 			slug := e.Request.PathValue("path")
@@ -599,24 +582,27 @@ func main() {
 				if len(errMap) > 0 {
 					return errors.New("failed to expand tags for posts")
 				}
-				posts := []map[string]any{}
+				posts := []templates.PostData{}
 				for _, item := range postRecords {
 					tags := item.ExpandedAll("tags")
-					tagItems := []map[string]any{}
+					tagItems := []templates.TagData{}
 					for _, t := range tags {
-						tagItems = append(tagItems, map[string]any{
-							"id":   t.GetString("id"),
-							"name": t.GetString("name"),
+						tagItems = append(tagItems, templates.TagData{
+							ID:   t.GetString("id"),
+							Name: t.GetString("name"),
 						})
 					}
 					date := item.GetString("date")
 					if date == "" {
 						date = item.GetString("updated")
 					}
-					export := item.PublicExport()
-					export["tags_json"] = tagItems
-					export["date"] = date
-					posts = append(posts, export)
+					posts = append(posts, templates.PostData{
+						Title:       item.GetString("title"),
+						Description: item.GetString("description"),
+						Date:        date,
+						Slug:        item.GetString("slug"),
+						TagsJson:    tagItems,
+					})
 				}
 
 				// Fetch all tags
@@ -628,11 +614,11 @@ func main() {
 				if err != nil {
 					return err
 				}
-				allTags := []map[string]any{}
+				allTags := []templates.TagData{}
 				for _, t := range tagRecords {
-					allTags = append(allTags, map[string]any{
-						"id":   t.GetString("id"),
-						"name": t.GetString("name"),
+					allTags = append(allTags, templates.TagData{
+						ID:   t.GetString("id"),
+						Name: t.GetString("name"),
 					})
 				}
 
@@ -645,33 +631,21 @@ func main() {
 				if err != nil {
 					return err
 				}
-				apps := []map[string]any{}
+				apps := []templates.AppData{}
 				for _, item := range appRecords {
 					img := item.GetString("icon")
 					if img != "" {
 						img = "/api/files/apps/" + item.Id + "/" + img
 					}
-					export := item.PublicExport()
-					export["app_icon"] = img
-					export["link"] = "/apps/" + item.GetString("slug")
-					apps = append(apps, export)
+					apps = append(apps, templates.AppData{
+						AppIcon: img,
+						Name:    item.GetString("name"),
+						Link:    "/apps/" + item.GetString("slug"),
+					})
 				}
 
-				indexTemplate := template.NewRegistry().LoadFiles(
-					"templates/base.html",
-					"templates/index.html",
-				)
-				html, err := indexTemplate.Render(map[string]any{
-					"title":    "Rody Davis - Developer, Advocate, Creator",
-					"posts":    posts,
-					"all_tags": allTags,
-					"apps":     apps,
-				})
-				if err != nil {
-					return err
-				}
 				setCacheControl(e)
-				return e.HTML(http.StatusOK, html)
+				return templates.Index("Rody Davis - Developer, Advocate, Creator", posts, allTags, apps).Render(e.Request.Context(), e.Response)
 			}
 			// _, err := os.Stat("./pb_public/" + slug)
 			// if err != nil {
