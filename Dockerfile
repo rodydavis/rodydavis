@@ -7,11 +7,17 @@ WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 
+# Install templ CLI
+RUN go install github.com/a-h/templ/cmd/templ@latest
+
 # Copy the source code. Note the slash at the end, as explained in
 # https://docs.docker.com/reference/dockerfile/#copy
 COPY . .
 
 RUN apt-get update && apt-get install -y libsqlite3-dev
+
+# Generate templ files
+RUN templ generate
 
 # Build
 RUN CGO_ENABLED=1 go build -o /app/pocketbase .
