@@ -3,7 +3,7 @@
 
 ## Stats
 
-![](https://github-readme-stats.vercel.app/api?username=rodydavis&count_private=true&theme=default&show_icons=true)
+![](./profile/stats.svg)
 
 ## Overview
 
