@@ -1,0 +1,382 @@
+package templates
+
+type BlogData struct {
+	ID          string
+	Title       string
+	Content     templ.Component
+	Image       string
+	Description string
+	URL         string
+	Tags        []TagData
+	Emojis      []EmojiData
+	Views       int
+	Related     []RelatedPost
+}
+
+type EmojiData struct {
+	Emoji  string
+	Alt    string
+	Target string
+}
+
+type RelatedPost struct {
+	ID          string
+	Title       string
+	Slug        string
+	Description string
+	Date        string
+	URL         string
+}
+
+templ Blog(data BlogData) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="utf-8"/>
+			<meta name="viewport" content="width=device-width,initial-scale=1"/>
+			<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+			<link rel="stylesheet" href="/css/global.css"/>
+			<link rel="stylesheet" href="/css/theme.css"/>
+			<link rel="stylesheet" href="/css/markdown.css"/>
+			<script type="importmap">
+				{
+					"imports": {
+						"lit": "https://esm.run/lit",
+						"@lit-labs/preact-signals": "https://esm.run/@lit-labs/preact-signals",
+						"@preact/signals-core": "https://esm.run/@preact/signals-core"
+					}
+				}
+			</script>
+			<!-- Canonical URL -->
+			<link rel="canonical" href={ data.URL }/>
+			<!-- Primary Meta Tags -->
+			<title>{ data.Title }</title>
+			<meta name="title" content={ data.Title }/>
+			<meta name="description" content={ data.Description }/>
+			<!-- Open Graph / Facebook -->
+			<meta property="og:type" content="website"/>
+			<meta property="og:url" content={ data.URL }/>
+			<meta property="og:title" content={ data.Title }/>
+			<meta property="og:description" content={ data.Description }/>
+			if data.Image != "" {
+				<meta property="og:image" content={ data.Image }/>
+			}
+			<!-- Twitter -->
+			<meta property="twitter:card" content="summary_large_image"/>
+			<meta property="twitter:url" content={ data.URL }/>
+			<meta property="twitter:title" content={ data.Title }/>
+			<meta property="twitter:description" content={ data.Description }/>
+			if data.Image != "" {
+				<meta property="twitter:image" content={ data.Image }/>
+			}
+		</head>
+		<body>
+			<app-header title="Rody Davis"></app-header>
+			<script type="module" src="/js/components/app-header.js"></script>
+			<script type="module" src="/js/components/app-footer.js"></script>
+			@BlogContent(data)
+			<app-footer></app-footer>
+			<script src="/js/theme.js"></script>
+			<!-- Google tag (gtag.js) -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
+			<script>
+				window.dataLayer = window.dataLayer || [];
+				function gtag() {
+					dataLayer.push(arguments);
+				}
+				gtag("js", new Date());
+				gtag("config", "G-JQNPVBL9DR");
+			</script>
+		</body>
+	</html>
+}
+
+templ BlogContent(data BlogData) {
+	<div class="blog-content-wrapper">
+		<article class="markdown-body">
+			<div class="title">
+				<h1>{ data.Title }</h1>
+				<a href={ templ.URL("/api/posts/" + data.ID + "/markdown") } title="View as markdown" class="ml-4 inline-flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" aria-label="View as markdown">
+					<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+						<path d="m640-360 120-120-42-43-48 48v-125h-60v125l-48-48-42 43 120 120ZM160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-480H160v480Zm0 0v-480 480Zm60-120h60v-180h40v120h60v-120h40v180h60v-200q0-17-11.5-28.5T440-600H260q-17 0-28.5 11.5T220-560v200Z"></path>
+					</svg>
+				</a>
+			</div>
+			<div class="tags">
+				for _, tag := range data.Tags {
+					<tag-item link={ "/tags/" + tag.ID } name={ tag.Name }></tag-item>
+				}
+			</div>
+			@data.Content
+		</article>
+		<aside class="blog-sidebar">
+			<div class="blog-sidebar-inner bento vertical">
+				<div class="box">
+					<h3>Headings</h3>
+					<post-headings-nav post-id={ data.ID }></post-headings-nav>
+				</div>
+				<div class="box">
+					<h3>Tags</h3>
+					<div class="sidebar-tags-container">
+						<div class="tags-list">
+							for _, tag := range data.Tags {
+								<tag-item link={ "/tags/" + tag.ID } name={ tag.Name }></tag-item>
+							}
+						</div>
+					</div>
+				</div>
+				<div class="box">
+					<h3>Related Posts</h3>
+					<related-posts post-id={ data.ID }></related-posts>
+				</div>
+			</div>
+		</aside>
+	</div>
+	<section class="bento mobile-only-content">
+		<div class="related-posts-mobile box">
+			<related-posts post-id={ data.ID } card></related-posts>
+		</div>
+	</section>
+	<section class="bento">
+		<div class="box" style="flex: 5">
+			<post-emoji-reaction post-id={ data.ID }></post-emoji-reaction>
+		</div>
+		<div class="box" style="flex: 2">
+			<post-view-count post-id={ data.ID }></post-view-count>
+		</div>
+	</section>
+	@BlogStyles()
+	<script src="/js/highlight/highlight.min.js"></script>
+	<script src="/js/highlight/languages/javascript.min.js"></script>
+	<script src="/js/highlight/languages/markdown.min.js"></script>
+	<script src="/js/highlight/languages/sql.min.js"></script>
+	<script src="/js/highlight/languages/dart.min.js"></script>
+	<script src="/js/highlight/languages/go.min.js"></script>
+	<script src="/js/highlight/languages/python.min.js"></script>
+	<script src="/js/highlight/languages/yaml.min.js"></script>
+	<script src="/js/highlight/languages/json.min.js"></script>
+	<script src="/js/highlight/languages/ruby.min.js"></script>
+	<script src="/js/highlight/languages/xml.min.js"></script>
+	<script src="/js/highlight/copy.min.js"></script>
+	<script src="/js/open-heart.js" type="module"></script>
+	<script type="module" src="/js/components/tag-item.js"></script>
+	<script type="module" src="/js/components/post-emoji-reaction.js"></script>
+	<script type="module" src="/js/components/post-view-count.js"></script>
+	<script type="module" src="/js/components/post-headings-nav.js"></script>
+	<script type="module" src="/js/components/related-posts.js"></script>
+	<script type="module" src="/js/components/post-card.js"></script>
+	<script>
+		document.querySelectorAll('pre.language-markup').forEach((block) => {
+			block.classList.remove('language-markup');
+			block.classList.add('language-html');
+		});
+		hljs.addPlugin(new CopyButtonPlugin());
+		hljs.highlightAll();
+	</script>
+	<script>
+		(function addMissingHeadingIds() {
+			const article = document.querySelector('article.markdown-body');
+			if (!article) return;
+
+			function slugify(text) {
+				if (!text) return '';
+				return String(text).toLowerCase()
+					.replace(/\s+/g, '-')
+					.replace(/[^\w-]+/g, '')
+					.replace(/--+/g, '-')
+					.replace(/^-+/, '')
+					.replace(/-+$/, '');
+			}
+
+			const usedIds = new Set();
+			article.querySelectorAll('[id]').forEach(el => usedIds.add(el.id));
+
+			for (let level = 1; level <= 6; level++) {
+				article.querySelectorAll(`h${level}:not([id])`).forEach(h => {
+					let base = slugify(h.textContent.trim());
+					let slug = base;
+					let counter = 1;
+					while (usedIds.has(slug) && slug) {
+						slug = `${base}-${counter}`;
+						counter++;
+					}
+					if (slug) {
+						h.id = slug;
+						usedIds.add(slug);
+					}
+				});
+			}
+		})();
+	</script>
+}
+
+templ BlogStyles() {
+	<style>
+		.blog-content-wrapper {
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			align-items: flex-start;
+			gap: 1rem;
+		}
+		.title {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 1rem;
+		}
+		.title h1 {
+			margin: 0;
+			font-size: 2em;
+			color: light-dark(var(--text-color, #222), var(--text-color-dark, #eee));
+		}
+		.title a {
+			color: light-dark(var(--link-color, #1a0dab), var(--link-color-dark, #8ab4f8));
+			text-decoration: none;
+			transition: color 0.3s ease;
+		}
+		.title a:hover {
+			color: light-dark(var(--link-hover-color, #d9304c), var(--link-hover-color-dark, #ff6f61));
+		}
+		.bento {
+			width: 100%;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1rem;
+			border-top: 1px solid var(--app-footer-border-color, #e0e0e0);
+		}
+		.bento .box {
+			margin: auto;
+			padding: 1rem;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		.bento .box:not(:last-child) {
+			border-right: 1px solid var(--app-footer-border-color, #e0e0e0);
+		}
+		.bento.vertical .box {
+			flex-direction: column;
+			align-items: stretch;
+		}
+		.bento.vertical .box:not(:last-child) {
+			border-right: none;
+			border-bottom: 1px solid var(--app-footer-border-color, #e0e0e0);
+		}
+		article.markdown-body {
+			flex-grow: 1;
+			max-width: 800px;
+			margin: auto;
+			padding: 1rem;
+		}
+		article.markdown-body .tags {
+			display: none;
+		}
+		.blog-sidebar {
+			width: 300px;
+			flex-shrink: 0;
+			position: sticky;
+			top: 1rem;
+			max-height: calc(100vh - 2rem);
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			border-left: 1px solid var(--app-footer-border-color, #e0e0e0);
+		}
+		.blog-sidebar h3 {
+			font-weight: bold;
+			font-size: 1.1em;
+			color: light-dark(var(--nav-link-color, #222), var(--nav-link-color-dark, #eee));
+			padding: 0;
+			margin: 0;
+			margin-left: 1rem;
+			margin-top: 1rem;
+		}
+		.blog-sidebar .bento {
+			border-top: none;
+		}
+		.blog-sidebar-inner {
+			overflow-y: auto;
+			max-height: 100%;
+			flex: 1 1 auto;
+			display: flex;
+			flex-direction: column;
+		}
+		.blog-sidebar-inner.bento .box {
+			margin: 0;
+			width: 100%;
+			align-items: flex-start;
+			border-right: none;
+		}
+		.blog-sidebar-inner.bento .box:not(:last-child) {
+			border-bottom: 1px solid var(--app-footer-border-color, #e0e0e0);
+		}
+		.blog-sidebar-inner.bento .box h3 {
+			font-weight: bold;
+			font-size: 1.1em;
+			color: light-dark(var(--nav-link-color, #222), var(--nav-link-color-dark, #eee));
+			margin: 0 0 0.75rem 0;
+			padding: 0;
+		}
+		.blog-sidebar-inner.bento .box :where(post-headings-nav, related-posts) {
+			margin-left: 0;
+			width: 100%;
+		}
+		.blog-sidebar-inner.bento .box .sidebar-tags-container {
+			padding: 0;
+			width: 100%;
+			margin-bottom: 1rem;
+		}
+		.blog-sidebar-inner.bento .box related-posts:not([card]) {
+			background: transparent;
+			border-left: none;
+			padding: 0;
+		}
+		.sidebar-tags-container {
+			display: block;
+			padding: 0;
+			width: 100%;
+		}
+		.sidebar-tags-container .tags-list {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.5em;
+		}
+		.mobile-only-content {
+			display: none;
+			width: 100%;
+		}
+		.related-posts-mobile {
+			max-width: 800px;
+			margin: 2rem auto 0 auto;
+		}
+		@media (max-width: 950px) {
+			article.markdown-body {
+				max-width: 100%;
+				padding: 1rem;
+				border-right: none;
+			}
+			article.markdown-body .tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5em;
+				margin-top: 1rem;
+				margin-bottom: 1rem;
+			}
+			.blog-sidebar {
+				display: none;
+			}
+			.mobile-only-content {
+				display: block;
+			}
+			.related-posts-mobile>related-posts {
+				margin-left: 0 !important;
+				border-left: none !important;
+				padding: 0 !important;
+				background: transparent !important;
+				margin-top: 0 !important;
+			}
+		}
+	</style>
+}

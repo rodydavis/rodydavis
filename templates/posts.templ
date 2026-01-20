@@ -1,0 +1,148 @@
+package templates
+
+type PostData struct {
+	Title       string
+	Description string
+	Date        string
+	Slug        string
+	TagsJson    []TagData
+}
+
+type TagData struct {
+	ID   string
+	Name string
+}
+
+templ Posts(title string, posts []PostData) {
+	@Base(title, PostsContent(title, posts))
+}
+
+templ PostsContent(title string, posts []PostData) {
+	<main>
+		<div class="posts-title-bar">
+			<h1>{ title }</h1>
+			<div class="posts-search-bar">
+				<input type="search" id="posts-search" placeholder="Search posts..." autocomplete="off"/>
+			</div>
+		</div>
+		<section class="posts-list-section">
+			<posts-list id="posts-list">
+				for _, post := range posts {
+					<post-card class="item" title={ post.Title } description={ post.Description } date={ post.Date } link={ "/posts/" + post.Slug }>
+						for _, tag := range post.TagsJson {
+							<tag-item slot="tags" link={ "/tags/" + tag.ID } name={ tag.Name }></tag-item>
+						}
+					</post-card>
+				}
+			</posts-list>
+		</section>
+	</main>
+	<style>
+		main {
+			padding: 1rem;
+			margin: 0 auto;
+			max-width: 1200px;
+			min-height: 90vh;
+			width: 100%;
+		}
+		.posts-title-bar {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 2rem;
+			margin-bottom: 2rem;
+		}
+		.posts-title-bar h1 {
+			margin: 0;
+			font-size: 2.2rem;
+			font-weight: 700;
+			flex-shrink: 0;
+		}
+		.posts-search-bar {
+			margin: 0;
+			display: flex;
+			flex: 1 1 0%;
+			justify-content: flex-end;
+			max-width: none;
+		}
+		.posts-search-bar input[type="search"] {
+			width: 100%;
+			min-width: 0;
+			padding: 0.7em 1em;
+			border-radius: 1.2em;
+			border: 1px solid var(--theme-sys-color-outline, #ccc);
+			font-size: 1.1em;
+			background: var(--theme-sys-color-surface-container-lowest, #fff);
+			color: var(--theme-sys-color-on-surface, #222);
+			outline: none;
+			transition: border 0.15s;
+		}
+		.posts-search-bar input[type="search"]:focus {
+			border: 1.5px solid var(--theme-sys-color-primary, #007aff);
+		}
+		@media (max-width: 600px) {
+			.posts-title-bar {
+				flex-direction: column;
+				align-items: stretch;
+				gap: 1rem;
+			}
+			.posts-title-bar h1 {
+				font-size: 1.5rem;
+			}
+			.posts-search-bar {
+				max-width: 100%;
+				flex: 1 1 100%;
+			}
+		}
+	</style>
+	<script type="module" src="/js/components/tag-item.js"></script>
+	<script type="module" src="/js/components/posts-list.js"></script>
+	<script type="module" src="/js/components/post-card.js"></script>
+	<script>
+		(function() {
+			const input = document.getElementById('posts-search');
+			const postsList = document.getElementById('posts-list');
+			const cards = Array.from(postsList.querySelectorAll('post-card'));
+
+			function getQueryParam(name) {
+				const url = new URL(window.location);
+				return url.searchParams.get(name) || '';
+			}
+			function setQueryParam(name, value) {
+				const url = new URL(window.location);
+				if (value) {
+					url.searchParams.set(name, value);
+				} else {
+					url.searchParams.delete(name);
+				}
+				window.history.replaceState({}, '', url);
+			}
+
+			function filterPosts(query) {
+				const q = query.trim().toLowerCase();
+				cards.forEach(card => {
+					const title = (card.getAttribute('title') || '').toLowerCase();
+					const desc = (card.getAttribute('description') || '').toLowerCase();
+					const tags = Array.from(card.querySelectorAll('tag-item')).map(t => (t.getAttribute('name') || '').toLowerCase()).join(' ');
+					if (!q || title.includes(q) || desc.includes(q) || tags.includes(q)) {
+						card.style.display = '';
+					} else {
+						card.style.display = 'none';
+					}
+				});
+			}
+
+			input.addEventListener('input', e => {
+				const val = input.value;
+				setQueryParam('q', val);
+				filterPosts(val);
+			});
+
+			const initialQ = getQueryParam('q');
+			if (initialQ) {
+				input.value = initialQ;
+				filterPosts(initialQ);
+			}
+		})();
+	</script>
+}

@@ -1,0 +1,201 @@
+package templates
+
+type AppDetailData struct {
+	Title        string
+	Description  string
+	Content      templ.Component
+	Image        string
+	Screenshots  []string
+	WebApp       string
+	AppStore     string
+	PlayStore    string
+	WindowsStore string
+	SourceCode   string
+	Downloads    []DownloadLink
+	URL          string
+}
+
+type DownloadLink struct {
+	Name string
+	Link string
+}
+
+templ AppDetail(data AppDetailData) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="utf-8"/>
+			<meta name="viewport" content="width=device-width,initial-scale=1"/>
+			<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+			<link rel="stylesheet" href="/css/global.css"/>
+			<link rel="stylesheet" href="/css/theme.css"/>
+			<link rel="stylesheet" href="/css/markdown.css"/>
+			<link rel="stylesheet" href="/css/blog.css"/>
+			<script type="importmap">
+				{
+					"imports": {
+						"lit": "https://esm.run/lit",
+						"@lit-labs/preact-signals": "https://esm.run/@lit-labs/preact-signals",
+						"@preact/signals-core": "https://esm.run/@preact/signals-core"
+					}
+				}
+			</script>
+			<!-- Canonical URL -->
+			<link rel="canonical" href={ data.URL }/>
+			<!-- Primary Meta Tags -->
+			<title>{ data.Title }</title>
+			<meta name="title" content={ data.Title }/>
+			<meta name="description" content={ data.Description }/>
+			<!-- Open Graph / Facebook -->
+			<meta property="og:type" content="website"/>
+			<meta property="og:url" content={ data.URL }/>
+			<meta property="og:title" content={ data.Title }/>
+			<meta property="og:description" content={ data.Description }/>
+			if data.Image != "" {
+				<meta property="og:image" content={ data.Image }/>
+			}
+			<!-- Twitter -->
+			<meta property="twitter:card" content="summary_large_image"/>
+			<meta property="twitter:url" content={ data.URL }/>
+			<meta property="twitter:title" content={ data.Title }/>
+			<meta property="twitter:description" content={ data.Description }/>
+			if data.Image != "" {
+				<meta property="twitter:image" content={ data.Image }/>
+			}
+		</head>
+		<body>
+			<app-header title="Rody Davis"></app-header>
+			<script type="module" src="/js/components/app-header.js"></script>
+			<script type="module" src="/js/components/app-footer.js"></script>
+			@AppDetailContent(data)
+			<app-footer></app-footer>
+			<script src="/js/theme.js"></script>
+			<!-- Google tag (gtag.js) -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQNPVBL9DR"></script>
+			<script>
+				window.dataLayer = window.dataLayer || [];
+				function gtag() {
+					dataLayer.push(arguments);
+				}
+				gtag("js", new Date());
+				gtag("config", "G-JQNPVBL9DR");
+			</script>
+		</body>
+	</html>
+}
+
+templ AppDetailContent(data AppDetailData) {
+	<article class="markdown-body">
+		<div class="app-header">
+			<div class="app-icon">
+				<img src={ data.Image } alt="App Icon"/>
+			</div>
+			<h1>{ data.Title }</h1>
+		</div>
+		@data.Content
+		<div class="screenshots">
+			for _, screenshot := range data.Screenshots {
+				<div class="screenshot">
+					<img src={ screenshot } alt="Screenshot"/>
+				</div>
+			}
+		</div>
+		<div class="download-links">
+			for _, download := range data.Downloads {
+				<a href={ templ.URL(download.Link) } download={ download.Name }>{ download.Name }</a>
+			}
+		</div>
+	</article>
+	@AppStyles()
+}
+
+templ AppStyles() {
+	<style>
+		.app-header {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: 1rem;
+		}
+		.app-header .app-icon {
+			width: 200px;
+			height: 200px;
+			background: var(--app-header-icon-background);
+			border-radius: 20px;
+			overflow: hidden;
+			margin: 0 auto;
+		}
+		.screenshots {
+			display: flex;
+			gap: 1rem;
+			overflow-x: auto;
+			scroll-snap-type: x mandatory;
+			scroll-padding: 1rem;
+			height: 500px;
+		}
+		.screenshots .screenshot {
+			flex: 0 0 auto;
+			scroll-snap-align: start;
+			width: 100%;
+			height: 100%;
+			border-radius: 20px;
+			overflow: hidden;
+		}
+		.screenshots .screenshot img {
+			width: 100%;
+			height: 100%;
+			max-width: unset;
+			object-fit: contain;
+			border-radius: 20px;
+		}
+		.download-links {
+			display: flex;
+			gap: 1rem;
+			justify-content: center;
+			margin-top: 1rem;
+		}
+		.download-links a {
+			padding: 0.5rem 1rem;
+			background: var(--download-link-background);
+			border-radius: 20px;
+			text-decoration: none;
+			color: var(--download-link-text);
+		}
+		.app-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+			gap: 1rem;
+		}
+		.app-card {
+			background: var(--app-card-background);
+			border-radius: 1rem;
+			overflow: hidden;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		}
+		.app-card img {
+			width: 100%;
+			height: 150px;
+			object-fit: cover;
+		}
+		.app-card h3 {
+			font-size: 1.25rem;
+			margin: 0.5rem 0;
+		}
+		.app-card p {
+			font-size: 1rem;
+			color: var(--app-card-text);
+			margin: 0 0.5rem 1rem;
+		}
+		.app-card .btn {
+			display: inline-block;
+			padding: 0.5rem 1rem;
+			background: var(--app-card-btn-background);
+			border-radius: 1rem;
+			color: var(--app-card-btn-text);
+			text-decoration: none;
+			text-align: center;
+			margin: 0.5rem;
+		}
+	</style>
+}

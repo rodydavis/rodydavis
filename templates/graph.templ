@@ -1,0 +1,126 @@
+package templates
+
+templ Graph(title string) {
+	@Base(title, GraphContent())
+}
+
+templ GraphContent() {
+	<style>
+		body {
+			margin: 0;
+			overflow: hidden;
+			font-family: Arial, sans-serif;
+		}
+		#graph {
+			width: 100vw;
+			height: 100vh;
+			background-color: #f0f0f0;
+		}
+		#node-banner {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			background-color: rgba(51, 51, 51, 0.95);
+			color: #f0f0f0;
+			padding: 12px 20px;
+			box-sizing: border-box;
+			display: none;
+			align-items: center;
+			justify-content: space-between;
+			z-index: 1000;
+			font-size: 0.95em;
+		}
+		#node-banner-dismiss {
+			background: transparent;
+			border: none;
+			color: #f0f0f0;
+			font-size: 1.6em;
+			cursor: pointer;
+			padding: 0 10px 0 0;
+			line-height: 1;
+		}
+		#node-banner-dismiss:hover {
+			color: #ffffff;
+		}
+		#node-banner-text {
+			flex-grow: 1;
+			text-align: center;
+			padding: 0 15px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		#node-banner-navigate {
+			background-color: #007bff;
+			color: white;
+			border: none;
+			padding: 8px 16px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 0.9em;
+			border-radius: 4px;
+			cursor: pointer;
+			transition: background-color 0.2s ease;
+			white-space: nowrap;
+		}
+		#node-banner-navigate:hover {
+			background-color: #0056b3;
+		}
+	</style>
+	<div id="graph"></div>
+	<div id="node-banner">
+		<button id="node-banner-dismiss">&times;</button>
+		<span id="node-banner-text">Node Label</span>
+		<button id="node-banner-navigate">Open</button>
+	</div>
+	<script src="//cdn.jsdelivr.net/npm/3d-force-graph"></script>
+	<script>
+		const banner = document.getElementById('node-banner');
+		const bannerText = document.getElementById('node-banner-text');
+		const navigateButton = document.getElementById('node-banner-navigate');
+		const dismissButton = document.getElementById('node-banner-dismiss');
+		let currentLink = '';
+
+		fetch('/graph.json').then(res => res.json()).then(data => {
+			const graphDiv = document.getElementById('graph');
+			const Graph = new ForceGraph3D()(graphDiv)
+				.graphData(data)
+				.nodeId('id')
+				.nodeVal('val')
+				.nodeLabel('label')
+				.nodeAutoColorBy('group')
+				.linkSource('source')
+				.linkTarget('target')
+				.onNodeClick(node => {
+					if (node && node.link) {
+						bannerText.textContent = node.label;
+						currentLink = node.link;
+						banner.style.display = 'flex';
+					} else {
+						banner.style.display = 'none';
+					}
+				});
+
+			window.addEventListener('resize', () => {
+				Graph.width(graphDiv.offsetWidth);
+				Graph.height(graphDiv.offsetHeight);
+			});
+
+			Graph.width(graphDiv.offsetWidth);
+			Graph.height(graphDiv.offsetHeight);
+		});
+
+		navigateButton.addEventListener('click', () => {
+			if (currentLink) {
+				window.location.href = currentLink;
+			}
+		});
+
+		dismissButton.addEventListener('click', () => {
+			banner.style.display = 'none';
+			currentLink = '';
+		});
+	</script>
+}
