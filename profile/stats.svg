@@ -9,7 +9,7 @@
         aria-labelledby="descId"
       >
         <title id="titleId">Rody Davis' GitHub Stats, Rank: A+</title>
-        <desc id="descId">Total Stars Earned: 7551, Total Commits  (last year) : 598, Total PRs: 369, Total Issues: 150, Contributed to (last year): 19</desc>
+        <desc id="descId">Total Stars Earned: 7558, Total Commits  (last year) : 598, Total PRs: 369, Total Issues: 150, Contributed to (last year): 19</desc>
         <style>
           .header {
             font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
@@ -73,7 +73,7 @@
         stroke-dashoffset: 251.32741228718345;
       }
       to {
-        stroke-dashoffset: 9.347763266981074;
+        stroke-dashoffset: 9.347196553913415;
       }
     }
   
