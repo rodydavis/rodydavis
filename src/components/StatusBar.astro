@@ -54,39 +54,43 @@ const socialLinks = [
 ---
 
 <div
-    class="h-[22px] bg-[var(--bg-status)] text-white flex items-center justify-between px-3 text-[12px] select-none z-50 relative"
+    class="bg-[var(--bg-status)] text-white z-50 relative pb-[env(safe-area-inset-bottom)]"
 >
-    <div class="flex items-center space-x-2 h-full">
-        <a
-            href="/"
-            class="flex items-center hover:bg-white/20 px-2 rounded cursor-pointer h-[18px] transition-colors font-medium"
-        >
-            <Code2 size={12} className="mr-1.5" />
-            <span class="hidden sm:inline">Rody Davis</span>
-        </a>
-    </div>
+    <div
+        class="h-[22px] flex items-center justify-between px-3 text-[12px] select-none"
+    >
+        <div class="flex items-center space-x-2 h-full">
+            <a
+                href="/"
+                class="flex items-center hover:bg-white/20 px-2 rounded cursor-pointer h-[18px] transition-colors font-medium"
+            >
+                <Code2 size={12} className="mr-1.5" />
+                <span class="hidden sm:inline">Rody Davis</span>
+            </a>
+        </div>
 
-    <div class="flex items-center space-x-1 h-full">
-        {
-            socialLinks.map((link) => (
-                <a
-                    href={link.href}
-                    target={link.label === "RSS Feed" ? "_blank" : "_blank"}
-                    rel="noopener noreferrer"
-                    class="flex items-center justify-center hover:bg-white/20 w-[24px] h-[18px] rounded cursor-pointer transition-colors"
-                    title={link.label}
-                >
-                    <span
-                        class="w-3 h-3 flex items-center justify-center [&>svg]:w-full [&>svg]:h-full [&>svg]:fill-current"
-                        set:html={link.icon}
-                    />
-                </a>
-            ))
-        }
-        <div
-            class="hidden sm:flex items-center hover:bg-white/10 px-2 cursor-pointer h-full transition-colors ml-2 border-l border-white/20"
-        >
-            <ViewStatus client:load />
+        <div class="flex items-center space-x-1 h-full">
+            {
+                socialLinks.map((link) => (
+                    <a
+                        href={link.href}
+                        target={link.label === "RSS Feed" ? "_blank" : "_blank"}
+                        rel="noopener noreferrer"
+                        class="flex items-center justify-center hover:bg-white/20 w-[24px] h-[18px] rounded cursor-pointer transition-colors"
+                        title={link.label}
+                    >
+                        <span
+                            class="w-3 h-3 flex items-center justify-center [&>svg]:w-full [&>svg]:h-full [&>svg]:fill-current"
+                            set:html={link.icon}
+                        />
+                    </a>
+                ))
+            }
+            <div
+                class="hidden sm:flex items-center hover:bg-white/10 px-2 cursor-pointer h-full transition-colors ml-2 border-l border-white/20"
+            >
+                <ViewStatus client:load />
+            </div>
         </div>
     </div>
 </div>

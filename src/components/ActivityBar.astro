@@ -41,9 +41,10 @@ const isActive = (href: string) => {
                         }
                         class={`h-12 w-12 flex items-center justify-center cursor-pointer hover:text-[var(--fg-primary)] transition-colors relative block ${active ? "text-[var(--fg-primary)]" : ""}`}
                         title={item.label}
+                        data-active={active}
                         onclick={
                             item.id === "explorer"
-                                ? "if (window.innerWidth < 768) { event.preventDefault(); window.dispatchEvent(new CustomEvent('toggle-explorer')); }"
+                                ? "if (window.innerWidth < 768 && this.dataset.active === 'true') { event.preventDefault(); window.dispatchEvent(new CustomEvent('toggle-explorer')); }"
                                 : undefined
                         }
                     >
