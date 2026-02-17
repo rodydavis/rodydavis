@@ -1,0 +1,69 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ActivityBar from "../components/ActivityBar.astro";
+import StatusBar from "../components/StatusBar.astro";
+import Explorer from "../components/Explorer";
+import SettingsManager from "../components/SettingsManager";
+
+const title = "Page Not Found";
+const description = "The requested page was not found.";
+---
+
+<Layout title={title} description={description}>
+    <div
+        class="flex flex-col h-screen w-screen bg-[var(--bg-main)] text-[var(--fg-primary)] overflow-hidden transition-colors duration-200"
+    >
+        <div class="flex-1 flex overflow-hidden relative">
+            <ActivityBar />
+
+            {/* Sidebar */}
+            <Explorer
+                client:load
+                fileTree={[]}
+                outline={[]}
+                activePostId={null}
+                className="left-[48px]"
+                onFileClick={() => {}}
+            />
+
+            <SettingsManager client:load />
+
+            {/* Empty Editor State */}
+            <div
+                class="flex-1 flex items-center justify-center bg-[var(--bg-main)] text-[var(--fg-secondary)]"
+            >
+                <div class="text-center">
+                    <div class="mb-4">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="64"
+                            height="64"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="mx-auto opacity-50"
+                        >
+                            <path
+                                d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                            ></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                        </svg>
+                    </div>
+                    <h1
+                        class="text-xl font-medium mb-2 text-[var(--fg-primary)]"
+                    >
+                        Select a file
+                    </h1>
+                    <p class="text-sm opacity-70">
+                        The requested content was not found.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <StatusBar />
+    </div>
+</Layout>

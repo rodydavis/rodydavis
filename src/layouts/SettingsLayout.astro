@@ -1,0 +1,28 @@
+---
+import Layout from "./Layout.astro";
+import ActivityBar from "../components/ActivityBar.astro";
+import StatusBar from "../components/StatusBar.astro";
+
+interface Props {
+    title?: string;
+}
+
+const { title = "Settings" } = Astro.props;
+---
+
+<Layout title={title}>
+    <div
+        class="flex flex-col h-screen w-screen bg-[var(--bg-main)] text-[var(--fg-primary)] overflow-hidden transition-colors duration-200"
+    >
+        <div class="flex-1 flex overflow-hidden relative">
+            <ActivityBar />
+
+            {/* Main Content Area */}
+            <div class="flex-1 flex bg-[var(--bg-main)] overflow-hidden">
+                <slot />
+            </div>
+        </div>
+
+        <StatusBar />
+    </div>
+</Layout>

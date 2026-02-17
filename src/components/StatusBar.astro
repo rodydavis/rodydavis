@@ -1,0 +1,92 @@
+---
+import ViewStatus from "./ViewStatus.tsx";
+import { Code2 } from "lucide-react";
+
+import githubIcon from "../assets/svg/github.svg?raw";
+import twitterIcon from "../assets/svg/twitter.svg?raw";
+import linkedinIcon from "../assets/svg/linkedin.svg?raw";
+import youtubeIcon from "../assets/svg/youtube.svg?raw";
+import instagramIcon from "../assets/svg/instagram.svg?raw";
+import facebookIcon from "../assets/svg/facebook.svg?raw";
+import tiktokIcon from "../assets/svg/tiktok.svg?raw";
+import blueskyIcon from "../assets/svg/bluesky.svg?raw";
+import rssIcon from "../assets/svg/rss.svg?raw";
+
+const socialLinks = [
+    { icon: githubIcon, href: "https://github.com/rodydavis", label: "GitHub" },
+    {
+        icon: twitterIcon,
+        href: "https://twitter.com/rodydavis",
+        label: "Twitter",
+    },
+    {
+        icon: linkedinIcon,
+        href: "https://linkedin.com/in/rodydavis",
+        label: "LinkedIn",
+    },
+    {
+        icon: youtubeIcon,
+        href: "https://youtube.com/rodydavis",
+        label: "YouTube",
+    },
+    {
+        icon: instagramIcon,
+        href: "https://instagram.com/rodydavisjr",
+        label: "Instagram",
+    },
+    {
+        icon: facebookIcon,
+        href: "https://facebook.com/rodydavisjr",
+        label: "Facebook",
+    },
+    {
+        icon: tiktokIcon,
+        href: "https://tiktok.com/@rodydavisjr",
+        label: "TikTok",
+    },
+    {
+        icon: blueskyIcon,
+        href: "https://bsky.app/profile/rodydavis.com",
+        label: "Bluesky",
+    },
+    { icon: rssIcon, href: "/rss.xml", label: "RSS Feed" },
+];
+---
+
+<div
+    class="h-[22px] bg-[var(--bg-status)] text-white flex items-center justify-between px-3 text-[12px] select-none z-50 relative"
+>
+    <div class="flex items-center space-x-2 h-full">
+        <a
+            href="/"
+            class="flex items-center hover:bg-white/20 px-2 rounded cursor-pointer h-[18px] transition-colors font-medium"
+        >
+            <Code2 size={12} className="mr-1.5" />
+            <span class="hidden sm:inline">Rody Davis</span>
+        </a>
+    </div>
+
+    <div class="flex items-center space-x-1 h-full">
+        {
+            socialLinks.map((link) => (
+                <a
+                    href={link.href}
+                    target={link.label === "RSS Feed" ? "_blank" : "_blank"}
+                    rel="noopener noreferrer"
+                    class="flex items-center justify-center hover:bg-white/20 w-[24px] h-[18px] rounded cursor-pointer transition-colors"
+                    title={link.label}
+                >
+                    <span
+                        class="w-3 h-3 flex items-center justify-center [&>svg]:w-full [&>svg]:h-full [&>svg]:fill-current"
+                        set:html={link.icon}
+                    />
+                </a>
+            ))
+        }
+        <div
+            class="hidden sm:flex items-center hover:bg-white/10 px-2 cursor-pointer h-full transition-colors ml-2 border-l border-white/20"
+        >
+            <ViewStatus client:load />
+        </div>
+    </div>
+</div>

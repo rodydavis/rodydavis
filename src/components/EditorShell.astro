@@ -1,0 +1,61 @@
+---
+import { FileCode, Eye, X } from "lucide-react";
+import Breadcrumbs from "./Breadcrumbs.astro";
+import ViewToggle from "./ViewToggle.tsx";
+
+interface Props {
+    slug?: string;
+}
+
+const { slug } = Astro.props;
+const pathname = Astro.url.pathname;
+const isWelcome = pathname === "/";
+const filename = isWelcome
+    ? "README.md"
+    : slug?.split("/").pop() + ".md" || "Untitled";
+---
+
+<div
+    class="flex-1 flex flex-col bg-[var(--bg-main)] min-w-0 overflow-hidden h-full"
+>
+    {/* Tabs (Simulated active tab) */}
+    <div
+        class="flex bg-[var(--bg-sidebar)] overflow-x-auto scrollbar-hide select-none pt-0"
+    >
+        <div
+            class="group flex items-center min-w-[120px] max-w-[200px] h-[35px] border-r border-[var(--border-main)] px-3 cursor-pointer bg-[var(--bg-main)] text-[var(--fg-primary)] border-t-2 border-t-[#007acc]"
+        >
+            <span class="mr-2 opacity-100 text-[#e37933]">
+                <FileCode size={14} />
+            </span>
+            <span class="text-xs truncate flex-1">{filename}</span>
+            {
+                !isWelcome && (
+                    <a
+                        href="/"
+                        class="ml-2 p-0.5 rounded-md hover:bg-[var(--icon-hover-bg)] text-inherit flex items-center justify-center"
+                    >
+                        <X size={14} />
+                    </a>
+                )
+            }
+        </div>
+    </div>
+
+    {/* Breadcrumbs & Tools */}
+    <div
+        class="h-[28px] bg-[var(--bg-main)] flex items-center justify-between px-4 text-[13px] text-[var(--fg-secondary)] border-b border-[var(--border-main)]"
+    >
+        <Breadcrumbs slug={slug} />
+        <div class="flex items-center space-x-2 flex-shrink-0">
+            <ViewToggle client:load />
+        </div>
+    </div>
+
+    {/* Content Area */}
+    <div
+        class="flex-1 relative overflow-auto scroll-smooth bg-[var(--bg-main)]"
+    >
+        <slot />
+    </div>
+</div>

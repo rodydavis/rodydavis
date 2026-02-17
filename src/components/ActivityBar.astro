@@ -1,0 +1,84 @@
+---
+import { Files, Search, Settings, User, Tag } from "lucide-react";
+
+const pathname = Astro.url.pathname;
+
+const topIcons = [
+    { id: "explorer", icon: Files, label: "Explorer", href: "/" },
+    { id: "search", icon: Search, label: "Search", href: "/search" },
+    { id: "tags", icon: Tag, label: "Tags", href: "/tags" },
+];
+
+const isActive = (href: string) => {
+    if (href === "/" && pathname === "/") return true;
+    if (href === "/settings" && pathname === "/settings") return true;
+    if (href === "/search" && pathname === "/search") return true;
+    if (href === "/tags" && pathname.startsWith("/tags")) return true;
+    return (
+        pathname !== "/settings" &&
+        pathname !== "/search" &&
+        pathname !== "/tags" &&
+        !pathname.startsWith("/tags/") &&
+        pathname.startsWith(href)
+    );
+};
+---
+
+<div
+    class="w-12 bg-[var(--bg-activity)] flex flex-col justify-between h-full text-[var(--fg-secondary)] select-none flex-shrink-0 z-40"
+>
+    <div class="flex flex-col">
+        {
+            topIcons.map((item) => {
+                const active = isActive(item.href);
+                return (
+                    <a
+                        href={item.href}
+                        id={
+                            item.id === "explorer"
+                                ? "explorer-nav-item"
+                                : undefined
+                        }
+                        class={`h-12 w-12 flex items-center justify-center cursor-pointer hover:text-[var(--fg-primary)] transition-colors relative block ${active ? "text-[var(--fg-primary)]" : ""}`}
+                        title={item.label}
+                        onclick={
+                            item.id === "explorer"
+                                ? "if (window.innerWidth < 768) { event.preventDefault(); window.dispatchEvent(new CustomEvent('toggle-explorer')); }"
+                                : undefined
+                        }
+                    >
+                        {active && (
+                            <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-[var(--fg-primary)]" />
+                        )}
+                        <item.icon size={24} strokeWidth={1.5} />
+                    </a>
+                );
+            })
+        }
+    </div>
+    <div class="flex flex-col pb-2">
+        <a
+            class="h-12 w-12 flex items-center justify-center cursor-pointer hover:text-[var(--fg-primary)] transition-colors"
+            title="About Me"
+            href="/about"
+        >
+            <User size={24} strokeWidth={1.5} />
+        </a>
+        <a
+            class={`h-12 w-12 flex items-center justify-center cursor-pointer hover:text-[var(--fg-primary)] transition-colors relative block ${isActive("/settings") ? "text-[var(--fg-primary)]" : ""}`}
+            title="Settings"
+            href="/settings"
+        >
+            {
+                isActive("/settings") && (
+                    <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-[var(--fg-primary)]" />
+                )
+            }
+            <Settings size={24} strokeWidth={1.5} />
+        </a>
+    </div>
+</div>
+
+<script>
+    // No longer needed
+</script>

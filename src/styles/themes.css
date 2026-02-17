@@ -1,0 +1,533 @@
+@layer base {
+    :root {
+        /* Base Colors (Default to Dark/System) */
+        --bg-main: #1e1e1e;
+        --bg-sidebar: #252526;
+        --bg-activity: #333333;
+        --bg-status: #007acc;
+
+        --fg-primary: #cccccc;
+        --fg-secondary: #858585;
+
+        --border-main: #2b2b2b;
+        --border-secondary: #3c3c3c;
+
+        --hover-bg: #2a2d2e;
+        --selection-bg: #37373d;
+        --tab-inactive-bg: #2d2d2d;
+
+        --input-bg: #3c3c3c;
+        --input-fg: #ffffff;
+
+        /* Syntax Highlighting (Dark Plus) */
+        --token-comment: #6a9955;
+        --token-punctuation: #d4d4d4;
+        --token-property: #b5cea8;
+        --token-selector: #ce9178;
+        --token-operator: #d4d4d4;
+        --token-keyword: #569cd6;
+        --token-function: #dcdcaa;
+        --token-regex: #d16969;
+        --token-class-name: #4ec9b0;
+        --token-variable: #9cdcfe;
+        --token-boolean: #569cd6;
+        --token-number: #b5cea8;
+        --token-string: #ce9178;
+        --token-tag: #569cd6;
+        --token-attr-name: #9cdcfe;
+        --token-attr-name: #9cdcfe;
+        --token-attr-value: #ce9178;
+
+        /* Header Colors */
+        --header-h1: #569cd6;
+        --header-h2: #dcdcaa;
+        --header-h3: #4ec9b0;
+    }
+
+    [data-theme="light"] {
+        --bg-main: #ffffff;
+        --bg-sidebar: #f3f3f3;
+        --bg-activity: #e8e8e8;
+        --bg-status: #007acc;
+
+        --fg-primary: #333333;
+        --fg-secondary: #6e6e6e;
+
+        --border-main: #e5e5e5;
+        --border-secondary: #e5e5e5;
+
+        --hover-bg: #e8e8e8;
+        --selection-bg: #e4e6f1;
+        --tab-inactive-bg: #ececec;
+
+        --input-bg: #ffffff;
+        --input-fg: #333333;
+
+        /* Syntax Highlighting (Light Plus) */
+        --token-comment: #008000;
+        --token-punctuation: #393A34;
+        --token-property: #800000;
+        /* Maroon group */
+        --token-selector: #800000;
+        --token-operator: #393A34;
+        --token-keyword: #0000ff;
+        --token-function: #393A34;
+        /* Often plain in light theme or different */
+        --token-regex: #ff0000;
+        --token-class-name: #2B91AF;
+        --token-variable: #36acaa;
+        /* Teal group */
+        --token-boolean: #0000ff;
+        --token-number: #36acaa;
+        --token-string: #A31515;
+        --token-tag: #800000;
+        --token-attr-name: #ff0000;
+        --token-attr-name: #ff0000;
+        --token-attr-value: #0000ff;
+
+        --header-h1: #098658;
+        --header-h2: #795e26;
+        --header-h3: #0000ff;
+    }
+
+    [data-theme="dark"] {
+        /* Same as root/default */
+        --bg-main: #1e1e1e;
+        --bg-sidebar: #252526;
+        --bg-activity: #333333;
+        --bg-status: #007acc;
+        --fg-primary: #cccccc;
+        --fg-secondary: #858585;
+        --border-main: #2b2b2b;
+        --border-secondary: #3c3c3c;
+        --hover-bg: #2a2d2e;
+        --selection-bg: #37373d;
+        --tab-inactive-bg: #2d2d2d;
+        --input-bg: #3c3c3c;
+        --input-fg: #ffffff;
+        --token-comment: #6a9955;
+        --token-punctuation: #d4d4d4;
+        --token-property: #b5cea8;
+        --token-selector: #ce9178;
+        --token-operator: #d4d4d4;
+        --token-keyword: #569cd6;
+        --token-function: #dcdcaa;
+        --token-regex: #d16969;
+        --token-class-name: #4ec9b0;
+        --token-variable: #9cdcfe;
+        --token-boolean: #569cd6;
+        --token-number: #b5cea8;
+        --token-string: #ce9178;
+        --token-tag: #569cd6;
+        --token-attr-name: #9cdcfe;
+        --token-attr-name: #9cdcfe;
+        --token-attr-value: #ce9178;
+
+        --header-h1: #569cd6;
+        --header-h2: #dcdcaa;
+        --header-h3: #4ec9b0;
+    }
+
+
+
+    [data-theme="monokai"] {
+        --bg-main: #272822;
+        --bg-sidebar: #1e1f1c;
+        /* Slightly darker */
+        --bg-activity: #171814;
+        --bg-status: #75715e;
+        --fg-primary: #f8f8f2;
+        --fg-secondary: #75715e;
+        --border-main: #171814;
+        --border-secondary: #49483e;
+        --hover-bg: #3e3d32;
+        --selection-bg: #49483e;
+        --tab-inactive-bg: #1e1f1c;
+        --input-bg: #3e3d32;
+        --input-fg: #f8f8f2;
+
+        --token-comment: #75715e;
+        --token-punctuation: #f8f8f2;
+        --token-property: #66d9ef;
+        --token-selector: #f92672;
+        --token-operator: #f92672;
+        --token-keyword: #f92672;
+        --token-function: #a6e22e;
+        --token-regex: #e6db74;
+        --token-class-name: #a6e22e;
+        --token-variable: #f8f8f2;
+        --token-boolean: #ae81ff;
+        --token-number: #ae81ff;
+        --token-string: #e6db74;
+        --token-tag: #f92672;
+        --token-attr-name: #a6e22e;
+        --token-attr-name: #a6e22e;
+        --token-attr-value: #e6db74;
+
+        --header-h1: #f92672;
+        --header-h2: #a6e22e;
+        --header-h3: #66d9ef;
+    }
+
+    /* Dracula */
+    [data-theme="dracula"] {
+        --bg-main: #282a36;
+        --bg-sidebar: #21222c;
+        --bg-activity: #191a21;
+        --bg-status: #bd93f9;
+        --fg-primary: #f8f8f2;
+        --fg-secondary: #6272a4;
+        --border-main: #6272a4;
+        --border-secondary: #44475a;
+        --hover-bg: #44475a;
+        --selection-bg: #44475a;
+        --tab-inactive-bg: #21222c;
+        --input-bg: #44475a;
+        --input-fg: #f8f8f2;
+
+        --token-comment: #6272a4;
+        --token-punctuation: #f8f8f2;
+        --token-property: #50fa7b;
+        --token-selector: #ff79c6;
+        --token-operator: #50fa7b;
+        --token-keyword: #ff79c6;
+        --token-function: #50fa7b;
+        --token-regex: #ff5555;
+        --token-class-name: #8be9fd;
+        --token-variable: #f8f8f2;
+        --token-boolean: #bd93f9;
+        --token-number: #bd93f9;
+        --token-string: #f1fa8c;
+        --token-tag: #ff79c6;
+        --token-attr-name: #50fa7b;
+        --token-attr-name: #50fa7b;
+        --token-attr-value: #f1fa8c;
+
+        --header-h1: #bd93f9;
+        --header-h2: #ff79c6;
+        --header-h3: #8be9fd;
+    }
+
+    /* Cyberpunk */
+    [data-theme="cyberpunk"] {
+        --bg-main: #000b1e;
+        --bg-sidebar: #000c1d;
+        --bg-activity: #00050d;
+        --bg-status: #ff0055;
+        --fg-primary: #00ff99;
+        --fg-secondary: #00b8ff;
+        --border-main: #003780;
+        --border-secondary: #002555;
+        --hover-bg: #101c36;
+        --selection-bg: #37373d;
+        --tab-inactive-bg: #001220;
+        --input-bg: #001220;
+        --input-fg: #00ff99;
+
+        --token-comment: #00b8ff;
+        --token-punctuation: #00ff99;
+        --token-property: #fcee0a;
+        --token-selector: #ff0055;
+        --token-operator: #ff0055;
+        --token-keyword: #ff0055;
+        --token-function: #fcee0a;
+        --token-regex: #ff0055;
+        --token-class-name: #fcee0a;
+        --token-variable: #00ff99;
+        --token-boolean: #00b8ff;
+        --token-number: #00b8ff;
+        --token-string: #fcee0a;
+        --token-tag: #ff0055;
+        --token-attr-name: #fcee0a;
+        --token-attr-name: #fcee0a;
+        --token-attr-value: #fcee0a;
+
+        --header-h1: #ff0055;
+        --header-h2: #00ff99;
+        --header-h3: #00b8ff;
+    }
+
+    /* Solarized Dark */
+    [data-theme="solarized-dark"] {
+        --bg-main: #002b36;
+        --bg-sidebar: #073642;
+        --bg-activity: #001e26;
+        --bg-status: #268bd2;
+        --fg-primary: #839496;
+        --fg-secondary: #586e75;
+        --border-main: #073642;
+        --border-secondary: #073642;
+        --hover-bg: #073642;
+        --selection-bg: #073642;
+        --tab-inactive-bg: #002b36;
+        --input-bg: #073642;
+        --input-fg: #93a1a1;
+
+        --token-comment: #586e75;
+        --token-punctuation: #839496;
+        --token-property: #2aa198;
+        --token-selector: #859900;
+        --token-operator: #859900;
+        --token-keyword: #859900;
+        --token-function: #268bd2;
+        --token-regex: #dc322f;
+        --token-class-name: #b58900;
+        --token-variable: #268bd2;
+        --token-boolean: #d33682;
+        --token-number: #d33682;
+        --token-string: #2aa198;
+        --token-tag: #268bd2;
+        --token-attr-name: #657b83;
+        --token-attr-name: #657b83;
+        --token-attr-value: #2aa198;
+
+        --header-h1: #cb4b16;
+        /* Orange */
+        --header-h2: #859900;
+        /* Green */
+        --header-h3: #268bd2;
+        /* Blue */
+    }
+
+    /* Solarized Light */
+    [data-theme="solarized-light"] {
+        --bg-main: #fdf6e3;
+        --bg-sidebar: #eee8d5;
+        --bg-activity: #e4dec7;
+        --bg-status: #268bd2;
+        --fg-primary: #657b83;
+        --fg-secondary: #93a1a1;
+        --border-main: #eee8d5;
+        --border-secondary: #eee8d5;
+        --hover-bg: #eee8d5;
+        --selection-bg: #eee8d5;
+        --tab-inactive-bg: #fdf6e3;
+        --input-bg: #ffffff;
+        --input-fg: #657b83;
+
+        --token-comment: #93a1a1;
+        --token-punctuation: #657b83;
+        --token-property: #2aa198;
+        --token-selector: #859900;
+        --token-operator: #859900;
+        --token-keyword: #859900;
+        --token-function: #268bd2;
+        --token-regex: #dc322f;
+        --token-class-name: #b58900;
+        --token-variable: #268bd2;
+        --token-boolean: #d33682;
+        --token-number: #d33682;
+        --token-string: #2aa198;
+        --token-tag: #268bd2;
+        --token-attr-name: #657b83;
+        --token-attr-name: #657b83;
+        --token-attr-value: #2aa198;
+
+        --header-h1: #cb4b16;
+        /* Orange */
+        --header-h2: #859900;
+        /* Green */
+        --header-h3: #268bd2;
+        /* Blue */
+    }
+
+    /* Great Wave (Dark) */
+    [data-theme="great-wave"] {
+        --bg-main: #1a1b26;
+        --bg-sidebar: #16161e;
+        --bg-activity: #0f0f14;
+        --bg-status: #7aa2f7;
+        --fg-primary: #a9b1d6;
+        --fg-secondary: #565f89;
+        --border-main: #101014;
+        --border-secondary: #24283b;
+        --hover-bg: #292e42;
+        --selection-bg: #364a82;
+        --tab-inactive-bg: #16161e;
+        --input-bg: #16161e;
+        --input-fg: #a9b1d6;
+
+        --token-comment: #565f89;
+        --token-punctuation: #a9b1d6;
+        --token-property: #7aa2f7;
+        --token-selector: #bb9af7;
+        --token-operator: #89ddff;
+        --token-keyword: #bb9af7;
+        --token-function: #7aa2f7;
+        --token-regex: #db4b4b;
+        --token-class-name: #e0af68;
+        --token-variable: #c0caf5;
+        --token-boolean: #ff9e64;
+        --token-number: #ff9e64;
+        --token-string: #9ece6a;
+        --token-tag: #f7768e;
+        --token-attr-name: #7aa2f7;
+        --token-attr-name: #7aa2f7;
+        --token-attr-value: #9ece6a;
+
+        --header-h1: #7aa2f7;
+        --header-h2: #9ece6a;
+        --header-h3: #bb9af7;
+    }
+
+    /* Great Wave (Light) - Approximated from palette */
+    [data-theme="great-wave-light"] {
+        --bg-main: #fffef7;
+        --bg-sidebar: #f2f0e4;
+        --bg-activity: #e6e2d0;
+        --bg-status: #2e3257;
+        --fg-primary: #2e3257;
+        --fg-secondary: #627d9a;
+        --border-main: #dfc5a4;
+        --border-secondary: #e6e2d0;
+        --hover-bg: #f2f0e4;
+        --selection-bg: #babbbd;
+        --tab-inactive-bg: #fffef7;
+        --input-bg: #ffffff;
+        --input-fg: #2e3257;
+
+        --token-comment: #82b0b2;
+        --token-punctuation: #2e3257;
+        --token-property: #346b84;
+        --token-selector: #1a3657;
+        --token-operator: #2e3257;
+        --token-keyword: #1a3657;
+        --token-function: #346b84;
+        --token-regex: #c1a06e;
+        --token-class-name: #d9d1ba;
+        --token-variable: #2e3257;
+        --token-boolean: #346b84;
+        --token-number: #346b84;
+        --token-string: #c1a06e;
+        --token-tag: #1a3657;
+        --token-attr-name: #627d9a;
+        --token-attr-name: #627d9a;
+        --token-attr-value: #c1a06e;
+
+        --header-h1: #2e3257;
+        /* Dark Blue */
+        --header-h2: #346b84;
+        /* Medium Blue */
+        --header-h3: #c1a06e;
+        /* Tan/Gold */
+    }
+
+    /* Matrix */
+    [data-theme="matrix"] {
+        --bg-main: #000000;
+        --bg-sidebar: #050505;
+        --bg-activity: #000000;
+        --bg-status: #008f11;
+        --fg-primary: #00ff41;
+        --fg-secondary: #008f11;
+        --border-main: #003b00;
+        --border-secondary: #003b00;
+        --hover-bg: #003b00;
+        --selection-bg: #003b00;
+        --tab-inactive-bg: #000000;
+        --input-bg: #001a00;
+        --input-fg: #00ff41;
+
+        --token-comment: #008f11;
+        --token-punctuation: #00ff41;
+        --token-property: #00ff41;
+        --token-selector: #00ff41;
+        --token-operator: #00ff41;
+        --token-keyword: #008f11;
+        --token-function: #00ff41;
+        --token-regex: #00ff41;
+        --token-class-name: #00ff41;
+        --token-variable: #00ff41;
+        --token-boolean: #00ff41;
+        --token-number: #00ff41;
+        --token-string: #008f11;
+        --token-tag: #00ff41;
+        --token-attr-name: #008f11;
+        --token-attr-name: #008f11;
+        --token-attr-value: #00ff41;
+
+        --header-h1: #00ff41;
+        --header-h2: #008f11;
+        --header-h3: #00ff41;
+    }
+
+    @media (prefers-color-scheme: light) {
+        [data-theme="system"] {
+            /* Copy of Light Theme */
+            --bg-main: #ffffff;
+            --bg-sidebar: #f3f3f3;
+            --bg-activity: #e8e8e8;
+            --bg-status: #007acc;
+            --fg-primary: #333333;
+            --fg-secondary: #6e6e6e;
+            --border-main: #e5e5e5;
+            --border-secondary: #e5e5e5;
+            --hover-bg: #e8e8e8;
+            --selection-bg: #e4e6f1;
+            --tab-inactive-bg: #ececec;
+            --input-bg: #ffffff;
+            --input-fg: #333333;
+            --token-comment: #008000;
+            --token-punctuation: #393A34;
+            --token-property: #800000;
+            --token-selector: #800000;
+            --token-operator: #393A34;
+            --token-keyword: #0000ff;
+            --token-function: #393A34;
+            --token-regex: #ff0000;
+            --token-class-name: #2B91AF;
+            --token-variable: #36acaa;
+            --token-boolean: #0000ff;
+            --token-number: #36acaa;
+            --token-string: #A31515;
+            --token-tag: #800000;
+            --token-attr-name: #ff0000;
+            --token-attr-name: #ff0000;
+            --token-attr-value: #0000ff;
+
+            --header-h1: #098658;
+            --header-h2: #795e26;
+            --header-h3: #0000ff;
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        [data-theme="system"] {
+            /* Copy of Dark Theme */
+            --bg-main: #1e1e1e;
+            --bg-sidebar: #252526;
+            --bg-activity: #333333;
+            --bg-status: #007acc;
+            --fg-primary: #cccccc;
+            --fg-secondary: #858585;
+            --border-main: #2b2b2b;
+            --border-secondary: #3c3c3c;
+            --hover-bg: #2a2d2e;
+            --selection-bg: #37373d;
+            --tab-inactive-bg: #2d2d2d;
+            --input-bg: #3c3c3c;
+            --input-fg: #ffffff;
+            --token-comment: #6a9955;
+            --token-punctuation: #d4d4d4;
+            --token-property: #b5cea8;
+            --token-selector: #ce9178;
+            --token-operator: #d4d4d4;
+            --token-keyword: #569cd6;
+            --token-function: #dcdcaa;
+            --token-regex: #d16969;
+            --token-class-name: #4ec9b0;
+            --token-variable: #9cdcfe;
+            --token-boolean: #569cd6;
+            --token-number: #b5cea8;
+            --token-string: #ce9178;
+            --token-tag: #569cd6;
+            --token-attr-name: #9cdcfe;
+            --token-attr-name: #9cdcfe;
+            --token-attr-value: #ce9178;
+
+            --header-h1: #569cd6;
+            --header-h2: #dcdcaa;
+            --header-h3: #4ec9b0;
+        }
+    }
+}

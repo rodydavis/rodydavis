@@ -1,0 +1,338 @@
+html.dark {
+
+    /* 1. Main Block: Pre and Code Basics */
+    pre[class*="language-"],
+    code[class*="language-"] {
+        color: #d4d4d4;
+        font-size: 13px;
+        text-shadow: none;
+        font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono", "Courier New", monospace;
+        direction: ltr;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        line-height: 1.5;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+
+        /* Selection */
+        &::selection,
+        & *::selection {
+            text-shadow: none;
+            background: #264F78;
+        }
+
+        /* Print Media Query */
+        @media print {
+            text-shadow: none;
+        }
+    }
+
+    /* 2. Specific Block: Pre Block Styles */
+    pre[class*="language-"] {
+        padding: 1em;
+        margin: .5em 0;
+        overflow: auto;
+        background: #1e1e1e;
+
+        /* --- LINE NUMBERS PLUGIN FIX --- */
+        &.line-numbers {
+            position: relative;
+            padding-left: 3.8em;
+            counter-reset: linenumber;
+            /* Restarts the line counter for this block */
+
+            >code {
+                position: relative;
+                white-space: inherit;
+                z-index: 1;
+                /* Establishes stacking context */
+            }
+
+            /* Strictly nested inside .line-numbers to guarantee counter scope */
+            .line-numbers-rows {
+                position: absolute;
+                pointer-events: none;
+                top: 0;
+                font-size: 100%;
+                left: -3.8em;
+                width: 3em;
+                letter-spacing: -1px;
+                border-right: 1px solid #404040;
+                user-select: none;
+                z-index: 2;
+                /* Forces numbers to render above the code block background */
+
+                span {
+                    display: block;
+                    counter-increment: linenumber;
+                    /* Increments line by line */
+
+                    &:before {
+                        content: counter(linenumber);
+                        /* Renders the actual digit */
+                        color: #858585;
+                        display: block;
+                        padding-right: 0.8em;
+                        text-align: right;
+                    }
+                }
+            }
+        }
+
+        /* Line highlighting z-index adjustment */
+        &>code[class*="language-"] {
+            position: relative;
+            z-index: 1;
+        }
+    }
+
+    /* 3. Specific Block: Inline Code Styles */
+    :not(pre)>code[class*="language-"] {
+        padding: .1em .3em;
+        border-radius: .3em;
+        color: #db4c69;
+        background: #1e1e1e;
+    }
+
+    /*********************************************************
+   * Tokens
+   */
+    .token {
+        .namespace {
+            opacity: .7;
+        }
+
+        &.doctype {
+            .token.doctype-tag {
+                color: #569CD6;
+            }
+
+            .token.name {
+                color: #9cdcfe;
+            }
+        }
+
+        &.comment,
+        &.prolog {
+            color: #6a9955;
+        }
+
+        &.punctuation {
+            color: #d4d4d4;
+
+            &.interpolation-punctuation {
+                color: #569cd6;
+            }
+        }
+
+        &.property,
+        &.tag,
+        &.boolean,
+        &.number,
+        &.constant,
+        &.symbol,
+        &.inserted,
+        &.unit {
+            color: #b5cea8;
+        }
+
+        &.selector,
+        &.attr-name,
+        &.string,
+        &.char,
+        &.builtin,
+        &.deleted {
+            color: #ce9178;
+        }
+
+        &.operator,
+        &.entity {
+            color: #d4d4d4;
+        }
+
+        &.operator.arrow {
+            color: #569CD6;
+        }
+
+        &.entity {
+            color: #569cd6;
+        }
+
+        &.atrule {
+            color: #ce9178;
+
+            .token.rule {
+                color: #c586c0;
+            }
+
+            .token.url {
+                color: #9cdcfe;
+
+                .token.function {
+                    color: #dcdcaa;
+                }
+
+                .token.punctuation {
+                    color: #d4d4d4;
+                }
+            }
+        }
+
+        &.keyword {
+            color: #569CD6;
+
+            &.module,
+            &.control-flow {
+                color: #c586c0;
+            }
+        }
+
+        &.function {
+            color: #dcdcaa;
+
+            .token.maybe-class-name {
+                color: #dcdcaa;
+            }
+        }
+
+        &.regex {
+            color: #d16969;
+        }
+
+        &.important {
+            color: #569cd6;
+        }
+
+        &.italic {
+            font-style: italic;
+        }
+
+        &.constant,
+        &.console,
+        &.parameter,
+        &.interpolation {
+            color: #9cdcfe;
+        }
+
+        &.class-name,
+        &.maybe-class-name {
+            color: #4ec9b0;
+        }
+
+        &.imports,
+        &.exports {
+            .token.maybe-class-name {
+                color: #9cdcfe;
+            }
+        }
+
+        &.boolean {
+            color: #569cd6;
+        }
+
+        &.property,
+        &.variable {
+            color: #9cdcfe;
+        }
+
+        &.selector,
+        &.escape {
+            color: #d7ba7d;
+        }
+
+        &.tag {
+            color: #569cd6;
+
+            .token.punctuation {
+                color: #808080;
+            }
+        }
+
+        &.cdata {
+            color: #808080;
+        }
+
+        &.attr-name {
+            color: #9cdcfe;
+        }
+
+        &.attr-value {
+            color: #ce9178;
+
+            .token.punctuation {
+                color: #ce9178;
+
+                &.attr-equals {
+                    color: #d4d4d4;
+                }
+            }
+        }
+
+        &.namespace {
+            color: #4ec9b0;
+        }
+    }
+
+    /*********************************************************
+   * Contextual Overrides
+   */
+    .language-html {
+
+        .language-css,
+        .language-javascript {
+            .token.punctuation {
+                color: #d4d4d4;
+            }
+        }
+
+        .token.punctuation {
+            color: #808080;
+        }
+    }
+
+    .language-css .token.string.url {
+        text-decoration: underline;
+    }
+
+    .language-regex .token.anchor {
+        color: #dcdcaa;
+    }
+
+    /*********************************************************
+   * Language Specific Roots
+   */
+    pre,
+    code {
+
+        &[class*="language-javascript"],
+        &[class*="language-jsx"],
+        &[class*="language-typescript"],
+        &[class*="language-tsx"] {
+            color: #9cdcfe;
+        }
+
+        &[class*="language-css"] {
+            color: #ce9178;
+        }
+
+        &[class*="language-html"] {
+            color: #d4d4d4;
+        }
+    }
+
+    /*********************************************************
+   * Line highlighting
+   */
+    .line-highlight.line-highlight {
+        background: #f7ebc6;
+        box-shadow: inset 5px 0 0 #f7d87c;
+        z-index: 0;
+    }
+}

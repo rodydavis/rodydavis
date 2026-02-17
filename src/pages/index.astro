@@ -1,0 +1,16 @@
+---
+import ExplorerLayout from "../layouts/ExplorerLayout.astro";
+import { getEntry } from "astro:content";
+
+const welcomeDoc = await getEntry("docs", "welcome");
+if (!welcomeDoc) {
+    throw new Error("Welcome doc not found");
+}
+const { Content } = await welcomeDoc.render();
+---
+
+<ExplorerLayout activePostId="welcome">
+    <div class="prose max-w-none px-8 py-4 dark:prose-invert">
+        <Content />
+    </div>
+</ExplorerLayout>

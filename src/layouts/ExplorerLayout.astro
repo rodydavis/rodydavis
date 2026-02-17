@@ -1,0 +1,122 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "./Layout.astro";
+import ActivityBar from "../components/ActivityBar.astro";
+import StatusBar from "../components/StatusBar.astro";
+import EditorShell from "../components/EditorShell.astro";
+import Explorer from "../components/Explorer";
+import SettingsManager from "../components/SettingsManager";
+import EditorCode from "../components/EditorCode.astro";
+import EditorPreview from "../components/EditorPreview.astro";
+import { getFileTree } from "../pages/api/file-tree.json";
+
+interface Props {
+    title?: string;
+    activePostId?: string;
+    code?: string;
+    lang?: string;
+}
+
+const { title, activePostId, code, lang = "md" } = Astro.props;
+
+// Data fetching for Explorer
+const docs = await getCollection("docs");
+
+// Find active post to get its outline if needed
+const activeDoc = docs.find((d) => d.slug === activePostId);
+let activeOutline: { id: string; label: string; level: number }[] = [];
+if (activeDoc) {
+    const { headings } = await activeDoc.render();
+    activeOutline = headings.map((h) => ({
+        id: h.slug,
+        label: h.text,
+        level: h.depth,
+    }));
+}
+
+const relatedPosts = ((activeDoc?.data as any)?.related || [])
+    .map((relatedPath: string) => {
+        // Try to find the doc by slug or id
+        // relatedPath might be 'blog/ui-engineering.md' or 'welcome.md' or just 'welcome'
+        // clean up the path to match slug format if needed
+        const cleanSlug = relatedPath.replace(/\.md$/, "");
+        const foundDoc = docs.find(
+            (d) => d.slug === cleanSlug || d.id === relatedPath,
+        );
+        if (!foundDoc) return null;
+        return {
+            id: foundDoc.slug,
+            title: foundDoc.data.title,
+        };
+    })
+    .filter((p: any): p is { id: string; title: string } => p !== null);
+
+const raw = code ?? activeDoc?.body ?? "";
+const description = activeDoc?.data.summary;
+const fileTree = await getFileTree();
+
+const isHome = !activePostId || activePostId === "welcome";
+const defaultOpen = false;
+---
+
+<Layout title={title} description={description}>
+    <div
+        class="flex flex-col h-screen w-screen bg-[var(--bg-main)] text-[var(--fg-primary)] overflow-hidden transition-colors duration-200"
+    >
+        <div class="flex-1 flex overflow-hidden relative">
+            <ActivityBar />
+
+            {/* Sidebar */}
+            <Explorer
+                client:load
+                fileTree={fileTree}
+                outline={activeOutline}
+                activePostId={activePostId || null}
+                tags={(activeDoc?.data as any)?.tags}
+                relatedPosts={relatedPosts}
+                defaultOpen={defaultOpen}
+                className="left-[48px]"
+                onFileClick={() => {}}
+            />
+
+            <SettingsManager client:load />
+
+            {/* Editor Area */}
+            <EditorShell slug={activePostId}>
+                {
+                <div id="preview-view" style="display: block;">
+                    <EditorPreview>
+                        <slot />
+                    </EditorPreview>
+                </div>
+                <div id="code-view" style="display: none;">
+                    <EditorCode code={raw.trim()} lang={lang} />
+                </div>
+
+                <script>
+                    import { viewMode, initViewStore } from "../stores/viewStore";
+
+                    initViewStore();
+
+                    const previewView = document.getElementById("preview-view");
+                    const codeView = document.getElementById("code-view");
+
+                    viewMode.subscribe((mode) => {
+                        if (previewView && codeView) {
+                            if (mode === "preview") {
+                                previewView.style.display = "block";
+                                codeView.style.display = "none";
+                            } else {
+                                previewView.style.display = "none";
+                                codeView.style.display = "block";
+                            }
+                        }
+                    });
+                </script>
+                }
+            </EditorShell>
+        </div>
+
+        <StatusBar />
+    </div>
+</Layout>

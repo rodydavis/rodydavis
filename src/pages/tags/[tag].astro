@@ -1,0 +1,78 @@
+---
+import TagsLayout from "../../layouts/TagsLayout.astro";
+import { getCollection } from "astro:content";
+import { Tag as TagIcon, Calendar, FileText } from "lucide-react";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+    const docs = await getCollection("docs");
+    const tags: string[] = [];
+    for (const doc of docs) {
+        tags.push(...(doc.data.tags || []));
+    }
+    return new Array(...new Set(tags)).map((e) => e.trim()).filter((e) => e.length > 0).map((tag) => ({
+        params: { tag },
+    }));
+}
+
+const { tag } = Astro.params;
+
+if (!tag) {
+    return Astro.redirect("/tags");
+}
+
+const docs = await getCollection("docs");
+const posts = docs.filter((doc) => (doc.data.tags || []).includes(tag));
+---
+
+<TagsLayout title={`Tag: ${tag}`} activeTag={tag as string}>
+    <div class="p-8 max-w-4xl mx-auto">
+        <div class="mb-8 border-b border-[var(--border-main)] pb-4">
+            <div
+                class="flex items-center text-[var(--fg-secondary)] text-sm mb-2"
+            >
+                <a href="/tags" class="hover:underline">Tags</a>
+                <span class="mx-2">/</span>
+                <span class="text-[var(--fg-primary)]">{tag}</span>
+            </div>
+            <h1
+                class="text-3xl font-bold text-[var(--fg-primary)] flex items-center"
+            >
+                <TagIcon size={32} className="mr-3" />
+                {tag}
+                <span
+                    class="ml-4 text-base font-normal text-[var(--fg-secondary)] bg-[var(--bg-sidebar)] px-3 py-1 rounded-full border border-[var(--border-main)]"
+                >
+                    {posts.length} posts
+                </span>
+            </h1>
+        </div>
+
+        <div class="grid gap-6">
+            {
+                posts.map((post) => (
+                    <a
+                        href={`/${post.slug}`}
+                        class="block p-6 rounded-lg border border-[var(--border-main)] hover:border-[var(--accent)] bg-[var(--bg-sidebar)] hover:bg-[var(--hover-bg)] transition-all group no-underline"
+                    >
+                        <h2 class="text-xl font-bold mb-2 text-[var(--fg-primary)] group-hover:text-[var(--accent)] transition-colors">
+                            {post.data.title}
+                        </h2>
+                        {post.data.summary && (
+                            <p class="text-[var(--fg-secondary)] mb-4 line-clamp-2">
+                                {post.data.summary}
+                            </p>
+                        )}
+                        <div class="flex items-center text-xs text-[var(--fg-secondary)] mt-auto">
+                            <Calendar size={14} className="mr-1" />
+                            <span class="mr-4">{post.data.date}</span>
+                            <FileText size={14} className="mr-1" />
+                            <span>Read post</span>
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</TagsLayout>

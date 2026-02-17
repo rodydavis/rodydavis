@@ -1,0 +1,92 @@
+---
+import "../blocks.css";
+import "../styles/global.css";
+
+interface Props {
+    title?: string;
+    description?: string;
+    image?: string;
+}
+
+const {
+    title = "Rody Davis",
+    description = "Rody Davis's personal website and portfolio.",
+    image = "/og-image.png",
+} = Astro.props;
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title={title}
+            href={new URL("rss.xml", Astro.site)}
+        />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={new URL(image, Astro.url)} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <style is:global>
+            :root {
+                --font-body: "Inter", system-ui, -apple-system, sans-serif;
+            }
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: var(--font-body);
+                height: 100vh;
+                width: 100vw;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <script is:inline>
+        (function () {
+            try {
+                // Helper to get cookie
+                function getCookie(name) {
+                    const match = document.cookie.match(
+                        new RegExp("(^| )" + name + "=([^;]+)"),
+                    );
+                    return match ? match[2] : null;
+                }
+
+                const storedTheme = getCookie("theme");
+                const systemTheme = window.matchMedia(
+                    "(prefers-color-scheme: dark)",
+                ).matches
+                    ? "dark"
+                    : "light";
+
+                let effectiveTheme = storedTheme;
+                if (!effectiveTheme || effectiveTheme === "system") {
+                    effectiveTheme = systemTheme;
+                }
+
+                // Apply theme to data-theme attribute
+                document.documentElement.setAttribute(
+                    "data-theme",
+                    effectiveTheme,
+                );
+
+                // Cleanup old classes if they exist
+                document.documentElement.classList.remove(
+                    "light-theme",
+                    "dark",
+                );
+            } catch (e) {
+                console.error("Theme init error", e);
+            }
+        })();
+    </script>
+    <body>
+        <slot />
+    </body>
+</html>

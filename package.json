@@ -1,0 +1,42 @@
+{
+  "name": "website",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/node": "^9.5.3",
+    "@astrojs/prism": "^3.3.0",
+    "@astrojs/react": "^4.4.2",
+    "@astrojs/rss": "^4.0.15",
+    "@nanostores/react": "^1.0.0",
+    "@tailwindcss/vite": "^4.1.18",
+    "@types/markdown-it": "^14.1.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@types/sanitize-html": "^2.16.0",
+    "astro": "^5.17.1",
+    "dotenv": "^17.3.1",
+    "gray-matter": "^4.0.3",
+    "lucide-react": "^0.564.0",
+    "markdown-it": "^14.1.1",
+    "nanostores": "^1.1.0",
+    "ollama": "^0.6.3",
+    "pocketbase": "^0.26.8",
+    "prismjs": "^1.30.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "rss-parser": "^3.13.0",
+    "sanitize-html": "^2.17.0",
+    "tailwindcss": "^4.1.18",
+    "turndown": "^7.2.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/prismjs": "^1.26.6"
+  }
+}

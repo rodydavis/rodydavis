@@ -1,0 +1,86 @@
+---
+import Layout from "./Layout.astro";
+import ActivityBar from "../components/ActivityBar.astro";
+import StatusBar from "../components/StatusBar.astro";
+import TagsList from "../components/TagsList.astro";
+import { getCollection } from "astro:content";
+
+interface Props {
+    title?: string;
+    activeTag?: string;
+}
+
+const { title, activeTag } = Astro.props;
+
+// Fetch all tags and counts
+const docs = await getCollection("docs");
+const tagCounts: Record<string, number> = {};
+docs.forEach((doc) => {
+    (doc.data.tags || []).forEach((tag) => {
+        tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+    });
+});
+
+const tags = Object.entries(tagCounts)
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count); // Sort by count desc
+
+// Initial state logic
+const isOpen = !activeTag;
+---
+
+<Layout title={title}>
+    <div
+        class="flex flex-col h-screen w-screen bg-[var(--bg-main)] text-[var(--fg-primary)] overflow-hidden transition-colors duration-200"
+    >
+        <div class="flex-1 flex overflow-hidden relative">
+            <ActivityBar />
+
+            {/* Backdrop */}
+            <div
+                id="tags-backdrop"
+                class={`fixed inset-0 bg-black/50 z-20 md:hidden ${isOpen ? "" : "hidden"}`}
+            >
+            </div>
+
+            {/* Sidebar (Tags Mode) */}
+            <div
+                id="tags-drawer"
+                class={`fixed md:static inset-y-0 left-[48px] md:left-0 z-30 w-64 flex h-full shadow-2xl md:shadow-none bg-[var(--bg-sidebar)] transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
+            >
+                <TagsList tags={tags} activeTag={activeTag} />
+            </div>
+
+            {/* Content Area */}
+            <div class="flex-1 bg-[var(--bg-main)] overflow-y-auto">
+                <slot />
+            </div>
+        </div>
+
+        <StatusBar />
+    </div>
+</Layout>
+
+<script>
+    const drawer = document.getElementById("tags-drawer");
+    const backdrop = document.getElementById("tags-backdrop");
+
+    function closeDrawer() {
+        if (window.innerWidth < 768) {
+            drawer?.classList.add("-translate-x-full");
+            drawer?.classList.remove("translate-x-0");
+            backdrop?.classList.add("hidden");
+        }
+    }
+
+    // Close on backdrop click
+    backdrop?.addEventListener("click", closeDrawer);
+
+    // Close on link click (any link inside drawer)
+    drawer?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeDrawer);
+    });
+
+    // Close on settings open
+    window.addEventListener("open-settings", closeDrawer);
+</script>

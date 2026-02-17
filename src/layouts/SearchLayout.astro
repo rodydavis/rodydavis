@@ -1,0 +1,49 @@
+---
+import Layout from "./Layout.astro";
+import ActivityBar from "../components/ActivityBar.astro";
+import StatusBar from "../components/StatusBar.astro";
+import Search from "../components/Search";
+
+interface Props {
+    title?: string;
+}
+
+const { title } = Astro.props;
+
+// Data fetching for Search
+// const docs = await getCollection("docs");
+// const initialPosts = transformDocsToPosts(docs, {});
+
+// Client-side search needs logic. We can use the Search component.
+// But Search component expects props.
+---
+
+<Layout title={title}>
+    <div
+        class="flex flex-col h-screen w-screen bg-[var(--bg-main)] text-[var(--fg-primary)] overflow-hidden transition-colors duration-200"
+    >
+        <div class="flex-1 flex overflow-hidden relative">
+            <ActivityBar />
+
+            {/* Sidebar (Search Mode) */}
+            <div
+                class="absolute left-12 top-0 bottom-0 z-30 flex h-full shadow-2xl md:static md:shadow-none bg-[var(--bg-sidebar)]"
+            >
+                <Search client:load />
+            </div>
+
+            {/* Editor Area (Empty/Placeholder or maybe instructions) */}
+            <div
+                class="flex-1 bg-[var(--bg-main)] flex items-center justify-center text-[var(--border-secondary)]"
+            >
+                <div class="text-center">
+                    <p class="text-lg opacity-50 mt-4 text-[var(--fg-primary)]">
+                        Search Mode
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <StatusBar />
+    </div>
+</Layout>

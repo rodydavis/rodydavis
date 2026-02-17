@@ -1,0 +1,136 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-code: "Fira Code", monospace;
+
+  --color-bg-main: #1e1e1e;
+  --color-bg-sidebar: #252526;
+  --color-bg-activity: #333333;
+  --color-bg-status: #007acc;
+  --color-fg-primary: #cccccc;
+  --color-fg-secondary: #858585;
+  --color-border-main: #2b2b2b;
+  --color-border-secondary: #3c3c3c;
+  --color-hover-bg: #2a2d2e;
+  --color-selection-bg: #37373d;
+  --color-tab-inactive-bg: #2d2d2d;
+  --color-input-bg: #3c3c3c;
+  --color-input-fg: #ffffff;
+
+  --color-icon-md: #4fc1ff;
+  --color-icon-json: #f1e05a;
+  --color-icon-ts: #3178c6;
+  --color-icon-default: #cccccc;
+  --color-icon-folder: #dcb67a;
+}
+
+/* Legacy theme styles removed */
+
+/* Re-mapping custom properties to the theme values if necessary, or just using the vars directly */
+/* Since we used var(--bg-main) in the code, we just need to ensure the variables are set correctly */
+
+/* Base variables are now managed in themes.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  background-color: var(--bg-main);
+  color: var(--fg-primary);
+  overflow: hidden;
+}
+
+/* Typography Overrides for Dark Mode matching VS Code */
+.prose {
+  max-width: none;
+  color: var(--fg-primary);
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  color: var(--fg-primary);
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.prose h1 {
+  color: var(--header-h1);
+  border-bottom: 1px solid var(--border-secondary);
+  padding-bottom: 0.3em;
+}
+
+.prose h2 {
+  color: var(--header-h2);
+  border-bottom: 1px solid var(--border-secondary);
+  padding-bottom: 0.3em;
+}
+
+.prose h3 {
+  color: var(--header-h3);
+}
+
+.prose a {
+  color: #3794ff;
+  text-decoration: none;
+}
+
+.prose a:hover {
+  text-decoration: underline;
+}
+
+.prose code {
+  color: var(--token-string);
+  /* background-color: var(--hover-bg); */
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-weight: normal;
+}
+
+.prose pre {
+  /* background-color: var(--bg-main); */
+  border: 1px solid var(--border-secondary);
+}
+
+.prose blockquote {
+  border-left-color: #007acc;
+  color: var(--fg-secondary);
+  font-style: italic;
+}
+
+.prose strong {
+  color: var(--fg-primary);
+}
+
+.prose ul>li::marker {
+  color: var(--fg-secondary);
+}
+
+/* Light theme overrides for prose */
+/* Light theme overrides now handled by CSS variables in themes.css */
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #424242;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4f4f4f;
+}

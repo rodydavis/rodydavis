@@ -1,0 +1,157 @@
+---
+import { Prism } from "@astrojs/prism";
+
+interface Props {
+    code: string;
+    lang?: string;
+}
+
+const { code, lang = "markdown" } = Astro.props;
+const trimmedCode = code.trim();
+const lineCount = trimmedCode.split("\n").length;
+const updatedCode = trimmedCode;
+---
+
+<div
+    id="editor-source"
+    class="h-full overflow-auto relative font-mono text-[13px] leading-[1.5] bg-[var(--bg-main)]"
+>
+    <div class="flex min-h-full min-w-full w-max">
+        {/* Line Numbers Column */}
+        <div
+            class="sticky left-0 z-10 flex-none min-w-[3.5em] text-right pr-4 select-none text-[var(--fg-secondary)] border-r border-[var(--border-main)] bg-[var(--bg-main)]"
+            style="font-family: var(--font-code);"
+        >
+            {
+                Array.from({ length: lineCount }).map((_, i) => (
+                    <div class="px-1">{i + 1}</div>
+                ))
+            }
+        </div>
+
+        {/* Code Column */}
+        <div class="flex-1 bg-[var(--bg-main)]">
+            <Prism
+                code={updatedCode}
+                lang={lang}
+                class="!bg-transparent !m-0 !p-0 !h-full !text-[13px] !font-code !leading-[1.5]"
+            />
+        </div>
+    </div>
+</div>
+
+<style is:global>
+    /* Override Prism styles */
+    code[class*="language-"],
+    pre[class*="language-"] {
+        background-color: transparent !important;
+        text-shadow: none !important;
+        font-family: var(--font-code) !important;
+        color: var(--fg-primary) !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        line-height: 1.5 !important;
+    }
+
+    /* Override token colors to use our CSS variables */
+    .token.comment,
+    .token.prolog,
+    .token.doctype,
+    .token.cdata {
+        color: var(--token-comment) !important;
+    }
+
+    .token.punctuation {
+        color: var(--token-punctuation) !important;
+    }
+
+    .token.namespace {
+        opacity: 0.7;
+    }
+
+    .token.property,
+    .token.tag,
+    .token.boolean,
+    .token.number,
+    .token.constant,
+    .token.symbol,
+    .token.inserted,
+    .token.unit {
+        color: var(--token-number) !important;
+    }
+
+    .token.tag {
+        color: var(--token-tag) !important;
+    }
+
+    .token.boolean {
+        color: var(--token-boolean) !important;
+    }
+
+    .token.property {
+        color: var(--token-property) !important;
+    }
+
+    .token.selector,
+    .token.attr-name,
+    .token.string,
+    .token.char,
+    .token.builtin,
+    .token.deleted {
+        color: var(--token-string) !important;
+    }
+
+    .token.string {
+        color: var(--token-string) !important;
+    }
+
+    .token.selector {
+        color: var(--token-selector) !important;
+    }
+
+    .token.attr-name {
+        color: var(--token-attr-name) !important;
+    }
+
+    .token.attr-value {
+        color: var(--token-attr-value) !important;
+    }
+
+    .token.operator,
+    .token.entity {
+        color: var(--token-operator) !important;
+    }
+
+    .token.url {
+        color: var(--token-variable) !important;
+    }
+
+    .token.keyword {
+        color: var(--token-keyword) !important;
+    }
+
+    .token.function {
+        color: var(--token-function) !important;
+    }
+
+    .token.regex {
+        color: var(--token-regex) !important;
+    }
+
+    .token.class-name,
+    .token.maybe-class-name {
+        color: var(--token-class-name) !important;
+    }
+
+    .token.variable {
+        color: var(--token-variable) !important;
+    }
+
+    .token.important,
+    .token.bold {
+        font-weight: bold;
+    }
+    .token.italic {
+        font-style: italic;
+    }
+</style>

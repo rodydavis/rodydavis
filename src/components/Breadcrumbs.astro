@@ -1,0 +1,46 @@
+---
+interface Props {
+    slug?: string;
+}
+
+const { slug } = Astro.props;
+
+const pathname = Astro.url.pathname;
+const effectiveSlug =
+    slug || (pathname === "/" ? "welcome" : pathname.replace(/^\/+/, ""));
+
+// Generate breadcrumbs logic
+const parts = effectiveSlug.split("/").filter(Boolean);
+if (parts[0] === "docs") parts.shift(); // Remove 'docs' prefix if present from slug logic
+
+const breadcrumbs: string[] = [];
+
+// If it's a doc, we might want to show the folder structure
+if (parts.length > 1) {
+    breadcrumbs.push(...parts.slice(0, parts.length - 1));
+}
+
+// Add file name
+breadcrumbs.push(
+    effectiveSlug === "welcome" || effectiveSlug === ""
+        ? "README.md"
+        : `${parts[parts.length - 1]}.md`,
+);
+---
+
+<div
+    class="flex items-center px-4 py-1 text-xs text-[var(--fg-secondary)] select-none overflow-hidden whitespace-nowrap"
+>
+    {
+        breadcrumbs.map((part, index) => (
+            <span class="flex items-center">
+                <span class="hover:text-[var(--fg-primary)] cursor-pointer transition-colors">
+                    {part}
+                </span>
+                {index < breadcrumbs.length - 1 && (
+                    <span class="mx-1">›</span>
+                )}
+            </span>
+        ))
+    }
+</div>

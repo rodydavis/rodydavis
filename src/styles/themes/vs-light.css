@@ -1,0 +1,236 @@
+html.light-theme {
+
+    /* 1. Main Block: Pre and Code Basics */
+    pre[class*="language-"],
+    code[class*="language-"] {
+        color: #393A34;
+        font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+        direction: ltr;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        font-size: .9em;
+        line-height: 1.2em;
+
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+
+        /* Selection */
+        &::-moz-selection,
+        & ::-moz-selection,
+        &::selection,
+        & ::selection {
+            background: #C1DEF1;
+        }
+    }
+
+    /* 2. Specific Block: Pre Block Styles */
+    pre[class*="language-"] {
+        padding: 1em;
+        margin: .5em 0;
+        overflow: auto;
+        border: 1px solid #dddddd;
+        background-color: white;
+
+        /* Nested Code Font Size Adjustment */
+        >code[class*="language-"] {
+            font-size: 1em;
+        }
+
+        /* --- Line Numbers Plugin Support --- */
+        &.line-numbers {
+            position: relative;
+            padding-left: 3.8em;
+            counter-reset: linenumber;
+
+            >code {
+                position: relative;
+                white-space: inherit;
+                z-index: 1;
+            }
+
+            .line-numbers-rows {
+                position: absolute;
+                pointer-events: none;
+                top: 0;
+                font-size: 100%;
+                left: -3.8em;
+                width: 3em;
+                letter-spacing: -1px;
+                border-right: 1px solid #a5a5a5;
+                /* VS Theme Border Color */
+                user-select: none;
+                z-index: 2;
+
+                >span {
+                    display: block;
+                    counter-increment: linenumber;
+
+                    &:before {
+                        content: counter(linenumber);
+                        color: #2B91AF;
+                        /* VS Theme Number Color */
+                        display: block;
+                        padding-right: 0.8em;
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    }
+
+    /* 3. Specific Block: Inline Code Styles */
+    :not(pre)>code[class*="language-"] {
+        padding: .2em;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        background: #f8f8f8;
+        border: 1px solid #dddddd;
+    }
+
+    /* 4. Language Specific Root Overrides */
+    /* VS Theme sets CSS language blocks to blue #0000ff */
+    code[class*="language-css"] {
+        color: #0000ff;
+    }
+
+    /*********************************************************
+   * Tokens
+   */
+    .token {
+
+        /* Comments */
+        &.comment,
+        &.prolog,
+        &.doctype,
+        &.cdata {
+            color: #008000;
+            font-style: italic;
+        }
+
+        &.namespace {
+            opacity: .7;
+        }
+
+        &.string {
+            color: #A31515;
+        }
+
+        &.punctuation,
+        &.operator {
+            color: #393A34;
+        }
+
+        /* Teal Group */
+        &.url,
+        &.symbol,
+        &.number,
+        &.boolean,
+        &.variable,
+        &.constant,
+        &.inserted {
+            color: #36acaa;
+        }
+
+        /* Blue Group */
+        &.atrule,
+        &.keyword,
+        &.attr-value {
+            color: #0000ff;
+        }
+
+        &.function {
+            color: #393A34;
+        }
+
+        &.deleted {
+            color: #9a050f;
+        }
+
+        /* Important / Bold / Italic */
+        &.important {
+            color: #e90;
+            font-weight: bold;
+        }
+
+        &.bold {
+            font-weight: bold;
+        }
+
+        &.italic {
+            font-style: italic;
+        }
+
+        /* Class Names */
+        &.class-name {
+            color: #2B91AF;
+        }
+
+        /* Maroon Group */
+        &.tag,
+        &.selector {
+            color: #800000;
+        }
+
+        /* Red Group */
+        &.attr-name,
+        &.property,
+        &.regex,
+        &.entity {
+            color: #ff0000;
+        }
+
+        /* Specific: Directive Tag */
+        &.directive.tag .tag {
+            background: #ffff00;
+            color: #393A34;
+        }
+    }
+
+    /*********************************************************
+   * Language Specific Context Overrides
+   */
+
+    /* AutoHotkey */
+    .language-autohotkey {
+        .token.selector {
+            color: #0000ff;
+        }
+
+        .token.tag {
+            color: #9a050f;
+        }
+
+        .token.keyword {
+            color: #00009f;
+        }
+    }
+
+    /* JSON */
+    .language-json {
+
+        .token.boolean,
+        .token.number {
+            color: #0000ff;
+        }
+
+        .token.property {
+            color: #2B91AF;
+        }
+    }
+
+    /*********************************************************
+   * Line Highlighting
+   */
+    .line-highlight.line-highlight {
+        background: rgba(193, 222, 241, 0.2);
+        background: linear-gradient(to right, rgba(193, 222, 241, 0.2) 70%, rgba(221, 222, 241, 0));
+    }
+}

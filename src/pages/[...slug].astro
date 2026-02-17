@@ -1,0 +1,41 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import ExplorerLayout from "../layouts/ExplorerLayout.astro";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+    const docs = await getCollection("docs");
+    return docs.map((doc) => ({
+        params: { slug: doc.slug },
+    }));
+}
+
+const { slug } = Astro.params;
+
+if (slug === undefined) {
+    return Astro.redirect("/");
+}
+
+let doc = await getEntry("docs", slug);
+
+if (!doc) {
+    const docs = await getCollection("docs");
+    // look for posts/* prefix
+    doc = docs.find((d) => d.slug.startsWith(`posts/${slug}`));
+}
+
+if (!doc) {
+    return Astro.redirect("/404");
+}
+
+const { Content } = await doc.render();
+---
+
+<ExplorerLayout activePostId={doc.slug} title={doc.data.title} code={doc.body}>
+    <div
+        class="prose max-w-none px-8 py-0 dark:prose-invert [&>:first-child]:mt-0"
+    >
+        <Content />
+    </div>
+</ExplorerLayout>

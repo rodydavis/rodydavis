@@ -1,0 +1,43 @@
+---
+import { Tag } from "lucide-react";
+
+interface Props {
+    tags: { name: string; count?: number }[];
+    activeTag?: string;
+}
+
+const { tags, activeTag } = Astro.props;
+---
+
+<div
+    class="h-full bg-[var(--bg-sidebar)] flex flex-col min-w-[220px] w-64 border-r border-[var(--border-main)] text-[var(--fg-primary)]"
+>
+    <div
+        class="h-[35px] px-5 flex items-center justify-between text-[11px] text-[var(--fg-secondary)] uppercase tracking-wider select-none border-b border-[var(--border-main)]"
+    >
+        <span>Tags</span>
+    </div>
+    <div class="flex-1 overflow-y-auto py-2">
+        {
+            tags.map((tag) => (
+                <a
+                    href={`/tags/${tag.name}`}
+                    class:list={[
+                        "flex items-center px-4 py-2 text-sm cursor-pointer hover:bg-[var(--hover-bg)] transition-colors",
+                        activeTag === tag.name
+                            ? "bg-[var(--selection-bg)] text-[var(--fg-primary)]"
+                            : "text-[var(--fg-secondary)] hover:text-[var(--fg-primary)]",
+                    ]}
+                >
+                    <Tag size={16} className="mr-2" />
+                    <span class="flex-1 truncate">{tag.name}</span>
+                    {tag.count !== undefined && (
+                        <span class="text-xs bg-[var(--bg-activity)] px-2 py-0.5 rounded-full">
+                            {tag.count}
+                        </span>
+                    )}
+                </a>
+            ))
+        }
+    </div>
+</div>
