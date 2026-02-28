@@ -353,7 +353,7 @@ const Explorer: React.FC<ExplorerProps> = ({
             title="Outline"
             isOpen={sections.outline}
             onToggle={() => toggleSection('outline')}
-            className={getSectionClass('outline')}
+            className={`${getSectionClass('outline')} max-h-[250px]`}
           >
             <Outline outline={outline} />
           </SidebarSection>
@@ -364,7 +364,7 @@ const Explorer: React.FC<ExplorerProps> = ({
               title="Related"
               isOpen={sections.related}
               onToggle={() => toggleSection('related')}
-              className={getSectionClass('related')}
+              className={`${getSectionClass('related')} max-h-[200px]`}
             >
               <div className="py-1">
                 {relatedPosts.map(post => {
@@ -394,7 +394,7 @@ const Explorer: React.FC<ExplorerProps> = ({
               title="Tags"
               isOpen={sections.tags}
               onToggle={() => toggleSection('tags')}
-              className={getSectionClass('tags')}
+              className={`${getSectionClass('tags')} max-h-[150px]`}
             >
               <div className="p-2 flex flex-wrap gap-2">
                 {tags.map(tag => (
