@@ -1,0 +1,52 @@
+---
+title: How to connect interfaces to the cloud with AI agents
+description: How to connect interfaces to the cloud with AI agents
+date: '2025-12-17T00:00:00.000Z'
+draft: false
+tags:
+  - youtube
+  - video
+  - media
+summary: >-
+  Learn how to use Google's Agent Development Kit (ADK) and GenUI SDK for
+  Flutter to connect applications to the cloud, access APIs, and build complex
+  workflows with AI agents.
+embedding: >-
+  CwOYvf//4DyDW2g8CdIlOwSmCDxTDP07UOpAvUWLXDzi9O49t2xLvfNqZjxxRpq8iJu/vC2zD70m68I8pfhtPcBK3Ls8JBM9IHA3vSF87DrgEBo8sLH/PGNxjjxaKWi9P329u8FHhTld7j48zQBYvUyN0Dw5zCa9WRsUPenf8br+Uyw6yOTcPH+8eT3alKk8a7civcCUWjwDWdM8pq/Qu7S/uzxinIY8wgMuvEKZeLwoiQC7HLG0vSKmAL35aFG9sIjiO8YiFL2ZvZQ73PAKPE9alr2IEtm7gt71vATGJbxxkky9k5J4PNA54bwzTTK91DmvvZF8+rzwD7G8/2kMvTki9TxX24k8ryedO5/AZLylLWY9oOjtPXH/t7tWRkK9MrBqu2AzCb0Pr7c9PfH3PaP4VrwyUju9uD9XPN2Nyrv7Xry8Po9IPCwBr7yOqly8TGinPWeeGD2qFGo9YPuxPAlZvD0E2jy9reWyPLvtQL3RtLe82sE7vC/2cL0tb/k7dgBpvU9CKj073OC8kCX1PATMujy5nqo8apcPPIIHkD2RV+Q7Ls3QPNk+xrtVvbQ7cj0vveQ1xDzT/MM7iyFQPZjy+7wvMBa9nyP+vLS8LT0p4Wi99WIkPSzb6jzE6Lq76TgwPIK4vLyrFME83xhOvezaGT1QXyU9VF4EvR+kITzqnX68iXVVvaBhFz03T4I8Rw6IPR4tDDzXqzO92mSwO643Ar38d4a8jtMOPWrmnbzmXCG7kWAmvW6177ynALI9qdn5O2lgkj3BoMG9JXa/vCqzWb0db405xnbNvC3m8bxQywm6djcDvXfKLLtJLDq8zmroOqMB0DxLLKK8cOELvCGhE7wFzsS8gnk1Pfx1NDw9NQ096TqgPaNH9zwcnai7KpKLvbsziLxGisU8B3CZO6CIDLw3eG08EbUwPNVNhjtugms7yXTJvB5Z6Tw1uOO7obMyvacxKzyYHMS7njTvu6tfhztDOjs9EvOCvLyAVT39SyC9OC+Rul4fKDtf7QE9MvuivfmBbLyJOMU9XrACPXoVgj21Qq28DT6avBGdobzfTY+81XKlvAJBl7xv3Eu5GtHUOne1ez00ZS08Rch+u07DLL0la7Q8Lu0EveYcTL2zrZW86B24PLtUsD2UWNi6jEHqvN7AnbxFG/I7i4Atvd6bA7zKcjS8hjD2OoK2hjvluKC8cPAVveqvBb0RQCo73JIdvSfOFbwDXEE9KSjzvALkIj2NqM88GSmgvE//HTzRrxk9ju7PPExaSj0CLfY8i5wJOyNtMDyK//W717y/POtlhLxYxgK8M+ZaPe69Cb1BP5k8vIa4u2CHP7wG0zg8RcKYvJ9gtrxpH9y8PVP0u+3BEL1E5IC81ZjjO48MMT2PKFc9h2VQPNJb5rymVd68zdjXOY9GxTtlEa+7Z2xWvCmZ2r17nD27kqh2uxjNpDz0Xmu8KRAevQOIJT3FFey8XOmCPCBzRr1WBBk8jGDCPAV637yvAfq8pvKdPFPw7jzd3om8re5TvNdLij3ojas8mpdNvZ3xWLz2vMs6DOOJPPv787uN4Q09DQ2qvZqEeT2ZGDy99kRuPGjxAb3naii7cN4JPbwtPr2HwI89wB4JvI0stLzATCA98IaCvP0mEj2dU1g7zVvmvIH5EL2/eKu69AhmvEPZKTz4cS89N+ptvbJjd70MdYI8GaeRu/v36jwmlLw8qCycPVJ4Qzz7zDM8/OcUvBfcJ70mcXA8uWE8vFf9970KQP487WAJPdQqD72HeAk9Bzs1PGSBTb2sbLA8tsCuPTpqrDx5Q3G9jDiNu4DW3Dtpnw+98x3tPXfQir3sco+6ddW8PFg66juqU2E8irsaPPBKjTxQRz+9eEqkPDyGLr1r3Re7C1V5vW4f6bwaSM08tvSEPJKMij2S8EW7ivxpvW6xub1mYYG8CTWJvYGqrDzP+o28VcKWu19CijwFSBU8w3aOPRZrc73+B008JkOFO8AxDL3gLTm8j1wcOTLdgLxL4C89ZxSXuxV2Wz2+G3i9+ziPPSisNr0qYa08VvkdPeDEMb0MpMY4Bke/PWacSbxrkhM8k5HxvCg35byr/pC8u6ogPEEN37zYV1S8E9kAvd6tIT2AX1u9ZYi7vP/oJb3/3Bq9Vm47vVhhGj2aaEI9tb1CvTaMvLw9AZA9kk3PvCAot7ygRw09hckJveP2iT3sb+28ZgV6O0WGEr33cyO9v8y3PDCkBL1NXMu8vrQ6vY92TT099GK8q+FBPbk5wDwJwEi8yWWeO1MvMb1CETE9mCKFvNYyjjx5AlS8JIa/OoHgqzyghOW8ycuGvfUVCrycVQu8rLs1vK6OST0qp388h519O3dUm7s86gq7JHcAO+fq8rx2IBc9BHWIvU5ZLb3ri1g7Ld4FuzIGz7xiv3W8L/dfuwT0oLz50oG84ZgtPM7hb70yERa9a+iMuqKarLtT+Nq8XAgevUj6gr3mtog8ucbRPLOUBrwMdom6OXMGvOTijb3bwgi9HzP0PEaMybxPfXs91jOYPIGRSD006a25KFkhPVAXlbv2O0S8UzAoPEF4hDz8Kw+8SyqDu6+Ir7w8fIG9LEkmPfwAdDy0b/Q8rlEOvXtVLzvL+Hw7jSEkPT2EQDtxrwc9jar4vPer6rzYAR28Fx+2PLSsbDyfUny9TEi7PRIaYDyR/HA9yS+ZvLvjVjy1tKw9oLgfvXAy3DwTOoW7NiL5PNOe97yNF069Ik+BPTOnszsgpDk85/35ugD267xZNyy9qdcGPVsmoTxLraM8yhLovJXRZz3TTg49vSNbvHTpCDzFScU8Z08tPacswruJARC9pPKuPI3FQj0ZdaK961MYPUDSbjth/w69QULkvOxY/Dxdr6i8A4VSPHpXq70OBhI8v1WhOz1CKTqgGLS9FxV4vK054jyJ2BM9tZkXPRx2Oz39YLK8VQ5juxv/9LwdKe25ljnHO5bMFT0d7BW9FeQePYQ9/Lui2V07TBxlOeI3HL0hu228BbJvPZflpbym4X68Q56lvHiwGb0noA29eQ0CPaIQNT2/4Mo8465wvBu2P72uGZQ8bmspvM6Kdzuelkc8o5oDPDwnlD2eWbu8+JE/PQXPbrzDRqI81OtOPfYNez16RD09tybDuoFhED1FdeC8aGHVPJkYsDvW3A48OX/7vLpeGT2KVQk9eCcoPBpNU7wYFv68+viFPPZ3X7xVGIA7xcbqPFktqj1Xlb08cR3JPIdRgD0gceq7568Du75tD716Xxi9PjfKPJS4lrxiVhG8CQJovUkq6TyptGE94WxvveiNET1L3xs9kwRJvcmXfjsETKc8tLEQPOWWuzx20ak7tlyivPT3RTzuHoq8vMLyvORbMTxuIJU9C9UTPRrPJ7woPRm9h2y6PEl3Ab2ThPw6lDuyPH7rizuuWCG93qu0vPqXqT1Ka++8kZNbvJYvNrzfEo+9Mjy1PCPOkzxNlni76EwRPdb3kryNQIe9+L88vdm2i7v6MVW9XjlwPJMBc70hYNC8byU2vcBlKLtdR0q9xkJjvWQ44DzYYCe9zyCsu1/1UD2TNoY8G6bdPJtfh7xejsu8tIiMvI02W7zThHU7jTltPEAz9bxUDp48mac2vcweAb3XxRw8kW+1PEjVWT2UQx09JTDwPBboSrwlAWY8JzJUvW9OXz17JRc9W6EQPeL9uj3NoNw8ZPORvaOMTb3NKRe90YQLvYpXYbssQqE7ARU1PCEr7zwnvM27JsYCtzaDOjxKlQi9ZySJPADLIr0p9wg9N7yuPAgy3zwhAxC8tQIsPNvPDLsIl7A8ce+3u4BaPD2u0bc7X6AnPANCMj0WD9k87oH9u4v6z71NGsi7KHGSvIxXUDzo/Lm89MAfvQ40gTs/8Pm80a+FPXmcSzzb2bs8rsSSPLePND1J9MG8OhGiPHEQmj0pnbA8xzTvPGxIrDoPrKw6eK8WPNPfsLvsh7g7ihGTvTpQRb0/QNS7VkeLPdLyorup15o8O/XLPFhvnzwcYyg9PwgNvL9tLL0SUae9b/e3PCEZtzwNrY+8AhWevSs1kDxC72G7JcnuPGpak7ykOBy9NTwCvYagiTwWg7K7
+related:
+  - videos/building-a-dnd-agent-with-adk-antigravity-and-gemini-3.md
+  - >-
+    videos/building-ai-powered-experiences-with-firebase-studio-and-firebase-platform-rody-davis.md
+  - videos/rody-davis-building-adaptive-uiux-in-flutter.md
+  - videos/build-full-stack-ai-apps-in-minutes-with-firebase-studio.md
+  - videos/how-to-build-with-flutter-and-google-antigravity.md
+---
+
+# How to connect interfaces to the cloud with AI agents
+
+<div class="video-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/Dum-LYLm0Uw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+## Description
+
+Verdure example → https://goo.gle/3XY7GX8
+GenUI package → https://goo.gle/4oXUoou
+
+Give AI agents massive reasoning models, real-time APIs, and the ability to perform complex tasks. Watch along as Googler Rody Davis leverages Agent Development Kit (ADK) to securely access databases, call internal APIs, and orchestrate complex workflows. Watch along and discover the power of GenUI SDK for Flutter.
+
+Chapters:
+0:00 - Intro
+0:36 - What is Agent Development Kit?
+1:17 - Rendering the UI for app workflows
+1:56 -[Demo] Verdure
+2:44 - [Demo] Building a new “Budget Slider”
+4:32 - Summary
+
+Watch more Flutter Flight Plans → https://www.youtube.com/watch?v=pMoUg3dkDJk&list=PLjxrf2q8roU1yXu4k7ivSLAa0cizD4feH
+🔔 Subscribe to Flutter → https://goo.gle/FlutterYT 
+
+#Flutter
+
+Speaker: Rody Davis
+Products Mentioned: Agent Development Kit, GenUI SDK for Flutter

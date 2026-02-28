@@ -20,10 +20,12 @@ embedding: >-
 related:
   - sqlite/key-value.md
   - sqlite/no-sql.md
-  - first-flutter-project.md
-  - flutter-graph-database.md
-  - export-sqlite-dart.md
+  - flutter/getting-started.md
+  - flutter/graph-database.md
+  - dart/export-sqlite.md
 ---
+
+# SQLite on the UI Thread
 
 [SQLite](https://www.sqlite.org/) is a lot faster than you may realize. In [Flutter](https://flutter.dev/) for example there is [drift](https://pub.dev/packages/drift), [sqlite\_async](https://pub.dev/packages/sqlite_async) and [sqflite](https://pub.dev/packages/sqflite) which allow for async access of data. But with [sqlite3](https://pub.dev/packages/sqlite3) you can query with sync functions! 🤯
 

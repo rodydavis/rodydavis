@@ -18,9 +18,11 @@ related:
   - dart/bitwise.md
   - dart/function-invoking.md
   - dart/print-multiple-objects.md
-  - snippets/lightweight-flutter-animations.md
-  - lit-vscode-extension.md
+  - flutter/snippets/lightweight-animations.md
+  - lit/vscode-extension.md
 ---
+
+# Check if an Object is Truthy in Dart
 
 If you are coming from language like JavaScript you may be used to checking if an object is [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy).
 

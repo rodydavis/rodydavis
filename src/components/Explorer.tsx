@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { ChevronRight, ChevronDown, Folder, FolderOpen, MoreHorizontal, Info, FileText, FileJson, FileCode, Tag, Link } from 'lucide-react';
 import type { FileNode, OutlineItem as OutlineItemType } from '../types';
 import Outline from './Outline';
@@ -22,6 +22,15 @@ const FileIcon = ({ name }: { name: string }) => {
   return <FileText size={16} className="text-[var(--icon-default)]" />;
 };
 
+const containsActivePost = (node: FileNode, activePostId: string | null): boolean => {
+  if (!activePostId) return false;
+  if (node.postId === activePostId) return true;
+  if (node.children) {
+    return node.children.some(child => containsActivePost(child, activePostId));
+  }
+  return false;
+};
+
 const ExplorerItem: React.FC<{
   node: FileNode;
   level: number;
@@ -29,6 +38,25 @@ const ExplorerItem: React.FC<{
   activePostId: string | null;
 }> = ({ node, level, onFileClick, activePostId }) => {
   const [isOpen, setIsOpen] = useState(node.isOpen || false);
+  const itemRef = useRef<HTMLAnchorElement | HTMLDivElement>(null);
+
+  const hasActivePost = useMemo(() => containsActivePost(node, activePostId), [node, activePostId]);
+
+  useEffect(() => {
+    if (hasActivePost && node.type === 'folder') {
+      setIsOpen(true);
+    }
+  }, [hasActivePost, node.type]);
+
+  useEffect(() => {
+    if (node.postId === activePostId && itemRef.current) {
+      // Small delay to ensure parents are expanded and layout has settled
+      const timeoutId = setTimeout(() => {
+        itemRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [activePostId, node.postId]);
 
   const handleClick = () => {
     if (node.type === 'folder') {
@@ -64,6 +92,7 @@ const ExplorerItem: React.FC<{
     <div className="select-none">
       {isFile ? (
         <a
+          ref={itemRef as React.RefObject<HTMLAnchorElement>}
           href={href}
           className={`flex items-center py-[3px] cursor-pointer hover:bg-[var(--hover-bg)] transition-colors text-decoration-none no-underline block ${node.postId === activePostId ? 'bg-[var(--selection-bg)] text-[var(--fg-primary)]' : 'text-[var(--fg-primary)]'
             }`}
@@ -73,6 +102,7 @@ const ExplorerItem: React.FC<{
         </a>
       ) : (
         <div
+          ref={itemRef as React.RefObject<HTMLDivElement>}
           className={`flex items-center py-[3px] cursor-pointer hover:bg-[var(--hover-bg)] transition-colors ${node.postId === activePostId ? 'bg-[var(--selection-bg)] text-[var(--fg-primary)]' : 'text-[var(--fg-primary)]'
             }`}
           style={{ paddingLeft: `${level * 12 + 12}px` }}
@@ -144,6 +174,16 @@ const Explorer: React.FC<ExplorerProps> = ({
     related: true,
     tags: true
   });
+
+  const hasActivePostInTree = useMemo(() => {
+    return fileTree.some(node => containsActivePost(node, activePostId));
+  }, [fileTree, activePostId]);
+
+  useEffect(() => {
+    if (hasActivePostInTree) {
+      setSections(prev => ({ ...prev, folders: true }));
+    }
+  }, [hasActivePostInTree]);
 
   // Update isOpen when defaultOpen changes (e.g. navigation)
   React.useEffect(() => {
@@ -234,6 +274,26 @@ const Explorer: React.FC<ExplorerProps> = ({
     return fileTree[0].children ?? [];
   }
 
+  const getSectionClass = (section: keyof typeof sections) => {
+    if (!sections[section]) return 'flex-none';
+
+    // Folders section always expands to fill space if open
+    if (section === 'folders') return 'flex-1 min-h-0';
+
+    // Count open sections among (outline, related, tags)
+    const otherOpen = Object.entries(sections)
+      .filter(([key, value]) => key !== 'folders' && value)
+      .length;
+
+    // If folders is closed and only one other section is open, that one expands.
+    // Otherwise, these sections default to content height (flex-none).
+    if (!sections.folders && otherOpen === 1) {
+      return 'flex-1 min-h-0';
+    }
+
+    return 'flex-none';
+  };
+
   return (
     <>
       {/* Mobile Backdrop */}
@@ -269,7 +329,7 @@ const Explorer: React.FC<ExplorerProps> = ({
             title="Content"
             isOpen={sections.folders}
             onToggle={() => toggleSection('folders')}
-            className={sections.folders ? 'flex-1 min-h-0' : 'flex-none'}
+            className={getSectionClass('folders')}
           >
             <div className="py-1">
               {loading ? (
@@ -293,7 +353,7 @@ const Explorer: React.FC<ExplorerProps> = ({
             title="Outline"
             isOpen={sections.outline}
             onToggle={() => toggleSection('outline')}
-            className={sections.outline ? 'flex-1 min-h-0' : 'flex-none'}
+            className={getSectionClass('outline')}
           >
             <Outline outline={outline} />
           </SidebarSection>
@@ -304,7 +364,7 @@ const Explorer: React.FC<ExplorerProps> = ({
               title="Related"
               isOpen={sections.related}
               onToggle={() => toggleSection('related')}
-              className={sections.related ? 'flex-1 min-h-0' : 'flex-none'}
+              className={getSectionClass('related')}
             >
               <div className="py-1">
                 {relatedPosts.map(post => {
@@ -334,7 +394,7 @@ const Explorer: React.FC<ExplorerProps> = ({
               title="Tags"
               isOpen={sections.tags}
               onToggle={() => toggleSection('tags')}
-              className={sections.tags ? 'flex-1 min-h-0' : 'flex-none'}
+              className={getSectionClass('tags')}
             >
               <div className="p-2 flex flex-wrap gap-2">
                 {tags.map(tag => (

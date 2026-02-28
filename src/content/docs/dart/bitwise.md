@@ -16,10 +16,12 @@ embedding: >-
 related:
   - dart/function-invoking.md
   - dart/truthy.md
-  - deep-linking-flutter-web.md
-  - snippets/lightweight-flutter-animations.md
+  - flutter/web-deep-linking.md
+  - flutter/snippets/lightweight-animations.md
   - dart/print-multiple-objects.md
 ---
+
+# How to do Bitwise operations in Dart
 
 In Dart it is possible to do [Bitwise Operations](https://en.wikipedia.org/wiki/Bitwise_operation#:~:text=In%20computer%20programming%2C%20a%20bitwise,directly%20supported%20by%20the%20processor.) with **int** and **bool** types.
 

@@ -40,64 +40,54 @@ export function transformDocsToPosts(
 }
 
 export function buildFileTree(docs: CollectionEntry<'docs'>[]): FileNode[] {
-    const rootChildren: FileNode[] = [];
-    const folderMap = new Map<string, FileNode>();
+    const root: FileNode = {
+        id: 'root',
+        name: 'RODY-DAVIS',
+        type: 'folder',
+        isOpen: true,
+        children: []
+    };
 
-    // Sort docs by slug to ensure folders are created before files if needed, 
-    // or just to have deterministic order.
+    // Sort docs by slug to ensure deterministic order.
     docs.sort((a, b) => a.slug.localeCompare(b.slug));
 
     docs.forEach(doc => {
         const parts = doc.slug.split('/');
+        let currentFolder = root;
 
-        // Handle root files
-        if (parts.length === 1) {
-            const fileName = doc.slug === 'welcome' ? 'README.md' : `${doc.slug}.md`;
-            rootChildren.push({
-                id: `file-${doc.slug}`,
-                name: fileName,
-                type: 'file',
-                postId: doc.slug
-            });
-            return;
+        for (let i = 0; i < parts.length; i++) {
+            const part = parts[i];
+            const isLast = i === parts.length - 1;
+
+            if (isLast) {
+                // Special case for root-level 'welcome' -> 'README.md'
+                const fileName = (doc.slug === 'welcome' && parts.length === 1) ? 'README.md' : `${part}.md`;
+                currentFolder.children = currentFolder.children || [];
+                currentFolder.children.push({
+                    id: `file-${doc.slug}`,
+                    name: fileName,
+                    type: 'file',
+                    postId: doc.slug
+                });
+            } else {
+                currentFolder.children = currentFolder.children || [];
+                let folder = currentFolder.children.find(child => child.type === 'folder' && child.name === part);
+                if (!folder) {
+                    folder = {
+                        id: `folder-${parts.slice(0, i + 1).join('-')}`,
+                        name: part,
+                        type: 'folder',
+                        isOpen: true,
+                        children: []
+                    };
+                    currentFolder.children.push(folder);
+                }
+                currentFolder = folder;
+            }
         }
-
-        // Handle nested files
-        // Currently supporting 1 level of nesting per requirements (blog/post.md)
-        // Expandable to recursive if needed.
-        const folderName = parts[0];
-        const fileName = `${parts[1]}.md`;
-
-        if (!folderMap.has(folderName)) {
-            const folderNode: FileNode = {
-                id: `folder-${folderName}`,
-                name: folderName,
-                type: 'folder',
-                isOpen: true,
-                children: []
-            };
-            folderMap.set(folderName, folderNode);
-            rootChildren.push(folderNode);
-        }
-
-        const folder = folderMap.get(folderName)!;
-        folder.children?.push({
-            id: `file-${parts[1]}`, // ID should be unique enough
-            name: fileName,
-            type: 'file',
-            postId: doc.slug // postId must match the slug used in key of posts record
-        });
     });
 
-    return [
-        {
-            id: 'root',
-            name: 'RODY-DAVIS',
-            type: 'folder',
-            isOpen: true,
-            children: rootChildren
-        }
-    ];
+    return [root];
 }
 
 // Deprecate static FILE_TREE

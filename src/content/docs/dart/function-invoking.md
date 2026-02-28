@@ -18,9 +18,11 @@ related:
   - dart/bitwise.md
   - dart/truthy.md
   - dart/print-multiple-objects.md
-  - snippets/lightweight-flutter-animations.md
-  - snippets/flutter-stream-widget.md
+  - flutter/snippets/lightweight-animations.md
+  - flutter/snippets/stream-widget.md
 ---
+
+# Various Ways to Invoke Functions in Dart
 
 There are multiple ways to call a [Function](https://dart.dev/language/functions) in Dart.
 

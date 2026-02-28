@@ -5,14 +5,15 @@ import ViewToggle from "./ViewToggle.tsx";
 
 interface Props {
     slug?: string;
+    title?: string;
 }
 
-const { slug } = Astro.props;
+const { slug, title } = Astro.props;
 const pathname = Astro.url.pathname;
 const isWelcome = pathname === "/";
-const filename = isWelcome
-    ? "README.md"
-    : slug?.split("/").pop() + ".md" || "Untitled";
+const filename =
+    title ??
+    (isWelcome ? "README.md" : slug?.split("/").pop() + ".md" || "Untitled");
 ---
 
 <div

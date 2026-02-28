@@ -15,10 +15,12 @@ embedding: >-
 related:
   - dart/truthy.md
   - dart/function-invoking.md
-  - snippets/lightweight-flutter-animations.md
+  - flutter/snippets/lightweight-animations.md
   - dart/bitwise.md
-  - display-html-in-flutter.md
+  - flutter/display-html.md
 ---
+
+# How to Print Multiple Objects to the Console with print() in Dart
 
 If you are coming from JavaScript you may be used to printing multiple objects to the console with `console.log()`:
 

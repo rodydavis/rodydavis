@@ -114,6 +114,38 @@ body {
   color: var(--fg-secondary);
 }
 
+/* Responsive & Centered Media Elements */
+.prose img,
+.prose video,
+.prose audio {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  margin-inline: auto;
+}
+
+.prose iframe {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 8px;
+  display: block;
+  margin-inline: auto;
+}
+
+.video-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 2rem;
+}
+
+.video-container iframe {
+  width: 100%;
+  height: 100%;
+}
+
 /* Light theme overrides for prose */
 /* Light theme overrides now handled by CSS variables in themes.css */
 

@@ -17,10 +17,12 @@ embedding: >-
 related:
   - sqlite/no-sql.md
   - sqlite/ui-thread.md
-  - export-sqlite-dart.md
-  - flutter-graph-database.md
-  - pocketbase-cloudrun.md
+  - dart/export-sqlite.md
+  - flutter/graph-database.md
+  - backend/pocketbase-cloudrun.md
 ---
+
+# Using SQLite as a Key Value Store
 
 [SQLite](https://www.sqlite.org/) is a very capable edge database that can store various shapes of data.
 

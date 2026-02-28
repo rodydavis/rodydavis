@@ -1,0 +1,42 @@
+---
+title: 'Speaker Interview - Rody Davis, David Khourshid, and João Luiz S Kestering'
+description: 'Speaker Interview - Rody Davis, David Khourshid, and João Luiz S Kestering'
+date: '2019-11-20T00:00:00.000Z'
+draft: false
+tags:
+  - youtube
+  - video
+  - media
+summary: >-
+  ThunderNerds interview with Flutter developers Rody Davis, David Khourshid,
+  and João Luiz S. Kestering at Devfest Florida, covering mobile development,
+  open source, and cutting-edge technologies.
+embedding: >-
+  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
+related:
+  - videos/60-flutter-with-rody-davis.md
+  - >-
+    videos/chatting-with-a-googler-rodydavis-google-flutter-firebase-developers-ai-vibecoding.md
+  - videos/flutter-desktopweb-and-vr.md
+  - videos/flutter-state-management-and-dart-nullability-feat-simon-lightfoot.md
+  - videos/interview-with-rody-davis-firebase.md
+---
+
+# Speaker Interview - Rody Davis, David Khourshid, and João Luiz S Kestering
+
+<div class="video-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/RuVyxtZZbhY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+## Description
+
+The ThunderNerds interviewing our speakers at Devfest Florida.
+
+### Rody Davis
+Full stack mobile developer from Alabama and currently in Tampa for the last 7 years. I have created over 12 apps with on iOS and Android released for production. I love VR, Game Development, Music production and graphic design. I have been using Flutter since beta 2. I contribute a lot to open source and love showing others how tech can make our lives better and how great UX can make us love the products we use.
+
+### David Khourshid
+David Khourshid is a software engineer for Microsoft, a tech author, and speaker. Also a fervent open-source contributor, he is passionate about statecharts and software modeling, reactive animations, innovative user interfaces, and cutting-edge front-end technologies. When not behind a computer keyboard, he’s behind a piano keyboard or traveling.
+
+### João Luiz S. Kestering
+I'm software engineer on Modus Create with post-degree in Software Architecture with focus on frontend applications using Angular and React. Now started a new adventure using Flutter. On my free time, I like to watch football, read and play video games.

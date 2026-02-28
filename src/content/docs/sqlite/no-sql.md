@@ -17,10 +17,12 @@ embedding: >-
 related:
   - sqlite/key-value.md
   - sqlite/ui-thread.md
-  - export-sqlite-dart.md
+  - dart/export-sqlite.md
   - sqlite/fts5.md
-  - flutter-graph-database.md
+  - flutter/graph-database.md
 ---
+
+# How to store SQLite as NoSQL Store
 
 [SQLite](https://www.sqlite.org/) is a very capable edge database that can store various shapes of data.
 
