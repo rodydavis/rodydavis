@@ -52,7 +52,7 @@ const ExplorerItem: React.FC<{
     if (node.postId === activePostId && itemRef.current) {
       // Small delay to ensure parents are expanded and layout has settled
       const timeoutId = setTimeout(() => {
-        itemRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        itemRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }, 100);
       return () => clearTimeout(timeoutId);
     }
