@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { ChevronRight, ChevronDown, Folder, FolderOpen, MoreHorizontal, Info, FileText, FileJson, FileCode, Tag, Link } from 'lucide-react';
+import { ChevronRight, ChevronDown, Folder, FolderOpen, Info, FileText, FileJson, FileCode, Tag, Link } from 'lucide-react';
 import type { FileNode, OutlineItem as OutlineItemType } from '../types';
 import Outline from './Outline';
 

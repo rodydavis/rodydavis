@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { themeStore, setTheme, type Theme, initTheme } from '../store/themeStore';
-import { Search, Code2 } from 'lucide-react';
+import { Search } from 'lucide-react';
 
 interface SettingsViewProps {
     onClose?: () => void;

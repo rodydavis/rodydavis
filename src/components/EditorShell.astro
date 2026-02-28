@@ -1,7 +1,7 @@
 ---
 import { FileCode, Eye, X, ExternalLink, Github, Globe } from "lucide-react";
 import Breadcrumbs from "./Breadcrumbs.astro";
-import ViewToggle from "./ViewToggle.tsx";
+import ViewToggle from "./ViewToggle.astro";
 
 interface Props {
     slug?: string;
@@ -78,7 +78,7 @@ const filename =
     >
         <Breadcrumbs slug={slug} />
         <div class="flex items-center space-x-2 flex-shrink-0">
-            <ViewToggle client:load />
+            <ViewToggle />
         </div>
     </div>
 

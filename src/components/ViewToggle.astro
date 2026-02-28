@@ -1,0 +1,28 @@
+---
+import { FileCode, Eye } from "lucide-react";
+
+const pathname = Astro.url.pathname;
+const isEditor = pathname.startsWith("/editor");
+
+let nextPath = pathname;
+if (isEditor) {
+    // Remove /editor prefix
+    nextPath = pathname.replace(/^\/editor/, "");
+    if (nextPath === "") nextPath = "/";
+} else {
+    // Add /editor prefix
+    if (pathname === "/") {
+        nextPath = "/editor/welcome";
+    } else {
+        nextPath = `/editor${pathname}`;
+    }
+}
+---
+
+<a
+    href={nextPath}
+    class="p-1 rounded hover:bg-[var(--hover-bg)] text-[var(--fg-primary)] transition-colors focus:outline-none flex items-center justify-center cursor-pointer"
+    title={isEditor ? "Open Preview" : "View Source"}
+>
+    {isEditor ? <FileCode size={16} /> : <Eye size={16} />}
+</a>

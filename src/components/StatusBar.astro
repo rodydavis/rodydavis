@@ -1,5 +1,5 @@
 ---
-import ViewStatus from "./ViewStatus.tsx";
+import ViewStatus from "./ViewStatus.astro";
 import { Code2 } from "lucide-react";
 
 import githubIcon from "../assets/svg/github.svg?raw";
@@ -89,7 +89,7 @@ const socialLinks = [
             <div
                 class="hidden sm:flex items-center hover:bg-white/10 px-2 cursor-pointer h-full transition-colors ml-2 border-l border-white/20"
             >
-                <ViewStatus client:load />
+                <ViewStatus />
             </div>
         </div>
     </div>

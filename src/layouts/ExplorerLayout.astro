@@ -15,13 +15,21 @@ interface Props {
     activePostId?: string;
     code?: string;
     lang?: string;
+    viewMode?: "preview" | "editor";
     tabs?: {
         label: string;
         href: string;
     }[];
 }
 
-const { title, activePostId, code, lang = "md", tabs } = Astro.props;
+const {
+    title,
+    activePostId,
+    code,
+    lang = "md",
+    tabs,
+    viewMode = "preview",
+} = Astro.props;
 
 // Data fetching for Explorer
 const docs = await getCollection("docs");
@@ -88,35 +96,17 @@ const defaultOpen = false;
             {/* Editor Area */}
             <EditorShell slug={activePostId} tabs={tabs}>
                 {
-                <div id="preview-view" style="display: block;">
-                    <EditorPreview>
-                        <slot />
-                    </EditorPreview>
-                </div>
-                <div id="code-view" style="display: none;">
-                    <EditorCode code={raw.trim()} lang={lang} />
-                </div>
-
-                <script>
-                    import { viewMode, initViewStore } from "../stores/viewStore";
-
-                    initViewStore();
-
-                    const previewView = document.getElementById("preview-view");
-                    const codeView = document.getElementById("code-view");
-
-                    viewMode.subscribe((mode) => {
-                        if (previewView && codeView) {
-                            if (mode === "preview") {
-                                previewView.style.display = "block";
-                                codeView.style.display = "none";
-                            } else {
-                                previewView.style.display = "none";
-                                codeView.style.display = "block";
-                            }
-                        }
-                    });
-                </script>
+                    viewMode === "editor" ? (
+                        <div id="code-view">
+                            <EditorCode code={raw.trim()} lang={lang} />
+                        </div>
+                    ) : (
+                        <div id="preview-view">
+                            <EditorPreview>
+                                <slot />
+                            </EditorPreview>
+                        </div>
+                    )
                 }
             </EditorShell>
         </div>

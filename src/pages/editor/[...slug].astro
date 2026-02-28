@@ -1,8 +1,6 @@
 ---
 import { getCollection, getEntry } from "astro:content";
-import ExplorerLayout from "../layouts/ExplorerLayout.astro";
-
-export const prerender = true;
+import ExplorerLayout from "../../layouts/ExplorerLayout.astro";
 
 export async function getStaticPaths() {
     const docs = await getCollection("docs");
@@ -14,7 +12,7 @@ export async function getStaticPaths() {
 let { slug } = Astro.params;
 
 if (slug === undefined) {
-    return Astro.redirect("/");
+    return Astro.redirect("/editor/welcome");
 }
 
 const doc = await getEntry("docs", slug);
@@ -22,10 +20,6 @@ const doc = await getEntry("docs", slug);
 if (!doc) {
     return Astro.redirect("/404");
 }
-
-const { Content } = await doc.render();
-
-console.log(Astro.request.url);
 ---
 
 <ExplorerLayout
@@ -33,11 +27,5 @@ console.log(Astro.request.url);
     title={doc.data.title}
     code={doc.body}
     tabs={doc.data.tabs}
-    viewMode="preview"
->
-    <div
-        class="prose max-w-none px-8 py-0 dark:prose-invert [&>:first-child]:mt-0"
-    >
-        <Content />
-    </div>
-</ExplorerLayout>
+    viewMode="editor"
+/>
