@@ -20,8 +20,6 @@ related:
   - videos/flutter-as-a-service-webinar.md
 ---
 
-# Home
-
 # Rody Davis
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Donate-Buy%20Me%20A%20Coffee-yellow.svg)](https://www.buymeacoffee.com/rodydavis)
