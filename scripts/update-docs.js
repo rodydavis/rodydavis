@@ -6,6 +6,8 @@ import ollama from 'ollama';
 import { findNearest } from '../src/utils/knn.ts';
 
 const CONTENT_DIR = path.join(process.cwd(), 'src/content/docs');
+const TAXONOMY_FILE = path.join(process.cwd(), 'scripts/taxonomy.json');
+const TAGS_FILE = path.join(process.cwd(), 'tags.txt');
 
 const MODEL_NAME = 'gemma3n';
 const EMBEDDING_MODEL_NAME = 'embeddinggemma';
@@ -47,6 +49,15 @@ async function asyncPool(poolLimit, array, iteratorFn) {
     return Promise.all(ret);
 }
 
+function normalizeTag(tag) {
+    return tag
+        .toLowerCase()
+        .replace(/\s+/g, '-') // Replace spaces with hyphens
+        .replace(/[^a-z0-z0-9\-]/g, '') // Remove everything else except hyphens and alphanumeric
+        .replace(/-+/g, '-') // Replace multiple hyphens with a single one
+        .replace(/^-+|-+$/g, ''); // Trim hyphens from ends
+}
+
 async function generateSummary(content) {
     try {
         const response = await ollama.generate({
@@ -59,6 +70,39 @@ async function generateSummary(content) {
         console.error('Error generating summary:', error.message);
         return null;
     }
+}
+
+async function generateTagsForFile(summary, content) {
+    try {
+        const response = await ollama.generate({
+            model: MODEL_NAME,
+            prompt: `Based on the following summary and content, generate 3-5 relevant tags. Tags MUST be about: product, framework, language, or genre (e.g., design, web, backend). Tags MUST NOT contain spaces and use only hyphens for separation (e.g., "flutter-dev"). Return them as a comma-separated list of lowercase strings. Do not include any other text:\n\nSummary: ${summary}\n\nContent: ${content.slice(0, 1000)}`,
+            stream: false
+        });
+        return response.response.trim().split(',')
+            .map(t => normalizeTag(t.trim()))
+            .filter(t => t.length > 0);
+    } catch (error) {
+        console.error('Error generating tags:', error.message);
+        return [];
+    }
+}
+
+
+
+async function reassignTags(taxonomy, content) {
+    const textToSearch = content.toLowerCase();
+    const foundTags = [];
+
+    for (const tag of taxonomy) {
+        const escapedTag = tag.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const regex = new RegExp(`\\b${escapedTag}\\b`, 'gi');
+
+        if (regex.test(textToSearch)) {
+            foundTags.push(tag);
+        }
+    }
+    return foundTags;
 }
 
 async function generateEmbedding(content) {
@@ -77,54 +121,101 @@ async function generateEmbedding(content) {
     }
 }
 
-async function processFile(file, force) {
+async function processFile(file, force, current, total) {
     try {
         const fileContent = await fs.readFile(file, 'utf8');
         const parsed = matter(fileContent);
         let needsUpdate = false;
 
         const relativePath = path.relative(process.cwd(), file);
+        const prefix = `[${current}/${total}]`;
 
         if (!!force || !parsed.data.summary) {
-            // console.log(`Generating summary for: ${relativePath}`);
             const summary = await generateSummary(parsed.content.slice(0, 2000));
             if (summary) {
                 parsed.data.summary = summary;
                 needsUpdate = true;
-                console.log(`Generated summary for: ${relativePath}`);
+                console.log(`${prefix} Generated summary for: ${relativePath}`);
             }
         }
 
         if (!!force || !parsed.data.embedding || Array.isArray(parsed.data.embedding)) {
-            // console.log(`Generating embedding for: ${relativePath}`);
             const embedding = await generateEmbedding(parsed.data.summary || parsed.content.slice(0, 2000));
             if (embedding) {
                 parsed.data.embedding = embedding;
                 needsUpdate = true;
-                console.log(`Generated embedding for: ${relativePath}`);
+                console.log(`${prefix} Generated embedding for: ${relativePath}`);
             }
         }
 
         if (needsUpdate) {
             const newContent = matter.stringify(parsed.content, parsed.data);
             await fs.writeFile(file, newContent);
-            console.log(`Updated: ${relativePath}`);
+            // Only log if we did more than just return the data structure
+            console.log(`${prefix} Updated (metadata): ${relativePath}`);
         }
+
+        // Return current state for global passes
+        return {
+            file,
+            summary: parsed.data.summary,
+            content: parsed.content,
+            data: parsed.data,
+            tags: parsed.data.tags || []
+        };
     } catch (err) {
         console.error(`Error processing ${file}:`, err);
+        return null;
     }
 }
 
-async function processFiles({ force }) {
+async function processFiles({ force, updateTags }) {
     const files = getMarkdownFiles(CONTENT_DIR);
     console.log(`Found ${files.length} markdown files.`);
 
-    // First pass: Generate summaries and embeddings if missing (Parallel)
-    console.log(`Processing files with concurrency limit: ${CONCURRENCY_LIMIT}...`);
-    await asyncPool(CONCURRENCY_LIMIT, files, (file) => processFile(file, force));
+    // Step 1: Collect metadata, generate summaries and embeddings
+    console.log(`\nStep 1: Processing metadata with concurrency limit: ${CONCURRENCY_LIMIT}...`);
+    let count1 = 0;
+    const fileDataItems = await asyncPool(CONCURRENCY_LIMIT, files, (file) => {
+        count1++;
+        return processFile(file, force, count1, files.length);
+    });
+    const fileData = fileDataItems.filter(item => item !== null);
 
-    // Second pass: Calculate related posts
-    console.log('Calculating related posts...');
+    // Step 2: Handle tagging based on tags.txt
+    console.log('\nStep 2: Syncing tags with tags.txt...');
+    let taxonomy = [];
+    if (existsSync(TAGS_FILE)) {
+        taxonomy = readFileSync(TAGS_FILE, 'utf8').split('\n').map(t => t.trim()).filter(t => t.length > 0);
+        console.log(`> Loaded ${taxonomy.length} tags from ${TAGS_FILE}`);
+    } else {
+        console.warn(`> WARNING: ${TAGS_FILE} not found. Skipping tagging.`);
+    }
+
+    if (taxonomy.length > 0) {
+        console.log('> Applying tags to all posts...');
+        let count3 = 0;
+        await asyncPool(CONCURRENCY_LIMIT, fileData, async (item) => {
+            count3++;
+            const newTags = await reassignTags(taxonomy, item.content);
+            const currentTags = (item.tags || []).slice().sort();
+            const tagsToSet = newTags.slice().sort();
+            const tagsChanged = JSON.stringify(currentTags) !== JSON.stringify(tagsToSet);
+
+            if (tagsChanged) {
+                item.data.tags = newTags;
+                const newContent = matter.stringify(item.content, item.data);
+                await fs.writeFile(item.file, newContent);
+                console.log(`  [${count3}/${fileData.length}] Updated tags for ${path.relative(CONTENT_DIR, item.file)}: ${newTags.join(', ')}`);
+            } else if (count3 % 50 === 0 || count3 === fileData.length) {
+                console.log(`  Progress: ${count3}/${fileData.length} files checked`);
+            }
+        });
+    }
+
+    // Step 4: Calculate related posts
+    console.log('\nStep 4: Calculating related posts...');
+    let count4 = 0;
 
     // 1. collect all embeddings
     const embeddingsMap = new Map();
@@ -154,6 +245,7 @@ async function processFiles({ force }) {
     // We can just iterate or parallelize the write back.
 
     await asyncPool(CONCURRENCY_LIMIT, Array.from(embeddingsMap.entries()), async ([relativePath, embedding]) => {
+        count4++;
         try {
             const matches = findNearest(embedding, embeddingsMap, 6); // Get 6, because top 1 is likely itself
 
@@ -176,15 +268,19 @@ async function processFiles({ force }) {
                 parsed.data.related = relatedPaths;
                 const newContent = matter.stringify(parsed.content, parsed.data);
                 await fs.writeFile(absolutePath, newContent);
-                console.log(`Updated related posts for: ${relativePath}`);
+                console.log(`  [${count4}/${embeddingsMap.size}] Updated related posts for: ${relativePath}`);
+            } else if (count4 % 20 === 0 || count4 === embeddingsMap.size) {
+                console.log(`  Progress: ${count4}/${embeddingsMap.size} related check complete`);
             }
         } catch (err) {
             console.error(`Error updating related posts for ${relativePath}:`, err);
         }
     });
+    console.log('\nAll documentation tasks complete!');
 }
 
 const args = process.argv.slice(2);
 processFiles({
     force: args.includes('--force'),
+    updateTags: args.includes('--tags'),
 }).catch(console.error);

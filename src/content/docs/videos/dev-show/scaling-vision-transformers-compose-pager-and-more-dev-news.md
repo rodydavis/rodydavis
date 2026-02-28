@@ -3,9 +3,9 @@ title: 'Scaling vision transformers, Compose Pager, and more dev news!'
 date: '2023-04-10T00:00:00.000Z'
 draft: false
 tags:
-  - youtube
   - video
-  - media
+  - youtube
+  - web
   - google
 summary: >-
   Google Developer News Show: Learn about scaling vision transformers, Compose
@@ -16,13 +16,13 @@ related:
   - >-
     videos/dev-show/new-to-the-web-try-out-android-predictive-back-gestures-and-more-dev-news.md
   - >-
-    videos/ai/leverage-gemini-in-your-android-apps-global-gamer-challenge-and-more-dev-news.md
-  - >-
-    videos/dev-show/jetpack-watch-face-library-datastream-is-ga-bazel-con-recap-and-more-dev-news.md
-  - >-
     videos/dev-show/compression-streams-support-on-all-browsers-androids-new-credential-manager-and-more-dev-news.md
   - >-
-    videos/ai/gemma-now-available-in-kerasnlp-collection-signal-input-in-developer-preview-and-more-dev-news.md
+    videos/ai/leverage-gemini-in-your-android-apps-global-gamer-challenge-and-more-dev-news.md
+  - >-
+    videos/dev-show/announcing-tensorstore-chrome-root-program-and-more-dev-news.md
+  - >-
+    videos/dev-show/jetpack-watch-face-library-datastream-is-ga-bazel-con-recap-and-more-dev-news.md
 ---
 
 # Scaling vision transformers, Compose Pager, and more dev news!

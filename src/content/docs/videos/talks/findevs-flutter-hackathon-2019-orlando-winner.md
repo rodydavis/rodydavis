@@ -3,10 +3,11 @@ title: Findevs - Flutter Hackathon 2019 - Orlando Winner
 date: '2019-06-03T00:00:00.000Z'
 draft: false
 tags:
-  - youtube
+  - flutter
   - video
-  - media
-  - talks
+  - youtube
+  - github
+  - web
 summary: >-
   Findevs is a Flutter application developed for the Flutter Hackathon 2019 in
   Orlando, showcasing innovative mobile development.
@@ -17,8 +18,9 @@ related:
   - videos/talks/moving-an-angular-app-to-flutter-web-devfest-fl-2019.md
   - >-
     videos/interviews/speaker-interview-rody-davis-david-khourshid-and-joo-luiz-s-kestering.md
+  - >-
+    videos/talks/women-in-machine-learning-symposium-flutter-forward-more-dev-news.md
   - videos/flutter/flutter-plugin-live-coding-native-color-picker.md
-  - lit/making-a-piano.md
 ---
 
 # Findevs - Flutter Hackathon 2019 - Orlando Winner

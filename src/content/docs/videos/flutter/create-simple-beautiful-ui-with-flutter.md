@@ -3,9 +3,11 @@ title: 'Create simple, beautiful UI with Flutter'
 date: '2022-05-11T00:00:00.000Z'
 draft: false
 tags:
-  - youtube
+  - flutter
   - video
-  - media
+  - youtube
+  - web
+  - google
 summary: >-
   Learn how to create beautiful and engaging user interfaces with Flutter using
   simple, incremental design techniques in this Google I/O 2022 workshop.
@@ -15,9 +17,9 @@ related:
   - videos/flutter/rody-davis-building-adaptive-uiux-in-flutter.md
   - >-
     videos/talks/5-things-you-can-do-to-prepare-your-app-for-large-screens-session.md
+  - videos/take-5/responsive-design-flutter.md
   - videos/antigravity/how-to-build-with-flutter-and-google-antigravity.md
-  - videos/take-5/adaptive-dialogs-flutter.md
-  - videos/talks/space-apps-orlando-2019-space-curiosity.md
+  - videos/flutter/material-3-from-design-to-deployment.md
 ---
 
 # Create simple, beautiful UI with Flutter
