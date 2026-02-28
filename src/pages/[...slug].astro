@@ -11,7 +11,7 @@ export async function getStaticPaths() {
     }));
 }
 
-const { slug } = Astro.params;
+let { slug } = Astro.params;
 
 if (slug === undefined) {
     return Astro.redirect("/");
