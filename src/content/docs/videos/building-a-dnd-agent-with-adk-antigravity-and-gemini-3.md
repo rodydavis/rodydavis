@@ -7,6 +7,8 @@ tags:
   - youtube
   - video
   - media
+  - podcast
+  - tech-walks
 summary: >-
   Learn how to build a D&D campaign agent using Google's Agent Development Kit
   (ADK) and Gemini 3, leveraging AI to generate playable adventures grounded in
@@ -19,7 +21,8 @@ related:
     videos/building-ai-powered-experiences-with-firebase-studio-and-firebase-platform-rody-davis.md
   - videos/compile-sqlite-from-source-to-wasm-in-firebase-studio.md
   - videos/offline-vector-search-with-sqlite-and-embeddinggemma.md
-  - ai/vector-recommendations.md
+  - >-
+    videos/talking-about-skills-optimizing-prompts-and-building-mcp-servers-in-apps.md
 ---
 
 # Building a DND Agent with ADK, Antigravity, and Gemini 3

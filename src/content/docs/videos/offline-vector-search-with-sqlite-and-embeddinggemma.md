@@ -19,8 +19,9 @@ related:
     videos/building-ai-powered-experiences-with-firebase-studio-and-firebase-platform-rody-davis.md
   - >-
     videos/chatting-with-a-googler-rodydavis-google-flutter-firebase-developers-ai-vibecoding.md
+  - >-
+    videos/talking-about-skills-optimizing-prompts-and-building-mcp-servers-in-apps.md
   - videos/building-a-dnd-agent-with-adk-antigravity-and-gemini-3.md
-  - videos/interview-with-rody-davis-firebase.md
 ---
 
 # Offline vector search with SQLite and EmbeddingGemma

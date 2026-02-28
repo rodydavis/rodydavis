@@ -15,7 +15,8 @@ related:
   - videos/interview-with-rody-davis-firebase.md
   - videos/from-prototype-to-ide-in-firebase-studio.md
   - videos/flutter-desktopweb-and-vr.md
-  - videos/flutter-adaptive-ui-and-web-assembly.md
+  - >-
+    videos/chatting-with-a-googler-rodydavis-google-flutter-firebase-developers-ai-vibecoding.md
 ---
 
 # About Me

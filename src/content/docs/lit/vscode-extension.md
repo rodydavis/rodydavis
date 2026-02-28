@@ -22,6 +22,9 @@ related:
   - lit/figma-interop.md
   - lit/rich-text-editor.md
   - web/html-code-sandbox.md
+tabs:
+  - label: Source Code
+    href: https://github.com/rodydavis/lit-vscode-extension
 ---
 
 # Lit and VSCode Extensions

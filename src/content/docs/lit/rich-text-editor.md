@@ -23,6 +23,11 @@ related:
   - lit/monaco-editor.md
   - lit/codemirror-dynamic-theme.md
   - lit/vscode-extension.md
+tabs:
+  - label: Live Demo
+    href: https://rodydavis.github.io/lit-html-editor/
+  - label: Source Code
+    href: https://github.com/rodydavis/lit-html-editor
 ---
 
 # Building a Rich Text Editor with Lit

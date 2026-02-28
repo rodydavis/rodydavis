@@ -15,9 +15,9 @@ embedding: >-
 related:
   - flutter/multi-touch-canvas.md
   - flutter/automation.md
+  - videos/flutter-plugin-live-coding-native-color-picker.md
   - flutter/signals-and-hooks.md
   - flutter/cheat-sheet.md
-  - web/preact-signals.md
 ---
 
 # Introducing the signals_hooks package for Flutter hooks and signals

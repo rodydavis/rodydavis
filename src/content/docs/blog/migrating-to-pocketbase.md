@@ -23,8 +23,8 @@ related:
   - dart/html-web-components.md
   - web/html-code-sandbox.md
   - lit/draggable-dom.md
+  - videos/building-with-antigravity-gemini-cli-and-stitch.md
   - lit/codemirror-dynamic-theme.md
-  - videos/import-existing-projects-into-firebase-studio.md
 ---
 
 # Migrating my Blog to PocketBase

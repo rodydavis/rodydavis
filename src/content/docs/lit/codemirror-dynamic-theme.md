@@ -23,6 +23,11 @@ related:
   - lit/draggable-dom.md
   - web/html-code-sandbox.md
   - lit/figma-interop.md
+tabs:
+  - label: Live Demo
+    href: 'https://rodydavis.github.io/codemirror-dynamic-theme/'
+  - label: Source Code
+    href: 'https://github.com/rodydavis/codemirror-dynamic-theme'
 ---
 
 # Dynamic Themes with CodeMirror

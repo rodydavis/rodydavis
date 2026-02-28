@@ -23,6 +23,11 @@ related:
   - flutter/lit-interop.md
   - lit/rich-text-editor.md
   - lit/figma-interop.md
+tabs:
+  - label: Live Demo
+    href: https://rodydavis.github.io/lit-sheet-music/
+  - label: Source Code
+    href: https://github.com/rodydavis/lit-sheet-music
 ---
 
 # Lit Sheet Music

@@ -19,8 +19,8 @@ related:
   - flutter/graph-database.md
   - sqlite/no-sql.md
   - videos/compile-sqlite-from-source-to-wasm-in-firebase-studio.md
+  - videos/take-5-internationalization-flutter.md
   - sqlite/fts5.md
-  - sqlite/key-value.md
 ---
 
 # How to Export SQLite Tables to CREATE Statements

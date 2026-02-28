@@ -22,6 +22,11 @@ related:
   - lit/codemirror-dynamic-theme.md
   - lit/figma-interop.md
   - web/html-code-sandbox.md
+tabs:
+  - label: Live Demo
+    href: https://rodydavis.github.io/lit-force-graph/
+  - label: Source Code
+    href: https://github.com/rodydavis/lit-force-graph
 ---
 
 # 2D or 3D Force Graph with Lit

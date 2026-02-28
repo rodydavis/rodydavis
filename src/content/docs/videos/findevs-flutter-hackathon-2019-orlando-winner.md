@@ -17,8 +17,8 @@ related:
   - videos/moving-an-angular-app-to-flutter-web-devfest-fl-2019.md
   - >-
     videos/speaker-interview-rody-davis-david-khourshid-and-joo-luiz-s-kestering.md
+  - videos/flutter-plugin-live-coding-native-color-picker.md
   - lit/making-a-piano.md
-  - flutter/getting-started.md
 ---
 
 # Findevs - Flutter Hackathon 2019 - Orlando Winner

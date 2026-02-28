@@ -20,9 +20,9 @@ embedding: >-
 related:
   - dart/export-sqlite.md
   - videos/how-to-build-with-flutter-and-google-antigravity.md
+  - videos/take-5-your-first-flutter-project.md
+  - videos/take-5-responsive-design-flutter.md
   - flutter/host-rest-api.md
-  - flutter/web-deep-linking.md
-  - flutter/one-click-release.md
 ---
 
 # How to build a graph database with Flutter

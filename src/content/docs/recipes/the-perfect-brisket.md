@@ -18,7 +18,7 @@ related:
   - flutter/xcode-cloud.md
   - lit/figma-interop.md
   - flutter/one-click-release.md
-  - dart/palm-2-api.md
+  - videos/take-5-master-detail-scaffold-flutter.md
 ---
 
 # The Perfect Brisket

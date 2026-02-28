@@ -15,9 +15,9 @@ embedding: >-
 related:
   - videos/rody-davis-building-adaptive-uiux-in-flutter.md
   - videos/how-to-build-with-flutter-and-google-antigravity.md
+  - videos/take-5-adaptive-dialogs-flutter.md
   - videos/design-at-scale-with-web-components-and-ducks.md
   - videos/firebase-after-hours-14-live-vibe-coding-with-firebase-studio.md
-  - videos/start-prototyping-with-firebase-studio.md
 ---
 
 # 5 things you can do to prepare your app for large screens | Session

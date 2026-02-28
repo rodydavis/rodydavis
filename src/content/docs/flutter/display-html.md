@@ -19,9 +19,8 @@ related:
   - flutter/native-cross-platform.md
   - flutter/ssr-rfw.md
   - flutter/web-deep-linking.md
+  - videos/take-5-responsive-design-flutter.md
   - flutter/web-push-notifications.md
-  - >-
-    videos/introducing-the-signals_hooks-package-for-flutter-hooks-and-signals.md
 ---
 
 # Displaying HTML in Flutter

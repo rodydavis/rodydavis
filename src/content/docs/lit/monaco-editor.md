@@ -20,6 +20,11 @@ related:
   - lit/rich-text-editor.md
   - lit/figma-interop.md
   - web/html-code-sandbox.md
+tabs:
+  - label: Live Demo
+    href: https://rodydavis.github.io/lit-code-editor/
+  - label: Source Code
+    href: https://github.com/rodydavis/lit-code-editor
 ---
 
 # Lit and Monaco Editor

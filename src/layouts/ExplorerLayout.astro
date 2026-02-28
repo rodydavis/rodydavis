@@ -15,9 +15,13 @@ interface Props {
     activePostId?: string;
     code?: string;
     lang?: string;
+    tabs?: {
+        label: string;
+        href: string;
+    }[];
 }
 
-const { title, activePostId, code, lang = "md" } = Astro.props;
+const { title, activePostId, code, lang = "md", tabs } = Astro.props;
 
 // Data fetching for Explorer
 const docs = await getCollection("docs");
@@ -82,7 +86,7 @@ const defaultOpen = false;
             <SettingsManager client:load />
 
             {/* Editor Area */}
-            <EditorShell slug={activePostId}>
+            <EditorShell slug={activePostId} tabs={tabs}>
                 {
                 <div id="preview-view" style="display: block;">
                     <EditorPreview>

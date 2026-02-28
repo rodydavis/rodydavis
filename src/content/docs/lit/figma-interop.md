@@ -26,6 +26,9 @@ related:
   - lit/codemirror-dynamic-theme.md
   - lit/monaco-editor.md
   - web/html-code-sandbox.md
+tabs:
+  - label: Source Code
+    href: https://github.com/rodydavis/figma_lit_example
 ---
 
 # Lit and Figma

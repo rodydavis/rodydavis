@@ -21,9 +21,9 @@ related:
   - >-
     videos/introducing-the-signals_hooks-package-for-flutter-hooks-and-signals.md
   - flutter/snippets/stream-widget.md
+  - videos/take-5-responsive-design-flutter.md
   - flutter/git-worktree-channels.md
   - videos/rody-davis-building-adaptive-uiux-in-flutter.md
-  - flutter/signals-and-hooks.md
 ---
 
 # Async Preact Signals

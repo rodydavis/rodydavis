@@ -18,9 +18,9 @@ embedding: >-
 related:
   - flutter/snippets/master-detail-view.md
   - flutter/multi-touch-canvas.md
+  - videos/flutter-plugin-live-coding-native-color-picker.md
   - flutter/snippets/markdown-view-material-3.md
   - flutter/getting-started.md
-  - flutter/snippets/stream-widget.md
 ---
 
 # Flutter Input Output Preview

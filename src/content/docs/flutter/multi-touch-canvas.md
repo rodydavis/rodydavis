@@ -20,9 +20,9 @@ related:
   - >-
     videos/introducing-the-signals_hooks-package-for-flutter-hooks-and-signals.md
   - flutter/snippets/input-output-preview.md
+  - videos/flutter-plugin-live-coding-native-color-picker.md
   - flutter/snippets/infinite-canvas.md
   - flutter/getting-started.md
-  - flutter/automation.md
 ---
 
 # Multi-touch Canvas with Flutter

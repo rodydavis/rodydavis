@@ -19,7 +19,7 @@ related:
   - >-
     videos/speaker-interview-rody-davis-david-khourshid-and-joo-luiz-s-kestering.md
   - videos/flutter-adaptive-ui-and-web-assembly.md
-  - videos/flutter-as-a-service-webinar.md
+  - videos/building-the-flutter-widget-maker-and-storyboard.md
 ---
 
 # 60 - Flutter with Rody Davis

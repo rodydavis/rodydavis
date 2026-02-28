@@ -25,7 +25,7 @@ related:
   - flutter/ssr-rfw.md
   - flutter/web-deep-linking.md
   - backend/pocketbase-cloudrun.md
-  - videos/compile-sqlite-from-source-to-wasm-in-firebase-studio.md
+  - videos/take-5-responsive-design-flutter.md
 ---
 
 # How to Run Astro SSR and PocketBase on the Same Server

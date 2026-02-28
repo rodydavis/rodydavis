@@ -24,6 +24,11 @@ related:
   - lit/html-table.md
   - lit/monaco-editor.md
   - lit/vscode-extension.md
+tabs:
+  - label: Live Demo
+    href: https://rodydavis.github.io/lit-draggable-dom/
+  - label: Source Code
+    href: https://github.com/rodydavis/lit-draggable-dom
 ---
 
 # Draggable DOM with Lit

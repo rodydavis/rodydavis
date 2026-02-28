@@ -22,6 +22,11 @@ related:
   - lit/rich-text-editor.md
   - lit/draggable-dom.md
   - lit/figma-interop.md
+tabs:
+  - label: Live Demo
+    href: https://rodydavis.github.io/lit-html-table/
+  - label: Source Code
+    href: https://github.com/rodydavis/lit-html-table
 ---
 
 # JSON to HTML Table with Lit

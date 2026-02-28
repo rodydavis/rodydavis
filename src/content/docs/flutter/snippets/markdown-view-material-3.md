@@ -18,10 +18,10 @@ embedding: >-
 related:
   - web/snippets/m3-to-m2-adapter.md
   - flutter/snippets/input-output-preview.md
+  - videos/flutter-plugin-live-coding-native-color-picker.md
   - flutter/display-html.md
   - >-
     videos/introducing-the-signals_hooks-package-for-flutter-hooks-and-signals.md
-  - flutter/snippets/master-detail-view.md
 ---
 
 # Flutter Markdown View with Material 3

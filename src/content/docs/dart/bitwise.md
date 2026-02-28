@@ -16,9 +16,9 @@ embedding: >-
 related:
   - dart/function-invoking.md
   - dart/truthy.md
+  - videos/take-5-shared-preferences-flutter.md
   - flutter/web-deep-linking.md
   - flutter/snippets/lightweight-animations.md
-  - dart/print-multiple-objects.md
 ---
 
 # How to do Bitwise operations in Dart

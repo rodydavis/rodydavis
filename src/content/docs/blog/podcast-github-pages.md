@@ -22,7 +22,7 @@ related:
   - videos/import-existing-projects-into-firebase-studio.md
   - backend/pocketbase-cloudrun.md
   - flutter/automation.md
-  - lit/figma-interop.md
+  - videos/building-with-antigravity-gemini-cli-and-stitch.md
 ---
 
 # How To Host Your Podcast For Free On Github Pages

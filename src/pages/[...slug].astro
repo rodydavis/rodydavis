@@ -32,7 +32,12 @@ if (!doc) {
 const { Content } = await doc.render();
 ---
 
-<ExplorerLayout activePostId={doc.slug} title={doc.data.title} code={doc.body}>
+<ExplorerLayout
+    activePostId={doc.slug}
+    title={doc.data.title}
+    code={doc.body}
+    tabs={doc.data.tabs}
+>
     <div
         class="prose max-w-none px-8 py-0 dark:prose-invert [&>:first-child]:mt-0"
     >

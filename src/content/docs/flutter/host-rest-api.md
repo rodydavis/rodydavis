@@ -21,8 +21,8 @@ related:
   - flutter/one-click-release.md
   - flutter/snippets/master-detail-view.md
   - flutter/getting-started.md
+  - videos/take-5-your-first-flutter-project.md
   - flutter/cheat-sheet.md
-  - flutter/fastlane.md
 ---
 
 # Host your Flutter Project as a REST API

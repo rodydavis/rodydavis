@@ -1,14 +1,18 @@
 ---
-import { FileCode, Eye, X } from "lucide-react";
+import { FileCode, Eye, X, ExternalLink, Github, Globe } from "lucide-react";
 import Breadcrumbs from "./Breadcrumbs.astro";
 import ViewToggle from "./ViewToggle.tsx";
 
 interface Props {
     slug?: string;
     title?: string;
+    tabs?: {
+        label: string;
+        href: string;
+    }[];
 }
 
-const { slug, title } = Astro.props;
+const { slug, title, tabs } = Astro.props;
 const pathname = Astro.url.pathname;
 const isWelcome = pathname === "/";
 const filename =
@@ -41,6 +45,31 @@ const filename =
                 )
             }
         </div>
+        {
+            tabs?.map((tab) => (
+                <a
+                    href={tab.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="group flex items-center min-w-[120px] max-w-[200px] h-[35px] border-r border-[var(--border-main)] px-3 cursor-pointer bg-[var(--bg-sidebar)] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors"
+                >
+                    <span class="mr-2 opacity-70">
+                        {tab.label.toLowerCase().includes("source") ? (
+                            <Github size={14} />
+                        ) : tab.label.toLowerCase().includes("demo") ||
+                          tab.label.toLowerCase().includes("live") ? (
+                            <Globe size={14} />
+                        ) : (
+                            <ExternalLink size={14} />
+                        )}
+                    </span>
+                    <span class="text-xs truncate flex-1">{tab.label}</span>
+                    <span class="ml-2 p-0.5 rounded-md text-inherit flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <ExternalLink size={14} />
+                    </span>
+                </a>
+            ))
+        }
     </div>
 
     {/* Breadcrumbs & Tools */}

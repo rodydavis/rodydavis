@@ -19,7 +19,7 @@ related:
   - flutter/lit-interop.md
   - flutter/web-push-notifications.md
   - flutter/ssr-rfw.md
-  - flutter/automation.md
+  - videos/flutter-adaptive-ui-and-web-assembly.md
 ---
 
 # How to build a native cross platform project with Flutter

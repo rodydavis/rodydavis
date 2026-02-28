@@ -18,8 +18,8 @@ related:
   - flutter/signals-and-hooks.md
   - flutter/ssr-rfw.md
   - flutter/snippets/lightweight-animations.md
+  - videos/take-5-responsive-design-flutter.md
   - flutter/snippets/master-detail-view.md
-  - videos/rody-davis-building-adaptive-uiux-in-flutter.md
 ---
 
 # Flutter Stream Widget

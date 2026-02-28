@@ -21,8 +21,13 @@ related:
   - flutter/one-click-release.md
   - flutter/fastlane.md
   - flutter/xcode-cloud.md
-  - flutter/host-rest-api.md
-  - flutter/getting-started.md
+  - videos/road-to-flutter-city-rody-davis.md
+  - videos/take-5-your-first-flutter-project.md
+tabs:
+  - label: Live Demo
+    href: 'https://pocketpiano.app/'
+  - label: Source Code
+    href: 'https://github.com/rodydavis/flutter_piano'
 ---
 
 # Building A Piano with Flutter

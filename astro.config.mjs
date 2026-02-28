@@ -51,7 +51,6 @@ export default defineConfig({
     "/automate-flutter-apps": "/flutter/automation",
     "/podcast-github-pages": "/blog/podcast-github-pages",
     "/pocketbase-cloudrun": "/backend/pocketbase-cloudrun",
-    "/privacy": "/legal/privacy",
     "/fastlane-and-flutter": "/flutter/fastlane",
     "/export-sqlite-dart": "/dart/export-sqlite",
     "/html-code-sandbox": "/web/html-code-sandbox",

@@ -21,8 +21,8 @@ related:
   - flutter/snippets/stream-widget.md
   - flutter/signals-and-hooks.md
   - flutter/snippets/infinite-canvas.md
-  - videos/rody-davis-building-adaptive-uiux-in-flutter.md
   - videos/building-the-flutter-widget-maker-and-storyboard.md
+  - videos/flutter-plugin-live-coding-native-color-picker.md
 ---
 
 # Lightweight Flutter Animations

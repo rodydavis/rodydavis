@@ -16,8 +16,8 @@ related:
   - videos/findevs-flutter-hackathon-2019-orlando-winner.md
   - videos/moving-an-angular-app-to-flutter-web-devfest-fl-2019.md
   - videos/rody-davis-building-adaptive-uiux-in-flutter.md
-  - videos/flutter-adaptive-ui-and-web-assembly.md
   - videos/how-to-build-with-flutter-and-google-antigravity.md
+  - videos/flutter-desktopweb-and-vr.md
 ---
 
 # Space Apps Orlando 2019 - Space Curiosity

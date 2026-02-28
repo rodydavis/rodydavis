@@ -18,8 +18,8 @@ related:
   - >-
     videos/chatting-with-a-googler-rodydavis-google-flutter-firebase-developers-ai-vibecoding.md
   - videos/flutter-desktopweb-and-vr.md
+  - videos/building-the-flutter-widget-maker-and-storyboard.md
   - videos/flutter-state-management-and-dart-nullability-feat-simon-lightfoot.md
-  - videos/interview-with-rody-davis-firebase.md
 ---
 
 # Speaker Interview - Rody Davis, David Khourshid, and João Luiz S Kestering
