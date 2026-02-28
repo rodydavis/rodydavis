@@ -1,9 +1,5 @@
 ---
 title: Dynamic Themes with CodeMirror
-description: >
-  Learn how to create a Lit web component with CodeMirror, dynamically themed
-  using Material Design's color utilities, for a customizable code editing
-  experience.
 date: '2025-01-19 23:52:54.455Z'
 draft: false
 tags:

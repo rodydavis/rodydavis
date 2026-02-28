@@ -1,9 +1,5 @@
 ---
 title: Building a HTML Element Sandbox with Lit
-description: >
-  Learn how to build a Lit web component to create a dynamic HTML element
-  sandbox with live updates, perfect for experimenting with and showcasing web
-  components.
 date: '2025-01-19 06:17:00.655Z'
 draft: false
 tags:

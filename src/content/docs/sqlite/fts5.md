@@ -1,9 +1,5 @@
 ---
 title: How to do Full Text Search with SQLite
-description: >
-  Learn how to supercharge your SQLite databases with full-text search
-  capabilities using the built-in fts5 extension, enabling efficient and
-  powerful querying with the `MATCH` keyword.
 date: '2025-01-18 20:49:31.481Z'
 draft: false
 tags:
@@ -17,7 +13,7 @@ related:
   - ai/vector-recommendations.md
   - dart/export-sqlite.md
   - sqlite/no-sql.md
-  - videos/compile-sqlite-from-source-to-wasm-in-firebase-studio.md
+  - videos/firebase-studio/compile-sqlite-from-source-to-wasm-in-firebase-studio.md
   - lit/vscode-extension.md
 ---
 

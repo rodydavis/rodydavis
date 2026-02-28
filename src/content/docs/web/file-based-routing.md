@@ -1,8 +1,5 @@
 ---
 title: File Based Routing for Static Sites
-description: >
-  Learn how to create a multi-page static site with file-based routing using
-  TypeScript, allowing for quick updates and easy content management.
 date: '2025-01-19 23:59:39.058Z'
 draft: false
 tags:
@@ -21,7 +18,7 @@ related:
   - flutter/web-deep-linking.md
   - lit/figma-interop.md
   - flutter/xcode-cloud.md
-  - videos/moving-an-angular-app-to-flutter-web-devfest-fl-2019.md
+  - videos/talks/moving-an-angular-app-to-flutter-web-devfest-fl-2019.md
   - flutter/ssr-rfw.md
 ---
 

@@ -1,8 +1,5 @@
 ---
 title: Displaying HTML in Flutter
-description: >
-  Easily display and interact with HTML content in your Flutter app using the
-  `easy_web_view` package, which supports both web and mobile platforms.
 date: '2025-01-19 08:08:22.142Z'
 draft: false
 tags:
@@ -19,7 +16,7 @@ related:
   - flutter/native-cross-platform.md
   - flutter/ssr-rfw.md
   - flutter/web-deep-linking.md
-  - videos/take-5-responsive-design-flutter.md
+  - videos/take-5/responsive-design-flutter.md
   - flutter/web-push-notifications.md
 ---
 

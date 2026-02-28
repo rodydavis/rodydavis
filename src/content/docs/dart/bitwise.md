@@ -1,9 +1,5 @@
 ---
 title: How to do Bitwise operations in Dart
-description: >
-  Explore Dart's bitwise operations for both integers and booleans, including
-  AND, OR (inclusive & exclusive), NAND, NOR, and XNOR, with practical code
-  examples.
 date: '2025-01-19 02:35:57.588Z'
 draft: false
 tags:
@@ -16,7 +12,7 @@ embedding: >-
 related:
   - dart/function-invoking.md
   - dart/truthy.md
-  - videos/take-5-shared-preferences-flutter.md
+  - videos/take-5/shared-preferences-flutter.md
   - flutter/web-deep-linking.md
   - flutter/snippets/lightweight-animations.md
 ---

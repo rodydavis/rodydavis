@@ -1,9 +1,5 @@
 ---
 title: How To Send Push Notifications on Flutter Web (FCM)
-description: >
-  Learn how to implement Firebase Cloud Messaging (FCM) in your Flutter web app
-  with this guide, covering service worker setup, helper methods, and testing to
-  enable push notifications.
 date: '2025-01-20 01:11:12.099Z'
 draft: false
 tags:

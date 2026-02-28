@@ -1,8 +1,5 @@
 ---
 title: Building a Rich Text Editor with Lit
-description: >
-  Learn how to build a rich text editor using a Lit web component, complete with
-  a toolbar for formatting text, links, and styles.
 date: '2025-01-19 07:04:52.222Z'
 draft: false
 tags:

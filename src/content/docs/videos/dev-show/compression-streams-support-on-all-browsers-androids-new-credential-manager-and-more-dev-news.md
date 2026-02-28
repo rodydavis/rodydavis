@@ -1,0 +1,51 @@
+---
+title: >-
+  Compression Streams support on all browsers, Android’s New Credential Manager,
+  and more dev news!
+date: '2023-11-07T00:00:00.000Z'
+draft: false
+tags:
+  - youtube
+  - video
+  - media
+  - google
+summary: >-
+  Google Developer News Show: Compression Streams across browsers, Android's new
+  Credential Manager with passkeys, and developer workflow solutions.
+embedding: >-
+  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
+related:
+  - >-
+    videos/dev-show/new-to-the-web-try-out-android-predictive-back-gestures-and-more-dev-news.md
+  - >-
+    videos/talks/google-io-2023-passkeys-passwordless-future-and-more-dev-news.md
+  - >-
+    videos/ai/leverage-gemini-in-your-android-apps-global-gamer-challenge-and-more-dev-news.md
+  - >-
+    videos/dev-show/scaling-vision-transformers-compose-pager-and-more-dev-news.md
+  - videos/dev-show/privacy-sandbox-demos-pixel-devices-and-more-dev-news.md
+---
+
+# Compression Streams support on all browsers, Android’s New Credential Manager, and more dev news!
+
+<div class="video-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/RiVJzlTdD68" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+## Description
+
+TL;DR 366  | The Google Developer News Show
+
+0:08 -  Compression Streams support on all browsers → https://goo.gle/3QOMNLd 
+0:27 - Android with Credential Manager and passkeys → https://goo.gle/3Mu3hWv 
+0:57 - More ways for users to identify independently security tested apps on Google Play → https://goo.gle/4632HWD 
+1:25  - Developer solutions: Unlock and simplify your workflow → https://goo.gle/47ppAVp 
+
+Here to bring you the latest developer news from across Google is Rody Davis. Tune in every week for a new episode, and let us know what you think of the latest announcements in the comments below.
+
+Follow Google for Developers on Instagram → https://goo.gle/googledevs
+
+Watch more #DevShow → https://goo.gle/GDevShow
+Subscribe to Google for Developers → https://goo.gle/developers
+
+#Google #Developers

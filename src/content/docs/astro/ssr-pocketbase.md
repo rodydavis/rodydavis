@@ -1,9 +1,5 @@
 ---
 title: How to Run Astro SSR and PocketBase on the Same Server
-description: >
-  Learn how to host PocketBase and an Astro SSR application on the same server,
-  using PocketBase's Go integration and a reverse proxy to delegate requests to
-  Astro for dynamic web content.
 date: '2025-01-18 22:05:53.055Z'
 draft: false
 tags:
@@ -25,7 +21,7 @@ related:
   - flutter/ssr-rfw.md
   - flutter/web-deep-linking.md
   - backend/pocketbase-cloudrun.md
-  - videos/take-5-responsive-design-flutter.md
+  - videos/take-5/responsive-design-flutter.md
 ---
 
 # How to Run Astro SSR and PocketBase on the Same Server

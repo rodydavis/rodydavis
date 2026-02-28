@@ -1,8 +1,5 @@
 ---
 title: 2D or 3D Force Graph with Lit
-description: >
-  Learn how to create interactive 2D and 3D force graphs using Lit, a
-  lightweight web component library, with this step-by-step tutorial.
 date: '2025-01-19 06:03:11.263Z'
 draft: false
 tags:

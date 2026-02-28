@@ -1,9 +1,5 @@
 ---
 title: Lit Sheet Music
-description: >
-  Learn how to create a Lit web component that renders MusicXML using
-  OpenSheetMusicDisplay, allowing you to display sheet music dynamically from a
-  source attribute or inline XML.
 date: '2025-01-20 02:46:46.248Z'
 draft: false
 tags:

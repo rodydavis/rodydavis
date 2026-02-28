@@ -1,9 +1,5 @@
 ---
 title: Creating Your First Flutter Project
-description: >
-  Dive into the world of Flutter, Google's UI toolkit, and learn how to build
-  cross-platform apps with ease using this introductory guide and accompanying
-  "Flutter Take 5" video series.
 date: '2025-01-19 07:34:27.436Z'
 draft: false
 tags:

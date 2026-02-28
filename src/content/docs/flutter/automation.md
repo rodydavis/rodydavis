@@ -1,9 +1,5 @@
 ---
 title: Automate Flutter App Releases
-description: >
-  Automate your Flutter app releases to beta or production with this handy shell
-  script that handles version bumping, formatting, cleaning, rebuilding, and
-  deployment via Fastlane.
 date: '2025-01-19 06:09:34.328Z'
 draft: false
 tags:

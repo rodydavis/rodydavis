@@ -1,9 +1,5 @@
 ---
 title: Building A Piano with Flutter
-description: >
-  Build a Tiny Piano in Flutter: Learn how to create a fully functional, Flutter
-  Create contest-winning piano app using just 5032 bytes of Dart code, complete
-  with MIDI support and customizable features.
 date: '2025-01-19 06:48:38.847Z'
 draft: false
 tags:
@@ -21,8 +17,8 @@ related:
   - flutter/one-click-release.md
   - flutter/fastlane.md
   - flutter/xcode-cloud.md
-  - videos/road-to-flutter-city-rody-davis.md
-  - videos/take-5-your-first-flutter-project.md
+  - videos/talks/road-to-flutter-city-rody-davis.md
+  - videos/take-5/your-first-flutter-project.md
 tabs:
   - label: Live Demo
     href: 'https://pocketpiano.app/'

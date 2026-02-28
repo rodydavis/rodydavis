@@ -1,8 +1,5 @@
 ---
 title: Lit and Monaco Editor
-description: >
-  Learn how to create a Lit web component that wraps the Monaco Editor (powering
-  VSCode) to add a fully functional code editor to your web applications.
 date: '2025-01-20 02:32:31.800Z'
 draft: false
 tags:

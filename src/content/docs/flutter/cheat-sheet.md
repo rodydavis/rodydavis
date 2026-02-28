@@ -1,9 +1,5 @@
 ---
 title: Flutter Terminal Cheat Sheet
-description: >
-  This post provides a handy collection of Flutter commands and scripts for web
-  development, package creation, troubleshooting, testing, and more,
-  streamlining your Flutter workflow.
 date: '2025-01-20 00:13:39.469Z'
 draft: false
 tags:

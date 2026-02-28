@@ -1,9 +1,5 @@
 ---
 title: Flutter Native HTTP Client
-description: >
-  This blog post explores how to optimize HTTP client selection in Flutter
-  applications based on the platform, using Cronet on Android and Cupertino's
-  native client on iOS for improved performance and caching.
 date: '2025-01-19 05:39:48.030Z'
 draft: false
 tags:

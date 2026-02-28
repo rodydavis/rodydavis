@@ -1,9 +1,5 @@
 ---
 title: Flutter Input Output Preview
-description: >
-  Build responsive Flutter apps with a reusable `TwoPane` widget and an
-  `InputOutputPreview` component for side-by-side code and preview display on
-  both mobile and desktop.
 date: '2025-01-19 05:35:39.744Z'
 draft: false
 tags:
@@ -18,7 +14,7 @@ embedding: >-
 related:
   - flutter/snippets/master-detail-view.md
   - flutter/multi-touch-canvas.md
-  - videos/flutter-plugin-live-coding-native-color-picker.md
+  - videos/flutter/flutter-plugin-live-coding-native-color-picker.md
   - flutter/snippets/markdown-view-material-3.md
   - flutter/getting-started.md
 ---

@@ -1,9 +1,5 @@
 ---
 title: How to Export SQLite Tables to CREATE Statements
-description: >
-  Learn how to export your entire SQLite database schema, including tables and
-  indexes, into runnable CREATE statements at runtime using Flutter and the
-  `sqlite3` package.
 date: '2025-01-18 20:43:35.986Z'
 draft: false
 tags:
@@ -18,8 +14,9 @@ embedding: >-
 related:
   - flutter/graph-database.md
   - sqlite/no-sql.md
-  - videos/compile-sqlite-from-source-to-wasm-in-firebase-studio.md
-  - videos/take-5-internationalization-flutter.md
+  - >-
+    videos/firebase-studio/compile-sqlite-from-source-to-wasm-in-firebase-studio.md
+  - videos/take-5/internationalization-flutter.md
   - sqlite/fts5.md
 ---
 

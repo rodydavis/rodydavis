@@ -1,9 +1,5 @@
 ---
 title: Draggable DOM with Lit
-description: >
-  Learn how to create an interactive, draggable DOM using a Lit web component
-  with CSS transforms and slots, enabling you to manipulate HTML and SVG
-  elements within a canvas-like environment.
 date: '2025-01-19 08:19:15.899Z'
 draft: false
 tags:

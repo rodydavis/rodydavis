@@ -46,7 +46,7 @@ function processVideo(url) {
         const frontmatter = [
             '---',
             `title: "${title.replace(/"/g, '\\"')}"`,
-            `description: "${title.replace(/"/g, '\\"')}"`,
+            `summary: "${title.replace(/"/g, '\\"')}"`,
             `date: '${date}'`,
             'draft: false',
             'tags:',

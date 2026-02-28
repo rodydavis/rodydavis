@@ -1,9 +1,5 @@
 ---
 title: Host your Flutter Project as a REST API
-description: >
-  Learn how to structure a Flutter project to reuse models and business logic
-  across iOS, Android, Web, desktop platforms, and a REST API deployable to
-  Google Cloud Run, enabling a single codebase for both client and server.
 date: '2025-01-20 00:30:40.634Z'
 draft: false
 tags:
@@ -21,7 +17,7 @@ related:
   - flutter/one-click-release.md
   - flutter/snippets/master-detail-view.md
   - flutter/getting-started.md
-  - videos/take-5-your-first-flutter-project.md
+  - videos/take-5/your-first-flutter-project.md
   - flutter/cheat-sheet.md
 ---
 

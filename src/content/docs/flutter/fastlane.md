@@ -1,8 +1,5 @@
 ---
 title: Using Fastlane in Flutter and CI
-description: >
-  Automate Flutter app builds and deployments to both the App Store and Google
-  Play using Fastlane with this step-by-step guide.
 date: '2025-01-20 02:50:39.713Z'
 draft: false
 tags:

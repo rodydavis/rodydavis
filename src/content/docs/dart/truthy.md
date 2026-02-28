@@ -1,8 +1,5 @@
 ---
 title: Check if an Object is Truthy in Dart
-description: >
-  Learn how to extend Dart's functionality to implement JavaScript-style
-  "truthy" checks for easier conditional logic and value evaluations.
 date: '2025-01-19 02:25:47.322Z'
 draft: false
 tags:

@@ -1,0 +1,54 @@
+---
+title: 'The Gemini Cookbook, Popover API lands in Baseline, and more dev news!'
+date: '2024-04-29T00:00:00.000Z'
+draft: false
+tags:
+  - youtube
+  - video
+  - media
+summary: >-
+  Google Developer News Show: Popover API in Baseline, Gemini Cookbook, CI/CD
+  privacy, and AI-powered build recovery updates.
+embedding: >-
+  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
+related:
+  - >-
+    videos/ai/leverage-gemini-in-your-android-apps-global-gamer-challenge-and-more-dev-news.md
+  - videos/dev-show/privacy-sandbox-demos-pixel-devices-and-more-dev-news.md
+  - >-
+    videos/dev-show/blockchain-based-experiences-govulncheck-v100-and-more-dev-news.md
+  - >-
+    videos/dev-show/connect-google-services-to-bard-flutters-consulting-directory-and-more-developer-news.md
+  - >-
+    videos/dev-show/jetpack-watch-face-library-datastream-is-ga-bazel-con-recap-and-more-dev-news.md
+---
+
+# The Gemini Cookbook, Popover API lands in Baseline, and more dev news!
+
+<div class="video-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/oRjt_mIm6IY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+## Description
+
+TL;DR 388  | The Google Developer News Show
+
+0:00 - Intro 
+0:19 - Popover API lands in Baseline → https://goo.gle/4a3qs2K 
+0:44 - Achieving privacy compliance with your CI/CD → https://goo.gle/4a6n0Vi 
+1:24 - Safely repairing  broken builds with ML  
+1:54 - Improving Gboard language models via private federated analytics 
+2:37 - Gemini Cookbook → https://goo.gle/44jp9vq 
+
+Here to bring you the latest developer news from across Google is Rody Davis.Tune in every week for a new episode, and let us know what you think of the latest announcements in the comments below.
+
+Follow Google for Developers on Instagram → https://goo.gle/googledevs
+
+Watch more The Developer Show → https://goo.gle/GDevShow
+Subscribe to Google for Developers → https://goo.gle/developers
+
+#Google #Developers
+
+
+Speaker: Rody Davis;
+Products Mentioned: ‎Gemini, Web Stories - General;

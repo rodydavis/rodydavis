@@ -1,9 +1,5 @@
 ---
 title: Flutter Stream Widget
-description: >
-  Learn how to build dynamic Flutter UIs by directly using streams within your
-  widget's build method, enabling reactive screen updates and more efficient
-  data handling.
 date: '2025-01-19 05:41:20.631Z'
 draft: false
 tags:
@@ -18,7 +14,7 @@ related:
   - flutter/signals-and-hooks.md
   - flutter/ssr-rfw.md
   - flutter/snippets/lightweight-animations.md
-  - videos/take-5-responsive-design-flutter.md
+  - videos/take-5/responsive-design-flutter.md
   - flutter/snippets/master-detail-view.md
 ---
 

@@ -1,8 +1,5 @@
 ---
 title: Flutter Markdown View with Material 3
-description: >
-  Learn how to customize the Flutter Markdown widget using Material 3 text and
-  color styles for a visually appealing and consistent design.
 date: '2025-01-19 05:37:02.727Z'
 draft: false
 tags:
@@ -18,10 +15,10 @@ embedding: >-
 related:
   - web/snippets/m3-to-m2-adapter.md
   - flutter/snippets/input-output-preview.md
-  - videos/flutter-plugin-live-coding-native-color-picker.md
-  - flutter/display-html.md
+  - videos/flutter/material-3-from-design-to-deployment.md
+  - videos/flutter/flutter-plugin-live-coding-native-color-picker.md
   - >-
-    videos/introducing-the-signals_hooks-package-for-flutter-hooks-and-signals.md
+    videos/talks/material-you-figma-bringing-dynamic-color-brand-together-rody-davis-ivy-knight-schema-2021.md
 ---
 
 # Flutter Markdown View with Material 3

@@ -1,8 +1,5 @@
 ---
 title: How to Manage Multiple Flutter Versions with Git Worktrees and ZSH
-description: >
-  Manage multiple Flutter versions efficiently using Git worktrees, eliminating
-  the need for external version managers like FVM.
 date: '2025-01-19 02:32:18.215Z'
 draft: false
 tags:

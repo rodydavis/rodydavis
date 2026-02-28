@@ -1,0 +1,52 @@
+---
+title: 'Blockchain-Based experiences, Govulncheck v1.0.0, and more dev news!'
+date: '2023-07-17T00:00:00.000Z'
+draft: false
+tags:
+  - youtube
+  - video
+  - media
+  - google
+summary: >-
+  Google Developer News Show covering blockchain experiences, Govulncheck v1.0.0
+  release, Rust insights, and new Google Play policies.
+embedding: >-
+  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
+related:
+  - videos/dev-show/privacy-sandbox-demos-pixel-devices-and-more-dev-news.md
+  - >-
+    videos/talks/google-cloud-next-2022-dart-partnership-with-github-and-more-dev-news.md
+  - >-
+    videos/ai/leverage-gemini-in-your-android-apps-global-gamer-challenge-and-more-dev-news.md
+  - >-
+    videos/dev-show/jetpack-watch-face-library-datastream-is-ga-bazel-con-recap-and-more-dev-news.md
+  - >-
+    videos/dev-show/connect-google-services-to-bard-flutters-consulting-directory-and-more-developer-news.md
+---
+
+# Blockchain-Based experiences, Govulncheck v1.0.0, and more dev news!
+
+<div class="video-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/HVdW-frdFGk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+## Description
+
+TL;DR 350 | The Google Developer News Show
+
+0:00 - Intro
+0:09 - New to the web platform in June → https://goo.gle/44whMQI 
+1:09 - Rust fact vs. fiction: 5 Insights from Google's Rust journey in 2022 →
+https://goo.gle/471ZVTp 
+2:25 - Govulncheck v1.0.0 is released! → https://goo.gle/3OdoHIx 
+2:46 - Enabling New Blockchain-Based Experiences on Google Play  → https://goo.gle/44I9Tau
+3:09 - New policy update to boost trust and transparency on Google Play → https://goo.gle/43rjuRG 
+
+Here to bring you the latest developer news from across Google is Rody, a Developer Advocate. Tune in every week for a new episode, and let us know what you think of the latest announcements in the comments below.
+
+Follow Google for Developers on Instagram → https://goo.gle/googledevs
+
+Watch more #DevShow → https://goo.gle/GDevShow
+Subscribe to Google for Developers → https://goo.gle/developers
+
+#Google #Developers

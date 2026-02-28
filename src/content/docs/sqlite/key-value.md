@@ -1,9 +1,5 @@
 ---
 title: Using SQLite as a Key Value Store
-description: >
-  Learn how to use SQLite as a simple and efficient key/value store for your
-  applications, offering benefits like single-file data containment, attachment
-  capabilities, and easy integration with tools like Drift.
 date: '2025-01-17 06:54:23.265Z'
 draft: false
 tags:

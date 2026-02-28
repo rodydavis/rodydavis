@@ -1,8 +1,5 @@
 ---
 title: Lit and VSCode Extensions
-description: >
-  Learn how to build a VSCode extension using a Lit web component, covering
-  setup, template creation, component implementation, and extension activation.
 date: '2025-01-20 02:41:17.941Z'
 draft: false
 tags:

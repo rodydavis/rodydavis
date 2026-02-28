@@ -1,9 +1,5 @@
 ---
 title: Lightweight Flutter Animations
-description: >
-  Learn how to create a streamlined animation widget in Flutter that eliminates
-  the need for `setState` by leveraging an abstract class and
-  `SingleTickerProviderStateMixin` for efficient UI updates.
 date: '2025-01-19 05:45:19.179Z'
 draft: false
 tags:
@@ -21,8 +17,8 @@ related:
   - flutter/snippets/stream-widget.md
   - flutter/signals-and-hooks.md
   - flutter/snippets/infinite-canvas.md
-  - videos/building-the-flutter-widget-maker-and-storyboard.md
-  - videos/flutter-plugin-live-coding-native-color-picker.md
+  - videos/podcast/creative-engineering/building-the-flutter-widget-maker-and-storyboard.md
+  - videos/flutter/flutter-plugin-live-coding-native-color-picker.md
 ---
 
 # Lightweight Flutter Animations

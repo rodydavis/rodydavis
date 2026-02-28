@@ -1,9 +1,5 @@
 ---
 title: Various Ways to Invoke Functions in Dart
-description: >
-  Discover the surprising flexibility of calling Dart functions, including mixed
-  positional and named arguments, the `.call` operator, and dynamic invocation
-  with `Function.apply`.
 date: '2025-01-19 02:43:50.527Z'
 draft: false
 tags:

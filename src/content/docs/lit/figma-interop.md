@@ -1,9 +1,5 @@
 ---
 title: Lit and Figma
-description: >
-  Learn how to create a Figma plugin using Lit web components, including project
-  setup, component creation, WASM integration, and building the final plugin for
-  use in Figma.
 date: '2025-01-20 02:00:23.655Z'
 draft: false
 tags:

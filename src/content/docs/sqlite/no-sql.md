@@ -1,9 +1,5 @@
 ---
 title: How to store SQLite as NoSQL Store
-description: >
-  Discover how to leverage SQLite's JSON support to build a NoSQL-like document
-  store, complete with TTL-based expiration, within this powerful embedded
-  database.
 date: '2025-01-18 06:24:22.553Z'
 draft: false
 tags:

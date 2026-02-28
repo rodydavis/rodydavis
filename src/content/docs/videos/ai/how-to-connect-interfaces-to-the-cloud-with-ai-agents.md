@@ -1,0 +1,54 @@
+---
+title: How to connect interfaces to the cloud with AI agents
+date: '2025-12-17T00:00:00.000Z'
+draft: false
+tags:
+  - youtube
+  - video
+  - media
+summary: >-
+  Learn how to connect applications to the cloud using AI agents with the Agent
+  Development Kit (ADK) and GenUI SDK for Flutter, enabling secure API access
+  and complex workflow orchestration.
+embedding: >-
+  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
+related:
+  - >-
+    videos/podcast/tech-walks/building-a-dnd-agent-with-adk-antigravity-and-gemini-3.md
+  - >-
+    videos/firebase-studio/building-ai-powered-experiences-with-firebase-studio-and-firebase-platform-rody-davis.md
+  - >-
+    videos/podcast/tech-walks/talking-about-skills-optimizing-prompts-and-building-mcp-servers-in-apps.md
+  - >-
+    videos/firebase-studio/build-full-stack-ai-apps-in-minutes-with-firebase-studio.md
+  - flutter/xcode-cloud.md
+---
+
+# How to connect interfaces to the cloud with AI agents
+
+<div class="video-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/Dum-LYLm0Uw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+## Description
+
+Verdure example → https://goo.gle/3XY7GX8
+GenUI package → https://goo.gle/4oXUoou
+
+Give AI agents massive reasoning models, real-time APIs, and the ability to perform complex tasks. Watch along as Googler Rody Davis leverages Agent Development Kit (ADK) to securely access databases, call internal APIs, and orchestrate complex workflows. Watch along and discover the power of GenUI SDK for Flutter.
+
+Chapters:
+0:00 - Intro
+0:36 - What is Agent Development Kit?
+1:17 - Rendering the UI for app workflows
+1:56 -[Demo] Verdure
+2:44 - [Demo] Building a new “Budget Slider”
+4:32 - Summary
+
+Watch more Flutter Flight Plans → https://www.youtube.com/watch?v=pMoUg3dkDJk&list=PLjxrf2q8roU1yXu4k7ivSLAa0cizD4feH
+🔔 Subscribe to Flutter → https://goo.gle/FlutterYT 
+
+#Flutter
+
+Speaker: Rody Davis
+Products Mentioned: Agent Development Kit, GenUI SDK for Flutter

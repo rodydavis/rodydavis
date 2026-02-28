@@ -1,9 +1,5 @@
 ---
 title: Migrating my Blog to PocketBase
-description: >
-  This blog post chronicles a developer's fun and ongoing journey of migrating
-  their personal website through various tech stacks, ultimately landing on a
-  PocketBase and Coolify setup for simplified deployment and dynamic features.
 date: '2025-01-20 20:08:23.622Z'
 draft: false
 tags:
@@ -23,8 +19,9 @@ related:
   - dart/html-web-components.md
   - web/html-code-sandbox.md
   - lit/draggable-dom.md
-  - videos/building-with-antigravity-gemini-cli-and-stitch.md
-  - lit/codemirror-dynamic-theme.md
+  - >-
+    videos/dev-show/scaling-vision-transformers-compose-pager-and-more-dev-news.md
+  - videos/podcast/tech-walks/building-with-antigravity-gemini-cli-and-stitch.md
 ---
 
 # Migrating my Blog to PocketBase

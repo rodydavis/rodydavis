@@ -1,9 +1,5 @@
 ---
 title: Lit and Flutter
-description: >
-  Learn how to embed a Lit web component directly within your Flutter app to
-  leverage web-based UIs and features while accessing native device APIs for a
-  powerful hybrid development approach.
 date: '2025-01-20 02:22:00.005Z'
 draft: false
 tags:

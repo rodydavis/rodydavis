@@ -1,9 +1,5 @@
 ---
 title: JSON to HTML Table with Lit
-description: >
-  Learn how to create a dynamic HTML table from JSON data using a Lit web
-  component, with examples for fetching data from a URL or using inline JSON,
-  and the ability to make the table editable.
 date: '2025-01-20 01:18:07.887Z'
 draft: false
 tags:

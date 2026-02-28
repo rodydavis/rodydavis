@@ -1,0 +1,51 @@
+---
+title: How to Automate PR Summaries with Opal AI
+date: '2026-01-12T00:00:00.000Z'
+draft: false
+tags:
+  - youtube
+  - video
+  - media
+summary: >-
+  Learn how to use Google's Opal AI to build a mini-app that automatically
+  summarizes GitHub pull requests, streamlining code review workflows.
+embedding: >-
+  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
+related:
+  - >-
+    videos/firebase-studio/building-ai-powered-experiences-with-firebase-studio-and-firebase-platform-rody-davis.md
+  - >-
+    videos/firebase-studio/build-full-stack-ai-apps-in-minutes-with-firebase-studio.md
+  - >-
+    videos/firebase-studio/compile-sqlite-from-source-to-wasm-in-firebase-studio.md
+  - >-
+    videos/podcast/tech-walks/building-a-dnd-agent-with-adk-antigravity-and-gemini-3.md
+  - flutter/automation.md
+---
+
+# How to Automate PR Summaries with Opal AI
+
+<div class="video-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/gphcuJu8iHo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+## Description
+
+Uncover how Opal from Google Labs revolutionizes building AI systems with its intuitive natural language and visual workflow editor. This tutorial guides you through creating an AI-powered mini-app, Git-Clarity, designed to summarize GitHub pull requests efficiently. Understand Opal’s multi-step workflow creation, fast iteration capabilities, and instant hosting features, making AI development accessible for everyone.
+
+Resources: 
+Learn more → https://goo.gle/3Yx4aDq 
+
+Chapters: 
+0:00 - Introduction to Opal from Google Labs
+1:06 - Opal’s intelligent multi-step workflows
+2:10 - Exploring the generated workflow steps
+3:29 - Verifying the complete workflow
+4:52 - Iteration in practice: Refining output
+5:25 - Sharing your live prototype
+5:35 - Closing thoughts and future possibilities with Opal
+
+Subscribe to Google for Developers → https://goo.gle/developers 
+
+Speaker: Rody Davis 
+Products Mentioned:  Google AI

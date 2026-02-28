@@ -1,0 +1,50 @@
+---
+title: 5 things you can do to prepare your app for large screens | Session
+date: '2021-05-19T00:00:00.000Z'
+draft: false
+tags:
+  - youtube
+  - video
+  - media
+  - talks
+  - google
+summary: >-
+  Learn practical strategies using Material Design to adapt your Android app for
+  large screens with limited resources in this Google I/O 2021 session.
+embedding: >-
+  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
+related:
+  - videos/flutter/material-you-applying-dynamic-color-to-your-app-and-brand.md
+  - videos/flutter/create-simple-beautiful-ui-with-flutter.md
+  - videos/flutter/rody-davis-building-adaptive-uiux-in-flutter.md
+  - >-
+    videos/talks/google-io-2023-passkeys-passwordless-future-and-more-dev-news.md
+  - videos/antigravity/how-to-build-with-flutter-and-google-antigravity.md
+---
+
+# 5 things you can do to prepare your app for large screens | Session
+
+<div class="video-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/UNDZn9GKJGo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+## Description
+
+In this Session, you learn how Material Design can help you get your app ready for large devices when time and resources are constrained. From prioritizing design characteristics to implementation details, this Session will give developers and designers a picture of what’s possible without undergoing a complete redesign or a comprehensive investment in responsive design.
+
+Resources:
+Material Design for Large Screens → https://goo.gle/3dXWdR5
+
+Speakers: Liam Spradlin, Rody Davis
+
+Watch more:
+Material Design at Google I/O 2021 Playlist → https://goo.gle/io21-MaterialDesign
+All Google I/O 2021 Technical Sessions → https://goo.gle/io21-technicalsessions
+All Google I/O 2021 Sessions → https://goo.gle/io21-allsessions
+
+Subscribe to Material Design → https://goo.gle/MaterialDesign-YouTube
+
+
+ #GoogleIO #Design #Android
+
+product: Material Design - General; event: Google I/O 2021; fullname: Liam Spradlin, Rody Davis; re_ty: Premiere;

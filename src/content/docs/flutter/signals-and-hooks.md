@@ -1,9 +1,5 @@
 ---
 title: Signals and Flutter Hooks
-description: >
-  Explore state management in Flutter, from the basics of `setState` to advanced
-  techniques using ValueNotifier, Signals, Flutter Hooks, and the new
-  signals_hooks package for a reactive and efficient approach.
 date: '2025-01-31 12:00:00.000Z'
 draft: false
 tags:
@@ -19,10 +15,10 @@ embedding: >-
 related:
   - flutter/snippets/stream-widget.md
   - >-
-    videos/introducing-the-signals_hooks-package-for-flutter-hooks-and-signals.md
+    videos/flutter/introducing-the-signals_hooks-package-for-flutter-hooks-and-signals.md
   - flutter/snippets/lightweight-animations.md
   - flutter/ssr-rfw.md
-  - videos/flutter-testing-and-appstore-rejection.md
+  - videos/podcast/creative-engineering/flutter-testing-and-appstore-rejection.md
 ---
 
 # Signals and Flutter Hooks

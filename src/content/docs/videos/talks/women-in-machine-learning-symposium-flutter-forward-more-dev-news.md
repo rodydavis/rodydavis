@@ -1,0 +1,49 @@
+---
+title: 'Women in Machine Learning Symposium, Flutter Forward, more dev news!'
+date: '2022-12-05T00:00:00.000Z'
+draft: false
+tags:
+  - youtube
+  - video
+  - media
+summary: >-
+  Google Developer News Show covering topics like web viewport units, the Women
+  in Machine Learning Symposium, and the Flutter Forward conference.
+embedding: >-
+  +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
+related:
+  - videos/dev-show/privacy-sandbox-demos-pixel-devices-and-more-dev-news.md
+  - >-
+    videos/dev-show/connect-google-services-to-bard-flutters-consulting-directory-and-more-developer-news.md
+  - >-
+    videos/talks/google-io-2023-passkeys-passwordless-future-and-more-dev-news.md
+  - >-
+    videos/dev-show/jetpack-watch-face-library-datastream-is-ga-bazel-con-recap-and-more-dev-news.md
+  - >-
+    videos/talks/google-cloud-next-2022-dart-partnership-with-github-and-more-dev-news.md
+---
+
+# Women in Machine Learning Symposium, Flutter Forward, more dev news!
+
+<div class="video-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/E8EMabhmN_E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+## Description
+
+TL;DR 321 | The Google Developer News Show
+
+0:00 - Introduction 
+0:10 -  Web: The large, small, and dynamic viewport units → https://goo.gle/3FrLCeK 
+0:32 - Join us at the 2nd Women in Machine Learning Symposium → https://goo.gle/3gVBIJb 
+0:51 - Announcing Flutter Forward → https://goo.gle/3F4xnet 
+1:08 - Don’t forget to like, comment, and subscribe!
+
+Here to bring you the latest developer news from across Google is Rody from Developer Relations. Tune in every week for a new episode, and let us know what you think of the latest announcements in the comments below.
+
+Follow Google Developers on Instagram → https://goo.gle/googledevs             
+
+Watch more #DevShow → https://goo.gle/GDevShow               
+Subscribe to Google Developers → https://goo.gle/developers 
+
+#Google #Developers

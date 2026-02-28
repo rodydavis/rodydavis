@@ -1,8 +1,5 @@
 ---
 title: How to Print Multiple Objects to the Console with print() in Dart
-description: >
-  Learn how to print multiple objects to the console in Dart using Records,
-  offering a similar experience to JavaScript's `console.log()` functionality.
 date: '2025-01-19 02:39:50.688Z'
 draft: false
 tags:
@@ -16,8 +13,8 @@ related:
   - dart/truthy.md
   - dart/function-invoking.md
   - flutter/snippets/lightweight-animations.md
+  - videos/flutter/idx-flutter-by-rody-davis-senior-developer-advocate-google.md
   - dart/bitwise.md
-  - flutter/display-html.md
 ---
 
 # How to Print Multiple Objects to the Console with print() in Dart

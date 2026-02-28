@@ -1,9 +1,5 @@
 ---
 title: SQLite on the UI Thread
-description: >
-  Unlock the surprising speed of SQLite in Flutter for building responsive UIs,
-  showcasing its ability to handle large datasets with synchronous queries and
-  optimized configurations.
 date: '2025-01-18 20:38:57.089Z'
 draft: false
 tags:
