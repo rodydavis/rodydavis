@@ -11,7 +11,7 @@ defaults:
 
 jobs:
   update-readme:
-    runs-on: windows-latest
+    runs-on: linux-latest
     permissions:
       contents: write
     steps:
