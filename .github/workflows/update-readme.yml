@@ -7,7 +7,7 @@ on:
 
 jobs:
   update-readme:
-    runs-on: self-hosted
+    runs-on: macos-latest
     permissions:
       contents: write
     steps:
