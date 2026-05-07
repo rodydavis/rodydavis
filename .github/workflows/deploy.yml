@@ -59,10 +59,10 @@ jobs:
           
           # Set environment variables
           ENV HOST=0.0.0.0
-          ENV PORT=80
+          ENV PORT=4321
           
           # Expose port
-          EXPOSE 80
+          EXPOSE 4321
           
           # Start the Astro node server
           CMD ["node", "./dist/server/entry.mjs"]

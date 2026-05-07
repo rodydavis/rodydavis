@@ -4,9 +4,9 @@ services:
     pull_policy: always
     restart: unless-stopped
     expose:
-      - "80"
+      - "4321"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:80/"]
+      test: ["CMD", "curl", "-f", "http://localhost:4321/"]
       interval: 30s
       timeout: 10s
       retries: 3
