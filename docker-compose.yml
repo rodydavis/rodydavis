@@ -1,6 +1,7 @@
 services:
   web:
     image: git.rodydavis.dev/rodydavis/rodydavis:latest
+    pull_policy: always
     restart: unless-stopped
     expose:
       - "80"
