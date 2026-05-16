@@ -1,25 +1,55 @@
-# build output
-dist/
-# generated types
-.astro/
+# ==========================================
+# 🌌 Federated Workspaces - Ultimate Ignores
+# ==========================================
 
-# dependencies
+# --- System & Editor Files ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Bazel Convenience Symlinks & Outputs ---
+bazel-*
+bazel_out/
+
+# --- C/C++ Outputs ---
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.out
+*.exe
+
+# --- Go Outputs ---
+*.test
+*.prof
+__debug_bin
+MODULE.bazel.lock
+
+# --- Node / JavaScript / pnpm ---
 node_modules/
-
-# logs
+.npm/
+.pnpm-store/
+.pnpm-debug.log*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
 
-
-# environment variables
-.env
-.env.production
-
-# macOS-specific files
-.DS_Store
-
-# jetbrains setting folder
-.idea/
-.env
+# --- Dart / Flutter ---
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+/build/
+*.flutter-plugins
+*.flutter-plugins-dependencies

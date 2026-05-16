@@ -1,0 +1,22 @@
+load("@aspect_rules_js//js:defs.bzl", "js_binary")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+
+# Link dependencies to virtual store
+npm_link_all_packages(name = "node_modules")
+
+# Expose the astro CLI
+js_binary(
+    name = "astro",
+    entry_point = "astro-cli.js",
+    data = [
+        ":node_modules",
+        "astro-cli.js",
+        "astro.config.mjs",
+        "package.json",
+        "tsconfig.json",
+    ] + glob([
+        "src/**/*",
+        "public/**/*",
+    ], allow_empty = True),
+    visibility = ["//visibility:public"],
+)
