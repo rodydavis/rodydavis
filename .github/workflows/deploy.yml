@@ -2,7 +2,11 @@ name: Build and Deploy
 
 on:
   push:
-    branches: ["master"]
+    branches: ["main", "master"]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   REGISTRY: git.rodydavis.dev
