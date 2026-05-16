@@ -18,6 +18,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.7.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Set up Bazel (Bazelisk)
+        uses: bazelbuild/setup-bazelisk@v3
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify Hermetic Bazel Build
+        run: bazel build //...
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -27,20 +47,23 @@ jobs:
           # Stage 1: Build stage
           FROM node:22-alpine AS build
           
+          # Install pnpm
+          RUN npm install -g pnpm@9.7.1
+          
           # Set working directory
           WORKDIR /app
           
           # Copy package files
-          COPY package*.json ./
+          COPY package.json pnpm-lock.yaml ./
           
           # Install dependencies
-          RUN npm install
+          RUN pnpm install --frozen-lockfile
           
           # Copy project files
           COPY . .
           
           # Build the project
-          RUN npm run build
+          RUN pnpm run build
           
           # Stage 2: Runtime stage
           FROM node:22-alpine AS runtime
@@ -51,11 +74,14 @@ jobs:
           # Install curl for docker healthcheck
           RUN apk add --no-cache curl
           
+          # Install pnpm
+          RUN npm install -g pnpm@9.7.1
+          
           # Copy package files
-          COPY package*.json ./
+          COPY package.json pnpm-lock.yaml ./
           
           # Install production dependencies
-          RUN npm install --omit=dev
+          RUN pnpm install --prod --frozen-lockfile
           
           # Copy build output
           COPY --from=build /app/dist ./dist
