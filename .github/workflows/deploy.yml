@@ -30,7 +30,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Set up Bazel (Bazelisk)
-        uses: bazelbuild/setup-bazelisk@v3
+        run: npm install -g @bazel/bazelisk
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
