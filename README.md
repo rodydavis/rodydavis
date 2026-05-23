@@ -73,7 +73,6 @@
 ## 💼 Current Work
 
 Currently supporting **<a href="https://antigravity.google">Google AntiGravity</a>** developer success:
-- 🥑 Driving adoption for **<a href="https://antigravity.google">AntiGravity Web Components</a>** and lightweight JS/TS widget libraries.
 - 🚀 Empowering global developer communities by sharing modern architecture practices, widget kits, and robust SDK integrations.
 - 📝 Synthesizing user feedback, building comprehensive example applications, and leading workshops/technical recording sessions.
 

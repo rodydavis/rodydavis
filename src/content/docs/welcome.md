@@ -119,7 +119,6 @@ last_updated_metadata: '2026-05-23T00:22:29.612Z'
 ## Current Work
 
 Currently supporting **[Google AntiGravity](https://antigravity.google)** developer success:
-- 🥑 Driving adoption for **[AntiGravity Web Components](https://antigravity.google)** and lightweight JS/TS widget libraries.
 - 🚀 Empowering global developer communities by sharing modern architecture practices, widget kits, and robust SDK integrations.
 - 📝 Synthesizing user feedback, building comprehensive example applications, and leading workshops/technical recording sessions.
 
