@@ -5,6 +5,7 @@ import ActivityBar from "../components/ActivityBar.astro";
 import StatusBar from "../components/StatusBar.astro";
 import EditorShell from "../components/EditorShell.astro";
 import Explorer from "../components/Explorer";
+import RightSidebar from "../components/RightSidebar";
 import SettingsManager from "../components/SettingsManager";
 import EditorCode from "../components/EditorCode.astro";
 import EditorPreview from "../components/EditorPreview.astro";
@@ -109,6 +110,15 @@ const defaultOpen = false;
                     )
                 }
             </EditorShell>
+
+            {/* Right Sidebar */}
+            <RightSidebar
+                client:load
+                outline={activeOutline}
+                activePostId={activePostId || null}
+                tags={(activeDoc?.data as any)?.tags}
+                relatedPosts={relatedPosts}
+            />
         </div>
 
         <StatusBar />
