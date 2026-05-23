@@ -20,7 +20,7 @@
     "@nanostores/react": "^1.0.0",
     "@tailwindcss/vite": "^4.1.18",
     "@types/markdown-it": "^14.1.2",
-    "@types/react": "^19.2.14",
+    "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
     "@types/sanitize-html": "^2.16.0",
     "astro": "^5.17.1",
