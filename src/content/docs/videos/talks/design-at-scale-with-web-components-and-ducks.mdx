@@ -210,7 +210,7 @@ event: Chrome Dev Summit 2020; re_ty: Publish; product: Chrome - General; fullna
 
 **12:43** · All right, let's take a look at how we can add ElementInternals and the Accessibility Object Model to the Web Component we just made. Let's start with form integration. To register our component as formAssociated, we need to add a static formAssociated property. This tells the browser that our custom element is ready to participate in forms. The last thing we need to do is set the form's value. We can do that in the element's update lifecycle.
 
-### static get formAssociated() { return true; }
+### `static get formAssociated() { return true; }`
 
 **13:11** · Whenever our value property changes we can update the form value as well using ElementInternals. That was easy; well, buckle up ducklings. ARIA and accessibility can get a bit tricky. Always remember the golden rule act like native HTML elements. That means a user should be able to set the aria-labelledby attribute on our component and everything should work. So let's start there and work backwards. We'll need to know when that ARIA attribute changes.
 
