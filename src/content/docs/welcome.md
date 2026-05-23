@@ -37,7 +37,7 @@ last_updated_metadata: '2026-05-23T00:22:29.612Z'
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
   <div class="bg-[var(--bg-sidebar)] border border-[var(--border-main)] rounded-xl p-6 transition-all duration-300 hover:border-[var(--header-h1)] shadow-sm">
     <h3 class="mt-0 text-[var(--header-h1)] flex items-center gap-2 text-lg font-bold">
-      🥑 Developer Advocacy
+      📣 Developer Advocacy
     </h3>
     <p class="mb-0 text-sm text-[var(--fg-secondary)] leading-relaxed">
       Synthesizing user feedback, building robust SDK integrations, and delivering clear documentation, blogs, and talks that empower developers worldwide.

@@ -18,7 +18,7 @@
 <table width="100%">
   <tr>
     <td width="33.3%" valign="top">
-      <h3>🥑 Developer Advocacy</h3>
+      <h3>📣 Developer Advocacy</h3>
       <p>Synthesizing user feedback, building robust SDK integrations, and delivering clear documentation, blogs, and talks that empower developers worldwide.</p>
     </td>
     <td width="33.3%" valign="top">
