@@ -118,7 +118,7 @@ Supporting developers across core Google platforms and surrounding tech stacks:
 Deep engineering contribution history across key developer platforms:
 - **<a href="https://github.com/rodydavis/firebase-studio">Firebase Studio</a> & CLI Tools**: Built initial user-focused UI frameworks.
 - **<a href="https://idx.dev">Project IDX</a>**: Assisted early validation and SDK embedding.
-- **Developer Solutions Group**: Advocated and mapped client developer requirements.
+- **<a href="https://developers.google.com/solutions">Developer Solutions</a>**: Advocated and mapped client developer requirements.
 - **<a href="https://lit.dev">Lit Framework</a> & <a href="https://material.io">Material Design</a>**: Standardized custom theme variables and templates.
 
 ---
