@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  <b>Senior Developer Advocate for Google AntiGravity. Empowering global developer communities by sharing modern architecture practices, widget kits, and robust SDK integrations.</b>
+  <b>Senior Developer Advocate for <a href="https://antigravity.google">Google AntiGravity</a>. Empowering global developer communities by sharing modern architecture practices, widget kits, and robust SDK integrations.</b>
 </p>
 
 ---
@@ -72,17 +72,17 @@
 
 ## 💼 Current Work
 
-Currently supporting **Google AntiGravity** developer success:
-- 🥑 Driving adoption for **AntiGravity Web Components** and lightweight JS/TS widget libraries.
+Currently supporting **<a href="https://antigravity.google">Google AntiGravity</a>** developer success:
+- 🥑 Driving adoption for **<a href="https://antigravity.google">AntiGravity Web Components</a>** and lightweight JS/TS widget libraries.
 - 🚀 Empowering global developer communities by sharing modern architecture practices, widget kits, and robust SDK integrations.
 - 📝 Synthesizing user feedback, building comprehensive example applications, and leading workshops/technical recording sessions.
 
 ### 🛠️ Ecosystem & Technical Foundations
 
 Supporting developers across core Google platforms and surrounding tech stacks:
-- **Flutter & Dart**: Architecting highly responsive, multi-platform design-to-code packages.
-- **Gemini & Gemma (AI Logic)**: Writing production-ready generative workflows, function-calling models, and web UI integrations.
-- **Firebase**: Implementing unified authentication, remote configurations, and Firestore security systems.
+- **<a href="https://flutter.dev">Flutter & Dart</a>**: Architecting highly responsive, multi-platform design-to-code packages.
+- **<a href="https://ai.google.dev">Gemini & Gemma (AI Logic)</a>**: Writing production-ready generative workflows, function-calling models, and web UI integrations.
+- **<a href="https://firebase.google.com">Firebase</a>**: Implementing unified authentication, remote configurations, and Firestore security systems.
 
 ---
 
@@ -93,19 +93,19 @@ Supporting developers across core Google platforms and surrounding tech stacks:
     <td width="50%" valign="top">
       <h3>🧪 Core Explorations</h3>
       <ul>
-        <li><strong>SQLite Engine</strong>: Building embedded database integrations.</li>
-        <li><strong>Dart/Flutter</strong>: Creating robust package ecosystems.</li>
-        <li><strong>VR/AR Experiences</strong>: Experimenting with WebXR frameworks.</li>
-        <li><strong>Ableton Logic</strong>: Custom midi scripts & synthesizer integration.</li>
+        <li><strong><a href="https://www.sqlite.org">SQLite Engine</a></strong>: Building embedded database integrations.</li>
+        <li><strong><a href="https://flutter.dev">Dart/Flutter</a></strong>: Creating robust package ecosystems.</li>
+        <li><strong><a href="https://aframe.io">VR/AR Experiences</a></strong>: Experimenting with WebXR frameworks.</li>
+        <li><strong><a href="https://www.ableton.com">Ableton Logic</a></strong>: Custom midi scripts & synthesizer integration.</li>
       </ul>
     </td>
     <td width="50%" valign="top">
       <h3>🎧 Contributions & Media</h3>
       <ul>
-        <li><strong>Web Components</strong>: Crafting lightweight, framework-agnostic elements.</li>
-        <li><strong>pub.dev Packages</strong>: Publishing utility kits for the Flutter ecosystem.</li>
-        <li><strong>Podcast Host</strong>: Producing episode scripts and hosting "Creative Engineering".</li>
-        <li><strong>Original Music</strong>: Compositing soundscapes available on SoundCloud & Spotify.</li>
+        <li><strong><a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">Web Components</a></strong>: Crafting lightweight, framework-agnostic elements.</li>
+        <li><strong><a href="https://pub.dev/publishers/rodydavis.com/packages">pub.dev Packages</a></strong>: Publishing utility kits for the Flutter ecosystem.</li>
+        <li><strong><a href="https://podcasts.apple.com/us/podcast/creative-engineering/id1507852833">Podcast Host</a></strong>: Producing episode scripts and hosting "Creative Engineering".</li>
+        <li><strong><a href="https://soundcloud.com/theonlysounddr">Original Music</a></strong>: Compositing soundscapes available on SoundCloud & Spotify.</li>
       </ul>
     </td>
   </tr>
@@ -116,10 +116,10 @@ Supporting developers across core Google platforms and surrounding tech stacks:
 ## 🏛️ Previous Projects
 
 Deep engineering contribution history across key developer platforms:
-- **Firebase Studio & CLI Tools**: Built initial user-focused UI frameworks.
-- **Project IDX**: Assisted early validation and SDK embedding.
+- **<a href="https://github.com/rodydavis/firebase-studio">Firebase Studio</a> & CLI Tools**: Built initial user-focused UI frameworks.
+- **<a href="https://idx.dev">Project IDX</a>**: Assisted early validation and SDK embedding.
 - **Developer Solutions Group**: Advocated and mapped client developer requirements.
-- **Lit Framework & Material Design**: Standardized custom theme variables and templates.
+- **<a href="https://lit.dev">Lit Framework</a> & <a href="https://material.io">Material Design</a>**: Standardized custom theme variables and templates.
 
 ---
 
