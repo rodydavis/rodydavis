@@ -1,31 +1,136 @@
-[![Buy Me A Coffee](https://img.shields.io/badge/Donate-Buy%20Me%20A%20Coffee-yellow.svg)](https://www.buymeacoffee.com/rodydavis)
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSH3GVC49GNNJ)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/rodydavis/rodydavis/master/public/welcome-banner.svg" alt="Rody Davis - Creative Engineering & Advocacy" width="100%" />
+</p>
 
-## Overview
+<p align="center">
+  <a href="https://www.buymeacoffee.com/rodydavis"><img src="https://img.shields.io/badge/Donate-Buy%20Me%20A%20Coffee-yellow.svg" alt="Buy Me A Coffee" /></a>
+  <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSH3GVC49GNNJ"><img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="Donate" /></a>
+</p>
 
-- 🕹 Fascinated by [VR/AR](https://aframe.io/)
-- 🤓 Building [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
-- 🥳 Senior Developer Advocate for [@google-antigravity](https://github.com/google-antigravity)
-- 🎹 Musician [SoundCloud](https://soundcloud.com/theonlysounddr), [Spotify](https://open.spotify.com/artist/5HBkYdhRZn1aOq40T2A7Eg)
-- 🎧 Podcast "Creative Engineering" [Apple Podcasts](https://podcasts.apple.com/us/podcast/creative-engineering/id1507852833), [Spotify Podcasts](https://open.spotify.com/show/3UTiK34aDOOSHFpGQ0RglN), [Amazon Music](https://music.amazon.com/podcasts/8884a5cb-a92a-4ba5-a3ef-906ac334386d/Creative-Engineering?ref=dm_wcp_pp_link_pr_s)
-- ⚒️ Creator of [Widget Studio](https://widget.studio/)
-- 📦 Dart/Flutter [Packages](https://pub.dev/publishers/rodydavis.com/packages) on [pub.dev](https://pub.dev)
+<p align="center">
+  <b>Senior Developer Advocate for Google AntiGravity. Empowering global developer communities by sharing modern architecture practices, widget kits, and robust SDK integrations.</b>
+</p>
 
-## Social
+---
 
-- [Glitch](https://glitch.com/@rodydavis)
-- [Github](https://github.com/rodydavis)
-- [StackOverflow](https://stackoverflow.com/users/7303311/rody-davis)
-- [Twitter](https://twitter.com/rodydavis)
-- [YouTube](https://youtube.com/rodydavis)
-- [Instagram](https://instagram.com/rodydavisjr)
-- [Facebook](https://facebook.com/rodydavisjr)
-- [LinkedIn](https://www.linkedin.com/in/rodydavis)
-- [TikTok](https://tiktok.com/@rodydavisjr)
-- [Dev.to](https://dev.to/rodydavis)
-- [Medium](https://rodydavis.medium.com/)
-- [Email](mailto:rody.davis.jr@gmail.com)
+## 🥑 Focus & Core Competencies
 
-## Recently Played
+<table width="100%">
+  <tr>
+    <td width="33.3%" valign="top">
+      <h3>🥑 Developer Advocacy</h3>
+      <p>Synthesizing user feedback, building robust SDK integrations, and delivering clear documentation, blogs, and talks that empower developers worldwide.</p>
+    </td>
+    <td width="33.3%" valign="top">
+      <h3>🧱 UI Tooling & Architecture</h3>
+      <p>Creating visual builders, rich component libraries, and modular widget kits to streamline visual design-to-code pipelines.</p>
+    </td>
+    <td width="33.3%" valign="top">
+      <h3>🎵 Creative & Sound Synthesis</h3>
+      <p>Exploring web synthesizers, digital signal processing (DSP), Ableton custom extensions, and podcast hosting for "Creative Engineering".</p>
+    </td>
+  </tr>
+</table>
 
-![Alt text](https://spotify-recently-played-readme.vercel.app/api?user=1240938184)
+---
+
+## 🚀 Featured Apps
+
+<table width="100%">
+  <tr>
+    <td width="33.3%" valign="top" align="center">
+      <br/>
+      <span style="font-size: 2.5rem;">⚒️</span>
+      <h3>Widget Studio</h3>
+      <p align="left">A premium visual editor and widget building suite designed to compile component code in real time for modern web frameworks and Flutter.</p>
+      <br/>
+      <a href="https://widget.studio/"><b>Launch Visual Editor ↗</b></a>
+      <br/><br/>
+    </td>
+    <td width="33.3%" valign="top" align="center">
+      <br/>
+      <span style="font-size: 2.5rem;">🎵</span>
+      <h3>The Pitch Pipe</h3>
+      <p align="left">An interactive ear training and vocal guide tool helping musicians perfect their tuning, scale recognition, and acoustic intervals.</p>
+      <br/>
+      <a href="https://pitchpipe.app/"><b>Open Vocal Guide ↗</b></a>
+      <br/><br/>
+    </td>
+    <td width="33.3%" valign="top" align="center">
+      <br/>
+      <span style="font-size: 2.5rem;">🎹</span>
+      <h3>The Pocket Piano</h3>
+      <p align="left">A highly responsive virtual synthesizer and interactive keyboard that enables portable melody building right in your browser.</p>
+      <br/>
+      <a href="https://pocketpiano.app/"><b>Play Synthesizer ↗</b></a>
+      <br/><br/>
+    </td>
+  </tr>
+</table>
+
+---
+
+## 💼 Current Work
+
+Currently supporting **Google AntiGravity** developer success:
+- 🥑 Driving adoption for **AntiGravity Web Components** and lightweight JS/TS widget libraries.
+- 🚀 Empowering global developer communities by sharing modern architecture practices, widget kits, and robust SDK integrations.
+- 📝 Synthesizing user feedback, building comprehensive example applications, and leading workshops/technical recording sessions.
+
+### 🛠️ Ecosystem & Technical Foundations
+
+Supporting developers across core Google platforms and surrounding tech stacks:
+- **Flutter & Dart**: Architecting highly responsive, multi-platform design-to-code packages.
+- **Gemini & Gemma (AI Logic)**: Writing production-ready generative workflows, function-calling models, and web UI integrations.
+- **Firebase**: Implementing unified authentication, remote configurations, and Firestore security systems.
+
+---
+
+## 🧪 Focus Areas & Creations
+
+<table width="100%">
+  <tr>
+    <td width="50%" valign="top">
+      <h3>🧪 Core Explorations</h3>
+      <ul>
+        <li><strong>SQLite Engine</strong>: Building embedded database integrations.</li>
+        <li><strong>Dart/Flutter</strong>: Creating robust package ecosystems.</li>
+        <li><strong>VR/AR Experiences</strong>: Experimenting with WebXR frameworks.</li>
+        <li><strong>Ableton Logic</strong>: Custom midi scripts & synthesizer integration.</li>
+      </ul>
+    </td>
+    <td width="50%" valign="top">
+      <h3>🎧 Contributions & Media</h3>
+      <ul>
+        <li><strong>Web Components</strong>: Crafting lightweight, framework-agnostic elements.</li>
+        <li><strong>pub.dev Packages</strong>: Publishing utility kits for the Flutter ecosystem.</li>
+        <li><strong>Podcast Host</strong>: Producing episode scripts and hosting "Creative Engineering".</li>
+        <li><strong>Original Music</strong>: Compositing soundscapes available on SoundCloud & Spotify.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+---
+
+## 🏛️ Previous Projects
+
+Deep engineering contribution history across key developer platforms:
+- **Firebase Studio & CLI Tools**: Built initial user-focused UI frameworks.
+- **Project IDX**: Assisted early validation and SDK embedding.
+- **Developer Solutions Group**: Advocated and mapped client developer requirements.
+- **Lit Framework & Material Design**: Standardized custom theme variables and templates.
+
+---
+
+## 🔗 Connect With Me
+
+- 🌐 [Website](https://rodydavis.com)
+- 📦 [Dart/Flutter Packages](https://pub.dev/publishers/rodydavis.com/packages) on [pub.dev](https://pub.dev)
+- 🎧 Podcast "Creative Engineering" on [Apple Podcasts](https://podcasts.apple.com/us/podcast/creative-engineering/id1507852833) & [Spotify](https://open.spotify.com/show/3UTiK34aDOOSHFpGQ0RglN)
+- 🎹 Musician [SoundCloud](https://soundcloud.com/theonlysounddr) & [Spotify Artist Profile](https://open.spotify.com/artist/5HBkYdhRZn1aOq40T2A7Eg)
+- 🐙 [Github Profile](https://github.com/rodydavis)
+- 🐦 [Twitter / X](https://twitter.com/rodydavis)
+- 📺 [YouTube](https://youtube.com/rodydavis)
+- 💼 [LinkedIn](https://www.linkedin.com/in/rodydavis)
+- 📧 [Email](mailto:rody.davis.jr@gmail.com)
