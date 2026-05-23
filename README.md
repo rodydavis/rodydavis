@@ -40,7 +40,7 @@
   <tr>
     <td width="33.3%" valign="top" align="center">
       <br/>
-      <span style="font-size: 2.5rem;">⚒️</span>
+      <img src="https://widget.studio/icons/Icon-192.png" alt="Widget Studio Logo" width="48" height="48" style="border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid rgba(168,85,247,0.2); background-color: rgba(168,85,247,0.05);" />
       <h3>Widget Studio</h3>
       <p align="left">A premium visual editor and widget building suite designed to compile component code in real time for modern web frameworks and Flutter.</p>
       <br/>
@@ -49,7 +49,7 @@
     </td>
     <td width="33.3%" valign="top" align="center">
       <br/>
-      <span style="font-size: 2.5rem;">🎵</span>
+      <img src="https://pitchpipe.app/icons/Icon-192.png" alt="The Pitch Pipe Logo" width="48" height="48" style="border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid rgba(14,165,233,0.2); background-color: rgba(14,165,233,0.05);" />
       <h3>The Pitch Pipe</h3>
       <p align="left">An interactive ear training and vocal guide tool helping musicians perfect their tuning, scale recognition, and acoustic intervals.</p>
       <br/>
@@ -58,7 +58,7 @@
     </td>
     <td width="33.3%" valign="top" align="center">
       <br/>
-      <span style="font-size: 2.5rem;">🎹</span>
+      <img src="https://pocketpiano.app/icons/Icon-192.png" alt="The Pocket Piano Logo" width="48" height="48" style="border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid rgba(16,185,129,0.2); background-color: rgba(16,185,129,0.05);" />
       <h3>The Pocket Piano</h3>
       <p align="left">A highly responsive virtual synthesizer and interactive keyboard that enables portable melody building right in your browser.</p>
       <br/>

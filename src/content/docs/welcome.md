@@ -14,7 +14,7 @@ summary: >-
   Rody Davis is a Senior Developer Advocate for AntiGravity, building Web
   Components and Dart/Flutter packages, and is also a musician and podcast host.
 embedding: >-
-  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
+  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
 related:
   - about.md
   - >-
@@ -68,8 +68,8 @@ last_updated_metadata: '2026-05-23T00:22:29.612Z'
   <div class="relative group rounded-xl bg-[var(--bg-sidebar)] border border-[var(--border-main)] hover:border-purple-500/50 p-6 flex flex-col justify-between transition-all duration-300 shadow-sm overflow-hidden">
     <div class="absolute top-0 right-0 w-24 h-24 bg-purple-500/5 rounded-bl-full pointer-events-none transition-all group-hover:bg-purple-500/10"></div>
     <div>
-      <div class="flex items-center gap-2 mb-3">
-        <span class="text-2xl">⚒️</span>
+      <div class="flex items-center gap-3 mb-3">
+        <img src="https://widget.studio/icons/Icon-192.png" alt="Widget Studio Logo" class="w-10 h-10 rounded-lg object-contain shadow-sm border border-purple-500/20 bg-purple-950/10" />
         <h3 class="text-lg font-bold text-[var(--fg-primary)] m-0">Widget Studio</h3>
       </div>
       <p class="text-sm text-[var(--fg-secondary)] leading-relaxed mb-6">
@@ -85,8 +85,8 @@ last_updated_metadata: '2026-05-23T00:22:29.612Z'
   <div class="relative group rounded-xl bg-[var(--bg-sidebar)] border border-[var(--border-main)] hover:border-sky-500/50 p-6 flex flex-col justify-between transition-all duration-300 shadow-sm overflow-hidden">
     <div class="absolute top-0 right-0 w-24 h-24 bg-sky-500/5 rounded-bl-full pointer-events-none transition-all group-hover:bg-sky-500/10"></div>
     <div>
-      <div class="flex items-center gap-2 mb-3">
-        <span class="text-2xl">🎵</span>
+      <div class="flex items-center gap-3 mb-3">
+        <img src="https://pitchpipe.app/icons/Icon-192.png" alt="The Pitch Pipe Logo" class="w-10 h-10 rounded-lg object-contain shadow-sm border border-sky-500/20 bg-sky-950/10" />
         <h3 class="text-lg font-bold text-[var(--fg-primary)] m-0">The Pitch Pipe</h3>
       </div>
       <p class="text-sm text-[var(--fg-secondary)] leading-relaxed mb-6">
@@ -102,8 +102,8 @@ last_updated_metadata: '2026-05-23T00:22:29.612Z'
   <div class="relative group rounded-xl bg-[var(--bg-sidebar)] border border-[var(--border-main)] hover:border-emerald-500/50 p-6 flex flex-col justify-between transition-all duration-300 shadow-sm overflow-hidden">
     <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-bl-full pointer-events-none transition-all group-hover:bg-emerald-500/10"></div>
     <div>
-      <div class="flex items-center gap-2 mb-3">
-        <span class="text-2xl">🎹</span>
+      <div class="flex items-center gap-3 mb-3">
+        <img src="https://pocketpiano.app/icons/Icon-192.png" alt="The Pocket Piano Logo" class="w-10 h-10 rounded-lg object-contain shadow-sm border border-emerald-500/20 bg-emerald-950/10" />
         <h3 class="text-lg font-bold text-[var(--fg-primary)] m-0">The Pocket Piano</h3>
       </div>
       <p class="text-sm text-[var(--fg-secondary)] leading-relaxed mb-6">
