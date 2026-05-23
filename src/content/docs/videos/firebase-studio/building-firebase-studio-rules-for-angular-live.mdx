@@ -1,0 +1,3782 @@
+---
+title: Building Firebase Studio Rules for Angular Live
+date: '2025-06-14T00:00:00.000Z'
+draft: false
+tags:
+  - flutter
+  - firebase
+  - astro
+  - html
+  - css
+  - gemini
+  - gemma
+  - ai
+  - video
+  - youtube
+  - java
+  - github
+  - web
+  - talk
+  - google
+  - genkit
+  - signals
+summary: >-
+  Mark and Rody demonstrate building Firebase Studio rules in AI Studio to help
+  developers improve code generation for Angular apps.
+embedding: >-
+  wKPZvW4dGLwAxte8kfmGvBO9Srwyqd+72AGDvc6yhryBmsq7escnvcYMH7sRg6M8tK/NOTgTRr3cvWc8YZM+PTg5DLx/nFI8RxMUPLS9SrwPkKY8iIqauymxGj0ZCp68mzpROliAPD2rWYo9hH4XvckmdTu0ntm9d5JwPQvAeDx8Cwm9ES2rPImauzxGAOA8PBNZvVthqzxn3dk8DDQZvS5grru6M4+8jNxUvQm1BD3BsKG87DCRvfQ7Y7vqHzy9S5qfPKMolrwkZ8k5KMMhPI7cEDxQDS08CIkXvRm9kLzPYA69fu2Kuze0pLpjjXS929KWvVVXSrzdPcO75XllvT6cWDzNsWY9XNJiPDPLOjxcax492R0FPoLRBbwwRCQ8QbtlvYXMTb28uMY9MjeePaQOUb1/8km8+q3GO2ca7LwUPV89X0NEvZJQxTyI/IU8C4OKPcOKQjztrOA8ufgCvWnyJD3nuDm8zna4PIEdob1nyCK95y+5PGqDTL1WwH+8CngRvXsdfbwLvBS9QaSOvCGy1jswTTc9XPeVPBjrtz0L9IU8gmxhPZreuzxT1xk8i4qYveoY1jyqC/W84BSAPX0Dv7wm2Nw6WOgYvXYGUT3kdq+9vxaDPfTIKD16x+g7tvhoPYCtC7s5ryU85zNaPPpzCTysDws9dmI6PfjDab2bCYs8tfF4PHCwiD2mQ4c8INyKPcx9Ej1cCNW7LOPOvNXqMj3mWj69BEsAPI9Mijwst+u8QWcOuxHnEr0Oan48430WPfQifbx8WRS9NYaUu9oyGr3VeWM83DQMPPS8ibtLV1s8dzeFO0XWd7wMALa7VFAWvQ6NLzt+/c+8acBNvMF7kb2FW6y8bBaqPJdLVrse1wW9/ZZmvGPuFz0MyUw9VBtcveCc4LxFsIu7eH+9vNyzJL2Z+MG7/hwjPOPl37yGjCU5/l+BvODYrDxZsTq8mOC/vDALiD2dJrG77MC6vVbNLrwPsnM8T10pvbVBjz1dgSE86jaIvACWCjydhR+7lcx1PIqUQL2xPic9OdK1PGeGMj3vbTS8oSdMvTNaXTxmNw89gjyuO6vrnLw//zI8L63hPKVa7DsBgJw8wb8IPYrCoDzhjkW9DpeXvKoOmrvBDTq9l7psvS6/aT1hMWU9iRSivcra6jynISI9o+cMvRCtyzwbmW89tlEgPXHaS7z2tKS8HcgWvbJKK71TpF26DxQCu0FyKTz8Hhu9XMomPJE9zbyHKTS96h6RvZMHrrwlt1W8oruLPID2dDzFL6o85WE6PAntG70hvgk8bGEeuwPo5rukIYs6sVw4PRiV4rz6VAM9k7l3vE2ylrzH7uU7S5eePF1CBb1xtne9FPXwvFSPQr2Wmck8RnX7PMofMT10eVq8u8skPA72oTzJRsW8Z2AxPNe/9zwLX8k8hTBDvDlBfb3vzYc78yJDPdlAZryMvlo8TepPvbHQkLw4yB48e1c5PBxa3rzf3Jg8BM3Ku5dilruQ4MS8VpCWPIzp6Ty/pDS9ygUMvF5j4bpbHDQ9nlVtve9sMrydDyu8BGVSPDE/Jz0R85u8fMU6vDsllbr6oaG8ToQOOyzu37y251i9QikMPVxpm71d4yg9SM9GvWpCXbwdkAw9/WKHPZsoNzymlJa7oEISvbkjKjxQlZ+7TBHlPK8jaruRjPM89aw9PY2q+by1/rW6pEClvFZdHj0DpCK8M/mlPGyetDtAYEK8bmk2vO5MT73nIQ88G9j3vGbF0LzdRQC72R3/PK/MhryAQtQ8MqO0POgjATyhzVa8JDSEPVZ4mDySX5U8xLqKvAUB/ru3Qei8dkg2PQb0E73FZ5g9X0sjPfZK5rzkPJc7872fPPLQbjzC+cI59OMFvbmezrwYTH+8ZicGvG0gBT2lgdc8k863u78YI71ZmHG8nC5JPcqel71JE9Q8UKxSvavTSDwSRCg8X7kzPJhEJj3mlYQ84GTAPcszTr0Pc1g8T13cPIQYurxLABQ9ojiSPGMLFry6LNC7I9buvDEtPDyZ7fa8LXiHvKHfuzvGnH09i59JO/x1lzz1Zva8eDFaPacSkLw61CQ9VmogvQwwhrsxBXG8PoVvPANXmrwg7DG9fdMgPCDTcDsPB3a8gsQzvAhWL72nbAs83oULu9QS5LzPCwc4C3GbvJtFJzvhLI885D+kvNEB/bzzt448z1OJvWFgCz3FBKW8zAGkPLWBHb37dYy9PknPOqehqLtqKoQ8VB/EvZ4rEb0l+8o88lldPXuoKDwqJ2k9Aai0uXfJNryEfSY9EehXuW96mT2SOyq89DrRuyhZyzzu0Xw8z2uNvT9MIbxQLsW7qYkSvJiTXj1Wg3G9hLO5uql317pJkl49a26bPBICobp9vhg916RuPLn71TrlZUA8SbjcO26TQj157IW7LOcSvQLcH73nFbk846yIPS1J8LyE3zm9vbQaPc5akrvysDI8tfIOPaEPirzc+tw7w/qNPOnSKrkEuOs8E0Hbu9D0SLxpYmK8EPsXvKuOWbsGruA7xbGoPF9fhj3UP009TV/xvFXVubxMojm8T80TvOsBmzymwzi9nUUBvTTq/zsGROG8nRAtvGe33TsEoCW7wd/9PNIXEb2CIcQ8dQcBPfpGGb1x46Q9nlLqvMOTq7xE/ky8v85uPIdmzzzKDyS9xBIwPV58rj3AR1A9aKxlvY8TNj0M45k8Ab0JvZNmIj0o87u7H6VEPTU6WL1hQqU8uAqaPXV9vr37ABY9FexKPYmQ/TwPEkw8JbhyPeGP4zz/w449324Jvf3ubT2nJTa9nzyfPEGHmbxxoY49G/MSPTeTjL39xU087pp+vc1d+zyHiOK8UsIpOwLGzjxlYQK7oI6VvH/ADDw2B9e7kDgRPKtr+rzaXqa70Z26u1NfOL35x0O9hI88PUnqhjpz0yg9wlrOPW3vKj1EVAS9TKyqPMyTHL1GF7m8+NJGPacXhT3/uM+8OPiEvJ8dIj3mpTK9KOUcPOAsGzzatJm8s7QjPckR0LtFR4C7RdQPPY8jBTx9r648oKCkPAljQz15Eoi8XnIpPOJzD73vPxc67CWVvJocITwfAL+8pwvivNv2nLvSRle9Sfd1PZeHRrzSTTY8q4iTPS9llDwh4CW9PObiPBjPizzKb0O6fWCnuzesC70u84S8Fp8NvZ2qGT2bTys9+8ETvVSU5zvZn5e7fQkZvR4dVr3Tq468ZQEiPY9EET0RG9W7QQ6DO1B6WDiu9XC8SCktvZmpv72nVXy8I2Z9PLLIBL1fNDw8jcYdvfrfXj2U5049tyxGPNVYwDue+lY91qyVO0cBOT3vEoO84GLEO0NdvzwZ9GU9Rdy+PJaZTb3ZWRM7RJAMvclpOjvpUes8xqZCPTBlgb2D+6S8n8jNPJ3CIb15alK9l+Twu5smmzxt29Y7SaOuPRY3Xzze5R68n3QvO93jpr1rvl08sMKHvFdTnT1hjSo8vt2EvWbiLDsTnYC9WCEtvWk8QDx3uj273QGQvBU2e70kYqM8ZQdUvWH4Cj1g5sq8gMWJvW7mFrzxI4C9zyMRvVLk2bpPkA29neqOvUbgAr3vwxW8+zU0vXY2K7t/M748P/yiu/Uukb2bK/y8tOx2vTTKcb1Z2e08x+ALPS9O47zvwxA910neu708vLuboME82YdIvaPhQj1UZDy9pDGhu+w6UD3Inwe8FSFRvUMjib27EUa9smUCPRHXj7ykw9C8Ey0uPaHsGr0gvl69WeYqPUvv3LxNWZS9PycYvH8juLxQcIQ9lXzMu7Q/NL3qHgW8ubHlPP09or2Y2sG7eATFvMkBbT1+Tua83AuEO1K/NL1+6OA8UieiPD4Dbr1Fo0U9fA5XvGixOj0OmAk9Ki9yvPACjL1WIMW7haGMPd6xXT37LyQ9LwkqvDchqzzkE3W9EswXPaq8Zz1tjD69myqzO4sshbzlkE49AEC8PO0CCz10v5O9tYy6vUIHcjzP/Jg92/3YumcBFjyvUqA9QMDyPMD6aj1H3Eg9R/rNukhfEjzfJsG8OFMLOuMHgzwyLS28t4yEPCAuDT0Ga9Y8mH1AvD+K9jlU0Vk8SJqUvAx8z7xHUpy8
+related:
+  - >-
+    videos/firebase-studio/build-full-stack-ai-apps-in-minutes-with-firebase-studio.mdx
+  - >-
+    videos/firebase-studio/building-ai-powered-experiences-with-firebase-studio-and-firebase-platform-rody-davis.mdx
+  - videos/firebase-studio/start-prototyping-with-firebase-studio.mdx
+  - videos/firebase-studio/how-firebase-studio-accelerates-development.mdx
+  - videos/firebase-studio/introducing-firebase-studio.mdx
+last_updated_metadata: '2026-05-23T00:17:42.985Z'
+---
+
+import SocialEmbed from "../../../../components/SocialEmbed.astro";
+
+
+# Building Firebase Studio Rules for Angular Live
+
+<SocialEmbed platform="youtube" id="YfdsFSVyZ4I" />
+
+## Description
+
+Join in as Mark and Rody build rules in AI Studio to help developers build Angular Apps in the Firebase Studio IDE.
+
+Try Firebase Studio: goo.gle/4e8748C
+
+## Transcript
+
+**0:04** · MARK THOMPSON: OK, I started my introduction-- I started my introduction and I forgot to add myself to the stage.
+
+**0:12** · \[LAUGHS\] Hey, everyone.
+
+**0:14** · Welcome to this very special series of live streams where we're going to be working on an interesting problem.
+
+**0:21** · We've heard from lots of developers that they want to get better output from code gen tools and things like that with Angular, so I thought it could be really interesting if we started to build some of the prompts together.
+
+**0:34** · And here's where you at home get to support this effort.
+
+**0:38** · During our time together, like, in the chat, put in your comments.
+
+**0:42** · Put in some things that you want us to try, put in some of your frustrations or wins or things that work for you.
+
+**0:48** · Because what we would love to do is create sets of prompts that can help developers everywhere build excellent apps with AI tools support.
+
+**0:56** · So this is about the code generation side of the story, and not so much about adding a feature to your application.
+
+**1:02** · We will do more of those streams.
+
+**1:04** · OK, I know you all love those streams.
+
+**1:06** · We love doing them.
+
+**1:07** · We're going to do so many more of these things.
+
+**1:09** · I'm just having a good time.
+
+**1:10** · Let's see who's in the building.
+
+**1:11** · We got people in the building.
+
+**1:13** · People have been here for a while.
+
+**1:14** · OK, Jack has pulled up.
+
+**1:16** · How are you, Lars?
+
+**1:18** · Hello, hello, hello.
+
+**1:20** · Hello, hello, hello, Kodoku169.
+
+**1:24** · What's going on?
+
+**1:25** · Dev Junior, what's up?
+
+**1:27** · Hello, friends.
+
+**1:28** · Oh, the dab.
+
+**1:28** · Brrap bap bap.
+
+**1:29** · All right, sounds good.
+
+**1:31** · Hello, RSD Journey.
+
+**1:33** · What's going on?
+
+**1:34** · Kamlesh, hello from India.
+
+**1:36** · Hey, I send lots of love your way.
+
+**1:37** · Michael Small in the building.
+
+**1:38** · What's up, Michael Small?
+
+**1:41** · Sudhansu, hello, hello, hello, hello, hello.
+
+**1:45** · Kapsel, hello.
+
+**1:45** · How are you?
+
+**1:46** · Hello, hello, hello.
+
+**1:49** · OK, let's see.
+
+**1:50** · Merhaba, from Egypt.
+
+**1:52** · OK.
+
+**1:53** · All right, let's get Rody.
+
+**1:54** · I want to make sure Rody is going to be in the building soon.
+
+**1:56** · So we got a very special guest.
+
+**1:57** · I don't know if you can tell by my attire, I am wearing a Firebase Studio shirt today, because that's the tool we're going to be using for today's session.
+
+**2:06** · So that's very, very, very good.
+
+**2:08** · Very, very, very good.
+
+**2:09** · Hello.
+
+**2:09** · Let's see who else we got.
+
+**2:10** · We got-- hello.
+
+**2:11** · All these friends.
+
+**2:12** · People are here.
+
+**2:13** · What's going on?
+
+**2:14** · Hello, hello, hello from Ukraine.
+
+**2:15** · What's up, what's up, what's up?
+
+**2:17** · Hello from Chile.
+
+**2:18** · Hello, hello, hello.
+
+**2:19** · So many people in the building.
+
+**2:21** · We're so super excited.
+
+**2:23** · All right, we're just waiting on our guest.
+
+**2:25** · Oh, can you tell my shirt?
+
+**2:26** · Let me see, let me just model my shirt off to you friends at home for a second.
+
+**2:31** · See this?
+
+**2:32** · Got my Firebase Studio shirt on.
+
+**2:35** · No, I'm not joining the Firebase Studio team.
+
+**2:37** · I just have this shirt and I thought it'd be fitting to wear this shirt today for this stream.
+
+**2:45** · So OK, as we're waiting for our guest of honor to join us today, I would love to hear in the chat, if you're watching at home in the chat, let me know about your experiences so far using tools to generate Angular code.
+
+**2:59** · What has worked for you?
+
+**3:00** · What hasn't worked for you?
+
+**3:01** · Would love to hear from that.
+
+**3:02** · All right.
+
+**3:03** · Let's see.
+
+**3:04** · We said hello to you.
+
+**3:05** · Hello, from Liechtenstein.
+
+**3:07** · Awesome, awesome.
+
+**3:08** · We got people in the building.
+
+**3:13** · All right, let me have a look here.
+
+**3:18** · All right, all right.
+
+**3:19** · As we're going, as we're going, as we're going.
+
+**3:21** · So many windows.
+
+**3:31** · All right, I'm sending Rody a message.
+
+**3:32** · Let him know we're live, and the people are ready for you to join us.
+
+**3:43** · OK awesome.
+
+**3:45** · All right.
+
+**3:46** · Let's see what people are saying.
+
+**3:47** · Oh, let's go.
+
+**3:48** · Joe in the building.
+
+**3:49** · What's up, what's up, what's up, what's up?
+
+**3:51** · Hello, veryone.
+
+**3:53** · Listen, you should start saying that.
+
+**3:54** · That should become your call sign.
+
+**3:56** · Hello, veryone.
+
+**3:57** · All right, we're doing good.
+
+**3:58** · All right, so people are coming in.
+
+**4:00** · It's great to have everybody here.
+
+**4:02** · We should be pretty good to go.
+
+**4:05** · Our guest Rody works on the Firebase Studio team, which is so exciting.
+
+**4:10** · I'm so glad that he's going to be hanging out.
+
+**4:13** · Oh, I wonder-- OK.
+
+**4:16** · This will be funny.
+
+**4:17** · Let me see something real quick.
+
+**4:19** · Is-- OK.
+
+**4:21** · Hold on one second, friends.
+
+**4:23** · One second.
+
+**4:23** · OK, this is funny.
+
+**4:24** · He is in a meeting and waiting for me.
+
+**4:27** · Give me a second.
+
+**4:50** · OK, so Rody was in the meeting waiting for me to join, so that's where he is, but he'll be right over.
+
+**4:56** · We're going to get started very, very soon.
+
+**4:57** · Very excited.
+
+**4:58** · "GitHub Copilot with Claude Sonnet 4 is pretty decent for start.
+
+**5:01** · Gemini 2.5 Pro is great for refactoring and continued development."
+
+**5:06** · Oh, I want to know more about this.
+
+**5:08** · I want to know a lot more about what you mean when you say refactoring.
+
+**5:11** · Well, I know what you mean by refactoring, but what kind of prompts are you using when you say continued development?
+
+**5:17** · That's interesting.
+
+**5:18** · Super interesting.
+
+**5:19** · Resource, HTTP Resource, why?
+
+**5:22** · I'm going to answer this question while we wait.
+
+**5:26** · Here's what's really interesting about Angular right now.
+
+**5:29** · So we have been introducing our fully fledged new reactivity system that's based on signals.
+
+**5:36** · And so when you're working with some tasks it would be really nice if you can get those values exposed as signals, because here's what signals give you.
+
+**5:46** · Here's one of the big things they give you.
+
+**5:48** · You're not having to manage the changes.
+
+**5:50** · It's reacting to changes in the data, and you get the latest value yourself.
+
+**5:54** · You're not having to dig deep into this.
+
+**5:56** · So if you think about what about an asynchronous task, like an asynchronous data fetching, and then you get the data, and then you can rerun that.
+
+**6:09** · OK.
+
+**6:10** · Let me say it a different way.
+
+**6:11** · So for resource, in the case, you can base it on a signal value, let's say a user ID.
+
+**6:15** · That user ID changes.
+
+**6:17** · You don't want to have to have an event handler that you didn't have to be responsible for.
+
+**6:21** · And then, you're like, OK, well did this value change?
+
+**6:23** · If the value changed, let me run this asynchronous event, and then let me track the value.
+
+**6:28** · You can do a different way.
+
+**6:29** · You can base your resource on a reactive value like a signal.
+
+**6:34** · And then, it'll rerun whatever asynchronous data fetching that you're doing for you.
+
+**6:39** · And then, on top of that, you get nice parts of the application working for you, meaning you get things the status of the loading, and if there's an error.
+
+**6:49** · And all this exposes the signal.
+
+**6:50** · So that's why you have these things.
+
+**6:52** · The HTTP resource is just a specialized version of resource which is focused on fetching data.
+
+**6:58** · Hopefully, that's helpful to you.
+
+**7:00** · Hopefully, that's helpful.
+
+**7:00** · "Firebase Studio is the only AI workspace that works good with Angular projects for me."
+
+**7:04** · I love hearing that.
+
+**7:05** · I love hearing that.
+
+**7:06** · All right, I think Rody loves hearing that too.
+
+**7:08** · Rody, you came right on time.
+
+**7:10** · Somebody just said the nicest thing about Firebase Studio, oh, as I'm twinning with the Firebase Studio shirt today.
+
+**7:17** · It say, "Firebase Studio is the only AI workspace that works good with Angular projects for me."
+
+**7:22** · Love to hear that.
+
+**7:24** · That's really exciting.
+
+**7:25** · RODY DAVIS: Yeah, that's awesome.
+
+**7:27** · MARK THOMPSON: All right, let's see.
+
+**7:28** · "I use cursor in my Angular app."
+
+**7:29** · All right.
+
+**7:30** · Well, I want to learn more about why you use Cursor, and what's working, what's not working for you.
+
+**7:34** · Because what we care about is that whatever you're building with, it's serving your needs.
+
+**7:39** · That's what we care about the most.
+
+**7:40** · Today, we're talking about Firebase Studio because we have some really great features there.
+
+**7:44** · But whatever you use, use what you use.
+
+**7:48** · Oh, here's a good thing.
+
+**7:50** · Joh also comments, "not all data fetching happens with the HTTP client, ie SDK's."
+
+**7:55** · That's true.
+
+**7:56** · That is very, very, very true.
+
+**7:58** · OK, let's see.
+
+**7:59** · I saw a PR about httpResource docs.
+
+**8:01** · Yes, we have more docs coming.
+
+**8:02** · OK.
+
+**8:04** · If you have more questions about Angular, go ahead and put them in the chat.
+
+**8:06** · We can answer those separately.
+
+**8:08** · But we have a very special guest in the building.
+
+**8:11** · So I've actually known our guest Rody for a long time.
+
+**8:15** · We both come from a different community before we joined Google, and we both ended up working on different products and not that thing.
+
+**8:24** · Rody, how did we meet?
+
+**8:25** · Well, first, introduce yourself.
+
+**8:26** · Tell people what you work on.
+
+**8:27** · RODY DAVIS: Yeah, so my name is Rody.
+
+**8:29** · I am one of the DevRel leads for Firebase Studio, and kind of helping people get started with templates, working with different frameworks.
+
+**8:36** · I've been pretty involved in the Flutter community and a variety of frameworks, and exploring a lot of different things.
+
+**8:42** · MARK THOMPSON: Yeah, fantastic.
+
+**8:44** · So now, people don't know this about us, Rody.
+
+**8:47** · How did we actually meet though, in real life, before Google and before what we work on now?
+
+**8:53** · RODY DAVIS: When was the first time?
+
+**8:54** · That would have been at the, Flutter Interact?
+
+**8:58** · MARK THOMPSON: Yeah, that's right.
+
+**8:59** · RODY DAVIS: Yeah.
+
+**9:00** · Yeah, 2019.
+
+**9:01** · Wow.
+
+**9:01** · MARK THOMPSON: Yeah both were Flutter developers just thriving in the Flutter community, contributing, adding lots of value.
+
+**9:07** · And I think we both actually applied for the same job at Google.
+
+**9:11** · RODY DAVIS: Yes.
+
+**9:12** · \[LAUGHS\] Yeah.
+
+**9:13** · Yeah, and I think it ended up being a manager role too.
+
+**9:15** · MARK THOMPSON: That's right.
+
+**9:17** · That's right, it was a manager role.
+
+**9:18** · And I remember getting interviewed and they were just like, yeah, we like you, but not for a manager.
+
+**9:23** · RODY DAVIS: Same.
+
+**9:23** · MARK THOMPSON: And I'm like, all right.
+
+**9:24** · RODY DAVIS: Exactly, same.
+
+**9:25** · MARK THOMPSON: All right, that's cool.
+
+**9:27** · I'm not offended by that.
+
+**9:28** · \[LAUGHS\] RODY DAVIS: Yeah.
+
+**9:30** · MARK THOMPSON: Oh, man.
+
+**9:31** · How fun, how fun.
+
+**9:32** · And now, here we are, both working on very different products but all both having a good time.
+
+**9:37** · All right, let's see.
+
+**9:38** · "I haven't tried Angular Studio yet.
+
+**9:40** · I feel a bit hesitant, but I'm planning to start using it after today."
+
+**9:44** · Angular Studio, I think you mean Firebase Studio.
+
+**9:46** · And speaking of Firebase Studio, here is Firebase Studio in the flesh.
+
+**9:50** · So I have it up on the screen.
+
+**9:53** · And we're going to do some stuff together, because Rody, here's what I would like to do today.
+
+**9:58** · I would like to use, I think we're calling it, like, the-- how do you describe the non-app prototype mode?
+
+**10:06** · What's the language that you use?
+
+**10:08** · RODY DAVIS: We've been saying code view or just the normal IDE view.
+
+**10:12** · We view when you're building with natural language, that's our prototype or app prototyping agent.
+
+**10:17** · So everything else is just the default experience, which we really think is super awesome, and I use all the time.
+
+**10:25** · So I'm excited to dive into it today.
+
+**10:27** · MARK THOMPSON: Yeah, OK.
+
+**10:28** · So one of the benefits of the IDE view or the code view is that you still have access to an AI assistant, right?
+
+**10:39** · RODY DAVIS: Yep, mhm.
+
+**10:40** · MARK THOMPSON: OK.
+
+**10:41** · RODY DAVIS: Yeah, in fact, you'll be able to choose your own model, bring your own API key.
+
+**10:44** · You can even connect to a fine tuned model too, in the picker, which is great.
+
+**10:48** · MARK THOMPSON: Oh, excellent.
+
+**10:49** · So what I would love to do is see how can we configure in Firebase Studio a way to tell it how to generate even better Angular code.
+
+**11:01** · RODY DAVIS: Awesome.
+
+**11:02** · MARK THOMPSON: All right.
+
+**11:03** · Awesome So let's do that.
+
+**11:03** · So I think the best thing I can-- or not the best thing, the first thing I can do is, so down where it says start coding an app-- I'm going to zoom in just so people can see what I'm doing down here.
+
+**11:12** · We've got a lot of options from different products.
+
+**11:16** · Let me see.
+
+**11:16** · Let me hide this little thing down here.
+
+**11:18** · OK.
+
+**11:18** · Y'all can't see it, but I can see it.
+
+**11:19** · All right.
+
+**11:20** · So I'm going to choose-- hey, Flutter.
+
+**11:21** · What's going on?
+
+**11:22** · I'm going to choose Angular from this list.
+
+**11:23** · RODY DAVIS: Cool.
+
+**11:24** · You want to also show them where the second place they can find it too?
+
+**11:28** · MARK THOMPSON: Oh, please.
+
+**11:28** · Let's go back.
+
+**11:29** · OK, show me, show me, show me, show me.
+
+**11:30** · RODY DAVIS: So click on New Workspace.
+
+**11:32** · MARK THOMPSON: OK.
+
+**11:33** · So I'm going to go down here, click on New Workspace.
+
+**11:35** · RODY DAVIS: Yeah, when people first come to Firebase Studio, they may not realize we have over 160 plus templates configured for a lot of different stacks and frameworks and languages.
+
+**11:44** · So if you come here, one of the first things you'll see is Angular.
+
+**11:47** · And you can even scroll down and there's a bunch of other templates that you might be used to or-- MARK THOMPSON: Oh, let's go.
+
+**11:53** · RODY DAVIS: --have tried out in the community.
+
+**11:54** · So there's many more that we're always building.
+
+**11:56** · And if you ever have feature requests or want an update, please let me know.
+
+**12:01** · And then also, we accept community templates too.
+
+**12:04** · So you could just make a PR and support your favorite framework.
+
+**12:08** · MARK THOMPSON: Look at this.
+
+**12:09** · This is amazing.
+
+**12:10** · OK.
+
+**12:10** · I don't know that I spent as much time.
+
+**12:13** · So before Firebase Studio and Project IDX started and became the same product, I had only used just, like, going straight into one of them.
+
+**12:22** · So I didn't even see some of these things.
+
+**12:24** · This is fantastic.
+
+**12:25** · So you can just go to the-- so let me remind people how I got here before.
+
+**12:29** · RODY DAVIS: Yup, just New Workspace.
+
+**12:30** · MARK THOMPSON: Yeah, from New Workspace right there.
+
+**12:33** · Got it.
+
+**12:33** · RODY DAVIS: That's right.
+
+**12:33** · MARK THOMPSON: Awesome.
+
+**12:34** · All right, let's pick Angular, and then let's actually get to this stuff.
+
+**12:37** · So I want to say this is-- I always call my projects-- I always just say, what we're doing today?
+
+**12:42** · We're going to say, ai-dev-xp.
+
+**12:45** · So some experiments working with AI development, because I love the idea of using-- I do accept the terms.
+
+**12:53** · I love the idea of using AI assistant to help boost my work.
+
+**12:58** · I mean, I like it.
+
+**13:00** · I know some people are kind of on the fence about it.
+
+**13:02** · I like it.
+
+**13:04** · RODY DAVIS: Oh yeah.
+
+**13:04** · So I'm curious your thoughts on how you've been able to approach using AI assistants.
+
+**13:10** · Because I definitely have thoughts too, on being an experienced developer and trying to find ways to amplify your workflow, as opposed to slowing it down.
+
+**13:19** · MARK THOMPSON: Good question.
+
+**13:22** · So recently, I just made a multiplayer web-based game app that had three different UIs, an admin view, a player view, and a spectator view.
+
+**13:35** · And for me, the way I was able to have it leverage things is when I knew exactly what I wanted to happen, I would start describing the actual code that I wanted in the comment, and then I will let Gemini fill in the gaps.
+
+**13:50** · But sometimes, I really wanted the ability to just have it like, not do anything.
+
+**13:56** · I know what I'm going to type.
+
+**13:57** · I don't even want your help right now.
+
+**13:59** · I know what I'm going to type.
+
+**14:00** · Don't suggest anything.
+
+**14:01** · All the IntelliSense Windows, the Gemini suggestions, I want everything off for a second, so that way I can actually just type what I'm going to type.
+
+**14:09** · So I've been doing some good stuff like that.
+
+**14:12** · That's been really working for me.
+
+**14:13** · What about you?
+
+**14:14** · RODY DAVIS: So I feel like I have been doing what I'm calling compressed or condensed RAG, where I'm using Gemini Deep Research or Notebook LLM to explore a body of research or something I'm trying to do.
+
+**14:30** · And my goal of that is to take a huge breadth first search.
+
+**14:35** · So I'm giving it a bunch of links to documentation, I'm using my deep research to do expanded search queries, and I'm having it generate some kind of report.
+
+**14:45** · So what I do is I take that report, convert it to markdown, and I include it in my code base, and then I generate a prompt based on that piece of research because it doesn't let the model have to guess about what it needs to explore.
+
+**15:00** · I've regularly started building with languages that is not even in the training data set, or things that are very new, because you're teaching it and guiding it.
+
+**15:10** · And the more explicit you can be about the architecture and the vision that you have for it.
+
+**15:15** · I mean, you can get really, really far.
+
+**15:17** · And one of the things that I've heard recently that I thought was really nice is when you're prompting a model, it's a reflection of what you're putting into it.
+
+**15:26** · So the higher quality input you put in, the higher quality output you're going to get out.
+
+**15:29** · As well as if we start to think about prompting image generators, you never are confused if you tell someone a dream with like, two sentences, and they didn't see exactly what you were seeing in your head.
+
+**15:43** · You have to be very descriptive and elaborate to get that point across, because communication is how we actually connect and describe our intent.
+
+**15:52** · MARK THOMPSON: Wow.
+
+**15:53** · OK, so I feel like you and I should do more streams together-- RODY DAVIS: Yeah.
+
+**15:56** · MARK THOMPSON: --because I would love to see your condensed RAG in action.
+
+**15:59** · I think the people in the community would love to see it as well-- RODY DAVIS: Awesome.
+
+**16:03** · MARK THOMPSON: --about how they can leverage this type of stuff.
+
+**16:05** · So you've already committed yourself to doing more of these with us.
+
+**16:08** · RODY DAVIS: Sounds good.
+
+**16:09** · MARK THOMPSON: \[LAUGHS\] All right, friends.
+
+**16:10** · So while we were describing all that stuff, the cool thing that happened so far-- RODY DAVIS: Yup.
+
+**16:15** · MARK THOMPSON: And listen, I want to be super clear, friends at home.
+
+**16:17** · Like, the Angular community, we know that you put our trust in us.
+
+**16:20** · I'm not trying to sell you on Firebase Studio.
+
+**16:22** · Let me be super clear.
+
+**16:23** · I'm just describing the things that are happening, and we're just going to work on it.
+
+**16:26** · If you like what you see, that's different.
+
+**16:28** · But this is not like a marketing pitch.
+
+**16:30** · RODY DAVIS: Yup.
+
+**16:31** · MARK THOMPSON: But I'm just going to describe what I'm seeing.
+
+**16:33** · So we start the project.
+
+**16:35** · It looks like it did the NPM install for me already, and it started the server.
+
+**16:41** · And all I did was just create the thing.
+
+**16:43** · I did have to install the extension manually, which is fine, but it prompted me, which is OK.
+
+**16:50** · RODY DAVIS: Yeah, which we can even fix that in the future too.
+
+**16:53** · One of the cool things about if you go to the dev dot next file, under idx folder, you can set the extensions that you want installed when the Workspace is created.
+
+**17:06** · Also, just wanted to say, Firebase Studio, for those on the stream that may not be familiar with it, it's not trying to really compete with local development.
+
+**17:15** · We see it as a parallel.
+
+**17:16** · One of the things we're trying to do is make it really easy to collaborate with people.
+
+**17:21** · And we all know people that we run into that are new to development or maybe have a lower spec machine, or even a Chromebook or an iPad, and want to get started with something.
+
+**17:33** · Well, now, you can share a link with someone on Firebase Studio and they can explore Angular without having anything installed.
+
+**17:41** · So it's been a really cool way to teach people how to use a certain type of framework without them having to invest, and to trying to figure out how to set up their path or get NPM or node installed locally.
+
+**17:55** · MARK THOMPSON: OK, there we go.
+
+**17:56** · So we got that working.
+
+**17:57** · RODY DAVIS: Right on.
+
+**17:58** · MARK THOMPSON: So as you were talking, I just want to see what would happen.
+
+**18:01** · Can we get some stuff working?
+
+**18:03** · All right.
+
+**18:05** · Awesome.
+
+**18:05** · All right, so let's get some community comments.
+
+**18:09** · "Still don't use much AI in my workflow, but all these streams have been tempting to see how others use it."
+
+**18:13** · Yeah, I mean that's how I started.
+
+**18:15** · I really was kind of like, eh, I don't know about it in my workflow, because I know what to do.
+
+**18:19** · Just like you, Michael, and many of you on the stream, you already know what to do.
+
+**18:22** · So that's not as interesting to you.
+
+**18:24** · But what I found is how much more I can get done.
+
+**18:28** · That's been appealing to me, the amount that I can get done.
+
+**18:32** · RODY DAVIS: Yeah, and I guess I could bring up our first thing.
+
+**18:35** · Would you want to click the Settings icon?
+
+**18:37** · MARK THOMPSON: Yeah, I do.
+
+**18:38** · RODY DAVIS: Bottom left, and let's do Settings.
+
+**18:43** · MARK THOMPSON: Mhm.
+
+**18:44** · RODY DAVIS: So for developers coming into this that may not want the full AI assistant right away, we actually offer some options that I think would be already beneficial.
+
+**18:54** · So if you type in enable inline completion-- so you can actually disable the inline autocomplete.
+
+**19:07** · I know for me personally, sometimes I like to disable that and only work with it through the chat, because I want to use the built-in LSB and stuff like that.
+
+**19:17** · MARK THOMPSON: Yeah, I just want to zoom in for a second so we can see that.
+
+**19:21** · Interesting.
+
+**19:22** · RODY DAVIS: Yeah, and another one is you can even disable code-based indexing as a global value here too.
+
+**19:29** · So just so if you're coming into Firebase Studio and you're like, I don't want the AI or I want to be very explicit about what I want to use AI for, we totally have ways to configure that.
+
+**19:41** · MARK THOMPSON: Mhm, mhm, mhm.
+
+**19:43** · So I may turn it off at some point, because-- RODY DAVIS: Yeah, it'll be fine for this video.
+
+**19:48** · But just some people may not realize that you can turn it off.
+
+**19:51** · MARK THOMPSON: Did not know you could turn it off.
+
+**19:53** · Let's go.
+
+**19:53** · OK.
+
+**19:54** · Let's see.
+
+**19:54** · Let's get some more comments.
+
+**19:55** · Got people in the streets talking to us.
+
+**19:57** · Can either-- yes, this is a good question.
+
+**20:00** · Can you do a Git repo or from a local folder?
+
+**20:03** · RODY DAVIS: Yes, you can import from GitHub, Bitbucket, GitLab.
+
+**20:06** · And if we don't support a Git provider, you can always create a blank workspace and clone it through whatever means that you connect to your source control.
+
+**20:14** · You can also download your code as a zip file or sync it back to Git.
+
+**20:18** · So your code is yours and you can always go back and forth.
+
+**20:21** · MARK THOMPSON: What about this?
+
+**20:22** · "Can I import existing projects to Firebase Studio," if I don't want to start from scratch?
+
+**20:26** · RODY DAVIS: Yep, you can import any public or private Git repository, or just upload a folder as well.
+
+**20:33** · MARK THOMPSON: Yeah.
+
+**20:34** · All right, let's see.
+
+**20:35** · "Mark, that's next level, bro.
+
+**20:37** · Don't delete this VOD.
+
+**20:38** · That sounds awesome."
+
+**20:39** · Whatever I said that sounded awesome, \[LAUGHS\] then yes.
+
+**20:44** · RODY DAVIS: Yes, plus one.
+
+**20:46** · \[LAUGHS\] MARK THOMPSON: Yeah, right.
+
+**20:46** · OK.
+
+**20:47** · We don't delete our VODs.
+
+**20:49** · So whatever it was, it should be good.
+
+**20:51** · Awesome.
+
+**20:52** · All right, let's continue.
+
+**20:54** · So here's something that I would try to figure out.
+
+**20:58** · So if I wanted to do, and I really don't like this example, but it's the most accessible example.
+
+**21:04** · It's a to do app.
+
+**21:05** · And I know that's the generic example, but it's quite accessible.
+
+**21:09** · RODY DAVIS: Mhm.
+
+**21:10** · MARK THOMPSON: So what I want to be able to do is have the assistant generate modern, like, code.
+
+**21:16** · And I have some guidelines.
+
+**21:18** · So if I were to do something like-- all right, so I'm going to have a section here.
+
+**21:25** · And then, so I'll say list of todos, right?
+
+**21:29** · RODY DAVIS: Yep.
+
+**21:30** · MARK THOMPSON: With a checkbox.
+
+**21:33** · Yeah, to mark.
+
+**21:35** · So it gave me some comments, hold on.
+
+**21:37** · You could tell me how to open up my web window again.
+
+**21:39** · RODY DAVIS: Yeah, I will.
+
+**21:40** · Yeah.
+
+**21:40** · MARK THOMPSON: OK.
+
+**21:40** · Because if I close it-- RODY DAVIS: Yeah, yeah.
+
+**21:42** · MARK THOMPSON: --the marker is done.
+
+**21:44** · All right, so I want this thing to fill in.
+
+**21:46** · So how can I prompt the model to get started right now to do it for me?
+
+**21:51** · RODY DAVIS: So this is what we usually consider is like Level 1 AI assistants, where we have autocomplete.
+
+**21:57** · And I think it is generally OK for certain types of things.
+
+**22:02** · It's way better when you have a lot of existing code.
+
+**22:05** · But this, we can now start with the Level 2 version, which is where Gemini can actually read your code and make changes.
+
+**22:16** · So if you clicked on Gemini in the bottom toolbar-- MARK THOMPSON: OK, let's see.
+
+**22:22** · Bottom toolbar.
+
+**22:23** · What am I looking-- oh, down here.
+
+**22:24** · Yep, I see it.
+
+**22:25** · RODY DAVIS: So this will open up our Gemini chat.
+
+**22:27** · MARK THOMPSON: Can people see that?
+
+**22:29** · Super small.
+
+**22:30** · I wish I could zoom in a little bit more, but I'm clicking on the Gemini.
+
+**22:33** · OK, there it is.
+
+**22:33** · RODY DAVIS: It usually will launch automatically.
+
+**22:35** · One thing that I found to work really well is to provide pseudocode.
+
+**22:40** · And you're kind of like doing this here, but we should just be able to-- MARK THOMPSON: Ohh!
+
+**22:44** · RODY DAVIS: Yeah, yeah.
+
+**22:45** · Because you're giving that abstract shape of where you want to head, is going to already get closer to what you're wanting.
+
+**22:53** · MARK THOMPSON: OK, I see.
+
+**22:54** · RODY DAVIS: So I have found that Gemini in Firebase is really good when you're explicit about the files that you want to update.
+
+**23:00** · So you could say like, create a to do component, updating both app html and app js or whatever, and allow it to know which files to be explicit about.
+
+**23:13** · MARK THOMPSON: I see app.html and app.ts.
+
+**23:18** · RODY DAVIS: Or CSS as well.
+
+**23:19** · Just like, hey, here's the files that I want you to update, and then start with the changes.
+
+**23:27** · MARK THOMPSON: OK, update both.
+
+**23:28** · And then, here's what I want.
+
+**23:30** · The component should-- because I almost get into test-driven development mode describing the task.
+
+**23:37** · Like, the component should accept an input with the label of the todo, the status of the todo.
+
+**23:53** · The component should also-- what should it also do?
+
+**23:59** · It should also display-- oh, it should also strike through the label.
+
+**24:06** · If the todo is marked as complete.
+
+**24:15** · RODY DAVIS: Yeah, and then, you can also, just for the viewer's knowledge, click the dropdown right there, built-in Gemini model.
+
+**24:23** · This is something that Súper Chat and our chat inside of Firebase Studio can do, is where you can actually talk to different models and choose the types of experiences that you're wanting.
+
+**24:34** · Sometimes people want to try out the preview models or custom fine tuned ones.
+
+**24:39** · And then also, our interactive chat allows you to have multiple chat sessions, so you can go back and see previous ones and jump back in.
+
+**24:47** · I would suggest to do a chat per task of what you're trying to do, because it allows you to go back later and to make changes in context of the stuff that you've already done.
+
+**24:57** · So we can just use the built-in model.
+
+**25:00** · We're using Gemini 2.5.
+
+**25:02** · MARK THOMPSON: Ohh!
+
+**25:03** · Uh huh.
+
+**25:04** · RODY DAVIS: And so this should just be able to work.
+
+**25:06** · And then, as we make changes, we can talk about how to even improve it even further.
+
+**25:12** · MARK THOMPSON: All right.
+
+**25:13** · But before we do that, let's see, let's see.
+
+**25:16** · "I used such a workspace for building a small project "library" like a dynamic form builder or dynamic table."
+
+**25:22** · Oh, cool.
+
+**25:23** · All right, let's see.
+
+**25:24** · "Guys, I use ChatGPT to create well-written prompts and then I paste them into Firebase Studio.
+
+**25:28** · It generates high-quality code."
+
+**25:30** · OK.
+
+**25:31** · RODY DAVIS: Yup, that's a great tip.
+
+**25:32** · I also use Gemini Deep Research and Thinking to do the same thing.
+
+**25:36** · MARK THOMPSON: Oh, fantastic.
+
+**25:37** · Oh, it was your RAG workflow, Rody.
+
+**25:39** · No, we're going to do it.
+
+**25:40** · Totally.
+
+**25:41** · RODY DAVIS: Cool.
+
+**25:41** · MARK THOMPSON: Right after this stream, I'm going to put something on the calendar for him to come back and show us this RAG workflow.
+
+**25:47** · RODY DAVIS: Awesome.
+
+**25:48** · MARK THOMPSON: Yeah, totally going to do that.
+
+**25:50** · No, and Alcatraz, do not be sorry.
+
+**25:52** · RODY DAVIS: Yeah.
+
+**25:52** · MARK THOMPSON: It's OK.
+
+**25:53** · I'm not offended that you weren't talking about something that I said.
+
+**25:56** · \[LAUGHS\] That doesn't matter.
+
+**25:57** · No, I think it's cool.
+
+**26:00** · "Please use Claude."
+
+**26:02** · RODY DAVIS: If you want to install anything else inside this VM, you own it.
+
+**26:07** · It's just like a Linux VM.
+
+**26:08** · So people come and add their own preferences.
+
+**26:12** · MARK THOMPSON: Yeah, use what feels right for you.
+
+**26:15** · We're just showing you-- so when you think about, again, friends, we're still engineers, all of us.
+
+**26:20** · And I mean people at home too.
+
+**26:21** · You're still an engineer.
+
+**26:22** · So if you think about the way you develop as a system of components working together, you can swap out the components that make the most sense for you at any point.
+
+**26:29** · And the way that this is working, you can choose your model.
+
+**26:33** · Totally, totally possible.
+
+**26:35** · All right.
+
+**26:37** · OK, let's do it.
+
+**26:37** · Let's do it.
+
+**26:38** · Let's do it.
+
+**26:38** · Let's do it.
+
+**26:39** · RODY DAVIS: And also, you can deploy to other places too.
+
+**26:40** · We're just trying to make it as easy as possible to deploy to Firebase.
+
+**26:44** · MARK THOMPSON: Yeah.
+
+**26:46** · RODY DAVIS: So one of the first things that's going to do is read your file.
+
+**26:50** · So if you scroll up a little bit, it'll-- well, it did right before, it showed it.
+
+**26:56** · But it'll read the files as context.
+
+**26:58** · And so now, it's going to start to make changes.
+
+**27:01** · You can review changes or add automatically-- MARK THOMPSON: Yeah, OK.
+
+**27:05** · RODY DAVIS: --but they will show the suggested change.
+
+**27:09** · So this is for todos.ts.
+
+**27:11** · MARK THOMPSON: All right, and I already see some things that I wanted to do different.
+
+**27:16** · RODY DAVIS: Cool.
+
+**27:17** · So we could follow up in the chat and you could tell it to do something different too.
+
+**27:21** · MARK THOMPSON: OK.
+
+**27:21** · And is there any way that I can do it before we get to the chat level, or-- RODY DAVIS: Yeah, we can customize the AI rules if you want.
+
+**27:29** · MARK THOMPSON: Yeah, let's do the AI rules, because I kind of wanted to always know to do a certain set of things.
+
+**27:35** · RODY DAVIS: Let's do that, yeah.
+
+**27:36** · This at least shows us that this is how you get to the generation mode.
+
+**27:40** · So let's go ahead and hit code.
+
+**27:41** · MARK THOMPSON: Yeah.
+
+**27:42** · RODY DAVIS: All right, so before I open it up, let me talk through these changes with some of our friends at home.
+
+**27:47** · RODY DAVIS: Cool.
+
+**27:47** · MARK THOMPSON: The things that we care about.
+
+**27:49** · So here's a perfect example.
+
+**27:50** · If you're generating code right now, it's kind of common that you might see something like a standalone true, which is modern Angular.
+
+**27:57** · Except for in the recent versions, we've made the standalone component declaration optional.
+
+**28:02** · RODY DAVIS: Which is awesome.
+
+**28:03** · MARK THOMPSON: So you don't even have to put it.
+
+**28:04** · Right.
+
+**28:05** · But then these, we want to use signals instead of the decorator base.
+
+**28:09** · RODY DAVIS: Got it.
+
+**28:10** · OK, cool.
+
+**28:11** · That sounds great.
+
+**28:12** · OK, one thing I would suggest is to pull up some of the code snippets that we want to use, and then we will go to the idx folder, and we're going to create a new file.
+
+**28:25** · So you can actually hit close on those changes if you want, or we can just add something new.
+
+**28:33** · MARK THOMPSON: Let me hit close on these for now.
+
+**28:35** · RODY DAVIS: Yep.
+
+**28:35** · MARK THOMPSON: All right.
+
+**28:36** · And then, do I need to do anything here with the Gemini tab?
+
+**28:39** · RODY DAVIS: You can just close the Gemini tab for right now.
+
+**28:40** · Yeah, you can actually hit Stop on the bottom right.
+
+**28:42** · MARK THOMPSON: That's what I was looking for.
+
+**28:43** · Yeah, it was like, I saw it doing something.
+
+**28:45** · I was like, what are you doing?
+
+**28:46** · Stop thinking.
+
+**28:47** · RODY DAVIS: Yeah.
+
+**28:47** · All right, let's just go ahead and close Gemini.
+
+**28:49** · Yeah.
+
+**28:50** · OK, so we're going to create a new file.
+
+**28:54** · MARK THOMPSON: All right, so in the idx folder?
+
+**28:56** · RODY DAVIS: Yep, and it's going to be .md.
+
+**29:00** · MARK THOMPSON: Oh, I did something over here.
+
+**29:02** · RODY DAVIS: All lowercase.
+
+**29:03** · MARK THOMPSON: Hold on, I am using a computer that I don't know how to use.
+
+**29:06** · Wait a minute.
+
+**29:07** · How do youl use the computer?
+
+**29:07** · See, every time I try to right click, I'm doing the wrong thing here.
+
+**29:10** · There we go.
+
+**29:11** · New file, and then airules.
+
+**29:14** · RODY DAVIS: Yeah, one word, .md.
+
+**29:16** · MARK THOMPSON: OK, Rody, tell us about this file.
+
+**29:18** · RODY DAVIS: Yeah, so AI rules, and we've even supported other formats like cursor rules and other stuff too.
+
+**29:25** · But AI rules is Firebase Studio's take on how you can customize your chat and your Workspace.
+
+**29:32** · So one of the cool things about using these rules files is it allows you to ground the model with context about your preferences and your preferences in conjunction with this project Because it's checked into version control, other people have the same rules when they load it up.
+
+**29:53** · But yeah, so that's at a high level.
+
+**29:56** · The other cool thing you can do is give it links inside of here.
+
+**30:00** · So you could give it the Google style guide on something, or giving it a context on-- MARK THOMPSON: What?
+
+**30:06** · RODY DAVIS: --how to do this.
+
+**30:06** · Yeah.
+
+**30:07** · One of the cool things about Gemini is it uses URL context.
+
+**30:10** · So you can parse URLs as more grounding.
+
+**30:17** · And so that's kind of a cool way.
+
+**30:20** · If it's not working, it's fine.
+
+**30:23** · We'll have another way to work with it.
+
+**30:24** · But at least that's what our docs talk about, and at least what we're aiming for.
+
+**30:30** · So one of the cool things that we can do is you can maybe give it a persona.
+
+**30:36** · So we'll use default markdown headings.
+
+**30:38** · So you can do basically, an H1, and you can say persona.
+
+**30:43** · And then, under that, we can write a paragraph.
+
+**30:45** · And this is where you can say-- the classic example's talk like a pirate.
+
+**30:50** · MARK THOMPSON: \[LAUGHS\] RODY DAVIS: But here, you want to say you are a seasoned web developer that writes modern CSS, and you prefer-- or like, we're an Angular developer that's working, using basically, the latest
+
+**31:08** · versions of the library, which include signals and blah, blah, blah, which kind of gives it a hint to the model to pick and generate something that's going to be from at least a more recent data set, or it put it into the same context space of where we're wanting to head.
+
+**31:29** · So yeah, I'll defer to you on this persona.
+
+**31:33** · MARK THOMPSON: Yeah, so while you were talking, I was trying to do what somebody in the chat said, which I thought was super cool.
+
+**31:40** · I was like, all right, can I use Gemini to help me generate the persona text?
+
+**31:45** · RODY DAVIS: Yeah, of course.
+
+**31:46** · Yeah.
+
+**31:46** · And I was like, can I do it?
+
+**31:48** · I don't know.
+
+**31:49** · OK, but first, let me see if I can-- so I'm going to grab a window that's off screen just because I don't want to show my corp tabs.
+
+**31:58** · RODY DAVIS: \[LAUGHS\] Yeah.
+
+**31:59** · MARK THOMPSON: Let's see.
+
+**32:01** · So I'm saying, can you help me write a persona for an Angular developer?
+
+**32:07** · RODY DAVIS: And we also have an ask mode for Gemini too.
+
+**32:10** · But yeah, I usually use the Gemini tool as well.
+
+**32:14** · MARK THOMPSON: Yeah, OK.
+
+**32:15** · So let's see.
+
+**32:16** · Can you help me write a persona for an Angular developer that uses-- OK.
+
+**32:19** · To be this persona-- oh.
+
+**32:24** · OK.
+
+**32:25** · Write persona paragraph-- you gotta be super specific.
+
+**32:28** · Because, like you said, when you mentioned the whole photo thing or the dream thing of like, you described it in two sentences and then you're surprised that it's not the output that you want, that really spoke to me.
+
+**32:39** · I can't lie to you.
+
+**32:40** · RODY DAVIS: Yeah.
+
+**32:41** · MARK THOMPSON: I was like, that's really good.
+
+**32:42** · OK.
+
+**32:42** · RODY DAVIS: Yeah.
+
+**32:43** · MARK THOMPSON: So I'm being more literal.
+
+**32:45** · Or almost like when I'm talking to my son.
+
+**32:48** · If I'm like, hey, keep your eye on the ball, and then he puts his little eye on the ball, I can't be surprised if he didn't get the full context from one sentence, right?
+
+**32:55** · RODY DAVIS: Yeah, and so the persona, along that same analogy, is like us giving a screenplay actor role to someone.
+
+**33:05** · And if you don't give any direction, a person has the freedom to do whatever.
+
+**33:12** · But if you have a very specific goal in mind for what you want the actor to do, that's what the persona is for.
+
+**33:18** · Here is what I'm deeming acceptable and how I want you to respond.
+
+**33:24** · And so when it encounters different types of things in the chat or whatever, it's going to look at this rules file and try to make a decision based on that.
+
+**33:33** · MARK THOMPSON: Oh, I love that.
+
+**33:34** · That's exactly what we want.
+
+**33:35** · All right.
+
+**33:36** · The paragraph that we link in the library, this will be used for context for prompting.
+
+**33:47** · OK.
+
+**33:48** · Let's see if it does the right thing.
+
+**33:50** · RODY DAVIS: And then also, I would suggest finding some modern snippets of the Angular, TS, CSS, and HTML files that we use-- MARK THOMPSON: Oh, sure.
+
+**34:03** · RODY DAVIS: --even as examples here too.
+
+**34:05** · MARK THOMPSON: Wow, we can get there.
+
+**34:07** · OK, so this is pretty close.
+
+**34:09** · We're going to change it a little bit.
+
+**34:10** · Meet Alex.
+
+**34:11** · You don't have to meet Alex.
+
+**34:12** · RODY DAVIS: Yeah, actually, we want to take out the name.
+
+**34:15** · We'll do-- yeah, you are a dedicated developer.
+
+**34:20** · Yeah, we can remove names.
+
+**34:24** · Sometimes, that'll kind of confuse it, but let's see.
+
+**34:30** · Is it Angular 18?
+
+**34:31** · MARK THOMPSON: No, it's not.
+
+**34:32** · But it's a 18 plus, so I'll give it a break.
+
+**34:37** · I'll say 20 plus.
+
+**34:39** · RODY DAVIS: And then, one more Alex.
+
+**34:40** · MARK THOMPSON: Ooh, I didn't even write that, "passionatly adopting signals for reactive state management, embracing standalone--" RODY DAVIS: Right on.
+
+**34:45** · Right on.
+
+**34:46** · MARK THOMPSON: Hey, listen.
+
+**34:47** · Oh!
+
+**34:47** · "New control flow for more intuitive template logic.
+
+**34:49** · Performance is paramount to-- paramount to you who constantly seeks to optimize change detection and improve-- wow.
+
+**34:56** · Uh, excuse me.
+
+**34:57** · This sounds like a great person.
+
+**34:58** · I want to hire this person.
+
+**35:00** · RODY DAVIS: Yeah, yeah.
+
+**35:01** · OK, cool.
+
+**35:01** · So let's now add a new block.
+
+**35:04** · So this is a great persona.
+
+**35:05** · MARK THOMPSON: Yeah, it's excellent.
+
+**35:07** · RODY DAVIS: Now, we're going to do another top level heading for H2 actually, for examples.
+
+**35:15** · And so we'll say-- you can do a paragraph right here, and be like, these are modern examples of how to write an Angular 20 component with signals and all the different things.
+
+**35:31** · MARK THOMPSON: Mmm.
+
+**35:32** · RODY DAVIS: And then, I would literally paste code blocks with the TS, CSS, and HTML tags.
+
+**35:38** · And then, just literally paste something from the docs, because this will help-- or I would do the triple backslash with TS.
+
+**35:47** · MARK THOMPSON: Triple backslash, like, 1, 2, 3.
+
+**35:50** · Like that?
+
+**35:51** · RODY DAVIS: Uh, backtick.
+
+**35:51** · MARK THOMPSON: Oh, OK.
+
+**35:52** · OK.
+
+**35:53** · Oh, like this.
+
+**35:54** · RODY DAVIS: Yeah, yeah.
+
+**35:55** · Mhm.
+
+**35:55** · MARK THOMPSON: OK, then we'll do one for CSS.
+
+**35:58** · RODY DAVIS: Mhm.
+
+**35:59** · And then, after we do that, we can even say when you update a component, make sure to put the styling in the CSS, the template in HTML, and the logic in TS.
+
+**36:14** · MARK THOMPSON: OK.
+
+**36:15** · RODY DAVIS: Because sometimes, I think you can do a single file Angular \[? singular ?\] component.
+
+**36:19** · And I think this will just like, if that's your preference, you can put that here.
+
+**36:22** · MARK THOMPSON: Yeah, I'll do separate because I want to fine tune.
+
+**36:26** · I want to improve over time, versus try to nail it on the first-- I guess I'm trying to say we don't have to zero shot these customizations.
+
+**36:34** · We can refine them and make them way better.
+
+**36:34** · RODY DAVIS: Exactly, exactly.
+
+**36:36** · Yup.
+
+**36:36** · MARK THOMPSON: When you update a component, be sure to put the logic in the TS file, the CSS-- or the styles --in the CSS file and the HTML template in the HTML file.
+
+**36:56** · Can I say here is the-- or can I say style guide?
+
+**37:02** · Can I do that?
+
+**37:02** · RODY DAVIS: Yes, of course.
+
+**37:03** · MARK THOMPSON: And then, let me see.
+
+**37:05** · I have a link to the style guide I'm going to throw in here.
+
+**37:09** · OK.
+
+**37:10** · So here is a link.
+
+**37:13** · RODY DAVIS: You could even throw in how to use signals, and maybe have your signals documentation too.
+
+**37:18** · MARK THOMPSON: What?
+
+**37:18** · Stop.
+
+**37:19** · RODY DAVIS: Oh yeah, totally Yeah, because assuming it's using the URL context correctly and our docs are up to date, it's supposed to parse the URLs as context and ground it.
+
+**37:32** · MARK THOMPSON: Will it do it every time then, or do I only do it once?
+
+**37:35** · And what's the impact of it if it has to go out and like-- you know what I'm saying?
+
+**37:39** · RODY DAVIS: It should cache it, yeah.
+
+**37:41** · I don't think it does it every time.
+
+**37:43** · MARK THOMPSON: Sure, sure, sure.
+
+**37:45** · So here is a link to the style guide, to the most recent Angular style guide.
+
+**37:58** · So then, I imagine if you are a developer looking to do something like this, so let's say you're going to use Firebase Studio at your organization, you might put your appli-- your company style guide doesn't exist.
+
+**38:13** · RODY DAVIS: Yeah, totally.
+
+**38:14** · MARK THOMPSON: Maybe that's a project you do where you define the style guide.
+
+**38:17** · So that way, your generated code can match.
+
+**38:20** · Wow, that's interesting.
+
+**38:21** · RODY DAVIS: So a tip also for people doing that.
+
+**38:24** · Even if you do have some elaborate resource somewhere, it's really important to include an NVP minimal representation of that resource in this top level file.
+
+**38:34** · Because you want the TLDR, and then a way to explore more elaborate information on it.
+
+**38:43** · That also just helps the model to not get overfitted or too confused on one direction, and usually, it's led to a lot better generation.
+
+**38:55** · MARK THOMPSON: OK, so I got a little problem here.
+
+**38:58** · Let me see.
+
+**38:58** · All right.
+
+**39:00** · All right.
+
+**39:00** · And this is not a problem, but I don't know how far the context URL reading will go.
+
+**39:08** · I don't know how deep It'll crawl.
+
+**39:10** · So what I'll do is this.
+
+**39:12** · I have some essentials guides that are the high level, get started with these technologies.
+
+**39:21** · RODY DAVIS: Yeah.
+
+**39:21** · MARK THOMPSON: And I wonder if I can throw those in here, and work with these people.
+
+**39:26** · RODY DAVIS: That's exactly how I do my Notebook LLM too.
+
+**39:29** · I do that.
+
+**39:29** · MARK THOMPSON: Is that right?
+
+**39:30** · RODY DAVIS: Yeah, mhm.
+
+**39:31** · MARK THOMPSON: Look at you, and you use Notebook LLM.
+
+**39:33** · You're from the future, Rody.
+
+**39:35** · RODY DAVIS: \[LAUGHS\] MARK THOMPSON: Yeah, OK.
+
+**39:37** · Let me get back to my-- OK, here we go.
+
+**39:39** · I got too many windows up.
+
+**39:40** · I'm trying to close them all because we believe, and this is a good test, we believe that if you follow our essentials guides, you will know what you need to know to get started.
+
+**39:50** · RODY DAVIS: OK, awesome.
+
+**39:52** · MARK THOMPSON: So I'm guessing we'll find out.
+
+**39:54** · If that makes sense, right?
+
+**39:56** · If it does.
+
+**39:57** · OK, cool, cool, cool.
+
+**39:59** · RODY DAVIS: So one thing.
+
+**40:00** · Yeah, let's also include the examples too.
+
+**40:02** · MARK THOMPSON: Oh, sure.
+
+**40:03** · RODY DAVIS: Yeah, yeah.
+
+**40:05** · MARK THOMPSON: Can I preface this with anything?
+
+**40:07** · Can I just say these are-- RODY DAVIS: Yeah.
+
+**40:10** · I would usually include description, yeah.
+
+**40:13** · MARK THOMPSON: Here are some links to the essentials for building Angular applications.
+
+**40:23** · Use these to get an understanding of how some of the core functionality works.
+
+**40:42** · OK, so I think we got something good.
+
+**40:45** · Let's pause for a second and answer some questions before we do the examples.
+
+**40:49** · RODY DAVIS: Sweet.
+
+**40:50** · MARK THOMPSON: OK.
+
+**40:54** · OK, right.
+
+**40:55** · So "Firebase Studio, AI understand Angular better?"
+
+**40:58** · That's kind of what we're working on because as we saw, it does generate working Angular code.
+
+**41:03** · But we know that you don't want to generate code and have to spend the whole time refactoring what's generated.
+
+**41:08** · The closest we can get to the fidelity that we're looking for is kind of our aim.
+
+**41:12** · RODY DAVIS: And also, everybody has their own preferences too.
+
+**41:14** · MARK THOMPSON: That's true.
+
+**41:15** · So this file could help you to also define your own preferences.
+
+**41:18** · Really cool.
+
+**41:19** · "I find AI too silly yet to understand the Angular concepts as simple as human beings can."
+
+**41:23** · Well, we're special, KK.
+
+**41:24** · You gotta remember that.
+
+**41:25** · This thing up here, I'm being serious, this thing is special, right?
+
+**41:30** · Your brain is an incredible part of us.
+
+**41:34** · And artificial intelligence is one thing, but you got to remember something that's even more important.
+
+**41:38** · We're always working on artificial intelligence, but you're already intelligent.
+
+**41:42** · Don't forget that.
+
+**41:43** · RODY DAVIS: Yeah.
+
+**41:43** · I also found I feel like at DevRel, it's been interesting working both in an age of targeting people and now, LLMs.
+
+**41:55** · Because now, we start to think about resources that can be consumed easier for beginners, but also find ways to have ramps to more intermediate and advanced resources.
+
+**42:06** · And the easier that you can clearly explain what you're trying to do, also helps humans read stuff too.
+
+**42:16** · So I feel like it's been cool to see the movements around people add LLMs text files or markdown links to resources on pages.
+
+**42:26** · Because humans-- markdown is a human readable format, but it's great for LLMs.
+
+**42:32** · But by doing that, we're trying to think about what is the condensed version of our docs that could fit in a markdown file.
+
+**42:39** · How do we strip out the noise?
+
+**42:40** · How do we get it there to make it super easy?
+
+**42:44** · And that actually just happens to benefit regular people too.
+
+**42:48** · MARK THOMPSON: Wow.
+
+**42:49** · "I dislike that every project that I start in Firebase Studio wants to use React and Next JS, instead of Angular and Firebase Cloud Functions."
+
+**42:56** · RODY DAVIS: So, the prototyper.
+
+**42:57** · Yeah, currently our prototyper uses Next JS and Tailwind and Genkit.
+
+**43:03** · We wanted to have an opinionated experience that made it really easy to build quickly.
+
+**43:08** · We are exploring trying to make that work for more things.
+
+**43:12** · But right now, it's not a, I want to generate this thing and it just generates it with whatever framework of your choice.
+
+**43:19** · Right now, it's very guided.
+
+**43:20** · But I would suggest, especially after we have these AI rules, that you try out Gemini in Firebase, because you can give all the custom rules that you want and how you want it to generate, and still use the super fast previewing, the updating multiple files at once, adding changes.
+
+**43:39** · This still is going to work pretty good.
+
+**43:41** · One of my favorite-- yeah, yeah.
+
+**43:43** · MARK THOMPSON: No, no, no, no, you're fine, you're fine.
+
+**43:45** · Rody, let me look at the time here, because I know we've been hanging out and doing this.
+
+**43:49** · I know that I only booked you for a certain amount of time.
+
+**43:52** · RODY DAVIS: No, I'll be good.
+
+**43:53** · Yeah.
+
+**43:53** · MARK THOMPSON: OK.
+
+**43:54** · OK.
+
+**43:55** · Yeah, you just flag me if we get out of time.
+
+**43:56** · OK, let's see.
+
+**43:56** · "Absolutely that's usually better, use the AI to tame the AI."
+
+**43:59** · Listen, we're all learning about how to do this stuff together.
+
+**44:02** · I know it seems like if you look at the news or the internet, it seems like there are an elite set of experts who know how to do everything and that represents everybody.
+
+**44:13** · That's not true.
+
+**44:13** · We're all learning how to do this stuff together.
+
+**44:15** · OK, that's enough comments for now.
+
+**44:17** · I'll come back and we'll do more content.
+
+**44:19** · But I want to get this example in here.
+
+**44:21** · So I'm trying to think of the fastest way to get the code example.
+
+**44:23** · RODY DAVIS: So where would you want people to go to when they go to the docs to find the best looking versions of modern components or HTML and stuff like that?
+
+**44:36** · MARK THOMPSON: I don't know.
+
+**44:37** · I actually don't have a good answer for that.
+
+**44:39** · I don't have a good answer.
+
+**44:40** · RODY DAVIS: OK.
+
+**44:40** · So then, let's just basically copy the example that we have in the Workspace, and maybe you could just switch it to signals and stuff like that.
+
+**44:47** · MARK THOMPSON: Yeah, I'm looking at the-- we have our tutorial.
+
+**44:53** · The tutorial is pretty good.
+
+**44:55** · So I'm trying to see if I could find like-- oh yeah.
+
+**44:57** · OK.
+
+**44:58** · Here you go.
+
+**44:59** · RODY DAVIS: The other thing that I would suggest to you for the examples is also include doc comments above-- when it's defining an input signal, be like, this is how you can bind to the template directive.
+
+**45:13** · And then, doing above the component definition or whatever.
+
+**45:17** · You could even say for the things that aren't there, standalone is already enabled true by default or something like that.
+
+**45:27** · MARK THOMPSON: Mhm.
+
+**45:28** · All right.
+
+**45:28** · So let me do this.
+
+**45:29** · Let me see if I can-- I'm going to change one of these examples, because this is an example of some of the things we want to do.
+
+**45:36** · So we'll change this to a signal.
+
+**45:39** · We'll say true.
+
+**45:40** · RODY DAVIS: And we probably want.
+
+**45:41** · Template URL, if that's your preference for this.
+
+**45:44** · MARK THOMPSON: Well, it'll be because that's what we just told it, to do everything separately.
+
+**45:48** · So we'll do template URL and we'll just call it-- \[INAUDIBLE\] call at the HTML now.
+
+**45:55** · Friends at home, don't get mad at us about the style guide change where we change the file names.
+
+**45:59** · Don't get mad at us about this.
+
+**46:01** · RODY DAVIS: So one thing that I like to do here too, I'm curious if you've done this as well, but I like to use a Mustache style syntax here.
+
+**46:09** · So if you go up to the app ts.
+
+**46:12** · MARK THOMPSON: Let me see.
+
+**46:13** · What can I do here?
+
+**46:14** · I don't know if that matters or not, but OK.
+
+**46:16** · RODY DAVIS: So you could, basically, where it says lowercase app, you could do double curly braces and say tag instead to hint to the model that this is the variable that you want to have updated.
+
+**46:32** · MARK THOMPSON: Oh, like this?
+
+**46:34** · RODY DAVIS: Yeah, exactly.
+
+**46:35** · And I would say tag name or whatever, and put that also for app html or-- MARK THOMPSON: What?
+
+**46:40** · RODY DAVIS: Yeah.
+
+**46:41** · RODY DAVIS: Rody, you are from a different planet.
+
+**46:42** · RODY DAVIS: \[LAUGHS\] Models are really good at recognizing these patterns.
+
+**46:47** · And then, I would also, for the app name, I would say class name.
+
+**46:50** · MARK THOMPSON: Yeah, like class name.
+
+**46:53** · And I'm even going to do it like-- so you can kind of get an idea.
+
+**46:56** · You know what I mean?
+
+**46:58** · RODY DAVIS: Yeah.
+
+**46:58** · MARK THOMPSON: That's like that casing I want to use.
+
+**47:01** · RODY DAVIS: Yeah, exactly.
+
+**47:01** · Yep.
+
+**47:01** · Yeah.
+
+**47:02** · Yeah, the scout case.
+
+**47:03** · And then, you could do, if you want to do path case up there, instead of a space for tag name.
+
+**47:10** · MARK THOMPSON: Oh.
+
+**47:12** · So like this, with-- RODY DAVIS: You could do path, so the hyphen and stuff.
+
+**47:17** · MARK THOMPSON: That's called path case?
+
+**47:19** · RODY DAVIS: Yeah, that's what I believe.
+
+**47:20** · Yeah.
+
+**47:20** · MARK THOMPSON: Oh no, it's fine.
+
+**47:22** · RODY DAVIS: It's the same basically underneath.
+
+**47:22** · Yeah, yeah.
+
+**47:23** · MARK THOMPSON: Oh, it's fine.
+
+**47:23** · I just want the people at home to tell me if they've seen path case before.
+
+**47:27** · Tell me if you all have known this and I just didn't know it.
+
+**47:30** · Let me know.
+
+**47:31** · You can't hurt my feelings.
+
+**47:32** · My feelings are just not at risk here.
+
+**47:34** · RODY DAVIS: And then, is there anything else you want to show off in the binding directives?
+
+**47:41** · Oh, maybe define a function in there as well.
+
+**47:46** · MARK THOMPSON: Sure, what kind of function are you thinking?
+
+**47:49** · RODY DAVIS: I don't know, like an onclick handler or something like that.
+
+**47:52** · MARK THOMPSON: Oh, sure.
+
+**47:53** · OK.
+
+**47:53** · So we could do-- RODY DAVIS: It doesn't have to match the HTML.
+
+**47:56** · It's more just an example of-- yeah, I mean, you could.
+
+**47:59** · Yeah.
+
+**48:00** · MARK THOMPSON: And so we can actually show a click here.
+
+**48:03** · RODY DAVIS: Yeah.
+
+**48:04** · MARK THOMPSON: So this is definitely the canonical example that I would always use.
+
+**48:08** · But I think for today, this is fine, right?
+
+**48:11** · RODY DAVIS: Maybe actually, a different one could be the input.
+
+**48:16** · So it would show an event type passed.
+
+**48:24** · MARK THOMPSON: You want me to pass in an input here?
+
+**48:26** · RODY DAVIS: Like an on change listener, if you're-- MARK THOMPSON: Oh, like an on change.
+
+**48:30** · You sure?
+
+**48:31** · I don't have a preference.
+
+**48:32** · RODY DAVIS: Cool.
+
+**48:34** · MARK THOMPSON: All right, but what should this be?
+
+**48:36** · So this is an input onto-- like, what type of input are you putting here?
+
+**48:39** · RODY DAVIS: Like text or something like that, yeah.
+
+**48:41** · MARK THOMPSON: Sure, we can do that.
+
+**48:43** · But then, I would normally do a NG model here though.
+
+**48:46** · RODY DAVIS: Oh, well that's good to know.
+
+**48:47** · Yeah, I didn't know what the default is here.
+
+**48:49** · MARK THOMPSON: Yeah, see, I would have-- RODY DAVIS: Usually in web components, I just bind directly.
+
+**48:55** · MARK THOMPSON: Yeah, see, I would do an NG model.
+
+**48:57** · So instead of that, let me do the button thing for now.
+
+**48:59** · RODY DAVIS: Let's do the button.
+
+**48:59** · Let's do the button then.
+
+**49:00** · Yeah, great.
+
+**49:00** · Yeah.
+
+**49:01** · MARK THOMPSON: And then, so here.
+
+**49:02** · I'm going to take this out of here.
+
+**49:04** · And I'll put it just like in a regular place so it doesn't think to do that.
+
+**49:07** · And then, we'll say-- RODY DAVIS: Cool.
+
+**49:08** · MARK THOMPSON: --toggle server.
+
+**49:10** · OK.
+
+**49:10** · RODY DAVIS: Great.
+
+**49:12** · MARK THOMPSON: Status.
+
+**49:13** · And then, inside this function-- because it doesn't have to be perfect, but this should be protected.
+
+**49:19** · RODY DAVIS: OK.
+
+**49:19** · MARK THOMPSON: Read only.
+
+**49:21** · And then, we can have our server or our function, right?
+
+**49:25** · RODY DAVIS: That allows you not to update the signal from the template, I'm assuming.
+
+**49:28** · MARK THOMPSON: No, it's just so that way, from the class protection, like class \[INAUDIBLE\]?
+
+**49:33** · And so then, that way, you're not sitting here doing weird stuff.
+
+**49:38** · RODY DAVIS: Gotcha.
+
+**49:38** · MARK THOMPSON: Yeah, yeah, yeah, yeah.
+
+**49:40** · It's like, you can't change the reference to this.
+
+**49:42** · And then, it's kind of immutable code but not.
+
+**49:45** · Yeah.
+
+**49:46** · So this is right.
+
+**49:48** · Even in my example, it knew what to do.
+
+**49:50** · RODY DAVIS: OK.
+
+**49:51** · And then we could just do a minimal CSS styling, but it doesn't have to be a lot.
+
+**49:57** · In the CSS, I prefer nested CSS.
+
+**50:00** · So maybe you could show an example of app route or whatever you want for your target selector.
+
+**50:07** · MARK THOMPSON: Mhm.
+
+**50:08** · RODY DAVIS: Because if you hint at modern CSS, like a where selector or has query or something like that, I think it'll help with the direction of the model, to know not to use Tailwind.
+
+**50:19** · Or if you do want to use Tailwind, to include that.
+
+**50:22** · MARK THOMPSON: Never.
+
+**50:22** · I don't know how to use it.
+
+**50:24** · Not because I don't like it.
+
+**50:25** · I don't how to use it.
+
+**50:27** · RODY DAVIS: Yeah, I currently don't use-- I use Tailwind and some stuff, but mostly in the prototyper.
+
+**50:31** · But yeah, I usually prefer just nested CSS.
+
+**50:34** · MARK THOMPSON: Sure.
+
+**50:35** · So if I do container, and you're saying like-- RODY DAVIS: One line down.
+
+**50:39** · MARK THOMPSON: --inside of here.
+
+**50:41** · RODY DAVIS: I think you're outside of the block.
+
+**50:43** · MARK THOMPSON: I am outside of the block.
+
+**50:45** · You're right.
+
+**50:45** · OK.
+
+**50:47** · So we're going to do this.
+
+**50:49** · There's a lot of pressure to put the right example, believe it or not.
+
+**50:52** · I'm feeling really tense.
+
+**50:53** · RODY DAVIS: Yeah.
+
+**50:54** · \[LAUGHS\] Well, I guess one of the cool things about this is you can iterate on it.
+
+**50:58** · You can check it into version control.
+
+**50:59** · MARK THOMPSON: Yeah.
+
+**50:59** · RODY DAVIS: If you find that you want to tweak it, I'll show you how to make changes.
+
+**51:03** · And once we have an example, this is another thing that I use a lot in my AI workflow, is I get the first draft out, and then I use Gemini to refine it and make future edits.
+
+**51:14** · So you may take this and have it generate more examples based on the ones that you provided.
+
+**51:19** · MARK THOMPSON: Oh yeah.
+
+**51:20** · RODY DAVIS: And it's going to be a lot closer to what you're wanting.
+
+**51:22** · MARK THOMPSON: That sounds right.
+
+**51:23** · All right.
+
+**51:24** · And then, I'm going to just say for my container style, and then I'll say, sure, all that's fine.
+
+**51:29** · I don't really care about that.
+
+**51:30** · RODY DAVIS: Perfect.
+
+**51:31** · MARK THOMPSON: Yeah, I just want to have something in there.
+
+**51:32** · All right.
+
+**51:32** · We got a question though, that I think we should answer.
+
+**51:35** · All right.
+
+**51:36** · "Since this is a web app, is it possible to do inference using a locally running LLM?
+
+**51:41** · Off a local port.
+
+**51:42** · Doing that with VS Code Continue plugin.
+
+**51:46** · I guess the actual code is remotely hosted."
+
+**51:48** · Is there a way to do this?
+
+**51:49** · RODY DAVIS: I mean, we don't have a GPU in the VM.
+
+**51:51** · So if you ran maybe the one billion model from Gemma, you probably could.
+
+**51:57** · But yeah, we have a way to do public ports.
+
+**52:00** · But because Firebase Studio runs in the browser, you would have to have that LLM running.
+
+**52:07** · But one of the cool things about the Gemini API is it includes Gemma on the URL.
+
+**52:12** · So if you did want to try out other models, you could even specify that in the chat.
+
+**52:16** · But yeah, using Continue, I don't think you'd be able to use a powerful enough LLM to make it work locally.
+
+**52:26** · MARK THOMPSON: Wait, stop for a second.
+
+**52:28** · First off, friends at home, specifically you, Alcatraz.
+
+**52:30** · I don't even know what you're talking about.
+
+**52:32** · What is Continue?
+
+**52:34** · You all are from a different universe with this cool stuff.
+
+**52:37** · I don't even know what that is.
+
+**52:38** · Now I have some more stuff I need to look up.
+
+**52:40** · Let me see if we have a-- "kebab case."
+
+**52:43** · OK, you got it.
+
+**52:43** · RODY DAVIS: That's a good one.
+
+**52:45** · Yeah, yeah.
+
+**52:45** · MARK THOMPSON: A kebab case.
+
+**52:46** · Let's see.
+
+**52:46** · "May you also use pug instead of HTML?"
+
+**52:51** · RODY DAVIS: I'm not sure.
+
+**52:52** · Is that a common thing with Angular?
+
+**52:53** · MARK THOMPSON: Well, no.
+
+**52:54** · It's more because we're using the Mustache style.
+
+**52:58** · RODY DAVIS: Oh, OK.
+
+**52:58** · MARK THOMPSON: But this is just to help the model.
+
+**53:01** · This isn't really like, syntax.
+
+**53:03** · RODY DAVIS: Yeah, it's not explicit.
+
+**53:04** · It's kind of pseudocode.
+
+**53:05** · MARK THOMPSON: Yeah, it's like pseudocode.
+
+**53:07** · Yeah, yeah, yeah, yeah.
+
+**53:09** · OK, let's see.
+
+**53:09** · Make sure we're answering questions.
+
+**53:11** · Let's see.
+
+**53:11** · "I got an error in Firebase Studio generate HTML inside the TS, also add component HTML."
+
+**53:17** · Interesting.
+
+**53:17** · OK, well, all right.
+
+**53:18** · Enough of my talking.
+
+**53:20** · Let's do this and actually try it.
+
+**53:24** · RODY DAVIS: Let's add one more line in the CSS to show the nested button selector.
+
+**53:29** · MARK THOMPSON: All right.
+
+**53:30** · You got to tell me what you mean when you say that, because I'm not sure that I'm familiar.
+
+**53:33** · RODY DAVIS: Just scroll down.
+
+**53:34** · Yeah, so add a new line.
+
+**53:35** · MARK THOMPSON: Oh, inside of here.
+
+**53:37** · Don't I need SaaS for that?
+
+**53:39** · RODY DAVIS: You just do button, and then the open and curly braces.
+
+**53:44** · MARK THOMPSON: Yeah, I understand.
+
+**53:45** · But is this a SaaS thing, or this is a native CSS thing?
+
+**53:47** · RODY DAVIS: No, this is native CSS now.
+
+**53:48** · Yeah.
+
+**53:48** · MARK THOMPSON: Oh, you can do this now?
+
+**53:50** · RODY DAVIS: Yeah, yeah, yeah.
+
+**53:51** · That's why I was wanting to show it, because it kind of hints that this is a modern approach that's supported on all the browsers.
+
+**53:56** · I use this to-- MARK THOMPSON: Stop it.
+
+**53:58** · RODY DAVIS: Yeah, it's pretty great.
+
+**53:59** · And then, we'll delete that closing brace right there.
+
+**54:02** · Yeah, cool.
+
+**54:03** · MARK THOMPSON: Stop it.
+
+**54:04** · RODY DAVIS: So this should be great.
+
+**54:05** · So now, the next thing that we're going to do.
+
+**54:07** · We have a first draft of our AI rules.
+
+**54:10** · So we're going to hit Command P, and we're going to do the triangle, or the forward carat, and we're going to do rebuild Workspace.
+
+**54:22** · MARK THOMPSON: Oh, interesting.
+
+**54:24** · So once we-- oh.
+
+**54:26** · So airules.md is loaded at build time, like when the Workspace is being built.
+
+**54:31** · RODY DAVIS: You can also load it in the chat by telling Gemini to load the AI rules md file.
+
+**54:37** · But yeah, by default, it'll run at Workspace creation.
+
+**54:41** · Because ideally, you're not changing the AI rules that much.
+
+**54:45** · MARK THOMPSON: Right.
+
+**54:46** · RODY DAVIS: You're explicit about it because everything else should be grounded in the chat.
+
+**54:50** · MARK THOMPSON: Yeah.
+
+**54:51** · OK, Friends at home who are just joining us, I'm joined by the one, the amazing Rody Davis from the Firebase Studio team.
+
+**55:00** · And we're working on the airules.md and some code generation in Firebase Studio to provide a better experience for you as an Angular developer when you're trying to get Gemini to generate code for you, or whatever model.
+
+**55:14** · So this AI rules works no matter which model, right?
+
+**55:18** · Or is it only for Gemini?
+
+**55:19** · RODY DAVIS: Correct.
+
+**55:19** · No, it's any model.
+
+**55:20** · Yeah, it's just the Gemini chat.
+
+**55:22** · MARK THOMPSON: Any-- look at that.
+
+**55:24** · \[LAUGHS\] Look at that.
+
+**55:26** · For instance, that's pretty amazing, right?
+
+**55:28** · That's not even like, oh, you got use, like, only for Gemini.
+
+**55:31** · This is for any model.
+
+**55:32** · We're using Gemini.
+
+**55:33** · That's the default model in here.
+
+**55:35** · But listen.
+
+**55:36** · We're trying to get something cool working, because I typed something before.
+
+**55:40** · Oh, it's not there.
+
+**55:41** · It's OK.
+
+**55:42** · RODY DAVIS: So if you click the History button.
+
+**55:43** · MARK THOMPSON: Where is it?
+
+**55:44** · Let me see.
+
+**55:44** · I don't see a History button.
+
+**55:45** · RODY DAVIS: Up by the Add button, on the top left of the-- MARK THOMPSON: Yeah.
+
+**55:48** · RODY DAVIS: You should be able to see that.
+
+**55:50** · Yeah.
+
+**55:50** · MARK THOMPSON: \[LAUGHS\] Let's go.
+
+**55:53** · I just want my prompt back.
+
+**55:54** · That's what I want, because I want to run it again fresh.
+
+**55:56** · RODY DAVIS: So I would copy that, and delete the chat right there.
+
+**55:59** · MARK THOMPSON: Yup, delete.
+
+**56:01** · Get out of here.
+
+**56:02** · RODY DAVIS: Yeah.
+
+**56:03** · MARK THOMPSON: All right.
+
+**56:04** · RODY DAVIS: Because it's showing the old version, yeah.
+
+**56:05** · MARK THOMPSON: OK.
+
+**56:06** · So let's go over our prompt one more time, and we'll say create a todo component, updating both app.html, app.css and app.ts.
+
+**56:14** · Now, the reason we're listening to files is that Rody was letting us know that when you're prompting, especially in this context, we're trying to generate code, giving more specifics can help to get a more accurate output that you want.
+
+**56:25** · RODY DAVIS: Also, I think some people have experienced, in Gemini with Firebase, that they asked for a change but didn't update anything.
+
+**56:32** · If you're explicit about saying I want you to update this file, it'll very likely make those changes.
+
+**56:38** · MARK THOMPSON: OK.
+
+**56:38** · So we're just trying to influence it to do more of what we want?
+
+**56:42** · RODY DAVIS: Mhm.
+
+**56:42** · MARK THOMPSON: OK, good, good, good.
+
+**56:43** · And then, the component should accept an input with the label of todo, the status of the label of the todo, and the status of the todo.
+
+**56:53** · The component should also strike through the label if the todo is marked as complete.
+
+**56:57** · So this is a good start.
+
+**56:59** · I'm going to submit it using the built-in Gemini model.
+
+**57:03** · You see that?
+
+**57:03** · So friends who are just joining, we got some options here, but we're going to use the built-in Gemini model here.
+
+**57:09** · And then, I'm going to click Submit.
+
+**57:11** · And it's thinking.
+
+**57:13** · OK, let's see, while it's thinking.
+
+**57:14** · Let's see.
+
+**57:15** · "Continue is a VS Code extension to get similar functionality to this, but it won't hit an API in the cloud."
+
+**57:22** · Oh.
+
+**57:22** · "Instead hits the LLM."
+
+**57:24** · Oh, cool.
+
+**57:25** · RODY DAVIS: Right, but you need a GPU to be able to run it, and the VM is running in your browser.
+
+**57:30** · MARK THOMPSON: Yeah.
+
+**57:31** · RODY DAVIS: Yeah, but it's super cool.
+
+**57:32** · Yeah.
+
+**57:33** · MARK THOMPSON: That is very cool.
+
+**57:34** · So I have to get a computer with a GPU because, I mean, I know my Mac has one, but you know.
+
+**57:41** · "I really like it."
+
+**57:42** · So glad that you are enjoying this.
+
+**57:44** · "Which is why I would like FB Studio to have local PC remote."
+
+**57:47** · Oh, OK.
+
+**57:47** · That's why you would like that.
+
+**57:49** · Got it.
+
+**57:49** · Got it, got it, got it.
+
+**57:50** · "Love the UX for Firebase Studios, so very interested!"
+
+**57:53** · Good, awesome.
+
+**57:54** · I'm so glad that you all are having a good time.
+
+**57:56** · Let's go!
+
+**57:59** · OK, I'm glad you're excited because I'm excited.
+
+**58:01** · Let's see.
+
+**58:02** · "Kevin reposted this stream."
+
+**58:04** · Oh, thanks, Kevin, for posting the stream.
+
+**58:07** · Let's go.
+
+**58:07** · RODY DAVIS: Nice.
+
+**58:08** · MARK THOMPSON: All right, let's see what happened.
+
+**58:10** · RODY DAVIS: OK, cool.
+
+**58:10** · Let's do Review Changes.
+
+**58:12** · Let's see if it's picked up our stuff.
+
+**58:16** · MARK THOMPSON: So I didn't tell it anything about-- it didn't do any of the stuff that I asked it to do, in this case.
+
+**58:22** · RODY DAVIS: Yeah, let's make sure that we load it in.
+
+**58:26** · MARK THOMPSON: Yeah, I never said standalone true as the default. I didn't say anything about that.
+
+**58:32** · I mean, I'm sure this code works, but it's still using the old input and the old out-- RODY DAVIS: OK.
+
+**58:38** · So now, we can do our next level of iteration on the AI rules.
+
+**58:43** · You can explicitly say, what not to do.
+
+**58:47** · MARK THOMPSON: Let's do it.
+
+**58:48** · Let's do it, because I want it to be right.
+
+**58:50** · RODY DAVIS: Yeah.
+
+**58:52** · So I would do under the HTML block.
+
+**58:57** · MARK THOMPSON: Mhm.
+
+**58:58** · RODY DAVIS: And you can also close the Gemini chat if you want.
+
+**59:01** · MARK THOMPSON: Yeah, we got it.
+
+**59:04** · We'll close the preview for right now.
+
+**59:07** · OK, so let's get to do some more stuff that we want.
+
+**59:09** · RODY DAVIS: Yeah.
+
+**59:10** · So let's do, under the TS file maybe, let's say, we'll do the negation.
+
+**59:17** · We'll do do not include standalone true because it's by default.
+
+**59:27** · MARK THOMPSON: Ugh, typing while people are watching.
+
+**59:30** · Standalone true because it is default in Angular, I think it's 19.
+
+**59:42** · Did we make standalone true default to 19, chat?
+
+**59:46** · Anybody know?
+
+**59:46** · RODY DAVIS: It might have been more recent.
+
+**59:48** · Yeah.
+
+**59:48** · MARK THOMPSON: Yeah, but let's just say 20 for that.
+
+**59:50** · Because this one is for me, so we'll \[? rewrite ?\] it.
+
+**59:53** · RODY DAVIS: Yeah.
+
+**59:55** · And then, we will also say like-- you could even include-- no.
+
+**1:00:04** · Yeah, that should be fine.
+
+**1:00:05** · Yeah.
+
+**1:00:05** · And then, we'll want to say, I guess you don't want to use the input and outputs-- MARK THOMPSON: Right.
+
+**1:00:12** · RODY DAVIS: --because that's the decorators.
+
+**1:00:14** · And so I would do a new line for this.
+
+**1:00:16** · MARK THOMPSON: Got it.
+
+**1:00:17** · Oh, interesting.
+
+**1:00:18** · OK.
+
+**1:00:18** · Good, good, good.
+
+**1:00:19** · RODY DAVIS: Yeah.
+
+**1:00:28** · MARK THOMPSON: Use the input signal instead.
+
+**1:00:34** · Can I say something like, learn more, and then give it a URL?
+
+**1:00:38** · RODY DAVIS: Yeah, I would.
+
+**1:00:39** · Yeah.
+
+**1:00:39** · Oh, look.
+
+**1:00:40** · Look at that.
+
+**1:00:43** · \[INAUDIBLE\] MARK THOMPSON: Yeah.
+
+**1:00:43** · RODY DAVIS: Yeah.
+
+**1:00:44** · MARK THOMPSON: That's what I want you to do.
+
+**1:00:45** · RODY DAVIS: And then, I'll do a period at the end of that.
+
+**1:00:47** · And then, I would also add a new space between those two rules, just to give it some separation for tokenization.
+
+**1:00:55** · And then, I would also be explicit about the output one.
+
+**1:00:59** · You can also just copy and paste that line.
+
+**1:01:01** · MARK THOMPSON: Oh, sure thing, sure thing, sure thing.
+
+**1:01:03** · RODY DAVIS: I mean, is it an output signal?
+
+**1:01:05** · MARK THOMPSON: But it's not a signal, but we will-- I would say the output is, it's syntactically similar, but not a signal.
+
+**1:01:15** · RODY DAVIS: Oh, OK.
+
+**1:01:16** · Is it a computed?
+
+**1:01:17** · MARK THOMPSON: Nope, it's just a function.
+
+**1:01:18** · RODY DAVIS: Oh, OK.
+
+**1:01:19** · Got it.
+
+**1:01:22** · MARK THOMPSON: Uh, output function instead learn more about the output function here.
+
+**1:01:34** · That's not right.
+
+**1:01:35** · RODY DAVIS: Yeah.
+
+**1:01:35** · MARK THOMPSON: That's a good guess, but that's not right.
+
+**1:01:37** · RODY DAVIS: Yeah.
+
+**1:01:38** · MARK THOMPSON: That's so funny.
+
+**1:01:39** · I don't get offended by when LLMs do stuff like that.
+
+**1:01:42** · RODY DAVIS: Yeah.
+
+**1:01:43** · MARK THOMPSON: But it's a good guess, right?
+
+**1:01:45** · And this is also why I tell people all the time, your understanding and your knowledge is super important because if you didn't know anything and it suggested that, it looks right, it looks correct.
+
+**1:02:02** · So this is why you're valuable, because you know what to do.
+
+**1:02:08** · RODY DAVIS: Totally, yeah.
+
+**1:02:10** · MARK THOMPSON: All right, let's rebuild with just these things and see what happens.
+
+**1:02:13** · RODY DAVIS: OK.
+
+**1:02:14** · So we don't have to rebuild the workstation.
+
+**1:02:16** · I'll show you the other way how to do it.
+
+**1:02:17** · MARK THOMPSON: Oh, sure.
+
+**1:02:18** · RODY DAVIS: So let's go ahead and close the diff right there, on the third tab.
+
+**1:02:21** · MARK THOMPSON: Yeah, and get my Gemini back.
+
+**1:02:23** · RODY DAVIS: Let's do new Gemini chat.
+
+**1:02:24** · You can actually do the-- in the bottom.
+
+**1:02:26** · Or you can do that too.
+
+**1:02:27** · Yeah, that's perfect.
+
+**1:02:27** · MARK THOMPSON: Oh, that's OK.
+
+**1:02:28** · I'm just clicking on stuff.
+
+**1:02:29** · RODY DAVIS: Either way.
+
+**1:02:29** · Yeah, it's good to show the different options.
+
+**1:02:31** · Let's copy our prompt and reset again.
+
+**1:02:35** · MARK THOMPSON: OK, copy this.
+
+**1:02:36** · And then, I'm going to delete.
+
+**1:02:38** · RODY DAVIS: Yeah.
+
+**1:02:38** · MARK THOMPSON: OK, confirm.
+
+**1:02:40** · RODY DAVIS: And then, we're going to, before we paste in your prompt, say load airules.md.
+
+**1:02:45** · MARK THOMPSON: Load airules.md.
+
+**1:02:48** · Just like that?
+
+**1:02:48** · RODY DAVIS: Yeah.
+
+**1:02:49** · MARK THOMPSON: Stop it.
+
+**1:02:50** · Please, stop it.
+
+**1:02:51** · RODY DAVIS: It should read the file for-- yep, perfect.
+
+**1:02:55** · MARK THOMPSON: Stop it!
+
+**1:02:56** · RODY DAVIS: Yes.
+
+**1:02:57** · OK, cool.
+
+**1:02:57** · Now, paste in your prompt.
+
+**1:02:59** · MARK THOMPSON: \[LAUGHS\] What?
+
+**1:03:00** · Stop it.
+
+**1:03:01** · That's so cool.
+
+**1:03:02** · Oh, man, that's so cool.
+
+**1:03:03** · All right, while it's generating, let's see.
+
+**1:03:08** · We saw that comment, make sure.
+
+**1:03:09** · RODY DAVIS: Looks like it is using the new input and output.
+
+**1:03:12** · MARK THOMPSON: Oh, let's go!
+
+**1:03:13** · It knew what to do.
+
+**1:03:15** · RODY DAVIS: Yeah.
+
+**1:03:15** · MARK THOMPSON: Ha, ha, ha, ha, ha!
+
+**1:03:16** · All right, let me get back to this window here.
+
+**1:03:18** · All right.
+
+**1:03:20** · Ah, that's amazing.
+
+**1:03:22** · Let's review our changes.
+
+**1:03:23** · And we're already getting closer.
+
+**1:03:26** · RODY DAVIS: And also, it doesn't do the input standalone.
+
+**1:03:28** · It didn't include it.
+
+**1:03:29** · MARK THOMPSON: Standalone.
+
+**1:03:30** · And it did required?
+
+**1:03:32** · RODY DAVIS: Yeah, that's cool.
+
+**1:03:33** · MARK THOMPSON: \[CLAPPING\] RODY DAVIS: Nice.
+
+**1:03:36** · MARK THOMPSON: Let's create this file, Rody.
+
+**1:03:38** · RODY DAVIS: All right.
+
+**1:03:39** · MARK THOMPSON: Let's create that file.
+
+**1:03:40** · RODY DAVIS: And you can even do command Enter if you want to do it automatically, but yeah.
+
+**1:03:43** · MARK THOMPSON: I'll command Enter.
+
+**1:03:45** · So anywhere?
+
+**1:03:46** · Just do it?
+
+**1:03:47** · RODY DAVIS: Yeah, you can just click Create File or hit Save, either one.
+
+**1:03:50** · MARK THOMPSON: Well, I did command Enter from the window.
+
+**1:03:53** · RODY DAVIS: Perfect.
+
+**1:03:54** · Then now, it's adding another file because this is going to do a multi-step change.
+
+**1:03:58** · MARK THOMPSON: OK.
+
+**1:03:58** · So I'm just going to let it create the file.
+
+**1:04:01** · OK, create the file.
+
+**1:04:02** · RODY DAVIS: So this is the template.
+
+**1:04:04** · And now, it's going to add the CSS.
+
+**1:04:05** · MARK THOMPSON: All right, let me be honest with you.
+
+**1:04:07** · Let me be honest with you.
+
+**1:04:08** · What you said is starting to become true to me in a new way.
+
+**1:04:16** · OK, what happened?
+
+**1:04:17** · Why are you complaining?
+
+**1:04:18** · RODY DAVIS: Now, you should try again.
+
+**1:04:18** · Yeah.
+
+**1:04:19** · MARK THOMPSON: What?
+
+**1:04:20** · It didn't like something it did?
+
+**1:04:21** · RODY DAVIS: No, I think it hit an error.
+
+**1:04:23** · It'll be an agentive loop, and it'll go past it.
+
+**1:04:25** · Yeah.
+
+**1:04:30** · MARK THOMPSON: So what I was going to say is that, so while we're still the whole prototyping thing, while that's happening, I think what's interesting is that with the sophisticated enough prompt, and a sophisticated enough AI rules, I can kind of simulate a prototyper right now.
+
+**1:04:50** · RODY DAVIS: For sure, yeah.
+
+**1:04:52** · Also, if you go to line 3, I think it updated a full path.
+
+**1:04:56** · Let's make that a relative path.
+
+**1:04:57** · MARK THOMPSON: Let's see.
+
+**1:04:59** · RODY DAVIS: Yeah, I don't know why it pulled from this report.
+
+**1:05:03** · We can just make it a todo.ts.
+
+**1:05:05** · MARK THOMPSON: Oh yeah. yeah, yeah, yeah, yeah.
+
+**1:05:07** · RODY DAVIS: Probably a sample file.
+
+**1:05:11** · MARK THOMPSON: OK, and is it ./todo?
+
+**1:05:13** · Where is it?
+
+**1:05:13** · Where is it?
+
+**1:05:14** · RODY DAVIS: Todo.js, it looks like.
+
+**1:05:16** · MARK THOMPSON: Oh, that can't be right then.
+
+**1:05:18** · We gotta fix that, which we can.
+
+**1:05:19** · We can fix that.
+
+**1:05:20** · RODY DAVIS: Yup.
+
+**1:05:20** · MARK THOMPSON: There is no todo.js.
+
+**1:05:22** · RODY DAVIS: Oh.
+
+**1:05:23** · Why?
+
+**1:05:23** · Where is this file then?
+
+**1:05:26** · MARK THOMPSON: OK, so let's fix that.
+
+**1:05:28** · RODY DAVIS: OK.
+
+**1:05:29** · MARK THOMPSON: We can say-- because I don't know where-- what's going on So we should be able to just do dot slash, and then todo.
+
+**1:05:39** · Yeah, there you go.
+
+**1:05:41** · Not component.
+
+**1:05:41** · Yeah, not component.
+
+**1:05:42** · RODY DAVIS: OK.
+
+**1:05:42** · We just didn't need to include the suffix.
+
+**1:05:44** · And then, router outlet-- MARK THOMPSON: It's just not being used.
+
+**1:05:47** · RODY DAVIS: OK.
+
+**1:05:47** · MARK THOMPSON: This is a Angular language service.
+
+**1:05:49** · RODY DAVIS: OK, cool, cool.
+
+**1:05:50** · MARK THOMPSON: So we got that, and I can't wait till we get selected lists in general, so you don't have to do this.
+
+**1:05:55** · RODY DAVIS: Yeah.
+
+**1:05:56** · MARK THOMPSON: That's coming.
+
+**1:05:57** · We're working on it.
+
+**1:05:58** · RODY DAVIS: So how would that work with-- does it just bind to the root or something?
+
+**1:06:05** · MARK THOMPSON: Yeah, it's a surprisingly complex problem.
+
+**1:06:08** · RODY DAVIS: Yeah.
+
+**1:06:08** · MARK THOMPSON: That's why we haven't released it.
+
+**1:06:09** · \[LAUGH\] RODY DAVIS: OK, got it.
+
+**1:06:10** · \[LAUGHS\] MARK THOMPSON: It's surprisingly complex-- RODY DAVIS: Cool.
+
+**1:06:14** · MARK THOMPSON: --to do this, but we are working on it.
+
+**1:06:16** · Let's see.
+
+**1:06:17** · Where's my preview?
+
+**1:06:17** · RODY DAVIS: OK, so now, if you ever want to pull up your preview, I think we actually added it to the toolbar on the bottom, but you can also do it from the command block.
+
+**1:06:23** · MARK THOMPSON: Oh yeah, I see it.
+
+**1:06:24** · I see it right there.
+
+**1:06:25** · Preview, right next to Gemini.
+
+**1:06:27** · RODY DAVIS: Yeah.
+
+**1:06:29** · Perfect.
+
+**1:06:30** · MARK THOMPSON: OK, let's see.
+
+**1:06:31** · RODY DAVIS: So this is a cool-- I think we can actually show off-- is this the warning or is this an error?
+
+**1:06:37** · MARK THOMPSON: That's the error, yeah.
+
+**1:06:38** · The type of-- RODY DAVIS: OK.
+
+**1:06:40** · So we can actually copy this error into Gemini and have it help us fix it if you want.
+
+**1:06:43** · MARK THOMPSON: I'm going to copy everything, even the line number.
+
+**1:06:46** · RODY DAVIS: If you scroll down, I think there is a-- oh.
+
+**1:06:50** · If you click up on the web console, the error on the bottom-- MARK THOMPSON: Oh, up?
+
+**1:06:54** · Right here.
+
+**1:06:54** · Yes.
+
+**1:06:55** · Yes, yes, yes.
+
+**1:06:56** · RODY DAVIS: Oh, OK.
+
+**1:06:57** · That's just vite.
+
+**1:06:57** · Sometimes the error will show there, and we have a continue in Gemini there as well.
+
+**1:07:02** · So yeah, we just copy the full thing.
+
+**1:07:04** · MARK THOMPSON: Yeah, so I'm just going to-- now, we know how to fix this, chat.
+
+**1:07:09** · RODY DAVIS: What is that error, by the way?
+
+**1:07:11** · MARK THOMPSON: It looks like the type, because-- let's see.
+
+**1:07:14** · OK, this is correct.
+
+**1:07:16** · RODY DAVIS: Is it use.ts, or-- MARK THOMPSON: Yeah, so I'm looking at this to see what the types are here.
+
+**1:07:20** · So the types look correct.
+
+**1:07:21** · So if we go todo component, maybe something about the input is not right.
+
+**1:07:26** · So it has a todo.
+
+**1:07:28** · Why don't you like this?
+
+**1:07:29** · You should like this.
+
+**1:07:30** · This shouldn't be a problem.
+
+**1:07:32** · RODY DAVIS: OK.
+
+**1:07:32** · Well, maybe we could restart the web preview maybe, just as a hard restart?
+
+**1:07:36** · MARK THOMPSON: I don't know, let me see.
+
+**1:07:38** · Even though-- oh, that's not that.
+
+**1:07:40** · OK, "Here's another rule: use signalStore for state management."
+
+**1:07:44** · RODY DAVIS: Nice.
+
+**1:07:44** · MARK THOMPSON: What's up, Alex?
+
+**1:07:46** · What's up?
+
+**1:07:46** · What's up?
+
+**1:07:47** · RODY DAVIS: Nice.
+
+**1:07:48** · MARK THOMPSON: Good to see you, yeah.
+
+**1:07:49** · Oh, so the people say, yeah, we did announce it in 19.
+
+**1:07:53** · I thought it was 19.
+
+**1:07:54** · RODY DAVIS: OK.
+
+**1:07:54** · MARK THOMPSON: OK, since angular-- la, la, la, la, signal, changedection onpush still required on components-- OK, I'm going to answer this after, but Rody doesn't have as much time as I do for this today, so I don't want to lose his time.
+
+**1:08:04** · So I will answer your question after, friends.
+
+**1:08:06** · Don't you worry.
+
+**1:08:07** · RODY DAVIS: Yeah.
+
+**1:08:08** · MARK THOMPSON: All right, let me put this in the chat, and let's see if we can get it to just figure out.
+
+**1:08:13** · So do I have to type anything, or I can just \[INAUDIBLE\] it?
+
+**1:08:15** · RODY DAVIS: Yeah, you should just do that.
+
+**1:08:16** · Yeah, yeah, yeah.
+
+**1:08:17** · MARK THOMPSON: What?
+
+**1:08:17** · RODY DAVIS: Yeah.
+
+**1:08:18** · MARK THOMPSON: I usually want to be nice.
+
+**1:08:19** · I can't change my-- RODY DAVIS: You can.
+
+**1:08:20** · So sometimes, I put the error inside of a code block and I say fix this error or whatever.
+
+**1:08:29** · But I've also found that sometimes just pasting it works too.
+
+**1:08:32** · MARK THOMPSON: No, I don't know why I like to do it this way, but-- \[LAUGHS\] RODY DAVIS: No, it's a good way to kind of guide it, so you're into an active instead of a passive chat.
+
+**1:08:45** · MARK THOMPSON: Mhm.
+
+**1:08:46** · RODY DAVIS: But I do think that's a good approach.
+
+**1:08:48** · MARK THOMPSON: Now, let's see what it wants to change.
+
+**1:08:51** · Why do you want to change so much?
+
+**1:08:52** · RODY DAVIS: So you can hit Review.
+
+**1:08:53** · MARK THOMPSON: Yeah, what do you want to do?
+
+**1:08:54** · What do you want to do?
+
+**1:08:55** · Nope, I don't want you to do that.
+
+**1:08:57** · No.
+
+**1:08:58** · RODY DAVIS: Yeah, so you can hit the Undo on the left, on the diff, all the way on the left to the green.
+
+**1:09:07** · MARK THOMPSON: Oh, here.
+
+**1:09:08** · RODY DAVIS: Yeah.
+
+**1:09:08** · MARK THOMPSON: OK.
+
+**1:09:09** · RODY DAVIS: OK.
+
+**1:09:10** · MARK THOMPSON: Is that the only change you want to do, 'cause that ain't right.
+
+**1:09:12** · RODY DAVIS: And then just hit Save, I think.
+
+**1:09:14** · MARK THOMPSON: Yeah, but why does it want to do that?
+
+**1:09:17** · RODY DAVIS: And then, close out that file too.
+
+**1:09:19** · MARK THOMPSON: OK.
+
+**1:09:21** · Uh, let's see.
+
+**1:09:22** · RODY DAVIS: This is part of prompting models.
+
+**1:09:24** · If there's something that's overfitted into a training set of old versions of CSS or old versions of Angular, we have to teach it how to do the new stuff.
+
+**1:09:33** · MARK THOMPSON: So what does it think is the problem?
+
+**1:09:37** · OK, let's see.
+
+**1:09:37** · Type of todo component undefined is not accessible.
+
+**1:09:40** · Oh, why would it be the-- no, the type is wrong.
+
+**1:09:44** · RODY DAVIS: Oh.
+
+**1:09:46** · MARK THOMPSON: Why do you think you want to use todo component?
+
+**1:09:49** · Is that what happened in our app.ts?
+
+**1:09:52** · Let's look.
+
+**1:09:53** · Let's have a look.
+
+**1:09:54** · RODY DAVIS: Maybe it did an import issue.
+
+**1:09:56** · MARK THOMPSON: Yeah, OK.
+
+**1:09:57** · So we got import.
+
+**1:09:58** · So this is correct.
+
+**1:09:59** · RODY DAVIS: OK.
+
+**1:10:00** · And if we-- MARK THOMPSON: What?
+
+**1:10:03** · Oh.
+
+**1:10:04** · That's why.
+
+**1:10:06** · Wait.
+
+**1:10:07** · No, that's correct.
+
+**1:10:09** · RODY DAVIS: Do we need the router outlet or anything else here?
+
+**1:10:12** · MARK THOMPSON: OK, hold on one second.
+
+**1:10:14** · Let me-- we don't need the router outlet.
+
+**1:10:16** · But I want to say-- OK, we can get this out of here.
+
+**1:10:20** · Let me make sure, because I think it followed the style guide.
+
+**1:10:23** · RODY DAVIS: Mm.
+
+**1:10:25** · MARK THOMPSON: And so it has to do .ts.
+
+**1:10:27** · OK.
+
+**1:10:27** · I want to make sure that todo-- so this is todo component, which is what we want.
+
+**1:10:34** · So then, let me go back and let me have a look.
+
+**1:10:39** · RODY DAVIS: And also, I want to-- MARK THOMPSON: Oh, now, it's working.
+
+**1:10:43** · RODY DAVIS: OK.
+
+**1:10:43** · MARK THOMPSON: It was never broken.
+
+**1:10:44** · It just, maybe needs to be restarted, like you said a long time ago.
+
+**1:10:46** · RODY DAVIS: No worries.
+
+**1:10:47** · MARK THOMPSON: Oh, look at that.
+
+**1:10:49** · RODY DAVIS: Oh, right on.
+
+**1:10:50** · \[LAUGHS\] Yeah.
+
+**1:10:52** · Yeah, maybe it just had an old version of the app component and was hot reloading it, because we do try to do the hot module replacement.
+
+**1:11:00** · MARK THOMPSON: Yeah, look at that.
+
+**1:11:02** · We did it.
+
+**1:11:03** · RODY DAVIS: Right on.
+
+**1:11:04** · MARK THOMPSON: I mean-- RODY DAVIS: Yeah.
+
+**1:11:05** · MARK THOMPSON: What were you going to say?
+
+**1:11:06** · I'm sorry.
+
+**1:11:06** · RODY DAVIS: I was going to say, so one of the cool things about this is, one, like I said, you can check it into version control and you can include it.
+
+**1:11:14** · Also, I would really love to ask from your community too, if there's an amazing rules file that we can create, let's put it in the official Firebase Studio template.
+
+**1:11:24** · And then, one other thing.
+
+**1:11:26** · If you click on the Firebase Studio extension on the left sidebar-- MARK THOMPSON: OK, left sidebar.
+
+**1:11:31** · This?
+
+**1:11:32** · RODY DAVIS: The bottom icon.
+
+**1:11:33** · MARK THOMPSON: Yeah.
+
+**1:11:34** · RODY DAVIS: One of the cool things that you may run into is like, I'm wanting to work in a Workspace, but it's not in GitHub yet.
+
+**1:11:42** · Well, if you click on the Share icon, right there beside-- MARK THOMPSON: Stop it.
+
+**1:11:47** · RODY DAVIS: Yeah, you can actually add people's emails and give them a link to Firebase Studio.
+
+**1:11:52** · And you can be working in pair programming in the same machine as if you're literally right next to each other.
+
+**1:11:57** · So it's really great for synchronous programming.
+
+**1:12:01** · And then also, we have plenty of hosting and deployment options there too.
+
+**1:12:04** · So if you hit Cancel right here and scroll down as well.
+
+**1:12:08** · MARK THOMPSON: Yeah.
+
+**1:12:09** · RODY DAVIS: Even if you want a Gemini API key, we can auto provision one for you here without you having to leave Firebase Studio.
+
+**1:12:16** · And there's a bunch of other interesting stuff as well.
+
+**1:12:19** · So a lot of cool things to try out.
+
+**1:12:23** · Even if you're used to working locally, you can use this as a sidecar to develop, and sometimes when you want a different experience.
+
+**1:12:31** · And then, if you're an Angular library author or someone that's working in some type of examples and stuff, we make it really easy for you to have an open end Firebase Studio button that you can just add to your markdown docs.
+
+**1:12:46** · And so someone can open up and have this experience already without having to do anything.
+
+**1:12:50** · MARK THOMPSON: We had that for IDX on A-Dev, to open an IDX.
+
+**1:12:55** · So we're going to update it to be open in Firebase Studio, and I would love to do that.
+
+**1:13:00** · And in terms of that file.
+
+**1:13:02** · RODY DAVIS: Yep.
+
+**1:13:02** · MARK THOMPSON: Today's exercise already was to start that template file.
+
+**1:13:06** · RODY DAVIS: Sweet.
+
+**1:13:07** · MARK THOMPSON: So we want to totally get community support on this too.
+
+**1:13:11** · We're going to check this.
+
+**1:13:12** · So here's what's going to happen, friends at home, as you're watching.
+
+**1:13:15** · Like I said, as we're building, you all may have experiences and things that need to go into these AI rules that is going to benefit everybody.
+
+**1:13:22** · So our AI rules is going to end up, not only on GitHub, but we're also going to put it on A-Dev.
+
+**1:13:28** · And so you can go there and be like, hey, we need to update this.
+
+**1:13:31** · We need to add these better things.
+
+**1:13:32** · Here's some better canonical examples.
+
+**1:13:34** · Let's work together to make the prompts and the tools that we need to serve the Angular community.
+
+**1:13:40** · So we're really excited about it, because I would love to see the airules.md be able to be as effective even in an enterprise scenario.
+
+**1:13:48** · Because right now, it works in a todo app.
+
+**1:13:50** · But our community are enterprise developers, and they're building, scalable web apps that serve millions of people.
+
+**1:13:58** · And we want to make sure that when they're doing code generation, especially if they're going to use a tool like this, they get the best outcome.
+
+**1:14:03** · So I'm super excited.
+
+**1:14:04** · Rody, this has been so much fun today.
+
+**1:14:06** · RODY DAVIS: Yeah, and then one other thing on AI rules.
+
+**1:14:08** · MARK THOMPSON: Yeah, please.
+
+**1:14:09** · RODY DAVIS: Also, just for viewers, try not to think about them as a one size fits all.
+
+**1:14:15** · These are like the opposite.
+
+**1:14:17** · It's a specific context-driven way to ground the model.
+
+**1:14:22** · So if you want to have multiple AI rules at your company, you can have one for your beginners and junior developers that are getting onboarded to the code base, and you can have another one for more advanced developers that know more.
+
+**1:14:37** · So you could say for a junior developer, you could have it be like, always explain the changes and include a list of steps on how to do this.
+
+**1:14:47** · Or like, always use a chain of thought to be able to say what you're going to do before doing it.
+
+**1:14:52** · And you could have a model that's more elaborate.
+
+**1:14:56** · And then, for a senior dev, you can be like, make sure to always update tests and run the tests, and make sure that you're always doing these three things every time you make a change to a file.
+
+**1:15:07** · Or make sure the readme is always up to date or the chain of-- you can customize it, but it's not a one size fits all.
+
+**1:15:13** · You definitely want to have different experiences for different people coming to it.
+
+**1:15:17** · MARK THOMPSON: Wow, incredible.
+
+**1:15:19** · Absolutely incredible.
+
+**1:15:21** · Let's see.
+
+**1:15:22** · I think, Rody, we got a few minutes left.
+
+**1:15:24** · RODY DAVIS: I am good, yeah.
+
+**1:15:25** · MARK THOMPSON: Yeah, let me see if there are any questions or comments that-- RODY DAVIS: Oh, one-- sorry --one more thing.
+
+**1:15:32** · MARK THOMPSON: Yeah, please.
+
+**1:15:33** · RODY DAVIS: Can you click on the preview, on the top right of the web preview?
+
+**1:15:37** · MARK THOMPSON: Mhm.
+
+**1:15:38** · RODY DAVIS: We have a couple of different things, which are important to call out.
+
+**1:15:41** · One is we have Lighthouse built right in.
+
+**1:15:44** · So to the right sidebar, if you click that, you can actually run Lighthouse on your web app directly from Firebase Studio.
+
+**1:15:52** · So you can close that.
+
+**1:15:54** · The other thing that you can do is if you click on that share icon, the second link right beside that one-- MARK THOMPSON: This one?
+
+**1:16:01** · RODY DAVIS: Yeah.
+
+**1:16:03** · If you click on that, we will have a QR code where you could actually run-- so it's not public right now, so you don't have to worry about it.
+
+**1:16:10** · MARK THOMPSON: I was going to say, I'm not showing no one my QR code.
+
+**1:16:12** · No way.
+
+**1:16:13** · RODY DAVIS: Yeah, yeah, yeah.
+
+**1:16:13** · So since it's private, nobody's going to be able to connect to it.
+
+**1:16:15** · MARK THOMPSON: OK.
+
+**1:16:16** · RODY DAVIS: So essentially, this will have a QR code where people can scan and run it on their phone.
+
+**1:16:22** · MARK THOMPSON: \[GASPS\] RODY DAVIS: And by making preview public, you could make it available to everyone while your VM is active.
+
+**1:16:28** · But right now, you would only be able to run it because you have access to the VM.
+
+**1:16:32** · And then, the Final button is on the icon.
+
+**1:16:36** · You can actually open up the web preview into a new tab, and that should open up in this Chrome window.
+
+**1:16:43** · And so you can have a full screen version of it, which allows you to use the built-in Chrome DevTools, like you may be used to, or maybe have two tabs open.
+
+**1:16:53** · So there's a lot of flexibility even in customizing this experience too.
+
+**1:16:57** · MARK THOMPSON: Fantastic.
+
+**1:16:59** · OK, friends, let's get some questions-- RODY DAVIS: Sweet.
+
+**1:17:01** · MARK THOMPSON: --about Firebase Studio.
+
+**1:17:03** · Let's get some questions about working with LLMs in Firebase Studio.
+
+**1:17:07** · Over to Rody right now.
+
+**1:17:08** · This is a great time.
+
+**1:17:09** · We're going to answer some questions, friends, and we'll go from there.
+
+**1:17:13** · Did I see this comment?
+
+**1:17:14** · "Here's another rule: use signalStore."
+
+**1:17:16** · RODY DAVIS: Yeah, yeah, yeah.
+
+**1:17:17** · MARK THOMPSON: I think it's pretty great.
+
+**1:17:19** · "Pasting works - saves time as well."
+
+**1:17:21** · Agree to that.
+
+**1:17:21** · Let's see.
+
+**1:17:22** · "I was on Alex workshop.
+
+**1:17:23** · Nice to see all of you here."
+
+**1:17:24** · Hey, Here, Alex is awesome.
+
+**1:17:27** · I just got to see Alex at Google I/O recently, I believe.
+
+**1:17:29** · RODY DAVIS: Oh, awesome.
+
+**1:17:30** · MARK THOMPSON: Were we at Google I/O, Alex, together?
+
+**1:17:33** · Alex, yes, used to work on Firebase.
+
+**1:17:35** · Yeah.
+
+**1:17:36** · Yeah, yeah, yeah.
+
+**1:17:37** · "Don't use text decoration like triple ticks.
+
+**1:17:40** · It takes extra tokens."
+
+**1:17:42** · Should we have consideration about this?
+
+**1:17:44** · RODY DAVIS: Yeah, I guess this is a preference, but I found that Gemini is usually pretty good at encapsulating where you're defining code.
+
+**1:17:52** · If you don't want to use triple backticks, some people use XML opening and closing tags.
+
+**1:17:57** · So you could say, example open, example close.
+
+**1:18:00** · MARK THOMPSON: Oh, sure.
+
+**1:18:00** · I've seen this.
+
+**1:18:01** · RODY DAVIS: Yeah, but I do like to wrap my code, so it's very clear that this is semantically different.
+
+**1:18:08** · MARK THOMPSON: So if tokens are important, if you're trying to conserve tokens, because again, you know-- RODY DAVIS: Gemini does have a million tokens, so you do have plenty of context window here as well.
+
+**1:18:18** · MARK THOMPSON: Yeah, but it costs you money to use the tool.
+
+**1:18:20** · RODY DAVIS: Yeah, yeah.
+
+**1:18:20** · For sure.
+
+**1:18:20** · MARK THOMPSON: So I get it.
+
+**1:18:21** · I get it.
+
+**1:18:21** · Good feedback.
+
+**1:18:22** · So, let's see.
+
+**1:18:24** · "Hey--" who is this?
+
+**1:18:25** · Oh, what's up Hamza?
+
+**1:18:26** · Good to see you, as always.
+
+**1:18:28** · Nice background.
+
+**1:18:29** · Thank you.
+
+**1:18:30** · This is real, and I built this.
+
+**1:18:31** · RODY DAVIS: \[LAUGHS\] That's awesome.
+
+**1:18:32** · MARK THOMPSON: I always tell people that I built this.
+
+**1:18:34** · This is a real background.
+
+**1:18:36** · It's not a thing.
+
+**1:18:37** · All right, Lars, "Good stuff."
+
+**1:18:38** · I'm so glad that you're enjoying.
+
+**1:18:41** · Yeah, OK.
+
+**1:18:42** · Very cool.
+
+**1:18:43** · All right.
+
+**1:18:43** · I mean, so I think the next step, what I would love to do, like I said, we're going to develop this.
+
+**1:18:48** · Some other people on the engineering team are also working on some prompts.
+
+**1:18:51** · I would love to see if I could combine the prompts together.
+
+**1:18:57** · And I'm really interested in trying to make a prototype in Firebase Studio.
+
+**1:19:01** · RODY DAVIS: Yes.
+
+**1:19:02** · MARK THOMPSON: I e-mode just by giving it really good instructions in AI rules, and a really nice prompt.
+
+**1:19:10** · RODY DAVIS: Yeah.
+
+**1:19:10** · In fact, something kind of maybe as an experiment for viewers at home, go to Gemini and ask it to do a common Angular CLI command.
+
+**1:19:22** · Because one of the cool things about Gemini in Firebase is it can run terminal commands directly from the chat.
+
+**1:19:28** · MARK THOMPSON: Like tool calling.
+
+**1:19:29** · RODY DAVIS: Yeah, exactly like tool calling.
+
+**1:19:31** · So you could even say, when you add a new component, run Ng create the component name, to where it even is running the CLI for Angular for you.
+
+**1:19:41** · And then, you have it update the files after that.
+
+**1:19:43** · MARK THOMPSON: Which is what you kind of want in some cases.
+
+**1:19:45** · Because here's the thing that we know about LLMs.
+
+**1:19:48** · They're non-deterministic, so you might get some things that happen.
+
+**1:19:51** · RODY DAVIS: Yeah.
+
+**1:19:52** · MARK THOMPSON: But if you're able to leverage the existing deterministic tools in conjunction with some of the behavior that LLMs are really good at.
+
+**1:20:01** · Because I'm looking at LLM-- and I saw somebody say this, and I think it's really accurate.
+
+**1:20:06** · Kelsey Hightower said this once on Bluesky.
+
+**1:20:09** · He was like, LLMs are really great for cases where there would be a lot of if statements in your programming, because you have to make so many decisions.
+
+**1:20:19** · RODY DAVIS: Yeah.
+
+**1:20:19** · MARK THOMPSON: And I'm like, yeah, I want it to be able to do that.
+
+**1:20:22** · But also, I already know how to make a component.
+
+**1:20:24** · And I know how to make a component to the current guidelines that I have, to my current project setup.
+
+**1:20:30** · So like being able to do both together is really interesting.
+
+**1:20:33** · RODY DAVIS: Yeah, totally.
+
+**1:20:34** · Exactly.
+
+**1:20:35** · MARK THOMPSON: Yeah.
+
+**1:20:36** · Let's see.
+
+**1:20:36** · "This is in browser.
+
+**1:20:38** · Any performance overhead--" oh, good question.
+
+**1:20:40** · All right.
+
+**1:20:41** · "This is in browser.
+
+**1:20:42** · Any performance overhead with this?
+
+**1:20:43** · Could we see a desktop native version?
+
+**1:20:46** · A lot of interest in the Zed editor, which is Rust-based, due VSCodium derivatives, which I assume this is built on."
+
+**1:20:54** · So is there a future or any ideas around a Firebase Studio native version?
+
+**1:21:00** · RODY DAVIS: So one of the interesting things is we currently support web, and I think a lot of people ask for a native desktop version.
+
+**1:21:09** · And I think that a lot of people have really nice powerful dev machines, and I think that's really cool.
+
+**1:21:17** · But we see a lot in emerging markets or people in education or people around the world.
+
+**1:21:24** · Having access to just a web browser is already a huge benefit.
+
+**1:21:28** · So if you can go to a URL and have a full VM workstation set up every time, that's a huge deal.
+
+**1:21:35** · And the other thing with that too is, I think taking Firebase Studio out of the computer would be even more interesting too, like in XR environments, whether it be on Apple or Android.
+
+**1:21:48** · And so now, you're in VR coding, which I've done a lot of.
+
+**1:21:51** · And you can't do that with a local development, but you can with a web-based IDE.
+
+**1:21:56** · And so I think trying to get beyond the limitations of just having a really powerful CPU.
+
+**1:22:04** · Now, you can have a shareable workspace that is very collaborative and can have multiple people working in it, is an experience that's hard to do when everybody has an installed desktop version.
+
+**1:22:14** · And we're trying to get away from everybody having to set up and configure their path, because everybody has a unique version of dependencies.
+
+**1:22:23** · Not only that, we're built on top of NixOS which allows you to have your environment work every time.
+
+**1:22:28** · MARK THOMPSON: So from a-- and actually, we worked together on a project that I was doing where I was like, I have to do a class or something.
+
+**1:22:38** · I was teaching some Angular.
+
+**1:22:39** · Oh, I was teaching Angular.
+
+**1:22:40** · That's literally it.
+
+**1:22:41** · I was teaching Angular and I needed everybody to have no install time.
+
+**1:22:47** · And I was like, I don't want anybody's machine configuration, even though I did end up running into a problem.
+
+**1:22:52** · But that was a my problem, where I didn't include, I think, an NPM install in the Nix file.
+
+**1:22:59** · So then when people were trying to get started, they couldn't get started immediately.
+
+**1:23:03** · But the point being though, from an education point of view especially, a pre-configured environment that has the same capabilities regardless of the machine is really interesting.
+
+**1:23:13** · RODY DAVIS: Mhm.
+
+**1:23:13** · MARK THOMPSON: But this is a good point, because we have a range of developers out there.
+
+**1:23:17** · RODY DAVIS: Totally.
+
+**1:23:17** · MARK THOMPSON: Some folks have really powerful machines.
+
+**1:23:19** · It sounds like Alcatraz has a really powerful machine, because he's running Ollama and running VS Continue, right?
+
+**1:23:23** · RODY DAVIS: Yeah.
+
+**1:23:24** · MARK THOMPSON: So he wants to take advantage of the power locally.
+
+**1:23:27** · So that makes sense.
+
+**1:23:28** · RODY DAVIS: Yeah, totally.
+
+**1:23:29** · MARK THOMPSON: Yeah, let's see.
+
+**1:23:30** · "Good job, you learn a lot when our environment is Angular."
+
+**1:23:33** · Yeah, you do learn a lot.
+
+**1:23:35** · I love Angular, but I'm biased because I've been working on this project.
+
+**1:23:38** · Oh, friends, guess what this month is?
+
+**1:23:40** · June is five years since I joined the Angular team.
+
+**1:23:44** · RODY DAVIS: Wow, that is awesome.
+
+**1:23:46** · MARK THOMPSON: Yeah, because you and I joined Google around the same time.
+
+**1:23:49** · RODY DAVIS: Yup, it'll be five years for me at Google too.
+
+**1:23:51** · Yeah.
+
+**1:23:51** · MARK THOMPSON: Yeah, so five years at Google.
+
+**1:23:53** · Five years ago, joined the Angular team.
+
+**1:23:54** · Isn't that something?
+
+**1:23:54** · RODY DAVIS: That's wild.
+
+**1:23:55** · Yeah, congrats.
+
+**1:23:56** · RODY DAVIS: Yeah, same to you.
+
+**1:23:57** · I mean, five years is a big deal.
+
+**1:23:59** · Big deal.
+
+**1:23:59** · "Question: would Firebase Studio be able to build the Angular source repo?
+
+**1:24:04** · Bazel in WSL is really tricky."
+
+**1:24:08** · Oh, I see.
+
+**1:24:09** · RODY DAVIS: So there's a really interesting project out there that I've been exploring, which is Nix plus Bazel.
+
+**1:24:15** · So NixOS defines all the binaries, and Bazel is really good at building application modules.
+
+**1:24:24** · And there's actually a project out there that you can search that combines Nix and Bazel together.
+
+**1:24:29** · And we're trying to see if there's a possibility of using that in Firebase Studio because that could be the best of both worlds.
+
+**1:24:36** · But yeah, we see a lot of people build-- you can build pretty big code bases.
+
+**1:24:39** · I think it's 100 gigs or something like that.
+
+**1:24:42** · MARK THOMPSON: All right.
+
+**1:24:43** · OK, hold on one second.
+
+**1:24:44** · Somebody's like, hey, where's my answer?
+
+**1:24:45** · OK, let me answer your question.
+
+**1:24:47** · "Since Angular 20 implemented zoneless and signal, is changedection onpush still required on components for performance?
+
+**1:24:52** · Yes, sorry about that.
+
+**1:24:53** · You asked this question very patiently a long time ago.
+
+**1:24:56** · I did not get to it.
+
+**1:24:56** · So zoneless is in developer preview.
+
+**1:24:59** · Most of our signal APIs are in stable mode.
+
+**1:25:04** · OK.
+
+**1:25:05** · Change detection onpush, I would say this.
+
+**1:25:10** · Required for performance, I mean, I think that's just a community standard at this point, that people think this is the best way.
+
+**1:25:16** · And so yes, so you can still use it.
+
+**1:25:18** · Now, what you're really asking about is, did we get to the point of the signal component yet?
+
+**1:25:23** · Which is like, signal, fine grained reactivity, all the way down and really driving change detection.
+
+**1:25:30** · That's still on forthcoming.
+
+**1:25:33** · Let's see.
+
+**1:25:33** · "Congratulations, Mark.
+
+**1:25:34** · You've been great to this community and face of Angular resurgence."
+
+**1:25:36** · Hey, listen, I work on an amazing team with a lot of amazing people who work really hard, and I am grateful that I get to be a part of it.
+
+**1:25:43** · So really, really, really happy.
+
+**1:25:47** · Let's see.
+
+**1:25:47** · "Were you using Angular since V1?"
+
+**1:25:49** · Believe it or not, believe it or not, my career trajectory is really interesting.
+
+**1:25:53** · I was a Java developer writing JavaBeans and J2EE code.
+
+**1:25:58** · Then, I saw Angular V1, and I was like, this is the future.
+
+**1:26:01** · So I switched my whole path from a back end engineer to a front end engineer with Angular.
+
+**1:26:06** · I worked on Angular for years up until Angular 2 came out.
+
+**1:26:09** · And then, I was working at a financial org.
+
+**1:26:12** · Then, after that, I switched to React for a while, and I was actually teaching React.
+
+**1:26:17** · And then, while I was teaching React, I wanted to make a mobile app.
+
+**1:26:20** · And then, I was like, oh, what should I use?
+
+**1:26:22** · Should I use React, React Native?
+
+**1:26:26** · Should I use this other thing called Titanium, which does not exist anymore?
+
+**1:26:30** · A tool called Ruby Motion?
+
+**1:26:32** · And then, this thing called Flutter came out.
+
+**1:26:35** · And then, that's how I got into the Flutter community, was because I was building a startup and I wanted to build a mobile app.
+
+**1:26:41** · And then, when I joined Google, I ended up, like I said, not getting that manager job.
+
+**1:26:45** · \[LAUGHS\] RODY DAVIS: Yeah.
+
+**1:26:46** · \[LAUGHS\] MARK THOMPSON: Which I'm glad I didn't.
+
+**1:26:47** · RODY DAVIS: Same.
+
+**1:26:47** · MARK THOMPSON: I mean, the Flutter manager is actually excellent, and he is the right person for that job.
+
+**1:26:52** · And then, back in the Angular community.
+
+**1:26:56** · All right, let's see.
+
+**1:26:57** · "I was trying to install dotnet SDK in IDX through Nix, but it doesn't allow it."
+
+**1:27:02** · Do you know anything about this?
+
+**1:27:03** · RODY DAVIS: You should check out our-- we have a .net template.
+
+**1:27:06** · So you can-- MARK THOMPSON: Oh yeah, I recall that.
+
+**1:27:08** · RODY DAVIS: --try it out, and that should have all the configuration right in these clips.
+
+**1:27:12** · MARK THOMPSON: Mm!
+
+**1:27:12** · RODY DAVIS: Yeah.
+
+**1:27:13** · MARK THOMPSON: Wait, OK.
+
+**1:27:14** · Can I just say what I love about this idea of Firebase Studio?
+
+**1:27:18** · OK, I'm going to go back real quick.
+
+**1:27:19** · So we did our project.
+
+**1:27:20** · I'm going to save this.
+
+**1:27:21** · It's not going to go anywhere.
+
+**1:27:23** · If I were to look down here, here's what I really love.
+
+**1:27:27** · You see all these things down here?
+
+**1:27:29** · RODY DAVIS: Mhm.
+
+**1:27:30** · MARK THOMPSON: There's Java, Python, .NET, Android Studio, so you can do some mobile development, Flutter.
+
+**1:27:35** · OK, next.
+
+**1:27:36** · Node, Genkit, Astro, all this stuff.
+
+**1:27:39** · Here's why this got me really excited, friends.
+
+**1:27:41** · Again, let's get back to our engineering brains.
+
+**1:27:43** · If you want to learn something new that you've been trying, you've been really interested in, and you're like, ah, but I don't really have-- I don't want to do the setup.
+
+**1:27:50** · I don't want to do the setup.
+
+**1:27:51** · I never want to do the setup.
+
+**1:27:52** · RODY DAVIS: Exactly.
+
+**1:27:52** · MARK THOMPSON: Like, jump in right now.
+
+**1:27:54** · That's why I go to firebase.studio, and just start coding in that with one of these.
+
+**1:28:01** · That's wild to think about you could do that.
+
+**1:28:03** · RODY DAVIS: Yeah, it's like try before you buy.
+
+**1:28:04** · You want to see if you're going to love it before you set it up locally.
+
+**1:28:07** · MARK THOMPSON: And wait.
+
+**1:28:08** · And then, you can even get some templates too.
+
+**1:28:11** · There's .NET template.
+
+**1:28:12** · I can click on this.
+
+**1:28:13** · Let me just click on this.
+
+**1:28:13** · Let me see what happens.
+
+**1:28:14** · RODY DAVIS: We even have a lot of people using the Laravel template as well.
+
+**1:28:17** · That's been cool to see.
+
+**1:28:18** · MARK THOMPSON: Ooh, I don't know what any of this means.
+
+**1:28:20** · I'm just going to click Blazor App.
+
+**1:28:22** · RODY DAVIS: Yeah, this should use the WASM build.
+
+**1:28:24** · MARK THOMPSON: OK, sure.
+
+**1:28:25** · Because I'm like, I don't know what any of that means.
+
+**1:28:26** · You can't get me to-- I don't really know.
+
+**1:28:28** · But this is interesting.
+
+**1:28:29** · RODY DAVIS: Yeah, I would definitely suggest if there is a stack you're trying to use and trying to import your existing projects, go to one of our templates that usually matches it and see if you can copy over the Nix files.
+
+**1:28:40** · If you're running into issues of something that doesn't exist, reach out and we can see if we can make a new template or guide you through that.
+
+**1:28:46** · Our forums are really popular.
+
+**1:28:48** · And then, also, we're in the Firebase community.
+
+**1:28:51** · MARK THOMPSON: Yeah, no.
+
+**1:28:52** · Amazing.
+
+**1:28:53** · Amazing.
+
+**1:28:54** · Again, I know it sounds like, well, of course you think It's amazing, Mark.
+
+**1:28:57** · You work at Google.
+
+**1:28:58** · But-- RODY DAVIS: It's nice.
+
+**1:29:00** · MARK THOMPSON: --I wouldn't have invited Rody if I didn't like think that this was awesome.
+
+**1:29:03** · I think this is beneficial and it's interesting to our community.
+
+**1:29:06** · So, look at all this.
+
+**1:29:08** · So now, if I knew how to write some .NET, which I used to know-- RODY DAVIS: Yep, same.
+
+**1:29:13** · MARK THOMPSON: --I would like-- oh, look at that.
+
+**1:29:15** · And you can install this right off the bat.
+
+**1:29:16** · OK, cool.
+
+**1:29:18** · All right.
+
+**1:29:18** · RODY DAVIS: Sometimes you'll see that pop up if there's a race condition of installing the extensions, but yeah.
+
+**1:29:24** · MARK THOMPSON: All right, so my app can run.
+
+**1:29:26** · How do I preview this, in the terminal?
+
+**1:29:29** · RODY DAVIS: You can do the IDX, dev.next.
+
+**1:29:31** · It should show if the preview is selected.
+
+**1:29:37** · Let's move that over to-- yeah.
+
+**1:29:40** · MARK THOMPSON: Oh, something's on the web.
+
+**1:29:41** · Something's happening.
+
+**1:29:42** · RODY DAVIS: Yeah, OK.
+
+**1:29:42** · It is going to be web preview.
+
+**1:29:43** · So you can just close it, yeah.
+
+**1:29:44** · MARK THOMPSON: Oh, right.
+
+**1:29:45** · OK.
+
+**1:29:46** · Something on the web is about to happen.
+
+**1:29:47** · Pretty cool.
+
+**1:29:49** · But yeah, so if you want to try this, this is just something available to you.
+
+**1:29:53** · But I'm super, super excited about all of this stuff.
+
+**1:29:58** · I just think there's just so much cool stuff happening.
+
+**1:30:01** · Let's see.
+
+**1:30:02** · "Good thing Mark found Flutter and didn't run into Xamarin."
+
+**1:30:05** · Hey, listen, Xamarin was on my list.
+
+**1:30:07** · RODY DAVIS: Same.
+
+**1:30:08** · MARK THOMPSON: The only reason I didn't try Xamarin at the time, # is that I think .NET and C#, they also had an interesting conflict of people were trying to figure out what's the right version of this, what's the right tool to put it all together?
+
+**1:30:22** · And it was a little confusing for me at the time, but I still think it's cool.
+
+**1:30:25** · I just didn't get to start it.
+
+**1:30:26** · RODY DAVIS: For me, I was working at a .NET shop when I found out about Flutter, and the first thing was like, well, why not Xamarin?
+
+**1:30:32** · And for me, it was actually, I don't think our server could have handled all the mobile apps versus the few amount of web apps that they had.
+
+**1:30:44** · So they were expecting a certain amount of scale.
+
+**1:30:46** · So that's actually how I found out about Firebase.
+
+**1:30:48** · So we could store a lot of our collections in Firestore, scale out, and then basically, just sync with the API server on .NET.
+
+**1:30:57** · So yeah, obviously, there's different tools for different things, but yeah.
+
+**1:31:02** · MARK THOMPSON: Yeah.
+
+**1:31:03** · Oh wait.
+
+**1:31:03** · OK.
+
+**1:31:03** · So we're out of time with our show, but this actually worked though.
+
+**1:31:07** · RODY DAVIS: Yeah, there it is.
+
+**1:31:08** · MARK THOMPSON: There it is.
+
+**1:31:10** · They got a Hello World app here.
+
+**1:31:11** · I'm going to close this down for a second.
+
+**1:31:13** · Yeah, so there you go.
+
+**1:31:14** · So, I mean, sure, there's some things that we can do.
+
+**1:31:17** · I don't know if this is required, asset to build and debug.
+
+**1:31:19** · OK.
+
+**1:31:20** · I'm not going to do that because I don't know what I'm doing.
+
+**1:31:22** · But the idea that this exists, and in our conversation, I'm able to boot up a .NET.
+
+**1:31:26** · I can go to a tutorial in a different tab right now-- RODY DAVIS: Yep.
+
+**1:31:29** · MARK THOMPSON: --and then, I can just start learning.
+
+**1:31:31** · That's just pretty rad.
+
+**1:31:32** · This is pretty rad.
+
+**1:31:34** · OK, last question, and then I think we're going to call it for today.
+
+**1:31:38** · And this is not the last time we're going to have Rody on, because this has been amazing.
+
+**1:31:41** · RODY DAVIS: Yeah.
+
+**1:31:41** · MARK THOMPSON: "Mark, I've been using GitHub Copilot in VS Code since sometime.
+
+**1:31:44** · This is really promising."
+
+**1:31:46** · Yeah, Ravi Kumar, I'm so glad that you are finding some opportunities here.
+
+**1:31:53** · Again, what we care about is that you build great applications.
+
+**1:31:56** · That's what we care about.
+
+**1:31:57** · RODY DAVIS: Totally.
+
+**1:31:57** · MARK THOMPSON: How you do it is up to you.
+
+**1:31:59** · OK?
+
+**1:31:59** · Build cool stuff.
+
+**1:32:01** · I'm glad that this looks cool to you.
+
+**1:32:03** · All right, friends.
+
+**1:32:04** · Definitely, let's show a lot of love to Rody in the chat, because if you do, maybe he'll come back and show us that compressed RAG thing, workflow he was talking about.
+
+**1:32:13** · I would love to see that.
+
+**1:32:14** · I would love to have a stream where you just show them-- RODY DAVIS: Right on.
+
+**1:32:16** · MARK THOMPSON: --how to use it.
+
+**1:32:18** · So show a lot of love in the chat so he'll come back.
+
+**1:32:20** · Rody, thank you for hanging out with us.
+
+**1:32:21** · It has been a blast.
+
+**1:32:22** · RODY DAVIS: Yeah, thanks for having me.
+
+**1:32:23** · This was awesome.
+
+**1:32:24** · MARK THOMPSON: Yeah, all right.
+
+**1:32:25** · All right, friends at home, thank you for being you, thank you for being part of Angular community.
+
+**1:32:29** · # And listen, whether you use Angular, React, Vue, C#, whatever it is, it's OK, because all I care about, all we care about, is that you get out there and you build great apps.
+
+**1:32:38** · RODY DAVIS: Yeah, and it's firebase.studio for the URL.
+
+**1:32:41** · And then, we even have an Angular template that you can share with your friends too.
+
+**1:32:45** · MARK THOMPSON: And the Angular template.
+
+**1:32:46** · You know what?
+
+**1:32:47** · Before I forget, let me put the firebase.studio in the chat.
+
+**1:32:50** · OK, firebase.studio.
+
+**1:32:51** · RODY DAVIS: And then, the Angular template's studio.firebase. google.com/news/angular.
+
+**1:32:57** · MARK THOMPSON: Let's go.
+
+**1:32:58** · Let's go.
+
+**1:32:59** · Everything's there.
+
+**1:33:00** · All right, friends, we'll catch you the next time.
+
+**1:33:02** · RODY DAVIS: Awesome.
+
+**1:33:03** · MARK THOMPSON: Be awesome.
+
+**1:33:04** · RODY DAVIS: Bye.

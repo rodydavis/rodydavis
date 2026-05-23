@@ -1,0 +1,387 @@
+---
+title: Material 3 from design to deployment
+date: '2023-01-25T00:00:00.000Z'
+draft: false
+tags:
+  - flutter
+  - astro
+  - youtube
+  - talk
+  - google
+  - recipe
+summary: >-
+  Learn how to transition a design from Figma into adaptive Flutter components
+  using Material 3, ensuring a flexible user experience that accounts for
+  multiple device types and input methods.
+embedding: >-
+  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
+related:
+  - videos/take-5/responsive-design-flutter.mdx
+  - videos/take-5/adaptive-dialogs-flutter.mdx
+  - flutter/snippets/markdown-view-material-3.md
+  - videos/flutter/create-simple-beautiful-ui-with-flutter.mdx
+  - web/snippets/m3-to-m2-adapter.md
+last_updated_metadata: '2026-05-23T00:19:09.645Z'
+---
+
+import SocialEmbed from "../../../../components/SocialEmbed.astro";
+
+
+# Material 3 from design to deployment
+
+<SocialEmbed platform="youtube" id="7nrhTdS7dHg" />
+
+## Description
+
+Learn how to build the basil material study in Flutter with advanced theming techniques that support multiple device contexts.
+
+Speakers: Rody Davis, Liam Spradlin
+
+Watch more:
+Watch all the sessions → https://goo.gle/FlutterForwardYT
+
+Subscribe to Flutter → http://goo.gle/FlutterYT
+
+#FlutterForward
+
+## Transcript
+
+**0:00** · \[MUSIC PLAYING\] LIAM SPRADLIN: Hi, my name is Liam.
+
+**0:09** · I'm a senior design advocate at Google on Material Design.
+
+**0:11** · RODY DAVIS: And my name is Rody.
+
+**0:13** · A senior developer advocate at Google.
+
+**0:15** · LIAM SPRADLIN: Today, we'll be talking about translating a design into code.
+
+**0:20** · We'll be breaking down how to take a design from a Figma file to creating adaptive reusable components for Flutter that target all six supported platforms.
+
+**0:29** · An important thing to remember is that adaptive design is not just about the breakpoint and device target.
+
+**0:34** · When building a truly adaptive experience, there's a whole matrix of options to consider.
+
+**0:38** · For example, a tablet with a keyboard but no mouse, a desktop with only a touch screen, or a mobile version that's running on a desktop in free form.
+
+**0:46** · With Flutter, it's easy to create platform adaptations and build a flexible UI that's capable of targeting the correct platform and input method.
+
+### Pesto - Case Study
+
+**0:54** · To illustrate what this means, particularly as you build adaptive apps with Flutter, we've made a sample study.
+
+**0:59** · A recipe discovery app called Pesto.
+
+**1:02** · It's an app that has several different user journeys that can take place across different device types, input modalities, and contexts.
+
+**1:08** · For example, you might enter and manage your recipes on a computer screen, browse for inspiration on your tablet, and carry out the recipe on an ambient device like a Nest Hub.
+
+**1:18** · From a designer's perspective, we build layouts and experiences for apps like Pesto with a ton of contextual information in mind, meaning that our intention for the experience, how it works, how it feels, the character of the design is embedded deeply into the artifacts of our work, often without explicit markers for the people we're working with to bring it to life.
+
+### Design Rationale
+
+**1:38** · Things like the grid structures that underlie our layouts, the navigation interactions we intend, theming and visual customization, and the motion and transitions that link everything together are just a few of the key aspects that we need to accurately and reliably convey to developers.
+
+**1:54** · In this talk, we'll walk through some of these key elements in reference to our example app and talk about how Flutter can preserve and convey your design intent.
+
+**2:02** · RODY DAVIS: From a developer's perspective, we tend to think about designs as a set of components that we can post together in higher order UIs. Flutter gives us the ability to build declaratively on every frame and any size.
+
+### Developer Rationale
+
+**2:14** · When targeting six platforms, there's a lot of things we need to consider such as input methods, touch targets, keyboard events, native menus, file handlers and more.
+
+**2:23** · We also need a translated design in Figma with dummy data into a working demo using mock data.
+
+**2:29** · This may be a tempting step to skip when building with Flutter.
+
+**2:32** · But by starting with dummy data, you can decouple your UI from the business logic and start working off of a few model style presentation.
+
+**2:39** · And finally, we need to think about all the animations not shown in Figma or even implicit ones for transitions throughout the app.
+
+**2:46** · Having a way to quickly test various animations is critical.
+
+### Material Design in Flutter
+
+**2:50** · One exciting update is the new Material 3 widgets for Flutter.
+
+**2:53** · There are multiple widgets that are included.
+
+**2:55** · And we'll be going over how to use them today.
+
+**2:58** · As we go through this talk, we're going to be building the Basil Theme together.
+
+### Building the Basil Theme
+
+**3:02** · This will cover theme extensions, custom fonts, dynamic color, and widget themes.
+
+**3:07** · First, let's create the Material 3 Theme class.
+
+**3:12** · Here, we're creating a immutable class with some brand colors that the design defines for us in a simple constructor.
+
+**3:18** · Brand colors, if you're not familiar with, are colors associated with the company and colors that make up the logo or related assets.
+
+**3:25** · For Google, this is the four colors that make up the G logo.
+
+**3:29** · Next, we create a callback for creating the theme data object.
+
+**3:32** · And we'll use that to pass to the theme for the Material app later.
+
+**3:36** · Available in the current version of Flutter, we can enable the use Material 3 theme override, which we will use for the new color system and update any supported widgets.
+
+**3:46** · After we have defined the class, we can then import it at the entry point of our application and instantiate the class.
+
+**3:52** · We then just call the two-theme data method and build the Basil theme, which we then provide to the widget tree.
+
+**3:58** · Later, we're going to be talking about ways in which we can theme the application with just the default widgets and theme overrides which allow for better reuse and extensibility.
+
+**4:07** · Next, we can take advantage of the theme data feature called Theme Extensions released in Flutter 3.0.
+
+**4:13** · To create a theme extension, simply extend the class we just created with the theme extension class and the type of our theme.
+
+**4:20** · This is required for when we pass it to the theme data class later and for providing it to the widget tree.
+
+**4:26** · We only need to override two methods.
+
+**4:28** · The first being the copyWith method.
+
+**4:30** · This is for when you're inside a widget and you want to override a single property and get a new theme back.
+
+**4:37** · Next, we can just override the alert method, which is used for animation.
+
+**4:40** · Just check to see if the type coming in is the class we're expecting and work through all the inputs.
+
+**4:45** · Now, back to Liam on typography.
+
+**4:47** · LIAM SPRADLIN: Speaking as an interface designer who's also a type designer, it's important to me to note that type or text in all its expression is interface.
+
+**4:57** · It serves so many purposes in an interface from delivering content to aiding in navigation, all the way to elements that are nontextual but still typographic, like icons.
+
+**5:06** · One big consideration is how you choose the type styles that best serve your content and layout.
+
+**5:12** · In space-constrained places, like navigation components, the right type style can allow you to communicate more clearly with users.
+
+**5:19** · Other type styles, like those found in materials type scale, can help you create and maintain consistent information hierarchies throughout your app and across devices.
+
+**5:28** · Titles, captions, body text, even inline links can instantly be recognized by users if your type scale carefully considers their styles.
+
+**5:36** · Making more nuanced choices about baseline grids, columns, spacing, and alignment can also contribute to the overall character of your experience, making it strict, geometric, and modern, or allowing it to be loose, free flowing, or even playful.
+
+**5:50** · RODY DAVIS: From a developer's perspective when translating a design, it is important to preserve the semantics around typography, emphasize, spacing, and type scale.
+
+**5:59** · It can be easy just to stick with the default textile in Flutter and just change the font size or alignment as needed.
+
+**6:05** · But there's a lot we can do to really polish UI.
+
+**6:08** · For most cases, you can get away with using the text widget in Flutter.
+
+**6:11** · But sometimes, a design will have a bolded word in the middle of a sentence.
+
+**6:15** · And for that, we can use the rich text widget.
+
+**6:17** · Also, in text-heavy apps, there's a dynamic list and styles such as in a markdown source.
+
+**6:22** · And for that, we can use the Flutter markdown package which will convert our inputs into widgets and rich text.
+
+**6:28** · Both of these are reasons why we want to have great custom text themes.
+
+**6:33** · Often, a design will have multiple font pairings that corresponds to titles and headlines or body and text.
+
+**6:39** · Flutter gives us the text theme class, which we can then use to define our type scale.
+
+**6:43** · And we can include any number of font families for the levels.
+
+**6:48** · To actually load the font, we can either include the font assets directly in our app and define them in the pubs of a Caml or use the Google Fonts Pub package and dynamically load them in.
+
+**6:58** · Using the Google Fonts package allows us to test different font pairings before optimizing for production build.
+
+**7:04** · First, we need to import the Google Fonts package in the file where we defined our theme.
+
+**7:09** · Next, we can create a new method, which returns the base theme data class, which we will then use for other contexts such as light and dark later.
+
+**7:16** · We can then import these two fonts defined in the design spec and create a merged theme, which we will then use to pass to the text theme class.
+
+**7:25** · Note that it is possible to override just a single level or groups of styles depending on the design intent.
+
+**7:30** · This package just requires internet access.
+
+**7:32** · So make sure to give the mac OS target if running the correct entitlements defining the package.
+
+**7:37** · That's it for typography.
+
+**7:39** · Next time we run the app, we will see Roboto updated with the new correct default textiles.
+
+**7:44** · LIAM SPRADLIN: One thing that we really focused on in the design updates for Material 3 is color.
+
+**7:49** · And a lot of the changes and improvements made to the material color system were motivated by creating and preserving design intent.
+
+**7:56** · Rather than defining each individual color for each individual visual element, we established a system that generates a comprehensive and cohesive color scheme based on the relationships between colors.
+
+### Design Color + Dynamic Color
+
+**8:08** · This way, design intent for the meaning and function of different elements that can be communicated through color can be preserved throughout the process of building an interface.
+
+**8:17** · In Pesto, a recipe screen can even be themed based on the image associated with the recipe.
+
+**8:22** · In this case, the creamy pesto pasta translating the users or the recipe writer's unique intent into a cohesive version of the design intent that you've established and implemented.
+
+**8:32** · RODY DAVIS: From developer's perspective, Flutter makes working with dynamic color easy thanks to a great pub package called Material Color Utilities and the extensible theme data class.
+
+**8:41** · Lets build a custom color scheme together.
+
+**8:45** · Let's add the Material Color Utilities import above our theme to get access to the HCT color system.
+
+**8:50** · The Flutter SDK already depends on this package.
+
+**8:53** · But you will still want to add this to your pub spec dependencies.
+
+**8:57** · Let's create a method that returns a scheme that we can use to create a custom color scheme class.
+
+**9:01** · Sometimes, a design is only based on a single color.
+
+**9:04** · And for those instances, we can use a color scheme from seed, which gives us a beautiful generated color scheme using the ACT color space.
+
+**9:12** · For Basil, we have multiple brand colors that we need to use to create custom tonal groups from.
+
+**9:18** · First define a base palette that all tokens can inherit from if not overridden.
+
+**9:23** · Next, create the tertiary tonal group and note that the palette is returning the primary palette to provide the chromatic tonal group that the design was intending.
+
+**9:32** · Finally, create the neutral palette, which will also be used to override tokens.
+
+**9:37** · The color palette class comes from the Material Color Utilities and is a group of palettes that are derived from a single source color.
+
+**9:44** · Next, we will be adding tokens to the scheme class.
+
+**9:47** · You may not be familiar with the scheme class or the concept of design tokens.
+
+**9:51** · But the scheme class is a class in Material Color Utilities that has a one-to-one relationship with the color scheme class in Flutter.
+
+**9:58** · All these parameters are designed tokens, which are theme values that can be passed down and inherit from in subthemes.
+
+**10:04** · Here, we're just going to go quickly through the scheme and define the tokens from those palettes.
+
+**10:09** · For each of these tokens, we pulled them from the tonal palette and get a color based on a given tone of brightness.
+
+**10:14** · To learn more about the new token's material design, you can go to m3.material.io.
+
+**10:20** · Next, add the overrides for background, error group, outlines, and surfaces.
+
+**10:25** · Finally, add the overrides for surface variant and inverted colors.
+
+**10:28** · Note that for the dark theme, there needs to be different tones use for these tokens.
+
+**10:33** · For most cases, you will not need to create a custom color scheme.
+
+**10:36** · But this is an example of all the things done for you when you use the color scheme from seed method.
+
+**10:41** · We can also create an extension method on the scheme class to return a color scheme that the theme data class expects with a given brightness.
+
+**10:49** · Now, we can add the color scheme parameter to our base method and pass the color scheme to the theme data class.
+
+**10:55** · When overriding a token such as scaffold background, sometimes, the design will use a brand color instead of a derived token in the scheme.
+
+**11:02** · For this token, we're checking to see if its light, brightness, and returning the brand color defined earlier.
+
+**11:09** · Finally, we can compose the complete color scheme and the theme data class in two-theme data method while making sure to pass the brightness.
+
+**11:17** · Sometimes, we want to pull a theme from an image and have it match the main theme.
+
+**11:21** · For example, a music player app can pull from the album art and change the background to match.
+
+**11:28** · This color could be anything.
+
+**11:29** · But thanks to the Material Color Utilities, we can make sure that the color will meet contrast requirements and have a color scheme that will work with our app.
+
+**11:37** · In Pesto, we can use the image on the detail screen to create a content-based theme that matches the top level theme.
+
+**11:45** · To do this, we can create an image theme class, import Material Color Utilities, and the image package.
+
+**11:51** · Next, we create a method to take the image defined at the path, get the bytes, and convert them to an RGB pixel array with the image package.
+
+**11:59** · We can then implement some basic error handling.
+
+**12:03** · Then we can implement the source colors from image method that takes the pixel data, quantitizes the result, and returns them to the ranked pixels in the image.
+
+**12:11** · Now, we can create a color scheme from image method that takes the current color scheme and blends it with the primary of the top color in the image.
+
+**12:18** · We then can use that seed to generate another color scheme which we then return.
+
+**12:23** · This blend method is important because otherwise, the color could potentially clash with the main theme.
+
+**12:29** · Finally, we can use the method just to find to create a build method, which returns a FutureBuilder and creates a color scheme from the image.
+
+**12:36** · It then passes it to the theme widget, which will override the theme data in the widget subtree.
+
+**12:42** · Once we have defined all the colors and typography, we need to create individual widget theme overrides.
+
+**12:48** · This will help reduce the need for custom components or theming in the build method.
+
+**12:53** · Learning how to define these overrides properly will help the application have an experience that properly reflects the design intent.
+
+**13:00** · First, let's create the TabBarTheme-- then the FloatingActionButton override.
+
+**13:05** · Next, the NavigationRailThemeData.
+
+**13:07** · Note that these are just applying color overrides based on the design.
+
+**13:12** · Finally, override the AppBar and ChipTheme.
+
+**13:15** · There are many widgets that we did not override.
+
+**13:17** · But it's because we're not using them yet or the default to Material 3 appear correct.
+
+**13:21** · LIAM SPRADLIN: Of course, the ways that people can use your app will depend on where, when, and how they're using it.
+
+**13:27** · This is where it becomes really important to account for different input modalities.
+
+**13:31** · If a user has a keyboard, switch, mouse, touch, or even voice to interact with your app, it should be accounted for in the way your design is structured.
+
+**13:40** · The way your layout is structured, specifically how users traverse both visually and physically from one item to the next is crucial information that's not captured in one static mockup and requires extra documentation to successfully translate into implementation.
+
+**13:54** · And this might change based on what device your app is running on.
+
+**13:58** · Layout density might be lower on an ambient device that's viewed from far away and has less need for touch input.
+
+**14:04** · This will mean quicker traversal through fewer onscreen elements.
+
+**14:07** · On a phone, the density may increase.
+
+**14:09** · But things like touch targets become more important to consider.
+
+**14:12** · Across devices, the navigation structure may change as you gain or lose screen space.
+
+**14:17** · RODY DAVIS: From a developer's perspective, we should be mindful about where the application is intended to be deployed.
+
+**14:23** · In Flutter, you can define multiple entry points depending on the target you're building for.
+
+**14:27** · Rather than building a single UI package in binary that's meant to run in all these contexts, you can compose the UI and functionality depending on which top-level app you pass to runApp.
+
+**14:37** · In your theme data class, you can pass adaptive platform density Enum to the visual density override to create a more compact UI in these contexts where input is more precise.
+
+**14:48** · And when it comes to traversal and touch targets, it is important to remember that building a great accessible app is good for keyboard navigation and accessible touch targets.
+
+**14:57** · Flutter has a good focus traversal.
+
+**14:59** · And if you're using the default focus nodes defined in most widgets, you can test them by using the Tab and Shift Tab keys to navigate.
+
+**15:06** · Make sure to define tool tips and meaningful semantics where possible throughout the widget tree.
+
+**15:11** · For navigation, you can use the go router package to split up the routes into files and have fine-grained control with the new Navigator 2.0 class.
+
+**15:19** · This is what the Flutter app looks like running without our theme applied.
+
+**15:23** · But when passing the theme to the Material app, we get a beautiful Basil Material 3 theme in Flutter.
+
+**15:28** · The theme data class is very powerful and allows us to create truly custom themes that match the brand or design spec handed off to the developer.
+
+**15:36** · Sometimes, a theme for a widget is not available.
+
+**15:39** · And for that, we can use extensions and custom widgets.
+
+**15:42** · LIAM SPRADLIN: If you still find the concept of building a custom theme challenging or just need somewhere to get started with your design, check out the Material Theme Builder and export your theme for Flutter.
+
+**15:52** · You can also learn more about Material 3 and Material.io.
+
+**15:55** · Thanks for watching.
+
+**15:57** · \[MUSIC PLAYING\]

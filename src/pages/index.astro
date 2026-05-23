@@ -1,16 +1,535 @@
 ---
 import ExplorerLayout from "../layouts/ExplorerLayout.astro";
-import { getEntry } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
+import {
+    Github,
+    Youtube,
+    Twitter,
+    Linkedin,
+    Globe,
+    Mail,
+    BookOpen,
+    Play,
+    Calendar,
+    ArrowUpRight,
+    Tag
+} from "lucide-react";
 
+// Fetch the welcome doc
 const welcomeDoc = await getEntry("docs", "welcome");
 if (!welcomeDoc) {
     throw new Error("Welcome doc not found");
 }
 const { Content } = await welcomeDoc.render();
+
+// Fetch all docs for computing posts, tags, videos, and table of contents
+const allDocs = await getCollection("docs");
+
+// Exclude standalone files like 'welcome', 'about', and 'privacy' from blog posts list
+const blogPosts = allDocs.filter(
+    (doc) => doc.slug !== "welcome" && doc.slug !== "about" && doc.slug !== "privacy"
+);
+
+// 1. Tags section: all tags as chips with counts
+const tagCounts: Record<string, number> = {};
+blogPosts.forEach((post) => {
+    const tags = post.data.tags || [];
+    tags.forEach((tag) => {
+        const cleaned = tag.trim().toLowerCase();
+        if (cleaned) {
+            tagCounts[cleaned] = (tagCounts[cleaned] || 0) + 1;
+        }
+    });
+});
+const sortedTags = Object.entries(tagCounts)
+    .sort((a, b) => b[1] - a[1]);
+
+// 2. Recent Posts: top 5 recent posts, excluding videos
+const recentPosts = blogPosts
+    .filter((post) => !(post.data.tags || []).map(t => t.toLowerCase()).includes("video"))
+    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+    .slice(0, 5);
+
+// 3. Recent Videos: top 5 posts with video tag, showing YouTube thumbnails
+const videoPosts = blogPosts
+    .filter((post) => (post.data.tags || []).map(t => t.toLowerCase()).includes("video"))
+    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+    .slice(0, 5);
+
+// Helper to extract YouTube video ID from post body
+function getYoutubeId(content: string): string | null {
+    const embedMatch = content.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]+)/);
+    if (embedMatch) return embedMatch[1];
+    const watchMatch = content.match(/v=([a-zA-Z0-9_-]+)/);
+    if (watchMatch) return watchMatch[1];
+    const beMatch = content.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+    if (beMatch) return beMatch[1];
+    return null;
+}
+
+const recentVideosWithMetadata = videoPosts.map((post) => {
+    const ytId = getYoutubeId(post.body);
+    const thumbnail = ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : null;
+    return {
+        ...post,
+        ytId,
+        thumbnail
+    };
+});
+
+// 3.5. Content Graph: calculate posts per day for the last 53 weeks
+const postsPerDay: Record<string, number> = {};
+blogPosts.forEach((post) => {
+    if (post.data.date) {
+        const dateStr = new Date(post.data.date).toISOString().split("T")[0];
+        postsPerDay[dateStr] = (postsPerDay[dateStr] || 0) + 1;
+    }
+});
+
+const postDates = blogPosts
+    .map(p => p.data.date ? new Date(p.data.date) : null)
+    .filter((d): d is Date => d !== null);
+
+const latestPostDate = postDates.length > 0 
+    ? new Date(Math.max(...postDates.map(d => d.getTime()))) 
+    : new Date();
+
+const today = new Date();
+const baseDate = latestPostDate > today ? latestPostDate : today;
+
+const currentDayOfWeek = baseDate.getDay();
+const endDate = new Date(baseDate);
+endDate.setDate(baseDate.getDate() + (6 - currentDayOfWeek)); // Round up to Saturday of current week
+
+const startDate = new Date(endDate);
+startDate.setDate(endDate.getDate() - 370); // 371 days (53 weeks * 7 days)
+
+const daysArray: { dateStr: string; count: number; date: Date }[] = [];
+const tempDate = new Date(startDate);
+while (tempDate <= endDate) {
+    const dateStr = tempDate.toISOString().split("T")[0];
+    const count = postsPerDay[dateStr] || 0;
+    daysArray.push({
+        dateStr,
+        count,
+        date: new Date(tempDate)
+    });
+    tempDate.setDate(tempDate.getDate() + 1);
+}
+
+const lastYearPostsCount = daysArray.reduce((acc, d) => acc + d.count, 0);
+
+interface WeekNode {
+    days: typeof daysArray;
+    monthLabel: string | null;
+}
+const weeks: WeekNode[] = [];
+let lastMonth = -1;
+
+for (let i = 0; i < daysArray.length; i += 7) {
+    const weekDays = daysArray.slice(i, i + 7);
+    let label: string | null = null;
+    const firstDay = weekDays[0].date;
+    const month = firstDay.getMonth();
+    
+    if (month !== lastMonth) {
+        label = firstDay.toLocaleDateString(undefined, { month: 'short' });
+        lastMonth = month;
+    }
+    
+    weeks.push({
+        days: weekDays,
+        monthLabel: label
+    });
+}
+
+// 4. Social Links mapping with custom hover theme accent colors and icons
+const socialLinks = [
+    { name: "Github", href: "https://github.com/rodydavis", icon: Github, color: "hover:border-[var(--fg-primary)] hover:text-[var(--fg-primary)]" },
+    { name: "YouTube", href: "https://youtube.com/rodydavis", icon: Youtube, color: "hover:border-red-500 hover:text-red-500" },
+    { name: "Twitter", href: "https://twitter.com/rodydavis", icon: Twitter, color: "hover:border-sky-400 hover:text-sky-400" },
+    { name: "LinkedIn", href: "https://www.linkedin.com/in/rodydavis", icon: Linkedin, color: "hover:border-blue-500 hover:text-blue-500" },
+    { name: "Glitch", href: "https://glitch.com/@rodydavis", icon: Globe, color: "hover:border-purple-400 hover:text-purple-400" },
+    { name: "StackOverflow", href: "https://stackoverflow.com/users/7303311/rody-davis", icon: Globe, color: "hover:border-orange-500 hover:text-orange-500" },
+    { name: "Instagram", href: "https://instagram.com/rodydavisjr", icon: Globe, color: "hover:border-pink-500 hover:text-pink-500" },
+    { name: "Facebook", href: "https://facebook.com/rodydavisjr", icon: Globe, color: "hover:border-blue-600 hover:text-blue-600" },
+    { name: "TikTok", href: "https://tiktok.com/@rodydavisjr", icon: Globe, color: "hover:border-teal-400 hover:text-teal-400" },
+    { name: "Dev.to", href: "https://dev.to/rodydavis", icon: BookOpen, color: "hover:border-emerald-400 hover:text-emerald-400" },
+    { name: "Medium", href: "https://rodydavis.medium.com/", icon: BookOpen, color: "hover:border-stone-400 hover:text-stone-400" },
+    { name: "Email", href: "mailto:rody.davis.jr@gmail.com", icon: Mail, color: "hover:border-emerald-500 hover:text-emerald-500" },
+];
+
+interface TreeNode {
+    name: string;
+    posts: typeof blogPosts;
+    children: Record<string, TreeNode>;
+}
+
+const postsTree: Record<string, TreeNode> = {};
+
+function formatHeaderName(name: string): string {
+    if (!name) return "";
+    const special: Record<string, string> = {
+        "flutter": "Flutter",
+        "dart": "Dart",
+        "web": "Web",
+        "sqlite": "SQLite",
+        "recipes": "Recipes",
+        "travel": "Travel",
+        "videos": "Videos",
+        "podcast": "Podcast",
+        "lit": "Lit",
+        "backend": "Backend",
+        "astro": "Astro",
+        "ai": "AI"
+    };
+    if (special[name.toLowerCase()]) return special[name.toLowerCase()];
+    return name
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+}
+
+blogPosts.forEach((post) => {
+    const segments = post.slug.split("/");
+    let currentLevel = postsTree;
+
+    for (let i = 0; i < segments.length - 1; i++) {
+        const seg = segments[i];
+        if (!currentLevel[seg]) {
+            currentLevel[seg] = {
+                name: formatHeaderName(seg),
+                posts: [],
+                children: {}
+            };
+        }
+        if (i === segments.length - 2) {
+            currentLevel[seg].posts.push(post);
+        }
+        currentLevel = currentLevel[seg].children;
+    }
+});
+
+function renderTreeHtml(nodeMap: Record<string, TreeNode>, depth = 0): string {
+    let html = "";
+    const sortedKeys = Object.keys(nodeMap).sort((a, b) => a.localeCompare(b));
+    
+    for (const key of sortedKeys) {
+        const node = nodeMap[key];
+        const headingLevel = 3 + depth;
+        
+        let headingClass = "";
+        if (headingLevel === 3) {
+            headingClass = "text-lg font-bold mt-6 mb-3 text-[var(--fg-primary)] flex items-center gap-2 border-b border-[var(--border-main)]/60 pb-1.5";
+        } else if (headingLevel === 4) {
+            headingClass = "text-base font-bold mt-4 mb-2 text-[var(--header-h2)]";
+        } else {
+            headingClass = "text-sm font-semibold mt-3 mb-1 text-[var(--header-h3)]";
+        }
+            
+        html += `<h${headingLevel} class="${headingClass}">${node.name}</h${headingLevel}>`;
+        
+        if (node.posts.length > 0) {
+            html += `<ul class="list-none pl-0 space-y-1.5 mb-4">`;
+            const sortedPosts = [...node.posts].sort((a, b) => (a.data.title || "").localeCompare(b.data.title || ""));
+            for (const post of sortedPosts) {
+                html += `
+                    <li class="flex items-center gap-2">
+                        <span class="text-[var(--fg-secondary)] text-xs">📄</span>
+                        <a 
+                            href="/${post.slug}" 
+                            class="text-sm text-[var(--fg-primary)] hover:text-[var(--header-h1)] hover:underline transition-colors no-underline"
+                        >
+                            ${post.data.title || post.slug}
+                        </a>
+                    </li>
+                `;
+            }
+            html += `</ul>`;
+        }
+        
+        if (Object.keys(node.children).length > 0) {
+            html += `<div class="pl-4 border-l border-[var(--border-main)]/40 my-3">`;
+            html += renderTreeHtml(node.children, depth + 1);
+            html += `</div>`;
+        }
+    }
+    
+    return html;
+}
+
 ---
 
 <ExplorerLayout activePostId="welcome">
-    <div class="prose max-w-none px-8 py-4 dark:prose-invert">
-        <Content />
+    <div class="px-8 py-6 max-w-7xl mx-auto space-y-12">
+
+        <!-- 1. Custom Reconstructed Hero Content from modernized welcome.md -->
+        <div class="prose max-w-none dark:prose-invert">
+            <Content />
+        </div>
+
+        <!-- 3. Stacking main content sections cleanly -->
+        <div class="space-y-16">
+
+            <!-- Connect Section -->
+            <div>
+                <div class="flex items-center justify-between mb-6 pb-2 border-b border-[var(--border-main)]">
+                    <h2 class="text-2xl font-bold text-[var(--fg-primary)] flex items-center gap-2">
+                        <Globe className="text-[var(--header-h1)]" size={24} />
+                        Connect
+                    </h2>
+                    <span class="text-xs text-[var(--fg-secondary)] bg-[var(--bg-sidebar)] px-3 py-1 rounded-full border border-[var(--border-main)]">
+                        {socialLinks.length} channels
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+                    {socialLinks.map((social) => (
+                        <a
+                            href={social.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg bg-[var(--bg-sidebar)] hover:bg-[var(--hover-bg)] border border-[var(--border-main)] ${social.color} text-xs text-[var(--fg-primary)] font-semibold transition-all duration-200 group no-underline`}
+                        >
+                            <social.icon size={14} className="shrink-0 transition-transform group-hover:scale-110" />
+                            <span class="truncate">{social.name}</span>
+                        </a>
+                    ))}
+                </div>
+            </div>
+
+                <!-- Recent Posts Section -->
+                <div>
+                    <div class="flex items-center justify-between mb-6 pb-2 border-b border-[var(--border-main)]">
+                        <h2 class="text-2xl font-bold text-[var(--fg-primary)] flex items-center gap-2">
+                            <BookOpen className="text-[var(--header-h1)]" size={24} />
+                            Recent Posts
+                        </h2>
+                        <span class="text-xs text-[var(--fg-secondary)] bg-[var(--bg-sidebar)] px-3 py-1 rounded-full border border-[var(--border-main)]">
+                            Showing {recentPosts.length} entries
+                        </span>
+                    </div>
+
+                    <div class="grid gap-6">
+                        {recentPosts.map((post) => (
+                            <a
+                                href={`/${post.slug}`}
+                                class="group block p-6 rounded-xl bg-[var(--bg-sidebar)] border border-[var(--border-main)] hover:border-[var(--header-h1)] transition-all duration-300 relative overflow-hidden shadow-sm no-underline"
+                            >
+                                <div class="absolute inset-0 bg-gradient-to-r from-sky-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div class="flex items-start justify-between gap-4">
+                                    <div class="space-y-2">
+                                        <h3 class="text-lg font-bold text-[var(--fg-primary)] group-hover:text-[var(--header-h1)] transition-colors duration-200 m-0">
+                                            {post.data.title}
+                                        </h3>
+                                        <div class="flex flex-wrap gap-2 text-xs text-[var(--fg-secondary)] items-center">
+                                            <span class="flex items-center gap-1">
+                                                <Calendar size={12} />
+                                                {post.data.date}
+                                            </span>
+                                            {post.data.tags && post.data.tags.slice(0, 3).map((tag: string) => (
+                                                <span class="px-2 py-0.5 rounded-full bg-[var(--bg-main)] text-[var(--fg-secondary)] border border-[var(--border-main)]">
+                                                    #{tag}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <ArrowUpRight size={18} className="text-[var(--fg-secondary)] group-hover:text-[var(--header-h1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                                </div>
+                                {post.data.summary && (
+                                    <p class="text-sm text-[var(--fg-secondary)] leading-relaxed mt-3 mb-0 line-clamp-2">
+                                        {post.data.summary}
+                                    </p>
+                                )}
+                            </a>
+                        ))}
+                    </div>
+                </div>
+
+                <!-- Recent Videos Section -->
+                <div>
+                    <div class="flex items-center justify-between mb-6 pb-2 border-b border-[var(--border-main)]">
+                        <h2 class="text-2xl font-bold text-[var(--fg-primary)] flex items-center gap-2">
+                            <Play className="text-red-500" size={24} />
+                            Recent Videos
+                        </h2>
+                        <span class="text-xs text-[var(--fg-secondary)] bg-[var(--bg-sidebar)] px-3 py-1 rounded-full border border-[var(--border-main)]">
+                            {videoPosts.length} videos
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {recentVideosWithMetadata.map((video) => (
+                            <a
+                                href={`/${video.slug}`}
+                                class="group block bg-[var(--bg-sidebar)] border border-[var(--border-main)] hover:border-red-500/50 rounded-xl overflow-hidden shadow-sm transition-all duration-300 no-underline"
+                            >
+                                <div class="aspect-video relative overflow-hidden bg-black flex items-center justify-center">
+                                    {video.thumbnail ? (
+                                        <img
+                                            src={video.thumbnail}
+                                            alt={video.data.title}
+                                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        />
+                                    ) : (
+                                        <div class="w-full h-full bg-gradient-to-tr from-red-950/20 to-slate-900 flex flex-col items-center justify-center text-[var(--fg-secondary)]">
+                                            <Play size={40} className="text-red-500/60" />
+                                        </div>
+                                    )}
+                                    <!-- Play Overlay Button -->
+                                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <div class="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-all duration-300">
+                                            <Play size={20} className="fill-white translate-x-0.5" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-4 space-y-2">
+                                    <h3 class="text-sm font-bold text-[var(--fg-primary)] group-hover:text-red-400 transition-colors duration-200 line-clamp-2 m-0 leading-snug">
+                                        {video.data.title}
+                                    </h3>
+                                    <div class="flex items-center gap-2 text-xs text-[var(--fg-secondary)]">
+                                        <Calendar size={12} />
+                                        <span>{video.data.date ? new Date(video.data.date).toLocaleDateString(undefined, {month: 'short', day: 'numeric', year: 'numeric'}) : ''}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+                </div>
+
+                <!-- Posts Section -->
+                <div>
+                    <div class="flex items-center justify-between mb-6 pb-2 border-b border-[var(--border-main)]">
+                        <h2 class="text-2xl font-bold text-[var(--fg-primary)] flex items-center gap-2">
+                            <BookOpen className="text-[var(--header-h2)]" size={24} />
+                            Posts
+                        </h2>
+                        <span class="text-xs text-[var(--fg-secondary)] bg-[var(--bg-sidebar)] px-3 py-1 rounded-full border border-[var(--border-main)]">
+                            {blogPosts.length} total entries
+                        </span>
+                    </div>
+
+                    <div class="prose max-w-none dark:prose-invert">
+                        <Fragment set:html={renderTreeHtml(postsTree)} />
+                    </div>
+                </div>
+
+                <!-- Content Graph Section -->
+                <div>
+                    <div class="flex items-center justify-between mb-6 pb-2 border-b border-[var(--border-main)]">
+                        <h2 class="text-2xl font-bold text-[var(--fg-primary)] flex items-center gap-2">
+                            <Calendar className="text-[var(--header-h2)]" size={24} />
+                            Content Graph
+                        </h2>
+                        <span class="text-xs text-[var(--fg-secondary)] bg-[var(--bg-sidebar)] px-3 py-1 rounded-full border border-[var(--border-main)]">
+                            {lastYearPostsCount} contributions in the last year
+                        </span>
+                    </div>
+
+                    <div class="p-6 rounded-xl bg-[var(--bg-sidebar)] border border-[var(--border-main)] shadow-sm">
+                        <div class="flex flex-col items-center select-none">
+                            <div class="flex gap-2.5 pt-5 pb-1 relative">
+                                <!-- Day labels -->
+                                <div class="grid grid-rows-7 text-[9px] text-[var(--fg-secondary)] font-medium h-[82px] justify-between pr-1.5 py-0.5 leading-none">
+                                    <span>Sun</span>
+                                    <span>Mon</span>
+                                    <span>Tue</span>
+                                    <span>Wed</span>
+                                    <span>Thu</span>
+                                    <span>Fri</span>
+                                    <span>Sat</span>
+                                </div>
+
+                                <!-- The Responsive Column Weeks Grid -->
+                                <div class="flex gap-[3px] p-1 bg-[var(--bg-main)] rounded-lg border border-[var(--border-main)]/60">
+                                    {weeks.map((week, index) => {
+                                        // 53 weeks total. Responsive column folding to avoid overflow scrolling:
+                                        // Mobile: Show latest 20 weeks (indices 33-52)
+                                        // Tablet: Show latest 33 weeks (indices 20-52)
+                                        // Desktop: Show full 53 weeks (indices 0-52)
+                                        let responsiveClass = "flex";
+                                        if (index < 20) {
+                                            responsiveClass = "hidden md:flex";
+                                        } else if (index < 33) {
+                                            responsiveClass = "hidden sm:flex";
+                                        }
+
+                                        return (
+                                            <div class={`flex flex-col gap-[3px] relative ${responsiveClass}`}>
+                                                {week.monthLabel && (
+                                                    <span class="absolute -top-[17px] left-0 text-[8px] font-semibold text-[var(--fg-secondary)] whitespace-nowrap opacity-80 uppercase tracking-wider">
+                                                        {week.monthLabel}
+                                                    </span>
+                                                )}
+                                                {week.days.map((day) => {
+                                                    let colorClass = "bg-[var(--bg-sidebar)] border border-[var(--border-main)]/40";
+                                                    if (day.count === 1) {
+                                                        colorClass = "bg-emerald-500/20 border border-emerald-500/30";
+                                                    } else if (day.count === 2) {
+                                                        colorClass = "bg-emerald-500/50 border border-emerald-500/40";
+                                                    } else if (day.count >= 3) {
+                                                        colorClass = "bg-emerald-500 border border-emerald-600";
+                                                    }
+                                                    return (
+                                                        <div class="relative group/cell">
+                                                            <div 
+                                                                class={`w-[9px] h-[9px] rounded-[2px] transition-transform hover:scale-125 cursor-pointer ${colorClass}`}
+                                                            />
+                                                            <!-- Custom Hover Tooltip Bubble -->
+                                                            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2.5 py-1 bg-black border border-slate-800 text-[9px] text-white font-medium rounded shadow-xl pointer-events-none opacity-0 group-hover/cell:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50 scale-95 group-hover/cell:scale-100 origin-bottom">
+                                                                {day.count} post{day.count === 1 ? '' : 's'} on {day.date.toLocaleDateString(undefined, {month: 'short', day: 'numeric', year: 'numeric'})}
+                                                                <!-- Tiny Tooltip Arrow -->
+                                                                <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 border-[3px] border-transparent border-t-black"></div>
+                                                            </div>
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+
+                            <!-- Legend -->
+                            <div class="flex items-center justify-end gap-1.5 text-[9px] text-[var(--fg-secondary)] w-full mt-3 pr-2">
+                                <span>Less</span>
+                                <div class="w-[9px] h-[9px] rounded-[2px] bg-[var(--bg-sidebar)] border border-[var(--border-main)]/40" />
+                                <div class="w-[9px] h-[9px] rounded-[2px] bg-emerald-500/20 border border-emerald-500/30" />
+                                <div class="w-[9px] h-[9px] rounded-[2px] bg-emerald-500/50 border border-emerald-500/40" />
+                                <div class="w-[9px] h-[9px] rounded-[2px] bg-emerald-500 border border-emerald-600" />
+                                <span>More</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tags Section -->
+                <div>
+                    <div class="flex items-center justify-between mb-6 pb-2 border-b border-[var(--border-main)]">
+                        <h2 class="text-2xl font-bold text-[var(--fg-primary)] flex items-center gap-2">
+                            <Tag className="text-[var(--header-h3)]" size={24} />
+                            Tags
+                        </h2>
+                        <span class="text-xs text-[var(--fg-secondary)] bg-[var(--bg-sidebar)] px-3 py-1 rounded-full border border-[var(--border-main)]">
+                            {sortedTags.length} topics
+                        </span>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2">
+                        {sortedTags.map(([tagName, count]) => (
+                            <a
+                                href={`/tags/${tagName}`}
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[var(--bg-sidebar)] hover:bg-[var(--hover-bg)] border border-[var(--border-main)] hover:border-[var(--header-h3)] text-xs text-[var(--fg-primary)] transition-all duration-200 group no-underline cursor-pointer"
+                            >
+                                <span class="group-hover:text-[var(--header-h3)] transition-colors">#{tagName}</span>
+                                <span class="px-1.5 py-0.2 text-[10px] font-semibold bg-[var(--bg-main)] rounded-full text-[var(--fg-secondary)] border border-[var(--border-main)]">
+                                    {count}
+                                </span>
+                            </a>
+                        ))}
+                    </div>
+                </div>
+
+        </div>
     </div>
 </ExplorerLayout>

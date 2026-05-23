@@ -7,9 +7,12 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "check": "astro check",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/mdx": "^5.0.6",
     "@astrojs/node": "^9.5.3",
     "@astrojs/prism": "^3.3.0",
     "@astrojs/react": "^4.4.2",
@@ -33,9 +36,10 @@
     "react-dom": "^19.2.4",
     "rss-parser": "^3.13.0",
     "sanitize-html": "^2.17.0",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.1.18",
     "turndown": "^7.2.2",
-    "sharp": "^0.34.5"
+    "typescript": "^6.0.3"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",

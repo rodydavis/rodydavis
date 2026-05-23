@@ -1,0 +1,85 @@
+---
+title: Introducing the signals_hooks package for Flutter hooks and signals
+date: '2025-02-01T00:00:00.000Z'
+draft: false
+tags:
+  - flutter
+  - astro
+  - video
+  - youtube
+  - github
+  - signals
+summary: >-
+  The `signals_hooks` package introduces a simplified way to manage state in
+  Flutter applications by integrating signals with the Flutter Hooks package,
+  offering a powerful alternative to traditional `setState` methods.
+embedding: >-
+  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
+related:
+  - flutter/signals-and-hooks.md
+  - podcast/creative-engineering/talking-about-riverpod-with-remi-rousselet.mdx
+  - flutter/snippets/stream-widget.md
+  - flutter/ssr-rfw.md
+  - flutter/snippets/lightweight-animations.md
+last_updated_metadata: '2026-05-23T00:18:58.971Z'
+---
+
+import SocialEmbed from "../../../../components/SocialEmbed.astro";
+
+
+# Introducing the signals_hooks package for Flutter hooks and signals
+
+<SocialEmbed platform="youtube" id="732LqgfYbDQ" />
+
+## Description
+
+Website: https://rodydavis.com
+Twitter: @rodydavis
+BlueSky: @rodydavis.com
+Github: @rodydavis
+Patreon: https://www.patreon.com/rodydavis
+Buy Me A Coffee: https://www.buymeacoffee.com/3mgFNYd
+
+## Transcript
+
+**0:00** · hi my name is Roy so today I released a new package called signals Hooks and you may be wondering how that might work or how you can use it in your flutter apps so today I'm going to create a quick example on how you normally would work with variables and flutter how we migrate it to signals and how signals hooks can make it even easier when working with the flutter hooks package all right let's get started so first I'm going to go to my flutter idx instance
+
+**0:30** · and I just have a default counter example this example does nothing more than you set State and this is probably something you're very familiar with in fact we can go in here and create this a value Notifier and this should already start to add some ergonomic benefits we can remove the if state
+
+**0:57** · check here and we want to to wrap this one with a value listenable Builder so usually I wrap it with Builder value listenable Builder we're going to do count and we can get out the value
+
+**1:17** · and the child awesome so now when we restart we get a count update as normal so this is already really really cool and offers a unique advantage over set state but let's take it further with signals so let's go ahead to your terminal and do flutter Pub add signals this will update your Pub spec yaml and allow us to import it inside of
+
+**1:48** · um here so we can change this to Signal importing the signal flutter package and everything else stays the same and because signals created after 6.0 are value listables and value notifiers we don't have to change any code which is really cool if we wanted to be uh use more functions out of the modern signals package we can do the new signals mix in
+
+**2:18** · which allows us to change this up a bit and do create signal and we can remove this unneeded Builder since this will automatically get rebuilt every time that we change our
+
+**2:39** · value so here as we expect count increments so I think this is already really cool offers a lot of advantages over just defaults at State uh the more we chain computed the better our performance will get but one thing that has been a challenge when working with signals and flutter is you still want to be able to create reusable logic
+
+**3:02** · with signals and I think this is actually where um hooks is actually going to help so we can go to our terminal and do flutter Pub add flutter Hooks and the new package called signals
+
+**3:22** · hooks so for those that are probably not used to hooks in flutter this hook books is a kind of replacement for State full widget which allows you to bind to the life cycles of disposing en knitting and having logic that's collocated with that
+
+**3:43** · single widget but to be able to be shared across multiple stateful widgets and it's actually really easy to migrate so we can just go in here and call hook widget as our new extension we can go and delete all this
+
+**4:05** · perfect and we going to remove this remove this because now this is going to go inside of the build method U I'm going to use the default um hooks implementation so we're going to do use
+
+**4:26** · State and for the on press call back we're going to do value Plus+ under the hood this is actually a value Notifier which is very similar to what we just talked about and because signals automatically does a two string method that's reactive we have to explicitly declare it here awesome really cool so now how do
+
+**4:54** · we use the new signals hooks package well we can go in here and instead of you State we can do use signal and we can import it and now remove that unnecessary
+
+**5:11** · call and one final time it rebuilds as expected what's really cool about this is we Define this logic inside of our build method and it doesn't matter how many times we call the build method this signal only be called once based on how normal hook are created and we can go in here and do other cool things like count Str Str which is a use computed that we will explicitly call
+
+**5:42** · count value to string and when we grab this we can add it into
+
+**5:57** · here I'm going to rebuild this this is now pulling from the computed value which is then pulling from the The Source signal and we can also even add effects right inside of the build method so we're going to do use signal effect which is different than the use effect in hooks which allows you to react only when specific signals change so we can go in here and do print
+
+**6:27** · count value \[Applause\] and hit save and now in our terminal right here we can see through our log messages if I pull it up there we go it's only being called
+
+**6:51** · one time you don't get the exponentially increasing number of listeners every time that it calls so this makes it really awesome to be able to take this logic put it inside of this build method and then be able to share it with other components not only that you can then share these signals um across multiple places and even create sub classes uh one final thing I will show you is this
+
+**7:16** · new function that I added for defining Global signals and to be able to bind to them they don't have to be Global but um I just wanted to show how this would look like so we can say like save state would be signal
+
+**7:33** · zero and we can swap out instead of use signal we can do use existing signal and instead of a value we can pass in our existing signal this will mean that we can have multiple widgets all bound to the same Source signal and it still works as expected because this will actually update its parent signal so yeah I think that's it for this video uh please let me know if you have any questions and I will try to
+
+**8:02** · respond to them reach out to me on Blue Sky and Twitter as well as GitHub thanks for watching bye

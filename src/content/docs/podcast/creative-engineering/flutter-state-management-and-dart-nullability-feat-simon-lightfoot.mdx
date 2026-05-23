@@ -1,0 +1,469 @@
+---
+title: Flutter State Management and Dart Nullability feat. Simon Lightfoot
+date: '2023-11-28T00:00:00.000Z'
+draft: false
+tags:
+  - flutter
+  - firebase
+  - astro
+  - sqlite
+  - dart
+  - youtube
+  - podcast
+  - food
+  - swift
+  - java
+  - javascript
+  - travel
+  - github
+  - web
+  - talk
+  - google
+summary: >-
+  Expert Simon Lightfoot discusses advanced Flutter topics, including state
+  management and Dart nullability.
+embedding: >-
+  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
+related:
+  - podcast/creative-engineering/talking-about-riverpod-with-remi-rousselet.mdx
+  - podcast/creative-engineering/flutter-desktopweb-and-vr.mdx
+  - podcast/creative-engineering/flutter-testing-and-appstore-rejection.mdx
+  - >-
+    podcast/tech-walks/talking-about-skills-optimizing-prompts-and-building-mcp-servers-in-apps.mdx
+  - >-
+    videos/flutter/idx-flutter-by-rody-davis-senior-developer-advocate-google.mdx
+last_updated_metadata: '2026-05-23T00:13:59.310Z'
+---
+
+import SocialEmbed from "../../../../components/SocialEmbed.astro";
+
+
+# Flutter State Management and Dart Nullability feat. Simon Lightfoot
+
+<SocialEmbed platform="youtube" id="jgxblf5SW4U" />
+
+## Description
+
+Simon Lightfoot
+
+https://twitter.com/devangelslondon
+
+https://devangels.london/
+
+
+Norbert Kozsir - @norbertkozsir
+
+https://twitter.com/norbertkozsir
+
+https://github.com/norbert515
+
+
+Rody Davis - @rodydavis
+
+https://twitter.com/rodydavis
+
+https://github.com/rodydavis
+
+https://youtube.com/rodydavis
+
+https://rodydavis.com
+
+Our podcast player: 
+
+https://rodydavis.github.io/creative_engineering/
+        
+Follow on Twitter:
+
+https://twitter.com/CreativeEngShow
+
+## Transcript
+
+**0:00** · welcome to creative engineering we have another exciting episode today today we have Simon Lightfoot how are you doing Simon hey good thanks and we also have my co-host Norbert how you doing I'm doing great too so Simon how about you tell a little bit about yourself uh we're I know you've been using flutter for quite a bit now actually there's always the hardest bit of introducing me because i' I've just been around for for a long time yeah uh so I guess in general like you know I've been programming for like good good part of 20 years I think I've lost track and um
+
+**0:28** · and then 10 years PR Android development and then finally last few years I normally said two but I think it's three years now time flies but I've been doing flutter so we started flutter um Mid Alpha nice and uh yeah so going into the community and um from my perspective we needed it so so I'm also CTO Dev Angels uh Dev Angels London uh small small development agency doing apps and
+
+**0:57** · um we had a problem the fact that we had have Android expertise but not much iOS expertise in the company and uh flutter s we at uh was it Google developer agency day Europe what name but um and uh there was an introduction done
+
+**1:15** · um I forget his name I'm terrible in names but um there was an introduction done about flutter and I was like all through the slides it's talking about the JavaScript bridge and how it's different from the other ones and I'm like oh my God I heard about flut like six months previous and I completely disregarded it I was like this is going to be terrible it's another crossplatform piece of garbage you know like this is not what I want as an Android developer and then when he
+
+**1:37** · start explain what it does and how it works I'm like actually this is what I've wanted for years this is really what I want and um and I just immediately tried to out that same day and before I knew it we transition the company up to using flutter um I think literally within the quarter afterwards so very fast transition and all our apps since have been flutter apps wow that's awesome and I think you've been doing a lot of the web stuff as well uh what do you feel like has uh have you noticed a big improvement over the past year or so oh definitely so um I actually um I was uh
+
+**2:11** · invited to try out flutter web before it was released and give some feedback which I did um and back then it was very well it was separate project right it was a separate um Library it was completely separate from the framework and they've integrated that into the framework now performance is way better
+
+**2:32** · you know they they they've they've all those sort of edge cases they've kind of sort of wed down to to very few now however when I was I recently required to use it for an actual project of Dev angels and um in doing so I found there's some other things that weren't covered so I put some PRS back into the framework so dealing with things like um get rid of that annoy Annoying hash in the RL I it makes sense don't get me wrong however yeah I don't like it
+
+**3:00** · yeah I I'm kind of both ways on it like I feel like uh it's nice because most static websites you know single page applications use this but at the same time you know it's bad for linking I can I can give you exactly one problem that you can actually have okay Apple's I think I'm going to quot this might be a misquote but if I remember rightly I was implementing Apple signing recently and it strips off the location from the URL wow so you can't have the hash and the path in as part of the URL when you direct back after o 2
+
+**3:32** · great and that which is actually not part of the standard I don't believe but uh I might be muddling up there with that with another provider I'll be honest with you it's been a while but um it's just that kind of nature of those little things where the hash is meant to be a local thing not a remote things so if you do need to like deep link or link into your app you do need that kind of direct path manipulation rather than um
+
+**3:54** · uh what's it called location right so before like you know you can remove the hash from the framework I was actually getting around it by creating you know when you deploy a Firebase I would have a redirect so take the redirect and then redirect to another page so then externally I would have my redirect link that would then without a hash that would go then to the the page with a hash so about number nums of requests at that point and latency and other things so um so we have a little bit of followup actually uh Dart just announced
+
+**4:23** · null safety I know we've been all been waiting for that so what do you guys think about that um so I mean it's a pretty big deal they've been working on this for quite some time I think this is like the feature which pushes The Language by by quite a bit like um a lot
+
+**4:43** · of modern languages for example cotland I'm not sure Swift swift yeah they all have uh the sense of non-ability they noce null pointer exceptions aren't that fun and that Dar is also um implementing
+
+**5:02** · this is like a huge step in becoming a asset to flor like a lot of people were complaining okay Flor is cool but D but with this feature and wait wait for what's that why can't use C right yes some point people were like will be like okay cool we have Dart that's a great thing that's like the language you want to use I I I mean this one of the
+
+**5:27** · one of the conversation I had with earli adopters when we were doing a joy con London a few years ago was people were saying that why can't we use cotland I'm like well Google run the entire stack right essentially I run but you know what I mean like they they essentially own the entire stack meaning that they can make changes to the language that suits flutter and vice versa so we as we've seen we saw the um oh I can't remember his name manificent Bob whatever his name is he did the the language changes for the oh
+
+**5:57** · I forget what they're called collection Expressions I can't remember I think was that that's what where you can put your if statements and your for Loops inside of um AR declarations spread operators spread operators as well yeah and uh that is perfectly what we needed for flutter however it was language design change right these are the things that we get with with being able to have the entire stack right and again non-nil ability
+
+**6:21** · right like having this non-nil by default they can Implement that language and and really like do this overhaul because it is essentially a big over whole of the entire framework just to support that um actually I I I submitt a PR on date time um so when you're passing a this is a bit off topic but when you pass a date time back from I think it was aure back end it formats the date time with like 10 decimal places uh for the micr seconds and um uh
+
+**6:53** · Dart only accept six right and just because the prision from 80 bit to 64bit or something like that however the difference is it would fail passing the date time not just ignore the lower bit right which is kind of
+
+**7:08** · what you want you don't want it to fail pass and you have to trim the string and then reattach like the time zone and do other weird things just to get to pass the date time is ridiculous so w i put a PR in there and it got proved it got fixed but I had to the key here is I had to implement it in the non-n default as well as the normal uh tree there was two different trees active um I'm not sure if that's the case now or not but but yeah again like I tried out if anyone doesn't know there's um I think it's nulls safety. dpad dodev yes I
+
+**7:37** · think yeah I think it's just PARTA of the regular Dart pad now right because I think no there's a separ well I don't know I know they they advertising a separate okay I'm going to check it now just null safety. pad. cool cool and you can try all the null null safety changes but um I mean as I saying I think um we
+
+**7:59** · saying that that that flutter itself is not null safe by default at the moment like the flutter the framework isn't but dark and its core Sate is that's what the that's what the tech preview brings right so you still can't build your flutter apps as nonn by default at the moment that's going to come in this hopefully in the Sim future right but there's still migration work to be done like so I mean null has been used and
+
+**8:24** · and has been used in programming if I don't know how many years I've used null and had null pointer exceptions trust me you don't want to even think about null problems in in C and C++ code because then you're talking about especially you're talking about like triple D references and somewhere there's a null pointer somewhere you're having to deal with this is Nightmare um but uh yeah so
+
+**8:44** · so like in flutter like um raise button the Callback so you do on press if you pass null you'll disable the button right explicit use of null should be frowned upon it's not it's perfectly possible right so I think the first version of the flutter framework we probably see is where they just say that can be null right I think it's the exclamation mark or question mark you put after the type this optional yeah
+
+**9:09** · basically saying this can be null if you want which we'll probably see but then I feel like there's a there's a reason for us to then start porting our code to these things like rather than having give you use I can think of you when you log into an app right you have might have in your app code where you're logged in and you say oh if I have a user object object in my user stream or something then I'm logged in if I have null I'm not logged in right the the
+
+**9:35** · point here is we want to frown away from doing that and instead have a constant value of like user do none so have a static constant inside the your user model called none which is a blank implementation of user which has blank strings for names and so on you can then do a direct comparison because it's a static con and say is this object identical to this other object it is so it's not logged in right now so there's never a case you see null on that stream
+
+**9:59** · mhm and that's kind of the thing that we need to think about when doing n null at default and trying to you can always start moving towards that but that's just a good program practice you can already do that right now right that doesn't involve the new operators new operators have brought about null management allowing you to use null when you want to but to be honest if you can avoid using all together why not and so does this remove the need for using asserts or reduces the amount that we
+
+**10:23** · would use them because I feel like the flutter uses that almost always just to check so this is actually this is kind of my Curious point because parameters right when you you don't speci parameters default to n therefore allain parameters are what default to null i' I've not had enough um yeah playing around with with the the the null safety stuff to really look into that in high detail like for me personally when it gets released and when I have to deal with it I'll do with it then I know I
+
+**10:50** · just don't have the time to really look that far down the rabbit hole right now cuz like do you need to use required at that point oh they have the the new isn't there there's a new operator late which solves some issues I mean uh for specifically for constru a Constructor oper like do you need a required because like if you if it's non-n knowable yeah but the required is just an annotation right yeah but it we were using it right now to make sure that it's like you were signifying that it has well no it's just done um at compile time right but at run
+
+**11:18** · time you can still pass null that's why you have the asserts right yeah you're right you're right so so The annotation is just there for as a compiler U flag right as a as a hint to comp to say that this should never be null right but there's times that's that can done be done um analyzed during static analysis right not at uh Dynamic runtime but I
+
+**11:40** · think with required you can still explicitly pass a null and one complaint right yeah yeah you're right yeah so that's where the assert catch can you or can of it's just when you have a variable that's null I think I think required only make sure that you actually pass they specify the parameter you have to yeah that's it sorry so required says you have have to specify the named parameter but it can be null
+
+**12:03** · still right but again like these are the things that you know that the framework team are going to the f team itself are going to have to deal with and say these are the rules that we're now going to run it by but to be honest asserts aren't in runtime they're only debug so
+
+**12:18** · you know oh yeah right it's not going to have any performance impact it shouldn't do so yeah I was curious actually the stats on the the blog post that was pushed out recently was like 19% uh performance performance increase not speed increase performance increase so that performance can obviously I'm not not trying to subm words here but but performance means generally like lots of things like memory speed CPU usage you
+
+**12:45** · know frame rates all sorts of other things right it's not just specifically how fast your code is run by the CPU right but in truthfulness like if you don't have to check null or or if there's no sort of put it this way in in in you end up doing preconditions all the time in in C++ code but you're just saying oh it can't be null it can't be null essentially the same as the way we're using asserts right now where you
+
+**13:07** · you you you're basically telling it throw an exception if it's null that's basically what the um compiler is inserting for us so that if it does find null at some point sorry you do try de reference a null it will throw an exception um and that's it's all handled during the processing of the of the D code itself well the compile D code so also yeah I mean when I first came from uh Swift actually I I was very much used to the null safety and optional chaining and all that kind of stuff got into cotlin and then I came to Dart so I've
+
+**13:37** · still been using question mark optional chaining for all the stuff except for I just have to explicitly make sure I know which ones I expect to be n which ones that do we I mean do we want to talk about some of the other D features right here CU I mean I mean there is there is that kind of like there is some of those nice things like like having almost a data class where you just have your fields and then you can do a Constructor with this Dot this not this and just have all your you justed here my parameters with this and
+
+**14:04** · they're public final you know you've got like your static immutable data class very nice however as soon as you want to say I want this to be private now you can't do that so right right so now you end up doing that weird thing where you have a f in your in your uh finalizer
+
+**14:20** · after the colon of your Constructor you end up doing the private equals the parameter passed in you have to pull the types and the parameters again like these are little things that feel like these adjusted it would make it that bit nicer to program with but not critical right yeah you're right um but one of the things I'm going to say this now because you got me in this it just reminding me um fact so you can't reference Constructors right yeah ex you cannot
+
+**14:44** · like there's no way of saying I want to pass a Constructor as a method which I really feel like like you end up having to do a a a static method right that then calls the structure or something pass it in it ends up just you end up bulking out a coder so a good example of this is what I do all the time especially for my service level as get we'll get to architecture but um a a
+
+**15:08** · static init method right so I have a p i have a private Constructor and a static uh AIT method that returns a future of that class right so the idea here is that I can now initialize stuff asynchronously and then return my instance right I have to use the static
+
+**15:26** · method because you cannot have an asynchronous Constructor in right like it's just not a thing even you think that that's a factory method right I mean essentially there's a difference though between a static method and a factory method a factory method is treated as a Constructor but it's a method of code right and it's run before the Constructor so you can get away with doing logic in there right and still have final um final class members right
+
+**15:51** · but then your uh static method is is treated as a method not as a Constructor so so the two things don't align and you kind of it' be nice to see uh asynchronous Factory methods right so that you can have asynchronous construction then really be helpful to I think to a lot of the way that we do stuff in dark right imagine that you can do a uh construct things in a chain and then return some sort of logic on them and do that all in like a future stream right sort of a pipeline yeah I like the way
+
+**16:21** · Cartland does data classes specifically you can just type Data before and it does uh you know does your equal operators your hash code your you know um your private Getters and all that kind of stuff and I think it's awesome you can do it now with dart but you have to use code generation or well these are some I think the there's a language Bard right on the D SDK which sort of goes through something things but there are following up on that one as well as um s
+
+**16:43** · classes Sil unions all those kind of good things type A lising which I can't wait for to be honest because there's several times I use type A Ling I'm just like why don't have this oh versus type def what what what do you mean by type well no so so type Def and
+
+**17:00** · there's a good example of this um I'm not I'm I'm goingon to mince his last name Luke petti is that his name I can't remember he's how he pronounced his last name he did this on his Twitter feed recently and it was um having a mixing so you can
+
+**17:16** · like Define a new class with different mixins and you're defining you can essentially Define an aliis with his different traits right but then you try and do that with just with a normal class you use the equals operator in between it doesn't work right there's just some inconsistencies in the way it works right and typ lising do does that thing where you can say I give an example of this actually had this recently uh well one of the things we're missing right which I really like this is terrible what I like from java um was uh that that enum class enum
+
+**17:48** · was a class right it was a it's a base type it's also a class I mean I could add private member variables to an En them right so I have things very common case for me in terms of of rment is that you have a set of defined States or things that you return to and from a server for instance now during the serialization Der serialization process you're treating that as a as a string right but then you want to
+
+**18:13** · when you receive that string put back into your typed object so you can look at the type look at other other related variables to that type so they might be your private for example you might get back a state that says pending right lowercase simple string right but then you want to say the user currently waiting for Server feedback right so you want to put that string or or a reference to your localizations for that string in with that IM in that enum so
+
+**18:39** · they're tightly coupled so that when you display it to the user and you get back that enum you can detect oh we're in the pending State and then I want to display string display the one from the enum or look up the localization from from the one that the enum's given me so I'm kind of tightly coupling these things together this is essentially like a union right uh s classes as well can be used for that so speaking of cotland data classes I I think it'd be cool to see something in Dart where you know we we have kind of this more um flexibility
+
+**19:09** · but a lot of the stuff we're having to do by boiler plate and code generation kind of be cool if like kind of Dart took it on itself because like you said enum with a class another cool thing about that is you can Rite actually extension methods onto a class you can't do that with an enom right now um yeah because I've I've wanted to do stuff like that as well well I mean that's where the so that's where type comes in right so in tying you can say U give a
+
+**19:32** · good example is if you want to bind some things tightly couple some things together you can create a new class which is a string right so good example you can't put an extension on a string right right now but if you create a new type called uh server state right which is a
+
+**19:50** · string and then you could then extend it with other things during run time there's a lots of ways to C things together but also it's about not miss using extensions cuz that's one of the other things right like it's too easy to misuse extensions and I've seen it already set in several bits of code I've seen like just throwing extensions around like all over the place and then like like where these things could have been methods these things are not do
+
+**20:14** · not you're using extension as a hack rather than actually yeah architecting your software correct well not correctly is the wrong word but you know like like like put this way you don't look at a class and going oh this is the class and then figuring out oh run time no it has these other properties that are extension methods I have no idea how these where these things were coming from right yeah I tightly coup them together they should be I feel like that's where mixing coming right so I feel like there's a use case for all these different ways of doing things but the right thing for the right job and extensions are there for me personally
+
+**20:46** · is to actually extend things out of your control right gotcha so so for instance if you got a package coming in from externally or you've got something in the framework that you're trying to extend right for instance one thing I did recently which actually is part of architecture is just to um extend put extension on stateful widget and stateless widget that has a simple thing like um database repository or database
+
+**21:11** · service that is a a getter right that goes and uses provider of context or whatever to go fetch it right so instead of having the pro now here's the key so my I'm still using the provider package as essentially an inherited widget but I'm using it in one file
+
+**21:28** · I'm not sprucing that that provider input all over my application my application has no clue what provider is because it's only using the one place I'm using it where I have a widget that provides things down the tree and then my my extension that goes and uses provider to fetch them from the current context yeah also I um I'm not sure
+
+**21:48** · where I'm doing something wrong but um when using extensions I cannot Auto Import them like I have an extension on something and I know the extension the extension is defined somewhere in my project but I have to manual import a file they did add that recently I believe however it only works on named extensions oh got you because that's
+
+**22:09** · that was always a big thing because I knew I had that extension but I had to manually go in and search for the file where it was in yeah but to be honest I mean here's a good the good example of that is using export right you should be exporting those extensions right so that your inut when you import like uh
+
+**22:26** · certain certain something from your app you want to bring the extensions along with it well then export them from that import does that kind of make sense so that way your the extensions come along with anything that uses that that that's that type of system sometimes you have stuff on external libraries for example if you want to have an extension on datetime for example you cannot export
+
+**22:46** · datetime with your thing one one thing so but what you can do what you can do is create one file which exports date time and exports your your no seriously you can export date time and Export your EXT exension but you have to keep in mind to import that file instead of yeah but when you do your Auto Import it'll give you the options of both yes that's true right and then you get to choose the other one right but I mean yeah sure nothing's perfect right I'm not going to go there I mean these are all there's so many improvements that can be made but this is all about I mean it all takes time and what
+
+**23:16** · is worth the changes and these aren't worth any changes right this is all about using the language effectively right this should be a new book effective do yeah so I mean this this kind of brings to what we wanted to talk about today which is you know like State Management for flutter and um specifically we want to talk about you
+
+**23:35** · know like what do the why do we want to choose a state management solution and how can it help us because I feel like you know especially you know feels like you know I first started with flutter was like beta 2 it's like you know we had all these things thrown around it's like oh scope model and streams and block and it's like oh well block is crazy big and there all this boiler plate and there's Redux and you know you have to do all this and they all have their tradeoffs and it's like all of a sudden we went from like crazy uh just
+
+**24:02** · you write a bunch of code to the all the packages are writing all the code for you but like you don't you can't quite predict what's going on some you can so yeah just a a lot of different things going on right now I mean to be honest someone asked me the day what one do I think is better what what um what state management solution would I recommend and it's like chose your poison right cuz the the term is actually incorrect right I mean we've talked about this for a while State Management is because you in
+
+**24:30** · in in flutter specifically talking about UI state right and managing your state of of your application and its UI because mainly the UI is reactive and that's what builds and then that sort of affects your logic in some fashion but what you want to do is I found I mean I have to remember early on in the very flat early days even myself was guilty of this of just inlining every function as part of my you know my uh widget widget tree and just yeah mish mash of
+
+**24:57** · of code and it's more about sort of separation of concerns right so uh I think separation of concerns is actually one of the solid principles of design from Uncle Bob but um it's one I go to as well dry and keep it simple and all those sort of standard things but there just just sort of things to mem to kind
+
+**25:16** · of just to keep you sort of directed at how you should be doing stuff right so it's when you do anything OB Ted it's always about separating off naming things appropriately structuring things to communicate with so that when you come in and modify them you're not having to trace down and refactor and just rewrite huge swaths of your code you can just keep it in one location yeah that's really sort of like that sort of En class en sort of encompassing
+
+**25:40** · your logic in one place or your your your your code in one place I think that's really what is which is architecture right that's how you architect your the classes of your application to interact with each other to produce your desired result of your app right so to produ produce that business logic so when we talk about these patterns like orig originally the patterns that we were seeing were talking about inherited widget right which is just reaching up to get state from other widgets right because the widgets would be driving the logic right yeah all of here anytime you
+
+**26:12** · interact from the widget tree you're always using inherited widget doesn't matter if you're using provider scope model any of these they're all based on inherited model I this this is actually okay okay most of them okay yeah however okay mobx right now things but um the the point here is why does inherit a widget exist in the first place right what why is it trying to solve do you know Ro do you know know
+
+**26:38** · it's a it's just a tree data structure you want to have your logic you know where you can grab from one instance of a node to another side of like it's just a just a shorten traversal yeah right so in terms of it's a Time Saver and a performance game that's that's it's it's so so basically what happens is you you
+
+**26:58** · it will go up the the first time right your your access they they have changed this logic recently and it does work slightly differ so I'm not going to get this perfectly right correct but the initial the idea is like whenever you need to look up the tree right you use your current context right your build context and you've got your they've renamed them so they're now all find by fine widget by this and F state by that and find inherited widget by this and um depends on that widget so I won't go into this a whole list of them however they're all
+
+**27:30** · about tree traversal right so they go up the tree now if you look at those functions so if you go into um the flutter framework and look at the element class element is what implements build context right so every build context you see is actually your element for your widget right and what you'll do is it literally traverses up to its parent and says is parent um this type
+
+**27:54** · or let's say you're looking at widget so it looks at is parent element widgets this type no then go up to next parent and next parent and next parent so you go this ancestor path right now the key is going up the tree is always less expensive than going down the tree because you do a non-exhaustive search up the tree you're going to your direct descent ancestor right if you go down
+
+**28:14** · the tree then you have a depth pass or breath pass search in terms of going down to every Edge Leaf node of the tree yeah so so up as logarithmic so or even less actually yeah but the key being here is if you go up the tree right you're still looping over you're still doing those if checks so if you every single time you needed to get that parent state or class you have to do that traversal that's a waste of time right waste of waste of performance especially during build or other things that you need to get things done in your frame limit right so then you kind of go
+
+**28:45** · down and go well okay how do I solve this well if you're trying to solve yourself you can solve this yourself and that is oh I will create a hashmap right and I will will key my type right and then I will store the value as being whatever I get from up the tree now the
+
+**29:00** · first time I get it I store in that hashmap and now each time I want to get a different type of store in that hash map that's literally how most of these sort of state things work right however they do the the next thing which is that hash map is red further up the tree so if if that type changes it updates the hashmap and notifies the children to rebuild so really truthfully there's two things to this is one is to Performance are going up the tree and also to notify the children that they need to be rebuilt further down the tree without building the entire chain of widgets
+
+**29:30** · right so it's a performance win right and it's just a different way of doing it's the reactive model so so that's inheritor widget right scope model is just so so inheritor widget was was inherently untyped safe should we say there's a and there's some few sort of uh problems around using and it wasn't it's not easy to get your head around it even now right so so scope model came out scope model by um the barosaurus
+
+**29:56** · himself Bri yeah I I love calling him that it's just every time I see him in that nice beard of his it's like how how did he do that that's amazing um the up keep on that thing BL me anyway the scope model uh it's sort of
+
+**30:14** · like just giving you that nice interface on top and then giving you sort of like this idea of a model that you can then notify when it field changes and it updates the wi is essentially the same thing and then uh there's a few I'm trying to remember there were a few other things that came out in fact I think the firsted was out sorry I said
+
+**30:31** · Redux came out right right around yeah Redux now I'm I'm I really love the notion of a unidirectional data flow of a mutable objects I mean that is like like you have a direct idea of the flow of your application and one of the killers of most apps in fact I know back in the day when oh my goodness like 10 years ago when I was first doing Android apps was that State uh like having mutable State and and changing the
+
+**31:01** · properties was leads to literally every single bug you can imagine and by just changing things to having immutable models solved so many issues because it meant you didn't have the possibility of um not knowing that something had changed that you have a direct notion that the truthfully inside the um it's
+
+**31:21** · about Java engine it happens in D most of the object oriented systems is each object has your ID it's it's it's uh literally it's Unique identify in the in in the system when it's been allocated and that by default is the hash code right so that's so if you compare two hash codes of two objects that don't have an equals method you're essentially saying are these two things identical right by reference right by well uh yeah
+
+**31:48** · I mean as an object it's by it's passed by reference but still you talking about the value the they have the same reference yeah yeah because they both exist in the same location yeah yeah yeah so so the anyway anyway I digress but the the point here is that uh scope model sort of even off the playing field
+
+**32:06** · Redux comes in and we get this unal data flow we get the Redux behaviors which work well with react that kind of brings another lot of people into flutter in terms of react developers and so on like they they used to using Redux and a lot of people have been using Redux in their apps then you still talking about RX right using RX with Redux and that kind of sort of brings in a new way of people and a new way of do things because there's several things that are difficult to do not impossible but difficult to do with streams in dark then RX came in using it with
+
+**32:37** · observables and then finally I believe as of I'm not going to quote the right version of I think 023 of of rx. it now uses streams directly so you can now use nonobservable base patterns so now stream because of extension methods it now has all the standard sort of flat map on a stream mhm so you can just flat map the direct data typee and not have to worry about like wrapping every one of your data types with an observable patent right and having the next done and all that kind of jazz the anyway
+
+**33:07** · back back to back to Redux yeah yeah so so we had Redux and then what was the other history we had Redux umex came out sorry about M was after provider right so provider I think is the next big leap I mean for sure sorry it was block for sure block no sorry yeah no you're right block and relux are around the same I think they came around the same time because I remember lots of conversations were about which one should I choose right yeah but again block I personally
+
+**33:34** · have never followed block to the letter of the specification right yeah same in terms of I don't use syns a lot of the time like to send data to the blocks right I don't let it reveal a sync and then push stff into a stream great for when you want to link blocks together and have stuff streaming through the pipeline Right Where You reveal a sync and you can attach things together right but when you're talking about UI actions I've never gone that route of yeah
+
+**33:59** · depends on what I'm doing right but I never really go that route of having a a value or an event or something that I'm passing over a stream to the to the block and then having the block churn that change it state I'm listening to the state on the front end and then that returns back the uh the new date or the update state with which contains whatever so so yeah so one thing which
+
+**34:19** · is also uh interesting to talk about in this context is um apps have a very specific way of handling data and that's a reason why we need those things like streams Redux um and that's because apps are very reactive like every uh possible configuration all the data um is based off of events a user Taps a button something comes from a server some sort of response something is loading so most
+
+**34:47** · parts of an app are asynchronous and very data driven if they wouldn't be the case like for example in servers where you have one request which is coming in it is being process it's being piped through a lot of systems you wouldn't need all this uh reactive uh Behavior
+
+**35:04** · but for apps um everything is interconnected and reactive and that's also mainly the reason like um why we actually need these kinds of streams why we need some sort of pattern which observes data instead of um setting it I'm I'm going to have to disagree just slightly not that that's not what it is
+
+**35:23** · right now for flut but more about apps in general right so we're talking about about flut apps because the reactive UI it makes sense to have no no I'm talking about apps in general like I've been doing Android before too and I know having mutable data which you have to keep track of yourself like when is it changing I have to know you but one trying to say is you still have a mutable data you but but you don't have to have streams necessarily like like simple patterns of like a holder pattern where you're hold you have one object that is constant that holds on to a value as a reference and then that has a
+
+**35:54** · notification when the value changes these are other patterns that can be used used yes but those are I dig I digress sorry definitely Yeah so basically the idea is instead of having to manually keep track of when do I have to rebuild when do I have to show something new to user we lay off the responsibility of uh knowing when we
+
+**36:13** · have to rebuild to the actual part which is causing the rebuild I think there's also an interesting point that's was going to take me back but when doing Android a long time ago when RX Java came out on Android mhm and we we started going with uh Java 7 lambdas right it suddenly became a pattern that you could then use uh RX effectively
+
+**36:37** · inside of inside of your Android app because you didn't have to do these Anonymous uh class instances all over the place you just use Lambda expressions and um the power really comes from set up a pipeline right so so essentially set up your stream notes having your flat maps and your your different manipulations of the data it flows through the the pipeline and having essentially you
+
+**36:59** · could express the entire back end of your app as an interconnection of all of the pipes of the stream right I mean it would be nuts right and trust me I've seen people do it and try it and all sorts right but and you go through a phase when you're trying RX you're trying to do these kind of nice little cool things right yes I feel like there
+
+**37:16** · there's like using anything effectively is don't like like they say taking anything up too much is bad thing right like having too much coffee is going to be a bad thing right the point here is like doing any one of these things over the top is always a bad thing so I saw someone talking about this was a while ago when RX actually when RX first came out in in flut they were trying to make all of their widgets stateless yeah having like all the state
+
+**37:38** · pushed over to into the Redux data stores and having all this kind of like it was like in general the the principle sounds nice right but then you're you end up doing things like there might be state that only has to exist for that widget is is part of the UI State at that point it depends and Depends the play should be located as inside the state for widget if that kind of makes sense it's not something that you should be putting it outside the I mean where else is it going to you could back a class to every widget right so every widget can have a backing class with its logic but then it's just a base
+
+**38:10** · class with functions in it and state right with variables but you're just moving the problem right it's nice for organization don't get me wrong but that's again that's architecture that's not really the solution anyway like bottom navigation I've seen people create a block just for the bottom navigation bar and I'm like you know it's like a self responsible widget there it's like only UI navigation if
+
+**38:30** · you want to change the index do it with the Constructor and a did update widget you know it's so much EAS that way I think there's yeah there's a point here where you're working against the Frameworks I mean the framework comes with tools so you don't have to use any of these patterns right essentially right the Bas things are all there like was just said with inherited widget but I mean go back so so we I mean I have these different patters right so we said Redux provider is one we haven't spoken about so provider is
+
+**38:55** · the to me the the facto standard now in terms of instead of using heritor widget I go for provider right yes mainly because it does all that hard work for me and it's been heavily tested it's got L stuff and I don't have to deal with some of the manua around setting up an inherit widget so you have to set up another class since you got scope class and some other things and also the fact that provider is really it's scoped model on steroids in terms
+
+**39:22** · of that you have all those other providers that take things so you can have a change notified provider so the change Notifier is it listens to that so that when the when the change Notifier is notified it will rebuild the widget so again all these other uh patterns of yeah that all these other libraries your the way you structure your cocon all depend on that sort provider system right well there's also another type too which I I use this data or State Management solution for up until probably about six months ago and that was using um more or sqlite on the
+
+**39:55** · back end having a unidirectional flow where all my I'm reading the data directly on the widgets so that you have the stream listing on individual stuff and then just using like a block or something to update the database um in a single layer but because that that management was also pretty popular but um yeah I I just curious your thoughts on that too because like you know that's it also you know obviously depends on the data but you know if you have a structured data kind of approach it uh
+
+**40:23** · it you know kind of can be nice to have like that unidirectional flow that way too oh for sure I mean it really depends on what you're doing because I to be honest I would keep it's about laying your application architecture then right for me so I might have my front end UI deal with streams of my own data types in my application I'm never going to pass a document snapshot right from fir
+
+**40:46** · store to my front end of my application right because now suddenly my entire application is now dependent on Fir store right so if I need to refactor F out I want to switch to my own API I switch I want to put a caching layer in with SQ light for instance then I I just kicked myself right you know it's not it's not going to be an easy change to make right so you want to control each layer and keep each layer of your application independent so that kind of goes into
+
+**41:17** · like I mean for for what I was doing back in it's quite funny what I was doing back in the Android days was using uh what we call repository service model um I'm trying to remember there's some other better names for this but this is the way I remember it right and it's that notion of having uh units of responsibility called repositories right they they are responsible for some unique fact think of it like a block if you will but some some uh either some data type or some manipulation of of something within your app so let's say you had um let's say you were a music
+
+**41:48** · plan you had albums right so you'd have an albums repository right now all your front end whenever you need an album you need get like an album cover or ID whatever it might be you're going to go to the repository to to deal with that um data type right or or manipulate
+
+**42:04** · albums in some fashion right but then the albums might have to go off to fir store the albums repository might have to go to fir store to actually go retrieve it from the database or go then go off to Google Cloud Storage to retrieve the the cover URL so I can pass back in memory one and cash it in memory and whatever I want to do but that's all business Logic on the back end of your application it never touches the UI right the IDE on the UI I do I get an album model and it has all the fields I need to display my on my screen right so
+
+**42:31** · essentially almost think of it like a view model in that sense right but that's the pattern I feel like is is just the most flexible rather than having suddenly like you obviously essentially it's a bit abstract but you can also then go one level deep and have something between repository and your UI and have controllers right that sort of notion of I have a top level controller
+
+**42:52** · for my application which kind of wires some stuff up or essentially block or so it's another model I've done where you have blocks repositories and services and the blocks just provide that bit bit business logic in between your widget layer do the reactivity part and then go off to the to the repository layer of the surface layer to do things right but the idea is that you have a repository layer which is like as said like albums and then above that if you had firea that would be a service layer right your choice as to whether if
+
+**43:21** · you're doing this model that I use is if you want the service layer to return back data models from your class or if you want the repos or if you want the repository layer to also have access to fire store in that fashion right so it gets the document snapshots and then you deal with the mapping from from essentially from U serialized data type or transmission data type to your local model data type if that's going to happen at the repository layer or the service layer that depends on your application um I personally try and keep
+
+**43:52** · two sets of models right so you have your model that you're using uh within your data within fir store within your database that might be IDs for other objects right but then when it comes to your object on the front end you want to link those two objects together so you might do two fetches or or maybe have it in cash so you want to do two SQL queries and bind those things together and then you're passing off to the front end so the front end has what it needs uh for to display that data for what it needs to manipulate that data and that's what your application does right so so really the tradeoff and the
+
+**44:22** · other trade-off here is that your uh repository and service layer must not you need to keep it completely flutter free right so you never have providers in those you don't deal with any of the if you're dealing with um the flutter um any of the
+
+**44:40** · flutter sort of framework in your back end then I feel like that's probably not where it's supposed to be because flutter is like your UI your front end right right right I try and keep them off however saying that there is one dependency which you can't do at the moment that is change Notifier or value listenable those things in flutter foundation so you know you're not going to import just those so do that kind of
+
+**45:02** · import show you know show value listenable you're just importing that one thing you're not going to be right chanced into using those classes from flutter which you shouldn't be using like a good example of this right this is just silly but it's a good example of when these these practices are important color color as a class is a UI do
+
+**45:23** · specific attribute right if you want to now take this model object or this other piece of code and put it on your back end and use it in your server side or do some other stuff with this backend piece of business logic or move stuff around suddenly you've got dependency on flut right so instead what you should be doing is storing the integer representation right which is your which is actually what color is in in in computer terms color object just literally hides an INT value inside it right with methods right there's a good
+
+**45:51** · example of an alias type right if you could do an alas type and color would be a good example of doing it right you can have color B and aist of integer with the with the methods on top so you're exing essentially extending it's not really what it's for but digress anyway I know what you mean yeah anyway anyway
+
+**46:07** · back to the point here is that that a good use of that is putting color in your front end models but not in your backend models right so what you're sending to and from the server is either a string or an integer or some other representation of your color and then you transition then you convert between your your your meta type or or or
+
+**46:24** · wherever you're trans transmitting serializing back and forth from your services into your model that you use for the front end and then you convert it to a color then right this gives you that layer of control and complexity that you can get around right and then you can prepare your front end models however you want in your apost layer any I digress sorry yeah I think by the way uh and just a quick note on the models and repositories and Services I think uh arcs command was a state management solution that came out that was um kind of all built around that specifically on top of streams yeah yeah so Thomas is uh RX
+
+**46:56** · command with uh to use RX D and also use along with get it and kind of that kind of stuff so package he came out with RX VMS as well which is the RX command as well um personally I've not i' I've I've actually worked with uh on a few projects with Thomas actually and uh we've used those patterns personally I feel there's use for these things where sort of for me Rx VMS is more like a node
+
+**47:22** · right so you so it's it's kind of a node from block is it like a front INF for Block which gives you a stream for when it's loading for when State changes and you kind of like you have these streams now it means that you can connect multiple blocks multiple of these RS vmx blocks almost together so you can have loading go from one as an input to another so one one's finished another one starts and you can have RX commands being sent and transmitted between these things so any any um it's it's a nice system but I find it like for me personally I find most of
+
+**47:52** · these things overly complicated right like keep it simple right right like for me block is overly complicated for most of my most of my use cases I don't want to have to go I feel like I'm put an extra boiler plate in the same as Redux I end up putting way more boiler plate into my applications for for for not
+
+**48:09** · that much gain right I feel like don't get me wrong use a pattern and use it throughout your application but it doesn't mean you can't use multiple things together like you can use provider with Redux right like the two things are not like don't have to be separated you don't have to you can't I mean in the end architecture all it is is to make code for you easier if you
+
+**48:33** · write good code which you can edit fast which you um can modify um understand and build on top of which doesn't use any kind of architecture but just mutable variables that's fine if it works but most often not it doesn't work people get confus buckon and just keeping as much as simple um is in my
+
+**48:57** · opinion key like if you have a stateful widget which has some logic which is very encapsulated which doesn't have to be connected to our blogs to streams put it in a widget in a state for widget use that state you don't have to use streams and all that stuff but once it gets interconnected with your other system it fetches data from that uh it combines it
+
+**49:19** · with some data from there suddenly this simple widget which should have just taken one second to skim over understand requires a lot of uh mental capacity to understand you have to go through your project and look there okay make sure you don't break something there um so in regards to boiler plate
+
+**49:39** · if the boiler plate helps you to reduce the mental strain understanding this component it's great but if you have something simple which boil plate code adds on top two and like it makes you feel uncomfortable looking at the code I know this feeling if you have this code code which you really don't want to touch bad smell code right this Cod got bad smell to it sometimes I mean sometimes it could be good architectur code but just over engineered like it's
+
+**50:06** · solid good written code but it's like this simple feature which you just want to edit and you have to look at these two different places the other thing to mention here is is testing right like like these architectures and patterns all afford you to be a to test them
+
+**50:23** · right so so the case in point there is if you need to be able to test that piece of logic make sure you have it doesn't matter if that you're that you're not using block right you just test it a different way but my point here is just just make sure that that testing is part of that whole whatever architect you come up with you know you need to make sure that you're you're covering all those edge cases that you that you might not possibly think of at runtime yeah yeah especially and also I
+
+**50:48** · think um not just testing but be able to debug like if uh like a user has an issue I think that's a really cool feature of blocking in Redux for example you can actually replay the state of the error of what they had you can see all the events leading up to that and everything at the whatever was happening at the time in fact I did something similar in um it wasn't Redux but I did something similar and that is um a nice tool that you can do is to keep a log of the last X transactions if you will or
+
+**51:17** · whatever uh events that occurred within your application and these can just be any event you like right just just imagine there things that have occurred like oh the the the app when fetched like the list of albums right from from a repository now that's an event you log that event so you have a local log within your application and it's a series of log entry items right and then what happens when the crash occurs you can now collect that up serialize it into a um Json array or into into into a
+
+**51:44** · text block and that gets dumped over to your your exception capture crash capture error reporting system and that gives you that kind of event log of what happened this is not just Redux is what I'm trying to get right like like yeah you know and and the same goes for yeah there's lots of these things right like like like nothing you're you're not limited what why one of the reasons why I really like flutter and D is the limitations are gone yes you have
+
+**52:10** · no idea I don't think any anyone that hasn't used Android as long as I have for that 10y year period and knows it's kind of funny someone asked me like why I can't remember it was it was like why something happens in Android the way it does I'm like oh that's because in version one it did this you know and it's still there to this day and it's like there's this so it's almost archaic
+
+**52:30** · right in terms of again it's an operat system you has to be it's one of the reasons why they didn't put their move to using the support library right and and and yeah Android X and all this is because they don't have to put the the widgets in the framework anymore where they would you wouldn't get those functions and it was such a pain to having to backwards compatibility and having to say oh if you don't have this function you should use this other function I'll I'll I'll put my own um polyfill in its place to to perform
+
+**52:56** · those necessary features to do something that the platform now contains as pointless I might as well just do it in my own application at that point right yeah so that's where there s compact libraries came from and all this kind of support stuff but the entire system is still limited like like just trying to deal with like resources and resource
+
+**53:12** · qualifiers and The Ordering of resource qualifiers and how it's going to select the right resource on Android is just just mindboggling a lot of the time right and you end up I remember a lot of the time in some big applications I worked on I ended up doing type a uh resource a lising which is when you basically add a fake XML tag which is a
+
+**53:29** · resource tag which basically just directs to another resource so you can get around the limitations of the of the resource selection so on the specific use case with a specific language in this local and then I want you to use this very specific layout and not the default one or something right like crazy stuff we in when sun and and doing
+
+**53:49** · flter I'm like oh wow just assets I can put them in any foldo I want I can struct them however I want I'm free and it's like like this the same goes with code like people it's kind of interesting because it's kind of two fundamental patterns right people come to and um people come to flutter and D like localization how do I do it what what what patter Master use what what however you want yeah whereas the answer is is as long as you get string load it
+
+**54:14** · from a Json file on your assets You Know download it from a server you have the freedom to perform those things however you want right and to do them however you want can parttime runtime you name it you can do it the freedom is there whereas on Android it's like no you must do it with the the XML language options you must do it like this and if you don't want to do it like that you have to implement the entire framework yourself and override a load of w widgets and and you know views and how you do all this it's like yeah sorry digress but you get my point it's that freedom but even like having the freedom
+
+**54:44** · is great but sometimes having too much Freedom could be a curse too like you know when there's so many options like especially if you're new you're coming there and everybody's just telling you okay do whatever works for you and you're like I have no idea what works for me um there's a name for that information overload or that kind of like it's kind of like there's so many options I'm I don't know where to turn
+
+**55:08** · MH yes right that is the problem right that we have in fluttering D A lot of the time is like like we talk about like people this really where that question comes from what what state management solution should I use is like there's so many to choose from there's so much stuff to do not understanding it right as a as a as a princip bers and AR like the fact that it's more or less architecture right it's not about the term State manager is really the wrong name for it's architecture a lot of the time right for us it's more about the state management is just a tiny little bit of uh traversing this the tree the
+
+**55:39** · widget tree to get to the to your your widget state righten state management came from is that kind of manipulation of your UI state but truthfully like it's like block isn't that right block isn't State man block block isn't architecture pattern right like like it's a way dealing with UI right same goes for providers is inherit widget
+
+**56:00** · it's like they're kind of just traversing the Tre tree providing some of that sort of extra stuff that we kind of want but anyway I digress right so sorry well also you know uh with that too people you know have all these things when they come to flutter and they they see these options but you know one thing that I've been doing recently is I I just ask them straight up like what's the data doing like how is the data flowing because nine times out of
+
+**56:23** · 10 the data decides the State Management solution if you're building a graphics application like I did with a widget Studio I'm not going to be using SQL light and all this kind of stuff to store all these individual things most of it's going to be in memory most of it's going to be some sort of serialization and uh I mean I use value
+
+**56:40** · notifiers to update individual things but then if I'm building you know a business application I'm going to be using some sort of sqlite or you know using something like that so one thing I just thought about inherit we cannot forget inherited model which was added later on in the game y um also used I think by scope model in the end for its model stuff and there's a few other places it's used um I'm not sure if Remy's using it but I know the
+
+**57:04** · new select does essentially the same thing where you can essentially uh look at when a specific field or value has changed rather than have to rebuild on whenever an object changes so you get that kind of fine finer level of of control um but yeah but most of this is
+
+**57:19** · it's just about the question I always ask people like trying to ask they ask a question like I'm trying to think of how do I position a widget like how can I position a widget a specific XY coordinate you're like but what are you trying to do and they kind no I'm trying to position a widget no no no no no no that's your solution but what is your problem you're trying to solve and when they explain the problem that they're trying to solve it's like no no no no do it like this this is the reactive way of doing you should put this widget in there you should put a line in there you can animate your line and that will give you your best smoothest way of doing it
+
+**57:46** · and no matter what size of the device is it's going to like Traverse the entire screen you're no longer dealing with pixel coordinates right like yeah the these just it's just ways of thinking about this the key that one of the reasons why flutter is just to me a good thing right but it's also it's a good and bad thing right fact of it's so different that it solves a lot
+
+**58:06** · of the problems that we've been having so it's like if I was to do if I was to be on the team that wrote Android again and we had a chance like just that's it that's it we're just going to kill Android right now and we're going to rewrite Android no no the point is like like Android 10 or whatever version right is going to be a ground up rewrite of the entire Android system how we're going to do it some of the principles at least of flutter are the ones I'm going to be choosing for for doing some of this stuff because of those of the way
+
+**58:31** · it really brings the the the developer experience of making apps forward right where it needs to be and that kind of sort of goes back to that point of um now I've lost my train of thought well I would just say real quick you know it's nice that you know people all people that are kind of on the fence of flutter don't realize that in 3 years flutter can still be whatever it wants because it's not tied to Android or iOS
+
+**58:58** · and I think that's really cool because because the State Management solution is you build it how you need it like you know we don't depend on the update cycle and in fact that's one of the reasons why I love and chose flutter was because I can have my same application on iOS 8 I can have it on KitKat and like the lowest Android and not have to use the libraries or depend on any interesting point right one of my setting points that I I had at one of these Android conferences because I think I am an Android developer I I look at the crowd of people and these Android comp go I was you you know what I mean I
+
+**59:30** · feel like I'm not trying to like there's no sort of realization that if you want to use it use it if you don't want to use it don't use it right I don't care but I want you to try because once you try then you might realize what the benefits are right like hot read and H sty I mean oh my God like I was waiting
+
+**59:45** · like I spend so much of my day waiting for GR Bild to have no idea right that a pcture over like a a programmer at his computer desk with a skele it's a skeleton you know like with a cup of coffee it's c for like me most of the days I'm just sitting there just just just waiting for a progress bar right it's waste of time like you're not learning or doing anything exactly exactly for though too it was really bad
+
+**1:00:06** · and then suddenly like you get this hot reload and hot restart thing and whoa do you mean I just hit save yeah and I click on the button again and it performs different code I'm like mind blow without nating to the screen and it's like you get to stay you don't have to like refill out the form you can just update the field yeah I mean like the this kind of like process I mean I have to say one of the things that's so underutilized and I want to tell this to people because a lot of people don't know re reassemble reassemble is a
+
+**1:00:35** · function on state for widget that gets called when you hot reload only during development right meaning that you can make your widgets react during development that how they would not react during so you can have it reload a widget or or an object from your backend database right so you don't have to do
+
+**1:00:53** · hot restart so most instances where you oh we didn't get the right state or it's got this old thing oh I have to hot restart right reassemble fixes those issues right so so that's what that people need to think about when when you get those issues reassemble is your first thing to go to and say what can I do during reassemble that's going to make my development life exper you know my development experience of building this form or building this sort of frontend system easier that's that's
+
+**1:01:16** · that's what it comes own I haven't used it before I mean this is it right like like like one of these underutilized features I tell you can potentially save a lot of time yeah cuz at least at the very minimum you could just start with like just calling the init method over again CU that fix a lot so so all you need to do is a lot of time is cancel whatever streams and restart your streams whatever you're doing in a knit so cancel them and then call a nit State again disposing it yeah yeah disposing
+
+**1:01:42** · in it essentially right but obviously there's there's um side effects to doing that in terms of you're calling the super classes and you don't know if your mixings and whatever else is going on right but my point here being that it's a method right and you get to do whatever you want in that method method and it happens gets cold during hot reload on every widget and every state for widget speaking of which I think it's a good time to mention that yes there is K debug mode now constants that
+
+**1:02:05** · people don't realize and you can check to see if you're in profile mode or release mode so also in your code a lot of people don't know about that and just like you can do if you're on web and stuff like that so so it's K debug right it's lowercase k capital D debug right one word yeah and that's the that's saying no if you're in debug oh my god do you know how how I was doing it before for years before that I can't when did that come out like a year ago now I know it's a while ago the no yeah
+
+**1:02:30** · yeah you do theer you set booing flag and you return that booing flag so because asserts are only kept for debugs you know if it returned true you're in debug now that was the way of doing it I was so frustrating and then suddenly to to have a all it is is an environment variable right it's a dark Define essentially right they get sent across and it's detected but yes is the code
+
+**1:02:50** · which you WP in that if statement being uh cut out like optimiz because I think with assert the actual code which you have in there is being thrown away now that is a good point um I believe you know what you just you have just brought up a point there so so during compilation um the string from
+
+**1:03:09** · environment I believe is a constant expression it should be but I'm not sure now you mention it you know so so one of interesting points to make which is something that actually summed to me the day was if I build my flutter web app with skier right you do the extra dark defined Flags whenever
+
+**1:03:28** · build in release mode how I'm not specifying that flag when I run it right so how does it know I usually specify it when I do release mode no but the key Point here is is no no no what I'm trying to say is once it's been built oh once it's been built gotcha so so this is my point so so the dark code when it runs if you know if you look at like the way that works right in the in the flat web framework it does a it literally
+
+**1:03:51** · does one of these like string from environment variable is this environment variable for the do defined set yes then choose this code path else choose this other code path right yeah now the key here is that those things are done as overwrites to the normal process environment variables yeah right I I
+
+**1:04:10** · might be wrong but that's from what I remember on IOS and Android when you and especially Mac OS when you run a uh a defined variable it actually up updates the generated config with that new variable set to whatever value so then at release mode it just reads from the envirment yeah yeah but my point here is it's part part of the compilation process is compil into your application right so so so during deel it's one of
+
+**1:04:33** · those interesting things during development mode it's Dynamic but during release it's it's baked in right that process but my my interesting point here is because it's baked in does it get the tree shaking side of the compiler right does it does it strip out those copath that's not no longer ever going to travel down because those are baked in I'm not sure and I think that's what no was getting I'm not sure about that kind interesting yeah it would be nice if they could also throw in uh like you know the version that your app is on from the inside the compilation progress
+
+**1:05:02** · um compilation process for you know your variable I know they do that for the release mode but yeah so you know there's build uncore version I think is the widget sorry is the is the package and what it does no no no I mean yeah yeah I've done packages for it but what I mean is like I think it'd be cool if uh just like you can read from environment it'd be cool if you could do uh get the version from environment like cuz they have that at the at the bill time um sure I mean I mean but you can I
+
+**1:05:30** · mean you can set that yourself during your sort of any c environment that you're doing right I mean like you're not this for the application to read itself like so you can like show like what your change log and stuff like that without having to use a package for it that's what I was meing yeah I mean it's
+
+**1:05:47** · the thing right like like the point here is not about that right I think the point here is what do you want the framework team to man manage and own because they can't do it all right so it's nice to say oh we want all these features but then they have to be owned by someone at Google right and and that takes Staffing and other things right away from potential other things that we need doing like bug fixing and other things right and desktop and all these other things that we want from from flatter right like we it's like we're like a bunch of kids and KN and FK going I want I want I want I want my food I want you know and it's like it's like so
+
+**1:06:18** · that's where that that kind of community and packages come from right being able to do these things ourselves and that's one of the nice things was going back to that like that freedom that flat gives like these are all things like you want to you want to put something in the build process make a package do something during the build process you can do that no problem and and a good example of this is um I'm just looked it up now it's it's build uncore version um
+
+**1:06:40** · yep that's the one and what it does is it takes the package version from your yaml during the build process and puts a constant value in your app as in a file then you just read that constant right so every time you build your app you get the right version inside your um inside your apps without having to Cross Key difference right is if you were to do this with um package
+
+**1:07:03** · info package info gets it from the Android package information or the iOS bundle information right which means it has to cross the bridge and it has to go away and it has to do all this other stuff again it's to be honest the Zero Performance impact on your application be so NE well it's not zero but it's negligible because you're doing it once
+
+**1:07:23** · right yeah you're doing it once you display your about screen or your info screen or your menu or whatever it might be where you display that version you're doing it then right what you're not doing it is 60 times a second so you not want to use this platform Bridge as you know serialization distalization process you want to be using that thousands of
+
+**1:07:40** · times a second hundreds of times a second because of course you're going to get lack because now you're trying to squeeze something in one frame of 16 milliseconds and suddenly like you easily going over that limit now of course asyn in away isolates won't go into there right um yeah we'll be here for for days yeah I think um wrapping up the architecture part correct me if I'm wrong um for
+
+**1:08:03** · people deciding and thinking about architecture and State Management a few things to take away from this episode is keep it simple if there's something uh which sounds complicated requires a lot of Bop Cod and just doesn't feel right don't do it use something which works for you which is simple and most importantly you understand if you write code which that you don't understand who else going to understand it um also Flor
+
+**1:08:31** · is very data driven very reactive so maybe Shifting the Viewpoint from UI to the data when um architecting applications might make sense because instead of looking at okay what is happening where look at the data how is it flowing where is it coming from where is it going um did I miss something uh
+
+**1:08:53** · just yeah definitely be uh yeah just like choose it based on the data flow and not because of you know because it's popular at the time for sure I mean I mean again like don't start doing like second or third order the functions and like functions return functions every return functions because you're going to you're going to get into a problem somewhere don't don't over complicate things right yeah just real quick I wanted to check and see you know what the general Vibe was I know right now A lot of people are trying to decide between layers and features or folders by feature or folders by layers uh what
+
+**1:09:23** · guys do uh for me personally I love having a UI folder a source folder in each one of those like in the UI folder I have a folder per screen and inside each screen folder I have an entry point and probably a common folder and then a main common folder for all widgets in the backend has classes models utilities and stuff like that so what about you guys well um I think I think I've kind of sort of
+
+**1:09:49** · I've done it both ways right and I think you can even mix the two so you can have like um sort of feature level stuff if you want to but I kind of feel like if I'm going to separate all my let's say I was doing uh NVC right I have all my models in one place all my views in one place all my controllers in another place maybe that makes sense right right doing it that way however if I'm G to do
+
+**1:10:10** · things with the way I feel is normally where I have like a screens folder or right that has like then a sub subfolder for each one of my main sections of my app C screens maybe top level things and they can have any of the the widgets and things related to that in them right includes if I might have blocks there might be in there as well right they they related to those screens right then I would have a widgets folder at the top level which is like generic widgets so if I have a toolbar for instance that used across the entire every screen then I want that above that the specific
+
+**1:10:41** · screen layer then I'm putting that in that widget s essentially common area um I also normally make a backend folder which is the back end of the application and anything this is my layering right so I'll put then inside there my services I have a Services sub folder repeat repost subfolder and I have my service and repositories so I can keep if I wanted to I can literally
+
+**1:11:02** · lift out that backend folder into a into a separate package and now I've got a backend package that's completely separate to my front end UI if I wanted to right but it's mainly about just knowing when you cross that barrier right like you have imports from a completely different top level of your app you've crossed the layer right so you can kind of you can visually see that a lot of the time so you can it's just more of a hint than anything else I mean um yeah of course you have so for
+
+**1:11:29** · me um I used to be with different layers before but over time I shifted more and more into um grouping features together because for me most often not when work on an application instead of working on a layer I usually work on a feature and
+
+**1:11:48** · instead of just staying in the layer I usually cross the boundaries between okay I have to adjust this model I have to also adjust the UI and maybe some backend calls so usually when being in this work context I'm usually in the context of one feature and I have to access most of the parts so also as an example when using fir store um you don't have that much um backend you want
+
+**1:12:12** · to separate maybe having all that in one folder for example um for me having a feature folder in the feature folder having a UI folder a network folder maybe a store folder which may extend some Base Class which is in a top level layer separated um folder makes sense
+
+**1:12:32** · because when touching that specific feature I can touch every class and stay in the same subd directory I did I did just think when you were just saying that I did actually think one thing I do do that is make an app folder and that contains my top level like theme or also I have an app.
+
+**1:12:49** · dot which is normally my top level entry point which is like contains the material app and any of that Associated materials because main I feel like main should just be your entry point Main is just your main method that's it right I feel like like it if it needs in your main method you need to go off to the back end and initialize stuff and then and then bring up your UI so then you're calling the app but I feel like don't just pile lots of stuff into your main do dot you know it actually
+
+**1:13:14** · comes from um I don't believe it's a problem anymore but is be a problem with Imports when you had an import from two different a local as well as a package part used to conflict and used to have same type problems uh I'm not sure if that bug was solved now but yeah it's solved I don't have that anymore but but I kind of learn myself into not doing that main problem because it would always happen when you had stuff in Main and you try and use it elsewhere and you'd get that issue because locally because Main's the
+
+**1:13:39** · entry point it would always have everything local right and then if you try and import with the package path later it' be two different type instances but but either way like like you normally I he flavors right I mean like you talk about flavors in architecture right like youd have I normally do this main de maincore Dev maincore prod maincore whatever each one of my different flavors right testing whatever it might be and then I can then spin up the main method can spin up
+
+**1:14:04** · different uh constant values based on that so I can now tell my application oh it's in in the dev mode or in the production mode or in this so I can have different behaviors so I can have more logging perhaps when I'm in the dev mode or I'm using the dev back end rather than the production back end and you can make those sort of differences it's also very important part of architecture
+
+**1:14:25** · yep well Simon thank you so much for being on our podcast today uh we definitely want to chat in the future more about this we could go on probably for a week on all the different topics on this but uh yeah I just want to thank you so much uh for you know taking the time here talking about the subjects and uh is there anything that you would like to promote while you're on oh now you dropped me in it all right let me you can cut this bit out but yeah yeah um yeah of course like so we've got the upcoming hack 20 uh
+
+**1:14:57** · soon to be released uh we'll be releasing more information on the website soon where lots of people heavy heavily s working around the back end here at the moment trying to get things ready for the day so um yeah if you're if anyone's interested in the flutter hackaton we did it last year good success uh obviously it's all in person 70 locations worldwide 24 24-hour live stream which we will not be repeating this year but we will be doing some streaming some live streams um
+
+**1:15:24** · yeah so if you're interested and you want to be involved or you want to sign up to hackathon go to the website flutter hackathon docomo ified when when we get more information going out the door awesome yeah and then also flutter Community make sure to reach out there too I know you're one of the heads of it too yeah I guess uh Norbert what about
+
+**1:15:46** · you oh um actually real quick I'll cut this out but and where can they find you Simon online uh best place to uh I guess get hold of me is on Twitter uh Twitter uh my Twitter handle is Dev Angels London uh kind of regret doing my
+
+**1:16:01** · company name because I was using my company name to begin with but now it should be personal but you know that's what it is and um I think that's probably I think that's probably the best best sort of communication through that you've also got um I mean I've get people adding me on LinkedIn I just don't accept anyone on LinkedIn unless I know them yeah it's I got to draw the line somewhere because I'm not joking i' like again following people back because I'm not joking I get like 10 follows down I don't know these people I don't like people it's kind of interesting that people think that um they see that I'm
+
+**1:16:32** · following someone and they oh he he he must know this person right like like like that's G I'm giving someone else um like Authority I know I'm I'm sort of up in them so I feel like I can't to start I got stop doing that right and it's not out of M or anything like that just I can't the plus I've turned off the that I can't I can't there's too much yeah what about you Nobert where can they find you um as usual on Twitter
+
+**1:17:03** · um yes mainly Twitter I'd say I'm always on the podcast so you'll hear me next week or the week after I don't know when it's next going to be um yes what about you Ro yeah you can always find me on Twitter Ro Davis and GitHub and um yeah we'll have links to everything that you've seen in the description and the show so uh make sure to you know rate US
+
+**1:17:26** · on iTunes it really helps and Stitcher Spotify wherever you listen to us and want to thank you so much for listening today uh we look forward to seeing you in a future episode coming soon thanks thanks thank \[Music\] you

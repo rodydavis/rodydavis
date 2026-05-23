@@ -1,0 +1,357 @@
+---
+title: Building the Flutter Widget Maker and Storyboard
+date: '2023-11-14T00:00:00.000Z'
+draft: false
+tags:
+  - flutter
+  - firebase
+  - astro
+  - html
+  - css
+  - dart
+  - ai
+  - video
+  - youtube
+  - podcast
+  - swift
+  - java
+  - typescript
+  - github
+  - web
+  - talk
+  - google
+summary: >-
+  This technical discussion explores building Flutter widget makers and
+  storyboards, featuring an in-depth look at how GitHub Code Spaces enables
+  developers to conduct online coding and testing for Flutter and various
+  languages using containerized environments.
+embedding: >-
+  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
+related:
+  - podcast/creative-engineering/flutter-testing-and-appstore-rejection.mdx
+  - podcast/creative-engineering/flutter-desktopweb-and-vr.mdx
+  - podcast/creative-engineering/talking-about-riverpod-with-remi-rousselet.mdx
+  - podcast/creative-engineering/flutter-adaptive-ui-and-web-assembly.mdx
+  - flutter/getting-started.md
+last_updated_metadata: '2026-05-23T00:13:28.244Z'
+---
+
+import SocialEmbed from "../../../../components/SocialEmbed.astro";
+
+
+# Building the Flutter Widget Maker and Storyboard
+
+<SocialEmbed platform="youtube" id="Edvo_MSrzrg" />
+
+## Description
+
+Norbert Kozsir - @norbertkozsir
+
+https://twitter.com/norbertkozsir
+
+https://github.com/norbert515
+
+
+Rody Davis - @rodydavis
+
+https://twitter.com/rodydavis
+
+https://github.com/rodydavis
+
+https://youtube.com/rodydavis
+
+https://rodydavis.com
+
+Our podcast player: 
+
+https://rodydavis.github.io/creative_engineering/
+        
+Follow on Twitter:
+
+https://twitter.com/CreativeEngShow
+
+## Transcript
+
+**0:00** · welcome to creative engineering today we're going to be talking about widget Builders flutter editors idees analyzer plugins storyboarding and much more with me I have my co-host Norbert how are you doing doing pretty well um it's been a week where I finally um got back into
+
+**0:18** · publishing something um actually two things which we'll talk about in a minute how have you been doing doing pretty good yeah uh just been pretty crazy uh have been releasing a lot of plugins to um speaking of some announcements that's come out GitHub announced code spaces pretty crazy have you heard of it yes I've seen it of course they they own vs code and now
+
+**0:42** · they all they also own GitHub and now they combine those two pretty cool things into one and like I'm just thinking about the possibilities of not having to clone a repository go in there do some changes to a PR just just being able to open it online changing something and just having it all in one place looks like a big thing yeah what's cool about it too is they're offering you know a Docker based um environment
+
+**1:11** · so you can have flutter installed they have their examples they have node.js rust and typescript and just the the ability to open up something that doesn't require UI like there's many times I may fix like a bug that's just in Dart and it's just a logic bug and you basically want to able to just write something and then run your test and this is something that you can do right from GitHub now which I think is super super cool I mean think about how many times we want to just like release a plug-in update and you know we have to
+
+**1:42** · either do it from our local machine just to submit it to Pub or you know just these other crazy hacks we come up with but what's cool now is like you could actually log in to Pub from the terminal from the shell here and then actually publish your plugin uh without actually needing to download it which I don't know I don't know about you but like for me I have started to run out of space because of all the repositories on my machine I recently had to like go and clean up a bunch cuz I mean it starts to add up like when you start forking a bunch and doing all that yes I I literally sat down I think was yesterday
+
+**2:15** · when uh my disc space was running very low like low as zero bytes on C uh which Isn't that cool and I went into my workspace floor and there were so many projects which with each being over 1 gigabyte and in the end it turned out I had all the old Desktop Windows ands in there which were all taking up like 600 Megs each so I was just able to delete the old ones because you'd have to recreate them if you run this with the new version so that saved me like 10 GB
+
+**2:46** · uh which was pretty nice yeah I actually rained the same thing it was all the runner builds for Mac OS that are taking up so much space and I guess it counts a new build every time yeah because it would be a a new archive build but yeah that was really annoying because I think I cleared up like 75 gigs of all the the code that taken off yeah it was a bunch
+
+**3:09** · cuz like you know each repo maybe be over a couple gigs because of the changes and the content inside of them because I'm like storing images too and yeah it was a lot now I feel my 10 gigs is nothing compared to your 75 yeah also have this like weird bug I hope other people aren't having this too but basically the dart analyzer will start picking up like 100 plus gigs of memory and then yeah it's weird like I
+
+**3:35** · can restart I I don't know I've had this happen on a couple different computers of mine but like Mac OS will like the system will start taking up like 300 gigs 200 gigs and then I'll restart my computer and then it goes away and it's like super annoying I don't have that much memory but so I've been so my
+
+**3:53** · normal day-to-day storage space like 10 gigs or five gigs on C which uh my laptop's a bit old um but yeah I've noticed the same thing like I'm not sure where it's because of the door analyzer but over the day it fills up at some point Windows just notifies me okay you have no more space left and at this point I restart my computer and it's all
+
+**4:17** · back like do you think it's because of D analyzer yeah I think maybe it could be like it's not garbage collecting correctly or maybe it's uh it's something to do with like the pub cach cuz I can rebuild the pub cash and it like fixes most of the issues like I have a couple projects right now that just won't analyze like it'll it'll get stuck on you know processing and then I'll have to restart and then usually that'll fix it even yeah it's there's
+
+**4:41** · just some weird issues I mean every now and then I feel like I've had these analyzer issues and then there'll be a fix and then it'll break again in a couple weeks so I don't know I don't know if hopefully it's just my machine and not actually something everybody else is facing too nice weird indeed yep
+
+**4:58** · so uh today like we said we're going to be talking about you know UI Builders and editors and um just trying to have a discussion about you know like what the current state is so um based on my knowledge I feel like there's you know a couple players out there there's Adobe XD which has some Community plugins that
+
+**5:15** · export to flutter um I know that they're officially releasing their plug-in that's going to go to flutter projects but that's not out yet there's been Supernova which is really cool and flutter interact they announced some really cool updates with it um that one actually allows you to open up a wxd and sketch and Export flutter projects which is super cool um and just as a side note that one of my favorite editors that I had found which never actually got to use which was the dart editor um but I thought that was really cool cuz that was a whole editor that um the dart team
+
+**5:47** · released about the same time as darum allowing you to edit Dart code um without actually having to have Dart installed and of course we have dartpad um and code pin for that matter of online editors that you can build individual screens with code in a declarative way um am I missing any we
+
+**6:05** · both don't know what the status is but on FL interact Google itself uh um mentioned a UI edor Builder uh which they were working on they have been very secretive about it like I have I've looked online and there's no trace of this ever being like there is the video of it being uh announced and spoken about but nothing else it's like
+
+**6:30** · ghost like yeah you can search it on Google and you won't find it they even provided more information about Fusia than this yes I know yeah I I had the same concept you know I was like I was searching everywhere I was like maybe I just missed it maybe I'm typing the wrong name it's like nope it's just like not there so either one they backed out
+
+**6:50** · on it or two they're just not ready uh we'll see but um yeah I mean and then also too I just wanted to talk about you know cuz you you've had your widget maker for a while and um just uh wanted to talk about some of the things that you faced when building it and um the fact it's open source now which uh we'll definitely link in the description but uh so what um what made you want to build the widget maker so um I think the story started I was just bored and I thought okay how cool would it be if you could open the Flor project in itself
+
+**7:23** · like imagine just running an app on your phone and just opening the source code of that app inside that app and reload itself so I start with this uh weird and crazy experiment of building this little so-called phone IDE project which had the most terrible UI you probably have ever seen uh but it was a pretty neat proof concept uh basically what was happening uh on the phone it uh got the
+
+**7:51** · files via an HTTP server on the computer which it was connected to and when it wanted to hot reload itself it basically sent a request the computer and it was connected to the computer via ADB Wireless uh and so the computer was able to just hot reload it over the the Wi-Fi and just have this magic effect of having your complete app on the phone modifying the app itself on the phone which was so interesting that I just uh kept exploring the idea of trying to to
+
+**8:24** · make widgets and make the building of UI um more approachable and more efficient and like the current version which is online is actually I think the third iteration like I've Rewritten the code at least one or two times because the ideas I had and all these stuff that was
+
+**8:46** · floating around in my head constantly kept changing and I tried to uh figure out what I actually wanted to build yeah so like um what approaches did you take when first building the the UI part of it because I feel like when you're working with flutter widgets you know there's so many different types of widgets that flutter provides like could pretty pretty hard to like you know have that um strongly typed because there's no like receive a list of all the widgets and all the properties you have to do that kind of manually um like I
+
+**9:17** · tried um a couple of things like as you said there's no way to get all the widgets easily um you what you can actually do is just using Dart analyzer uh analyze all of FL itself and just see which object extends for example play stateless state for widget or something like this but uh I actively decided
+
+**9:40** · against using this because when you scan all those widgets it doesn't make sense to handle a scaffold the same way you would handle list view you need special UI to to allow the user who's building the app to interact with the list view differently than the scaffold like you as a developer who's building uh using this uib don't want one generic widget which doesn't work very very well for
+
+**10:08** · all the widgets you want those widgets to work well with the individual components so what I ended up doing is mostly handmade like rep each widget at some point a lot of widgets were pretty basic like a center and a line it's just
+
+**10:24** · a widget which has a child and takes it for properties um I actually buil a code generator uh where I was able to just specify a few properties and generate all this code which I think struck a pretty good balance between uh generating stuff but in other hand also having the control to then actually go in there and say okay for the Align I maybe want to allow the user to actually drag the widget inside the editor like instead of uh typing a line uh bottom
+
+**10:52** · left you just drag the widget which is in the line to the bottom left corner and it changes that like with with this approach you can't have these special UI features in there without having to deeply modify the code which you've been doing did you face any issues when you
+
+**11:08** · know having it all you know combined together cuz I feel like um when I first um started building this like you don't think about you know well how do I show a column that has no children or a row that has no children like you have to like you know make guesses about what the user is trying to do and then like you said in a list view for example like if you just add a list View like by default it's going to throw an error so you have to like basically add a default kind of state and then allow it to be edited yes like as I said there's a lot
+
+**11:38** · of components which need this uh this special attention for list views uh for or for columns and rows in particular um so what I'm doing right now but which isn't perfect like you have to think about what what you want to do is for example if it's empty it tries to be as
+
+**11:55** · big as possible and hint to a user that this container can put something in if it has some kind of childel it tries to be as small as possible and just show the spaces like before the first widget or after that one where you can drop in the next widget um but like as you said
+
+**12:12** · you have to make guesses and try to think about what what would I want or what would I expect um but yeah like that's definitely a thing you have to you have to talk to people you have to try out you have to um see what works and what doesn't um but yeah like there's a lot of different uh widgets which need special care and that's also one of the reasons I uh finally decided to open source it like those widgets could be uh like people could make one
+
+**12:41** · separate widget and make a good ux and UI for that uh without having to touch most of the the other parts of the code and with that the ability to collaborate and this is uh pretty big because you say okay I made this very nice component for examp for the Align I implemented dragging the Alli which is in there um so yeah that's one thing you have to to
+
+**13:08** · watch out because you want to provide a good user experience for each of the components like it doesn't make sense to just throw it out there and well supporting multiple widgets um doesn't work that way um have fun it's more like have less components to support maybe have a uh smaller use case smaller uh uh feature list but then have
+
+**13:34** · those features which are in there work very well because then you can say okay maybe don't use this for a full-blown production app but if you want to have this little screen sure go ahead try it out build it should work pretty well yeah for me I'm I'm trying to support all the material design and not touching slivers ortino cuz those are two other
+
+**13:54** · huge crazy things and also you know I was going to say you know one thing thing you may not think about when building something like this is the code that you write normally is not necessarily the code that you would expect to have written from these these generators because you know to get something to look correct it may look way different than you would have you know written out in a declarative way you just may take a couple lines to write something that you know is just it's way different like so like when you start adding stacks and um you know just
+
+**14:25** · all these various things when you want free floating widgets and stuff like that it just you got to think about how it all fits together and um yeah it's just when you have a UI Builder it's necessarily going to be different for sure yeah and it's like also super hard to like um compared to Android for example or the web where you have this um static representation of UI um the Android XML stuff uh the web HTML and CSS things in in Flor you have code and
+
+**14:55** · code itself is it's breathing it's a like you can do all sorts of weird cool practical and smart things and first off uh building something like this and then reading it back in and just processing it uh that's like a big challenge which um yeah yeah which I I've tried uh I
+
+**15:20** · played around with a lot of ideas uh even as far as building an own programming language which targets the format uh which which I have done it works uh it's been a fun project maybe it's going to see the light of the day at some point um yeah maybe but um in the end this is this is
+
+**15:42** · something super hard and you have to to have compromises like you can say okay the code which is generated has this uh um style uh which is good code like you can use it maybe it's a bit different from what you've been would have been writing but it's also not Cod which you don't want to touch ever yourself like
+
+**16:02** · just generate it forget about it that also um doesn't sound like a good way to to approach this because what if you want to use it for a widget but then you want to add stuff on top which isn't support right now you would have to rewrite it if the
+
+**16:19** · code is bad yeah totally and like you know people have asked me like why why can't you just like support my existing widgets and it's like I can compile your widgets but the problem is you know like you can have build methods that um or return methods that actually return widgets and then you those can depend on other files those can depend on logic that doesn't exist in the runtime you a widget can be presented in a way that is different from the runtime like so you have like a a UI building mode and then an editor building mode and so yeah
+
+**16:50** · that's been quite challenging and then also the fact is like I made the um you know a distinction when I started building mine that any widget created is immutable so like you know you can use the widget at runtime but once you use it like you can't really modify it which
+
+**17:06** · is on purpose because once you start modifying it then you got to figure out like what they changed and how they changed it versus like um using a generated widget approach just like you wouldn't touch generated code and dart I'm trying to do the same thing with a generated UI code so then you can just you take advantage of the widget but um that way I can always parse it so are you talking about the code which is generated as text or the widget which is running in an editor where you press buttons where you navigate where you
+
+**17:37** · yeah both they're both stateless so they're all stateless So like um when you when you actually click export it'll generate the files and a generated Dart file and then the editor also saves the state of where all the widgets are and the locations to them and stuff like that um that way when you go back and open the editor you can have your project again instead of having to lose all your work m i see you yeah that's one thing um which I currently don't
+
+**18:03** · support like going the other way around exporting it and importing back in um it's been a thing I've been taking a look at and that's that's the thing like what's the the safe format the most natural thing would be and is to save it as code but then you have this problem that reimporting it is not that easy if
+
+**18:22** · you modify it in some unexpected behav uh unexpected way I mean you don't want to save it as some sort of Json and XML because then it loses the the power of what widget actually is like it's code right so for me I I save it in two different ways I I'm using the freeze package to create my mutable data structures with all the code generated um stuff and I have a top level.
+
+**18:47** · Json or I can also use binary but I'm using Json right now to store the project settings the widget configurations like the abstract configurations and then from there that's used to generate the darkart code so you have real dark code in the locations that where you're using it but then you also have the ability to customize it and reimport the editor but
+
+**19:10** · so if you then want to customize the actual dark code which is generated you can go back into that right like I mean I mean it's good and it it serves its purpose but like I'm thinking about a way or a word where this would be possible where you could do all the modification you wanted but like you need some sort of like if you're just trying to patch edge cases like okay maybe don't Define setic functions it's not going to work because there's an endless amount of edge cases um like
+
+**19:41** · literally endless uh the grammar for this is uh I don't know how it was called but there's just endless ways to do something yeah um exactly so so I'm not sure what the best way would be to approach something in a very Universal way um but yeah in the meantime I just
+
+**20:02** · said okay you built the widget you exported it's yours um being able to then repport it using these this basically what it is it's a safe file for the project right yeah well I've also been um working on building my own dart parser like a very crude parser so
+
+**20:19** · like for the chances that you're only and I only support if you're only importing material or Dart libraries so if you're importing anything that's not Dart or like a third party package this doesn't work or even another file but basically what I'm able to do is I'm able to parse down find all the classes
+
+**20:36** · find where the build method is and then I'm working on actually creating my own like analyzer to like in a very quick efficient way parse a dart file and get the outline of like the widgets so I can say scaffold with a child of this with a child of this with Children of this and um that way I can easily import stuff because like once you have that you can you know build a crude import but I'm also working on there's a really cool package called reflectable which if you run it at runtime it will give you
+
+**21:10** · somewhat um similar Behavior as Dart mirrors allowing you to kind of like introspect all the things that you're using I actually use this to get all the properties for the widgets that I support so um I can like import from Material scaffold and get all the list of the Constructor items and then um I
+
+**21:29** · think I showed you a demo but basically you could use the same approach for existing widgets too um but the problem is this needs to run ahead before you actually import so yeah it's just it's interesting problems it's using Code generation right do you ref reflect yeah yeah like um that's also the thing uh I looked at with my custom language um so
+
+**21:53** · basically I've been following this book by um don't want to mispronounce his name Bob neist he works on the uh dart team with uh the dart SDK and he's been writing this book called crafting interpret predators and it's like one of
+
+**22:10** · the best technical books I've ever read like it's so well uh written like I remember I was sitting at the airport um uh I don't know where I was flying and just reading the book and hacking my my language but yeah basically so um regarding language I thought okay if you can Target the dark kernel file you can
+
+**22:33** · um build a language which uh works the same way cotland does to Java like they both Target the same underlying system so they can have a very deep compatibility and using this uh custom language um you could have restrictions in in in the code and because you write the compil yourself you can inject as much meta information you want into the build build step um and then actually
+
+**23:01** · save the widget as code and modify it because you're controlling all of it you're controlling the compiler you're controlling the right the transportation um so that's one thing I've looked at it uh looked at for a bit
+
+**23:18** · um but I mean it was mostly a fun project and actually building a custom language to then support some other language to convert some visual way that like if that isn't m I don't know yeah that's I've also been exploring instead of doing my own language I've actually been exploring like a node based um logic Creator so like instead of you
+
+**23:40** · know yeah writing code you're just like connecting nodes so you can say like when this happens do this or you know when I tap on this button I want to trigger this event and it'd be kind of an interesting way because I feel like there's a lot of applications with flutter that you could build with just a node base like something that doesn't need a lot lot of crazy logic something just like when a network request comes in either stream or do a future do this
+
+**24:04** · on a repeating on an interval you know just like you can do so much with just that um you could build a counter application easily with it um but CU then your state is just like amorphous and can be stored in locations you could choose like think of how easy it would be to once you have a node base Editor to say like when I'm storing this value save it to SQL light save it to Firebase save it to here like and then just
+
+**24:28** · I I liter I literally when back in the day when I was actively developing widget maker I had this phase where I was just thinking about exactly this like just imagine okay yeah you have an application where you want to get the user data if you have something in your
+
+**24:43** · uh cached uh storage you want to get it from there show it then do you tap something with a note based workflow what you could do is you could have a note which is your network user you could connect that to some other uh block which which first tries to go to the cachee block and in the end all you
+
+**25:02** · do is you plug that note into the actual widget like just imagine a visual canvas where you have your widgets laid out like you do with the storyboard and if you enable the code overlayer you see all the code connections on top of the widgets so you could actually connect the text which is on the page with a
+
+**25:23** · note which supplies some sort of text and the cool thing is you could run this application in the editor and see all the data flowing from one point to another and just debug it because okay you have this bug what what is one thing
+
+**25:38** · which helps you with debugging just gaing as much information about the current state of the system so what you do is you set break points you do print statements you go for your application think okay I should be in this so the user should be logged in is he logged in and in this case you could actually see okay I see all of the data which is currently being held State I see how the data is connected and mhm like that that
+
+**26:03** · could be pretty cool yeah and the cool thing is you could do it in an imperative way with flutter 2 where you could have individual screens that are covered by nodes you could have the entire application that could be running on nodes because what's so powerful about that is then you could share those template so you could have that logic that you could share around because it just be a file at that point um yeah and I just I think about you know there's other language that have this and you know there's so many like I just I call
+
+**26:31** · them like clickable applications that you could just you know you click here it goes to this screen you click here it goes to this screen you just you go to this screen it gets a list from this URL and it's I don't know you can build some really cool static applications this way yes and I mean even more complex ones like even those complex applications have a big uh part of them are static
+
+**26:51** · like okay they may have some sort of fancy Al algorithm in there they may have some machine learning in there but but those are mostly modules like you can wrap that module in some sort of visual node and just just using a system and if you're this far and you have all those presets assets made like what
+
+**27:11** · stops you from building an application a couple of days like okay you want to login totally just use the login module you want to have a user profile use user profile you may want to customize it sure go ahead yeah and yes like the abilities are there uh just has to be developed and I mean you never know where it's an actually good idea like this this could even be like it could be bad we don't know we haven't done it yet um but I think there's a lot
+
+**27:44** · of movement going into the uh direction of uh the no Code and low code environment where the uh next layer of abstraction to like the very beginning was like people drilling holes and cards which magically told the computer what to do some point somebody thought okay let's not do holes let's just try to write texts like moving registers and
+
+**28:12** · additions and at some point okay why are we doing this we could write some language we can actually read and write uh which is easy for a human for a computer program language is super weird what what what should a computer do with a class statement and but because the compiler is there which converts that into the lower language which then goes even lower and using this next layer of abstraction like going from visual to language to
+
+**28:41** · instructions and to machine code you have so much more abstraction could be way more efficient if it's done correctly I think at some point we're not going to program programs using a language forever like
+
+**28:57** · at some point it will change like even if it's AI which is just going to take over and build something on its own but something's going to change at some point yeah I mean and also what's crazy too about the node base editor is you can actually support plugins because a pluging can just Define what its inputs and outputs are in a simple file so that's pretty cool already but also
+
+**29:20** · think about once you have a node base system you could actually then use machine learning to generate the most optimal solution of data flow you know like you could literally have all the inputs and yeah it's crazy like you could find logic bugs and I don't know there's just there's so many possibilities when you're in a node-based editor because all of a sudden now you have like basically these Legos that you can connect everything to each other of course you can run into some crazy problems like an in plus one problem but um yeah there's some pretty
+
+**29:46** · interesting things you could do I think the most important thing with a note based editor is and which a lot of uh those not based Solutions which are there like is the integration with actual code like how easy it is to drop down a layer because a lot of times you have to write boiler plate code which is really not fun to write you have to go through some sort of calization deserialization you have to go through maybe a type versus un type thing and if
+
+**30:15** · you have this barrier where it is more work to actually write the code in in code than um to just write all of it in code like just imagine most of the notes work but you have to write two notes which you have to write in code and if you have to maintain those two notes as much as you would have maintained your whole code base uh then you lose the
+
+**30:40** · power it's not worth it but if you have some way like one click connected and it's all whatever it's typed it's it's working and you you don't have the friction between going between those two words and you can just separate those um I think that would be an important thing right and for me what I'm thinking of when I if if I'm building this solution is maybe actually using the node-based editor to write all the code generation for you so like you could so there's two
+
+**31:09** · multiple approaches obviously you can take but basically you know as you connect stuff it's actually generating the dart code and then that way you have you know the all the aot performance kind of stuff and then the cool part is what I'm thinking about is you could actually support custom scripts written in Dart but you could even do it one step further where you know obviously that would work out of the Hood um or out of the gate you could just connect it but what if you supported like these like I don't know if you've ever used Swift playgrounds but like magic variables so then you could say like you
+
+**31:37** · know you have like the name of the class and like as you're editing in the node editor you could actually have this like Dart environment which you can have these special variables that are passed in that then when you generate the code it generates the correct names and does everything for you I feel like all of this uh for it to really work it would have to be deeply integrated in into your environment like uh like one one
+
+**32:01** · thing that's super annoying if you have these variables and you're trying to debug and in the end it turns out you misspell the the uh yeah the and the regx didn't catch it or something like that so uh if you have something like this and you pair it with a very nice
+
+**32:19** · integration into into your ID it just feels flawlessly connected then that's that's where a place where it really shines Ian I mean just think back where mod modern idees like what do they do for you I couldn't imagine myself programming nowadays without an ID which has autocomplete syntax checks go to definition like that's a big thing and if you lose this for these note based
+
+**32:48** · things because it just cannot comprehend and connect those then that's a big stepb back but if you have those like I think that that has the big potential right I mean even you know like when we have complete ml right now which can use machine learning to do autocomplete suggestions and vs code but think about taking that one step further where you can have a node and it has suggested nodes which is kind of nuts so like you
+
+**33:11** · could say yeah exactly like oh you want to do persistence you want to you know syn it to Firebase you want to do whatever and you know at first glance you think well maybe that's going to generate a whole bunch of code but because of the abstraction you're actually able to optimize it so you can have like just like how Dart has two different modes you have the debugging and the profile and release phase you could actually have separate modes for you know all these different parts yes and as we talked before in debug uh
+
+**33:38** · debug mode you could have all sorts of different debug information there the current states the transitions data flowing you like there's a lot of possibilities yeah it's it's pretty insane So speaking of um that have you worked with um the dart analyzer at all I've been taking a look at it for a bit um it's like it's super interesting to have a package which is implemented in Dart to analyze dark code and get
+
+**34:08** · information about itself um have you yeah I've I've worked a little bit I've been starting to build my own like kind of Dart parser but yeah it's it's pretty insane um the analyzer is so powerful but the applications I'm working on have to run on the web which the analyzer doesn't exist on the web which is kind of unfortunate but um so uh have you I I
+
+**34:28** · think weren't you working on like a plugin for Dart or the dart analyzer um so basically I got pretty um Fed Up by the fact I had to localize the strings manually and just go in there extracted go into our files so I thought okay when I did an intell plugin before for fun let's try and see what I can build in an evening um so I built this little plugin which uh helps you localize Keys basically with a quick action which you INX with the old Enter
+
+**35:01** · key um it copies the value into a Json file and replace the code with the correct call um and then I thought okay this was pretty tedious to write like Java with intelligent apis and all that stuff like like most of the stuff was undocumented I had to search through so many things I thought um it would be way better and cooler to actually write this code in Dart like write a d plugin for that wow so uh I stumbled across this
+
+**35:32** · project or this thing called um analyzer plugins which basically is exactly this um it allows you to write a plugin which is written in Dart uh which runs inside the analyzer which um in modern ID for
+
+**35:48** · example intellig and vs code um allows you to inject or add for example suggestions go to definitions uh refactorings and all that stuff and with this like during this podcast I just thought when we were talking about the program language with this with my custom program language I could even Implement a goto definition cross boundary like in D I could run my my
+
+**36:15** · compiler and analyzer on my custom program language and allow the user to go from the dark code inside that custom language because all the code which is there is written D you don't have to do some weird plugins and super easy so so that's one thing um I'm exploring right now like I've been trying to set it up uh it's I should be able to to have a
+
+**36:42** · few experiments running in a couple of days um but that's super interesting have you heard about this yeah yeah I um yeah just been seeing the kind of stuff that you've been doing I mean the the analyzer plugin is just like incredibly powerful and like you said earlier like I couldn't imagine developing without an IDE now like there's so much work that the analyzer does for you as a developer and I feel like um the ways that we can
+
+**37:07** · solve our own pain points to create solutions to things that we're facing every day only makes us better developers um yeah and I I love the fact that you did it with the internationalization plugin because that's for me a huge um thing already cuz like how many strings do you probably have in an application you probably have like hundreds maybe maybe even a thousand on a big application and you have to go into to each one of them store them in a Json file and yeah it's
+
+**37:33** · a it's a tedious process that's for sure yeah actually after I published the plugin um uh Dominic pointed out that uh something very similar exists for vs code and sure enough it also exists for intellig J uh which is the Intel plug-in by localy um which does pretty much exactly the same thing um only drawback is that it only work works with their format and way they do the code and um I had a like
+
+**38:04** · it was working okay um my case it's more flexible like you can specify what the code is which is going to be replaced and stuff like this like for example if you're doing your own localization system where you're using a custom package or maybe sometimes you're just using a playo Json file which you load in with with um as a file and in this
+
+**38:26** · case you can use this plugin to write to loc with your own system um but yeah like things like these like it went from okay I really don't want to do this task this is so annoying to Oh I'll just do a few strings here and there I mean it isn't any extra work and
+
+**38:47** · I mean it is a small thing like you could sit down and do this but just the feeling of being productive and actually not sitting down to do the tedious work but to actually express yourself and work on actual problems which you're solving instead of just coding right
+
+**39:05** · exactly well one thing you could do though is because it's an analyzer plugin wouldn't you be able to write a plugin that could just automatically extract all strings to a Json map for you on existing code so so that plugin um I was doing it in pure intellig and that's where uh this idea um to make it in dark came from so I haven't actually looked at all the apis yet um but it
+
+**39:29** · could definitely be possible like um it's could be hard to figure out which strings to actually localize like sometimes you have strings which are which should be localized and some shouldn't for example strings in
+
+**39:44** · variables where you just save something you don't want to localize but then again you may have variables which you do want to localize which just holds the current user output or something like that this yeah um so I think just manually going in there and selecting those one by one is a fair compromise
+
+**40:03** · because it's little work when you see something you just tap two keys and it's done and on the other hand you don't have to rely on the system to magically figure out which strings to extract and which which leave in place well you can always you know use start decorators to decorate any variables you don't want to have extracted of course it's it's a valid approach um yeah it was just fascinated by the uh ability to write these plug-in extensions for an analyzer
+
+**40:33** · because that's the thing you're using daily like your um IDE which does so much stuff and you're if you're able to to customize it even further for packages or systems you are using that that's in my opinion is a
+
+**40:51** · pretty big uh productivity boost yep and not only that but you just learning about how the analyzer Works under the hood only makes you use Dart better too because um you start to really understand how powerful everything is and how you can optimize things for
+
+**41:08** · sure so next I want to talk about um storyboarding and I know that your widget maker already does some of this like what kind of approaches did you take when you know having to lay out multiple canvases you know and be able to pan around and um you know what what kind of inspired you to do that so you're talking about the widget maker correct yes so um well basically um most
+
+**41:33** · of the graphics application do this and the idea was from the beginning to be um somewhat similar to what sketch figma and all those applications are um and implementing it was pretty interesting I think I answered to a stick overflow question so I was using a stack with a transform and basic basically when you scroll you're just transforming and making them more and bigger and using
+
+**42:02** · the stack I was able to position all the widgets but there was one problem is when you transform the stack and make it smaller the area where it can um get user inputs um is also smaller so what happened is you when you tried I think when you try to to drag outside of the Middle where it was actually at it didn't work so what I ended up doing is actually copying the whole stack code and just removing one line in the test render or hit hit test where it was
+
+**42:35** · checking if the position is actually in the bounds and I was okay don't check where it's in the bounds you are hit uh that was a pretty interesting thing um how did you do this in the in Your Story Board uh hearing you say that makes me realize all the incredible amount of effort that went into my solution that I probably should have thought about doing that um so for what I did for my storyboard is I
+
+**43:00** · I faced the same problem as you like my first approach was I wanted to be able to support zooming in and out of the canvas and um all this and this was my my third iteration on trying to figure this out um I came up with a solution I don't know if it's the correct solution but I'm using a stack just like you using the offset to uh pan around but
+
+**43:19** · the only difference is I'm transforming each child that's on the stack and aligning it so then um I have the widgets that you know can expand and contract and then I transform those to where it actually works pretty well and pretty performant but yeah cuz I was facing that issue where if you once the the stack started shrinking then yeah you couldn't tap on anything else I feel like this approach is just different but yeah um it was definitely a lot more work to try to figure out um everything and in fact before I did this last um
+
+**43:50** · one that I just published I was actually transforming each child on the canvas So in theory I was wanting to be able to support dragging each screen around to wherever you want which I may still in the future but this approach is so much simpler I can you know put a grid view on the canvas I can put a stack or a uh
+
+**44:10** · a wrap or even columns and rows and then I transform those down to scale and have them you know in a column that all go together so kind of different but uh yeah it was definitely interesting to try to solve that cuz it's not exactly obvious there's no like you know flutter widget out there that are doing this it's you know a canvas approach is definitely something new kind of concept
+
+**44:31** · but like once you do it it's like wow that was really simple you know like you you expect it to be so much more complicated and it works so well with performance cuz it's clipping out the bounds and um only rendering what's on the screen yeah I think like um there are very few cases where you'd actually
+
+**44:48** · want to do a custom render object but I think if you would be having this inside the framework which would have to support a huge variety of use cases making this a render object would probably make sense because then you could also Implement stuff like lazy loading like a canvas. builder where you may have millions of widgets but only actually build those which are in the viewport lazily destroy maintain State
+
+**45:13** · destroy State and do all those things yeah um but yeah I mean if you don't need those wi bar and go this road because that that's something which gets complicated then you have to think about the life cycle of children how they laid out how to efficiently do all that stuff and I mean it's always best to stay on the topmost layer the widgets layer and try to use what's on there and only drop down if you really have to um but I mean
+
+**45:41** · if it works it's a good solution right yep I've tested it with about maybe 150 200 screens on the canvas at the same time and it seems to work pretty well um yeah you taking this new approach helped a lot because before it was having to render everything off screen too and overflowing which that was causing huge performance reason so or performance cost so now because I'm clipping the stack on the viewport and doing that and
+
+**46:10** · then clipping each child too it really reduced the amount of overhead I was facing I see you yeah but it it's pretty cool though I built it because I wanted to um be able to create my flutter application with all my screens at the same time and just like you know change the theme pile and watch everything update or you know
+
+**46:31** · add a new screen or widget customize because the thing is it supports hot reload and it keeps the state of all the screens you can I even recently added a restart button so you could even restart the entire applications pretty easily which is crazy but I just found out how simple it is to do that um I was looking at device preview on how it works if you
+
+**46:50** · just give your widget a new key and call set state it will restart the state of the widget I don't know I thought it was going to be so much more complicated but all you have to do is just give a new key to your material app and then it does basically it restarts so that's kind of interesting um I could have used that for other applications too like maybe like if the user logs out and you want to guarantee that it's a fresh app you could even do the same kind of concept where you could just give a new key every time a user logs out yes kind interesting so um one thing I wonder and
+
+**47:20** · ask myself um I don't know where you're dealing with this right now but what what would be your uh opinions on this for example if you have an application which relies on scopes for example you have a few screens which only work if the user's logged in because there's no nothing to show on the user profile if there's no user how can you ensure that
+
+**47:42** · all these screens are in a somewhat valid configuration for example if you have two screens which are mutually exclusive for example a user logged in screen which expects a user to be logged in and a user logged out screen which expect the user to be locked out how can you visualize both of the screens at the same time maybe have in the worst case
+
+**48:03** · wrong data which is marked as that um but still not crash yeah for me what I did is I introduced this concept of Uh custom screens which allow you to add any number set of screens with whatever kind of Constructors you want so outside of your routes and everything else you can pass in the data explicitly so you can say like you know you can say this is is this configuration for this widget this is this configuration you could even have the same widget with different sizes even um and the purpose of this is
+
+**48:33** · exactly like what you said um sometimes you want to pass in dummy data like for example um if you wanted to preview a detail screen you like with the storyboard you don't have to wait for the um Json request to load because yes in the storyboard you can still tap and go to the details you can also view the details with dummy data and just modify all the you know hot reload all the changes without having to run your application which I think is pretty cool because there's many times that you're doing a detail screen and maybe you're
+
+**49:04** · trying to find like that perfect Json item that has all the data or like it uh you know there's so many edge cases and then so with this approach you can actually edit not only the list view the details and the sub details all at the same time so you're taking the approach of having these screens uh very modular without any exent dependencies like no stream ERS no block Builders none of those but passing the data instead yep so so the thing is how could
+
+**49:34** · you go ahead and make this with the least B paid code possible so what I could think about is for example have the screen take all the data and have a screen which wraps the screen which then actually provides data with a stream B but then again you have two widgets which essentially could be one widget how would you be dealing with this you could mock it for sure you could even do like uh you could wrap the widget with a a presenter widget or something and then all it does is just mock the the logged in state of the the scope of what it's
+
+**50:03** · looking for since it' be looking up for the block with the logged in state you could literally provide that so I see that's interesting so you could have a package which just contains a bunch of marks which rep all of these that's interesting yeah that makes sense you wouldn't have to modify your actual app and you would still have the benefits of being able to and I mean you could show uh mock data in your preview like you want want to see what user it is you don't care who's locked in but you want to see the data and for me too like I'm
+
+**50:34** · on at least where it is now like 0.1.1 I'm trying to support um you know pure widgets at first like you know those those work best second thing is just regular widgets that then you can you know log in or do whatever but the reason why is you know there's many times that like you may write a widget
+
+**50:54** · that has way too much much logic and I'm trying to encourage you know basically creating like a view model so like you have just a widget that's just presenting the data because if you do that then it's super easy to customize it and add a bunch of stuff and test everything because then you can use the view model to then present that data based on the data that comes in um yeah
+
+**51:16** · it's just yeah it's really depending on how you write flutter code too because there's like a ton of different ways how you can create applications and how you create screens but yeah I'm trying to create the abstraction that's above the block layer so literally just showing the widgets themselves going back to to the mocking and stuff like um if you then go the the additional step to work on the smoking I can really see it the block Library work um pretty well with this because it's very um like view
+
+**51:46** · modly you have the states which are very encapsulated so you could actually have um some sort of I don't know annotation or even just a helper method which where you all you do is you provide the state object which you want this screen to to access and internally you could hook it up with your um block providers and do all of that stuff and just load in this one state because if you are following the block package way and you have all your blocks in there you could have a fully functional app mocked with like
+
+**52:18** · literally a few lines of code and you could have all your apps visible so so that's also one thing if you're talking about just pure widgets a lot of times in my codebase I'm thinking okay have I done this widget before is it somewhere in my code base uh where I don't know or I have do I have to redo it uh so what I usually do is just open the app navigate around and try to see where I have a similar widget but using this you could just have a pallet of widgets like um
+
+**52:48** · yep widgets which you've been using everywhere and just see yourself okay where is this widget and you could even do something like navigate to the widget in your ID like tap the widget and show in code and then okay I know this widget exist and just using it this way that would be super powerful what I typically do with blocks though is for me I like to have most of my logic in the blocks like I almost use them as like a repository for triggering actions and my
+
+**53:18** · widgets are literally um well I guess because I'm doing a lot of web applications now all of them have to be able to support like deep linking so if they're not logged in like it's the widget can log itself in like you can actually log in from that screen I don't necessarily have to go to the login screen to do it so like I just show a popup or a dialogue so that yeah that's the only different approach that I guess in my applications I haven't faced that too much because my blocks are kind of separate like my widgets can live outside of my blocks I see yeah for me most of my um scoping is very very um
+
+**53:50** · implicit in the widget she like I have widgets where I expect this widget can only ever be seen if the user logged in so I'm actually just casting to a logged in user State just being sure okay you you have no way of navigating into here
+
+**54:07** · without being locked in because if you would be locked out the widget tree above would be rebuilding and destroying this widget immediately so you would never have the chance to be in here without being logged in so for me um I have a very scoped architecture I actually even use uh mostly one nested Navigator where I include for example a use authenticated scope like um this way even though I'm in the
+
+**54:32** · sub tree I can push to that route without re like pushing on top of that scope like I'm always pushing under it so anything which is inside this app has access to that block but there's also widgets which are outside of that scope which don't have access to that so for me it's very implicit so it would be very very um helpful to have this way of mocking that because most of the widget depend on some kind of block to get data from gotcha that's very powerful yeah um
+
+**55:01** · and I I'll definitely be looking into that more maybe we can talk about that more next episode because yeah that's something I'm definitely wanting to support is be able to support all different kinds of State Management Solutions you know like Redux like be able to pass in your store and to see you know a mock state of everything um yeah that's super powerful so uh what do you have uh going on this week so this week what have I um I will be doing a
+
+**55:24** · bit of work on widget maker um mostly just doing a bit of cleanup um documenting stuff so if anybody's interested in contributing talking uh just just talking about the ideas and potential Solutions um be sure to to hit me up uh open an issue send me an email what uh whatever you want um also
+
+**55:46** · probably be exploring the analyzer plugin and see where I can um build something useful like we just talked uh quite a bit about blog and we talked about this problem before that when you dispatch an action and you want to see what the actual code is which is executed um you control tab on the
+
+**56:05** · action and where does it lead you to the Constructor of the action there's not much information uh one from there because there's there isn't actually any logic so I thought it would be pretty interesting to write an analyzer plug which actually takes you to the code where the action is processed um so that's one thing I'll be taking a look to um how about you uh yeah going to
+
+**56:27** · have a pretty busy week I'll be talking at flutter Europe this week so make sure to um look out for that we'll have links to everything we talked about in this episode as well in the description um I'm going to be working on the flutter editor and kind of more going down the
+
+**56:42** · rabbit hole of uh for me I've just discovered Proto Buffs and grpc and the amazing world of everything that is binary and http2 so I'm going to be you know going hardcore into that uh Rabbit Hole so we'll see what comes out of that um and and also just you know continue to make updates to the storyboard as well as the golden layout package that I made so uh thanks so much for listening today if you have any questions like always you can reach out to us on Twitter um GitHub or just um you know
+
+**57:11** · find us uh our emails are out there um if you want to uh support this podcast please uh you know give it a rating on iTunes that's always really helpful and uh make sure you you know comment on our repositories on GitHub you know we like to see the feedback we want to see what you guys are thinking um feel free to make issues or PRS or whatever thank you so much for listening we'll see you um in the next episode thanks

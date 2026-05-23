@@ -9,6 +9,7 @@ const docs = defineCollection({
         embedding: z.string().optional(),
         tags: z.array(z.string()).optional(),
         related: z.array(z.string()).optional(),
+        podcast: z.boolean().optional(),
         tabs: z.array(z.object({
             label: z.string(),
             href: z.string(),

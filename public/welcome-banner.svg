@@ -1,0 +1,53 @@
+<svg width="800" height="160" viewBox="0 0 800 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .star { fill: #ffffff; opacity: 0.3; animation: twinkle 3s infinite ease-in-out; }
+    .orbit { stroke: #569cd6; stroke-dasharray: 4, 8; opacity: 0.25; animation: spin 40s linear infinite; transform-origin: 400px 80px; }
+    .core { fill: url(#glowGrad); filter: drop-shadow(0 0 15px #569cd6); }
+    .pulse-ring { stroke: #569cd6; stroke-width: 1; opacity: 0.4; animation: ripple 3s infinite cubic-bezier(0.1, 0.8, 0.3, 1); transform-origin: 400px 80px; }
+    .floating-particle { fill: #4ec9b0; animation: float 6s infinite ease-in-out; }
+    .text-title { font-family: 'Outfit', 'Inter', system-ui, sans-serif; font-weight: 800; font-size: 38px; fill: #ffffff; letter-spacing: 0.1em; }
+    .text-subtitle { font-family: 'Fira Code', monospace; font-size: 14px; fill: #dcdcaa; }
+    
+    @keyframes twinkle { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.8; } }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    @keyframes ripple { 0% { r: 10px; opacity: 0.8; } 100% { r: 90px; opacity: 0; } }
+    @keyframes float { 
+      0%, 100% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(-15px) translateX(8px); }
+    }
+  </style>
+  <defs>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#569cd6" />
+      <stop offset="100%" stop-color="#4ec9b0" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="100%" height="100%" rx="12" fill="#13151a" stroke="#2b2b2b" stroke-width="1" />
+  
+  <!-- Background Stars -->
+  <circle cx="80" cy="30" r="1.5" class="star" style="animation-delay: 0.2s" />
+  <circle cx="720" cy="40" r="1" class="star" style="animation-delay: 1.1s" />
+  <circle cx="150" cy="110" r="1" class="star" style="animation-delay: 0.7s" />
+  <circle cx="670" cy="120" r="2" class="star" style="animation-delay: 1.8s" />
+  <circle cx="340" cy="20" r="1.5" class="star" style="animation-delay: 2.3s" />
+  <circle cx="480" cy="130" r="1" class="star" style="animation-delay: 0.5s" />
+  
+  <!-- Gravity Orbits & Rings -->
+  <circle cx="400" cy="80" r="60" class="orbit" />
+  <circle cx="400" cy="80" r="45" class="pulse-ring" style="animation-delay: 0s" />
+  <circle cx="400" cy="80" r="45" class="pulse-ring" style="animation-delay: 1.5s" />
+  
+  <!-- Floating Spheres representing projects -->
+  <circle cx="330" cy="60" r="5" class="floating-particle" style="animation-delay: 0.5s;" />
+  <circle cx="480" cy="95" r="7" class="floating-particle" style="animation-delay: 2s; fill: #dcdcaa;" />
+  <circle cx="390" cy="125" r="4" class="floating-particle" style="animation-delay: 3.5s; fill: #ce9178;" />
+
+  <!-- Center Gravitational Core -->
+  <circle cx="400" cy="80" r="14" class="core" />
+
+  <!-- Main Title Branding -->
+  <text x="40" y="75" class="text-title">RODY DAVIS</text>
+  <text x="40" y="108" class="text-subtitle">// Creative Engineering &amp; Advocating</text>
+  
+</svg>

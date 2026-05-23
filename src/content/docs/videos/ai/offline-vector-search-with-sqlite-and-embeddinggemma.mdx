@@ -1,0 +1,128 @@
+---
+title: Offline vector search with SQLite and EmbeddingGemma
+date: '2025-11-26T00:00:00.000Z'
+draft: false
+tags:
+  - firebase
+  - astro
+  - sqlite
+  - gemma
+  - ai
+  - youtube
+  - javascript
+  - github
+  - web
+  - talk
+  - google
+summary: >-
+  Learn how to build an offline Retrieval-Augmented Generation (RAG) system that
+  uses SQLite and EmbeddingGemma to query and embed documents entirely in the
+  browser, even without internet connectivity.
+embedding: >-
+  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
+related:
+  - ai/vector-recommendations.md
+  - backend/pocketbase-webrtc.md
+  - >-
+    videos/firebase-studio/compile-sqlite-from-source-to-wasm-in-firebase-studio.mdx
+  - flutter/graph-database.md
+  - videos/ai/how-to-connect-interfaces-to-the-cloud-with-ai-agents.mdx
+last_updated_metadata: '2026-05-23T00:15:48.194Z'
+---
+
+import SocialEmbed from "../../../../components/SocialEmbed.astro";
+
+
+# Offline vector search with SQLite and EmbeddingGemma
+
+<SocialEmbed platform="youtube" id="sobPBztQTtU" />
+
+## Description
+
+Learn from Rody Davis, Senior Developer Relations Engineer at Google, how to query and embed documents using SQLite and embeddings with EmbeddingGemma and Gemma3. Create an offline RAG system that runs in the browser offline.
+
+Resources:
+Github → https://goo.gle/4p2b3b1 
+
+See more Web AI talks →  https://goo.gle/web-ai  
+Subscribe to Chrome for Developers → https://goo.gle/ChromeDevs
+
+
+Event: Web AI Summit 2025
+
+Speaker: Rody Davis
+Products Mentioned: AI for the web, Gemma 3
+
+#ChromeforDevelopers #WebAI
+
+## Transcript
+
+**0:01** · \[music\] How's it going? My name is Rodie and I am a developer relations engineer at Google working on the AI workflows team.
+
+**0:14** · Super excited to be here today at the WebAI summit. Something I'm very passionate about is ondevice and local first types of applications. And so before we get started, let's talk about vectors and databases. Vectors, as you know, can be generated um with both hosted and local models. There's a lot of trade-offs that go for each one of those and typically uh will require specific needs of your application. So, vector stores can grow quite large and often require an API to access.
+
+**0:43** · And while that's fine for certain types of applications, uh it may not be ideal when you have intermittent network connectivity, for example.
+
+**0:54** · Uh one important thing about vectors uh if you're not familiar with them is you have to have the same encoder and decoder uh both wherever you use to query and to update documents. And this is really important because you can't take advantage of like a really powerful um encoder and then a very lightweight decoder. You have to use the same um which was kind of frustrating when I uh was first getting into it.
+
+**1:19** · And then another thing that uh server side can really take advantage of is they can be so much faster because they have a lot of RAM. They're optimized for NVME storage. But I've listed a lot of pros on the server side, but why would you even want them on the client? Well, first of all, you can store the vectors just for the user. You never have to worry about running a query and getting some sort of uh dimensionality for uh content that's not theirs.
+
+**1:47** · You can also just have the advantage of it already being partitioned for that user on the client.
+
+**1:55** · So with most things that require trade-offs, usually a hybrid approach is more appropriate. And in this case, we can use the server side to have some nice parallel compute to be able to batch encode a bunch of vectors. And we can store them inside of Firebase using Fire Store vector support which was added.
+
+**2:15** · And of course there's vector databases that already work um a lot better for vectors, but one of the nice things about fire store is it gives us a nice syncing uh modality that we can use on the client that we can store everything in a bucket per user. Um and really it's meant to be a fallback when the model isn't downloaded. I'm a huge fan of SQLite and one of the cool things about SQLite is you can load extensions including vector support. So we can actually pull in those vectors from fire store into SQLite and then you can query them directly on the client.
+
+**2:46** · But here's where the magic really starts to happen.
+
+**2:50** · When you go to update models, you can use that local encoder and decoder to incrementally regenerate new documents.
+
+**2:59** · This makes it really nice to pull down a massive data set and then as the user is making changes and edits, you get to keep that up to date without having to do that round trip and requiring internet always.
+
+**3:10** · So, embedding Gemma is a super awesome encoder and decoder uh that we have launched and I really love it. It's about 38 million parameters. It's meant to be run on mobile devices but just because you can do that doesn't mean you can't use it on the server which is really awesome including support for things like cloudr run where we make it really easy to launch it on uh with Olama. So you can have a nice fallback API when the model isn't downloaded yet and you just want to have this kind of ad hoc experience.
+
+**3:41** · One of the reasons I like using it is it has 768 dimensions.
+
+**3:47** · So it has a very significant uh quality for the types of uh tasks that you can throw at it. It's still configurable and uh the just the whole Gemma family is really awesome. Uh but well I know a lot of people today have talked about Jimma 3N and you can totally use that with this but for this talk it's just going to be on the the database side and vector support uh without LLMs.
+
+**4:12** · Another cool thing about uh these models is you can use transformers.js which was uh talked about many times today. It allows us to use the CPU and GPU to run inference on these uh encoder models and it also supports the 768 dimension space that embedding Gemma can use and output for the vectors.
+
+**4:33** · Here's a uh code snippet on how you would get this running with embedding Gemma. I'm using the uh Onyx runtime for the embedding Gemma version of it, the 300 uh million parameter option. And here we can just create a simple pipeline that uses feature extraction as
+
+**4:50** · well as being able to take that embeder give it the correct task type which it can be query or document or others listed on the documentation and then we just kind of uh normalize the vectors before we return it back and since we're on the web it's important to return it as a float 32 array because that's what SQLite's also going to expect um for the storage as well as fire store.
+
+**5:14** · So like I said, fire store supports vectors which is awesome. It makes it really easy to sync. Uh when fire store will first load into your application, it'll pull down the documents that you have queried for that user. And as you make updates, fire store takes care of all of the work of if you update a single document on the server side, it will just pull down the incremental uh patches as well as making updates can send it back up to the server. So you don't have to manage any complex sync logic on your side.
+
+**5:41** · But they also launched vector support which means you can literally add the vector type directly into those documents keeping it collocated with that user and their collections.
+
+**5:54** · So here's just a simple snippet of how you might do that in fire store uh using the the modular JavaScript SDK. You can just create a fire store application using the uh the app that you initialize and in this case it's an emoji application and you have the embedding which you can then add the doc and then use the vector type which you can import as well from the SDK.
+
+**6:17** · So SQLite huge fan uh there's a really cool project called SQLite VEC if you're not familiar with it I definitely suggest you give it a look. uh it allows us to use low-level KN&amp;N queries uh directly inside of SQLite by extending the syntax. Uh this project has also expanded a lot since the first version.
+
+**6:37** · It now has metadata filtering, partitioning and virtual columns and so much more. But this allows us to create those embeddings directly into SQLite.
+
+**6:47** · Now, you can also store the the blobs of the float 32 directly inside of um regular tables, but one of the cool things about the virtual tables is it's optimized for those queries. So, it doesn't have to scan do a full table scan every time you uh do a query. Also, SQLite compiles to Wom and you can add any extensions that you have inside of that.
+
+**7:12** · So, um, in this example that I'm going to share on GitHub later, uh, it has SQLite vec pre-installed, but you can totally add your custom ones as well.
+
+**7:22** · So, here's an example of how you might do that in SQLite. Uh, we're importing the official uh, SQLite package here uh, from SQLite.org as well as just pulling down the Wom module. You can just create it like another table using the VEX0ero uh, table syntax. And this allows us to have that float 768 dimension syntax.
+
+**7:43** · And you would obviously change this for the type of uh encoder and decoder you're using. But that's it. You just work with it like a normal SQLite database if you're familiar with that.
+
+**7:53** · But this is all happening on the client.
+
+**7:55** · It can do massive data sets. It's often that you can run millions of queries in just like a second on uh on the browser.
+
+**8:02** · So definitely suggest giving it a look.
+
+**8:05** · So when it comes to querying, it's also very similar to SQL. I know this may not be familiar for everyone, but uh as a a mobile developer and someone who likes to build applications, writing SQL queries on the client, knowing it's just the data set makes it really easy to create the types of views that I want.
+
+**8:22** · And in this case, I just query from the emojis embedding table. I join on that foreign key and then here's where the magic comes in with the match keyword, which is using the ve0 functions as well as the KN&amp;N queries with the limit. and then we can order it by the distance and then uh grab it out and present it to the user later.
+
+**8:43** · So, time for a demo. This is a uh a little bit different take than the other demo from earlier which was about using embedding Gemma for um emojis. I want to create a better vector search for emoji emojis. So, I took the entire Unicode data set and I vectorized each of the descriptions with the emojis. So as you're typing it returns the emojis that are closest to that embedding space based on what your query is and each time you on key press it will actually vectorize the query itself.
+
+**9:14** · So this model once it gets downloaded onto the browser this can happen completely offline. So you can obviously expand this to other applications where you can have uh documents that you pull in for your business data or just specific uh types of tool calls like for example you can vectorize a thousand tool definitions and only provide maybe five to the model at any given time. It really opens up and expands the types of use cases that you can build. Um this code is available uh on my GitHub.
+
+**9:46** · You can check it out at emojis search. Uh I am uh usually pretty available on GitHub and Twitter and LinkedIn. So uh definitely feel free to reach out. But uh thanks so much.
+
+**10:01** · \[music\]

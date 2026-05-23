@@ -1,0 +1,623 @@
+---
+title: 'Building a DND Agent with ADK, Antigravity, and Gemini 3'
+date: '2025-12-04T00:00:00.000Z'
+draft: false
+tags:
+  - firebase
+  - astro
+  - sqlite
+  - dart
+  - antigravity
+  - gemini
+  - ai
+  - youtube
+  - podcast
+  - java
+  - javascript
+  - typescript
+  - github
+  - web
+  - talk
+  - google
+  - adk
+  - genkit
+summary: >-
+  Demonstrates the creation of a complex, rule-grounded Dungeons & Dragons
+  campaign agent using the Agent Development Kit (ADK), specialized agent roles,
+  and advanced grounding techniques with Gemini 3.
+embedding: >-
+  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
+related:
+  - videos/ai/how-to-connect-interfaces-to-the-cloud-with-ai-agents.mdx
+  - videos/antigravity/how-to-build-with-flutter-and-google-antigravity.mdx
+  - >-
+    videos/firebase-studio/building-ai-powered-experiences-with-firebase-studio-and-firebase-platform-rody-davis.mdx
+  - videos/firebase-studio/from-prototype-to-ide-in-firebase-studio.mdx
+  - podcast/tech-walks/building-with-antigravity-gemini-cli-and-stitch.mdx
+last_updated_metadata: '2026-05-23T00:14:32.526Z'
+---
+
+import SocialEmbed from "../../../../components/SocialEmbed.astro";
+
+
+# Building a DND Agent with ADK, Antigravity, and Gemini 3
+
+<SocialEmbed platform="youtube" id="B6TcfdpkmxU" />
+
+## Description
+
+Nohe breaks down how he built a "Campaign Agent" for Dungeons & Dragons/Pathfinder. This system uses a loop of specialized agents—including a receptionist, storyteller, rules lawyer, and critic—to generate playable adventures grounded in actual rulebooks using Google Search grounding.
+
+We also explore the Agent Development Kit (ADK), discussing why we prefer it for building sequential and parallel agent loops, how it handles tools (including GitHub MCP), and how to visualize your agent's logic as a graph.
+
+In this episode:
+* 00:00 - Intro: What we do at Google (Firebase, Genkit, GenUI)
+* 01:22 - The state of AI Agents
+* 02:34 - Building a D&D Campaign Agent
+* 07:45 - The Architecture: Storyteller, Rules Lawyer & The Critic
+* 09:58 - Why loops are better than single-shot prompts
+* 12:41 - What is the ADK (Agent Development Kit)?
+* 16:16 - Using GitHub MCP and Tools
+* 18:25 - "That sounds like a Cron Job": When NOT to use AI
+* 20:30 - Testing Agents and Vertex AI optimization
+* 29:45 - Sneak Peek: Offline-first syncing with Better Auth & PowerSync
+
+Resources & Topics Mentioned:
+
+* ADK: https://google.github.io/adk-docs/
+* Firebase Genkit: https://firebase.google.com/products/genkit
+* Model Context Protocol (MCP): https://modelcontextprotocol.io/
+* Google Vertex AI: https://cloud.google.com/vertex-ai
+* PowerSync (Offline-First Sync): https://www.powersync.com/
+* Better Auth: https://www.better-auth.com/
+* Pathfinder 2e (Archives of Nethys): https://2e.aonprd.com/
+
+Hosts:
+* Nohe: Working on Firebase, Genkit, and ADK.
+* Rody: Working on Cross-platform full-stack AI and Generative UI.#AI #GoogleCloud #Genkit #ADK #SoftwareEngineering #DND #Pathfinder
+
+## Transcript
+
+### Intro: What we do at Google (Firebase, Genkit, GenUI)
+
+**0:00** · Hi, I'm Noey.
+
+**0:01** · And I'm Rodie. And today we're filming our first podcast here at the Google Plex. So, uh, this will be the ver worst version of our podcast we're ever going to record, but we're really excited to talk about AI today. Uh, before we get started, um, Noey, what kind of projects are you working on? What do you do at Google?
+
+**0:17** · So, uh, I work on Firebase, which is the platform as a service, you know, uh, uh, team or back end as a service, I should say. And we've been working on uh authentication traditionally, right?
+
+**0:30** · Security rules, o uh app check, that type of thing. But lately, I've been doing a lot with Genkit and the ADK and AI and agents.
+
+**0:39** · That's awesome. What uh languages do you like to work in?
+
+**0:42** · English.
+
+**0:43** · That's a good one.
+
+**0:44** · Yeah.
+
+**0:44** · Good for AI.
+
+**0:46** · No. Uh generally it's like Go, Typescript. Um I don't like Python, but to like write good ADK code recently, it's been a lot of drinking the Python Kool-Aid, you know.
+
+**0:58** · Yeah, that's interesting. And we'll uh be talking a little bit more about ADK later. Um, and for those that don't know, my name is Rodie. I'm also here at Google working on a bunch of AI stuff. Uh, currently focused on crossplatform full stack AI, uh, including generative UI, which is a kind of a new way to send dynamic components back to the client.
+
+**1:19** · But today, I really wanted to chat with you about like how we build agents. uh agents seem to be like this thing that everybody's talking about that they're uh involved in so many different parts of the application whether you're building a a client side agent to work with data or something that's hosted on a server like it just seems like a lot but I really want to find a way that we can practically build agents and actually break them down and how to build them. Do you have any like thoughts on that?
+
+### The state of AI Agents
+
+**1:50** · Like are you working with any type of agents?
+
+**1:53** · Download anti-gravity. Yeah.
+
+**1:54** · And just just say building me an agent, it would go boom, done.
+
+**1:57** · So that's actually my CLI too, right?
+
+**2:00** · Yeah, that's like a that's a good point because uh when you're working with an IDE, you have a coding agent and it has access to tools. It has access to context and they're probably one of the most uh contextheavy types of agents you possibly can build. But I feel like going from that to how do I build something for users that they can use is a big step. So like have you explored anything where you can start to break that process apart and be able to call it like an API?
+
+**2:31** · So uh I I had just finished wrapping up something uh and it what what it is is we play uh we play Dungeons and Dragons.
+
+### Building a D&D Campaign Agent
+
+**2:40** · Yep.
+
+**2:41** · I I play Roie shows up and he's like, "Oh god, what is this?" Uh, and in in the game, uh, I DM'd one time, right?
+
+**2:48** · And when you DM, you build out a story, a collaborative story with a bunch of different people, and you always want to try and like include everybody at the table, make them feel welcome, have some overarching goal that you're headed towards and things like that. And in my head, I was like, how can I make an agent that makes adventures that we would want to play, right?
+
+**3:08** · Yeah, totally. Uh because I'm sure you you probably know this like the first time you showed up we played a game you're like what in the world is going on?
+
+**3:15** · Yeah.
+
+**3:15** · Like who are these people? Why are they talking like this way and you know all these other things.
+
+**3:19** · Um so maybe for people like me I really didn't understand the concept of D&amp;D coming into it for the first time. So could you maybe explain like what is like a basic flow of like why you'd even want an agent in that process anyway?
+
+**3:34** · like uh like for me I I kind of just thought people got together and and and dressed stuff up and just did a bunch of stuff. But when I got into it, it's like it's like a really cool like systematic uh way to build.
+
+**3:47** · Yeah.
+
+**3:47** · So like there there's a story and there's like these rule books, right?
+
+**3:50** · And so you can buy these pre-generated adventures. You can play them uh without doing anything. And I was like, what if we created an agent that has like some lore behind it, right? M. So, you give it some like general guidelines and then you let it fill in the details, right?
+
+**4:05** · Uh, and then there's a rule system as well. So, you know, if you show up the first night you're playing ever and you want to be the wizard and you want to cast fireball right away, you're going to be disappointed.
+
+**4:15** · Yes.
+
+**4:16** · Yeah.
+
+**4:16** · Because you got to like level up to get to a certain spot where you can cast fireball or you might not be able to do anything else, you know?
+
+**4:22** · Yeah.
+
+**4:22** · I mean, wizard level one, you can't do anything. Fair. Yeah. So, uh, so you show up the first night, you're all excited, can't do it. That that's that's the thing is like with with D and D and Pathfinder and all these other tabletop role playing games, you have this thing where there's a system of rules and all these other uh boundaries that you have to abide by.
+
+**4:43** · Yeah.
+
+**4:43** · Right.
+
+**4:43** · And then once you have that uh you you can kind of fill in the rest with your own story. And yeah, uh going back to what I said earlier, like every player is at the table, they they create a character that has their own motivations, right? So, you're playing like an alchemist and your goal is to find I forget what it is. It's okay if you don't remember either. Yeah. My my character is Oz the wizard. Yeah.
+
+**5:08** · Um no relation. Uh and his goal is to like search the world for knowledge, right?
+
+**5:16** · Yeah.
+
+**5:16** · But, you know, we're playing this campaign called Abomination Bolts, and there's not really a lot of like knowledge finding other than being like, what's underground, right?
+
+**5:26** · Yeah. So, uh, just to give you a little backstory, we're going into this vault and it's underground.
+
+**5:33** · Yeah. And I'm in the pursuit of knowledge. So, of course, I'm going to be like, "What's underground?"
+
+**5:37** · Uh, but like you might have something that like you might have a character that says like, "Oh, I want to find out like who murdered my father or something like that." Right.
+
+**5:45** · And it's really hard to include those like side stories.
+
+**5:50** · Yeah.
+
+**5:50** · In the main quest, you Well, I think even more than that, it's like uh at least for me, it's hard to be like, "Okay, this is where my current state is. This is the state I want to get to." And like, how do I do this along the way without just going the the fastest possible path to optimize for speed? How do I optimize for adventure? And I think that's kind of something you're exploring.
+
+**6:10** · Yeah.
+
+**6:10** · So, uh the you know, 3:00 a.m.
+
+**6:13** · text messages, that's why I'm a little tired right now. But 3 a.m. text messages to you are, "Hey, Rodie, check this thing out that I built."
+
+**6:19** · Yeah.
+
+**6:19** · Uh, and it's it's a campaign agent, right? So, yeah, the when you have a bunch of adventures grouped together, it's called a campaign. Uh, and each the campaign agent takes your idea for what you want to accomplish in that game and it builds out a story that you can play and it it provides loot, progression, story progression, all these types of things that I honestly am just bad at because I I don't think I'm very creative.
+
+**6:45** · Uh, and it it fills in the gaps to allow everybody at your story not everybody at your story, everybody at your table to get a story that they'd want to play and and understand and work through, right?
+
+**6:56** · So, uh, for instance, this campaign agent, what it does is it tries to like sus out some details from me, right?
+
+**7:02** · It's like, hey, uh, you want to play a campaign like what kind of campaign are you trying to play? Is it like a western? Is it uh like high adventure, high fantasy? Is it?
+
+**7:13** · And for people that don't know, like a D and D campaign is built around a theme and ultimately set of characters that has like a very specific set of rules to follow.
+
+**7:21** · Yeah.
+
+**7:21** · Exactly. So, uh when when when it comes down to like trying to sus out those details, it it kind of sets the tone for how that agent will interact with you after that point. Right. So, uh so the campaign agent has this like receptionist and the receptionist is like, "All right, let me get some details and I'm gonna hand you off to like the writing room." Yeah.
+
+**7:43** · And uh what happens in the writing room?
+
+### The Architecture: Storyteller, Rules Lawyer & The Critic
+
+**7:45** · Well, the writing room has a handful of people in there. It has a story agent who fills in the story. So uh you might want to like fight a dragon this adventure or something, right? So you say, "Oh, I want to fight a dragon.
+
+**7:58** · I don't have to know anything about dragons. I don't even have to come up with a story about why you're running into a dragon in in in the basement, right? Uh, but somehow you're going to run into a dragon and it it'll go and and say, "All right, you you run into this and and it kind of adds in those details that you don't have." Then you have something that says like the character advancement. So, uh, you know, you have a character, I have a character, we all have our own goals in the game to advance our character storyline. So, let's say, uh, my character is in the pursuit of knowledge.
+
+**8:29** · I might find some ruby or gem in the basement that leads me into another side quest or another story.
+
+**8:38** · Uh, and it's it's one of those things to allow your characters to like build on Yeah.
+
+**8:42** · to what they have, right?
+
+**8:44** · Well, one of the interesting things, too, is like you're building not only your character development, but also team development cuz like those side quests like at first like seem like, well, if we're just this is our goal, like why are we not just going straight there? like we can do the minimal number of operations per level to level up and whatever. And it's like it's really not about that. It's like exploring the unexpected turns, being able to like find new ways to uh you know, basically combat and like apply different methods and I feel like it's uh yeah, it's super cool.
+
+**9:16** · How did these agents connect together? You know, like let's take a step back like um you have this idea for like what you want to build. Yep.
+
+**9:24** · You have this basically PRD for what these agents descriptions are. Like how did you go from taking that to code?
+
+**9:31** · Like what what did you look at? Was there like something prior works for like maybe even existing solutions that just weren't meeting it?
+
+**9:39** · Oh yeah. I mean so I what I used to do was just single shot everything, right?
+
+**9:43** · Yeah.
+
+**9:43** · So hop hop into the Gemini app and say like it context stuff it just let it go. Fill in as much as you can. I want this and this and this and this and this. And that did like okay like the first few times.
+
+**9:55** · Uh but like what I really got into and you know this because I talked to you about it ungodly amounts of times is that uh you can actually run all of these agents in like a loop. Right? So and and the way that I like to think about it is like Uncle Bob, right? He wrote a book about function declarations. And I always like to cite this when I think about agents because it's like what?
+
+### Why loops are better than single-shot prompts
+
+**10:17** · Have one function do one thing and very tested. Yeah.
+
+**10:21** · Yeah. Nothing else. Right. Every time you have one that does one thing really well, leave it alone.
+
+**10:26** · Yep.
+
+**10:26** · Don't do that. Right. So I have I I started about the storyteller, the player advancement. Then I have the rules lawyer that comes in and like he writes some rules that says like oh like he's the enforcer.
+
+**10:36** · He's the enforcer, right? He knows like what's challenging for like six level one characters, right? Yep.
+
+**10:42** · Uh and he knows like how to balance things out and which he would know because uh D&amp;D and Pathfinder have like a very extensive rule set open source.
+
+**10:51** · Yeah. And so you can actually like just crawl it.
+
+**10:53** · Yeah. Exactly. So uh we use like Google search grounding in the one that I have.
+
+**10:57** · Right.
+
+**10:57** · That's cool.
+
+**10:58** · And you can actually plug in like the Pathfinder rule book and all which is great. You can just upload the PDF which Gemini is great at. Yeah.
+
+**11:03** · Yeah. It can fit the whole PDF too, right? Yes. Which I do.
+
+**11:07** · And notebook LM which is also awesome for it. So, uh, once you have that done, the final step that I have is the critic, right? And this like I tell it, yeah, I I start by giving each LLM that I interact with like a persona, right?
+
+**11:23** · So, the first agent, I give it a persona. I say, you're the receptionist. You're trying to plan this out, whatever. The next one, I say like, you are, you know, the world's best storyteller, right? And you want to describe this world in all these different ways, right? And you keep going through these things. And then the final one is you are the world's biggest critic of people's homemade D&amp;D adventures. You hate everything about them.
+
+**11:48** · Yeah.
+
+**11:48** · Unless it meets like a certain bar of like adventure and quality.
+
+**11:52** · So you're almost building like a pessimistic uh gate to try to pass.
+
+**11:55** · Right. Yeah. And and then I have it give feedback and you tell it give me very specific and actionable feedback and give it a grade. M.
+
+**12:03** · And if the grade is A+, if it's given to you as an A+ grade, you keep it.
+
+**12:08** · Oh, nice.
+
+**12:09** · And you write it to disk, right? And then you exit the loop, right?
+
+**12:12** · So I I run all these four or five agents except for the receptionist in this loop.
+
+**12:18** · So how can you do that? Cuz like I feel like that's one of the things like when I was building with Genkit or a bunch of other just maybe the API directly, I kind of had this idea and I felt like I was just building a lot of the boiler plate uh by myself. Uh what I've been using recently, I didn't think I would like it, right? And then it turns out I really like it because I've been doing it for everything is I've been using the ADK.
+
+### What is the ADK (Agent Development Kit)?
+
+**12:41** · Cool. And so what is ADK?
+
+**12:43** · It is the agent development kit and it's available in Python, Go, and Java.
+
+**12:49** · Sweet. Yeah. And then so um for those that may not know, it's actually, you know, fully open sourced and you can go check it out on GitHub. But why why does something like ADK exist? Like I feel like there's a lot of you know why not just use lang chain or like all these different adapters like or the API directly like um what are the things that you found in it that you're like oh this is like solving that thing that I was trying to do.
+
+**13:15** · So I can't speak to lang chain because I've never used it.
+
+**13:17** · Yeah. I've heard about it. I know people like it.
+
+**13:20** · Fair. Great. Uh, but for me, the thing that I really like about it is how well it gives me like the tools that I need to build these like looping, sequential agents, all these types of things, right?
+
+**13:32** · Which they call, I believe, workflow agents, do they?
+
+**13:35** · Yeah.
+
+**13:36** · Okay. Yeah. Oh, yeah. Yeah.
+
+**13:38** · Sequential looping.
+
+**13:39** · You read the docs right before we met, didn't you?
+
+**13:41** · Yeah. Sequential looping and something else.
+
+**13:44** · Parallel. Parallel.
+
+**13:44** · Parallel. Oh, yeah. Yeah. The parallel ones are cool, too.
+
+**13:46** · Yeah.
+
+**13:47** · Yeah. I I should have used the parallel one for like the Yes. Yeah.
+
+**13:51** · Which is cool because you can say like here are these things that are independent and can happen and then you can do these all at once and do like a race. Um I feel like writing that kind of code in ADK made it a whole lot easier to see oh my agent is a graph and here's how these nodes are connected together whereas I didn't really find that solution with other stuff.
+
+**14:10** · And I know there's things like um lane chain graph which some people uh will probably recommend but I feel like ADK is like taking a agnostic approach to it and be like you can write it in whatever language you want. You can deploy it really easy on cloud run, you know, well, any languages you want, but basically anything beyond just JavaScript, you know, like that's fair.
+
+**14:32** · You can uh you can bring these cloud first languages and you can deploy it on your own stuff, deploy it to cloud run really easily with a Docker container.
+
+**14:40** · And I feel like that's where I was like, oh that that's like a really cool. And then also like the telemetry, the logging, all of that just makes it really easy. The dashboards, the dev tools. Yeah. One thing I do like about the ADK is because as you said it's like graph based. You actually get to see the graph.
+
+**14:55** · You do and like on the events right when you when you get to see that like pop up in the dev tools is so awesome.
+
+**15:02** · And they also just launched uh an ADK visual builder where you can actually start to compose these together as well to help prototype that just came out. So we can Is it locally or is it I believe it is local. Yeah. So I can uh we can link the blog. But um I just I really like the concept of starting to think about agents and okay I have this idea I can start to really quickly to put these prompts into these individual nodes. Every node can have its own tools.
+
+**15:28** · I think that's something that's a big unlock when they come to something like this when you know when you're used to just making it work as really good in a oneshot you're like here's like a hundred tools and here's all the access to stuff. But with ADK, you can be like if you're building a customer support bot, for example, like you always have to query the orders. You always have to make sure they have a valid account, you always and you you can guarantee that all the nodes will work.
+
+**15:55** · You're right.
+
+**15:55** · And every time it's either going to fail or it's not.
+
+**15:57** · And you can have like each node do something specific, right? So like I think there's some portion of it where it's like, okay, I I really do want this one to have 15 tools available to you.
+
+**16:06** · Oh, totally. And like a bigger model and some you can have a really tiny model.
+
+**16:10** · Yeah.
+
+**16:10** · Yeah. You know, it's funny that you bring up the the tools because I actually ran into, you know, a fire with this recently. I know where I I was trying out the GitHub MCP server inside the ADK and I was like, you know, hacking away, getting it to work and I was like, "All right, like figure out like the code to fix this bug, right?" Yes. I was testing uh Gemini 3 Pro preview. When I got done testing it, uh I set it up to like, oh, solve this thing for me. I was running it in like a looping agent.
+
+### Using GitHub MCP and Tools
+
+**16:36** · I gave it like 50 max iterations, some high number, which by the way, for people wondering, is a way to actually limit how many times this workflow runs. So you don't have to write any of the code. You can have built-in rate limiting, built-in like control over this thing will never exceed a a certain type of thing, which is very important when you're deploying an agent uh where you are not really as human in the loop and can control.
+
+**17:02** · Yeah. So uh I got up and I went to go get something for myself. Uh, probably something to eat, probably take the dog out for a walk.
+
+**17:10** · And when I came back, it had actually submitted a PR because I didn't realize that it had that much like I didn't realize the the tools.
+
+**17:18** · I was like, I I don't even know. Like luckily, it was Gemini Pro 3, right? So, it did compile and run, fix the thing.
+
+**17:24** · Fortunately, it didn't like ask anybody to review it. I got a ping from somebody. I was like, did you mean this?
+
+**17:31** · Wow. Yeah. I mean, that's a that's a cool call out because I feel like tools I mean, there's some recent uh studies that even show that like you can spend up to like 50k on tokens just in tools themselves.
+
+**17:42** · Oh, in the definitions.
+
+**17:43** · Yeah.
+
+**17:43** · And there's like a new spec that's even kind of aiming to like dynamically find them. But I think that's kind of um kind of a more extreme side of it, but I feel like the ability to choose that like, hey, I know this customer support node is only ever going to need this tool or these three tools, right? And you can say you can support everything that this node can do. You can have a very specific prompt and you know that every time it calls it's going to work as expected and when it doesn't you can see the evals on why it's not and so you can write tests.
+
+**18:14** · Now here's the interesting thing. You said every time you call this node you know it's going to work. However, that seems like it's deterministic.
+
+**18:22** · That's fair. Well and I I've run into this issue where you know Jeff Yeah, I love Jeff. Jeff is great, but he grounds me to earth so fast sometimes.
+
+### "That sounds like a Cron Job": When NOT to use AI
+
+**18:32** · Yes.
+
+**18:33** · I like we ran into this thing where we were writing and or I say we Yeah.
+
+**18:37** · I was like, Jeff, I'm gonna build this agent that does this, this, this, and this, and this. I've gotten to here. He's like, you know, that sounds like a crown job. And I was like, thanks, Jeff.
+
+**18:47** · Thanks, Jeff. You're right.
+
+**18:49** · And I I think that there's something about, you know, obviously we're both very excited about Yeah. everything that you can do with AI and and plugging in the different bits and all these things. Like I'm starting to build agents for myself.
+
+**19:03** · Oh, all the time.
+
+**19:04** · Every little task. I'm like, you think in agents and you see agents as the hammer. Yeah.
+
+**19:09** · Yeah. It's like when when I first got uh into Android development.
+
+**19:12** · Yeah.
+
+**19:13** · God, 10 years ago now. And I was like, oh my gosh, I'm moving to an app that does this. Y and then I would show it to people and they're like it pen and paper. That's that's how notes work.
+
+**19:26** · It exists. Yeah.
+
+**19:27** · Yeah. Yeah. Stick it on the fridge. That's your to-do list, you know.
+
+**19:31** · And I just I got so amped up on that.
+
+**19:34** · And and I think there's there's a part where, you know, I think I'm at fault at this. I don't know if you are, but you got to like pull back and be like, is am I actually doing the right thing here?
+
+**19:46** · See, like, am I I'm installing Spanner for this like very light thing. Maybe there's another solution or or maybe like I don't want to use AI to do this thing. I could do deterministic.
+
+**19:57** · Right. Exactly. Yeah. So, when you go back to that uh that customer service example, Yeah.
+
+**20:03** · do you think in your head, were you thinking deterministically or were you thinking something like you could give it like some kind of like rough guidelines? So, I kind of actually think that um maybe the way I like to approach AI is if you have good enough tests and you have good enough filters, if even if you have a bunch of bad responses, but only the good ones make it through. So, like is that considered success?
+
+**20:28** · When you say tests, yes, define tests.
+
+### Testing Agents and Vertex AI optimization
+
+**20:32** · So, you could do testing with fuzzy or uh um automated integration or simulation style testing. M but really you want to say like and I think simulation testing is probably the best like analogous way to test AI for this where you say I have an agent or like basically a customer in this use case.
+
+**20:52** · This is the type of state they're in and you can say here are the tools that they have available here they can they can call the thing like do they how many times do they resolve to like a correct state. Oh, okay. So, you run through these scenarios almost like user journeys. And do we have another word for this?
+
+**21:07** · CJS or what were you thinking?
+
+**21:09** · I was thinking evals.
+
+**21:11** · That's fair. That's a good point.
+
+**21:12** · Are you referring to evals?
+
+**21:13** · I mean, it is a form of evals for sure.
+
+**21:15** · Okay.
+
+**21:15** · Yeah.
+
+**21:15** · Yeah. Yeah. Yeah. But it's one of those things where uh most of like what I work on right now is trying to get things like to a good enough running state where I manually test it. I know it's like the wrong way to do it though.
+
+**21:25** · Yeah.
+
+**21:26** · And I really do want to get back into eval. And there's actually like a really cool vertex. Totally uh AI that remember we were trying to move to Dan and he said like you just plug in your prompt in the model and it'll like optimize your prompts for you.
+
+**21:38** · Exactly. Yeah. There's so many cool tools now that we can use to help take our agents to the next level.
+
+**21:43** · I'm wondering if that works for if it's on a per a like per prompt basis or if it's like on a per giant. I would assume it's a bare minimum of per prompt basis.
+
+**21:55** · Yeah.
+
+**21:56** · But I'm I'm sure you could do it other ways too. So, getting it back to the the agent builder, um, what language did you decide to write it in? Because I feel like you have three options and you know, I know you may prefer Go, but I prefer Go. Uh, but it feels like the Go docs aren't necessarily there yet, which is very new to be clear as they came out last week.
+
+**22:19** · Yeah.
+
+**22:20** · So, I was like or two weeks ago or something, right?
+
+**22:22** · There's there's things in it that I feel like are there's things that might not be there. So I think it's also mapping a paradigm that doesn't exist necessarily one to one.
+
+**22:31** · Yeah.
+
+**22:32** · But still does an incredible job.
+
+**22:33** · Oh yeah, it does. Uh I think the Python one is a little bit further ahead.
+
+**22:37** · Yeah. Which I believe it was the oldest.
+
+**22:40** · It was the first one.
+
+**22:41** · Yeah, that's what Yeah. Okay. Yeah, that's the oldest.
+
+**22:43** · Yeah.
+
+**22:43** · And then Java Java was next. Um I chose just to go so I when I struggled with Go, I jumped out to Python. I remember doing I was doing like a You remember those training courses? They're like quick labs or something, I think.
+
+**22:56** · Yeah. Uh I was doing the training courses and I didn't know this but the Python one actually can wrap lang chain Yep. tools and other things.
+
+**23:06** · So I feel like it's a good base to set one totally because you are able to actually start from hey let me just do this like really basic and some existing work. There's a big ecosystem. Yeah. I feel like I was shocked uh when you sent me the example looking at the Python ADK code. Like it's amazing how much of the file is for your agent. Like like almost all of it's just your prompt and like a minimal function for like a tool or something like it.
+
+**23:33** · It really felt like it was not that much decoration or boiler plate. three lines of like maybe imports then like three lines saying like this is the agent, the name, the description and then 40 lines of the prompt.
+
+**23:47** · Yeah. Yeah. Yeah.
+
+**23:48** · Yeah.
+
+**23:48** · Totally.
+
+**23:49** · Yeah.
+
+**23:49** · It was it it's and it's you don't have to do anything special to call it either, right? It's just like ADK web and you get like the web UI and it spins up the agent all that.
+
+**23:59** · Totally. Yeah.
+
+**23:59** · Um with Go I think you have to like set up the launcher, the runner and then you call ADK or you say go run main.go agents.go go web UI like and you pass in like a bunch of arguments to get it to actually like launch.
+
+**24:13** · Yeah.
+
+**24:13** · You know, I'm sure it'll get better over time.
+
+**24:14** · Totally. And so like what are your next steps for this agent? Like do you feel like you did everything you set out to?
+
+**24:21** · You feel like there's like some edge cases or do you feel like maybe an agent wasn't the right way to build it at all?
+
+**24:28** · Like cuz I feel like sometimes we we need to look at it from all angles.
+
+**24:31** · So uh what the output was like good.
+
+**24:35** · Yeah.
+
+**24:35** · I feel like it wasn't detailed enough though. So I wrote between like 230 and three and then it's like it works. I I want to get more details out of it. I actually want to like ground it in actual JSON data about Pathfinder.
+
+**24:50** · Yeah.
+
+**24:50** · So there's like even a database you can connect to.
+
+**24:52** · Yeah. So I want to ground it in real data.
+
+**24:54** · Yeah.
+
+**24:55** · Like you said from SQLite or wherever.
+
+**24:57** · Yeah. So you can use like the MCP toolbox and have SQLite Postgress my SQL.
+
+**25:01** · Yeah. And then because right now like when I ask it for stats, it will do the Google search.
+
+**25:08** · But if you ever Google search Pathfinders things like, oh, I want like the wizard to get like a really cool weapon. Sometimes it'll pull from Pathfinder 1 or pull from Pathfinder 2 before the remastered edition.
+
+**25:18** · Well, for people that want like I there's actually revisions that like add new stuff and that was a big thing for me. I'm like there's a lot of times in our campaign of like oh blah blah blah and it's probably like outdated.
+
+**25:28** · Yeah.
+
+**25:28** · So, uh I want to pull from that. I think the storyteller just needs like a little bit of work. The mon the monster manual is probably one that I want to load in there. Right now, what I've noticed is it creates monsters. Yeah.
+
+**25:39** · Rather than references something to like pull existing monsters.
+
+**25:43** · So, okay, maybe this is a good refactoring point with ADK. How easy is it to be to change out an agent to add a new agent in the middle of some kind of a process or even just to like approach it differently?
+
+**25:55** · That is a great question. I think like dropping in and out of agents, yeah, is pretty easy, right? You just swap them out. So like when you have the ADK definition, Yeah.
+
+**26:05** · of like your loop agent or whatever, there's something that says like sub agents.
+
+**26:10** · Okay.
+
+**26:10** · And it's an array of other agents. You can just drop them in and out. Pop them in. It's a graph. Yeah.
+
+**26:15** · Yeah. It's a graph, right?
+
+**26:16** · Uh the one thing that is probably going to be hard about that is uh testing the results. So right now I don't test any of my agents in a vacuum.
+
+**26:27** · So this is come comes back to the Vert.Ex AI uh service that will actually optimize your prompts and stuff.
+
+**26:33** · Y um or basically rewriting your prompts, right?
+
+**26:36** · Rewriting your prompt.
+
+**26:37** · Yeah. Yeah. So I would probably want to jump into that service to get it to rewrite my prompts for me.
+
+**26:45** · So that way I'm not spending a bunch of time running this giant agent or like running every agent in isolation. And if there's something off the shelf that already works, I mean, that's the whole thing is we want to try to find things that let us focus on other stuff, but let us build our agents.
+
+**26:58** · Exactly.
+
+**26:58** · Yeah. Yeah. So, I think I think it should be pretty easy, but it's just one of those things where um I haven't tried it yet.
+
+**27:06** · Yeah, totally. Well, uh I feel like it was kind of a cool way to dive into an intro into agents.
+
+**27:13** · Yeah.
+
+**27:14** · Uh there's I mean obviously a lot more that we have to talk about, but uh yeah.
+
+**27:18** · Any any other last thoughts on the the dungeon agent?
+
+**27:22** · No, not off the top of my head. Um it was like a lot of fun to build.
+
+**27:27** · Yeah. And really fast, too. I mean, like it really did not take that long. Yeah.
+
+**27:30** · You know, the one thing that I would do like not not the one thing I would do different next time, but like the next thing I think I'm going to have to like do is stop myself from building so many.
+
+**27:41** · Yeah.
+
+**27:42** · Because like every time I pull out my laptop now, I'll start working on like doing one thing or some other thing. I'm like, you know what? I bet I could write an agent that would take like an arbitrary input and I could just like say like, "Oh, go solve this thing." It'll go and solve it. Right.
+
+**27:54** · So, like Ash and I have one that we want to build for like her job and like Totally.
+
+**27:58** · There's there's like small little things that, you know, I just have a sledgehammer. I just want to hit it on everything.
+
+**28:04** · Totally.
+
+**28:05** · Yeah. So, that's awesome. Yeah.
+
+**28:07** · I'm gonna have to like restrain myself from doing this, you know?
+
+**28:10** · That's fair. I mean, I feel like uh it's awesome that we can build them so quickly and be able to deploy them. I mean, sometimes it only needs to exist for a period of time. I think that's actually one of those things with agents is like, do you build it for scale or do you build it for the task? And sometimes I'm like, this thing will still save me time even if I'm only using it for a week. Like it's like it's going to do everything I need. I mean, my process might change everything else, but like in this moment, it has the stuff it needs in the context. Yeah.
+
+**28:38** · Yeah.
+
+**28:38** · Well, it's it's crazy. Like the the other day, Arthur was asking me for some like stats to be pulled and I was like, I know I I know I can write this myself.
+
+**28:47** · Yeah.
+
+**28:47** · Let me just hand this off to anti-gravity and anti-gravity just built like this oneoff tool for me. Yeah.
+
+**28:52** · Well, what's what's crazy though is it's not even so much like I can do that myself. Sometimes it's like there are too many like smaller tasks that all depend on other tasks that sometimes it's just amount about like finding that data, filtering it down, doing a bunch of this boiler plate to where then you can come in and focus on it. One of the things I really love about anti-gravity is the uh agent manager. So you can literally be just kicking off that work, go on and do something else. Oh, we got a notification. It's done. Let me go do that report. Oh no, I need to change it.
+
+**29:20** · man. Well, I uh it's been awesome to be able to talk about uh uh ADK and agents and like kind of like where this space is heading and um anything you're going to be maybe researching in the next couple weeks.
+
+**29:33** · God, I don't know. I just get hit with so many things. I you know, there's a lot of things I'm researching that I'm not ready to like pull back the covers on.
+
+**29:41** · Yeah.
+
+**29:42** · Maybe I'll have to listen for a future episode.
+
+**29:44** · Yeah, that'd be great.
+
+### Sneak Peek: Offline-first syncing with Better Auth & PowerSync
+
+**29:46** · Yeah.
+
+**29:46** · I feel like I'm uh I do a lot of stuff in Dart and Go and C and SQLite and stuff like that. And uh lately I've been exploring how to uh build an offline first syncing solution that uses better off for authentication with an optional login for people that don't know is a self-hosted off that connects to your database. So you could use fire store, you could use SQLite, Postgress, doesn't really matter. And then uh it uses power sync.
+
+**30:12** · It allows you to like sync some type of data like in a really true deterministic way that uh lets you have offline. And the whole thing including the optional login, the optional sync was all built with anti-gravity. I built it over the course of probably 10 hours with Gemini 3 and I used some Gemini Deep Researches to be able to ground the context and I built this whole thing and it was so amazing how I could write the test coverage, I could create the plans, I could be very targeted.
+
+**30:43** · So, uh we'll have to listen for a future episode on a deep dive, but I have been really having a fun time with that. Awesome.
+
+**30:49** · This was fun.
+
+**30:50** · Yeah, absolutely. Yeah. Um, you can uh find all the links in the show description and please let us know if you have any other feedback on things you want to hear about. Uh, you can find us want to hear about maybe I'm talking too much.
+
+**31:01** · Never talk about that again.
+
+**31:03** · Yeah. Uh, get that weird guy off of there.
+
+**31:04** · Totally. You can find someone near you.
+
+**31:06** · Yeah.
+
+**31:08** · You can uh find us both on socials and of course here at Google.
+
+**31:11** · Cool. All right. See you.
+
+**31:12** · See you. Bye.

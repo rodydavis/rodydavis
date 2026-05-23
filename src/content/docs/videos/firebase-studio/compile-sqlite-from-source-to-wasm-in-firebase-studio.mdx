@@ -1,0 +1,202 @@
+---
+title: Compile SQLite from source to WASM in Firebase Studio
+date: '2025-05-14T00:00:00.000Z'
+draft: false
+tags:
+  - firebase
+  - astro
+  - sqlite
+  - gemini
+  - video
+  - youtube
+  - web
+  - google
+summary: >-
+  A step-by-step tutorial on using Firebase Studio, Nix, and Gemini to clone
+  code, manage dependencies, and compile SQLite from source to WebAssembly
+  (WASM).
+embedding: >-
+  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
+related:
+  - videos/firebase-studio/from-prototype-to-ide-in-firebase-studio.mdx
+  - >-
+    videos/firebase-studio/building-ai-powered-experiences-with-firebase-studio-and-firebase-platform-rody-davis.mdx
+  - videos/firebase-studio/import-existing-projects-into-firebase-studio.mdx
+  - dart/export-sqlite.md
+  - videos/firebase-studio/start-prototyping-with-firebase-studio.mdx
+last_updated_metadata: '2026-05-23T00:17:54.332Z'
+---
+
+import SocialEmbed from "../../../../components/SocialEmbed.astro";
+
+
+# Compile SQLite from source to WASM in Firebase Studio
+
+<SocialEmbed platform="youtube" id="hox-Sv8ZHxE" />
+
+## Description
+
+Rody, a Developer Relations Engineer for Firebase Studio shares how easy it is to get started with a blank template in Firebase Studio. In this video, he shows how to clone your code inside a workstation and use nix to install dependencies. Watch a step by step tutorial on cloning code, setting dev.nix, web preview, and leverage Gemini in Firebase Studio.
+
+Chapters:
+0:00 - Get started
+1:16 - Cloning SQLite and Emscripten 
+1:42 - Set up the VM
+3:47 - Configure web preview
+5:15 - Leverage Gemini
+5:47 - Recap
+
+Firebase Studio → https://goo.gle/firebasestudio 
+
+ #Firebase #SQLite #WASM #NixOS
+
+Speaker: Rody Davis
+Products Mentioned:,  Firebase,
+
+## Transcript
+
+### Get started
+
+**0:00** · \[MUSIC PLAYING\] RODY DAVIS: Hi, my name is Rody, DevRel for Firebase Studio.
+
+**0:07** · And today, I want to show you how easy it is to get started with our blank template, where you can clone your code and get started with Nix.
+
+**0:14** · The first step is to go to studio.firebase.google.com, and then click on New Workspace.
+
+**0:20** · On the top right, you'll see Add New Empty Workspace.
+
+**0:23** · And when we click that, we're brought to our new workspace creation page.
+
+**0:26** · Here you can add any name for your workspace and not having to worry about name collisions.
+
+**0:31** · In this case, we'll just do App, and then hit Create.
+
+**0:37** · After our workspace is created, you will see the readme, dev.nix, and Gemini Chat all come up at the same time.
+
+**0:44** · Inside of dev.nix, this is where we can define all of our dependencies for our code.
+
+**0:49** · This is something that is configured at the OS level using NixOS.
+
+**0:54** · We take advantage of Nix packages, which you can find on NixOS packages.
+
+**0:59** · We can have custom hooks to set up the web previews, as well as the onCreate and onStart hooks, which get run when the workspace is first created and every time that you reload the page.
+
+**1:09** · Today, we're going to be compiling SQLite from source, compiling it to WASM, and setting it up with the web preview.
+
+**1:15** · So the first step is to go ahead and clone SQLite.
+
+### Cloning SQLite and Emscripten
+
+**1:19** · We can open up the terminal and then clone SQLite from the Git mirror.
+
+**1:25** · The next step is we need to clone Emscripten so we can compile SQLite to WASM.
+
+**1:31** · So we can do that by running the following command.
+
+**1:34** · Once that's done, we will have both SQLite and Emscripten cloned inside of our workspace.
+
+**1:41** · Next, we need to set up our VM so that it has all the required dependencies so that we can compile SQLite and use both Python and C toolchains.
+
+### Set up the VM
+
+**1:50** · So here we can go to dev.nix and then uncomment the Python packages because that's actually what we need.
+
+**1:58** · Here, above packages, you'll see this Add Packages button.
+
+**2:01** · This will open up the NixOS package registry, which we can use to search for packages.
+
+**2:07** · In this case, we need GCC.
+
+**2:09** · And in just a second, we'll see that it pulls all of the packages related to that name.
+
+**2:14** · We can go ahead and add that to our packages array.
+
+**2:17** · We also need to add gnumake, which we can also do by searching for gnumake and then clicking on the first one in the list.
+
+**2:24** · After that's done, we will see that this button on the bottom right says Rebuild Environment.
+
+**2:29** · This is what Firebase Studio has to do every time that we update dev.nix.
+
+**2:34** · Since it's an immutable way to specify our dependencies, it'll create a new snapshot that will rebuild the new environment.
+
+**2:41** · And if there's any errors, we can roll back to the previous version.
+
+**2:46** · This usually just takes a couple seconds, so we can wait for that to complete.
+
+**2:49** · After that's done, we now have Python, GCC, and gnumake all set up and registered in our VM.
+
+**2:57** · This means that it's available both in the terminal and in the web previews.
+
+**3:01** · Let's first go ahead and build Emscripten from source, which we can do so by navigating to the directory and then running the following command.
+
+**3:10** · After Emscripten finishes installing, we now can activate it, which we can do so by modifying the command.
+
+**3:18** · Next, we can copy this line, which we will paste into the terminal, which will make it available for the current terminal session.
+
+**3:24** · Next, we need to compile SQLite.
+
+**3:27** · So we can do that by navigating up and into the SQLite directory.
+
+**3:31** · The first step is to configure and enable all the files.
+
+**3:38** · Next, we need to create the SQLite C file, which we can do by running make sqllite3.c.
+
+**3:46** · After that's done, it's time to configure the web preview to use the JSFiddle that is included inside the SQLite source code.
+
+### Configure web preview
+
+**3:54** · To do so, head over to the dev.nix, and navigate down to the Preview section.
+
+**3:59** · We can go ahead and uncomment this preview block, but we need to change it for our settings.
+
+**4:07** · First, we need to add a change working directory so that the preview is actually started in the correct subfolder.
+
+**4:13** · Everything in Nix requires a semicolon to be at the end, so make sure not to forget that.
+
+**4:18** · And since we already have Python installed on our VM, we can actually take advantage of the Python static HTTP server.
+
+**4:24** · In Firebase Studio, all previews run on a specific port, so make sure to pass that in with an uppercase PORT to your server command.
+
+**4:33** · And after we do that, we just have to rebuild our environment one more time.
+
+**4:38** · After our IDE rebuilds, we can then go to the Web tab, after which we'll see this JSFiddle up and running.
+
+**4:45** · What's really cool about this is it's using the SQLite WASM build that we just compiled, which also depended on Emscripten, all with their own local environment.
+
+**4:55** · To verify that this is working, we can just write a simple SQL query.
+
+**5:08** · After we do it, we can hit Run, and we can see Hello Firebase.
+
+**5:12** · All right, this is awesome.
+
+**5:14** · Now let's use Gemini to update files in our project.
+
+### Leverage Gemini
+
+**5:17** · When you click over on the Gemini tab, you'll see that there is a model picker where you can choose anything from Gemini 2.5 Pro to Flash and other models, even specifying a custom model ID.
+
+**5:27** · We can also include attachments here with the bottom left icon.
+
+**5:31** · But in this case, we want to update our readme with the current state of our project, so we can just ask Gemini to do this.
+
+**5:38** · We can go ahead and give it a simple prompt.
+
+**5:40** · And after it's done, it's going to suggest an edit, which we then can review or just accept.
+
+**5:46** · So it looks like everything's coming together.
+
+### Recap
+
+**5:48** · We cloned both Emscripten and SQLite from source and compiled them.
+
+**5:52** · We then set up our dev.nix to have all of the dependencies for our NixOS environment set up, which we can then go and review in dev.nix.
+
+**6:01** · We also set up the web preview to be able to run the actual SQLite WASM file inside of the web preview using that special port.
+
+**6:10** · And then we leveraged Gemini to be able to read our files and run terminal commands.
+
+**6:15** · I hope this gives you a brief overview of the capabilities of Firebase Studio and how easy it is to get started with a blank template.
+
+**6:22** · If you have any questions, make sure to reach out and let us know down in the comments if you have anything that you'd like to see next.
+
+**6:28** · Thanks for watching.

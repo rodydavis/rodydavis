@@ -1,0 +1,370 @@
+---
+title: Flutter Testing and AppStore Rejection
+date: '2023-11-07T00:00:00.000Z'
+draft: false
+tags:
+  - flutter
+  - firebase
+  - astro
+  - sqlite
+  - dart
+  - video
+  - youtube
+  - podcast
+  - swift
+  - java
+  - travel
+  - github
+  - codemagic
+  - web
+  - talk
+  - google
+summary: >-
+  This discussion explores comprehensive best practices for Flutter testing,
+  covering unit tests, mocking, state management, code coverage, crash logging,
+  and navigating AppStore rejection hurdles.
+embedding: >-
+  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
+related:
+  - >-
+    podcast/creative-engineering/building-the-flutter-widget-maker-and-storyboard.mdx
+  - podcast/creative-engineering/flutter-desktopweb-and-vr.mdx
+  - podcast/creative-engineering/talking-about-riverpod-with-remi-rousselet.mdx
+  - flutter/cheat-sheet.md
+  - >-
+    podcast/creative-engineering/flutter-state-management-and-dart-nullability-feat-simon-lightfoot.mdx
+last_updated_metadata: '2026-05-23T00:14:09.951Z'
+---
+
+import SocialEmbed from "../../../../components/SocialEmbed.astro";
+
+
+# Flutter Testing and AppStore Rejection
+
+<SocialEmbed platform="youtube" id="LAcE2YfQT2Q" />
+
+## Description
+
+Follow Up
+- Rody experiences with apple approval
+- Rejections
+- Recourse
+- Options
+- 2 million people using flutter
+
+Testing
+- State management and testing trade offs
+- UI logic and replaying capabilities
+- Logging
+- Mocking
+- Smoke Tests
+- MVVM
+- Firebase
+- Filesystem
+- Folder Structure / Layers
+- Packages that can be tested
+- Code Coverage
+  "flutter test --coverage"
+
+  https://codemagic.io/start/
+  https://sentry.io/welcome/      
+  https://pub.dev/packages/mock_cloud_firestore
+  To visually run widget tests: flutter run test/widget_test.dart
+  Suggested finders: Just tap anywhere when running a widget test using flutter run      
+  https://pub.dev/packages/device_preview  
+        
+Logging
+- Sentry
+- Crashlytics
+- Flutter Testing
+- Best Practices
+- Flutter Driver
+- Unit Tests
+- Flutter Octopus
+- Flutter Interact
+- Flutter VR Testing
+- Xcode testing, Android testing
+- Flutter i18n Localization
+
+Norbert Kozsir - @norbertkozsir
+
+https://twitter.com/norbertkozsir
+
+https://github.com/norbert515
+
+
+Rody Davis - @rodydavis
+
+https://twitter.com/rodydavis
+
+https://github.com/rodydavis
+
+https://youtube.com/rodydavis
+
+https://rodydavis.com
+
+Our podcast player: 
+
+https://rodydavis.github.io/creative_engineering/
+        
+Follow on Twitter:
+
+https://twitter.com/CreativeEngShow
+
+## Transcript
+
+**0:00** · welcome to creative engineering with me I have my co-host sbert today we're going to be talking all about testing so how have you been recently I've been great I don't know how it's um for you but quarantine time flies like I don't know like since the last episode it just failed like was a few hours ago um how's
+
+**0:18** · it been for you yeah I uh I definitely have the same experience it feels like you know every day is a Saturday so it's like you Monday starts and then oh it's Saturday again and then it feels like uh I feel like I'm getting a lot done but at the same time it just you know if you're not careful it just you uh you really start to yeah time really flies that is true um in one of your recent tweets I've seen you had some problems with apple and one of your test Labs um do you want to share your story yeah so
+
+**0:48** · this has been um something that's been pretty difficult like over the course of like more than a year I created this uh flutter application that allows you to to control real Tesla vehicles and it was super cool I uh I've been using it every day for over a year been constantly improving it um even worked with my sister to be able to do the animations for it she created it all in RVE and you know hooked up all the um different nodes to be able to like animate any part of the car so yeah we
+
+**1:22** · we've sunk a lot of time into this but yeah so I got the result from Apple saying yeah we're not going to move forward with it we're going to reject all these updates because we feel that it is in violation of our policies and so by appealing multiple times um I keep
+
+**1:42** · getting the same person and multiple times they keep saying um that they have changed their guidelines to where they're not allowing people to release applications that control Hardware that is not made for the manufacturer which was crazy and I was like well maybe they're just meaning cars but when I asked them they gave me the example of well a developer cannot create an app that can control a Samsung TV and them not being Samsung and I said that was
+
+**2:10** · kind of crazy and there's a ton of apps that are doing this like are existing applications going to be able to get updates and they said uh they weren't able to comment about it and so that was really frustrating um as well as you know there's many other third party Tesla apps on the App Store um and my goal with mine was to make one that um was focused on UI and user experience because I felt like a lot of them had some stuff I could improve um but yeah
+
+**2:37** · uh they have said you know we're not accepting any new applications that will control hardware and the only way that I can get my app approved is if uh Tesla explicitly gives me a letter saying that I can exist on the app store which of course this is a owner API meaning that you have to own a Tesla car to be able to use this API anybody with a Tesla app
+
+**3:01** · um has to have access and log in with credentials so yeah um one thing that could help is if Tesla has an official ooth you know guidelines but based on the post I made on Reddit I feel like there may be something bigger going on especially since you use your phone app as a phone key Tesla may be working with apple directly to uh take down some third party applications or at least prevent new ones so that's uh something
+
+**3:28** · pretty interesting um people have definitely been bringing up some areas that I wasn't considering for uh before but you know it's uh also just part of this process has just kind of taught me about like how to deal with rejections on the App Store because for me I'm am thankful that I have a ton of users on Android even though I don't personally use it on Android and then I also have a lot of people on the test flight um but it really things like this really pushed me towards U pwas all the time I
+
+**4:01** · absolutely love the App Store be able to do a lot of things on there um you get to do a lot of you know offline access and of course you can do this with PDA pwas but there's areas in which Native applications can just kind of get more raw performance out but at the same time
+
+**4:18** · one nice thing about the web is that it's open and then that anybody can release an application you know there's no gatekeeper um yeah and it just has really started to pushed me towards you know making apps for the web first and then for the App Store second um one
+
+**4:37** · caveat with this is you know desktop you can release outside the app stores which is really cool and I think that's an awesome feature of it but yeah I just curious your thoughts on you know gatekeeping and if you've had similar experience with Google Play yeah like it really sucks that um you can't do too
+
+**4:56** · much because the App Store is the thing people are using like are there are options to distribute apps on iOS or is it exclusively App Store yeah so when it comes to you know releasing other applications the only real thing that you can do is um you know have like a
+
+**5:15** · Enterprise profile which they've been really um you know cutting that down recently because if you release an app uh with a provision profile for example on the App Store the only way that they can install it is if they go and install the profile directly and then they get access to the app via a link or whatever but um I know there was like a class action lawsuit against them recently about the fact that you couldn't install third party apps Sid loaded so yeah it's
+
+**5:44** · it's pretty interesting um one of the reasons why the app store is so protecting of this is because you know they want their their cut of all the sales so if you're on the app store for example you have to abide by the guidelines which means that you give like 30% of your inapp purchases you give 30% of your subscription cost and
+
+**6:06** · yeah you're not allowed I don't know people know this but when you when you have an inet purchase you're not allowed to use stripe or PayPal you have to use the app store um purchase for this same for Google Play but because of this it means that um they get a cut of everything which is fine you know they're hosting the App Store and all this other stuff but it still kind of stinks that there's no third party option because sometimes there's just applic that exist in the world that you know I
+
+**6:33** · get it there's going to be malicious apps out there always apps can be abused but there's always going to be apps out there that don't really fit the mold and you know are community-driven apps like for example like what if you're your favorite or I had a Honda Civic at one time so one thing that was crazy is like after you know it was like a 2014 or something and then when I got the car
+
+**6:57** · you know the next version supported carplay that same model could have supported carplay it has the same Hardware but they chose not to update it it's not like a Tesla I can't just get in over the a update and in those situations I feel like after a certain amount of time they should allow like open it up to let you do anything um you know like a
+
+**7:17** · developer should be able to just install stuff on it U when it's unsupported for example like on Mac OS and iOS I think it would be really cool is like when Apple UNS supports an iPad or an iPhone I think be cool if then they they remove the Restriction of only installing app store apps because think about how many apps you download on the App Store like on iOS on an unsupported device wouldn't work almost all of them require the latest so being able to like extend the
+
+**7:44** · life to be you know okay well we can just install any application and of course you know you can always install stuff directly from xcode but I just think that there's a bigger market for this kind of area of applications that live out outside the life um of the device yes yeah talking about the um not
+
+**8:05** · being allowed to use stripe nor payment platform wasn't there a big thing with Spotify I think where they were using some sort of third party um payment service and apple really didn't like it or yeah so well Spotify yeah they had a
+
+**8:22** · really big problem with that it's um specifically their guidelines are about offering a subscription that goes outside the App Store you're not allowed to link to that subscription website you have to offer that subscription um via a link uh via the
+
+**8:37** · appstore purchases inside the application which really sucks but what's interesting is for on demand video services like Amazon they recently changed the rules that lets you if you have a subscription like Amazon Prime they're allowing people to sign up for that subscription um inside the application which is kind of crazy that's never been done before this is also the same reason why Amazon Kindle you can't buy books on the
+
+**9:03** · IOS app you have to go to Amazon website which it doesn't link you to and you just have to kind of like figure it out that if I buy it on the website then it'll work on the mobile which this is interesting this doesn't apply to PW so I can have a pwa do whatever I want on the App Store and install it to my home screen but the second that it's inside the App Store um I have to abide by all these rules so I'm very unsure about this but wasn't there some problems with pwa on iOS too like that iOS doesn't
+
+**9:33** · support or will not support pwa as much as they should or am I Am I Wrong well it's kind of funny because at the beginning of the App Store Steve said that all you need is pwa um you know all he said that everyone would just need websites and that'd be enough this is before the App Store existed so to
+
+**9:53** · they've always had this approach but then when the App Store launched they kind of started changing their mind but I would say that I has pretty good pwa support you can do all your offline stuff your service workers and um I've had pretty good experiences with it um there are you know obviously edge cases but um it may not have the latest features as Chrome but I know that they they do support a ton of pwa features in fact I filed a radar once and about a pwa not launching correctly with ooth
+
+**10:23** · and they had that bug fixed within you know a day or two so I definitely know there's a lot of to development on PW and Safari interesting good to know so um have you heard Flur just passed 2 million people developing with Flur which is big news is that is crazy that
+
+**10:44** · is so many people that is bigger than most countries which is nuts yeah I uh and also I think did you see there was like 50,000 flutter applications on Google Play yes like 50,000 like that that's a ton yeah that
+
+**11:01** · would be cool to have some sort of section in the Google Play Store made with Flor or something like that that would be cool that would be really cool um yeah and also I think it' just be cool to have a a conference with 2 million people that'd be awesome as well I wonder how much of that is China
+
+**11:19** · though I don't heard too much about uh FL in China but I think the community there is actually pretty big well you have people like alib Baba and I'm if I'm not mistaken they have like over 150,000 employees and stuff like that but I know that they use flutter for their applications and yeah I think I
+
+**11:36** · think China is at least maybe a third of that I don't know I could be wrong could be could be yeah and then also an interesting fact about um the survey was that 80% of the people are using Windows that was a shock to me yes like I was of course people are using Windows yeah yeah yeah it's um it's pretty
+
+**11:58** · interesting though um crazy to see how flutter is evolving too I mean these were definitely not the same surveys that I remember uh when they came out I think when flutter was first starting Mac OS definitely had a a bigger share of those people using it oh didn't know about that by yeah maybe but yeah I think like the mass of the people is using Windows because Windows is just working on so many different device like for for a Mac you have to have the one
+
+**12:26** · from Apple well the only thing that reason why I thought it was more mac users would be because um Mac OS and iOS both require a Mac and that's two of their six platforms so I thought that maybe there would be a lot more um but yeah I guess uh the thing to counteract that is there's a lot more people using Code magic now to be able to release their applications and a lot of people don't need a Mac when they're using flutter that's true that's true talking
+
+**12:54** · about code magic let's get to our next topic which is testing um okay so first off um testing State Management and the tradeoffs uh regarding the stability you what are your opinions yeah so I think when people are first starting with flutter applications they may not re think about
+
+**13:16** · testing in mind when they're creating these applications um one of the things I always like to do is you know it's not always about choosing the quickest solution it's about choosing the solution that can be tested scalable and that other people can come in after me and be able to work on this code um there's a thing called test driven development where we develop code you know testing and then kind of iterate upon it but um yeah I think there are
+
+**13:43** · many State Management Solutions out there and they all have their tradeoffs and their advantages for testing for example um not many people know this but if you use Redux you can time travel so when you're testing you can actually replay all the events that the the user is made up to that point which I think is really cool uh block has its own testing Library which is really nice so you can mock different um data as well
+
+**14:08** · as you know you have um provider which can if you you can you know mock out all the the the trees and stuff like that but you know when it comes down to writing your actual code I think the biggest thing is you know for me it's folder structure so if I have my you
+
+**14:25** · know my data layer and my different layers on this side of thec I'm have my UI folder I know that I'm going to be writing widget tests for the UI folder and then unit tests and everything else for the other folders and layers because you know if if you're not careful you can kind of start to put a lot of your your logic inside of your widgets and
+
+**14:47** · while that's fine and easy to do it can be really hard to kind of break that out and start testing individual core functions to make sure that these functions are working correctly and as expected yes talking about full structure so I see like mostly two camps of people the one Camp who's um um
+
+**15:05** · separating code by whether it's UI where it's logic where it's models and there's the people who separate code by the feature like if the code belongs to the same feature it's in the same folder what do you do yeah I I do I have a UI
+
+**15:22** · folder which with different screens and then subfolders I mean and then I have a a source or a folder which in each one of those I have a classes models I have blocks and I try to separate it out by um feature for sure because like I have like an authentication block I have an editor block I have a settings block and each one of them are scoped to a specific thing but at the same time they're not so specific to a specific screen um I have some seen people use um
+
+**15:55** · blocks or different things to have one per screen which is also pretty cool um I guess it just really depends on yeah how you structure it but as long as you have a standard and you just stick to it um consistency is really important yeah I'm doing something um similar so basically if something is one feature which is really scope to the feature I put everything in um one4 like the block
+
+**16:16** · the the services the UI the screens um having a consistent structure between those features too but if something's like uh globally available for example configuration off or something I also to put them some sort of a more globally placed folder yes and also when it comes to these tradeoffs too I think you know
+
+**16:39** · it's not just about testing too it's all about logging and analytics um as well as mocking so what kind of stuff do you use to like set up your loging because I know there's a bunch of different packages out there but I was curious what your approach has been um okay that's pretty interesting because I'm still trying to figure out um what the best way of approaching this is like what I've seen and what I've done myself um in the past two is um with the blog package you have all those events and you can register a block delegate which
+
+**17:10** · um listens to all of those events so basically all the event switches which the user is producing which is floting for your application you can just have a delegate which listens to all of them and does logging with that my main problem with this approach is you end up with mostly one huge class which there's a lot of logging lot of if else's and
+
+**17:32** · also um sometimes you have events which you just use for internal purposes and you don't actually want to flow through your whole login Pipeline and I think right now I'm more I'm going back to having the analytics in live in the block like of course not in the UI but just having it in the um block whenever some sort of
+
+**17:57** · event is coming in or a method is called what are you doing yeah for me I like to use a couple different tools so there's Lumberjack I believe it's called Uh logger and um this other uh package but the biggest thing for me is scoping out different type of log events so I have a warning an error an exception uh info um
+
+**18:20** · just a regular debug level and that way I can filter out my logs based on each one of those things um in the past I've even gone as far as to create you know a sqlite database that then stores these logs for the user so then I can even filter it based on the user ID so every time I do a new log event I just add it to a row in a table and then that way
+
+**18:44** · when a user clicks on a button like send logs like if they're sending feedback I can actually just grab those that data set from a query and then send it up interesting but what's interesting is um yeah you can also use use tools out there like Sentry to where if you wrap it you can then um run a Zone appap have you ever run a Zone appap in flutter yes I'm using Sentry all the time it's uh
+
+**19:09** · but Zone app is really cool because it's just part of Dart itself and it allows you to like anytime there's an exception you can actually you know intercept that as well as there's a flutter on airor so you can even customize your own error screens for flutter that's true yeah using it in most of my apps right now um
+
+**19:26** · just takes off all the exception handling which like you you would be losing those exception you would be having no idea what happens in your app and it's a great way to find out um weird things that are happening and you may not see in development yes uh for me before we had
+
+**19:45** · desktop my biggest you know bane of my existence was every time I ran my application on iPhone 5 it was like my application would just come to a halt because it was like the UI was so small that or is I think it was the iPhone 4 the iPhone 5 had worked but the iPhone 4 in landscape with the keyboard up was the worst that I ever had to deal with I think it was less than an inch from the top of the keyboard to the top of the screen wow yeah and I mean and then you
+
+**20:15** · have like you know when you have an app bar there like there's no room for Content so it's like you know uh I had many uh people complain like project managers and stuff like oh well the boss is using the iPhone before so we have to make it work and it's like man it's just like so my solution in those were usually to disable um orientation so it
+
+**20:36** · almost always be just a portrait app so that's what I see a lot of people are doing yeah it's it's pretty insane and then I don't know um if you've had the same similar experience on Android but for me I this is why I always wondered why you know on games and stuff and Landscape on the iPod Touch they would always show just an alert dialogue with a text field and it's because they're it's the smallest thing that you could use to that could be moved around on the screen which is funny interesting yeah
+
+**21:05** · um so so we talked about logging but what about when it comes to mocking um because I know that there's some cool packages I've used like you can mock the HTTP package so then you can you know as long as you uh follow the example you can then like you know intercept and say when I do a post request at this point I want to return this response and then so what kind of stuff have you done around mocking so most mostly for my blocks and
+
+**21:29** · for all service components which have some sort of dependency like a network dependency or something uh I follow the dependency injection principle and instead of creating a network class class or something um by myself I just um have a dependency on it like have an argument in the Constructor when it comes to testing you can use moito to
+
+**21:51** · have a mo class of that for example if we're doing HTTP requests I wouldn't even have to mock the actual http request because I'd be mocking the network class which has methods like get user ID and instead of then going through the HTP call I just uh return some mock value which is super cool because uh with moito you can also do of assertions for example that the method which um you think should be called once is actually called once um which is
+
+**22:22** · super cool if you have all these mock classes because you can just test your logic component by itself um and just just focus on the thing that matters what what are you doing yeah I was using that package too but the more you talk about the more I realize I'm not using it correctly so yeah it uh that's that's a really powerful one um for me I also
+
+**22:46** · try to mock out you know my Firebase stuff I know there's a couple different like mock fire store and um just different various ones for that but by using those yeah um and we we have links in the description but yeah what's cool about that is like I can mock out my test cuz you know sometimes you have parts of your application that maybe you don't have test for because it's code that lives in other packages and stuff like that and I think this is also another point which I wanted to bring up which is making sure that we're using packages that have tests so that those
+
+**23:16** · are individually testable because you may spend you know hours debugging your application just to realize it's a bug in a package uh I know the pain yes and I know I need to be you know we always need to add more tests for our packages so yeah yeah it's tests are hard because if you're writing code for the package itself you're seeing the progress you're seeing cool lights showing up on your phone you're making stuff but when you're writing tests you're not doing any real progress like you're being a good citizen like you're doing your tests but nobody's like a lot
+
+**23:50** · of people don't actually care that much about test and it's it's like in an interesting State like everybody is talking about how you should write tests but in reality a lot of people or maybe even most people are not really writing tests and it's always fun to see yeah well it's like um it's instant gratification versus delayed gratification I I when I finish writing
+
+**24:15** · a test Suite I do feel pretty awesome but not until I get them all running and debug all the issues leading up to that point because when you can't get a test working it's so easy to just be like yeah well I just want have a test for this but you know uh it that that to me
+
+**24:30** · uh it's you know with yeah you like you said when you're writing UI it's super fun and you can write fast you can break things but when you write test you you have responsibility because then now if I refactor the application the test will break and you got to make sure that all those things uh work out which is another reason why I wanted to bring up the um the layers because if you're
+
+**24:51** · writing your tests to where you're testing having unit tests you should be able to change your UI without your unit test failing um because all your logic should not be in the UI layer um which is a huge advantage of separating your application logic out um which I think a lot of people don't realize yes that's true like just having the um confidence that the layers you're building your app on top of are working um helps helps a lot
+
+**25:18** · like you know the network layer is always going to work the whatever refresh token is doing its thing the caching works and all you have to really worry about when it comes to refactoring is that looks pretty and and you can be sure that it is correct yes yeah and then also recently I've started to te mock like mock the file system and doing tests around that have you worked with that at all I haven't can you um tell us about about your experiences yeah so uh
+
+**25:47** · I found it first when I was using the local storage package and what's cool about it is it lets you test like mock like file systems directories files folders and anytime that you're using D.O you can actually use this and it creates a virtual file system that you can read and write files to and make sure that you can test to see if the
+
+**26:08** · data exists if it's updated and then that way you're not actually in a test actually updating any physical files that is super interesting I have some code right now which is doing some file system manipulation and changing moving around file so should probably take a look at this and write some tests for it yeah and it's super easy too and pretty much like it's a drop in solution to where you're just changing the directory I believe so yeah it's it's super cool so next what about let's talk about code coverage have you what do you do for
+
+**26:37** · your applications when it comes to that to be honest uh regarding code coverage in Flur I haven't done too much with that haven't tried too much um what about you what have you uh used it for and how yeah so uh for me I was really
+
+**26:54** · interested when I saw the graphs on GitHub and I just could not figure figure out like how people could even generate the code coverage so for me it was a lot of like just wow that's really interesting how can they explore the code and um discover this so I really wanted to figure out how code coverage worked but um through that I found out
+
+**27:12** · that flutter actually supports it directly um so we'll have this in the show notes but did you know you can just run flutter test-- coverage and it'll give you a complete coverage graph of all your flutter code and shows how much you have test for interesting how does it behave um with UI like does it also
+
+**27:30** · show the coverage of how UI have you have tested with all your widget tests or not sure I'm still exploring it but basically I it reads all your widget tests your unit tests and uh your integration tests and try and gives you a a a map that you can then use I think it's called lvoc to then generate a graph from but yeah it's it's super cool um I mean I think a lot of it's like fuzzy logic so U but for me yeah it um
+
+**27:57** · it's really really cool how in depth it it went super interesting I'll definitely have to try this command at some point yes and we will we will include in um in our open source repo of the podcast player we're going to have this uh code coverage that we're talking about as well one thing I also wanted to talk about is widget tests um regarding your experiences um for me widget tests are great like um you can run your
+
+**28:22** · widget in a simulated environment without having to use an actual device which is very fun but I always had this problem of when the widget test fails it's super hard to debug because there's no easy way to actually run the application all of its things like using HTTP and all that stuff and just debugging the widget test
+
+**28:43** · is super hard what are you doing what are you using it for how is your experiences yeah well to be honest I I always write my unit test first so widget test is like a nice to have in my applications mainly because my UI is changing so much much but I do write widget tests and what yeah I have a similar experience it is very hard to debug something that I'll say that makes it a lot easier is if you use keys with your widgets it makes it a lot easier to find those widgets when you're testing but yeah it is really hard to debug you
+
+**29:14** · have to really know the code inside it out to be able to write the test in the first place which I guess kind of makes sense but if you don't really know what you're doing it can kind of be confusing when you're like okay well I have this screen not really sure what state this the app is in at this point but I'm just going to go ahead and keep trying trying and failing to see what I get um doesn't isn't the flutter driver allow you to see your test running on a real device yes so there's two different uh kinds of
+
+**29:41** · UI test for FL you have the widget test which are simulate which run on your computer and they very fast and you have all sorts of different finers you can use because all the code is running in the same process on the other hand you have the driver test driver test run on an actual device and the test itself
+
+**30:00** · communicates with that device using a Json protocol basically sends commands to it uh finders and gets back the results um which is way slower it runs on a real device but it is the actual app like your whole app is deployed on the device and you can tap around um so
+
+**30:20** · for the problem with integration test for me is it's not as powerful as widget tests like there's a lot finders missing um you cannot uh get get to the data that easily and that's actually a bit of a problem for me because you have this place you want to have your integration test but also do a real test and with
+
+**30:43** · the integration test with the driver test you are very limited in some sorts have you used the integration test before um maybe once like uh and it was probably because it already existed I don't think I've written one personally oh okay the cool thing what you can do with the widget test actually is um you can visualize the UI by um running a command which I will look up and we'll post them in new show notes um but the problem with that is um normal in the widget test um calls to http I think
+
+**31:16** · also toor own and stuff are forbidden so you have to do some hacking to enable those and when I tried to run those tests there were more errors and failed assertions and stuff then it actually helped so it would be super cool if there was a way to um have widget tests which are actually visually visible and
+
+**31:38** · you can debug like writing test for UI without seeing UI is pretty mad if you ask me well isn't this where I could be wrong but isn't this where we could take a snapshot isn't can't you also take a snapshot of a render object and write that out to a file to see what the current state is at any time you definitely you can um I think it's always a matter of convenience and how easy it is because to take a snapshot
+
+**32:03** · you have to use the repaint boundary you have to have a widget in there you have to look at the file and try to figure out what's wrong and sometimes it's just some sort of finder just doesn't find stuff and you're like why why doesn't it find it it's there and sometimes it's just super weird to work on UI tests
+
+**32:23** · without the actual UI uh first in mind like uh it would be super cool if you'd have some sort of application which you could drop in a widget or your whole application tap around and it would generate the finer code and when running the test it would actually run the test or if you're running test in some sort of visual mode it would run the test in normal speed on that program and you'd see what is happening what is uh what is failing well this is actually where I
+
+**32:53** · had experience with when it came to you know when I first started with iOS this is something I really loved about xcode unit testing so one really cool thing is like you know when you have a swift file you can just create your know your your normal test uh widget UI layer and then you just at the very top you click record and then you open your application you tap around and then it will record all those and write all the code for you in the unit test so it'll write you know tap on this field wait a couple seconds fill in the data scroll
+
+**33:23** · up go to this widget tap this and it does all this for you um based on screen events and tapping around I even have done this with flutter applications too to where I'm in xcode it'll just tap on the screen it won't actually you know tap on like it won't give you like tap on UI label it'll just say tap on this offset but what's cool about that is I think this should exist we should either make this or this should exist in Dart because I
+
+**33:49** · was not afraid to write UI integration test cuz then I could just like you know just click record and then do log into the app log into the app with this account go to log in and then do this page and do this and then do this and the cool thing is then once you have the test done then you could encapsulate it into a method and then call those methods so I could say you know log in with this username and password and then I could use that function to change accounts um as well as you know you can
+
+**34:14** · just build these building blocks and I was able to you know flush out my entire application in just a day whereas you know it I don't even know how long it would take me in the flutter widget test to be able to to get the same level of um you know coverage um when it comes to testing for that I feel right now writing these integration tests and widget tests is actually more work than just manually testing your app that it's working uh yeah I feel like if we would have something like this and for a a lot more people would be actually testing
+
+**34:45** · and just doing this because just tapping around in your app and just uh like you're doing this on on the in the time when you're manually testing like if you have the same um the same process but write code for it and instead of repeating it by hand repeating by code without any additional effort um we we
+
+**35:06** · really need this in FL at some point and it should be possible like I don't see some technical side which would make this impossible like I think I had this idea a couple months ago and sat down for an hour and tried to hack something together um and I think uh in theory it
+
+**35:23** · was all going well and it should totally be possible to just load in your application tap around and then generate the code I think there is um a method in the testing suit I can't remember right now but it can suggest you finders like you tap somewhere on the screen and prints uh suggested finders in the console which you can use to find that element you're tapping on you could even use that you could even use that IPI we'll link this in the show notes um you
+
+**35:53** · use that and just generate the code when you're tapping around and just ass searching stuff that it's there and you have all the apis with the widget test and the cool thing with this is you could have the full visual mode when recording test but when executing test you could have it all headless and fast like you can be sure it's working um
+
+**36:14** · because you tap around yourself and when it's uh time to run it it's super fast yeah maybe we could um if we were to build this we could even piggy back off of the device preview package which then you could run your like basically wrap your material app with this this widget and then you kind of enter a testing mode when you're running it um speaking of which have you use the device preview package actually I just used it for the first time a couple of days ago and I am amazed like I was always hesitant because I saw the device preview um on
+
+**36:47** · the iPad I think on the um official GitHub page it shows it an iPad I always thought okay I don't have an iPad um and uh this application I'm using um doesn't have desktop support because I'm not on the master channel so I only have my phone and I was it surely must look weird on the phone but actually looks pretty good in the phone like it's all skate down but you have all the proportions all the layouts um done correctly and it's super useful for detecting um bugs on smaller screens are
+
+**37:17** · you using it yeah I've been using it um for a while now even um am store used it for a little bit but what's cool about it is um I guess I was able to get it run on Mac OS like months ago because um we had desktop support and what's cool about that is I was able to resize and
+
+**37:34** · free form any type of screen I was trying to test which is super cool um as well as you know being able to change the theme dark mode um you can change the you know the the local so you can even switch languages and it was really good to kind of do all those at runtime
+
+**37:51** · um with his latest update it even um made that a whole lot simpler because then you can kind of just specify key for your application and it um it will kind of inject a lot of that um in a better way but yeah it's um it's really nice for testing because something that we don't always think about is you know you know widget testing is great making sure things appear unit tests are great to make sure functions and methods uh work correctly but then also responsive testing we need to make sure that our UI lays out correctly on all these devices
+
+**38:18** · I mean like just like we talked about earlier like if you have an iPhone 4 and then it doesn't look good I mean your UI has failed at that point um as well as you know I think it should also be considered a fail when your application is a mobile device you go up to an iPad and you have an app bar and a floating action button in a list View and that's your entire application like uh you know when we we're not taking advantage of the the greater space the user is going to hate that yes I also feel like a lot of designs nowadays um only have this
+
+**38:49** · perfect world where you have the latest iPhone with the nicest sizes but what happens to the design if you rotate it what happens if you have a bigger or smaller screen and I feel like a lot of the design mindset isn't there with the responsive design most most of things
+
+**39:06** · look good on one screen but you as a a programmer it's sometimes your job to figure out what happens if it's on a big or small screen and there's uh mostly little to no guid guidance on what actually should happen and what the design is intended to to do um which I hope is going to change in the future like there a lot of different device and um FL itself calls
+
+**39:30** · this ambient Computing where you have your application and it runs on all different settings and forms and you don't fixate on the phone which is I don't know how big but instead on the design and how data flows and how is it uh how it's proportional to to one another yeah so speaking of that awesome flutter interact talk they also announc flutter octopus so when it comes to testing all these devices uh what are your thoughts thoughts on the the octopus it's it's it's a great idea like
+
+**39:59** · it's it's a fun idea um I feel like you can do a lot of this with the software side uh like we just talked about device preview but let's be honest having this for octopus in your work room just seeing all the devices that must be pretty cool yes it's a it's a reason to buy all the devices cuz it's for testing purposes yes we we need those Chef yeah yeah yes
+
+**40:23** · you know but after seeing that it it made me want to write an application that does the same thing but I think there's some different applications on the web that allow you to do this so you can basically you know enter a URL and you can test it on all these devices at once so then you can just like scroll and you can see iPhone 4 iPhone 5 like iPad you know um Android devices you
+
+**40:45** · know General web size layouts and then they're all in the same state so then you can change the url and then they all update yes I've seen it on Twitter I think it's called Sizzle or something it's a browser web browser for developers which does all does all of this yeah cuz uh really I mean we don't
+
+**41:02** · have to have the actual emulators running we just need the correct uh device size and aspect ratio so I think that would be a cool um easy win for testing different stuff because then you can kind of look at it side by side and just see how it kind of all flows together cuz I feel like for a long time like I said before we had desktop I had a hard time when I was developing for iOS because I knew all the dimensions but then you know the Samsung
+
+**41:27** · you know note for example it had the same display resolution as the iPad mini but it looked awful because it was like I had it was like the desktop playout on the Samsung Galaxy Note and then it was like I would tweak it a little bit but then the iPad one would look weird because then it's like you know so it's like um uh display density is not
+
+**41:47** · everything and then it was also you know there's so much more than just checking your break points and so for me it's it's it it was pretty big eye opener because because you know you can't always trust the resolution on what you're on that is true yeah talking about all of this just makes it more clear to me that we need some sort of application some sort of test suit and something integrated which lets you record test test on different devic and has everything which is related to making it uh responsive testable we need
+
+**42:18** · something like this yes and uh I think we can do better too I feel like it' be cool if we built a a VR sphere where we can test all we build a virtual flutter octopus basically in VR that would be pretty awesome cuz once you get it in there then you can just you know have like the X-Men style you know room that you can look at all your devices and see it all running at the same time yeah I'm just thinking about all the possibilities that sounds sounds super fun yes would be super interesting to try it out and see how it uh it is in
+
+**42:50** · production and how people could be using it yeah and I mean a lot of people may think well you know that's that's great and all but like who really cares about this well you know the thing is you may not realize you need this until you need it and then when you need it you really need it um for example I feel like
+
+**43:07** · another thing that's missing is and some other um I think Frameworks have this but uh at least with material design it'd be cool if we had like a an inspector kind of view where you could view the elevations in a 3D perspective so you could say okay uh let me turn it on the side and see like how my layout is positioned so I have my app bar my floating action button make sure everything's hierarch looks correct and
+
+**43:29** · um there's different ways that we can debug our layouts from different perspectives where you realize like oh that's why I have that bug is because this this column is overflowing right here which I feel like uh hot UI is really supposed to help us with um since I use VSS code it's not really inside there every now and then I can see it in Android Studio have you used it at all uh I took a look at it once um and it
+
+**43:54** · looks PR interesting but just backtracking for one sec with the thing you talked about elevation how cool would it be if you could see your routes being pushed onto each other and just having the whole history in 3D and just taking a look at your screen and seeing all the different routes which are behind that that could be pretty fun
+
+**44:13** · that would be cool then you could basically have your navigation Stacks yeah I didn't even think about it that way yeah that would be so cuz then you're like oh well this is when I pop and when I show a dialogue and it's like oh this yeah that would be really cool instead of having to always call like you know push replacement or different kind of um things that we do to get around or shortcomings but yeah it's uh
+
+**44:33** · that's a really cool example um so when it comes to um testing have you worked at all with Android testing I've done Android in the past and I've done a bit of testing I know there were a few Frameworks like um testing Android was always hard regarding UI because um in comparison to flor it wasn't uh code which you can run it was this XML and you had your old your application with it there were a couple of par uh Services I think Robo electric and Fs which um did uh help a lot with testing
+
+**45:07** · but it it's been a while and I don't know what the current state of testing on Android is and um yes well I actually do have experience with cotlin testing and I think that because cotland now has official support or I know Java it has too but like they they made it a whole lot easier to do testing um I have actually really enjoyed the cotlin testing and the way you kind of go about it cuz you can have a class and annotate a function that you know at
+
+**45:35** · test with The Decorator and then you can write your stuff and then when you run the test on the file it'll run all the tests for the the test for the logic in which the class exists so you can kind of keep it in one place which is super cool yeah testing like testing non UI stuff was always it's like it was using Java and cotlin just doing UI test and
+
+**45:54** · stuff was always uh great and if you had the right architecture like most of the time I was using mvvm um you could have your view models and all that stuff fully tested um just going to the UI test was always a bit tricky yeah so I had the thought the other day is like what if we worked on like a vs code extension where you could you know how we can extract as a widget or method what if we could do extract a test where you could right click on a a widget or a method and it extracts it to a new test file uh with
+
+**46:23** · scope to that exact you know file and then you know that part of your application interesting like if the widget is very modular and doesn't uh depend on something from provider for example yeah um that should be super easy what's always a bit tricky for example if you want to test a screen in isolation and it has all those assumptions about your application like for example you're logged in you cannot be on the home screen without being logged in it's just not possible things
+
+**46:51** · you always have to watch out for so so you include the necessary dependencies in the widget Tre for example um but yeah like uh it could be extension for us code or it could also be a standalone application where you just load in your
+
+**47:07** · your application run it and just do it all visually because I still feel like youi testing testing UI shouldn't be done in code too much it should be oh I see the way you're actually testing that'd be kind of cool to where basically we could even do it to where you know when you're running your application you have this method that only runs in debug mode and and you know
+
+**47:26** · it'll before your application runs it it runs all these tests for example and then that way if it runs you know that your test have passed if you wanted it to click around on do different stuff is that kind of what you're saying well I'm not sure like I was uh talking about the thing we talked earlier about the Standalone third party application which loads your application into itself and does all these uh fancy testing things where it allows you to find stuff tap on stuff and produces the tested code maybe
+
+**47:58** · allows you to test scoped stuff like you tap on a widget you say I want to test this disables everything else you have full control over that widget and it uh builds uh the correct widget tree for you in the test so this widget can function user is logged in and all that stuff for example oh very cool yeah yeah I agree would be kind of cool yeah and also um maybe next week we'll talk more about localization but um when it comes to writing our tests I feel like you
+
+**48:28** · know one thing we often forget about is strings in our application because we you know we may provide it or I at least I build it with English in mind because that's what I can read and then you know maybe in Chinese or Hebrew for example everything's right to left and our applications have to switch and this is another thing that we don't think about when we're testing is have you you know
+
+**48:49** · switch the directionality of your application and run it because you will be shocked at how many things that you cuz if you do like custom widgets and layout a lot of the times you have to take it take into account so like if you ever do like a positioned at the bottom left when you're in a right to left layout you need to make sure it's on the other side so flutter does a really good job to do a lot of this for you like for example if you're using a row it'll switch the direction or um just various
+
+**49:15** · uh widgets it'll it'll take care of that but yeah that's something you definitely want to um make sure you're testing yeah also I think for stuff like alignment petting there's actually different Constructors and different uh things which allow you to instead of specifying petting left you can do something like petting start which does left on uh the non um inverted uh text text uh things
+
+**49:43** · and switches those for for the left to right uh right to left yep exactly and that that'll really help to um and that's just about being um more abstract when we're writing it out yes that's true um we just want to thank you guys for listening to this episode so what um what are you working on at the moment norber right now just usual work and doing a few um still work in progress
+
+**50:08** · projects which I hope will I'll be able to Showcase something next week but yeah as I said quarantine life is just going as fast as it as it could what about you yeah quarantine life is the new life but yeah U for me I'm working this week on building a 3D visualizer um in VR that
+
+**50:28** · allows you to send in MIDI and it controls um this VR kind of music so that's been kind of interesting it's something I'm not very familiar with so it's a lot of research and trying to get it working with unity and thankfully there's a lot of repos out there but um if you want to find us make sure you look down in the description for the show notes we have um we're both on Twitter and GitHub and you can find us pretty much everywhere we're going to be linking to that um and also we have a
+
+**50:55** · link to the podcast as well as our podcast player which we will link to which is now open source and we will let you kind of see how you can actually create a podcast and host it on GitHub pages and we have all the details about that so make sure to give us a rating on iTunes Google play Spotify and anywhere else we have our podcast and we just want to thank you so much for listening and see you next week see you next week

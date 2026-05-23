@@ -1,0 +1,989 @@
+---
+title: 'Create simple, beautiful UI with Flutter'
+date: '2022-05-11T00:00:00.000Z'
+draft: false
+tags:
+  - flutter
+  - astro
+  - dart
+  - youtube
+  - web
+  - talk
+  - google
+summary: >-
+  Learn how to transform a generic Flutter app into a beautiful, branded, and
+  highly polished user experience using simple design techniques focusing on
+  typography, color, motion, and animation.
+embedding: >-
+  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
+related:
+  - videos/flutter/material-3-from-design-to-deployment.mdx
+  - videos/take-5/responsive-design-flutter.mdx
+  - videos/take-5/adaptive-dialogs-flutter.mdx
+  - flutter/snippets/markdown-view-material-3.md
+  - videos/flutter/flutter-plugin-live-coding-native-color-picker.mdx
+last_updated_metadata: '2026-05-23T00:18:32.229Z'
+---
+
+import SocialEmbed from "../../../../components/SocialEmbed.astro";
+
+
+# Create simple, beautiful UI with Flutter
+
+<SocialEmbed platform="youtube" id="eBVMfS7MayI" />
+
+## Description
+
+Beautiful experiences and great UI don't happen by themselves, but that doesn't mean they have to be difficult! Watch two design experts apply simple, straightforward, incremental techniques to take a well-built but boring-looking app and turn it into something memorable.
+
+Resources:
+Codelab → https://goo.gle/3Mn16SF
+
+Speakers: Khanh Nguyen, Rody Davis
+
+Watch more:
+All Google I/O 2022 Sessions → https://goo.gle/IO22_AllSessions
+Flutter at I/O 2022 playlist → https://goo.gle/IO22_Flutter
+All Google I/O 2022 workshops → https://goo.gle/IO22_Workshops
+
+Subscribe to Flutter! → https://goo.gle/FlutterYT
+
+#GoogleIO
+
+## Transcript
+
+**0:00** · \[MUSIC PLAYING\] RODY DAVIS: Hi, and welcome to our workshop about taking your app from boring to beautiful.
+
+**0:08** · My name is Rody, and I'm a Developer Relations Engineer on the Material Design team at Google.
+
+**0:13** · KHANH NGUYEN: And hi, I'm Khanh, a Developer Relations Engineer on the Flutter team at Google.
+
+**0:18** · In this workshop, we'll be walking through a codelab discussing a few tips and tricks that you can integrate into a Flutter app to take it from boring to beautiful.
+
+**0:25** · Now, Rody, why are we doing this?
+
+**0:26** · RODY DAVIS: When you're building with Flutter, one of the things that you may be facing is the app will feel very generic when you get done.
+
+**0:33** · Material provides some beautiful widgets that we can build with, but we have a lot more to do to make it feel like it's our own personal brand and customizing the theme.
+
+**0:41** · So today, we're going to be going over a lot of things that can really add that extra polish, such as typography, color, motion, animation, and overall responsiveness that we can make our app feel home at all the platforms that Flutter supports.
+
+**0:56** · So, Khanh, what kind of app are we going to be building today?
+
+**0:59** · KHANH NGUYEN: That's a great question, Rody.
+
+**1:01** · So once you have your Flutter environment set up, and you clone the codelab repo, and go ahead and run the starter app, you'll see that, for this workshop, we'll be working on an app that we like to call myartist.
+
+**1:14** · And we'll be implementing the changes here in order to make it beautiful.
+
+**1:18** · So myartist is a social music app that lets fans keep up to date with their favorite artists.
+
+**1:22** · So while we're here, let's go ahead and take a quick tour through myartist and see what we're going to be working with today.
+
+**1:30** · Here, we see the home screen for myartist.
+
+**1:32** · And so, at the top, you have a nice, little banner, updates from your favorite artists.
+
+**1:37** · You have the recently played playlists tiles, as well as the top songs for today, new releases.
+
+**1:44** · On the side, there is a navigation rail that has your Home screen, which we're currently on, Playlists, which has a grid of playlists, as well as the bright blue app bar that we know and love, as well as an Artists screen, which has a grid of your favorite artists.
+
+**2:01** · And so this is what it looks like on desktop.
+
+**2:03** · Let's scale this app down to be, say, mobile size.
+
+**2:08** · So when we scale it down, you'll see that it doesn't look really great.
+
+**2:12** · It's the same layout as before, but now everything is just kind of squeezed together.
+
+**2:18** · It doesn't look super great and, I mean, not to mention, the navigation rail-- the text is now gone, and these icons are identical, so you don't even know what you're getting when you tap on an icon.
+
+**2:29** · So don't worry.
+
+**2:31** · This doesn't look super great, but we'll spend time today making it look better for mobile and on desktop.
+
+**2:37** · So with that said, Rody, what's one of the first things that we should do here?
+
+**2:42** · RODY DAVIS: So I think one of the first things that we can do is start with our typography.
+
+### Google Fonts To Import the Material Icons
+
+**2:46** · We can use Google Fonts to import the Material icons, as well as a custom font.
+
+**2:51** · Now, the Material icons are included as part of the Flutter SDK, so we can actually choose some new icons that make sense for our navigation rail.
+
+**2:59** · KHANH NGUYEN: Yeah, so let's go ahead and do that.
+
+**3:02** · And so, in the first step of our codelab here, it just tells us to replace the icons to be icons that give the user a little bit more information on the tab that they're clicking on.
+
+**3:13** · So for those of you at home, you can just replace the icon itself, but for us here, I'm just going to replace the entire destinations list.
+
+**3:20** · It's going to look exactly the same.
+
+**3:22** · But for the sake of the screencast, this makes it a little bit easier than copying and pasting each icon individually.
+
+**3:28** · So jumping into lib/src/shared/router.dart, I'm just going to replace the entire destinations list, but you can just replace the icons themselves individually.
+
+**3:39** · So I'll just save that there and go ahead and hot reload our app, and we can jump over to our app and see what that looks like.
+
+**3:49** · All right, so now the icons are no longer the same.
+
+**3:52** · Let's see.
+
+**3:52** · Let's go down to the mobile view.
+
+**3:54** · Even though it's not ideal to have the navigation rail on the side like that, you now at least get icons that give more detail than identical icons that we had before.
+
+**4:04** · All right, so that does that for that first step of the codelab.
+
+**4:10** · So next up of this workshop is to talk about choosing fonts and how we can choose fonts thoughtfully.
+
+### Choosing Fonts
+
+**4:15** · So fonts will set the personality of your application, and that's why it's so crucial to pick the right font.
+
+**4:21** · So when selecting a font, here are a few things to consider, number one being serif versus sans serif.
+
+**4:28** · So serif fonts are this decorative sort of-- they have these strokes and tails at the end of the letters and tends to be perceived as more formal, whereas sans-serif fonts don't have those decorative strokes at the end, or those tails, and can be perceived as more informal.
+
+**4:45** · And for long blocks of text, generally, we'll see more of those serif fonts, but it can be a mixture, especially on the web and depending on the personality of your application.
+
+**4:56** · However, in this case, we'll probably want a sans-serif font because we're a social music app, and we want some fun.
+
+**5:02** · We want some personality, some more excitement, energetic, and playful sort of emotion to be tied to our fonts.
+
+**5:10** · In addition to that, when picking an all-caps font, consider this very carefully because using all-caps font can be useful for calling attention to small amounts of text, like, for example, headlines.
+
+**5:22** · But when it's overused, it can be perceived as you're shouting at the user, and they might just completely ignore that headline entirely.
+
+**5:32** · Another thing to think about is using title case versus sentence case.
+
+### Title Case versus Sentence Case
+
+**5:36** · So title case is when the first letter of each word is capitalized, whereas sentence cases when you only capitalize the first letter of the word, as well as proper nouns.
+
+**5:46** · So with title casing, that's considered more formal, whereas sentence casing is considered more conversational and informal.
+
+**5:53** · Other things I want to think about is kerning, which is that spacing between each letter, the line length, which is how long your lines run across the screen, and line height, so how tall the lines of your text are.
+
+### Kerning
+
+**6:06** · So too much or too little of any of these things can make the app less readable.
+
+**6:11** · So, for example, if you've ever read a very long string of text and lost your place when you jumped to the next line, that's probably because the line length was a little too long.
+
+**6:19** · So that's when you know you should cut down that line length.
+
+**6:23** · And so, for our app today, we've decided on a font called Montserrat.
+
+**6:28** · So let's go ahead and jump over to the Google Fonts page for it and take a look at it.
+
+**6:33** · So like we mentioned before, Rody and I went with Montserrat because we wanted a sans-serif font, and there's just a lot of styles available for Montserrat.
+
+**6:41** · So, essentially, we knew that if we picked this font, there would be a lot of variety, and we could use it for a lot of different use cases within the app, and not have to worry about picking a different font to go along with the one that we had already picked.
+
+**6:55** · So that's the font that we're going to use today, and how are we going to add it to our app?
+
+**7:00** · So we can add to our app by using the Google Fonts package for Flutter.
+
+**7:05** · So what we want to do is first go ahead and add the google\_fonts package.
+
+**7:09** · And we can do that by running Flutter pub add google\_fonts.
+
+**7:12** · So jumping over to VS Code now, let's go here and add our google\_fonts package.
+
+**7:20** · So while that's adding there, let me jump back to the codelab and touch on this piece here.
+
+**7:25** · So for those of you who are building for macOS, do make sure that your entitlements files allow for network fetching.
+
+**7:32** · So we've already handled this for you in the codelab starter code, so you don't have to worry about it.
+
+**7:37** · But if you want to use your Google Fonts with your own apps, do make sure you have these lines added to your entitlements files.
+
+**7:44** · So, by the way, macOS is now in stable, so that's super exciting.
+
+**7:49** · All right, let's go ahead and jump back to VS Code and double-check.
+
+**7:53** · All right, so that's been added.
+
+**7:56** · All right, we should be good there.
+
+**7:57** · So now let's actually make use of the package itself.
+
+**8:01** · So we want to add the google\_fonts package to our app.
+
+**8:04** · We want to import it into lib/src/shared/extensions.dart.
+
+**8:08** · All right, so we can jump in here.
+
+**8:10** · Conveniently, extensions.dart is already open here, so we'll go up to the top and import the google\_fonts package.
+
+**8:18** · All right, so we'll save that.
+
+**8:19** · And what do we do next?
+
+### Code Lab
+
+**8:20** · Let's check the codelab.
+
+**8:22** · All right, so we just pull in that Montserrat TextTheme and wrap it around our existing TextTheme.
+
+**8:27** · All right, copy and paste it here into our-- whoop, I did not want to go to myartist.
+
+**8:34** · So go ahead and paste this here.
+
+**8:36** · So, Rody, looking at the file here, there's a lot of different TextStyles.
+
+### Text Styles
+
+**8:43** · Like, what are these?
+
+**8:44** · Like, textTheme.textLarge, text-- titleMedium?
+
+**8:48** · RODY DAVIS: Yeah, so these are the new Material 3 typography tokens.
+
+**8:52** · This should make it a lot easier to build with typography values and apply them to specific widgets throughout your Flutter application.
+
+**9:00** · These are just different semantic meanings, such as headlineLarge, Small, Medium, and they should match up pretty well with the type of content that you're trying to present.
+
+**9:08** · You can also, in addition to this, use opacity to help reduce emphasis of text that you don't want to be screaming at the user and to kind of fade into the background.
+
+**9:16** · As well as a quick note on the google\_fonts package, when you import it, you can import anything from Google Fonts.
+
+### Google Fonts
+
+**9:21** · And you can optimize it at build time for production by including the font in your asset directory.
+
+**9:27** · KHANH NGUYEN: Yes, and the reason why I love the google\_fonts package is because sometimes I want to try a variety of different fonts, and I don't need to download the individual fonts individually before I've already settled on one.
+
+**9:39** · So that's a great call-out there, Rody.
+
+**9:42** · All right, so that takes us to the end of typography.
+
+**9:44** · Let's jump to the next step in our codelab here and talk about setting the theme.
+
+### Setting the Theme
+
+**9:49** · So, Rody, take us away on this one.
+
+**9:51** · RODY DAVIS: Of course.
+
+**9:52** · So I'm not a designer, and one of the things that building with Flutter is you're dropped with a color theme that's blue on blue.
+
+**10:00** · Now, this is great for most applications, but we can do better.
+
+**10:03** · We can choose a color scheme that makes sense for our brand and our personal app.
+
+**10:07** · So we need to first start off with a ThemeProvider class.
+
+### Theme Provider
+
+**10:11** · This is the foundation for applying a theme to our application, and it wraps up all the different ThemeData widgets for, let's say, Navigation Rail, the Drawer and Scaffold.
+
+**10:23** · And this allows you to change all of that at once without having to customize that on every screen that you use.
+
+**10:29** · It also provides a color scheme, which is the basis for these new Material 3 tokens and can provide those fonts directly into that ThemeData object, which is the root of all your themes.
+
+**10:39** · KHANH NGUYEN: All right, so let's go ahead and create an instance of that ThemeProvider and pass it to the scoped theme object in MaterialApp.
+
+**10:47** · So let's go ahead and jump to lib/src/shared/app.dart and see what's up there.
+
+**10:53** · All right, so app.dart conveniently available here.
+
+**10:56** · All right, so this here says, "Create a theme instance."
+
+### Create a Theme Instance
+
+**10:59** · Let's go back to our codelab and copy that code to create our theme instance here and plop it in right here.
+
+**11:10** · All right, and then for the next step, we'll jump to this line here.
+
+**11:14** · Go ahead and copy that again.
+
+**11:15** · So here, we're just passing it the light theme from our ThemeProvider.
+
+**11:19** · So we can paste this here and save.
+
+**11:25** · All right, and I'm just going to jump over here and hot reload our app.
+
+**11:34** · I am just realizing now, Rody, we had never shown the new text, \[LAUGHS\] the new font that we updated.
+
+**11:42** · So let's jump back and take a look at that real fast while this is happening.
+
+**11:48** · All right, so let's jump back over here.
+
+**11:52** · There you go.
+
+**11:53** · So the thing that we forgot to show you earlier was the "Good morning" here.
+
+**11:57** · So because we went from one sans-serif font, like Roboto, to Montserrat, it's not very super obvious, but if you look at the shape of the text itself, for example, like this G here in "Good morning," you'll see that it's swapped now to the Montserrat font instead of the Roboto that we saw earlier-- just jumping quickly back to typography there.
+
+**12:18** · So next part that we were talking about was going to be the theme.
+
+### Theme
+
+**12:21** · So you'll see now here on the side's navigation rail is now a pink color instead of the Flutter blue that we saw before.
+
+**12:28** · It's just a little bit more subtle here.
+
+**12:30** · And so, as you can see on Playlist and the Artist page as well, we don't have the bright blue app bar any longer here.
+
+**12:38** · All right, so let's jump back to the codelab and take a look at our next step.
+
+**12:43** · OK, so this next step here talks about the Material Theme Builder, which Rody was telling me about not too long ago, and it feels like, well, just yesterday, Rody.
+
+### The Material Theme Builder
+
+**12:51** · So why don't you tell us a little bit more about the Material Theme Builder here?
+
+**12:55** · RODY DAVIS: Of course.
+
+**12:56** · Yeah, I'm not a designer, and picking color schemes for my Flutter apps has always been a challenge.
+
+**13:01** · But, thankfully, we've created a tool to help with this.
+
+**13:03** · It's called the Material Theme Builder.
+
+**13:05** · We can jump over and play around with some different colors that can be used as a source input for the new Material 3 algorithm, which will generate all of our colors, our light and our dark theme, based on that single source of truth.
+
+**13:17** · So once we do that, we can play around and see what looks good.
+
+**13:22** · You can override the different roles if you need to, but really, just need that one value.
+
+**13:28** · KHANH NGUYEN: So I get an entire theme for free just by giving it the primary color.
+
+**13:32** · RODY DAVIS: That's right.
+
+**13:34** · KHANH NGUYEN: Cool.
+
+**13:35** · All right, so what color are we feeling today?
+
+**13:38** · RODY DAVIS: I think it may be like a blue or a green.
+
+**13:42** · KHANH NGUYEN: All right, let's go-- how do you feel about seafoam green for today?
+
+**13:46** · RODY DAVIS: That looks great.
+
+**13:48** · KHANH NGUYEN: All right, let's take that.
+
+**13:49** · Look at that.
+
+**13:50** · That's a good color scheme, right?
+
+**13:52** · RODY DAVIS: Yeah.
+
+**13:54** · KHANH NGUYEN: All right, so let me go ahead and right-click on Primary and just copy that color value for that seafoam green right there.
+
+**14:02** · All right, so the next step is we need to add it to our ThemeProvider.
+
+**14:07** · OK.
+
+**14:08** · All right, let's jump back to VS Code, and we'll replace it in our app.dart file.
+
+**14:14** · So here, it says, "Replace this color."
+
+**14:16** · We'll go ahead and replace it here.
+
+**14:20** · Hm, we need to replace that pound sign with 0xff to make it a hexadecimal value.
+
+**14:27** · Let's add a const while we're at it.
+
+**14:28** · RODY DAVIS: And also another thing to keep note of is, if you see the DynamicColorBuilder, this is a widget that we can use to grab the dynamic theme from the wallpaper when a user is running this on Android that is running the latest version.
+
+### Dynamic Color Builder
+
+**14:43** · What's really cool about this is they can pick the colors from the wallpaper, and this theme will be now reflected in your applications.
+
+**14:49** · But Flutter runs on all the other platforms, so we'll need to fall back to this custom theme that we just defined.
+
+**14:55** · KHANH NGUYEN: Cool.
+
+**14:55** · Actually, this will need a hot restart.
+
+**15:04** · All right, there you go, performing a hot restart, and let's jump over and take a look.
+
+**15:16** · The we go.
+
+**15:17** · So now we see the navigation rail is using that nice seafoam green right there that we talked about earlier.
+
+**15:25** · Cool.
+
+**15:25** · All right, and so, so far, Rody, you've mentioned this color scheme, right?
+
+**15:31** · But so far, I'm only seeing this seafoam green that we picked out in the Material Theme Builder.
+
+**15:37** · And here, the next step in the codelab is telling us to add a box decoration to our OutlinedCard.
+
+### Box Decoration
+
+**15:43** · And I can see that, for the color, it's getting the colorScheme.outline.
+
+**15:48** · What are these different color roles that are available with the color scheme?
+
+**15:53** · RODY DAVIS: Of course.
+
+**15:54** · Yes, so the Material 3 system now includes these new color tokens that you can use for your applications, such as Primary, Secondary, and Tertiary, and Container colors and On Container colors.
+
+### Color Tokens
+
+**16:07** · And these are values that you can build with that are the same on light and dark theme.
+
+**16:13** · These values are meant to change at runtime, but give you the flexibility of choosing things that are going to be accessible, but where you don't know the value.
+
+**16:23** · And that lets you update your application and change your color without having to update any of the widgets.
+
+**16:29** · KHANH NGUYEN: Gotcha, OK.
+
+**16:30** · So I'm not checking if it's Dark mode or if it's Light mode and then returning a different color.
+
+**16:34** · I'm just telling you, OK, just use the outline color, whatever that is, based on the light theme or the dark theme.
+
+**16:40** · That's awesome.
+
+**16:41** · I love that.
+
+**16:42** · \[LAUGHS\] All right, let's go ahead and add the box decoration to our OutlinedCard, which is available in lib/src/shared/views/ and outlined\_card.
+
+**16:52** · So let's jump over to our VS Code here, and let's scroll down.
+
+**16:58** · All right, so there's a nice comment here that tells us exactly where to add our BoxDecoration() code.
+
+**17:03** · And let's go ahead and save that and do a hot reload.
+
+**17:08** · All right, and jump over to myartist again.
+
+**17:10** · So now you'll see that the app is now-- these tiles in the app have an outline on each of the cards.
+
+**17:19** · So this is going to be in the color that is the outline color from our color scheme.
+
+**17:25** · So that's really nice because it adds just a little bit more separation between the cards themselves and the background as well.
+
+**17:33** · Neat.
+
+**17:33** · All right, let's jump back here and scroll down a little bit.
+
+**17:37** · So we keep talking about this dark theme, Rody.
+
+**17:40** · We don't even have a dark theme, so why worry about it, right?
+
+**17:44** · But, whoa, wait a second here.
+
+**17:46** · What is this?
+
+### Adding a Dark Theme
+
+**17:48** · Oh, we're adding a dark theme to our app.
+
+**17:50** · How do we just add a dark theme to our app?
+
+**17:52** · RODY DAVIS: Yeah, so thankfully, the ThemeProvider already takes care of the Dark theme for us.
+
+**17:56** · We just need to add it to our MaterialApp.
+
+**17:58** · Important note is this Dark theme is generated from that same color, so it's not just a monochrome scheme, and it'll look really great on both light and dark theme.
+
+**18:07** · In addition, we're also checking to see if the user has Dark mode selected on their system.
+
+**18:12** · And if they are, we're going to go ahead and show it, but allow them to change it at runtime if needed.
+
+**18:16** · KHANH NGUYEN: All right, that's awesome.
+
+**18:18** · So if we scroll down here, there's a nice comment again, two nice comments, to tell us exactly where to add the Dark theme and adding the themeMode to be passed through to the MaterialApp.
+
+**18:29** · All right, so I saved that there in app.dart.
+
+**18:32** · Let's go ahead and hot reload again and jump over to myartist.
+
+**18:43** · All right, so like Rody mentioned before, now we have a Dark theme.
+
+**18:47** · But we're basing it based on system settings right now.
+
+**18:52** · So I have Light theme enabled for my computer, but I can manually enable Dark mode for my myartist app by clicking this moon up here, and there you go.
+
+**19:03** · You see now we have myartist in a Dark theme mode, but it's still using that same seafoam green that we picked out earlier to seed the theme with.
+
+**19:13** · So that's super awesome.
+
+**19:15** · That's super nice.
+
+**19:16** · I loved it when Rody introduced me to it just because, usually, when I pick colors for my apps, I'll pick the first color.
+
+**19:22** · I'll know what this first color is, but then the secondary color, the tertiary color-- I tend to go by the philosophy of, I'll pick a color and hope that it works out.
+
+**19:33** · So having the Material Theme Builder to help me get to a nice color scheme was super useful, and I'm super excited about it.
+
+**19:41** · So that's it for theming.
+
+**19:43** · Let's go ahead and jump over to the next step of the workshop, which is making the app adaptive.
+
+### Making the App Adaptive
+
+**19:49** · Rody, want to take us away?
+
+**19:50** · RODY DAVIS: Yep, so when building with Flutter, you're going to come across a lot of new platforms that you may not be familiar with.
+
+**19:56** · For example, when targeting desktop, this is a keyboard-and-mouse-only kind of mode.
+
+**20:02** · There are some form factors out there that even support touch, but then your app can be running on mobile, where it's only going to be touch and gestures, and sometimes a keyboard, as well as maybe a TV or some other kind of form factor that's a gamepad.
+
+**20:16** · And so, when building with this, you're going to-- adaptive means taking these different forms of input as stylistic choices when you're building for your widgets.
+
+**20:26** · You can adapt each widget based on not only the screen resolution but the type of input that you're going to be receiving.
+
+**20:34** · So one of the first things that we can do is actually change the navigation to help the user change targets a little bit easier.
+
+**20:42** · When building with a bottom navigation, it allows the user to tap it with their thumb as opposed hard-to-reach places like the navigation rail.
+
+**20:50** · KHANH NGUYEN: All right, so let's go ahead and make that change.
+
+**20:53** · So like Rody mentioned, let's go ahead and add the mobile layout for our bottomNavigationBar.
+
+### Bottom Navigation Bar
+
+**21:01** · And we can do that in lib/src/shared/views/adaptive navigation.
+
+**21:05** · And, conveniently, we have that in our VS Code.
+
+**21:09** · So let's go ahead and look at adaptive\_navigation here.
+
+### Adaptive Navigation
+
+**21:12** · And here, there's a comment that tells us exactly where to add the bottomNavigationBar code.
+
+**21:19** · However, we're never going to get to that code because, well, we're returning the Scaffold at the top.
+
+**21:24** · So let's add the conditional check to make sure that we return the Tablet layout only when it's actually tablet size or larger.
+
+**21:33** · Otherwise, we're going to return the bottomNavigationBar for mobile.
+
+**21:38** · And so we can add that here by checking the dimensions that's being passed through to the LayoutBuilder.
+
+**21:44** · So we'll go here.
+
+**21:47** · We'll add this if statement up top and then add a closing bracket.
+
+**21:52** · All right, there we go.
+
+**21:54** · We save this.
+
+**21:56** · And, whoop, we did not want to do that.
+
+**21:58** · We do this.
+
+**22:04** · All right, it's hot reloaded, and we'll jump back over to myartist, and voila, you see now there's a bottom navigation bar on mobile when you're in mobile size.
+
+**22:13** · But if you scale it up a little bit more, we get back to the navigation rail that's still there.
+
+**22:19** · So adding this navigation bar at the bottom now just makes it a little bit easier to access the various navigation menus when you're on mobile.
+
+**22:28** · All right, and jumping back to our codelab, we'll go down a little bit more here.
+
+**22:32** · And, Rody, do you want to talk a little bit more about the layout for the home screen and how we can improve that a little bit more?
+
+**22:40** · RODY DAVIS: Yeah, so when building with Responsive, you need to operate off of things like a column grid, as well as a set of break points.
+
+**22:49** · We have added these here on the extension method under the BoxConstraint.
+
+**22:54** · So we can check to see if we're on these different devices.
+
+**22:56** · Now, on the home screen, there's different things that we can do to take advantage of the screen real estate, such as we can use a DataTable versus a ListView on tablets and desktops, where the user is operating it with a mouse, and they want to see more dense information.
+
+**23:13** · Another thing that we can do on the home screen is actually change this content into a TabBar and a TabBarView.
+
+**23:18** · Now, there's many reasons to do this, but one of them being that the content is related, and we can let the user just not overload them with a bunch of information all at once.
+
+**23:28** · And this also is easy for them to change between the content by swiping between it with their thumb.
+
+**23:34** · KHANH NGUYEN: OK, so the next step in the codelab seems to be breaking up that content into the TabBarView by checking if it's a mobile device.
+
+**23:42** · And if it is, it returns that TabBarView that Rody just mentioned.
+
+**23:45** · So we'll go ahead and add that TabBarView to our home screen by copying this chunk of text here within that if constraints.isMobile.
+
+**23:54** · And we'll go ahead back into our VS Code.
+
+**23:59** · Let's X out of adaptive\_navigation here.
+
+**24:01** · Whoop, let's make sure I save this to make sure I have everything I want there.
+
+**24:06** · Let's get out there and jump over to home\_screen.dart.
+
+**24:11** · So that will be lib/src/features/home/view/home screen.dart.
+
+**24:16** · And wow, just have that conveniently open.
+
+**24:19** · So we'll go ahead and add that at the very top here of the build() method, which says, "Add conditional mobile layout."
+
+**24:27** · So easily just paste that in there, and we'll go and hot reload.
+
+**24:37** · All right, that's running.
+
+**24:39** · While we do that, let me jump over here.
+
+**24:42** · And so there we are.
+
+**24:44** · So you can see that layout just quickly changed from that layout we had on mobile but just squeezed together in a smaller screen, now to the TabBarView, which breaks all of the content on that home screen now into a separate tab so that it doesn't feel as scrunched up into one screen.
+
+**25:02** · So that looks a lot better already.
+
+**25:05** · All right.
+
+**25:06** · Whoop, I did not mean to open that directory.
+
+**25:09** · All right, OK, cool.
+
+**25:11** · So now that we have the mobile layout on mobile devices, we'll want to jump back to the desktop and make a few modifications there.
+
+**25:22** · So if I go back to desktop-- there we go.
+
+**25:26** · We want to open myartist again and scale that open to, say, desktop size.
+
+**25:32** · All right, that's what we want.
+
+**25:34** · It looks a bit better.
+
+**25:35** · All right, so from here, let's talk about white space.
+
+### White Space
+
+**25:40** · So with white space, it's an important visual tool to use for your app, using it as an organizational tool to break up sections and pieces of content.
+
+**25:51** · So, personally, I find that it's better to have too much white space than not enough because when I add too much white space, I notice that it's too much white space and that I will have to remove white space.
+
+**26:04** · However, when I don't have enough white space, I have a tendency of saying, oh, no, I think that looks fine, or I'll reduce the size of the font, or reducing the size of an image when I really should be doing that for readability and just for visibility purposes.
+
+**26:19** · And so, for me, the process with adding white space is, I'll go too much.
+
+### Adding White Space
+
+**26:23** · I'll add too much.
+
+**26:24** · I'll be very heavy-handed with adding my white space.
+
+**26:26** · And then we'll go back and iteratively tweak that a little bit more to our liking so that there's just the right amount of white space.
+
+**26:34** · And so here in the codelab, there's a great example with myartist of not having enough white space and having too much white space.
+
+**26:40** · The too much white space, I think, is a little bit more obvious in that there's way too much white space, whereas the first image is-- well, it's tolerable.
+
+**26:49** · There's not a great amount of white space, but it's fine, right?
+
+**26:53** · So let's go ahead and update the padding on our home screen.
+
+**26:57** · So there is a few lines here that tell us to modify the padding values to 35.
+
+**27:02** · So let's go ahead and do that.
+
+**27:05** · And while I know I could probably just go through and do a find and replace for all of the EdgeInsets.all() value, I'm going to go through it and update it manually because I find that this keeps me aware of where I'm changing the values, and it gives me a better idea of what to iterate-- what number I should use next when I'm going back and forth and trying to find the right amount of white space.
+
+**27:28** · So we'll update this to 35, maybe this 35 as well.
+
+**27:33** · Let's update this here and here.
+
+**27:37** · And that should be it.
+
+**27:39** · That is all that we're going to update for now.
+
+**27:42** · So, with that, we'll save this file and go ahead and hot reload.
+
+**27:50** · All right, and so we'll jump back to myartist.
+
+**27:54** · And you can see that white space just changed there.
+
+**27:56** · There's a lot more space available now, a lot of room to breathe for all the content.
+
+**28:01** · But this banner at the top here still does not have enough padding on it.
+
+**28:06** · It does not have enough white space around it.
+
+**28:08** · So let's go ahead and fix that as well.
+
+**28:11** · And that just happens to be the next step of this codelab.
+
+**28:14** · So we'll jump into the lib/src/features/home/view/home highlight and update that to be a 35 padding as well.
+
+**28:23** · So here, we'll go to home\_highlight and change this to a 35.
+
+**28:31** · All right, we'll save that and hot reload again, then jump back into the app.
+
+**28:35** · OK, there's a little bit more white space now.
+
+**28:39** · All right, and you can see the edges came in just a tad bit more.
+
+**28:43** · All right, and so if we jump over here, let's look at the next step.
+
+**28:48** · So this here calls out the two playlists at the bottom.
+
+**28:51** · Let's look at the live app and take a look here.
+
+**28:54** · So these two tables don't necessarily have anything in common.
+
+**28:58** · They're two separate entities.
+
+**29:00** · But, when you look at this table, you think, oh, these two tables are related because, well, they're connected.
+
+**29:05** · They're one table.
+
+**29:06** · So what's the relation?
+
+**29:07** · An easy solution here is to just add some space in between so that we can separate the entities that they were meant to be.
+
+**29:14** · So if the Top Songs Today was separate from New Releases, people wouldn't be thinking, hey, what do these playlists have in common?
+
+**29:21** · So with that, the next step is just add a SizedBox() in between those two playlists.
+
+**29:28** · So let's go ahead and jump over here and add the SizedBox() in home\_screen.dart.
+
+**29:36** · So if we scroll down a little bit here, we can add that SizedBox().
+
+**29:40** · But, Rody, do you want to tell everyone why we are using a SizedBox() here instead of, say, a Container?
+
+### Why We Are Using a Size Box
+
+**29:45** · RODY DAVIS: Yeah, so you want to use a SizedBox() anytime you're only changing layout because a Container can actually have a performance penalty if you're just using it as your default. And there's a lot of other things that can use.
+
+**29:58** · Like, you can just use padding as opposed to adding padding into Container and a bunch of other animations and decorations.
+
+**30:03** · You can use DecoratedBox() and so on.
+
+**30:05** · So try to use SizedBox() when possible.
+
+**30:07** · KHANH NGUYEN: Exactly.
+
+**30:08** · All right, so here, we jump back into the playlists, and we see now there's just a little bit of space, and they both look like they're separate tables now as opposed to one connected table that could have some relation to each other.
+
+**30:23** · Right there.
+
+**30:24** · All right, and let's go to the next step in our codelab.
+
+**30:29** · All right, so from here, we're going to continue refining our white space.
+
+**30:33** · So we talked about earlier that we have a lot of space to breathe, but this is probably too much.
+
+**30:39** · So you can fine-tune those padding values a little bit more.
+
+**30:42** · So while I go ahead and input the new padding values that we want here, Rody, can you share a little bit about the different EdgeInsets methods that you can use?
+
+### Edge and Sets Methods
+
+**30:51** · RODY DAVIS: Yeah, of course.
+
+**30:52** · So there's a bunch of new EdgeInsets things that you can use that are constructor values.
+
+**30:59** · And these are part ones that you can apply to set it differently and asymmetrically.
+
+**31:06** · So first off, you got left, right, top, bottom, which does exactly that.
+
+**31:10** · It lets you apply it in that order.
+
+**31:12** · There's also symmetric(), which allows you to apply padding just on the vertical or horizontal part of it.
+
+**31:18** · And then we also have only(), which lets you choose a specific side and add that padding, which is useful for just nudging it a little bit into the place that you want it to be.
+
+**31:28** · So, especially when you're building with a 12-column grid, this allows you to align those things just right.
+
+**31:35** · KHANH NGUYEN: All right, so Rody was just a tad faster than me there, so I'm still making these changes here.
+
+**31:39** · So let's go ahead and put in the final changes.
+
+### Final Changes
+
+**31:43** · So these last two, Top Songs Today and New Releases, will have the same EdgeInsets value.
+
+**31:50** · So I'll save this here, and we should be good to go.
+
+**31:53** · So let's go ahead, and we'll hot reload again.
+
+**31:58** · All right, and jump over to app.
+
+**32:01** · All right, that's looking a lot better already.
+
+**32:04** · There is some white space.
+
+**32:05** · There's room to breathe, but not too much.
+
+**32:07** · But right now, there's still a little bit too much white space on the banner.
+
+**32:11** · So, of course, conveniently, that's also the next step of the codelab.
+
+**32:15** · So we're just to update the home\_highlights.dart padding again just one more time to get it just where we want it to be.
+
+**32:24** · So jumping back to home\_highlight, we'll replace this file, this padding value here, and jump over to-- actually, we're going to want to hot reload and jump over to \[INAUDIBLE\].
+
+**32:40** · There you go.
+
+**32:41** · All right, that's looking a lot better.
+
+**32:43** · We added more white space so that there's room to breathe, but everything looks a lot more cohesive now than before.
+
+**32:51** · All right, so let's jump over to Chrome again.
+
+**32:54** · All right, and so that's it for adaptive design.
+
+**32:59** · Lastly, we want to talk about motion and animation.
+
+### Motion and Animation
+
+### Animating between Screens
+
+**33:03** · Rody, do you want to talk about animating between screens?
+
+**33:05** · RODY DAVIS: Yeah, of course.
+
+**33:07** · So, on desktop, users expect things to be a little bit more precise and snappy.
+
+**33:12** · So one of the ways that we can help with this is taking out the animation completely when you're on Linux, macOS, or Windows.
+
+**33:19** · We want to keep those animations for mobile, however, because it provides that sense that something is happening, and the users are expecting it.
+
+**33:27** · It may also cause jank if everything is just jumping around, and they don't know why it's happening.
+
+**33:32** · So you can go ahead and add those into the ThemeProvider and apply it easily.
+
+**33:36** · KHANH NGUYEN: Awesome.
+
+**33:37** · So the pageTransitionsTheme here, where we define the transition for Android, iOS, Linux, macOS, and Windows-- that's already provided in the theme.dart file.
+
+**33:48** · So all you have to do is use it.
+
+**33:49** · And you can use it by adding just these two lines here, passing in the pageTransitionsTheme to the Light and Dark theme, as Rody mentioned.
+
+**33:58** · So let's jump into VS Code and make those changes.
+
+**34:01** · So if we go to lib/src/shared/providers/ and theme.dart, we can add the page transitions here.
+
+**34:12** · All right, I will make sure we add a comma here and at the top.
+
+**34:18** · RODY DAVIS: So how does this look on a simulator?
+
+**34:20** · KHANH NGUYEN: So how does it look on a simulator?
+
+**34:22** · That's a good question, Rody.
+
+**34:23** · So there are screenshots.
+
+**34:25** · Well, not screenshots.
+
+**34:26** · There are screencasts.
+
+**34:27** · There's GIFs right here, which show us exactly what it looks like.
+
+**34:30** · So you can see, with that animation on iOS, it looks very choppy.
+
+**34:35** · It looks like there's a delay when the screen is loading, whereas with the animation, it looks very smooth and looks native to mobile.
+
+**34:44** · So that's exactly what it looks like, whereas on desktop, as we can see in myartist right here, there is no transition, and that looks much better on desktop.
+
+**34:54** · And it's much more of what users expect for a desktop app.
+
+**35:00** · Cool.
+
+**35:01** · And last but not least are hover states.
+
+### Hover States
+
+**35:03** · Rody, why do we want hover states?
+
+**35:06** · And what's so important about it?
+
+**35:09** · RODY DAVIS: Yeah, so when you're on desktop, one of the things that you want to do is provide additional feedback that you don't get on other devices where it's touch only.
+
+**35:18** · For example, when you're hovering over something, if something's clickable, you want to maybe change the border radius or the color to just provide that extra feedback to show that you can click on something.
+
+**35:29** · And then, in addition, you can even change the mouse cursor on desktop that you can't on mobile.
+
+**35:35** · KHANH NGUYEN: All right, so now we're going to add the hover state to our OutlinedCard.
+
+**35:41** · And here, for the codelab instructions-- tells us we're just going to replace the entire OutlinedCard code.
+
+**35:46** · So I'll go ahead and copy this huge chunk of code here and go ahead back into VS Code.
+
+**35:53** · If you go into lib/src/shared/views, and then we jump into outlined\_card.
+
+**36:01** · We were just in this file a few steps ago, so we can just select all, delete that, and paste this here, and save.
+
+**36:11** · All right, and we'll go ahead and hot reload that and jump back into myartist.
+
+**36:19** · All right, so once that's hot reloaded, you'll see just there, the corners now are a little bit more rounded, but when you hover over top of it, the opacity animates.
+
+**36:27** · It changes, as well as the border radius on the cards.
+
+**36:31** · So that gives users just a little bit more feedback when they're hovering over things that are clickable, like these cards.
+
+**36:38** · All right, and so jumping back to the codelab, we have just one more step to go here, and that is-- well, this entire time, we've been talking about a music app, but we haven't played any songs because we haven't come across any Play button.
+
+**36:53** · So what we could do here is add a hoverableSongPlayButton widget that we've defined for this app in particular.
+
+### Hoverable Song Play Button Widget
+
+**37:01** · So what we'll do is we'll add this hoverableSongPlayButton widget.
+
+**37:05** · We'll wrap it around our song rankings for our playlist.
+
+**37:10** · So that way, when you hover over the numbers, the number-- that animates into a Play button that you can hit play on.
+
+**37:16** · So I'll copy this chunk of text here and jump into playlists and playlist\_songs.
+
+**37:23** · So let's give the VS Code a moment here and jump into playlist\_songs.
+
+**37:28** · So that's under lib/src/features/playlists/view/ and playlist\_songs.
+
+**37:34** · So here, there is a nice, little comment to tell us that we want to wrap it in the hoverableSongPlayButton.
+
+**37:40** · Don't forget to close the parentheses here and save.
+
+**37:46** · All right, and so we'll jump down here, give it a hot reload, and check out the app.
+
+**37:55** · All right, so it hot reloaded.
+
+**37:56** · And so now, when we hover over the top songs, you'll see it animates into the blue-- into the Play button here.
+
+**38:04** · And here, you'll see the bottom bar is a blue color.
+
+**38:09** · And so that is a tertiary color that will go along with the seafoam green that we had picked earlier but so that the entire app is not just the green color that we picked for the primary value.
+
+**38:22** · So with the Material Theme Builder and the sea color, the color scheme that comes back-- you'll get a variety of colors so that you're not stuck with just your primary theme color.
+
+**38:33** · All right, and so that just about does it, and that brings us to the end of this codelab.
+
+**38:40** · And that's it.
+
+**38:41** · That takes us to the end of our workshop.
+
+**38:43** · Rody, what did we do today?
+
+**38:45** · RODY DAVIS: So today, if you remember, when we started, we had a very generic app that had the blue-on-blue theme and the Roboto font.
+
+**38:52** · But by using a Montserrat, a custom theme that we pull from Google Fonts, we were able to make our typography feel very personal to our brand.
+
+**38:59** · We picked out a color.
+
+**39:00** · We're using the Material Theme Builder, and we're able to generate a Light and a Dark theme that looks beautiful in both contexts.
+
+**39:06** · We made our app adaptive for mouse and touch input, so it feels good.
+
+**39:10** · And we made it responsive on all the break points that Flutter is going to be running, as well as adding white space for making it dense and comfortable in the various modes, and motion and animation for those little bit of extra-polish features that the users expect.
+
+**39:24** · KHANH NGUYEN: Even with everything that we've just touched on, as Rody just mentioned, this is really just a starting point.
+
+**39:30** · Design can vary in everything specific to a particular project.
+
+**39:33** · Hopefully, you're able to take some of these tips and tricks and implement it into your own app.
+
+**39:38** · So it's our first codelab, and it was a lot of fun to work on, but we'd like to know from you, how can we improve on this codelab?
+
+**39:44** · Do you have design tricks that you like integrating into your own apps?
+
+**39:48** · Please do let us know.
+
+**39:49** · If you're interested in learning more, check out the next steps and related content on the codelab.
+
+**39:53** · As always, Flutter.dev and Material.io will be the place to find more information on Flutter and Material.
+
+**39:59** · So thanks for joining us on our journey in making this app beautiful, and we'll see you next time.
+
+**40:04** · Bye.
+
+**40:04** · RODY DAVIS: Bye.
+
+**40:05** · \[MUSIC PLAYING\]

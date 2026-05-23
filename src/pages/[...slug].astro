@@ -25,6 +25,22 @@ if (!doc) {
 
 const { Content } = await doc.render();
 
+let finalTabs = doc.data.tabs ? [...doc.data.tabs] : [];
+if (doc.data.podcast) {
+    const parts = doc.slug.split('/');
+    if (parts[0] === 'podcast' && parts.length >= 3) {
+        finalTabs.push({
+            label: "Podcast Player",
+            href: `/podcast?playlist=${parts[1]}&episode=${parts[2]}`,
+        });
+    } else {
+        finalTabs.push({
+            label: "Podcast Player",
+            href: `/podcast?episode=${doc.slug}`,
+        });
+    }
+}
+
 console.log(Astro.request.url);
 ---
 
@@ -32,7 +48,7 @@ console.log(Astro.request.url);
     activePostId={doc.slug}
     title={doc.data.title}
     code={doc.body}
-    tabs={doc.data.tabs}
+    tabs={finalTabs}
     viewMode="preview"
 >
     <div

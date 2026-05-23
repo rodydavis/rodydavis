@@ -1,0 +1,142 @@
+---
+interface Props {
+  platform: 'youtube' | 'spotify' | 'twitch' | 'tiktok' | 'x' | 'instagram';
+  id: string; // The specific video ID, post ID, or username
+  title?: string;
+  width?: string;
+  height?: string;
+}
+
+const { 
+  platform, 
+  id, 
+  title = "Social Media Embed", 
+  width = "100%", 
+  height = "450px" 
+} = Astro.props;
+
+// Compute clean URLs or structured markup depending on the platform type
+let iframeSrc = "";
+if (platform === 'youtube') {
+  iframeSrc = `https://www.youtube.com/embed/${id}`;
+} else if (platform === 'spotify') {
+  iframeSrc = `https://open.spotify.com/embed/${id}`;
+} else if (platform === 'twitch') {
+  const isChannel = !/^\d+$/.test(id); // Twitch video IDs are usually numeric
+  iframeSrc = isChannel 
+    ? `https://player.twitch.tv/?channel=${id}&parent=${Astro.url.hostname}&autoplay=false`
+    : `https://player.twitch.tv/?video=${id}&parent=${Astro.url.hostname}&autoplay=false`;
+}
+---
+
+<div class="social-embed-container" data-platform={platform}>
+  
+  <!-- CATEGORY 1: Direct Raw Iframes (No JS Needed) -->
+  {['youtube', 'spotify', 'twitch'].includes(platform) && (
+    <iframe
+      src={iframeSrc}
+      title={title}
+      width={width}
+      height={height}
+      style="border: none;"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+      loading="lazy"
+    ></iframe>
+  )}
+
+  <!-- CATEGORY 2: Script-Injected Placeholders -->
+  {platform === 'x' && (
+    <blockquote class="twitter-tweet" data-theme="light">
+      <a href={`https://twitter.com/x/status/${id}`}>Loading post...</a>
+    </blockquote>
+  )}
+
+  {platform === 'tiktok' && (
+    <blockquote class="tiktok-embed" data-video-id={id} style="max-width: 605px; min-width: 325px;">
+      <section>
+        <a target="_blank" href={`https://www.tiktok.com/video/${id}`}>Loading TikTok Video...</a>
+      </section>
+    </blockquote>
+  )}
+
+  {platform === 'instagram' && (
+    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink={`https://www.instagram.com/p/${id}/`} data-instgrm-version="14" style="width:100%; max-width:540px; margin:1px; padding:0;">
+      <a href={`https://www.instagram.com/p/${id}/`}>Loading Instagram Post...</a>
+    </blockquote>
+  )}
+
+</div>
+
+<!-- Client-side script handling third-party initialization -->
+<script>
+  // Declare interface helper for window additions
+  interface WindowWithEmbeds extends Window {
+    twttr?: any;
+    tiktokEmbed?: any;
+    instgrm?: any;
+  }
+
+  const loadPlatformScripts = () => {
+    const activeEmbeds = document.querySelectorAll('.social-embed-container');
+    const platformsOnPage = new Set(Array.from(activeEmbeds).map(el => el.getAttribute('data-platform')));
+    const win = window as unknown as WindowWithEmbeds;
+
+    // Dynamic X (Twitter) Script Injection
+    if (platformsOnPage.has('x') && !win.twttr) {
+      const script = document.createElement('script');
+      script.src = "https://platform.twitter.com/widgets.js";
+      script.async = true;
+      document.head.appendChild(script);
+    } else if (platformsOnPage.has('x') && win.twttr) {
+      // Re-render tweet widgets on client-side routing / transitions
+      win.twttr.widgets.load();
+    }
+
+    // Dynamic TikTok Script Injection
+    if (platformsOnPage.has('tiktok') && !document.getElementById('tiktok-wjs')) {
+      const script = document.createElement('script');
+      script.id = 'tiktok-wjs';
+      script.src = "https://www.tiktok.com/embed.js";
+      script.async = true;
+      document.head.appendChild(script);
+    } else if (platformsOnPage.has('tiktok') && win.tiktokEmbed) {
+      // If navigating via view transitions, re-initialize widgets
+      win.tiktokEmbed.lib.render();
+    }
+
+    // Dynamic Instagram Script Injection
+    if (platformsOnPage.has('instagram') && !win.instgrm) {
+      const script = document.createElement('script');
+      script.src = "https://www.instagram.com/embed.js";
+      script.async = true;
+      document.head.appendChild(script);
+    } else if (platformsOnPage.has('instagram') && win.instgrm) {
+      // If navigating via view transitions, re-process Instagram layout
+      win.instgrm.Embeds.process();
+    }
+  };
+
+  // Run on initial load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadPlatformScripts);
+  } else {
+    loadPlatformScripts();
+  }
+
+  // Support Astro View Transitions natively if you use them
+  document.addEventListener('astro:after-swap', loadPlatformScripts);
+</script>
+
+<style>
+  .social-embed-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+  }
+  iframe {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+</style>

@@ -1,0 +1,680 @@
+---
+title: 'Building with Antigravity, Gemini CLI, and Stitch'
+date: '2026-01-26T00:00:00.000Z'
+draft: false
+tags:
+  - flutter
+  - firebase
+  - astro
+  - html
+  - css
+  - sqlite
+  - antigravity
+  - gemini
+  - ai
+  - youtube
+  - podcast
+  - github
+  - web
+  - talk
+  - google
+  - adk
+  - genkit
+summary: >-
+  This tech podcast compares advanced AI development tools like Gemini CLI and
+  Anti-Gravity, discusses modernizing infrastructure with K3s and home labs, and
+  showcases workflows using NotebookLM and Stitch for context engineering and
+  generative UI.
+embedding: >-
+  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
+related:
+  - podcast/creative-engineering/flutter-adaptive-ui-and-web-assembly.mdx
+  - videos/antigravity/flutter-antigravity-observable-flutter-76.mdx
+  - >-
+    podcast/tech-walks/talking-about-skills-optimizing-prompts-and-building-mcp-servers-in-apps.mdx
+  - >-
+    videos/firebase-studio/building-ai-powered-experiences-with-firebase-studio-and-firebase-platform-rody-davis.mdx
+  - blog/podcast-github-pages.md
+last_updated_metadata: '2026-05-23T00:14:43.488Z'
+---
+
+import SocialEmbed from "../../../../components/SocialEmbed.astro";
+
+
+# Building with Antigravity, Gemini CLI, and Stitch
+
+<SocialEmbed platform="youtube" id="09MTW1o42UI" />
+
+## Description
+
+In this next episode of our "untitled" podcast, Nohe and Rody take a "tech walk" to discuss the evolving landscape of AI development tools. We dive deep into the differences between the linear workflows of Gemini CLI and the asynchronous, project-level capabilities of Anti-Gravity.
+
+We also geek out on home lab setups—discussing the shift from Docker Compose to Kubernetes (K3s) on Raspberry Pi clusters—and share a game-changing workflow using NotebookLM to generate context files for your AI agents. Finally, we explore Stitch for generative UI, including how to instantly create shaders and animations from simple screenshots.
+
+Key Topics Discussed:
+- Gemini CLI vs. Anti-Gravity: Comparing agentic loops and managing complex refactors.
+- Dev Environments: Configuring Neovim, Tmux, and using Git Worktrees to manage multiple AI tasks simultaneously.
+- Infrastructure & DevOps: Running local K3s clusters, SSH tunneling with Anti-Gravity, and using AI to bridge the gap between Docker Compose and Kubernetes.
+- Context Engineering: How to scrape documentation and use NotebookLM to write robust agent.md.
+- Generative UI: Using Stitch to redesign legacy apps and generate complex Flutter shaders automatically.
+
+Chapters:
+00:00 - Intro & Gemini CLI Configurations
+01:05 - Gemini CLI vs. Anti-Gravity: Linear vs. Async Workflows
+03:45 - Anti-Gravity’s Agent Manager & Project-Level Tasks
+06:30 - Managing Multiple Contexts with Git Worktrees
+08:30 - Neovim, Tmux, and AI Integration
+12:30 - SSH Tunneling & Remote Development with Anti-Gravity
+15:10 - Home Lab: Raspberry Pi Clusters & K3s vs. Docker Swarm
+19:45 - Using AI to Convert Docker Compose to Kubernetes
+22:55 - The NotebookLM Workflow: Generating Agent Rules from Docs
+31:30 - Stitch: Generative UI, Shaders, and App Redesigns
+35:20 - Outro & Teaser: Prompt Optimization
+
+Hosts:
+* Nohe: Working on Firebase, Genkit, and ADK.
+* Rody: Working on Antigravity, Flutter, and Firebase Studio
+
+#AI #GoogleCloud #GeminiCLI #Antigravity #SoftwareEngineering #NeoVim #Docker
+
+## Transcript
+
+### Intro & Gemini CLI Configurations
+
+**0:00** · Hey, how's it going? I'm Noey.
+
+**0:02** · And I'm Rodie.
+
+**0:03** · And we're here for our second Untitled podcast. We're thinking tech walks or something of that nature because we just happen to be walking outside when we record these. Uh, and today we wanted to talk about the Gemini CLI and the anti-gravity.
+
+**0:17** · Yeah, we are very excited about this episode. I can't wait to dive into the different ways we're using AI in our workflows and also Gemini 3.
+
+**0:26** · Yeah. So, actually, did you know in the Gemini CLI you can do like slash settings and you can go through and set a whole bunch of different configuration options?
+
+**0:35** · Oh, yeah, totally.
+
+**0:36** · So, one of the configurations options is to actually use the newer models. I don't know if that's just pinned to Gemini 3. I guess we'll find out when \[clears throat\] Gemini 4 or Gemini 5 or whatever comes out, right?
+
+**0:46** · Uh, but that's one way that you can quickly upgrade to a newer model to try it out in your workflow uh when it's whenever they introduce it, right?
+
+**0:55** · Absolutely. Yeah. And uh we can definitely leave links down in the comments on how to do that.
+
+**0:59** · Yeah. So Gemini CLI came out. I've been using it for the last few months and then anti-gravity came out like last month.
+
+### Gemini CLI vs. Anti-Gravity: Linear vs. Async Workflows
+
+**1:07** · Yeah.
+
+**1:07** · And I have not fully migrated to it yet.
+
+**1:09** · Oh, interesting. Yeah.
+
+**1:10** · You have?
+
+**1:11** · Yeah.
+
+**1:11** · I feel like I've I've completely done the opposite. I started with Gemini CLI uh the second it launched was really starting to use it heavily even inside of Firebase Studio when we included it.
+
+**1:24** · Um, I felt like Gemini CLI was way more of the agent dev loop that I was kind of used to where I could have access to tools. I was not afraid to write bash scripts or uh be able to read and write files. I felt like I had control over I want you to work in this directory.
+
+**1:43** · You know, it's funny because Gemini CLI, it will do one of those things where I'm \[clears throat\] looking for a very specific file and I know that there's a bash command like set or or grab or whatever, but I know it exists. I don't know the command. So, Gemini CLI is really good at like just being like, "Oh, I know what you want to do." And then sometimes it'll do like there's a said command to find and replace as well.
+
+**2:08** · Oh, yeah. Yeah. So I I used that for like some documentation pages where we change like I you know all of our docs had one name and then we had to change it to another name. Oh yes. Yeah. So that was a very cool way to use the Gemini CLI. And the thing I like about the Gemini CLI is it kind of works how my brain works where I just go and I work linearly through a task. Yeah. Right.
+
+**2:30** · And even there's a task feature now too.
+
+**2:32** · Is there?
+
+**2:33** · Yes.
+
+**2:34** · Built into Gemini CLI where basically it'll create like a task file. It'll show the list of things that it's working on and take it off.
+
+**2:41** · Yeah.
+
+**2:41** · So, the the task mode I I I haven't used that yet, but the way that I used tasks was uh I would have it write a plan first to say, "Hey, replace all my dependencies or upgrade this project or do something like that and then go through and give me a plan for how you would do it."
+
+**2:59** · Oh.
+
+**2:59** · And then I and then I would feed it back and be like, "That plan sounds good. I didn't read it, but it sounds good. Go ahead and do that." Right. Y because it usually kind of like prompts the model on the the expected steps in the workflow because by default it would kind of just like do the task and exit, you know, and and I found that I could get like more complicated prompts that way, right?
+
+**3:20** · Uh and then occasionally when I use the CLI, I'll clear and start over and do some other things just to get like the things I'm looking for and I continuously get commit, you know, after every test run, right? Yeah. Which it I think it even has checkpoints now, too. Does it? Oh, okay. That's great. So, uh you are a big fan of anti-gravity.
+
+**3:40** · Yes. Yeah.
+
+**3:41** · And I know that it works differently, right, with like the async loop and like you just kind of be like go do this thing. I'm going to go drink some coffee, right?
+
+### Anti-Gravity’s Agent Manager & Project-Level Tasks
+
+**3:51** · Yeah.
+
+**3:51** · So, I feel like with anti-gravity, um one of the big differences was uh Gemini CLI was kind of focused on I'm solving this like one-off workflow.
+
+**4:00** · Yeah, I'm doing this thing to fix whatever. But with anti-gravity, I can think at a project level. I'm like, I want to migrate the state management or I want to switch from this database to a completely different provider or my approach and like the the complex refactoring is super awesome because it comes up with an implementation plan. It comes up with verification steps. It comes up with automated testing, manual testing.
+
+**4:29** · It literally at the end of the loop it'll be okay now human you know go check this thing that you need to run through to verify that it's working and it's that that I just found like to be really really awesome.
+
+**4:42** · Yeah
+
+**4:42** · it sounds like it. So one other question I had for you is you say that you give it this task and then you're able to like walk away. Do you do that through the agent manager or do you do it through like another type of thing?
+
+**4:52** · So one of the cool UX pieces of it is it actually doesn't matter. You can do it from either side. So if you are in the normal editor and you have a chat and you ask it to kick off a task, you can hit commande or on Windows there's an equivalent and it will be both running in the agent manager and also inside of the editor.
+
+**5:15** · So I can close out the editor if I want to and come back to it. Yeah, you're killing me. Because what I've been doing is sometimes I I'll kick off a task in the chat like in the editor \[laughter\] and I'll be like, I don't want this to finish and I'll close the editor, but then I'll still get a popup and I'm like, what happened?
+
+**5:31** · Yeah, because it's totally running in the background. \[laughter\] Oh man, I feel I feel like a fool.
+
+**5:37** · So, uh uh pro tip, make sure \[laughter\] you not do that. Hit stop first.
+
+**5:43** · Yeah.
+
+**5:44** · Yeah. And then there was another interesting thing and I wanted to understand how you did this because I don't fully understand how this works.
+
+**5:52** · Okay.
+
+**5:52** · So how do you approach multiple tasks in the same project? Because what I like to do which I know is wrong 100% know it's wrong is I will start a task in the agent manager.
+
+**6:03** · Okay.
+
+**6:04** · Then switch to a different branch in my terminal.
+
+**6:08** · Yep.
+
+**6:08** · I I know the commands to do that. I don't have to ask Gemini CLI. I know how to do that. Uh, and then I go back to the agent manager and ask it to do a new task in the same project and it seems to have a hard time. Yeah.
+
+**6:21** · Yeah. I I was just miserable with it. So, like what what do you do to get that working? Because you were telling me about this yesterday.
+
+**6:28** · Okay. Yeah.
+
+**6:28** · Right.
+
+**6:29** · So, one of the things that I like to do is use a feature that's called git work trees. Uh, and you can do this by opening up the folder that contains your project and having it create a new git work tree for every piece of work that you're wanting to do. And for people that don't know, git work trees allow you to create a branch, check it out locally. And when you're working on the files, it will be doing it in isolation.
+
+### Managing Multiple Contexts with Git Worktrees
+
+**6:56** · So once it's done with it, it can just create a a merge commit back into the main. But you can use agent manager to open up each of the subfolders as subtasks and they can all be working together.
+
+**7:08** · So when you open up the agent manager, do you open up each project as a sub project?
+
+**7:13** · I've done it both ways and both work.
+
+**7:15** · Okay.
+
+**7:16** · So you can say like here is my orchestrator agent essentially. you're in charge of creating the git work trees and managing them and you know this is like the the high level like um you're in charge of merging and getting done with tasks and checking and then you can have sub agents that basically are opening up the specific folders and doing the tasks there as well.
+
+**7:39** · Okay, that's interesting because I I've never I've never used GitWord trees but totally. Yeah.
+
+**7:44** · Yeah.
+
+**7:45** · Yeah, they're super awesome. I definitely suggest people give them a try.
+
+**7:48** · Yeah. And then how do you think you could do something similar with Gemini CLI?
+
+**7:53** · Yeah, totally. I don't think this is like a workflow that's specific to Gravity in any way. Um, in fact, I was starting to experiment with uh using this in Gemini CLI. I will say the one thing that's really nice about anti-gravity is the agent manager where you can just clearly map them one to one.
+
+**8:13** · Okay.
+
+**8:13** · Yeah. cuz I I feel like in with the Gemini CLI, it still runs on your in your terminal. So maybe you just got to be comfortable with like a bunch of terminals open.
+
+**8:21** · Yes.
+
+**8:22** · Which you could totally do with like T-Ux or something.
+
+**8:24** · Yeah.
+
+**8:24** · Well, I So I use T-Max with Gemini CLI and I used uh I have one terminal that's Gemini CLI and then another that's uh Neoim. Yeah, I was about to ask so like um anti-gravity like how does it compare to something like Neoim which like um I feel like Gemini CLI was kind of striking a nerve with you because it was closer to the terminal and also you know you kind of preferred some of those a different type of editor.
+
+### Neovim, Tmux, and AI Integration
+
+**8:47** · Yeah. So I I like Neoim a lot because I SSH to my workstation. Right.
+
+**8:53** · Totally. So, it's I'm usually traveling or out and about and uh I have like a very nice Linux workstation in my like home man cave office type of thing, right?
+
+**9:03** · Yeah.
+
+**9:04** · Uh you've seen it on the live streams. And um one \[clears throat\] thing that I have down there Oh, so I use like uh tail scale, I think.
+
+**9:12** · Yep.
+
+**9:12** · Yeah.
+
+**9:12** · Tail scale to connect to it. But it it's funny. I went to my mother-in-law's for Thanksgiving and I was like, I'm going to save power and shut down this machine. And then I'm like up at 3 a.m. Ak I wound up and then just registering my sec my uh my public key in cloud, right?
+
+**9:35** · Yeah.
+
+**9:36** · So I got that working. I was like programming away. But it's it's one of those things where I use the Gemini CLI in one tab in my terminal or T-Mox setup and then I use Neo of them in the other. And the thing I like about anti-gravity specifically is the sidebar for like agent interactions because it shows you the diffs, right?
+
+**9:56** · Whereas a lot of the time what I do actually I have three tabs open but the the first tab is uh Gemini CLI, the second's neoim and then the third is lazy git.
+
+**10:05** · Oh, nice.
+
+**10:06** · So I use lazy git to see the diffs.
+
+**10:08** · Nice. Yeah, I didn't try that.
+
+**10:09** · \[laughter\] And and then I accept the chunks. Yeah. Right. Because if I use lazy git or or if I use anti-gravity, excuse me, what I notice is that I can't actually accept any uh or I you get the chunks in the screen, right? You get the disc, but then as as soon as you switch to like a neoim Gemini CLI setup.
+
+**10:31** · Yep.
+
+**10:31** · Mhm.
+
+**10:32** · It's you're just like, "Hey, do this thing." And then Gemini CLI will be like, "Oh, these are all the changes I want to make." And they're generally too big to fit. And I haven't figured out how to set up scrolling in T-Mox because I'm not like a very good like environment setup. Like I have to use Astro Vim because I don't want to write my own config files.
+
+**10:49** · Well, I even got Gemini CLI to set up my Neovent config for me. Like that was like one of Yeah. And it worked really really well. I was like, what were the decisions that it made?
+
+**10:59** · Like I was like I in natural language said I want a Neoim setup that has a file tree already configured. I want line numbers and like blah blah blah. And like it totally downloaded the plugins and installed everything.
+
+**11:11** · Did you set the leader? Cuz isn't the leader normally like control.
+
+**11:16** · Yeah. I'm I'm not sure. Yeah. But I got it working and I was able to make a bunch of edits and Yeah.
+
+**11:22** · Yeah.
+
+**11:22** · I So I like Astroin because it the leader is space. They have docs and then uh if I move to a machine and I can't access my git profile or whatever, I could just go download it from there. Right. uh having like set up all these dot files. I did set up an Anible thing.
+
+**11:40** · Oh, I love Ansible.
+
+**11:41** · So, so I will I will actually uh gosh I think it's called SCP to the machine.
+
+**11:47** · Yeah. transfer the files over, run the Ansible playbook, which I have like a SH file for, and then I always just grab like the most basic OS that everybody has, Auntu or DBN or whatever, where it's not like I don't have to configure like a million things and then it just runs and I considered Nyx, but the problem with Nyx that I have is a lot of the times they don't have the packages that I want and I have to start building the packages.
+
+**12:16** · But I don't want to spend a lot of time building packages that you're not going to use. Yeah.
+
+**12:22** · Or that I have to maintain or and it's one of those things where I don't spin up a machine like every day. It's like once a month or so. Okay. Two things. One, have you tried SSH and anti-gravity? because I feel like what you're you're doing right now is using Neovm inside of the installed machine, but I've been starting to just like SSH into my home lab directly, run all the things, and I can have my agent with an async manager with all the different nodes doing things like running my Antible playbooks, running scripts on a K3S cluster, stuff like that.
+
+### SSH Tunneling & Remote Development with Anti-Gravity
+
+**12:55** · Uh, this is where you're probably going to think I'm like criminally insane, \[laughter\] but uh I will I I'll plug a keyboard into my phone.
+
+**13:04** · \[laughter\] Yes. And you did show me a demo with that.
+
+**13:07** · Yeah. Or like I'll plug it into the monitor and run in like desktop mode and I have like an app that I can use to SSH.
+
+**13:12** · Oh yes.
+
+**13:13** · It has like keys and all that.
+
+**13:15** · Totally. Yeah.
+
+**13:16** · And you can like Bluetooth your mouse into it. So like you still have a setup and then if I have a monitor, great. If I don't, I'm just like Yeah. Exactly.
+
+**13:24** · Granted, the screen's really tiny, so I don't do it all that often.
+
+**13:27** · Sometimes I do it on like a like an iPad, right?
+
+**13:30** · Okay.
+
+**13:30** · And then uh very rarely do I have like my personal laptop that I'm comfortable sshing into okay my own my own machine. Right. So but so with anti-gravity you can SSH to another machine.
+
+**13:46** · Yeah.
+
+**13:46** · In fact you uh you know when you talked about setting up a temporary VM inside of Google Cloud you can just set that up and as long as you set up the SSH keys you can from anti-gravity connect to it. And in fact, anti-gravity was built for a lot of enterprise use cases in mine. So you can just totally have that workflow bin client.
+
+**14:06** · Not only that, it will tunnel the ports from the VM into your local host.
+
+**14:12** · So I can be running a web server and using my local browser to to view it. And it's like the coolest thing. So you don't actually have to set up like so I believe the the SSH tunnel is usually like hyphen L and then you do like that port binding thing. You don't have to do any of that.
+
+**14:28** · No, you literally just give it the host. You log in as the SSH user or with your SSH keys and it it'll do a one-time setup on the uh server side.
+
+**14:36** · Oh, that is cool.
+
+**14:37** · Yes, it is super awesome.
+
+**14:40** · I might have to go home and try it.
+
+**14:41** · Yeah, it is like right now. And it it changes how I approach like oh I want to do this thing and I know how to write this in docker compose maybe I can have anti-gravity write the kubernetes file and then deploy it to the cluster or I want to do this type of maintenance and so write the anible playbook go and apply it and it's like just approaching those kind of like devops types of things is so much more you have your own kubernetes cluster too don't you?
+
+**15:06** · Yes. And that is a Pi cluster if I'm not mistaken.
+
+### Home Lab: Raspberry Pi Clusters & K3s vs. Docker Swarm
+
+**15:10** · It's a five node Raspberry Pi cluster.
+
+**15:12** · Almost all of them have the 16 gig RAM variant. So, uh I use it for my local hosted GitHub action runners. I host my parents websites, you know. It's it's really on that is it rough?
+
+**15:25** · It's very solid. Like I I usually Are they armed?
+
+**15:29** · Yeah, they're all armed. Okay.
+
+**15:30** · Yeah.
+
+**15:30** · Yeah, that's interesting. Yeah.
+
+**15:32** · How long did it take you to set that up?
+
+**15:33** · Um, honestly having the nodes in the rack did not take a long time. It was trying to land on what I wanted to do for deploying stuff on it. Um, originally I was using Docker with just like Docker Compose and then I switched to Docker Swarm. Yeah.
+
+**15:51** · But one of the things that's nice about K3S and the reason I migrated to it is um when you have things like a NAS or like uh a Synology or things like that, you can do persistent volume claims where it will manage the connecting to the storage and doing it for the cluster. Whereas in Docker Compose and Docker, it really is meant to be run on like a mini PC.
+
+**16:15** · They're not meant to be running clusters. like it can work but storage is kind of like an afterthought in networking like I had to like do this weird ingress with uh inject proxy manager and stuff like that. So see I I think I'm the opposite of you where I just use Cloud Run.
+
+**16:34** · Cloud Run's amazing.
+
+**16:35** · It's cheap enough.
+
+**16:37** · Yes. Yeah.
+
+**16:38** · Right.
+
+**16:38** · And it like there's I very rarely do I ever get a bill from Cloud Run and I've run some like Agreed. I've run like big style transfer models and all this other stuff on there.
+
+**16:49** · A pie cluster. Maybe we should set one up one weekend. Just come down.
+
+**16:53** · Absolutely.
+
+**16:53** · We'll just buy some used Raspberry Pies cuz they're like what? $30 new. That's yours for my blood.
+
+**16:59** · Uh except for the RAM prices now. They're all going up. But Oh, are they?
+
+**17:02** · Yeah.
+
+**17:03** · Oh, no.
+
+**17:04** · Yeah.
+
+**17:04** · I I think um being able to um approach a PI cluster has made me build with Cloud Run in a completely different way. Like I have many cloudr run instances, but sometimes it's hard to like prototype what you're wanting to build outside of running it. And so I can run something that I know is only going to last for a month a lot easier in the cluster. Whereas when I'm going to do something for production, um like cloud run even supports like dock compose files now.
+
+**17:31** · So like I can have a multi-node thing all working together and I don't even have to change anything. I can just deploy and it's super awesome. The reason why I want a Kubernetes cluster is solely so that way I can run like Reddus.
+
+**17:45** · Oh yes.
+
+**17:46** · Right. Like one of those things that don't work well in like the ephemeral cloud run like this is your machine.
+
+**17:51** · Goodbye.
+
+**17:52** · Yeah, that's fair.
+
+**17:52** · Right. And uh I thought about like trying to hack together this weird like Reddis server setup.
+
+**18:01** · Yeah.
+
+**18:02** · But then it seems like what am I doing with my life if I'm sitting there like okay I'll get like a mint micro instance and I'll do this.
+
+**18:08** · Yes.
+
+**18:08** · and set all this up. But yeah, I also think if you can prove and validate the idea in a local environment, then it'll shine really well in a cloudr run environment.
+
+**18:22** · Okay.
+
+**18:22** · So like uh you've already like made a really good choice about what language you're using, the type of uh scaling around how you're compiling. Yeah. And I feel like when you're deploying a cloud run, you're you're committed to the idea, but it's like, you know, you want to have um some type of trajectory going into production where, you know, yes, there's many things that we deploy to Cloud Run that, you know, almost never get used, right?
+
+**18:48** · But if you're like, how do I actually build an app that runs on Cloud Run and actually can handle traffic and do all these different things, you have to like really start to play with how am I what am I going to do about storage and caching like you said, Reddus and and all these other things all working together. Um, and so that's where like having a hybrid approach can be really good.
+
+**19:09** · Yeah.
+
+**19:09** · plus just like you know Google does a lot with Kubernetes and so I feel like I just been wanting to learn that forever and so it's just been I've been chipping away at the different layers of it and I feel like it's starting to click a little bit and uh hopefully future episodes we can know more too but uh like once you get into that world you're able to like start to think declaratively instead of imperatively so so does Kubernet do you use anti-gravity to set up your Kubernetes deployments and all Yes, because I I understand docker compose really well.
+
+**19:43** · Okay.
+
+**19:44** · And I can say this is how I would deploy this with docker compose.
+
+### Using AI to Convert Docker Compose to Kubernetes
+
+**19:48** · Yeah.
+
+**19:49** · Write the kubernetes file for me from this docker compose file.
+
+**19:53** · And so from there it allows me to bridge what I am doing to where I want to be. And that's where I think AI is a great companion in that transformation of content and bridging that gap.
+
+**20:07** · Okay. So eventually I'll be able to write Kubernetes files directly. Yes.
+
+**20:12** · Yeah. So you're you're using it as I have this Docker Compose setup. I want to migrate it to Kubernetes.
+
+**20:19** · Yes.
+
+**20:20** · Here's like what my Do you tell it like your cluster information or anything or you just let Exactly. Or at least give it like a tool to find out the node status and other things like that.
+
+**20:28** · Oh, okay.
+
+**20:28** · So yeah. So, are you building your own tools that then you consume an anti-gravity through MCP or some other It's more like I give it a AI rules on like um here's my home lab setup with the things I installed and configured like you can run these commands on these servers to get health statuses and things like that and it can go and it it will totally SSH into the the the nodes run docker logs and it'll get out the status and it'll be uh giving you like a really cool way to work with the cluster. Like I can I can say things like um this service is down.
+
+**21:00** · Can you figure out why? And it'll be it'll go and say, "Oh, it's in an unhealthy state. Let me go try this thing. Oh, it's not connecting to this, you know, service and stuff like that." Yeah.
+
+**21:13** · Does anti-gravity automatically find your AI rules file or does it look for like a Gemini MD file?
+
+**21:21** · Because Gemini CLI, I believe, yeah, has a preference towards Gemini.md files. Yes, I believe uh by default anti-gravity uses Gemini MD at the root of your project.
+
+**21:32** · Okay.
+
+**21:32** · Um but it's super easy to just tag it as context inside of um anti-gravity chat.
+
+**21:39** · Yeah.
+
+**21:39** · You can just like at whatever the name is and you can usually when I start a task I I will tag the readmes that I want it to do. Oh, if you have multiple rules files and then you just say like, hey, use AI rules for Kubernetes.
+
+**21:57** · Y okay, gotcha. Y and then how complicated are those rules files? Do you write them yourself?
+
+**22:03** · So I usually what I like to do with AI too is I'll write the worst version and have AI write the better version. So, uh, I think I think we've talked about this before outside of the podcast, but, um, I feel like now I will write an extremely ugly class. I'll get everything working. I'll write all the methods. I will write all of the the features. I know it technically works.
+
+**22:30** · Yeah.
+
+**22:30** · But then what I do is I have it create the formatted class with the nicely documented. And uh by doing an approach like that, I can write my intent in this like short paragraph of like it needs to talk about this blah blah blah blah blah and uh it will use search grounding. It will use research to be able to expand that and then I save that as context in the file.
+
+**22:53** · So let me blow your mind.
+
+### The NotebookLM Workflow: Generating Agent Rules from Docs
+
+**22:56** · Let's hear it.
+
+**22:57** · There's this tool that I use to write my gemini.md files.
+
+**23:00** · Let's hear it.
+
+**23:01** · It's called notebook ln.
+
+**23:03** · Yeah, that's a good one. It's so good at writing the rules files cuz So tell me about that workflow. Yeah.
+
+**23:09** · Yeah. So what I do is I literally just import every piece of documentation I can find on the internet into a a a notebook, right?
+
+**23:18** · Okay.
+
+**23:19** · Individual notebooks or do you like to like scope it like just this is my AR rules?
+
+**23:25** · No, I I I have individual notebooks. So I had one for like firebased security rules. I had one for uh AI logic. I had one for like a bunch of different things that I was like, "Ah, let me just see like with no context, can it get me to the next level, right?"
+
+**23:40** · Okay.
+
+**23:40** · So, I imported like every piece of documentation I could find. I went to the reference docs. I imported that and then I went to notebook LM and you can get custom reports.
+
+**23:51** · Oh, I said write a agents.md file for me that goes indepth about how and when to implement this set of knowledge. Right.
+
+**24:00** · Oh, cool. And when I tested out the one for Firebase security rules, but it gave me a very long report and I skimmed it.
+
+**24:08** · I was like, "This seems good enough, right?"
+
+**24:09** · Okay.
+
+**24:10** · And then I asked it to implement security rules in a project that didn't have them.
+
+**24:16** · It went through it and it was actually a sample project that I used, right? So the sample projects have like pretty good security rules. They say check for this, check for this, check for this. It wrote a set of security rules that had validation in it. Oh wow. Which is something I don't normally do when I write security rules. I'm like, "Yeah, if like uh they can only insert like these fields and this, right?" But it was like it can only insert a integer in the star field between one and five.
+
+**24:43** · Oh, yeah. Like literally almost like arc type or like um some type of structured validation. So, and I think that's like one of the things that is sometimes overlooked with security rules is that people will write a set of security rules, but if you know the schema and you know how to write to it, you could hypothetically inject any data you want.
+
+**25:04** · As long as it fits the type. Yeah. Yeah.
+
+**25:06** · But as long as you have that that validation Yeah.
+
+**25:09** · of like it has to be a string, it has to be a number, it can only be this long, blah blah blah blah blah blah blah, it will get to the point where it it really tightens it down. And then on top of that, you know what it did?
+
+**25:20** · It added tests.
+
+**25:22** · Yeah.
+
+**25:22** · And then it rules to the rules. And then it loaded the emulator.
+
+**25:26** · Wow.
+
+**25:26** · To then run the test for me, which probably you knew how to do in isolation, but never like an entire file on how to like describe this.
+
+**25:34** · When I was building the notebook LM Yeah.
+
+**25:37** · bits, I went and I was just grabbing everything everything that I could find.
+
+**25:42** · And one of the things I found was this like security rules testing framework, right?
+
+**25:47** · Yeah. I was like, I've never seen this.
+
+**25:49** · That's awesome.
+
+**25:50** · And I it's like I feel like I should know about it.
+
+**25:52** · Yeah.
+
+**25:52** · So, when I discovered it, I was like, this is incredible. Why don't we talk about this more? And uh and then I just loaded it into my agent and it compiled and built and nearly worked first try.
+
+**26:04** · So, when you're using Notebook LM to kind of find these resources, are you um trying to go out and paste a bunch of links in?
+
+**26:13** · Are you uploading files that you have directly for the context? like what are you doing there?
+
+**26:17** · I very rarely have a file on my laptop. It's mostly like, you know, photos I've taken or things like that.
+
+**26:23** · Uh I try and keep all my files online.
+
+**26:26** · So I will go and I will grab links from different websites, okay, via Google search and insert them into the notebook or I'll crawl manually. There's probably an automated way to do this, fair, but I will crawl a page and grab the resource links that I want, which I have done that. Yeah, what I usually do is just write a script in Chrome DevTools and copy out all the A tags.
+
+**26:50** · Rudy, what do \[clears throat\] you do?
+
+**26:51** · \[laughter\] How do How do you just make your life so easy like that? \[laughter\] I'm like, well, I'm not going to manually copy all these, so I so I just Yeah. Right.
+
+**27:03** · Well, the thing is I always like want to look at the page and be like, is this relevant? And then like pull it in. I see what you're saying. Like, oh, it's much easier to just write like a script tag, pull out the thing, drop the like do what is it? beautiful soup to like clean it out.
+
+**27:15** · Yeah.
+
+**27:15** · Or like uh so there's two ways that I found that to be really useful. One is uh if I go to Firebase or Flutter or some type of doc site, they're going to have a sidenav with a bunch of links to every link on that site. I believe we support \[snorts\] um LM's text now. Yeah.
+
+**27:33** · And so we should have make that a lot easier. But before I could just write a simple script that went to the nav, grabbed all the address and then from there I could literally paste it as a block in.
+
+**27:43** · That sounds so much smarter than what I was doing.
+
+**27:46** · And like sometimes like I don't know what it is, but like the internet provider will just be like, "You seem to be navigating a lot. How about just slow down and read the content for once, bud?"
+
+**27:55** · Yeah.
+
+**27:55** · You know, and then like maybe it's just my my internet service provider. Who knows? But I I Yeah, I I go to each page, look it over.
+
+**28:05** · Nice.
+
+**28:06** · I do it the wrong way.
+
+**28:07** · Yeah, \[laughter\] you're the human in the loop on the finding the context.
+
+**28:11** · Oh, I'm always a human in the loop.
+
+**28:12** · That's awesome. Well, that's that's a really cool use case with using it for writing the agent uh MD files. I have not been doing that and I might actually add that to my workflow.
+
+**28:22** · Yeah, it's well worth it.
+
+**28:24** · Yeah, totally. And plus it keeps the content up to date and a bunch of other reasons why that's important. Do you leave the like a bunch of different agent MD files in in your projects when you work with anti-gravity?
+
+**28:36** · I do you selectively add and pull them in?
+
+**28:39** · Yeah, I feel like I selectively bring them down. I try to think about context as a an artifact, but that it's not, you know, persistent, you know, like you can have this for the moment in time that you're needing it. So I I usually create like a research folder or a docs folder and I add in markdown files that are specific to you know deep researches that I've run or um like like I could have one on
+
+**29:03** · here's how to deploy with cloud run on all the configs on like a specific advanced kind of like storage and whatever and then I have a different one that's here's how to work with SQLite and set it up for the environment and that kind of allows me to tag the agent on those files when I'm like okay we're working on the database base adapter like here go look at this thing and this is like the setup I want and then also here's a deep research on the schema that I'm planning on.
+
+**29:27** · My my issue with like gemini.md files in the Google CLI Gemini CLI is that you you can nest them in different folders but then I feel like the context just gets clobbered over time. It just gets overwhelmed.
+
+**29:43** · Oh, 100%. That's why you have to be so specific on um either if you can try to paste it as content directly even if it's a subp part so I can like select it all and just paste it as markdown and the model will be able to read it.
+
+**29:57** · Yeah.
+
+**29:57** · Um but otherwise yeah having multiple broken up files makes that a lot better cuz inside Gemini CLI for instance you can at other files with the at syntax and if you open up a file it'll basically just concatenate them together. So you can basically tag the lowest possible file that contains the context you need or you know contain you do an at file and then put in line numbers like does that work where it only extracts those line numbers or does it not that I found it might be supported but that would be cool.
+
+**30:29** · I do know in anti-gravity you can select a range of part of a file and it will show as the context.
+
+**30:35** · I've seen that.
+
+**30:36** · Yeah, which is super cool. Yeah.
+
+**30:37** · Yeah.
+
+**30:37** · because then you're not like just sending over this huge file. And sometimes sometimes I like Gemini CLI will do smart things for me, right? So like one time I asked it like in this very large file like, "Hey, can you like do this thing?"
+
+**30:49** · And it found another method that already exists that did the thing I was looking for.
+
+**30:53** · Nice.
+
+**30:54** · It's what happens when you work in unfamiliar code bases, right? Or like you write code for like long enough and you're like, "Oh, I needed to like do this. Can you like help me just like stub out this method real quick?" And it's like, "Yeah, sure." And then it'll like you write the stub and then it injects like the other method name like right in there and like I should take a nap, right? Yeah.
+
+**31:13** · Yeah.
+
+**31:14** · One thing that we talked about this morning in the live stream.
+
+**31:18** · Yeah.
+
+**31:18** · That I know that you've been doing a lot of Yeah.
+
+**31:20** · is you've been pairing Stitch and anti-gravity.
+
+**31:23** · Oh, yeah. Totally.
+
+**31:24** · Yeah. Do you want to tell me how that's been working for you and like what you've been doing with that?
+
+### Stitch: Generative UI, Shaders, and App Redesigns
+
+**31:30** · Totally. Um, one of the cool things about Stitch is it will generate both web apps and mobile apps and you know, you can make them responsive and get all the different um, HTML and images for it. But one of the nice things Stitch does is with Gemini 3, in addition to creating way better designs and I feel like uh, a lot closer to what I'm wanting, it can also even redesign existing apps. So using Nano Banana Pro, you can say, "Here's my really terrible UI that I don't know how to write. Can you make it look better?"
+
+**32:03** · And uh one of the cool things about that flow is you take that, copy it into Gemini, and say, "Okay, for this image and possibly the HTML, generate me a Flutter app, generate me React or Angular, whatever." It can like really effectively generate uh some really cool things.
+
+**32:21** · So, one of the apps that I've been working on is a generative UI type of demo that includes some really cool features with ADK, which we talked about last week, and and some other exciting things with Gemini, but it's a very visually impressive demo, which requires a lot of gradients, a lot of design choices around uh animations and stuff like that. All of which usually take the majority of my time.
+
+**32:51** · Yeah. Yeah.
+
+**32:51** · And so what I've been doing is having Gemini take those screenshots and it's been writing the gradients and the shaders in every part of the application including the animations like so effectively.
+
+**33:03** · Now when it writes the gradients does it write it as CSS or does it write it as here's an image that has a gradient set it as your background that I generated with Nano Banana.
+
+**33:11** · What's even crazier is it's actually taking the screenshot that's inside the Gemini app and creating the gradients in Flutter. like it will write the flutter linear gradient from the colors in the image. Oh, and yeah, and it can use Nana Banana to
+
+**33:28** · generate some uh image assets and I have done that, but I was like, wait, what if we just made this a shader like instead of a gradient, let's make this an animated mesh background and like anti-gravity is able to to take that context, write the shader code, set up the animation controllers, and you're able to all of a sudden unlock a workflow where whereas before, you know, I'm not the strongest at writing shaders.
+
+**33:54** · I I could get a basic version working, but now I could even just like prototype like, does it even work? Like, will this look good? And then, you know, it it was done in faster than it usually takes for me to even get started on getting the first version running. So, uh, I I feel like that workflow has just been so awesome to experiment with design choices that usually I'm afraid of implementing because I know how much it's going to cost to keep those up to date or like reason about the code.
+
+**34:22** · Usually have kind of geared towards simpler UIs or at least UIs that are more focused on UX. But now it's like, cool. Yeah, I'll do a really crazy design that involves multiple section headers and and different types of text elements and animations cuz I can just reiterate on it really quickly.
+
+**34:43** · Yeah. So, you're able to iterate over a bunch of different shaders.
+
+**34:47** · Yes.
+
+**34:47** · Right. And and you you're saying you don't have to write a single line of code there? N it just does it, injects it, you're good to go.
+
+**34:55** · Yep.
+
+**34:55** · and it will not only write and update the shader code, it will also write the logic that calls the shader, animates the uniforms, and connects it to the UI as well. So, it's just been super awesome. In this app that I'm working on, I'm up to three shaders in the app already. And I feel like that's already three more than I've added in previous apps. So, uh I've been super happy about it.
+
+**35:17** · Yeah, that sounds incredible.
+
+### Outro & Teaser: Prompt Optimization
+
+**35:20** · All right, no. So, is there anything else that you want to kind of share that you've been working on or excited about that you want to kind of close us out with?
+
+**35:26** · Uh, there is something I've been working on. It's uh surrounding prompting.
+
+**35:32** · Okay, cool.
+
+**35:32** · And prompt optimization, but I think I want to pull the covers back on that next week.
+
+**35:37** · Sounds good. All right, cool. You have to stay tuned for that. Um, I feel like there has been so much to explore just in the last few weeks. Um, there anti-gravity and Gemini CLI and Stitch and so many other things we talked about are just like some amazing tools that I feel like just unlock these workflows that I I have been just waiting for. You know, I have been trying to to do a lot of these things and you get really far but then sometimes you just like hit the ceiling that you're just like I can't I can't break through like this.
+
+**36:07** · I'm running into too much context or you know it's just a little bit too soon. But now I feel like a lot of those projects are I can pick up and like um I'm able to get those done in like an afternoon whereas before it was like a week or so.
+
+**36:23** · I mean even just going back and reviving old projects, right?
+
+**36:26** · Totally. Yeah. Yeah.
+
+**36:27** · Yeah. Things have been dead for months, you just hand it off to Jules and you're like, "Hey."
+
+**36:30** · Yep.
+
+**36:30** · Make sure I can run this in today, you know?
+
+**36:32** · Totally. And which I would suggest as a fun exercise for people, uh, go to your your old apps on GitHub, upload screenshots of them running into Stitch, have it generate a nice fresh new UI, open that up in anti-gravity, and just give it a nice redesign. Yeah. And you'll be surprised at how well that works.
+
+**36:52** · Cool.
+
+**36:53** · Awesome.
+
+**36:54** · Well, thanks for uh listening to us yabber on.
+
+**36:57** · Sounds good. All right, see you next time.
+
+**36:59** · Ciao.

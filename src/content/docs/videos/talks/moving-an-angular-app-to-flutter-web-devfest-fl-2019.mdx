@@ -1,0 +1,201 @@
+---
+title: Moving an Angular app to Flutter web - DevFest FL 2019
+date: '2019-11-18T00:00:00.000Z'
+draft: false
+tags:
+  - flutter
+  - firebase
+  - astro
+  - html
+  - css
+  - dart
+  - youtube
+  - food
+  - swift
+  - java
+  - javascript
+  - github
+  - web
+  - talk
+  - google
+summary: >-
+  *This presentation outlines the process of migrating an Angular application to
+  Flutter Web, demonstrating how Flutter's widget-based architecture enables
+  rapid, cross-platform development and feature scaling.
+embedding: >-
+  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
+related:
+  - videos/talks/road-to-flutter-city-rody-davis.mdx
+  - flutter/getting-started.md
+  - flutter/ssr-rfw.md
+  - flutter/lit-interop.md
+  - videos/take-5/adaptive-dialogs-flutter.mdx
+last_updated_metadata: '2026-05-23T00:21:18.480Z'
+---
+
+import SocialEmbed from "../../../../components/SocialEmbed.astro";
+
+
+# Moving an Angular app to Flutter web - DevFest FL 2019
+
+<SocialEmbed platform="youtube" id="SLT9b7iLisA" />
+
+## Description
+
+Moving a Angular application to Flutter web in 6 months.
+
+## Transcript
+
+**0:07** · so first what is that so that run from a scenario where ways it's a web component framework \[Music\]
+
+**1:09** · \[Music\]
+
+**1:31** · \[Music\] so
+
+**2:02** · now \[Music\]
+
+**3:04** · so we kind of used angular but why in our conception the first person to so we
+
+**3:22** · put the information inside processing and generate the HTML so we need our Forks for the second one we need to speed up our process given our development process so we use angular material and it was important one my opinion if you knew how and so we so this was our first
+
+**4:06** · person like a typical application forms \[Music\] briefing so my body
+
+**4:41** · so after google we got some new requirements for example a prophetic dragon drove support for tablets and smartphones reports and smartphones online users and you might be used of course so
+
+**5:10** · so maybe the rack but maybe sounder continuous angler or here with but just included so again flying through the it's the third packet them arose the theme was present the plug
+
+**5:38** · but one important thing is the new requirements are supported by Twitter so I buy their dragons our support for that lives on smartphones I'll flank you with this and put their butt
+
+**6:09** · so that's where I finish so I was working with clutter for like the past two years the pretty involvement community created plug-ins and examples as well as using a lot of repos with water it allows you like Java to create an application extremely quickly scaffold it prototype and demo it way faster than we could with angular so
+
+**6:34** · first of all everything in clutter is a widget so that includes the theme the app bar scaffold text even the app itself as a widget so because of that you can create a very it can compose your application with components clutter out of the box has material design which we were already using angular material which made the transition to material design with clutter widgets very easy on
+
+**6:59** · top of that it's a declarative UI framework so you're writing it exactly as you're thinking about it or seeing it on a design doc so you have problems and you have literally you're writing an asthma treatment here and most importantly we wanted a very controller control over a brand and the output of the application we wanted to make sure it looked like us and not just like material design so we came up with our own theme because of that we also
+
+**7:31** · needed something with extremely fast welcome we did the first one in a month before Google i/o and we were targeting another beta for dam summit which was also one deadline but yeah so with water you have extremely festival because though it's powered by that you need to be meaning that you can reach out to anyone on the select channel that we
+
+**7:53** · have for github and it's really easy to connect to people who have them help you and you help them and I think it's because it's just kind of a new kind of generation coming up and wanting to collaborate on projects together there's a ton of plugins on flutter already there was already angular Dart and a lot of the plugins that we used on the web actually came from hanging in the dark but then clutter came along and now they're wonderful audience too so you get huge taking the tools in flutter it's a
+
+**8:23** · Google product so their tools are really good and the testing has been awesome because you can actually test your entire application without running the application because the player runs the widget tree you can actually test your application you know on a server on Linux without even having to launch our iOS application or Android application so we can't go through tests really quickly and another really important one is code generation dark has really good
+
+### Code Generation
+
+**8:50** · support for the runners where you can specify a minimum amount of code and it generates a lot more for example our database ball it's about a thousand lines regular but generated it's over ten thousand and so this saves us so much time be able to do a lot of the boilerplate stuff that would take a little more time so we started looking
+
+**9:11** · the future and say okay well what is our goals for this project like you know we have letter we have something on the web what do we want to do after this and we saw one of the other tools and kind of directions they were doing so we're saying well if we have web what about mobile or desktop and because of that we needed technology to use that
+
+**9:32** · could provide all those to us and very easily so cluttered first and foremost is a multi-platform framework that means that it's a single codebase one language in multiple octaves you're not rewriting application for each baktun one you're writing at once and you're exporting to Mac they're exporting to load exporting to iOS and you're getting a native experience on each one of them they're even having support for new ones like command line which just added we can actually build a
+
+**9:59** · REST API or command line version every application that you already have or even around the REST API in fact I think at Google i/o last year they even ran clutter but a huge like Jumbotron thank you so it's a anywhere that you can build a runner you can run flutter and we're currently targeting all these right now except for a big run so
+
+**10:21** · flutter just launched web support pretty recently but we have been using it since the time that you weren't even we're not supposed to use it we have been on the very material early off of to the point where we had a refactor a project of all times during parts that we're breaking our application as they went but now it's a technical preview and it's a lot more stable but clutter
+
+**10:45** · is truly native that means that on each of these runners that you have the platforms it's painting onto the canvas it's not running a website it's not running a virtual machine everything's compiled ahead of time so that you're getting insanely good performance 60 FPS on most smartphones and things like I've had a second support higher refresh rates flower goes up to 120 is long and they always target that - on the web it'll go compile your
+
+**11:12** · code down to Jas get a PWA application with no effort from you as well as minify code in addition they also launched desktop support so now we're gonna be launching a Mac OS application let X applications Windows application again we only wrote the code once we're just making customization for responsive design so
+
+**11:35** · another thing I wanted to talk about is working for the team because you know this wasn't less solo effort we had to work together to get this done in such a short amount of time so because of that because of that a flutter is by nature a very collaborative community so we went
+
+### Working for the Team
+
+**11:52** · to you know a lot of like Stack Overflow yeah we had a lot of issues that we had to go through as even people from the cutter team yeah even people on the cutter team helped us out on different Asian issues which was invaluable as well as teaching each other I told my team kids at the time I
+
+**12:11** · was the only one that knew flutter I told them by the time we want to pay that everybody here is gonna know flutter and all they do now because it's easy to learn and once you learn it you could move extremely quickly and so also through the process of being one of the pioneers on flutter with we also have to start tipping back so we've actually open sourced a lot of our plugins that we build including a lot of the firebase authentication on the web the firebase storage and firestorms that are all we're using with clutter and
+
+### Why Choose Cross-Platform
+
+**12:41** · so why choose cross-platform for startups it may seem like a no-brainer but is definitely important to go through a couple of these points first of all prototyping ideas quickly but flutter is so fast to do an application that your demo can be almost a fully
+
+**12:57** · functional map you can provide prototype ideas in a matter of hours then it takes other platforms to use like a couple of months you don't have to have separate native teams because I can get really constantly and sometimes be slower but instead you just have a core team and focus on building the core product you have a single code base which means you have a consistent post that means like
+
+**13:21** · we fix it one place that fixes it everywhere it's very weird you're gonna find bugs in just one platform and what it is it's going to be something that's like hated where an SMS plug-in it's gonna be the iOS that's messed up most the time all the pure dark stuff
+
+**13:37** · he also spent more time on the core product especially when you're developing and supporting to not get bogged down and all the boilerplate and getting the project set up and choosing the technology you want to be spending the time focusing on the business that's going to actually dinner any fun as well as taking that design getting into prototype and getting into products as fast as possible so because of that we
+
+**14:02** · also wanted to design for everyone we wanted a tool that could be used by anyone regardless of what device that you think where they're from because of that we started supporting internationalisation our tool now supports and the switch you can change out the language as well as we're doing tooltips and accessibility features so if you have a hard time seeing as well as
+
+**14:30** · native performance like I said earlier there's no website run so it's not like it would be like Cordova it's not like JavaScript running in the background that's running compiled to our code machine code running on the CPU directly and each platform looks and feels just right so an iOS you're gonna have like those specials at the top of it on Android you can have an overcoat on wet they're gonna have a cover events which you don't have my mobile at all but the clutter it takes care of all that for you which makes it super nice to use as
+
+**15:02** · well as be able to take advantage of existing libraries if you come across something like cocoa pod for example just really easy to add into your application as well as the dll on Windows or JavaScript property we actually found out a relation that creates a lot of JavaScript for the web but still also being able to rewrite a lot of the things in mobile you can use
+
+**15:26** · any existing code the clutter is really easy to add it to your application so let's say you don't want to jump all in the clutter because they'll just do one screen and you can access all your Swift Java JavaScript correctly without having any performance issues clutter eases skia which if you're not familiar ski it came from chrome so they took the power from without the baggage of the way
+
+**15:52** · as well as you can do custom native or branded experiences what I mean by that is you can make it look like an iOS application iOS and Android application range work but instead we found that it's better to kind of do your own style because if you if you just build it like a native application we're just going to think it's made by Apple were made by before for us we wanted to really bring out our branding and our style into our application as well as with what our
+
+**16:20** · there's no limits like one of the questions I see all the time is is this possible clutter and the answer is always yes because it's regular application so that doesn't mean that it was smooth sailing the whole time we definitely had some performance issues at the beginning with flutter there's a one a different state management solutions you can choose from since it's a very new framework and one of the ones we chose at the beginning ended up being super easy at the beginning but perf like us again so we had to change the
+
+**16:52** · one we were using and into the working a whole lot better we also switch to web assembly so you see what people like in the browser and run billions of queries instantly so that dramatically improved their application as well as being able to adapt to change quickly since we were in early adopter clutter on the web we had it we had that we knew that it was going to break you just winced hope we had to be willing to jump over these
+
+**17:18** · hurdles as they came because of that it made us very intimate to call the limitations and the pros that I had as well as the things that we can improve white art a lot of people that's like one of the first things to ask why would you just start clutter like why not caught that why not Swift and because of that dartie has also changed a lot too so we're now on dart - it's a strongly type of language it's not like the first generation of dart was replacing JavaScript and the reason people you start is because it runs in two
+
+**17:49** · different modes dark that's a IOT compiler and a JIT compiler so when you're coding you're using the typical pottery and make it change it gets hot reloaded right into your your code that's running with your state so you can be twenty screens in your application they can change and it updates that screen without having to start your application on the way over but then when you release both because
+
+**18:11** · you have a little compiled arm code complication I promise extremely fast as well all the time on the web you have minified version of javascript versus a ad debuggable version of javascript there's also really good tools and testing like I said earlier dark has a built-in testing clock marbles the order integration tests and unit tests and it's also pretty easy to learn there's a slight learning curve if you're coming from JavaScript but if you're coming from Swift or confident you won't even notice it
+
+### Tools and Testing
+
+**18:41** · especially so it's important to say that we did this in six months from the start to where we right now and by doing that we had to learn about clutter develop a path forward and develop the application
+
+**19:01** · well there's only great because of the tools the community and a language of mind there they're good on their own but they become really powerful when they get it together there's really really good open source projects at the moment there's lots of plugins into your dart and flutter as well as there's like I
+
+**19:18** · said earlier a lot of community health and collaboration good tools and debugging as well as like we just made just launched the dart extension switch for a very welcome feature as well as Golden Pond testing so you can literally screenshot your application running unit tests to make sure that the UI looks exactly like the screenshot very powerful for preventing regression folks and it's also easy to understand there's even flutter has been getting popular in China I've been able to read through their source code pretty easily because of how straightforward it is so even if
+
+**19:50** · there's not a lot of comments so some other technologies that we're using in this application are webassembly sequel life microservices and king of actions we actually fully automate the deployment and testing application we get out of actions which makes working together very nice as well as micro services or even broke apart like different parts of our application and we run it independently which makes
+
+**20:20** · it nice for abstractions so one of the things you always see when you building an application if you're trying to go native is what about Android what about whether about iOS because of that you have to choose a platform that lets you build to all these weapons at once send updates simultaneous
+
+**20:43** · so by doing that you get to focus like I said earlier on the core product you get to focus on building what matters and what's going to generate you money in the long run so flutter doesn't have CSS or HTML it's not a wet language that you're using on mobile it brings designs to life because you are writing it declaratively you get to bring all your features to the market faster since you have told us about testing as well as
+
+**21:14** · being able to build for all platforms and people there's less overhead by having a smaller team which is focusing on flutter and dart in fact you can even split out the backend team from the front of team the people to the other people on our team they do just the you are going to have to do the logger on the backend but work together on the same project together and you have faster updates by
+
+**21:40** · not having multiple platforms that you're having to develop or individually it's you can just make impact and then it's update updated forever as well as we use a lot of Google products and because of that this application is built on top of a cloud run or using dart code we actually have a full REST API Google in dart as well as we use firebase apart service architecture and technologies for the exporting flutter or the UI and
+
+**22:13** · everything else in region G suite so it can even pepper over or DSU's together stainless and outside just really trying to cooperate that way because it's made the process a lot easier so hitting here
+
+**22:31** · like reaching beta is such a huge milestone and very important because of that we had to go through multiple iterations this you know like the first version that you're gonna build is not going to be the last person version that you deploy it's important to realize that because there are things like just by nature going to figure out along with that and maybe worked when you're prototyping it that don't work want to get to the release so what we did is we
+
+**22:58** · rebuilt it like about a month ago with better UI and UX and decided on a way that really makes sense and trying not to be stuck in a sunk cost fallacy we wanted to say what's going to make the product great how can we make it go to what things can we do to make it better so part of that you just have to be able
+
+**23:20** · to move fast and break things fix them as you go because if you build an application that's bug free it may be good but the UX might suffer too because you have to get beta feedback to know how it's actually working so trying to say that it's available today if you want to go to the editor it's Amster web app and if you want to see more information about amps or itself it's stored on Co the entire application is written in flutter for the web it's a full colon editor you can
+
+**23:52** · export perfect age to the 5-amp HTML yeah AM code and as well as we post footballs too for you as well so in a matter of two minutes and breathing am story and it just share a link which I handle all the posting for you as well as we kind of made that editor look like
+
+**24:12** · sketch in vs Cohutta babies we want to do and target both audiences because we know that they're gonna be developers in in school and designers as well so because of that we wanted to have the experience that worked good for everyone and just wanted to say thank you for \[Applause\]
+
+**25:03** · because for us we wanted to be able to have like a desktop application which is really big so by doing that we started with mobile first and we wanted to say okay well let's do it on desktop I'll probably do it on my desktop we had to do a huge responsive design and when flutterin announced technical preview it was really easy for us just to launch the website where because there's no extra work
+
+**25:30** · so we are now like when we were doing that of course and then when flutter and now something will preview we now had support for West and we were able to do it was just it took a little bit of I think couple jumps for libraries for someone guess that we needed but other like we had a whole web application in just a matter of weeks since you're on our team yes so I am
+
+**26:05** · I was I was at the flutter hackathon and working there but they these guys were the ones that were call putting it on they found me and then I do
+
+**26:44** · we are both from Macedonia we came here in the States I was working remotely for a contractor and that's how much we child but really we actually attended organized as DDT's we organized this cluttered hackathon and Rudy was one of the speakers there and that's how we met with him and he gave us an amazing idea that basically change the entire application and
+
+**27:27** · \[Applause\] it is still a bit after tune you can find a lot of parts they're using flutter we made the app so quickly it's it is a huge light app it is a editor where you can basically build a fit page with just check it out and it's free
+
+**28:22** · \[Music\] for startups and then you're building your startup online and then if you need some support and storage like you could show some really interesting direction or yeah when we say okay we can provide you with so in our case
+
+**28:57** · \[Music\] because it's important that we were able
+
+**29:39** · to focus on the product itself and not having to worry about you know making money I can at first like month or two because of that I think it really speaks in the application and be able to not having to be bound by it because you know we're we're doing this right now like it's really good to be able to just build a product that you want to make
+
+**30:43** · so with us like I'm working on marketing and then roubini is the mastering fire rate but the job started in England now she's a master in the clutter we're learning to code in butter and like that is how our team works like we're supporting each other someone the song at the time
+
+**31:13** · but then I'm stepping up and I'm going to learn to do this so like a big part of it was the food and that's why
+
+**31:52** · \[Music\]
+
+**32:17** · yeah the only thing we had a change was like some gestures and adding some different UI like gestures for mobile things like hover events things like you know things that didn't exist on mobile but after that it was because we were already worked in a desktop application we had to do with 90% of that
+
+**32:37** · yeah so when you do wonder create you get iOS Android and web for your default applications you can literally copy into the desktop folders and you have desktop whole web one project and then even after the command-line like it's it's literally just adding a folder because the core logic is inside the lip floor from dark so you don't have to keep building these different projects and it's like it's all just running off the same code
+
+**33:12** · yeah you can't do like it platformers iOS but the a lot of the core stuff is handled independently on the platforms already from the fighter team so it's going to have Iowa's styling and gestures on iOS and the reverse on the Android so you can have a higher distraction or you can keep going down lower another huge thing about flutter is the entire thing all the way down to the right above the ski layer is already dark so if you want to build your own painting library you can just extend it
+
+**33:44** · and then write your own if you want to bundle your own bird in a flutter and camp there was lots of things where sometimes we'd have to go down to a lower level make a change make a patch or even just like add features that didn't exist but because of that it was super easy because you're having the same language it was also a really nice way to have documentation so if there wasn't an example on how to do something you could always go to the definition of the thing inside the engine and keep going down it down
+
+**34:21** · nope because we're using Google clock run and part rate so saying if we have the million years as tomorrow our application will be charted across multiple servers and with firebase and flat document structure there's no more stuff that we have to do in our site so but we built it with scaling in mind at the beginning what are we going to do
+
+**34:53** · like
+
+**35:18** · the UI for mobile because right now it is design okay we're done yes you can use it on
+
+**35:45** · \[Applause\] \[Music\]

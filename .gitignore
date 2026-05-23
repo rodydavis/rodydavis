@@ -53,3 +53,6 @@ yarn-error.log*
 /build/
 *.flutter-plugins
 *.flutter-plugins-dependencies
+
+.astro/
+dist/

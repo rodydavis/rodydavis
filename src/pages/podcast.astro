@@ -1,0 +1,374 @@
+---
+import ExplorerLayout from "../layouts/ExplorerLayout.astro";
+import { getCollection } from "astro:content";
+import {
+    Play,
+    Calendar,
+    Tv,
+    ListVideo,
+    ArrowLeft,
+    ChevronLeft,
+    ChevronRight,
+    ChevronDown,
+    Headphones,
+    Compass
+} from "lucide-react";
+
+export const prerender = false;
+
+// 1. Fetch all docs and extract podcast episodes
+const allDocs = await getCollection("docs");
+const podcastEpisodes = allDocs.filter(doc => doc.slug.startsWith("podcast/"));
+
+// 2. Helper to extract YouTube video ID from markdown body
+function getYoutubeId(content: string): string | null {
+    const embedMatch = content.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]+)/);
+    if (embedMatch) return embedMatch[1];
+    const watchMatch = content.match(/v=([a-zA-Z0-9_-]+)/);
+    if (watchMatch) return watchMatch[1];
+    const beMatch = content.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+    if (beMatch) return beMatch[1];
+    return null;
+}
+
+// 3. Group episodes by playlist (directory name)
+const playlistsMap: Record<string, typeof podcastEpisodes> = {};
+podcastEpisodes.forEach(ep => {
+    const parts = ep.slug.split('/');
+    const playlistName = parts[1] || "general";
+    if (!playlistsMap[playlistName]) {
+        playlistsMap[playlistName] = [];
+    }
+    playlistsMap[playlistName].push(ep);
+});
+
+// Sort episodes inside each playlist by date descending (latest first)
+Object.keys(playlistsMap).forEach(key => {
+    playlistsMap[key].sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+});
+
+// 4. Read active playlist and episode slug from search params
+const url = Astro.url;
+let activePlaylist = url.searchParams.get("playlist") || "";
+let activeEpisodeSlug = url.searchParams.get("episode") || "";
+
+// If activePlaylist is invalid or unspecified, choose the most recent episode's playlist
+if (!activePlaylist || !playlistsMap[activePlaylist]) {
+    const sortedAll = [...podcastEpisodes].sort(
+        (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+    );
+    if (sortedAll.length > 0) {
+        const parts = sortedAll[0].slug.split('/');
+        activePlaylist = parts[1];
+        activeEpisodeSlug = parts[2];
+    } else {
+        activePlaylist = "creative-engineering";
+    }
+}
+
+const activePlaylistEpisodes = playlistsMap[activePlaylist] || [];
+
+// Resolve active episode
+let activeEpisode = activePlaylistEpisodes.find(ep => ep.slug.endsWith(activeEpisodeSlug));
+if (!activeEpisode && activePlaylistEpisodes.length > 0) {
+    activeEpisode = activePlaylistEpisodes[0];
+    activeEpisodeSlug = activeEpisode.slug.split('/')[2];
+}
+
+// Find previous and next episode in the active playlist
+let prevEpisode = null;
+let nextEpisode = null;
+if (activeEpisode) {
+    const activeIdx = activePlaylistEpisodes.findIndex(ep => ep.slug === activeEpisode.slug);
+    if (activeIdx !== -1) {
+        // Since sorted descending:
+        // Index activeIdx + 1 is older (previous in chronological order)
+        // Index activeIdx - 1 is newer (next in chronological order)
+        if (activeIdx < activePlaylistEpisodes.length - 1) {
+            prevEpisode = activePlaylistEpisodes[activeIdx + 1];
+        }
+        if (activeIdx > 0) {
+            nextEpisode = activePlaylistEpisodes[activeIdx - 1];
+        }
+    }
+}
+
+// Get YouTube ID for the active video
+const ytId = activeEpisode ? getYoutubeId(activeEpisode.body) : null;
+const embedUrl = ytId ? `https://www.youtube.com/embed/${ytId}?autoplay=0&rel=0` : null;
+
+// Format playlist titles to human-readable names
+const playlistTitles: Record<string, string> = {
+    "creative-engineering": "Creative Engineering",
+    "tech-walks": "Tech Walks"
+};
+const activePlaylistTitle = playlistTitles[activePlaylist] || activePlaylist;
+
+// Helper to construct a URL
+function getEpisodeUrl(playlist: string, slugStr: string) {
+    const cleanSlug = slugStr.split('/').pop() || "";
+    return `/podcast?playlist=${playlist}&episode=${cleanSlug}`;
+}
+
+// Set up tabs for the page shell
+const activeEpisodeTabs = activeEpisode ? [
+    {
+        label: "Episode Info",
+        href: `/${activeEpisode.slug}`
+    },
+    {
+        label: "Podcast Player",
+        href: `/podcast?playlist=${activePlaylist}&episode=${activeEpisodeSlug}`
+    }
+] : [];
+---
+
+<ExplorerLayout
+    activePostId={activeEpisode?.slug}
+    title={activeEpisode?.data.title || "Podcast Player"}
+    tabs={activeEpisodeTabs}
+    viewMode="preview"
+>
+    <div class="px-6 py-6 max-w-7xl mx-auto space-y-8 select-text">
+        
+        {/* Header Hero Section */}
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[var(--border-main)] pb-6">
+            <div>
+                <div class="flex items-center gap-2 text-xs font-semibold text-[var(--header-h1)] uppercase tracking-wider mb-1">
+                    <Headphones size={14} />
+                    <span>Now Playing Podcast</span>
+                </div>
+                <h1 class="text-3xl font-extrabold text-[var(--fg-primary)] tracking-tight m-0">
+                    {activeEpisode?.data.title || "No Episode Selected"}
+                </h1>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <a
+                    href={`/${activeEpisode?.slug}`}
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--bg-sidebar)] hover:bg-[var(--hover-bg)] border border-[var(--border-main)] text-xs text-[var(--fg-primary)] font-medium transition-all duration-200 no-underline"
+                >
+                    <ArrowLeft size={14} />
+                    View Episode Notes
+                </a>
+            </div>
+        </div>
+
+        {activeEpisode ? (
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                {/* 1. CINEMATIC PLAYER & META (8 columns) */}
+                <div class="lg:col-span-8 space-y-6">
+                    
+                    {/* Glowing Video Frame Container */}
+                    <div class="aspect-video relative w-full overflow-hidden rounded-2xl bg-black border border-[var(--border-main)] shadow-2xl group">
+                        {embedUrl ? (
+                            <iframe
+                                src={embedUrl}
+                                title={activeEpisode.data.title}
+                                class="absolute inset-0 w-full h-full border-0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen
+                            ></iframe>
+                        ) : (
+                            <div class="w-full h-full flex flex-col items-center justify-center text-[var(--fg-secondary)] bg-gradient-to-tr from-slate-950 to-slate-900">
+                                <Tv size={64} className="opacity-40 animate-pulse mb-4 text-[var(--header-h1)]" />
+                                <span class="text-sm font-semibold">No media source available</span>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Playback Control Bar */}
+                    <div class="flex items-center justify-between gap-4 p-4 rounded-xl bg-[var(--bg-sidebar)] border border-[var(--border-main)] shadow-sm">
+                        <div class="flex items-center gap-1">
+                            <span class="text-xs text-[var(--fg-secondary)] font-medium">Playlist:</span>
+                            <span class="text-xs text-[var(--fg-primary)] font-bold px-2 py-0.5 rounded bg-[var(--hover-bg)]">
+                                {activePlaylistTitle}
+                            </span>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            {prevEpisode ? (
+                                <a
+                                    href={getEpisodeUrl(activePlaylist, prevEpisode.slug)}
+                                    title={`Previous: ${prevEpisode.data.title}`}
+                                    class="p-2 rounded-lg bg-[var(--bg-main)] hover:bg-[var(--hover-bg)] text-[var(--fg-primary)] border border-[var(--border-main)] transition-colors cursor-pointer flex items-center justify-center"
+                                >
+                                    <ChevronLeft size={16} />
+                                </a>
+                            ) : (
+                                <span class="p-2 rounded-lg bg-[var(--bg-main)] text-[var(--fg-secondary)] border border-[var(--border-main)] opacity-40 cursor-not-allowed flex items-center justify-center">
+                                    <ChevronLeft size={16} />
+                                </span>
+                            )}
+
+                            <span class="text-xs font-semibold text-[var(--fg-secondary)] select-none">
+                                Episode {activePlaylistEpisodes.findIndex(ep => ep.slug === activeEpisode.slug) + 1} of {activePlaylistEpisodes.length}
+                            </span>
+
+                            {nextEpisode ? (
+                                <a
+                                    href={getEpisodeUrl(activePlaylist, nextEpisode.slug)}
+                                    title={`Next: ${nextEpisode.data.title}`}
+                                    class="p-2 rounded-lg bg-[var(--bg-main)] hover:bg-[var(--hover-bg)] text-[var(--fg-primary)] border border-[var(--border-main)] transition-colors cursor-pointer flex items-center justify-center"
+                                >
+                                    <ChevronRight size={16} />
+                                </a>
+                            ) : (
+                                <span class="p-2 rounded-lg bg-[var(--bg-main)] text-[var(--fg-secondary)] border border-[var(--border-main)] opacity-40 cursor-not-allowed flex items-center justify-center">
+                                    <ChevronRight size={16} />
+                                </span>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Metadata & Summary details card */}
+                    <div class="p-6 rounded-2xl bg-[var(--bg-sidebar)] border border-[var(--border-main)] shadow-sm space-y-4">
+                        <div class="flex flex-wrap gap-4 text-xs text-[var(--fg-secondary)] items-center">
+                            <span class="flex items-center gap-1">
+                                <Calendar size={13} />
+                                {new Date(activeEpisode.data.date).toLocaleDateString(undefined, {
+                                    month: 'long',
+                                    day: 'numeric',
+                                    year: 'numeric'
+                                })}
+                            </span>
+                            {activeEpisode.data.tags && (
+                                <div class="flex flex-wrap gap-1.5">
+                                    {activeEpisode.data.tags.map((tag: string) => (
+                                        <span class="px-2 py-0.5 rounded-full bg-[var(--bg-main)] text-[var(--fg-secondary)] border border-[var(--border-main)] font-medium">
+                                            #{tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+                        <div class="space-y-2">
+                            <h2 class="text-lg font-bold text-[var(--fg-primary)] m-0">About This Episode</h2>
+                            <p class="text-sm text-[var(--fg-secondary)] leading-relaxed m-0">
+                                {activeEpisode.data.summary || "No description provided for this episode."}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* 2. PLAYLIST QUEUE SIDEBAR (4 columns) */}
+                <div class="lg:col-span-4 space-y-6">
+                    
+                    {/* Playlist Selection Dropdown */}
+                    <div class="relative w-full">
+                        <select
+                            id="playlist-selector"
+                            class="w-full bg-[var(--bg-sidebar)] text-[var(--fg-primary)] border border-[var(--border-main)] rounded-xl px-4 py-3 text-xs font-bold appearance-none cursor-pointer focus:outline-none focus:border-[var(--header-h1)] transition-colors pr-10 shadow-sm"
+                            onchange="window.location.href = this.value"
+                        >
+                            {Object.keys(playlistsMap).map((playlistKey) => {
+                                const isActive = playlistKey === activePlaylist;
+                                const playlistEpList = playlistsMap[playlistKey] || [];
+                                const title = playlistTitles[playlistKey] || playlistKey;
+                                return (
+                                    <option
+                                        value={`/podcast?playlist=${playlistKey}`}
+                                        selected={isActive}
+                                    >
+                                        {title} ({playlistEpList.length} episodes)
+                                    </option>
+                                );
+                            })}
+                        </select>
+                        <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-[var(--fg-secondary)] flex items-center">
+                            <ChevronDown size={14} />
+                        </div>
+                    </div>
+
+                    {/* Scrollable Episodes Feed Container */}
+                    <div class="rounded-2xl border border-[var(--border-main)] bg-[var(--bg-sidebar)] overflow-hidden shadow-sm flex flex-col max-h-[640px]">
+                        <div class="px-4 py-3 border-b border-[var(--border-main)] bg-[var(--bg-main)] flex items-center justify-between">
+                            <span class="text-xs font-bold text-[var(--fg-primary)] flex items-center gap-1.5">
+                                <ListVideo size={14} className="text-[var(--header-h1)]" />
+                                Episode Queue
+                            </span>
+                            <span class="text-[10px] font-semibold text-[var(--fg-secondary)] bg-[var(--hover-bg)] px-2 py-0.5 rounded border border-[var(--border-main)]">
+                                {activePlaylistTitle}
+                            </span>
+                        </div>
+
+                        <div class="flex-1 overflow-y-auto scrollbar-hide p-3 space-y-2">
+                            {activePlaylistEpisodes.map((ep, idx) => {
+                                const isCurrent = ep.slug === activeEpisode.slug;
+                                const epYtId = getYoutubeId(ep.body);
+                                const thumb = epYtId ? `https://img.youtube.com/vi/${epYtId}/hqdefault.jpg` : null;
+
+                                return (
+                                    <a
+                                        href={getEpisodeUrl(activePlaylist, ep.slug)}
+                                        class={`group flex items-start gap-3 p-2.5 rounded-xl border transition-all duration-300 no-underline cursor-pointer relative overflow-hidden ${
+                                            isCurrent
+                                                ? "bg-[var(--bg-main)] border-[var(--header-h1)] shadow-md"
+                                                : "bg-[var(--bg-sidebar)] border-[var(--border-main)] hover:border-[var(--fg-secondary)]"
+                                        }`}
+                                    >
+                                        {/* Now Playing Active Gradient Indicator */}
+                                        {isCurrent && (
+                                            <div class="absolute inset-y-0 left-0 w-1 bg-[var(--header-h1)]"></div>
+                                        )}
+
+                                        {/* Video Thumbnail Cover */}
+                                        <div class="w-20 aspect-video rounded-lg overflow-hidden bg-black shrink-0 relative flex items-center justify-center border border-[var(--border-secondary)]">
+                                            {thumb ? (
+                                                <img
+                                                    src={thumb}
+                                                    alt={ep.data.title}
+                                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                                />
+                                            ) : (
+                                                <Tv size={16} className="text-[var(--fg-secondary)] opacity-50" />
+                                            )}
+
+                                            {/* Small Play Button Overlay */}
+                                            <div class={`absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity duration-300 ${
+                                                isCurrent ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                                            }`}>
+                                                <div class={`w-6 h-6 rounded-full flex items-center justify-center text-white ${
+                                                    isCurrent ? "bg-[var(--header-h1)]" : "bg-red-600"
+                                                }`}>
+                                                    <Play size={10} className="fill-white translate-x-0.5" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Episode Info text */}
+                                        <div class="flex-1 min-w-0 space-y-1">
+                                            <h3 class={`text-xs font-bold leading-snug line-clamp-2 m-0 group-hover:text-[var(--header-h1)] transition-colors ${
+                                                isCurrent ? "text-[var(--header-h1)]" : "text-[var(--fg-primary)]"
+                                            }`}>
+                                                {ep.data.title}
+                                            </h3>
+                                            <div class="flex items-center gap-2 text-[10px] text-[var(--fg-secondary)] font-medium">
+                                                <span>#{activePlaylistEpisodes.length - idx}</span>
+                                                <span>•</span>
+                                                <span>{new Date(ep.data.date).toLocaleDateString(undefined, {
+                                                    month: 'short',
+                                                    day: 'numeric'
+                                                })}</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        ) : (
+            <div class="flex flex-col items-center justify-center py-20 bg-[var(--bg-sidebar)] rounded-2xl border border-[var(--border-main)] text-[var(--fg-secondary)]">
+                <Compass size={48} className="text-[var(--header-h1)] animate-bounce mb-3" />
+                <h3 class="text-base font-bold text-[var(--fg-primary)] mb-1">No podcast episodes discovered</h3>
+                <p class="text-xs">Add episodes inside src/content/docs/podcast to populate playlists.</p>
+            </div>
+        )}
+
+    </div>
+</ExplorerLayout>

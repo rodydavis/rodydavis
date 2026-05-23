@@ -88,5 +88,56 @@ const {
     </script>
     <body>
         <slot />
+        <script>
+            // Client-side script handling third-party initialization for SocialEmbeds
+            const loadPlatformScripts = () => {
+                const activeEmbeds = document.querySelectorAll('.social-embed-container');
+                if (activeEmbeds.length === 0) return;
+                
+                const platformsOnPage = new Set(Array.from(activeEmbeds).map(el => el.getAttribute('data-platform')));
+                const win = window as any;
+
+                // Dynamic X (Twitter) Script Injection
+                if (platformsOnPage.has('x') && !win.twttr) {
+                    const script = document.createElement('script');
+                    script.src = "https://platform.twitter.com/widgets.js";
+                    script.async = true;
+                    document.head.appendChild(script);
+                } else if (platformsOnPage.has('x') && win.twttr) {
+                    win.twttr.widgets.load();
+                }
+
+                // Dynamic TikTok Script Injection
+                if (platformsOnPage.has('tiktok') && !document.getElementById('tiktok-wjs')) {
+                    const script = document.createElement('script');
+                    script.id = 'tiktok-wjs';
+                    script.src = "https://www.tiktok.com/embed.js";
+                    script.async = true;
+                    document.head.appendChild(script);
+                } else if (platformsOnPage.has('tiktok') && win.tiktokEmbed) {
+                    win.tiktokEmbed.lib.render();
+                }
+
+                // Dynamic Instagram Script Injection
+                if (platformsOnPage.has('instagram') && !win.instgrm) {
+                    const script = document.createElement('script');
+                    script.src = "https://www.instagram.com/embed.js";
+                    script.async = true;
+                    document.head.appendChild(script);
+                } else if (platformsOnPage.has('instagram') && win.instgrm) {
+                    win.instgrm.Embeds.process();
+                }
+            };
+
+            // Run on initial load
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', loadPlatformScripts);
+            } else {
+                loadPlatformScripts();
+            }
+
+            // Support Astro View Transitions natively
+            document.addEventListener('astro:after-swap', loadPlatformScripts);
+        </script>
     </body>
 </html>

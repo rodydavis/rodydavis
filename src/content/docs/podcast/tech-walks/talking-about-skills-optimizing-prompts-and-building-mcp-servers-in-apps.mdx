@@ -1,0 +1,533 @@
+---
+title: 'Talking about Skills, Optimizing Prompts and building MCP servers in apps'
+date: '2026-02-04T00:00:00.000Z'
+draft: false
+tags:
+  - flutter
+  - firebase
+  - astro
+  - dart
+  - antigravity
+  - gemini
+  - ai
+  - video
+  - youtube
+  - podcast
+  - github
+  - talk
+  - google
+  - adk
+summary: >-
+  Dive into advanced AI development, exploring new concepts like Agent Skills,
+  optimizing prompts using Vertex AI, and implementing local application control
+  via the Model Context Protocol (MCP) with Flutter.
+embedding: >-
+  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
+related:
+  - videos/ai/how-to-connect-interfaces-to-the-cloud-with-ai-agents.mdx
+  - podcast/creative-engineering/flutter-desktopweb-and-vr.mdx
+  - videos/antigravity/intro-to-agent-skills.mdx
+  - >-
+    videos/firebase-studio/build-full-stack-ai-apps-in-minutes-with-firebase-studio.mdx
+  - podcast/tech-walks/building-with-antigravity-gemini-cli-and-stitch.mdx
+last_updated_metadata: '2026-05-23T00:14:53.202Z'
+---
+
+import SocialEmbed from "../../../../components/SocialEmbed.astro";
+
+
+# Talking about Skills, Optimizing Prompts and building MCP servers in apps
+
+<SocialEmbed platform="youtube" id="euyGjhHNP8w" />
+
+## Description
+
+We’re diving deep into the latest paradigms in AI development, starting with the difference between traditional context files (Gemini.md) and the new "Agent Skills" dynamic.
+
+We also share a story about using the Vertex AI Prompt Optimizer to automate our YouTube descriptions. It took 5 hours and nearly 100 million tokens, but the results were surprisingly consistent. Finally, we geek out on the Model Context Protocol (MCP), experimenting with exposing Flutter application state as local tools using Unix sockets.
+
+In this episode:
+
+0:00 - Intro: Why we are sitting today.
+0:30 - What are Agent Skills? (Anthropic & Antigravity support) .
+1:49 - Skills vs. Context: The difference between lazy loading and concatenating context files.
+4:59 - How the API discovers and uses Skills.
+7:25 - The open ecosystem for sharing and installing Skills.
+10:30 - Deep Dive: Using Vertex AI Prompt Optimizer for YouTube descriptions.
+13:28 - Converting CSVs to JSONL for data-driven optimization.
+15:25 - The 100 Million Token experiment.
+19:20 - Exploring MCP (Model Context Protocol) with Flutter.
+22:03 - Using Unix Sockets vs. HTTP for local app control.
+24:25 - Implementing the MCP spec in Antigravity.
+
+Resources mentioned:
+
+Open Skills Domain: https://agentskills.io/
+
+Vertex AI Prompt Optimizer (Colab Notebooks): https://cloud.google.com/blog/products/ai-machine-learning/announcing-vertex-ai-prompt-optimizer
+
+Boost accuracy with the prompt optimizer blog: https://firebase.blog/posts/2026/01/boost-accuracy-with-the-prompt-optimizer
+
+Connect with us: Let us know what you want us to talk about next! 
+
+#AI #Gemini #AgentSkills #MCP #Flutter #VertexAI #PromptEngineering #TechPodcast
+
+## Transcript
+
+### Intro: Why we are sitting today.
+
+**0:00** · Hey, welcome to today's uh techw walk episode, our podcast where we go on a walk and we talk about tech. And today we decided we're gonna mix it up and do a sit.
+
+**0:08** · Yeah, exactly.
+
+**0:10** · Yeah. So, I got Rodie.
+
+**0:11** · Yeah. And I'm with Noey.
+
+**0:13** · If you don't know, Rodie does not normally sit next to me, but he comes down on Wednesday nights. Not Wednesday nights, he comes down Wednesdays, and he decides to sit down next to me and tell me a bunch of things I didn't know. And today, you brought up something called uh skills.
+
+**0:27** · Yeah. And I want to talk about that because not knowing skills I think is my own skill issue. How how new how new is this?
+
+### What are Agent Skills? (Anthropic & Antigravity support) .
+
+**0:36** · Yeah.
+
+**0:36** · So agent skills if uh people aren't familiar with are kind of this new paradigm that um has been popping out in the different tools. Uh Anthropic I believe launched it about a month ago if not a little bit more. Uh anti-gravity just launched support yesterday. And you're saying I'm a little slow. It just Yeah, we're we're a little bit out of the loop but to be fair on holiday breaks. So that's true. Yeah.
+
+**0:58** · Um but one of the cool things about uh skills is uh I don't know about you but when we were entering the phase last year of trying to make our models and agents smarter.
+
+**1:08** · Yes.
+
+**1:08** · Um AI rules were the big thing. You know it's u the agents MD or the Gemini files.
+
+**1:14** · Yeah.
+
+**1:14** · So uh basically ground your project on some type of corpus of information that is very specific and oftentimes including multiple things in one. So, the Gemini CLI has this thing called extensions, which you can install a Gemini.m MD file. Now, you brought up making your agent smarter by having that Gemini.md or that agents.md file.
+
+**1:39** · How, this is where I think I might be a little confused. How often is that file used when you make requests to the Gemini CLI or anti-gravity? Is it used every time or is it only used select times? So with uh when you're loading your default agents MD or Gemini MD file when you say default uh the one that's the root level of the project oh the project not not the system okay um at the root level of the project and any recursive Gemini MD files in the
+
+### Skills vs. Context: The difference between lazy loading and concatenating context files.
+
+**2:07** · current project scope it will concatenate all of them and put them into the context of the model when you first launch the AD. If I have a gemini.md file at the root of the project and then I have a source folder and inside the source folder is like a pizza folder where I have all my pizza recipes. I have a Gemini MD file in there, it will it will read both only if it's working on the pizza recipes, right?
+
+**2:26** · Yeah, exactly.
+
+**2:27** · But if I'm working in say the ramen recipes, which is a different folder.
+
+**2:32** · Uh this is a terrible analogy.
+
+**2:35** · Uh but let's say I'm I'm in like a separate folder then it will not read the pizza recipes. Is that the correct understanding? Uh, I think a different way to think about it is um it will get all of the Gemini MDs for um the tree directory recursively for whatever folder you're in. So you have my current project and my sub projects and my sub sub projects that it'll concatenate all of them and you'll see it when you first launch Gemini CLI or whatever.
+
+**2:59** · Every request the first time you launch the agent.
+
+**3:02** · Oh, okay.
+
+**3:03** · So when you click new chat, it'll that's what it will load all the way down to the pizza recipes.
+
+**3:08** · Oh, okay.
+
+**3:09** · Yeah.
+
+**3:09** · And of course, uh there's different harnesses that may tweak this behavior and it's evolved over time. Um but the downside of this is you had to pay the cost of um being explicit about I want to have these Gemini CLI extensions installed. I want to have these rules files enabled so when I load it into the agent, it's consistent and at least loading the context every time.
+
+**3:32** · Yeah. Actually, you know, it's it's funny that you say enabling and disabling the the certain extension. So, I installed the Firebase extension obviously. Yeah.
+
+**3:41** · Uh, and I use that all the time because it just keeps loading. I never disable it. Otherwise, I'll forget to reenable it when I want to use it and I'll ask it to do things and Right.
+
+**3:50** · So, um, that's interesting. So, I didn't necessarily know that every time you started a new chat, it will read all the Gemini Gemini MD files, right?
+
+**4:01** · Yeah.
+
+**4:02** · Yeah. Okay. So, and then skills builds off of this. Yes. in a unique way.
+
+**4:08** · Yeah.
+
+**4:08** · So one important distinction is that skills are progressive on how it finds out about them. So whereas on the Gemini MD files and the other types of agent files where it's concatenating the resources ahead of time, this is a way for you to say, I have 500 different individual markdown files. I only want you to read the name and descriptions of each of the files so that you know that you have these capabilities and only when you think that that one's going to be relevant should you read in the rest of the the file.
+
+**4:39** · Oh, okay.
+
+**4:39** · And so it can be very dynamic per chat.
+
+**4:41** · It so it loads it when it needs it rather than Yeah.
+
+**4:44** · loads it right at the beginning. You get the whole soup salad and and everything but the kitchen sink. Exactly. Right.
+
+**4:49** · Okay.
+
+**4:50** · So when you load these, how does it go about finding which one it it needs? Is it like a tool call? Do you know what the API looks like when it goes to Gemini?
+
+### How the API discovers and uses Skills.
+
+**4:59** · So, how it's supposed to how it's supposed to work is uh you have both a global scope for your skills folder and your project scope. And it's supposed to concatenate them together to say uh when I'm in this project, here are the global tools that I have available and the local tools that I have available. And skills are tools. uh tools as in like they could be available in the skills because a skill could be anything from running a script to um just enabling how to do something.
+
+**5:27** · So it's you kind of think of them like tools but they're really not. It's more like just in time pieces of context if that makes sense.
+
+**5:34** · That does make sense. So um like for example like you could say I have a very opinionated way to deploy to cloud run and so you could say um every time you do this make sure you set up a docker compose file and a docker file check for the relevant container and then you know run these commands to build and deploy it to Google cloud and that skill you can install it once and any project you're in on your your file system will be able to have that ability when you say okay now let's deploy to cloud run and it says Okay, found a relevant skill. Let me go run the commands.
+
+**6:06** · And so it's like repeatable behavior across your project.
+
+**6:11** · Okay, I see.
+
+**6:12** · But scope to that very specific thing.
+
+**6:14** · Gotcha. Gotcha. Okay. Do you know what the skills look like for when it makes that determinist like so so when I say uh what they look like is when you make a request to Gemini, how does how do the skills transpose? Are they just It's just content.
+
+**6:31** · Oh, it's just content.
+
+**6:32** · Yeah.
+
+**6:32** · Yeah. So it'll be a markdown file that it it loads. But the the really amazing part is you're not having to bloat the context for all the tools you're not using.
+
+**6:41** · Oh, okay.
+
+**6:42** · Right.
+
+**6:42** · Because the model is going to have this discovery phase. It's not going to have to do all these competing like so for example the Firebase tool, it may have a lot of tools that um are very similar. But this way it's it only will ever know when to call that MCP tool if there is a use case where you're dealing with something with Firebase.
+
+**7:02** · Oh, and then if I'm doing something that's with Flutter, it's going to have the Flutter skills that are very specific.
+
+**7:07** · So, Gotcha. Very cool. Have you used or built any skills yet?
+
+**7:12** · I've been uh working on testing them out and uh working with them. Obviously, this is uh still like an emerging standard, but I I'm really excited by the fact that there is um kind of an openness to these. Um there's already like a a domain you can go to and see all of the uh open skills that are part of the spec. And in fact, we'll link it in the description.
+
+### The open ecosystem for sharing and installing Skills.
+
+**7:31** · But uh this kind of idea is like how can we across the ecosystem find these reusable bits that uh someone's learned how to do like through trial and error or pain and be able to make it so anybody can just like add the skill and be able to like have that benefit of doing that task.
+
+**7:50** · Yeah.
+
+**7:50** · And if I recall correctly because I I was trying to read the documentation before we met, but obviously I skill issue. I I I got to a spot where I was looking at how you install the skills and it's all through git, right?
+
+**8:07** · So it takes like that go model where where you push to a github repo and then that's like the package and where the package lives, right? So is it the same thing with skills where you push to get and then when you update the skills does it update automatically every time you load or is it is there some sort of So this is kind of one of the differences between this and MCP and some of the other context is one they live in your project. So as opposed to a Gemini CLI extension which it gets installed and updated by a provider.
+
+**8:37** · This is saying like most of the skills I've seen are a handful of files and maybe a 300 line markdown file if that you know so it's very very scoped.
+
+**8:48** · Sometimes they're like 100 150 and so you're going to be putting skills in your project folder that make sense for that project and so other team members as they check out your project would just get the benefit of it. Yeah. But then you may have some global system ones that yes, you probably do want to back those up to get, but it's totally not required. You could just like throw them up there and every time you interact with them, it's when it discovers the phase, it'll have the latest tool because it's reading it lazily as opposed to eagerly.
+
+**9:17** · Uh so if I I if I did want to distribute skills, I'd do that through the extensions then, right?
+
+**9:23** · There a lot of people are even distributing them through Google Drive, like through zipping them up. Yeah. It's just it's kind of this really wild format.
+
+**9:31** · Yeah. Yeah. Yeah.
+
+**9:32** · Yeah. I mean uh files work.
+
+**9:34** · Yeah. It's true. Like before I did uh you know before I came to work at Google, I worked as a GIS person.
+
+**9:41** · Oh, cool.
+
+**9:42** · And we would mail each other like we would zip up files and mail them to each other, right? And sometimes it'd be uh reference files. So it would say, "Oh, find uh this shape file at cdocumentariacount.com." Right. and and and it always got very confusing to ship it, but yeah. Okay. So, just zip it zip it and ship.
+
+**10:02** · Maybe we can uh FTP our skills together, you know, over an NAS.
+
+**10:06** · Yeah. Yeah. Yeah. And then, you know, have it get hacked. Yeah. Yeah. We had that conversation earlier today.
+
+**10:12** · Yeah.
+
+**10:12** · Uh what's interesting is you brought up how it doesn't overfill the context. And recently, one thing that I've been working on, uh it's coming out next week. All right. which it'll probably be live by the time this is live, right? The magic of editing. Uh is is uh I don't know if you met Elena, but me and Elena worked on a blog post together.
+
+### Deep Dive: Using Vertex AI Prompt Optimizer for YouTube descriptions.
+
+**10:33** · Oh, cool.
+
+**10:33** · For the Vertex AI prompt optimizer. I don't remember if we had already talked about this, but I'm going to talk about it.
+
+**10:39** · So, so what is the prompt optimizer? So uh the prompt optimizer it is a way to take your prompt right your singleshot prompt and optimize it into a very uh good prompt right so for instance uh you know this we we are working on YouTube descriptions right and we had a marketing person write our descriptions for years and they would get our scripts they'd watch the video they'd go through they would type out everybody's name and give us a draft that we then still edit on obviously, right?
+
+**11:11** · We'd still edit it, we'd add chapters, we would do these things, right?
+
+**11:16** · Just meaning it wasn't hands-off like we were still very much involved. Yes. Yes. Yes. So, one thing that I found is like could we save this marketing person all this time to go work on like more impactful things by optimizing a prompt for Gemini, right? So, I tried writing my first prompt for the prompt optimizer and it came out uh it came out so weird and bad.
+
+**11:41** · Oh, no.
+
+**11:41** · Like, right. So, like I gave it my script and it gave me a result back and I was like, well, all right. I guess this is all right. And like my prompt wasn't like complicated, right? It was just like write me a YouTube description that is SEO optimized for fire the Firebase channel, the big tech company, right? And uh it was it was bad. And it was it wasn't only just bad the first time I did it. It was bad. It was it would like vary every single time.
+
+**12:10** · Continue to be bad. Yeah.
+
+**12:11** · So it was it was bad in a unique and different way, right? Every time I ran it. Yeah.
+
+**12:15** · Which is like the beauty of non-determinism. So uh I I I I was I was lamenting about this to to Dan and Elena.
+
+**12:24** · And uh Dan, I believe suggested I look into the Vert.ex AI prompt optimizer.
+
+**12:29** · Okay.
+
+**12:29** · So now what you do is it's uh they have two. They have a zero shot which is what I did and or what I started with, right, is I just say like help me write a good YouTube description and it'll take that and it'll give it to Gemini and Gemini will like power up your prompt to make it better to use for Gemini.
+
+**12:46** · So then you get like a better which model like does it does it pick one or do you like decide that you know it's been so long since I did this right before break and then I wrote the I wrote the blog before break and then I just put like the final touches on it. I don't remember. I think you can pick between flash and pro and all that, right?
+
+**13:02** · But generally like a family of models like just five or three.
+
+**13:04** · Yeah.
+
+**13:04** · Yeah. Exactly. So, uh the zero shot one it it gave me a really good result, but I we have years of of scripts and the script, right? And everything is documented. Yep.
+
+**13:16** · It's not just like I go in front of a camera and talk for 40 minutes and we have the we have the script and the metadata attached and like the video itself and the transcript.
+
+**13:24** · We have it all right there. Right. So what I did was uh I put all that into a Google sheet.
+
+### Converting CSVs to JSONL for data-driven optimization.
+
+**13:29** · Okay.
+
+**13:29** · I exported it to a CSV. I as Gemini CLI to convert it to a JSON L file because I think it's required. It might be it might work with CSV.
+
+**13:38** · And what is JSONL?
+
+**13:39** · Yeah.
+
+**13:39** · Uh JSONL is uh JSON where everything is on one line per record.
+
+**13:46** · And then uh so if you have like an array of like 15 different records, it just puts everything on one line.
+
+**13:52** · Okay, that's cool.
+
+**13:52** · Yeah, probably easier to parse. Yeah.
+
+**13:54** · Yeah, exactly. Uh so I I collected uh I think it was like 50 45 to 50 scripts and 45 to 50 descriptions.
+
+**14:03** · Okay.
+
+**14:04** · Got it all formatted all that and then I let it run. And what I learned is uh after about 20 minutes you're convinced that it's broken, right? Because you don't get any like feedback. Like you go through, you set the settings and then you click like go.
+
+**14:19** · It's a collab uh notebook, right? and you and you hit go and you sit there and you're like, I'm sure it'll be fine, right?
+
+**14:25** · I feel like uh that was me with like early iOS development when you're waiting for Xcode to build or Android Studio and you're just like, I guess I'll go get coffee.
+
+**14:33** · Yeah, I guess I'll I'll do this, right?
+
+**14:35** · Well, it was like after about 20 minutes, uh I was convinced that it was broken, but I was like, you know what?
+
+**14:39** · It still says it's doing something. I'm going to let it churn. I'm going to go get coffee. I'm going to go get lunch. And about five hours later, four to five hours later, uh, I had this really optimized prompt.
+
+**14:52** · Okay.
+
+**14:52** · Right. And it was much longer than I had originally written. Right.
+
+**14:56** · So, you think it'd be shorter.
+
+**14:58** · My first prompt was like maybe two lines, right? Three lines. This this had details on chapters and how to recognize the chapters. It had It will say, "Oh, hi. I'm Peter." Right? It'll say the speaker, if they say their name is Peter, it's actually Peter Freeze. If it's Frank Pufflin, it gave a list of, you know, how you put tags in YouTube videos. It gave a list of tags and uh just talking about token consumption. Do you want to take a guess at how many tokens I used?
+
+### The 100 Million Token experiment.
+
+**15:26** · So, this is like tokens used in training.
+
+**15:30** · Yes.
+
+**15:30** · Because it what it does is it it does this continuous improvement loop where it will run the prompt, take the output, and then run an eval against the uh the ground truth.
+
+**15:41** · Okay, got it. So, I would say for a It's hard to know how much concurrent it was doing, but maybe a couple million tokens.
+
+**15:50** · What What's a couple million to you?
+
+**15:52** · Uh, yeah. Give me like a hard number because you're a couple million 7 million tokens.
+
+**15:58** · That's it?
+
+**15:59** · Yeah.
+
+**15:59** · That's your guess.
+
+**16:00** · Oh, I guess it Okay. Upper end maybe 30 million.
+
+**16:06** · Okay. It took about 100 million tokens.
+
+**16:08** · Oh, wow.
+
+**16:08** · Yeah, it was it was like uh it was a very large Yeah. numbered tokens, but like the prompt works really well.
+
+**16:17** · And I mean, does it do something similar to like ML where it has like some kind of a fit model and it's like kind of doing some kind of a training and working its way back?
+
+**16:26** · So, I'm not entirely sure on that because you you run this in in a notebook that was designed by Elena's team and fair.
+
+**16:33** · It runs in kind of like a little bit of a black box, but the black box, you know, does some Okay. it like this training and and and there's some sort of uh execution that verifies the results because I know that in Google Cloud we do have an option to train ML models on tabular data and I'm curious if it might be like a similar technique probably.
+
+**16:53** · That's awesome though. I mean, it's really cool that like one, it was able to be consistent and from there, that's really where system instructions can help you really fine-tune the final experience because like a lot of people don't realize, but you know, that's why the prompt engineering and context engineering really is so important because it's it's not just that you're wanting to get a better result. It's you're you're activating the specific weights that you want to have, guiding it to the things you don't want, and to be at least consistent on something that you can parse out.
+
+**17:26** · Yeah. Yeah. And it it it was I'm I'm just actually like so happy with the results. And you know, it it's 100 million tokens is a lot.
+
+**17:36** · That is a lot.
+
+**17:37** · It's a lot for like a single operation.
+
+**17:39** · Yeah.
+
+**17:40** · But here's the flip side of it. We just saved at least that much money of that person's time.
+
+**17:46** · That's fair. Yeah.
+
+**17:47** · Right.
+
+**17:47** · And and it's not that they cost, you know, even if it didn't cost them that much to do those types of things, they get to go use their time on more expensive, harder, more complex tasks than reviewing my scripts. And and maybe also saving time from a just try to get Gemini to generate a response or like a like a result and then trying to work it to something that's usable.
+
+**18:10** · Oh yeah. like, you know, this is like getting them closer to that final result a lot faster. So, even if they do have to do some passes, it's still much more minimal.
+
+**18:18** · Yeah. Yeah.
+
+**18:19** · Exactly.
+
+**18:20** · That is really cool. Yeah. So, I mean I mean people should try it out if they they have a prompt that you know is really uh specific.
+
+**18:28** · I wouldn't encourage people to just go try it out, right? I think you gota if you have a a task that is highly repeatable cool that uh you want to minimize the human interference or human in the loop where you want to get to a more deterministic output.
+
+**18:43** · So what about something like ADK? Would that be something that would be a good use case for the prompt optimizer?
+
+**18:48** · It yeah I mean it really depends if you're running uh the prompts a lot right and and and I mean like a lot like multiple times a day or multiple times a week.
+
+**18:58** · Minimal intervention. Yeah. minimal intervention, right? This would be a good prompt to optimize for ADK in these workflow agents.
+
+**19:05** · So, where would someone go to get started with it?
+
+**19:07** · Google search for Vert.ex AI uh prompt optimizer.
+
+**19:10** · Okay.
+
+**19:11** · And uh I use the data driven one. They also have a zero shot one. They're both in collab notebooks. Um we'll make sure to link them in the description.
+
+**19:18** · Rodie will make sure to link them in the description.
+
+### Exploring MCP (Model Context Protocol) with Flutter.
+
+**19:21** · Yeah.
+
+**19:21** · Brody, what happens is uh when I'm at work, I'm working and then you'll come in and you'll sit down next to me and you'll tell me things that I'm half listening to and I'm trying to do both. And today you brought up something about MCPs in the Flutters.
+
+**19:38** · Yes. So, uh, one of the projects I've been experimenting with is, um, building with MCP. You know, we both have exploring MCP tools in a variety of capacities forever.
+
+**19:48** · Yeah, I know. And I feel like sometimes they get a bad rap because we're using them maybe excessively or maybe in the wrong context. Like you load it up into your coding agent, you have like 150 tools and the model's having a hard time.
+
+**20:02** · But you know, I think that there's this awesome opportunity to be able to support using MCP for maybe applications like in the client side. So uh one of the things I wanted to try out is um take a Flutter app for example like a desktop or mobile. I could expose the functionality that I want to to other applications as an MCP server.
+
+**20:23** · Okay.
+
+**20:23** · And so, um, mobile apps are kind of unique and desktop apps in that sometimes you have bought a license key or you're on an inapp purchase or you have a subscription. So, you might have more or less tools available depending on that authenticated state or the capabilities of the device for example.
+
+**20:42** · Yeah.
+
+**20:42** · Um, and MCP is really cool for that because you have to pull the tools that are available at any given time and then to be able to call back with the exact schema. Um, and so what I did is I took the counter app that everybody loves and I MCPified it. So I uh I exposed all the counter state like set value, get value, increment and decrement and I could just copy the
+
+**21:05** · config and paste it into anti-gravity as a local HTTP server and I could say set the count to a million and it would talk to the running app, set the state and then be able to return back to the So you had an MCP server written in Dart.
+
+**21:18** · Yep.
+
+**21:19** · That then exposed tools over HTTP or or JSON RPC or whatever they Yeah. Yeah.
+
+**21:26** · Okay. and not through the IO me.
+
+**21:29** · Correct. It wasn't using the Flutter MCP server. It was actually like the Dart application itself.
+
+**21:34** · Okay. Yeah.
+
+**21:34** · So like and and the application had to be running.
+
+**21:37** · The application had to be running. And so one of the cool things that that unlocks is one, you have this ability to have a running app and say maybe if you have your favorite editor that you want to use or maybe another application that can also do tools, you can combine them together and then now this this coding agent can control all your applications, you know, so like you can expose like really cool functionality. But then I had a day to sleep on it and I was like, I bet I can get this working over uh standard Unix sockets and I and I got it working and it was so cool.
+
+### Using Unix Sockets vs. HTTP for local app control.
+
+**22:10** · That was my next question was cuz there's like the IO's.
+
+**22:13** · Yeah. Yeah. Yeah. Yeah.
+
+**22:14** · And so then I could query like the get the documents directory. I could get a path on the file system, open up a a Unix socket and it would work the same on Windows with pipes. But it just worked like it worked so well and I was so excited because one it didn't need any dependencies and I was using anti-gravity to build it but it's like I started getting excited about this world where like what if apps like have IPC
+
+**22:38** · between themselves but it's all dynamic right cuz like I mean when I was doing a lot of iOS and Android development um sometimes you get like callback schemes or the ability to like push data out but it was very rigid you know like your app might be installed, they may forget to update this app. It's always like which version are you have and it's like always uh let's just add a new API as opposed to like change it.
+
+**23:00** · And so I feel like this allows you to say no like it is dynamic like it can change at any time like I could deprecate functionality and that's why you have to pull for whatever tools are available.
+
+**23:12** · Gotcha. Okay, that's cool. Yeah. You know I So is your next step to run it as like a Damon service on device?
+
+**23:20** · So it already is like it works. Yeah. Yeah. Yeah. So, like basically when you start up, you can say if you want the HTTP server or standard IO and it'll just start the socket and be listening and then you can like shut down the app.
+
+**23:30** · Yep.
+
+**23:31** · Oh, that's very cool.
+
+**23:32** · Yeah. So, you could run it headless. Um, but the app does need to be running in some capacity.
+
+**23:36** · Gotcha. Okay.
+
+**23:37** · Yeah. And and that's that's interesting.
+
+**23:39** · You know, at Ash and I earlier this year, we we tried building uh an MCP client that hooked into Firebase AI logic.
+
+**23:48** · Okay.
+
+**23:49** · On Android.
+
+**23:50** · Okay. On device. Yeah. one device, right? But just a client, not a server.
+
+**23:53** · Okay. Right. Yeah.
+
+**23:54** · And uh that was I I find that the MCP spec has so many different variables to it.
+
+**24:01** · There's multiple ways to interpret this the spec, right?
+
+**24:06** · Yes. Yes. And it's pretty exhaustive.
+
+**24:08** · And I was only touching the JSON RCP part.
+
+**24:10** · Yeah.
+
+**24:11** · Yeah. Yeah.
+
+**24:11** · Yeah.
+
+**24:11** · Because I I I was using the Astro spec I tested on and then Ash went to go test it as well and she's like, "It doesn't work." I was like, "What do you mean? Did you try it with Astro?" like, "Yeah, but it doesn't work with this other MCP server that somebody else built and they conflict." Yeah.
+
+**24:24** · Yeah. Yeah.
+
+### Implementing the MCP spec in Antigravity.
+
+**24:25** · Uh, have you tried building a server and like matching to a spec or anything?
+
+**24:29** · Um, basically a limited spec. I just wanted to support tool calling and um, I was able to like fully implement the spec um, pretty easily with anti-gravity. And what I did is I basically created like an abstract class that had all the methods and the handlers for dealing with the JSON bytes. And then it was super easy to extend it to be a HTTP server or a Unix socket.
+
+**24:51** · Nice. Cool. Yeah.
+
+**24:53** · Well, I hope we can hear like more next time.
+
+**24:56** · Yeah. We'll see if it evolves some more.
+
+**24:57** · Yeah.
+
+**24:57** · Yeah. Cool. Well, uh, thanks for having me on your podcast.
+
+**25:03** · Yeah.
+
+**25:03** · No, it's it's cool to like, you know, change it up and and sit. But, uh, yeah, there's a lot of cool things that I feel like we're both working on.
+
+**25:10** · Anything that you're excited about, uh, this week?
+
+**25:13** · Uh, this week? No. No. Uh I'm I'm just trying to get like my blogs out the door, right? And and I'm sure we'll link them below. Yeah.
+
+**25:20** · Uh whenever this drops probably everything will probably be I'll probably have something new by the time this drops.
+
+**25:25** · Fair.
+
+**25:25** · So uh nothing to tease yet.
+
+**25:28** · Nice. Nice. Nice.
+
+**25:29** · What about you?
+
+**25:30** · Yeah, for me I uh kind of exploring some different um AI things that cloud has to offer right now. Seeing how they have too many. I know. It's so hard to enumerate all of them.
+
+**25:39** · I feel like today I was testing out a Python notebook and doing all the things. So, it's out of my comfort zone, but I'm pretty excited. So, yeah. Yeah. We'll have a lot of fun for our next podcast.
+
+**25:48** · Absolutely. Yeah. Cool.
+
+**25:49** · All right. Um, we'll uh link everything in the description in case you missed it. Um, definitely make sure to let us know what you want us to talk about next. And we'll see you next time.
+
+**25:57** · At next or next time.
+
+**25:59** · We'll see. Oh.
+
+**26:00** · Oh, that'd be fun. A Vegas show.
+
+**26:02** · That would be fun.
+
+**26:03** · Yeah. Cool.
+
+**26:04** · All right.
+
+**26:04** · Yeah. Peace. Toodles.

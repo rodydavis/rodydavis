@@ -52,7 +52,7 @@ const relatedPosts = ((activeDoc?.data as any)?.related || [])
         // Try to find the doc by slug or id
         // relatedPath might be 'blog/ui-engineering.md' or 'welcome.md' or just 'welcome'
         // clean up the path to match slug format if needed
-        const cleanSlug = relatedPath.replace(/\.md$/, "");
+        const cleanSlug = relatedPath.replace(/\.mdx?$/, "");
         const foundDoc = docs.find(
             (d) => d.slug === cleanSlug || d.id === relatedPath,
         );

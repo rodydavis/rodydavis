@@ -1,0 +1,357 @@
+---
+title: Design at scale with Web Components (and ducks)
+date: '2020-12-22T00:00:00.000Z'
+draft: false
+tags:
+  - flutter
+  - astro
+  - lit
+  - html
+  - css
+  - youtube
+  - javascript
+  - travel
+  - web-components
+  - github
+  - web
+  - talk
+  - google
+summary: >-
+  Web Components offer a scalable solution for design systems, enabling teams to
+  create and deploy consistent, on-brand user experiences across any modern web
+  framework.
+embedding: >-
+  PQ58vQTVgjyMekq939WiPHBtVT3Mfd67TmArvRdFlDyRA3s8Vc84vSWXkzxGb6I9THiDvTDWXTzoxh685u+1O0pKFjvNPJ48U8tGPdu6C70tXHE9dTU+vHeMc7uHvZA8qhP1OY+K2zyZxzE9vNMjvdzZBb0JUXG9nNaUPSefl7ySMs48PQFiPfHK5DyipPs8z+QrOzSmmjvXSz47luJ0vZVX2Lx1zrw8iYSSvF6fab1Y9vS8y8yOO8DHo704Zgc9/PiKvdoGnjvPJh69J+AKu9qD97zHlK09Mr87va02sLxy94e9uXrrvEvv+rwp6KY8chjQvG7UKDrQ7tS6ywthOzS2bjqrfJE8BaaYvOFKBj25gkS8QdwUPv7Lw7yd3gK9cHU3PXG9XrseobA9s3YdPsWQQ71o6bI9VQM5u+vfiD2H0xo8wGdcvYstuLty9TY8W5afPROFdT2xeWi7keR9vCPEZzoJaK688/HUvCNGorzQmpI8pARUPL/lazwuYGe9p6QUPKBsojtv/po9uBrvPPAOcz2ARQ+9fisEvd9lDT2jqaI8qaFHvCTrND2JI0K9v/UtPWi0Gr1DUj+9TTy2PXbPS71twFW9DSqZu/usjLvpZKS8WZ9NPDIIGz0RX+A8iIRPPU2dJjpiWni8i0AHvSMUFz1Tq3o8x6NNvfY94rz3c+E7QgsXPeKWhDz3fJ67KPwuPJs7pT3njRg8WddtvTFMALtKgcO7I4qmPXpbyjzcn4G9JqJhvctzUb2INFU8x+ukOgQDhz0N/8q81lUsvTPI5zziTGm7LLqSPF1fQDqN09q8jXfwOWS2A7zSGoU7KhcoPdVvjrvel4e8QPsCvY2Ah71a5R88Z2mmPX7jfzxB6cU8wJfOPOPMBj0IxBU91JgyvX76NL0zETe9JYiQvIVhFj3l5ye9x62WPG52NT2p+cO8+zmMO5LuMzzruUg8jMVivZDt6zw+klK8iQDjPNJZjbw/Xlg9IEdXvHd8vrsOJ4u8Wk53PL15Mr1BfmA8dH7+O2JtZr2zOlI9Ehi/OxJBFT01eH+8yP49PLeOaLwJsqm8Tl5VvW6YUD0XloG7ern1PLZvID0f54C8RRW+PMOeKLogUN46Bk1eu3Z8oTxSihE9z5UOvXyLZD0E0m87ucDHvRRPBD11MxA9HYBXvU5AQTtkX1Y9oCj2vBz2kzx88d46+j2XuxxI/7y3DWa9WPvMPN+7jjsI6Ha8U1pkvXWkmrujr/g74QFIvd+xhzo1Ovc8CwoFvPNI4rpb1wk8CM4QvbabxLzjgUk9vhqCOdF9u7z62Ju7rPWYPB2pIL3PeYm8b4fqvE23m7tzK0c9CmS3PIao4rzYxBO98H3fvMLMfrnxiT28suAfvdcseTtm1009ZZCOu9oEi71ZMSs9850evMJs3jy3NlK7r8/CvPfvETzuiby8r70kPc6PkLwZSBs8rw3XPM+5nTyJ/S684kpMu4tkKD2ybjw9ceyBvKPXzzztpv87dK8avBgeCLt10B88iSFCPQGlPjykFnE67a7ZPH+Ur7x6KVA8PMFDPOcicz1iZu48UWWovNg+7zyvn1y9WERpvf5S47zLBDe9rPevPc59DzsByaO7aI1jPEk3hbu31xY7oqQcPYrRYDzpSS+9AqcQvWimlTw9q+g8H6wBPVtzsLzbdhi9dVftPFIRSr0eNje8XFOuPE+57TvmgGC9VVUMPY+qm71KWw68yAOzOnoXSr2s1LI8t9kNvSf9hb1+f7k7aFIPvXA+Tr05RRw9SnBHvYxNVrxXV1q9S+syPar1LDyM+Fe9doDrPDyscjxQz0w829wRPVDMd72FaRY9UKD1PFTPFTwGhXo7yHsTvWCjIj2GVSU7ELelvMcrnzyHXR88DFfTvY82Ob3Ju6o89JcIPSbIDL198ne7UlTivOEnM73WMQw9ws2aPDp0Ibw8pwW9STJNvIUgIr2wzPc8eeYxPb4cPb0W05o8EBsxPNCsQb2AANo8fZ6ZPHCzIDzwr609Qis3PdWIQz1Qa668j40FPWzVaLxeBsS7FfYOPQykJr0NXBi9leZWPJrzorwtP3a8vpKcvWZSNTxEsfw7mb4NvdEuj7wv3Ys7456qvCNhHj0rTU68CWSLu9vfE71z8ia94lhQvQ9fRTwHI8Q6M7JsvGtQrzwpVBc9hrgpPZofrLyQCWk8bFuzvfMVoj2XVTi906GDvNKttDxRgWO9lqLvuVWsv7y4RL87w5GKvau/EL337Ps86gElvHrHDbzvnCM98neWPACizLpD61e8vgguvWYb1zvMgey8rDJsvE/5obv4mrm9DVyGOkuCALxE9dc8JXE5OiRt1Dx6nic7XZU9PGj5QLz1YwY9xqiXO+roizyuQlA8PQTPvMENX73iRTE9msXbuiy6mjy1WDQ9smSkvTk+YjxzPIo8A0hwPcqZ5Lvoxwg9aUExPP8oNL3nAK058SeUPZf5ar04lLO8MfDNvMsSXj3mGbm8CHtZvZFOXb29vVG9R16Du0KWMb2dHn88lIYxPUMbGL1gLKc8wKMEPem+6LzllJM5DK7ZvB2JgDwV6+w8hjxJvSsKmTtBugW9tF0gPXdvI73D6eU880keu7Pbk7yILBq8GCFhPV6VbbyxnUY9ESeSO1x6ab2t+YA8jqGovFsOCj12znO9mDPZPJ/RyDzclL48dJo3POM6U705HOY7QT/xuvUAj7ypLww9D4M+PBmfNLysLRy9zs9WPWlvZb1aTbQ90EQGvW4sIr0JjDc8OIfSOzg7ujwm8z49wKkrvada4DzuZcu76ptUPbrrW73zrkA9woWdPUFBMD12olk8UkYkPS3a5DxGWAa9XVtUvUN5Lb1lwAa8mGzBu0ZpqDw9/WM934G/vO9RM71OFJs6ixlFvQgavLs4SxS9jPrKOzsi2zx/ICO9Je6vPOrLgboba/08V3RDvVO7qz0tzEc9KDB5Pc5TmL0Ls388FnbzPOg+WbwJb5K681eMvQ1IDj1sWJk8EF6rPEzbpzw8ZQ69JrqOvf56lrtLLcE8eumDOlL7jD2dkPU8qzykPNhmibwAZya81cIcPKaLAT3CbS+8+E/IvChYGTzJA048sP1rPcDUgrz8RSk9eJd2vMPtijpAQne8CJ9ePVVDmjwiJpu3u5FivUCsTjy/iI892oQvu3lN5rvfRiU9hvQxvMcnvzsgBKC88v3bvHGzJz0ZJAe8FYUVPQ/1UjyNLhC8H2+mOh+aXz1Pul27KyiEPFUjF73q4n05LvIrvcMMRT2CvQk9KOPMuyFUwTv1G5i8Q+hdPUGLxLz9ILY99JyQPSZTej1LfhA9Fds0vNKCZ7wIYA49fMHHPVNIU73EETW9Xmu8vPSFDz2m0488u2qRPPGXarwBums8Mza8vJI/er0jo5I8UeiovNTUpbxCqbs8zC2fPU7PJz2csA693zUru84C3zxnXZY8liIPPYriwz2OZMW876tEvbUpJL3UhX289fG/vHJdUz3u05+5bwUxvCmakzzmAYM88OkMvE/jYTxDWzA9iugKvQglxbwBR2888eGGPVoG8LxIo0k8F2/LO12hkjugKyi9wY9mPIpj6zwdyFS9fA6MPHLNgDyyyPk8Hlp1O42GY7xSa4m8Nr5BuXvFET2Zg3i8xJIdPXGek7z9JzW8ur+tu1V5RD3NIzE9JJt1vKx6wzwoRKA85NORPLKZ7ry6xcO7vkmxPMDbA72LtZE8yI7ZPHspMLytBz48dLYQPTPg4ryjqNa5/M06PCZGKr28eRA9SRfoPEODWb3Q1b28oPERvGPQHr1fGR88WBQ5vXUpbrll44G9sJo8PSpKa70huFk4OCEMPUNfYr09TrO898jJvKe7Sj2lj/y8MHH5vJO9Kz0I7JI8zjJqPNEptDzM3Uy9Tti3O7TzrrwDlX+7NvrgPEogVzwO8gC9rVyXu6Ezg7xSCIU9c70YvUOenLxRbNK9L8Xhu4VDIj3AH+u8+qSsuq/jMT0ZAJY8fpueux/fxzxgrTQ8UpuyPPyXprwZ1pu8oH/tuwF6mz3UO249J+J7uqyx5zy2tY681cZUPHb0CL1zTpU7ld9MvRQ0P72xSdy8
+related:
+  - dart/html-web-components.md
+  - flutter/lit-interop.md
+  - videos/talks/moving-an-angular-app-to-flutter-web-devfest-fl-2019.mdx
+  - videos/take-5/responsive-design-flutter.mdx
+  - lit/figma-interop.md
+last_updated_metadata: '2026-05-23T00:20:25.701Z'
+---
+
+import SocialEmbed from "../../../../components/SocialEmbed.astro";
+
+
+# Design at scale with Web Components (and ducks)
+
+<SocialEmbed platform="youtube" id="DBcz_bGcHgk" />
+
+## Description
+
+You have a beautiful design system that delivers consistent, on-brand user experiences! Now, how do your designers and engineers provide your design to teams using any framework from React, to Vue, to Angular, and more?
+
+The Material Design team shares how Web Components are a great choice to empower design systems at Google scale.
+
+Design once. Build once. Use everywhere.
+
+Resources:
+Lion Web Components → https://goo.gle/363MUey
+Prefers-color-scheme → https://goo.gle/2UXBp1F
+Spectrum Web Components → https://goo.gle/3pZXomU
+Quack→ https://goo.gle/quack
+Github material-components-web-components → https://goo.gle/mwc
+
+Speakers: Liz Mitchell, Rody Davis
+
+Watch all Chrome Developer Summit sessions here → https://goo.gle/cds20-sessions
+Subscribe to Google Chrome Developers here → https://goo.gle/ChromeDevs
+
+#chromedevsummit #chrome #webdesign
+
+event: Chrome Dev Summit 2020; re_ty: Publish; product: Chrome - General; fullname: Rody Davis;
+
+## Transcript
+
+### Intro
+
+**0:00** · (upbeat music) Hi, welcome to Design at scale with Web Components and maybe a few ducks.
+
+**0:12** · My name is Liz, I'm a Software Engineer on the Material Design Team at Google.
+
+**0:17** · Here on the Material Team we believe in a simple philosophy to create design systems at scale.
+
+**0:23** · Design once, build once, use everywhere.
+
+**0:28** · If you don't know us already you may be wondering who or what is Material?
+
+**0:35** · Luckily, I've got a great partner with me here who knows a lot about that.
+
+**0:40** · Take it away, Rody Thanks, Liz.
+
+**0:42** · My name's Rody and I'm also on the Material Design Team.
+
+**0:45** · I'm a Developer Advocate at Google.
+
+### Material Design, a History
+
+**0:48** · Material is a design system created by Google to help teams build high quality digital experiences on Android, iOS, Flutter, and the web.
+
+**0:56** · It is an adaptable system of guidelines and components and tools that support the best practices of user interface design backed by open-source code.
+
+**1:04** · Material streamlines collaboration between designers and developers to help teams quickly build beautiful products.
+
+**1:10** · Theming makes it easy to customize Material Design to match the look and feel of your brand with built-in support and guidance for customizing colors, typography, and corner shapes.
+
+**1:20** · The goal with Material is to have a single unified design.
+
+**1:23** · When building Material Design at Google there are multiple things we need to keep a priority, supporting multiple frameworks, ensuring spec compliance, and defining a design token API.
+
+### Material Design, a Problem
+
+**1:33** · So what's the solution?
+
+**1:36** · Well, Web Components.
+
+**1:39** · They allow us to build once which is part of our philosophy.
+
+**1:42** · How do Web Components solve this?
+
+**1:44** · Well they're supported in all major browsers and work in every framework. And with the use of Shadow DOM it encapsulates styles from the application and stops the component styles from leaking through the existing application CSS and affecting the component styles. You can use CSS custom properties to provide an API for design tokens. You have properties that reference other properties in creating cascading tokens and effects.
+
+### Web Components FTW
+
+**2:08** · With that we can bring Material Design using Web Components to all of our platforms and teams.
+
+**2:13** · I'm sure someone's thinking this, Rody.
+
+**2:16** · What's this got to do with our lovely viewers?
+
+**2:18** · Well, Material has shared the same problems as other design systems when trying to scale. We want to help you build better systems and share a little bit about what we've learned along the way. To design at scale with Web Components we need to design once, build once, and use everywhere.
+
+**2:34** · So Liz, how did Material build scalable Web Components for our own design system?
+
+**2:40** · Let's tell a story for our audience about a company called Quaggle. Once upon a time, there was a quirky quacky gaggle of ducks with a mission to make great products. They grew into a large company with a flock of thousands of develo-ducks and dozens of teams making innovative and useful products. A group of designer ducks came together and made a strong brand for Quaggle called Bread Design.
+
+**3:13** · The ducks loved it and wanted to bring it to all of their products but they didn't know how to do so, until one day a clever duck named Quackett suggested to use Web Components. Let's go on a journey with her and look at how she and the Bread Design team built one of these components.
+
+**3:33** · Ready, Quackett?
+
+**3:36** · Ready, Rody?
+
+**3:37** · I'm so ready, Liz.
+
+**3:39** · All right, let's build a component.
+
+**3:42** · The first step is getting a design mock-up with all the pieces and interactions we'll need.
+
+**3:47** · Bread Design wants Quaggle products to use the same delightful text input everywhere. At the start of the process designers provide us with mock-ups that give us the pieces of our component including a label, an input, and an optional icon. They also instruct us how the user should interact with the component. They should be able to quack text into the input.
+
+**4:06** · Blue lines give us dimensions of each piece of the design and how they should be laid out. Some pieces of the design have really strict requirements such as the label where they can only change the text. Other parts of loose requirements such as the optional icon that can be any image icon. So Liz, what Web Component API can help us build all this.
+
+**4:25** · Well, Shadow DOM would be perfect for these complex styles. You see Shadow DOM gives us a shadow root with that we can encapsulate our Web Component's structure in its own sandbox DOM tree. Styles outside the shadow root won't affect children inside it. Normal styles inside the shadow root link to other elements on the outside. So with Shadow DOM both our styles and our clients' styles are protected.
+
+### Shadow DOM
+
+**4:54** · On top of that within our encapsulation we can start to scale by following native element patterns such as using the same attribute, property, and event naming conventions that we see from existing HTML elements. So tl;dr if your component acts like a native element it'll work in scale really well in the frameworks and libraries out there.
+
+**5:15** · That's really great but what about the slot?
+
+**5:18** · It's a great question.
+
+**5:21** · Slots are special elements inside a shadow root that allow you to define where the light DOM is projected. Slots can either be unnamed or named to project content with the slot attribute. The tricky thing with slots is that they can break design compliance. The projected content can be styled by the user arbitrarily so we lose control over defining what can and can't be styled.
+
+**5:47** · However, they're a vital part of Web Components and should be used to compose children. For design compliance you can use the slotted star selector along with display none to control what can and can't be used inside of a slot. All right, let's use shadow DOM and show the audience how Quaggle turned Bred Design from a mock-up into a Web Component. First let's set up a basic Web Component.
+
+**6:13** · We'll use lit-element to help us write a fast, lightweight component with efficient rendering but you can use anything to write your own Web Components from Stencil to native. We're registering our component with the custom element API that allows us to define new HTML tags. We'll call this one quack-input. Our render method is looking a little empty right now. Let's add some attributes and properties.
+
+### static get properties()
+
+**6:39** · This is an input, right?
+
+**6:41** · Let's start there and add an input element. It wouldn't be much of one without a value to set though so let's follow native patterns and add a property called value. We'll bind it to our input that we just created. Now design has stated that users can change the display label so let's add a property for that. We'll need a label element to display it. We can bind our property to the text content in our render method.
+
+**7:11** · So the label can be read by screen readers for accessibility we'll add an ARIA attribute to the input and connect it to the label. And let's not forget about the icon from the mock-up. Design told us the icon could be provided by the user though so let's make it a slot instead. Okay, looking pretty good. Lastly, let's add some interaction following the gold standard of native element patterns.
+
+### render() return html
+
+**7:41** · Let's listen to the change event on the input by adding a change event listener. Whenever the user types into our input, the value property should update. Finally, let's dispatch our own change event the bubbles en composes outside of our shadow root so that other elements can listen to it. That way it'll be intuitive for developers to use and compatible with frameworks. Great, we have interaction setup.
+
+**8:09** · Last thing we need to do is turn our component from drab to quacktastic. Let's add some styles with lit-element static styles property. Quackett helped us here already with a bunch of styles from our mock-up but she asked us to finish up with the slotted icon. First let's hide all content by default. We can use the slotted pseudo element to select projected light DOM content.
+
+**8:37** · Next, we can add another rule to display SVG tags as well as set an explicit width and height for them so they don't pop out of our quacky little container. With this our clients can provide their icons and we'll be able to reduce how much maintenance our team takes on with what type of content is supported in our icon slot. Now that we have our component built let's meet our first team that wants to use it.
+
+**9:05** · Mallard Maps, helping ducks everywhere find the closest pond to migrate to. Mallard Maps is built with React. They want to use Bread Design's input for their migration search feature but they're worried about their app's styling being an issue. Lucky for us, Shadow DOM ensures that isn't a problem. To improve their experience, Mallard Maps is creating a wrapper React component. Some props like className and onChange are handled differently for web components.
+
+**9:39** · The wrapper will make using them seamless for Mallard Map develo-ducks. otherProps including value, onClick and more, don't need any special handling. So they can be passed directly to Quack-input. For props like onChange that require a reference to the element we can use a ref and callback hook. Let's zoom in, React's callback hook can be used to retrieve the value of a DOM element whenever it changes.
+
+**10:11** · We'll use the ref hook to store the current value of the DOM element. We can add and clean up logic on the element for the props that we're wrapping such as event listeners. Now Mallard Maps can easily use QuackInput in the app with the best developer experience for their team.
+
+**10:30** · With Shadow DOM they don't need to worry about the app's complex styles interfering with QuackInput styling and our team got a thoughtful Bread loaf as a thank you.
+
+**10:41** · You know, Liz, this reminds me of something else.
+
+**10:45** · Material Design?
+
+**10:47** · I see what you did there, but no. I mean, using the Shadow DOM encapsulation attributes and properties and slots as a powerful API to scale and manage your design system. It reminds me of a web component set that I've seen the wild jungles of NPM node module trees, Lion Web Components. These are white label components built by ING in a design system that can be used by anyone.
+
+### Lion Web Components by ING
+
+**11:10** · These components use slots and attributes to set up pieces that can be customized in an extended design system like ING web. On the left we have the white label components and on the right we have the first-party components. These components can be used as a starting point for your own design system. When extending Lion Web Components you can use both attributes and/or slots to customize what is shown.
+
+**11:32** · You can even check them out at the QR code right here.
+
+**11:36** · All right, Liz, what's next with Shadow DOM?
+
+**11:38** · What do you mean ?
+
+**11:40** · Isn't accessibility a problem with reference IDs?
+
+**11:42** · Also I tried using a Web Component in a form and it didn't submit like the other inputs.
+
+**11:47** · Those are great points, Rody.
+
+**11:49** · We can use ElementInternals in the Accessibility Object Model or AOM to help address these needs. We can call attachInternals on a custom element and get an ElementInternals instance which provides many internal features to help integrate our web component with platform features such as forms and Accessibility Object Model.
+
+### class MyElement extends HTMLElement constructor()
+
+**12:13** · The AOM itself is an exciting new set of features which include reflecting ARIA properties and attributes, reflecting element references, and providing default semantics for custom elements through the ElementInternals' interface. ElementInternals and the describe features of the Accessibility Object Model are ready to use on Chrome and Edge today. AOM ARIA attribute reflection is also ready to use on Safari.
+
+**12:43** · All right, let's take a look at how we can add ElementInternals and the Accessibility Object Model to the Web Component we just made. Let's start with form integration. To register our component as formAssociated, we need to add a static formAssociated property. This tells the browser that our custom element is ready to participate in forms. The last thing we need to do is set the form's value. We can do that in the element's update lifecycle.
+
+### static get formAssociated() { return true; }
+
+**13:11** · Whenever our value property changes we can update the form value as well using ElementInternals. That was easy; well, buckle up ducklings. ARIA and accessibility can get a bit tricky. Always remember the golden rule act like native HTML elements. That means a user should be able to set the aria-labelledby attribute on our component and everything should work. So let's start there and work backwards. We'll need to know when that ARIA attribute changes.
+
+**13:46** · Custom elements have a static property called observed attributes that allow us to list which attributes we want to listen to. Normally lit-element manages this for us. So we'll need to call super to keep that behavior while adding the extra attribute we want. Next let's override the custom element callback for that static property: attributeChangedCallback.
+
+**14:09** · Whew, they really picked long names for these, huh?
+
+**14:13** · We only care about the attribute that is aria-labelledby attribute. Everything else can be passed off to lit-element's implementation in the superclass. Okay finally, let's use the Accessibility Object Model. Since AOM reflects reference IDs to elements themselves we can use the ariaLabelledByElements property to get the actual elements that the ID or IDs in the attribute refer to and we didn't have to do anything for them.
+
+**14:41** · Pretty neat, huh?
+
+**14:43** · With that, we can use the same property and pass those elements off to our shadowRoot's input since that's what the screen reader will be focusing on and what the elements should be labeling.
+
+**14:53** · Hmm, but what should we do about our host Web Components attribute?
+
+**14:58** · We should probably remove it. Otherwise the screen reader will announce the labels twice and that would just confuse a bunch of ducks.
+
+**15:07** · Wait, what is it, Quackett?
+
+**15:10** · Oh, good point.
+
+**15:12** · If we remove our attribute our change callback is going to be called again. We'll need to add a flag and gate our logic so that we don't accidentally remove our input's labels after just adding them.
+
+**15:24** · Good catch.
+
+**15:26** · Let's see this in action.
+
+**15:28** · Quackett, who's next on our list of teams to visit?
+
+**15:33** · Oh, of course, that's right. I remember who needs these features, POND. A Quaggle Travel company helping ducklings find an Island with a pond to call their own. POND is built with VUE and they have booking forms that Bread Design's input would be perfect for. They want to make sure it will properly submit with their forms. Additionally, they want to use their own external labels with the inputs.
+
+**16:02** · Those labels will need to be hooked into our inputs so they can be read by screen readers for ducks with accessibility requirements. POND works on a loaf exchange system. Here's one of their VUE components that is using our quack-input to pay for a travel trip. Our golden rule seems to be paying off. Our quack-input is nearly indistinguishable from a native input.
+
+**16:25** · To use it inside of a form a name attribute must be provided, just like other form elements. When the form submits quack-input's value is associated with that name key. When using the aria-labelledby attribute and an external label's ID screen readers announce the external label even though the browser is focused on an input element deeply nested inside the shadowRoot of the host element. That was pretty successful.
+
+**16:52** · Well, Rody, we have our component structure but I think it could use a splash of color.
+
+**16:57** · What's next from design?
+
+**16:59** · Well, Bread Design has provided us with design tokens to specify colors, shape, and topography. Some tokens inherit from each other. For example, a label primary color inherits from the amber color. To start off, they gave us the tokens to implement the light theme and also the dark theme with the correct tokens for each.
+
+**17:16** · So Liz, since you had such a good answer last time, what is the Web Component API that can help us out here?
+
+**17:22** · Of course we can use CSS Custom Properties. Custom Properties are user-defined variables. We can define a Custom Property with a value and then use that value in a CSS declaration. Custom Properties can also provide fallback values to use for when they have not been defined. The best part is that Custom Properties can be overridden so that you can dynamically change the value of a declaration at runtime.
+
+### CSS Custom Properties
+
+**17:51** · This is why CSS Custom Properties are perfect for design tokens. Each Custom Property can match one to one with individual design tokens. Properties can inherit from other properties as well, just like our tokens do. And finally, you can apply in scoped Custom Properties to specific sections of a DOM tree using simple CSS selectors for incredible flexibility and a satisfying runtime customization experience.
+
+**18:19** · So Liz, what about the CSS part API?
+
+**18:22** · Can we just use that instead of all the Custom Properties to expose our theming?
+
+**18:26** · It's another great question.
+
+**18:28** · In a custom element shadow root, pieces of the shadow DOM can be exposed using the part attribute. Clients can then use the part suitor element to add any CSS declarations to the part. As you can guess, parts are similar to slots. They can potentially break design compliance and expose arbitrary styling on pieces of a component. This can be good if your design system allows one-off customizations since it can mean fewer custom properties.
+
+**19:00** · However, it can also be difficult to maintain if your design system wants strict compliance. Especially with larger teams where there's less direct control over what clients are doing, like Quaggle.
+
+**19:13** · For example, could a user make quack-input's label bold?
+
+**19:17** · If so, we could expose a part and allow them to set the font weight. However, they're also able to change the font size, add padding. So it could be dangerous exposing a part if we can't enforce what declarations are used. Without it, we need to add another Custom Property so users could change the font weight. So tl;dr part means pure custom properties but potentially more maintenance.
+
+**19:44** · All right, let's dive in and bring design tokens to quack-input with the help of Custom Properties. We'll begin with color, that's a good place to start. Our labeling input should be the primary design token color. According to our design token inheritance the primary color should be Amber 700. So we can add that in as a primary tokens fallback value. Let's work on topography next, We have quack-input specific tokens for that.
+
+**20:14** · The label and input share the same font family but they each have their own token for their respective font sizes. All right, pretty good.
+
+**20:23** · Now what should we do about dark theme?
+
+**20:27** · I think I can help with that, Liz. Here we can use the media query prefers-color-scheme to detect if the user has turned on a dark mode on their device. Now all we need to do is to find the primary design token as the color provided in our dark theme mock-ups. There're a couple of reasons to use the prefers-color-scheme which includes better accessibility, automatic dark mode switching and power savings with OLED displays.
+
+### Emedia (prefers-color-scheme: dark)
+
+**20:53** · You can check out the web.dev link here to read the blog post to learn more.
+
+**20:57** · Wow, thanks Rody.
+
+**20:59** · Okay, we've got the colors for our component and the means to change them. I know the next team that desperately wants to use these new features, QuackTube, making ducks stars or just helping them find fish memes. QuackTube is built with Angular. They want to use Bread Design's input for their comments section but they have unique brand colors that are different from Quaggle's default brand. See they're a sister company under the larger Waterfowl Corporation.
+
+**21:33** · Lucky for us though, design tokens were specifically designed for this. Custom Properties will let QuackTube override their default colors to match what they need. First things first, in Angular, don't forget to add the custom element SCHEMA to the NgModules that are using custom elements that tells Angular to expect element tag names it wouldn't immediately recognize. All right, let's get started. First, let's look at our comment component using quack-input.
+
+### Component selector comment-input', template
+
+**22:08** · Everything looks pretty standard for an Angular component and its template, as well as what we've seen so far. So let's move on to the styles. That's where QuackTube wants to change things up. QuackTube develo-ducks have added a bunch of custom property declarations. With a simple CSS selector they're able to scope the changes they wanted to make, including color and typography.
+
+**22:30** · Using Custom Properties is actually pretty straightforward, way to go QuackTube. You know Liz this is starting to ring a bell for me too.
+
+**22:39** · It's kind of like Material Web Components, huh?
+
+**22:42** · (laughs) True.
+
+**22:44** · But I was meaning the Custom Properties for design tokens. There's some great teams out there doing the same thing with their design systems like Adobe Spectrum Web Components. Spectrum is Adobe's design system that defines many tokens including those that inherit from each other. Spectrum Web Components uses Custom Properties to implement their design tokens. Tokens are set and provided via sp-theme helper element rather than being set manually by the user.
+
+### Spectrum Web Components by Adobe
+
+**23:10** · It's a great resource if you want to see a pre-built design system like Spectrum or just reference it for inspiration.
+
+**23:16** · So is this when I ask what's coming next, right?
+
+**23:19** · You mean when you mention all the problems with Custom Properties?
+
+### Problems, problems
+
+**23:23** · Yeah, users can provide any value to a Custom Property and it may not even be the right one. It's also hard to maintain all the extra CSS and make sure all the default values are set in a proper token inheritance.
+
+**23:35** · True, luckily there's a new technology called Registered Properties that can help us with these problems. Custom Properties can be registered with the browser using the app property rule in CSS or CSS.registerProperty in JavaScript. We can set the property syntax to many types such as links, numbers, URLs, images, and of course colors. The syntax will make our Custom Property behave like a native user agent property. If the user provides an invalid value the declaration will be ignored.
+
+**24:08** · Whereas unregistered custom properties would completely drop the declaration and result in an unstyled element. We can also set whether or not their property is inherited between a child element and its parent, like the color property or if it's not, like the border property. Finally, we can give our custom property an initial value. The browser will use this even if we have not provided a value declaration or fallback for our property.
+
+**24:38** · Register Properties are ready to be used in Chrome and Edge today. Let's take a look at how we can add Registered Properties to our component to clean things up. This is what quack-input's CSS currently looks like. We have a lot of fallback values for inheritance between design tokens and their initial values. It's pretty hard to read or maintain, so let's clean it up. For Bread Design's Components we'll provide a global style sheet that clients can import.
+
+### Bread Design global styles
+
+**25:08** · It will register our design token Custom Properties as well as define the inheritance between them. Let's register our static Amber 700 token first with its initial value. We're setting it to inherits false because we don't anticipate users changing the value of this token. So there's no need for the browser to spend extra effort calculating the inheritance. Next we'll register our primary token.
+
+### @property ---amber700 syntax: ''; inherits: false
+
+**25:35** · It will be set to inherit because it's a color token and we want users to set it once on a parent element and let the value inherit through all of the children of that element. Finally, let's establish the relationship between these two design tokens. We're using the root selector because it's less specific than the HTML tag selector. Just in case our clients want to override our initial definitions, and let's not forget about dark mode.
+
+**26:03** · We can move our dark mode styles from inside our Web Component to this global style sheet since all of our components will be dark mode compatible. Let's look at how this changed quack-input CSS, much better. This will be a lot easier to maintain and result in a smaller file size, especially as the number of design tokens and web components increase. So let's revisit QuackTube and see what has changed.
+
+**26:30** · Actually not much, they're still using the same design tokens except now they have a smaller bundle size, which means faster loading for their users. Additionally, they receive improved performance from browser optimizations that Registered Properties bring.
+
+**26:46** · That's pretty impressive, Liz.
+
+**26:47** · So where does that leave Quackett in her own story?
+
+**26:51** · Come on, Quackett, let's do a quick recap. Quaggle now has a solid foundation of Web Components for Bread Design that were built once and can be used everywhere. Shadow DOM ensures compliance with a unified brand and Custom Properties provide a design token API for all develo-ducks customization needs and, Quackett, she gets a well-deserved vacation, good job.
+
+**27:19** · Nice work, Quackett.
+
+**27:22** · Well, if you hadn't figured it out Quaggle and Bread Design is a story of Google and Material Design. We face with the problems of bringing Material Design to Google's Teams, Maps, Travel, YouTube, and more. We encounter many of the same problems that other design systems face when scaling, supporting multiple frameworks, ensuring spec compliance, and providing a robust API for customizing our design tokens.
+
+**27:45** · Web Components allow our design systems to scale on the web and we hope our discoveries can help your design system scale too.
+
+**27:51** · All of the code from this talk, including quack-input and examples for setting up Web Components in each of the frameworks mentioned is available to view and play around with. You can also find out more about what's coming next with the future of Material Web Components. We're really excited about the direction Material on the web is going and we hope you check it out. Thanks for tuning in, I'm Liz.
+
+**28:14** · And I'm Rody, and remember Design once.
+
+**28:16** · Build once.
+
+**28:17** · Use everywhere.
+
+**28:20** · (upbeat music)
