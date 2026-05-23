@@ -18,8 +18,8 @@ importers:
         specifier: ^9.5.3
         version: 9.5.5(astro@5.18.1(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.60.4)(typescript@6.0.3)(yaml@2.9.0))
       '@astrojs/prism':
-        specifier: ^3.3.0
-        version: 3.3.0
+        specifier: ^4.0.2
+        version: 4.0.2
       '@astrojs/react':
         specifier: ^4.4.2
         version: 4.4.2(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(jiti@2.7.0)(lightningcss@1.32.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(yaml@2.9.0)
