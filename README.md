@@ -13,7 +13,7 @@
 
 ---
 
-## 🥑 Focus & Core Competencies
+## 🎯 Focus & Core Competencies
 
 <table width="100%">
   <tr>
