@@ -58,6 +58,11 @@ const videoPosts = blogPosts
 
 // Helper to extract YouTube video ID from post body
 function getYoutubeId(content: string): string | null {
+    // Check for SocialEmbed component first
+    const socialMatch = content.match(/<SocialEmbed[^>]*id=["']([a-zA-Z0-9_-]+)["']/);
+    if (socialMatch && content.includes('platform="youtube"')) {
+        return socialMatch[1];
+    }
     const embedMatch = content.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]+)/);
     if (embedMatch) return embedMatch[1];
     const watchMatch = content.match(/v=([a-zA-Z0-9_-]+)/);
