@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  <b>Senior Developer Advocate for <a href="https://antigravity.google">Google AntiGravity</a>. Empowering global developer communities by sharing modern architecture practices, widget kits, and robust SDK integrations.</b>
+  <b>Senior Developer Advocate for <a href="https://antigravity.google">Google Antigravity</a>. Empowering global developer communities by sharing modern architecture practices, widget kits, and robust SDK integrations.</b>
 </p>
 
 ---
@@ -72,7 +72,7 @@
 
 ## 💼 Current Work
 
-Currently supporting **<a href="https://antigravity.google">Google AntiGravity</a>** developer success:
+Currently supporting **<a href="https://antigravity.google">Google Antigravity</a>** developer success:
 - 🚀 Empowering global developer communities by sharing modern architecture practices, widget kits, and robust SDK integrations.
 - 📝 Synthesizing user feedback, building comprehensive example applications, and leading workshops/technical recording sessions.
 
