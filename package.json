@@ -27,7 +27,7 @@
     "dotenv": "^17.3.1",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.564.0",
-    "markdown-it": "^14.1.1",
+    "markdown-it": "^14.2.0",
     "nanostores": "^1.1.0",
     "ollama": "^0.6.3",
     "pocketbase": "^0.26.8",
