@@ -66,8 +66,8 @@ importers:
         specifier: ^0.6.3
         version: 0.6.3
       pocketbase:
-        specifier: ^0.26.8
-        version: 0.26.9
+        specifier: ^0.27.0
+        version: 0.27.0
       prismjs:
         specifier: ^1.30.0
         version: 1.30.0
@@ -2160,8 +2160,8 @@ packages:
     resolution: {integrity: sha512-QP88BAKvMam/3NxH6vj2o21R6MjxZUAd6nlwAS/pnGvN9IVLocLHxGYIzFhg6fUQ+5th6P4dv4eW9jX3DSIj7A==}
     engines: {node: '>=12'}
 
-  pocketbase@0.26.9:
-    resolution: {integrity: sha512-Tiv1/hNuUzRdvT0d8hF03dfzuefQ1WdSRp1A1q3wzFC/WYhQcbU/Qlaubl/3ZDo6xvFXBS8JAgBS/L+ms7nkVQ==}
+  pocketbase@0.27.0:
+    resolution: {integrity: sha512-K5N6d93UP/BNMbMnlZ6BUfy9VPCIvLyqhJFOsNI8OsZwzvKWEAfyD36boi5K4ECIOl5HMlo0TzuaeGdKpMwizQ==}
 
   postcss-selector-parser@6.0.10:
     resolution: {integrity: sha512-IQ7TZdoaqbT+LCpShg46jnZVlhWD2w6iQYAcYXfHARZ7X1t/UGhhceQDs5X0cGqKvYlHNOuv7Oa1xmb0oQuA3w==}
@@ -5249,7 +5249,7 @@ snapshots:
 
   picomatch@4.0.4: {}
 
-  pocketbase@0.26.9: {}
+  pocketbase@0.27.0: {}
 
   postcss-selector-parser@6.0.10:
     dependencies:
