@@ -15,7 +15,7 @@
     "@astrojs/mdx": "^5.0.6",
     "@astrojs/node": "^9.5.3",
     "@astrojs/prism": "^3.3.0",
-    "@astrojs/react": "^4.4.2",
+    "@astrojs/react": "^5.0.7",
     "@astrojs/rss": "^4.0.15",
     "@nanostores/react": "^1.0.0",
     "@tailwindcss/vite": "^4.1.18",
