@@ -1,1 +1,6 @@
+# Generated and managed by Antigravity
+.agents
+.gitea
+.github
+.vscode
 node_modules
