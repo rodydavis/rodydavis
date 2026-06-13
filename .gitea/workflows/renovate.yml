@@ -16,8 +16,8 @@ jobs:
       RENOVATE_PLATFORM: gitea
       RENOVATE_ENDPOINT: https://git.rodydavis.dev/api/v1
       RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
-      RENOVATE_AUTODISCOVER: true
-      RENOVATE_AUTODISCOVER_NAMESPACES: "rodydavis"
+      RENOVATE_AUTODISCOVER: false
+      RENOVATE_REPOSITORIES: ${{ github.repository }}
     steps:
       - name: Run Renovate
         run: renovate
