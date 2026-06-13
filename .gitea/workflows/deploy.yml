@@ -27,14 +27,11 @@ jobs:
         with:
           version: 9.7.1
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Set up Bazel Environment
+        uses: rodydavis/shared-actions/setup-bazel@main
         with:
-          node-version: 24
+          node_version: '24'
           cache: 'pnpm'
-
-      - name: Set up Bazel (Bazelisk)
-        run: npm install -g @bazel/bazelisk
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -119,5 +116,7 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Deploy to Coolify
-        run: |
-          curl --request GET '${{ secrets.COOLIFY_WEBHOOK }}' --header 'Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}'
+        uses: rodydavis/shared-actions/coolify-deploy@main
+        with:
+          webhook: ${{ secrets.COOLIFY_WEBHOOK }}
+          token: ${{ secrets.COOLIFY_TOKEN }}
