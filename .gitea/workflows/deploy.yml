@@ -28,7 +28,7 @@ jobs:
           version: 9.7.1
 
       - name: Set up Bazel Environment
-        uses: rodydavis/shared-actions/setup-bazel@main
+        uses: https://git.rodydavis.dev/rodydavis/shared-actions/setup-bazel@main
         with:
           node_version: '24'
           cache: 'pnpm'
@@ -116,7 +116,7 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Deploy to Coolify
-        uses: rodydavis/shared-actions/coolify-deploy@main
+        uses: https://git.rodydavis.dev/rodydavis/shared-actions/coolify-deploy@main
         with:
           webhook: ${{ secrets.COOLIFY_WEBHOOK }}
           token: ${{ secrets.COOLIFY_TOKEN }}
