@@ -1,12 +1,22 @@
 services:
   web:
     image: git.rodydavis.dev/rodydavis/rodydavis:latest
+    container_name: rodydavis-web
     pull_policy: always
     restart: unless-stopped
-    expose:
-      - "4321"
+    networks:
+      - apps-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rodydavis.rule=Host(`rodydavis.dev`) || Host(`rodydavis.com`)"
+      - "traefik.http.routers.rodydavis.entrypoints=web"
+      - "traefik.http.services.rodydavis.loadbalancer.server.port=4321"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:4321/"]
       interval: 30s
       timeout: 10s
       retries: 3
+
+networks:
+  apps-net:
+    external: true
