@@ -58,11 +58,11 @@ jobs:
       - name: Sync missing/outdated chunks and prune stale chunks
         if: github.event_name != 'pull_request'
         env:
-          OLLAMA_HOST: ${{ vars.OLLAMA_HOST || 'http://127.0.0.1:11434' }}
+          OLLAMA_HOST: ${{ vars.OLLAMA_HOST }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          EMBEDDING_GEMMA_MODEL: embeddinggemma-2:latest
-          OLLAMA_MODEL: ${{ vars.OLLAMA_MODEL || 'gemma4:31b' }}
-          EMBEDDING_MRL_DIM: ${{ vars.EMBEDDING_MRL_DIM || '768' }}
+          EMBEDDING_GEMMA_MODEL: ${{ vars.EMBEDDING_GEMMA_MODEL }}
+          OLLAMA_MODEL: ${{ vars.OLLAMA_MODEL }}
+          EMBEDDING_MRL_DIM: ${{ vars.EMBEDDING_MRL_DIM }}
         run: |
           if [ "${{ github.event.inputs.force }}" = "true" ]; then
             pnpm run index:chunks -- --force

@@ -32,11 +32,11 @@ jobs:
 
       - name: Sync & Prune Content Chunks (Incremental Delta Check)
         env:
-          OLLAMA_HOST: ${{ vars.OLLAMA_HOST || 'http://127.0.0.1:11434' }}
+          OLLAMA_HOST: ${{ vars.OLLAMA_HOST }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          EMBEDDING_GEMMA_MODEL: embeddinggemma-2:latest
-          OLLAMA_MODEL: ${{ vars.OLLAMA_MODEL || 'gemma4:31b' }}
-          EMBEDDING_MRL_DIM: ${{ vars.EMBEDDING_MRL_DIM || '768' }}
+          EMBEDDING_GEMMA_MODEL: ${{ vars.EMBEDDING_GEMMA_MODEL }}
+          OLLAMA_MODEL: ${{ vars.OLLAMA_MODEL }}
+          EMBEDDING_MRL_DIM: ${{ vars.EMBEDDING_MRL_DIM }}
         run: |
           pnpm run index:chunks
           pnpm run check:chunks
@@ -44,10 +44,10 @@ jobs:
       - name: Build Astro SSR Bundle for celld
         env:
           CI: "true"
-          OLLAMA_HOST: ${{ vars.OLLAMA_HOST || 'http://127.0.0.1:11434' }}
-          EMBEDDING_GEMMA_MODEL: embeddinggemma-2:latest
-          OLLAMA_MODEL: ${{ vars.OLLAMA_MODEL || 'gemma4:31b' }}
-          EMBEDDING_MRL_DIM: ${{ vars.EMBEDDING_MRL_DIM || '768' }}
+          OLLAMA_HOST: ${{ vars.OLLAMA_HOST }}
+          EMBEDDING_GEMMA_MODEL: ${{ vars.EMBEDDING_GEMMA_MODEL }}
+          OLLAMA_MODEL: ${{ vars.OLLAMA_MODEL }}
+          EMBEDDING_MRL_DIM: ${{ vars.EMBEDDING_MRL_DIM }}
         run: pnpm run build
 
       - name: Deploy to TrueNAS celld Fleet
@@ -60,6 +60,6 @@ jobs:
           env_file_content: |
             OLLAMA_HOST=${{ vars.OLLAMA_HOST }}
             GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
-            EMBEDDING_GEMMA_MODEL=embeddinggemma-2:latest
-            OLLAMA_MODEL=${{ vars.OLLAMA_MODEL || 'gemma4:31b' }}
-            EMBEDDING_MRL_DIM=${{ vars.EMBEDDING_MRL_DIM || '768' }}
+            EMBEDDING_GEMMA_MODEL=${{ vars.EMBEDDING_GEMMA_MODEL }}
+            OLLAMA_MODEL=${{ vars.OLLAMA_MODEL }}
+            EMBEDDING_MRL_DIM=${{ vars.EMBEDDING_MRL_DIM }}
