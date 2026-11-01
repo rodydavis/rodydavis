@@ -374,11 +374,9 @@ export async function runIndexPipeline(options: IndexPipelineOptions = {}) {
       }
       embedCache[docCacheKey] = docEmbedding;
 
-      // Update frontmatter base64 `embedding` if missing or changed
-      const floatArr = new Float32Array(docEmbedding);
-      const base64Embed = Buffer.from(floatArr.buffer).toString("base64");
-      if (parsed.data.embedding !== base64Embed) {
-        parsed.data.embedding = base64Embed;
+      // Remove legacy base64 `embedding` from frontmatter if present (now stored in chunks-index.json)
+      if ("embedding" in parsed.data) {
+        delete parsed.data.embedding;
         frontmatterChanged = true;
       }
     }
