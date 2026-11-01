@@ -4,6 +4,19 @@ export type Theme = 'light' | 'dark' | 'monokai' | 'dracula' | 'cyberpunk' | 'gr
 
 export const themeStore = atom<Theme>('system');
 
+const THEME_COLORS: Record<string, string> = {
+    light: '#f3f3f3',
+    dark: '#1e1e1e',
+    monokai: '#1e1f1c',
+    dracula: '#21222c',
+    cyberpunk: '#000b1e',
+    'great-wave': '#16161e',
+    'great-wave-light': '#f2f0e4',
+    'solarized-light': '#eee8d5',
+    'solarized-dark': '#002b36',
+    matrix: '#000000',
+};
+
 export const setTheme = (theme: Theme) => {
     console.log('Setting theme:', theme);
     themeStore.set(theme);
@@ -12,11 +25,18 @@ export const setTheme = (theme: Theme) => {
     document.cookie = `theme=${theme}; path=/; max-age=31536000; SameSite=Strict`;
 
     // Update HTML attribute
+    let resolvedTheme: string = theme;
     if (theme === 'system') {
         const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+        resolvedTheme = isDark ? 'dark' : 'light';
+        document.documentElement.dataset.theme = resolvedTheme;
     } else {
         document.documentElement.dataset.theme = theme;
+    }
+
+    const metaThemeColor = document.getElementById('theme-color-meta');
+    if (metaThemeColor && THEME_COLORS[resolvedTheme]) {
+        metaThemeColor.setAttribute('content', THEME_COLORS[resolvedTheme]);
     }
 };
 

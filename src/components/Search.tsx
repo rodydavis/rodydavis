@@ -121,7 +121,7 @@ const Search: React.FC = () => {
   return (
     <div className="flex-1 flex flex-col md:flex-row h-full overflow-hidden bg-[var(--bg-main)] text-[var(--fg-primary)]">
       {/* Left Search Control & Quick List Sidebar */}
-      <div className="w-full md:w-80 bg-[var(--bg-sidebar)] border-b md:border-b-0 md:border-r border-[var(--border-main)] flex flex-col shrink-0 max-h-[45vh] md:max-h-full">
+      <div className="w-full md:w-80 bg-[var(--bg-sidebar)] border-b md:border-b-0 md:border-r border-[var(--border-main)] flex flex-col shrink-0 max-h-[42dvh] md:max-h-full">
         <div className="p-3.5 border-b border-[var(--border-main)] space-y-3">
           <div className="flex items-center justify-between">
             <span className="uppercase font-bold text-[11px] tracking-wider text-[var(--fg-secondary)] flex items-center gap-1.5">
@@ -329,7 +329,7 @@ const Search: React.FC = () => {
         </div>
 
         {/* Main Scrollable Area */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6 max-w-5xl w-full mx-auto">
+        <div className="flex-1 overflow-y-auto p-3.5 sm:p-6 space-y-4 sm:space-y-6 max-w-5xl w-full mx-auto scrollable-pane">
           {/* Gemma 4 RAG Answer Panel */}
           {data?.rag && (
             <div className="p-5 rounded-xl bg-[var(--bg-sidebar)] border border-[#007acc]/60 shadow-sm space-y-2">

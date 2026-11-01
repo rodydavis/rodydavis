@@ -81,7 +81,7 @@ const filename =
 
     {/* Breadcrumbs & Tools */}
     <div
-        class="h-[28px] bg-[var(--bg-main)] flex items-center justify-between px-4 text-[13px] text-[var(--fg-secondary)] border-b border-[var(--border-main)]"
+        class="h-[30px] sm:h-[28px] bg-[var(--bg-main)] flex items-center justify-between px-2 sm:px-4 text-[13px] text-[var(--fg-secondary)] border-b border-[var(--border-main)] gap-2"
     >
         <Breadcrumbs slug={slug} />
         <div class="flex items-center space-x-2 flex-shrink-0">
@@ -90,9 +90,9 @@ const filename =
     </div>
 
     {/* Content Area */}
-    <div
-        class="flex-1 relative overflow-auto scroll-smooth bg-[var(--bg-main)]"
+    <main
+        class="flex-1 relative overflow-auto scroll-smooth bg-[var(--bg-main)] scrollable-pane"
     >
         <slot />
-    </div>
+    </main>
 </div>

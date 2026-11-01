@@ -4,7 +4,10 @@ import type { APIRoute } from 'astro';
 import MarkdownIt from 'markdown-it';
 
 export const GET: APIRoute = async (context) => {
-    const posts = await getCollection('docs');
+    const allDocs = await getCollection('docs');
+    const posts = allDocs
+        .filter((doc) => doc.id !== 'welcome' && doc.id !== 'about' && doc.id !== 'privacy')
+        .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
     const parser = new MarkdownIt();
     return rss({
         title: 'Rody Davis',

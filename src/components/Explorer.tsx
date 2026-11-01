@@ -123,7 +123,8 @@ const ExplorerItem: React.FC<{
         <a
           ref={itemRef as React.RefObject<HTMLAnchorElement>}
           href={href}
-          className={`flex items-center py-[3px] cursor-pointer hover:bg-[var(--hover-bg)] transition-colors text-decoration-none no-underline block ${node.postId === activePostId ? 'bg-[var(--selection-bg)] text-[var(--fg-primary)]' : 'text-[var(--fg-primary)]'
+          onClick={() => node.postId && onFileClick(node.postId)}
+          className={`explorer-touch-row flex items-center py-[3px] cursor-pointer hover:bg-[var(--hover-bg)] transition-colors text-decoration-none no-underline block ${node.postId === activePostId ? 'bg-[var(--selection-bg)] text-[var(--fg-primary)]' : 'text-[var(--fg-primary)]'
             }`}
           style={{ paddingLeft: `${level * 12 + 12}px` }}
         >
@@ -132,7 +133,7 @@ const ExplorerItem: React.FC<{
       ) : (
         <div
           ref={itemRef as React.RefObject<HTMLDivElement>}
-          className={`flex items-center py-[3px] cursor-pointer hover:bg-[var(--hover-bg)] transition-colors ${node.postId === activePostId ? 'bg-[var(--selection-bg)] text-[var(--fg-primary)]' : 'text-[var(--fg-primary)]'
+          className={`explorer-touch-row flex items-center py-[3px] cursor-pointer hover:bg-[var(--hover-bg)] transition-colors ${node.postId === activePostId ? 'bg-[var(--selection-bg)] text-[var(--fg-primary)]' : 'text-[var(--fg-primary)]'
             }`}
           style={{ paddingLeft: `${level * 12 + 12}px` }}
           onClick={handleClick}
@@ -329,9 +330,11 @@ const Explorer: React.FC<ExplorerProps> = ({
       )}
 
       {/* Sidebar Container */}
-      <div className={`
+      <aside
+        aria-label="Explorer Sidebar"
+        className={`
         flex flex-col h-full bg-[var(--bg-sidebar)] border-r border-[var(--border-main)] text-[var(--fg-primary)]
-        fixed md:static inset-y-0 left-0 z-30 w-64 transition-transform duration-300 ease-in-out
+        fixed md:static inset-y-0 left-0 z-30 w-[min(16rem,calc(100vw-48px))] md:w-64 transition-transform duration-300 ease-in-out
         ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
         ${className || ''}
       `}>
@@ -498,7 +501,7 @@ const Explorer: React.FC<ExplorerProps> = ({
           )}
 
         </div>
-      </div>
+      </aside>
     </>
   );
 };

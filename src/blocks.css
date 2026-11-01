@@ -28,12 +28,7 @@
   --color-icon-folder: #dcb67a;
 }
 
-/* Legacy theme styles removed */
-
-/* Re-mapping custom properties to the theme values if necessary, or just using the vars directly */
-/* Since we used var(--bg-main) in the code, we just need to ensure the variables are set correctly */
-
-/* Base variables are now managed in themes.css */
+/* Base variables are managed in themes.css */
 
 body {
   margin: 0;
@@ -41,13 +36,72 @@ body {
   font-family: var(--font-body);
   background-color: var(--bg-main);
   color: var(--fg-primary);
-  overflow: hidden;
+  block-size: 100dvh;
+  inline-size: 100%;
+  overflow: clip;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Typography Overrides for Dark Mode matching VS Code */
+/* Visually hidden utility for screen readers */
+.visually-hidden:where(:not(:focus-within, :active)) {
+  position: absolute !important;
+  clip-path: inset(50%) !important;
+  overflow: hidden !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+}
+
+/* Container query root for the editor reading canvas */
+#editor-preview {
+  container: editor / inline-size;
+}
+
+/* Balanced tag clouds on modern browsers with graceful wrap fallback */
+.tag-cloud-balanced {
+  display: flex;
+  flex-wrap: wrap;
+  flex-wrap: balance;
+}
+
+/* VS Code Notification Center Popover (Top Layer & Fallback) */
+.vscode-notification-popover[popover] {
+  inset: auto;
+  right: max(0.5rem, env(safe-area-inset-right, 0px));
+  bottom: calc(26px + env(safe-area-inset-bottom, 0px));
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 160ms ease-out,
+    transform 160ms ease-out,
+    display 160ms allow-discrete,
+    overlay 160ms allow-discrete;
+}
+
+.vscode-notification-popover[popover]:where(:popover-open, .\:popover-open) {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@starting-style {
+  .vscode-notification-popover[popover]:where(:popover-open, .\:popover-open) {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+/* Typography Overrides for Dark/Light Themes matching VS Code */
 .prose {
   max-width: none;
   color: var(--fg-primary);
+  overflow-wrap: break-word;
 }
 
 .prose h1,
@@ -60,22 +114,38 @@ body {
   font-weight: 600;
   margin-top: 1.5em;
   margin-bottom: 0.5em;
+  scroll-margin-block-start: 1rem;
 }
 
 .prose h1 {
   color: var(--header-h1);
   border-bottom: 1px solid var(--border-secondary);
   padding-bottom: 0.3em;
+  font-size: clamp(1.5rem, 1rem + 2.5vw, 2.25rem);
 }
 
 .prose h2 {
   color: var(--header-h2);
   border-bottom: 1px solid var(--border-secondary);
   padding-bottom: 0.3em;
+  font-size: clamp(1.25rem, 0.95rem + 1.5vw, 1.65rem);
 }
 
 .prose h3 {
   color: var(--header-h3);
+  font-size: clamp(1.1rem, 0.9rem + 1vw, 1.35rem);
+}
+
+@supports (font-size: 1cqi) {
+  .prose h1 {
+    font-size: clamp(1.5rem, 1rem + 2.5cqi, 2.25rem);
+  }
+  .prose h2 {
+    font-size: clamp(1.25rem, 0.95rem + 1.5cqi, 1.65rem);
+  }
+  .prose h3 {
+    font-size: clamp(1.1rem, 0.9rem + 1cqi, 1.35rem);
+  }
 }
 
 .prose a {
@@ -89,15 +159,29 @@ body {
 
 .prose code {
   color: var(--token-string);
-  /* background-color: var(--hover-bg); */
   padding: 0.2em 0.4em;
   border-radius: 4px;
   font-weight: normal;
+  word-break: break-word;
 }
 
 .prose pre {
-  /* background-color: var(--bg-main); */
   border: 1px solid var(--border-secondary);
+  overflow-x: auto;
+  max-inline-size: 100%;
+  overscroll-behavior-x: contain;
+}
+
+.prose pre code {
+  word-break: normal;
+  padding: 0;
+}
+
+.prose table {
+  display: block;
+  overflow-x: auto;
+  max-inline-size: 100%;
+  overscroll-behavior-x: contain;
 }
 
 .prose blockquote {
@@ -110,7 +194,7 @@ body {
   color: var(--fg-primary);
 }
 
-.prose ul>li::marker {
+.prose ul > li::marker {
   color: var(--fg-secondary);
 }
 
@@ -146,23 +230,51 @@ body {
   height: 100%;
 }
 
-/* Light theme overrides for prose */
-/* Light theme overrides now handled by CSS variables in themes.css */
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+/* Mobile & Touch Ergonomics (iOS & Android) */
+button,
+a,
+input,
+select,
+textarea,
+summary {
+  touch-action: manipulation;
 }
 
-::-webkit-scrollbar-track {
-  background: transparent;
+@media (pointer: coarse) {
+  /* Prevent iOS Safari automatic viewport zoom when focusing inputs < 16px */
+  input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea {
+    font-size: max(1rem, 16px) !important;
+  }
+
+  /* Ensure comfortable touch target heights in file explorer and lists */
+  .explorer-touch-row {
+    min-block-size: 32px;
+    padding-block: 5px;
+  }
 }
 
-::-webkit-scrollbar-thumb {
-  background: #424242;
+/* Scrollbar Customization (Standard CSS + Legacy WebKit Fallback) */
+.scrollable-pane,
+#editor-source,
+.prose pre {
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  scrollbar-width: thin;
+  overscroll-behavior: contain;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #4f4f4f;
+@supports not (scrollbar-color: auto) {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+  }
 }

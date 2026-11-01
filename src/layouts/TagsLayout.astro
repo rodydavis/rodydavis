@@ -31,7 +31,7 @@ const isOpen = !activeTag;
 
 <Layout title={title}>
     <div
-        class="flex flex-col h-[100dvh] w-screen bg-[var(--bg-main)] text-[var(--fg-primary)] overflow-hidden transition-colors duration-200"
+        class="flex flex-col h-[100dvh] w-full pt-[env(safe-area-inset-top,0px)] pl-[env(safe-area-inset-left,0px)] pr-[env(safe-area-inset-right,0px)] bg-[var(--bg-main)] text-[var(--fg-primary)] overflow-hidden transition-colors duration-200"
     >
         <div class="flex-1 flex overflow-hidden relative">
             <ActivityBar />
@@ -46,13 +46,13 @@ const isOpen = !activeTag;
             {/* Sidebar (Tags Mode) */}
             <div
                 id="tags-drawer"
-                class={`fixed md:static inset-y-0 left-[48px] md:left-0 z-30 w-64 flex h-full shadow-2xl md:shadow-none bg-[var(--bg-sidebar)] transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
+                class={`fixed md:static inset-y-0 left-[48px] md:left-0 z-30 w-[min(16rem,calc(100vw-48px))] flex h-full shadow-2xl md:shadow-none bg-[var(--bg-sidebar)] transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
             >
                 <TagsList tags={tags} activeTag={activeTag} />
             </div>
 
             {/* Content Area */}
-            <div class="flex-1 bg-[var(--bg-main)] overflow-y-auto">
+            <div class="flex-1 bg-[var(--bg-main)] overflow-y-auto scrollable-pane">
                 <slot />
             </div>
         </div>
@@ -73,6 +73,19 @@ const isOpen = !activeTag;
         }
     }
 
+    function toggleDrawer() {
+        if (window.innerWidth < 768) {
+            const isClosed = drawer?.classList.contains("-translate-x-full");
+            if (isClosed) {
+                drawer?.classList.remove("-translate-x-full");
+                drawer?.classList.add("translate-x-0");
+                backdrop?.classList.remove("hidden");
+            } else {
+                closeDrawer();
+            }
+        }
+    }
+
     // Close on backdrop click
     backdrop?.addEventListener("click", closeDrawer);
 
@@ -81,6 +94,7 @@ const isOpen = !activeTag;
         link.addEventListener("click", closeDrawer);
     });
 
-    // Close on settings open
+    // Close on settings open or toggle on ActivityBar tap
     window.addEventListener("open-settings", closeDrawer);
+    window.addEventListener("toggle-tags", toggleDrawer);
 </script>

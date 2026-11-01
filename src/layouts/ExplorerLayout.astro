@@ -83,7 +83,7 @@ const defaultOpen = false;
 
 <Layout title={title} description={description}>
     <div
-        class="flex flex-col h-[100dvh] w-screen bg-[var(--bg-main)] text-[var(--fg-primary)] overflow-hidden transition-colors duration-200"
+        class="flex flex-col h-[100dvh] w-full pt-[env(safe-area-inset-top,0px)] pl-[env(safe-area-inset-left,0px)] pr-[env(safe-area-inset-right,0px)] bg-[var(--bg-main)] text-[var(--fg-primary)] overflow-hidden transition-colors duration-200"
     >
         <div class="flex-1 flex overflow-hidden relative">
             <ActivityBar />
@@ -115,8 +115,8 @@ const defaultOpen = false;
                             <EditorPreview>
                                 <slot />
                                 {!isHome && relatedPosts.length > 0 && (
-                                    <div class="px-8 pb-12 pt-6 max-w-4xl border-t border-[var(--border-main)] mt-10">
-                                        <div class="flex items-center justify-between mb-4">
+                                    <div class="px-4 sm:px-6 md:px-8 pb-12 pt-6 max-w-4xl border-t border-[var(--border-main)] mt-10">
+                                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
                                             <h3 class="text-sm font-bold uppercase tracking-wider text-[var(--fg-secondary)] m-0">
                                                 Related Articles (Multi-Vector Hybrid Match)
                                             </h3>

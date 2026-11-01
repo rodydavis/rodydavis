@@ -102,17 +102,18 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onClose }) => {
     return (
         <div className="w-full h-full flex flex-col bg-[var(--bg-main)] text-[var(--fg-primary)] overflow-hidden">
             {/* Header */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border-main)] bg-[var(--bg-main)]">
-                <div className="flex items-center space-x-2 text-sm font-medium">
+            <div className="flex items-center justify-between gap-2 px-4 py-3 border-b border-[var(--border-main)] bg-[var(--bg-main)]">
+                <div className="flex items-center space-x-2 text-sm font-medium shrink-0">
                     <span>Settings</span>
                 </div>
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4 min-w-0">
                     <div className="relative">
-                        <Search className="absolute left-2 top-1.5 text-[var(--fg-secondary)]" size={14} />
+                        <Search className="absolute left-2 top-1.5 text-[var(--fg-secondary)] pointer-events-none" size={14} />
                         <input
                             type="text"
                             placeholder="Search settings..."
-                            className="pl-8 pr-4 py-1 bg-[var(--input-bg)] border border-[var(--border-secondary)] rounded text-sm text-[var(--input-fg)] focus:outline-none focus:border-[var(--bg-status)] w-64"
+                            aria-label="Search settings"
+                            className="pl-8 pr-4 py-1 bg-[var(--input-bg)] border border-[var(--border-secondary)] rounded text-sm text-[var(--input-fg)] focus:outline-none focus:border-[var(--bg-status)] w-44 sm:w-64 max-w-full"
                             value={search}
                             onChange={e => setSearch(e.target.value)}
                         />
@@ -131,7 +132,7 @@ const SettingsView: React.FC<SettingsViewProps> = ({ onClose }) => {
                 </div>
 
                 {/* Main Settings Area */}
-                <div className="flex-1 p-6 overflow-y-auto">
+                <div className="flex-1 p-4 sm:p-6 overflow-y-auto scrollable-pane">
                     {showThemes && (
                         <div className="mb-8">
                             <h2 className="text-xl font-medium mb-1">Workbench: Color Theme</h2>

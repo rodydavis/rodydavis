@@ -23,7 +23,8 @@ const isActive = (href: string) => {
 };
 ---
 
-<div
+<nav
+    aria-label="Primary"
     class="w-12 bg-[var(--bg-activity)] flex flex-col justify-between h-full text-[var(--fg-secondary)] select-none flex-shrink-0 z-40"
 >
     <div class="flex flex-col">
@@ -38,13 +39,16 @@ const isActive = (href: string) => {
                                 ? "explorer-nav-item"
                                 : undefined
                         }
+                        aria-label={item.label}
                         class={`h-12 w-12 flex items-center justify-center cursor-pointer hover:text-[var(--fg-primary)] transition-colors relative block ${active ? "text-[var(--fg-primary)]" : ""}`}
                         title={item.label}
                         data-active={active}
                         onclick={
                             item.id === "explorer"
                                 ? "if (window.innerWidth < 768 && this.dataset.active === 'true') { event.preventDefault(); window.dispatchEvent(new CustomEvent('toggle-explorer')); }"
-                                : undefined
+                                : item.id === "tags"
+                                  ? "if (window.innerWidth < 768 && this.dataset.active === 'true') { event.preventDefault(); window.dispatchEvent(new CustomEvent('toggle-tags')); }"
+                                  : undefined
                         }
                     >
                         {active && (
@@ -58,6 +62,7 @@ const isActive = (href: string) => {
     </div>
     <div class="flex flex-col pb-2">
         <a
+            aria-label="About Me"
             class={`h-12 w-12 flex items-center justify-center cursor-pointer hover:text-[var(--fg-primary)] transition-colors relative block ${isActive("/about") ? "text-[var(--fg-primary)]" : ""}`}
             title="About Me"
             href="/about"
@@ -70,6 +75,7 @@ const isActive = (href: string) => {
             <User size={24} strokeWidth={1.5} />
         </a>
         <a
+            aria-label="Settings"
             class={`h-12 w-12 flex items-center justify-center cursor-pointer hover:text-[var(--fg-primary)] transition-colors relative block ${isActive("/settings") ? "text-[var(--fg-primary)]" : ""}`}
             title="Settings"
             href="/settings"
@@ -82,7 +88,7 @@ const isActive = (href: string) => {
             <Settings size={24} strokeWidth={1.5} />
         </a>
     </div>
-</div>
+</nav>
 
 <script>
     // No longer needed

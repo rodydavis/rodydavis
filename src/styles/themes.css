@@ -1,5 +1,10 @@
 @layer base {
     :root {
+        color-scheme: dark;
+        accent-color: var(--bg-status);
+        --scrollbar-thumb: #424242;
+        --scrollbar-track: transparent;
+
         /* Base Colors (Default to Dark/System) */
         --bg-main: #1e1e1e;
         --bg-sidebar: #252526;
@@ -45,6 +50,8 @@
     }
 
     [data-theme="light"] {
+        color-scheme: light;
+        --scrollbar-thumb: #c1c1c1;
         --bg-main: #ffffff;
         --bg-sidebar: #f3f3f3;
         --bg-activity: #e8e8e8;
@@ -291,6 +298,8 @@
 
     /* Solarized Light */
     [data-theme="solarized-light"] {
+        color-scheme: light;
+        --scrollbar-thumb: #d3cbb7;
         --bg-main: #fdf6e3;
         --bg-sidebar: #eee8d5;
         --bg-activity: #e4dec7;
@@ -372,6 +381,8 @@
 
     /* Great Wave (Light) - Approximated from palette */
     [data-theme="great-wave-light"] {
+        color-scheme: light;
+        --scrollbar-thumb: #c7bfa8;
         --bg-main: #fffef7;
         --bg-sidebar: #f2f0e4;
         --bg-activity: #e6e2d0;

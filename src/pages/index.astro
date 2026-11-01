@@ -266,7 +266,7 @@ function renderTreeHtml(nodeMap: Record<string, TreeNode>, depth = 0): string {
 ---
 
 <ExplorerLayout activePostId="welcome">
-    <div class="px-8 py-6 max-w-7xl mx-auto space-y-12">
+    <div class="px-4 sm:px-6 md:px-8 py-4 sm:py-6 max-w-7xl mx-auto space-y-10 sm:space-y-12">
 
         <!-- 1. Custom Reconstructed Hero Content from modernized welcome.md -->
         <div class="prose max-w-none dark:prose-invert">
@@ -520,7 +520,7 @@ function renderTreeHtml(nodeMap: Record<string, TreeNode>, depth = 0): string {
                         </span>
                     </div>
 
-                    <div class="flex flex-wrap gap-2">
+                    <div class="flex flex-wrap gap-2 tag-cloud-balanced">
                         {sortedTags.map(([tagName, count]) => (
                             <a
                                 href={`/tags/${tagName}`}

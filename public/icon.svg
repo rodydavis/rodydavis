@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1e1e" />
+      <stop offset="100%" stop-color="#13151a" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#007acc" />
+      <stop offset="50%" stop-color="#569cd6" />
+      <stop offset="100%" stop-color="#4ec9b0" />
+    </linearGradient>
+  </defs>
+  <!-- Background Squircle -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+  <rect x="8" y="8" width="496" height="496" rx="104" stroke="#2b2b2b" stroke-width="4" />
+  <!-- Top Editor Bar Accent -->
+  <path d="M96 84 H416" stroke="#3c3c3c" stroke-width="6" stroke-linecap="round" />
+  <circle cx="116" cy="84" r="10" fill="#ff5f56" />
+  <circle cx="148" cy="84" r="10" fill="#ffbd2e" />
+  <circle cx="180" cy="84" r="10" fill="#27c93f" />
+  <!-- Code Brackets < / > -->
+  <path d="M190 196 L110 276 L190 356" stroke="url(#accentGrad)" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M322 196 L402 276 L322 356" stroke="url(#accentGrad)" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M282 172 L230 380" stroke="#dcdcaa" stroke-width="28" stroke-linecap="round" />
+  <!-- Bottom Status Bar Strip -->
+  <path d="M64 440 H448" stroke="#007acc" stroke-width="16" stroke-linecap="round" />
+</svg>

@@ -1,5 +1,6 @@
 ---
 import ViewStatus from "./ViewStatus.astro";
+import NotificationCenter from "./NotificationCenter";
 import { Code2 } from "lucide-react";
 
 import githubIcon from "../assets/svg/github.svg?raw";
@@ -13,84 +14,102 @@ import blueskyIcon from "../assets/svg/bluesky.svg?raw";
 import rssIcon from "../assets/svg/rss.svg?raw";
 
 const socialLinks = [
-    { icon: githubIcon, href: "https://github.com/rodydavis", label: "GitHub" },
+    { icon: githubIcon, href: "https://github.com/rodydavis", label: "GitHub", primary: true },
     {
         icon: twitterIcon,
         href: "https://twitter.com/rodydavis",
         label: "Twitter",
+        primary: false,
     },
     {
         icon: linkedinIcon,
         href: "https://linkedin.com/in/rodydavis",
         label: "LinkedIn",
+        primary: false,
     },
     {
         icon: youtubeIcon,
         href: "https://youtube.com/rodydavis",
         label: "YouTube",
+        primary: true,
     },
     {
         icon: instagramIcon,
         href: "https://instagram.com/rodydavisjr",
         label: "Instagram",
+        primary: false,
     },
     {
         icon: facebookIcon,
         href: "https://facebook.com/rodydavisjr",
         label: "Facebook",
+        primary: false,
     },
     {
         icon: tiktokIcon,
         href: "https://tiktok.com/@rodydavisjr",
         label: "TikTok",
+        primary: false,
     },
     {
         icon: blueskyIcon,
         href: "https://bsky.app/profile/rodydavis.com",
         label: "Bluesky",
+        primary: false,
     },
-    { icon: rssIcon, href: "/rss.xml", label: "RSS Feed" },
+    { icon: rssIcon, href: "/rss.xml", label: "RSS Feed", primary: true },
 ];
 ---
 
-<div
-    class="bg-[var(--bg-status)] text-white z-50 relative pb-[env(safe-area-inset-bottom)]"
+<footer
+    aria-label="Status bar"
+    class="bg-[var(--bg-status)] text-white z-50 relative pb-[env(safe-area-inset-bottom,0px)] pl-[env(safe-area-inset-left,0px)] pr-[env(safe-area-inset-right,0px)] shrink-0"
 >
     <div
-        class="h-[22px] flex items-center justify-between px-3 text-[12px] select-none"
+        class="min-h-[24px] sm:h-[22px] flex items-center justify-between px-2 sm:px-3 text-[12px] select-none gap-2"
     >
-        <div class="flex items-center space-x-2 h-full">
+        <div class="flex items-center space-x-2 h-full min-w-0">
             <a
                 href="/"
-                class="flex items-center hover:bg-white/20 px-2 rounded cursor-pointer h-[18px] transition-colors font-medium"
+                class="flex items-center hover:bg-white/20 px-2 rounded cursor-pointer h-[20px] sm:h-[18px] transition-colors font-medium text-white no-underline truncate"
             >
-                <Code2 size={12} className="mr-1.5" />
-                <span class="hidden sm:inline">Rody Davis</span>
+                <Code2 size={12} className="mr-1.5 shrink-0" />
+                <span class="truncate">Rody Davis</span>
             </a>
         </div>
 
-        <div class="flex items-center space-x-1 h-full">
+        <div class="flex items-center space-x-0.5 sm:space-x-1 h-full shrink-0">
             {
                 socialLinks.map((link) => (
                     <a
                         href={link.href}
-                        target={link.label === "RSS Feed" ? "_blank" : "_blank"}
+                        target="_blank"
                         rel="noopener noreferrer"
-                        class="flex items-center justify-center hover:bg-white/20 w-[24px] h-[18px] rounded cursor-pointer transition-colors"
+                        aria-label={link.label}
+                        class:list={[
+                            "items-center justify-center hover:bg-white/20 min-w-[26px] sm:min-w-[24px] h-[20px] sm:h-[18px] rounded cursor-pointer transition-colors text-white",
+                            link.primary ? "flex" : "hidden sm:flex",
+                        ]}
                         title={link.label}
                     >
                         <span
                             class="w-3 h-3 flex items-center justify-center [&>svg]:w-full [&>svg]:h-full [&>svg]:fill-current"
+                            aria-hidden="true"
                             set:html={link.icon}
                         />
                     </a>
                 ))
             }
             <div
-                class="hidden sm:flex items-center hover:bg-white/10 px-2 cursor-pointer h-full transition-colors ml-2 border-l border-white/20"
+                class="hidden sm:flex items-center hover:bg-white/10 px-2 cursor-pointer h-full transition-colors ml-1 border-l border-white/20"
             >
                 <ViewStatus />
             </div>
+            <div
+                class="flex items-center pl-1 ml-1 border-l border-white/20 h-full"
+            >
+                <NotificationCenter client:load />
+            </div>
         </div>
     </div>
-</div>
+</footer>

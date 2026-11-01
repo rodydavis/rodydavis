@@ -29,7 +29,8 @@ breadcrumbs.push(
 ---
 
 <div
-    class="flex items-center px-4 py-1 text-xs text-[var(--fg-secondary)] select-none overflow-hidden whitespace-nowrap"
+    class="flex items-center px-2 sm:px-4 py-1 text-xs text-[var(--fg-secondary)] select-none overflow-x-auto scrollbar-hide whitespace-nowrap min-w-0"
+    onclick="if (window.innerWidth < 768) { window.dispatchEvent(new CustomEvent('toggle-explorer')); }"
 >
     {
         breadcrumbs.map((part, index) => (

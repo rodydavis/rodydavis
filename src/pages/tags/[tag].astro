@@ -17,8 +17,8 @@ const posts = docs.filter((doc) =>
 ---
 
 <TagsLayout title={`Tag: ${tag}`} activeTag={tag as string}>
-    <div class="p-8 max-w-4xl mx-auto">
-        <div class="mb-8 border-b border-[var(--border-main)] pb-4">
+    <div class="p-4 sm:p-6 md:p-8 max-w-4xl mx-auto">
+        <div class="mb-6 sm:mb-8 border-b border-[var(--border-main)] pb-4">
             <div
                 class="flex items-center text-[var(--fg-secondary)] text-sm mb-2"
             >
@@ -27,12 +27,12 @@ const posts = docs.filter((doc) =>
                 <span class="text-[var(--fg-primary)]">{tag}</span>
             </div>
             <h1
-                class="text-3xl font-bold text-[var(--fg-primary)] flex items-center"
+                class="text-2xl sm:text-3xl font-bold text-[var(--fg-primary)] flex flex-wrap items-center gap-2"
             >
-                <TagIcon size={32} className="mr-3" />
-                {tag}
+                <TagIcon size={28} className="mr-1 sm:mr-2 shrink-0" />
+                <span>{tag}</span>
                 <span
-                    class="ml-4 text-base font-normal text-[var(--fg-secondary)] bg-[var(--bg-sidebar)] px-3 py-1 rounded-full border border-[var(--border-main)]"
+                    class="sm:ml-2 text-sm sm:text-base font-normal text-[var(--fg-secondary)] bg-[var(--bg-sidebar)] px-3 py-1 rounded-full border border-[var(--border-main)]"
                 >
                     {posts.length} posts
                 </span>
