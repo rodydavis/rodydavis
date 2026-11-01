@@ -1,7 +1,15 @@
 import type { CollectionEntry } from 'astro:content';
 import type { BlogPost, FileNode, OutlineItem } from '../types';
-
 import type { MarkdownHeading } from 'astro';
+
+const naturalCollator = new Intl.Collator(undefined, {
+    numeric: true,
+    sensitivity: 'base',
+});
+
+export function naturalCompare(a: string, b: string): number {
+    return naturalCollator.compare(a, b);
+}
 
 export function transformDocsToPosts(
     docs: CollectionEntry<'docs'>[],
@@ -10,33 +18,40 @@ export function transformDocsToPosts(
     const posts: Record<string, BlogPost> = {};
 
     docs.forEach(doc => {
-        // The id in Content Collections is the filename (e.g. 'welcome.md' or 'welcome')
-        // The slug is also available.
-        // We map the doc to BlogPost format.
-
-        // We assume the ID from mockData matches the slug or id from content collection
-        // In mockData: 'welcome' -> id: 'welcome'
-        // In content/docs/welcome.md -> slug: 'welcome'
-
-        const headings = headingsMap[doc.slug] || [];
+        const headings = headingsMap[doc.id] || [];
         const outline: OutlineItem[] = headings.map(h => ({
             id: h.slug,
             label: h.text,
             level: h.depth
         }));
 
-        posts[doc.slug] = {
-            id: doc.slug,
+        posts[doc.id] = {
+            id: doc.id,
             title: doc.data.title,
-            slug: doc.slug,
-            language: 'markdown', // Default to markdown as they are md files
+            slug: doc.id,
+            language: 'markdown',
             date: doc.data.date,
-            content: doc.body,
+            content: doc.body || '',
             outline: outline,
         };
     });
 
     return posts;
+}
+
+function sortFileNodesNaturally(nodes: FileNode[]) {
+    nodes.sort((a, b) => {
+        // Folders before files, then naturalCompare
+        if (a.type !== b.type) {
+            return a.type === 'folder' ? -1 : 1;
+        }
+        return naturalCompare(a.name, b.name);
+    });
+    for (const node of nodes) {
+        if (node.children && node.children.length > 0) {
+            sortFileNodesNaturally(node.children);
+        }
+    }
 }
 
 export function buildFileTree(docs: CollectionEntry<'docs'>[]): FileNode[] {
@@ -48,11 +63,10 @@ export function buildFileTree(docs: CollectionEntry<'docs'>[]): FileNode[] {
         children: []
     };
 
-    // Sort docs by slug to ensure deterministic order.
-    docs.sort((a, b) => a.slug.localeCompare(b.slug));
+    docs.sort((a, b) => naturalCompare(a.id, b.id));
 
     docs.forEach(doc => {
-        const parts = doc.slug.split('/');
+        const parts = doc.id.split('/');
         let currentFolder = root;
 
         for (let i = 0; i < parts.length; i++) {
@@ -60,14 +74,14 @@ export function buildFileTree(docs: CollectionEntry<'docs'>[]): FileNode[] {
             const isLast = i === parts.length - 1;
 
             if (isLast) {
-                // Special case for root-level 'welcome' -> 'README.md'
-                const fileName = (doc.slug === 'welcome' && parts.length === 1) ? 'README.md' : `${part}.md`;
+                const fileName = (doc.id === 'welcome' && parts.length === 1) ? 'README.md' : `${part}.md`;
                 currentFolder.children = currentFolder.children || [];
                 currentFolder.children.push({
-                    id: `file-${doc.slug}`,
+                    id: `file-${doc.id}`,
                     name: fileName,
                     type: 'file',
-                    postId: doc.slug
+                    postId: doc.id,
+                    title: doc.data.title,
                 });
             } else {
                 currentFolder.children = currentFolder.children || [];
@@ -87,8 +101,11 @@ export function buildFileTree(docs: CollectionEntry<'docs'>[]): FileNode[] {
         }
     });
 
+    if (root.children) {
+        sortFileNodesNaturally(root.children);
+    }
+
     return [root];
 }
 
-// Deprecate static FILE_TREE
 export const FILE_TREE: FileNode[] = [];

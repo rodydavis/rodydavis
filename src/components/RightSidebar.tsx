@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { ChevronRight, Link, Tag } from 'lucide-react';
-import type { OutlineItem } from '../types';
+import type { OutlineItem, RelatedPostItem } from '../types';
 import Outline from './Outline';
 
 interface RightSidebarProps {
   outline: OutlineItem[];
   activePostId: string | null;
   tags?: string[];
-  relatedPosts?: { id: string; title: string }[];
+  relatedPosts?: RelatedPostItem[];
 }
 
 const SidebarSection: React.FC<{
@@ -64,7 +64,6 @@ const RightSidebar: React.FC<RightSidebarProps> = ({
   const getSectionClass = (section: keyof typeof sections) => {
     if (!sections[section]) return 'flex-none';
     
-    // Count open sections that are actually available
     const openSections = Object.entries(sections)
       .filter(([key, value]) => {
         if (key === 'outline' && !hasOutline) return false;
@@ -74,7 +73,6 @@ const RightSidebar: React.FC<RightSidebarProps> = ({
       })
       .length;
 
-    // If only one section is open, it gets flex-grow. Otherwise they share or stack.
     if (openSections === 1) {
       return 'flex-1 min-h-0';
     }
@@ -107,23 +105,46 @@ const RightSidebar: React.FC<RightSidebarProps> = ({
             title="Related"
             isOpen={sections.related}
             onToggle={() => toggleSection('related')}
-            className={`${getSectionClass('related')} max-h-[250px]`}
+            className={`${getSectionClass('related')} max-h-[290px]`}
           >
-            <div className="py-1">
+            <div className="py-1 divide-y divide-[var(--border-main)]/40">
               {relatedPosts.map(post => {
                 const href = post.id === 'welcome' ? '/' : `/${post.id}`;
+                const sectionHref =
+                  post.matchedHeadingSlug && post.id !== 'welcome'
+                    ? `/${post.id}#${post.matchedHeadingSlug}`
+                    : href;
                 const isActive = post.id === activePostId;
                 return (
-                  <a
+                  <div
                     key={post.id}
-                    href={href}
-                    className={`flex items-center py-[3px] px-3 cursor-pointer hover:bg-[var(--hover-bg)] transition-colors text-decoration-none no-underline block ${isActive ? 'bg-[var(--selection-bg)] text-[var(--fg-primary)]' : 'text-[var(--fg-primary)]'}`}
+                    className={`py-1.5 px-3 hover:bg-[var(--hover-bg)] transition-colors ${isActive ? 'bg-[var(--selection-bg)] text-[var(--fg-primary)]' : 'text-[var(--fg-primary)]'}`}
                   >
-                    <span className="mr-1.5 flex-shrink-0">
-                      <Link size={16} className="text-[var(--icon-default)]" />
-                    </span>
-                    <span className="truncate text-[13px]">{post.title}</span>
-                  </a>
+                    <a
+                      href={href}
+                      title={post.summary || post.title}
+                      className="flex items-center justify-between gap-1.5 text-decoration-none no-underline text-[var(--fg-primary)]"
+                    >
+                      <div className="flex items-center min-w-0">
+                        <Link size={14} className="mr-1.5 flex-shrink-0 text-[var(--icon-default)]" />
+                        <span className="truncate text-[12px] font-medium">{post.title}</span>
+                      </div>
+                      {typeof post.score === 'number' && (
+                        <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-1 rounded shrink-0">
+                          {Math.round(post.score * 100)}%
+                        </span>
+                      )}
+                    </a>
+                    {post.matchedHeading && post.matchedHeading !== post.title && (
+                      <a
+                        href={sectionHref}
+                        className="block pl-5 mt-0.5 text-[11px] text-[var(--fg-secondary)] hover:text-[var(--header-h2)] truncate no-underline font-mono"
+                        title={`Best matching section: ${post.matchedHeading}`}
+                      >
+                        § {post.matchedHeading}
+                      </a>
+                    )}
+                  </div>
                 );
               })}
             </div>

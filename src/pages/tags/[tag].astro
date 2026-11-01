@@ -3,19 +3,6 @@ import TagsLayout from "../../layouts/TagsLayout.astro";
 import { getCollection } from "astro:content";
 import { Tag as TagIcon, Calendar, FileText } from "lucide-react";
 
-export const prerender = true;
-
-export async function getStaticPaths() {
-    const docs = await getCollection("docs");
-    const tags: string[] = [];
-    for (const doc of docs) {
-        tags.push(...(doc.data.tags || []));
-    }
-    return new Array(...new Set(tags)).map((e) => e.trim()).filter((e) => e.length > 0).map((tag) => ({
-        params: { tag },
-    }));
-}
-
 const { tag } = Astro.params;
 
 if (!tag) {
@@ -23,7 +10,10 @@ if (!tag) {
 }
 
 const docs = await getCollection("docs");
-const posts = docs.filter((doc) => (doc.data.tags || []).includes(tag));
+const normalizedTag = tag.toLowerCase();
+const posts = docs.filter((doc) =>
+    (doc.data.tags || []).some((t) => t.toLowerCase() === normalizedTag)
+);
 ---
 
 <TagsLayout title={`Tag: ${tag}`} activeTag={tag as string}>
@@ -53,7 +43,7 @@ const posts = docs.filter((doc) => (doc.data.tags || []).includes(tag));
             {
                 posts.map((post) => (
                     <a
-                        href={`/${post.slug}`}
+                        href={`/${post.id}`}
                         class="block p-6 rounded-lg border border-[var(--border-main)] hover:border-[var(--accent)] bg-[var(--bg-sidebar)] hover:bg-[var(--hover-bg)] transition-all group no-underline"
                     >
                         <h2 class="text-xl font-bold mb-2 text-[var(--fg-primary)] group-hover:text-[var(--accent)] transition-colors">

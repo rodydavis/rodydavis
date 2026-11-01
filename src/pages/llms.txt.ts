@@ -20,7 +20,7 @@ export const GET: APIRoute = async (context) => {
 
     for (const post of sortedPosts) {
         const title = post.data.title;
-        const url = new URL(`/${post.slug}.md`, site).toString();
+        const url = new URL(`/${post.id}.md`, site).toString();
 
         let line = `- [${title}](${url})`;
         if (post.data.summary) {

@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import Layout from "./Layout.astro";
 import ActivityBar from "../components/ActivityBar.astro";
 import StatusBar from "../components/StatusBar.astro";
@@ -10,6 +10,8 @@ import SettingsManager from "../components/SettingsManager";
 import EditorCode from "../components/EditorCode.astro";
 import EditorPreview from "../components/EditorPreview.astro";
 import { getFileTree } from "../pages/api/file-tree.json";
+import { fetchRelatedForPost } from "../pages/api/related.json";
+import type { RelatedPostItem } from "../types";
 
 interface Props {
     title?: string;
@@ -36,10 +38,10 @@ const {
 const docs = await getCollection("docs");
 
 // Find active post to get its outline if needed
-const activeDoc = docs.find((d) => d.slug === activePostId);
+const activeDoc = docs.find((d) => d.id === activePostId);
 let activeOutline: { id: string; label: string; level: number }[] = [];
 if (activeDoc) {
-    const { headings } = await activeDoc.render();
+    const { headings } = await render(activeDoc);
     activeOutline = headings.map((h) => ({
         id: h.slug,
         label: h.text,
@@ -47,22 +49,29 @@ if (activeDoc) {
     }));
 }
 
-const relatedPosts = ((activeDoc?.data as any)?.related || [])
-    .map((relatedPath: string) => {
-        // Try to find the doc by slug or id
-        // relatedPath might be 'blog/ui-engineering.md' or 'welcome.md' or just 'welcome'
-        // clean up the path to match slug format if needed
-        const cleanSlug = relatedPath.replace(/\.mdx?$/, "");
-        const foundDoc = docs.find(
-            (d) => d.slug === cleanSlug || d.id === relatedPath,
-        );
-        if (!foundDoc) return null;
-        return {
-            id: foundDoc.slug,
-            title: foundDoc.data.title,
-        };
-    })
-    .filter((p: any): p is { id: string; title: string } => p !== null);
+let relatedPosts: RelatedPostItem[] = [];
+if (activePostId) {
+    relatedPosts = await fetchRelatedForPost(activePostId, Astro, 5);
+}
+
+// Fallback to frontmatter `related` if needed
+if (relatedPosts.length === 0 && activeDoc) {
+    relatedPosts = ((activeDoc?.data as any)?.related || [])
+        .map((relatedPath: string): RelatedPostItem | null => {
+            const cleanSlug = relatedPath.replace(/\.mdx?$/, "");
+            const foundDoc = docs.find(
+                (d) => d.id === cleanSlug || d.id === relatedPath,
+            );
+            if (!foundDoc) return null;
+            return {
+                id: foundDoc.id,
+                title: foundDoc.data.title,
+                summary: foundDoc.data.summary,
+                date: foundDoc.data.date,
+            };
+        })
+        .filter((p: RelatedPostItem | null): p is RelatedPostItem => p !== null);
+}
 
 const raw = code ?? activeDoc?.body ?? "";
 const description = activeDoc?.data.summary;
@@ -105,6 +114,73 @@ const defaultOpen = false;
                         <div id="preview-view">
                             <EditorPreview>
                                 <slot />
+                                {!isHome && relatedPosts.length > 0 && (
+                                    <div class="px-8 pb-12 pt-6 max-w-4xl border-t border-[var(--border-main)] mt-10">
+                                        <div class="flex items-center justify-between mb-4">
+                                            <h3 class="text-sm font-bold uppercase tracking-wider text-[var(--fg-secondary)] m-0">
+                                                Related Articles (Multi-Vector Hybrid Match)
+                                            </h3>
+                                            <span class="text-[11px] text-[var(--fg-secondary)] font-mono">
+                                                embeddinggemma-2 · sqlite-vec
+                                            </span>
+                                        </div>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                            {relatedPosts.map((rel) => {
+                                                const href = rel.id === "welcome" ? "/" : `/${rel.id}`;
+                                                const sectionHref =
+                                                    rel.matchedHeadingSlug && rel.id !== "welcome"
+                                                        ? `/${rel.id}#${rel.matchedHeadingSlug}`
+                                                        : href;
+                                                return (
+                                                    <div class="p-3.5 rounded-lg bg-[var(--bg-sidebar)] border border-[var(--border-main)] hover:border-[var(--header-h1)] transition-colors flex flex-col justify-between gap-2">
+                                                        <div>
+                                                            <div class="flex items-start justify-between gap-2">
+                                                                <a
+                                                                    href={href}
+                                                                    class="text-sm font-semibold text-[var(--fg-primary)] hover:text-[var(--header-h1)] no-underline leading-snug"
+                                                                >
+                                                                    {rel.title}
+                                                                </a>
+                                                                {typeof rel.score === "number" && (
+                                                                    <span class="shrink-0 text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                                                                        {Math.round(rel.score * 100)}%
+                                                                    </span>
+                                                                )}
+                                                            </div>
+                                                            {rel.summary && (
+                                                                <p class="text-xs text-[var(--fg-secondary)] line-clamp-2 mt-1.5 mb-0">
+                                                                    {rel.summary}
+                                                                </p>
+                                                            )}
+                                                        </div>
+                                                        <div class="flex items-center justify-between gap-2 pt-1 text-[11px] text-[var(--fg-secondary)]">
+                                                            {rel.matchedHeading && rel.matchedHeading !== rel.title ? (
+                                                                <a
+                                                                    href={sectionHref}
+                                                                    class="truncate text-[var(--header-h2)] hover:underline no-underline font-mono"
+                                                                    title={`Jump to section: ${rel.matchedHeading}`}
+                                                                >
+                                                                    § {rel.matchedHeading}
+                                                                </a>
+                                                            ) : (
+                                                                <span class="truncate font-mono opacity-70">/{rel.id}</span>
+                                                            )}
+                                                            {rel.sharedTags && rel.sharedTags.length > 0 && (
+                                                                <div class="flex items-center gap-1 shrink-0">
+                                                                    {rel.sharedTags.slice(0, 2).map((t) => (
+                                                                        <span class="px-1.5 py-0.2 rounded bg-[var(--bg-main)] border border-[var(--border-main)] text-[10px]">
+                                                                            #{t}
+                                                                        </span>
+                                                                    ))}
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+                                )}
                             </EditorPreview>
                         </div>
                     )

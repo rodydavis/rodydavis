@@ -1,15 +1,6 @@
 import type { APIRoute } from "astro";
 import { getCollection, getEntry } from "astro:content";
 
-export const prerender = true;
-
-export async function getStaticPaths() {
-    const docs = await getCollection("docs");
-    return docs.map((doc) => ({
-        params: { slug: doc.slug },
-    }));
-}
-
 export const GET: APIRoute = async (context) => {
     const { slug } = context.params;
 
@@ -22,7 +13,7 @@ export const GET: APIRoute = async (context) => {
     if (!doc) {
         const docs = await getCollection("docs");
         // look for posts/* prefix
-        doc = docs.find((d) => d.slug.startsWith(`posts/${slug}`));
+        doc = docs.find((d) => d.id.startsWith(`posts/${slug}`));
     }
 
     if (!doc) {

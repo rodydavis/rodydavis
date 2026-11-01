@@ -1,0 +1,88 @@
+name: Sync and Prune Content Chunks
+
+on:
+  push:
+    branches: ["main", "master"]
+    paths:
+      - "src/content/docs/**"
+      - "src/assets/**"
+      - "tags.txt"
+      - "src/utils/chunker.ts"
+      - "scripts/index-chunks.ts"
+  pull_request:
+    paths:
+      - "src/content/docs/**"
+      - "src/assets/**"
+      - "tags.txt"
+      - "src/utils/chunker.ts"
+      - "scripts/index-chunks.ts"
+      - "src/data/chunks-index.json"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Force regenerate all document summaries and chunk embeddings"
+        required: false
+        default: "false"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  sync-chunks:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js and pnpm
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check for missing, outdated, or stale chunks (PR Check)
+        if: github.event_name == 'pull_request'
+        run: pnpm run check:chunks
+
+      - name: Sync missing/outdated chunks and prune stale chunks
+        if: github.event_name != 'pull_request'
+        env:
+          OLLAMA_HOST: ${{ vars.OLLAMA_HOST || 'http://127.0.0.1:11434' }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          EMBEDDING_GEMMA_MODEL: embeddinggemma-2:latest
+          OLLAMA_MODEL: ${{ vars.OLLAMA_MODEL || 'gemma4:31b' }}
+          EMBEDDING_MRL_DIM: ${{ vars.EMBEDDING_MRL_DIM || '768' }}
+        run: |
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            pnpm run index:chunks -- --force
+          else
+            pnpm run index:chunks
+          fi
+
+      - name: Verify chunk index is in sync after update
+        if: github.event_name != 'pull_request'
+        run: pnpm run check:chunks
+
+      - name: Commit and push updated chunk index if changed
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name "gitea-actions[bot]"
+          git config user.email "gitea-actions[bot]@rodydavis.com"
+          git add src/data/chunks-index.json public/thumbs src/content/docs
+          if ! git diff --staged --quiet; then
+            git commit -m "chore(chunks): sync multimodal chunk index and prune stale chunks"
+            git push origin HEAD:${{ github.ref_name }}
+          else
+            echo "No missing, outdated, or stale chunks detected. Index is clean."
+          fi

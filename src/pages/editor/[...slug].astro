@@ -1,13 +1,6 @@
 ---
-import { getCollection, getEntry } from "astro:content";
+import { getEntry } from "astro:content";
 import ExplorerLayout from "../../layouts/ExplorerLayout.astro";
-
-export async function getStaticPaths() {
-    const docs = await getCollection("docs");
-    return docs.map((doc) => ({
-        params: { slug: doc.slug },
-    }));
-}
 
 let { slug } = Astro.params;
 
@@ -23,7 +16,7 @@ if (!doc) {
 ---
 
 <ExplorerLayout
-    activePostId={doc.slug}
+    activePostId={doc.id}
     title={doc.data.title}
     code={doc.body}
     tabs={doc.data.tabs}

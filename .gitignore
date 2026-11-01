@@ -50,4 +50,7 @@ yarn-error.log*
 *.flutter-plugins-dependencies
 
 .astro/
+.wrangler/
 dist/
+.cache/
+wrangler.celld.jsonc

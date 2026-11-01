@@ -2,8 +2,6 @@ import { getCollection } from "astro:content";
 import type { APIRoute } from "astro";
 import { buildFileTree } from "../../utils/data";
 
-export const prerender = true;
-
 export async function getFileTree() {
     const docs = await getCollection("docs");
     const fileTree = buildFileTree(docs);

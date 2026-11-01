@@ -1,49 +1,41 @@
 ---
 name: Update Docs
-description: Process all markdown documentation files to generate AI summaries and embeddings (using Ollama), apply taxonomy tags, and compute KNN related links.
+description: Process all markdown documentation files to generate AI summaries (Gemma 4), multimodal chunk embeddings (embeddinggemma-2), taxonomy tags, and multi-signal related links.
 ---
 # Update Docs Skill
 
-This skill performs a full metadata enrichment and search-engine index build for the Astro documentation collection:
-1. **AI Summaries**: Uses Ollama `gemma4:31b` to read each document and generate a concise one-sentence summary.
-2. **AI Embeddings**: Uses Ollama `embeddinggemma` to compute vector embeddings of the summaries or contents, serialized in base64 within the frontmatter.
+This skill performs a full metadata enrichment, multimodal chunking, and search-engine index build (`src/data/chunks-index.json`) for the Astro SSR documentation collection:
+1. **AI Summaries**: Uses Ollama `gemma4:31b` (or `gemma4:26b` / `gemma4:latest`) to read each document and generate a concise one-sentence summary.
+2. **Semantic & Multimodal Chunking (`embeddinggemma-2:latest`)**: Splits every markdown/MDX document into section chunks (`text`, `code`, `image` with vision buffers, and `video` thumbnails) and embeds each chunk + full document into 768-dimensional Matryoshka vectors via `embeddinggemma-2:latest`.
 3. **Keyword Tag Syncing**: Reads `tags.txt` from the project root and automatically scans document text to apply matching tags.
-4. **KNN Similarity Links**: Uses cosine similarity over all documents' embeddings to find and append the top 5 most similar articles under the `related:` key in frontmatter.
+4. **Multi-Signal Related Posts**: Combines document-level cosine similarity, best cross-document chunk similarity (capturing the specific matching `#heading` anchor), and tag Jaccard overlap to populate `related:` in frontmatter and `doc_relations` in `src/data/chunks-index.json`.
 
 ## Prerequisites
 
-- **Ollama** must be running locally.
-- The Ollama model `gemma4:31b` (for summaries) and `embeddinggemma` (for vector embeddings) must be pulled and active:
+- **Ollama** running at `OLLAMA_HOST` (defaults to `http://127.0.0.1:11434`).
+- The Ollama models `gemma4:31b` (for summaries and RAG) and `embeddinggemma-2:latest` (for multimodal text + vision vector embeddings) pulled:
   ```bash
   ollama pull gemma4:31b
-  ollama pull embeddinggemma
+  ollama pull embeddinggemma-2:latest
   ```
-- A `tags.txt` file should exist in the workspace root containing one tag per line to configure taxonomy syncing.
-
-## When to Use
-
-Use this skill:
-- After adding or modifying documentation files to generate updated embeddings, summaries, and tags.
-- To refresh the "Related Posts" links for the entire site when documents are added or updated.
-
-> [!TIP]
-> The script automatically stores a `last_updated_metadata` timestamp in the frontmatter of each processed file. When executing without `--force`, it only updates documents whose file modification time is newer than the timestamp in the frontmatter, saving redundant API calls to Ollama.
 
 ## Execution
 
-Run the script from the project root. You can pass flags to customize execution:
-
-- **Standard Incremental Run** (only updates files with missing or newer/modified content since the last metadata run, syncs tags, and recalculates related links):
+- **Standard Incremental Sync & Prune** (embeds only missing/outdated chunks, reuses committed `contentHash` embeddings in `src/data/chunks-index.json` or `.cache/embeddinggemma-2-cache.json`, and deletes stale chunks/docs/thumbnails):
   ```bash
-  node .agents/skills/update-docs/scripts/update-docs.js
+  pnpm run index:chunks
+  ```
+  or:
+  ```bash
+  node --experimental-strip-types .agents/skills/update-docs/scripts/update-docs.js
   ```
 
-- **Force Regenerate** (forces updating all summaries, embeddings, and related posts even if they already exist and have not changed):
+- **Read-Only CI Validation Check** (exits with `1` if any missing, outdated, or stale chunks/docs/thumbnails are detected; exits with `0` when 100% in sync):
   ```bash
-  node .agents/skills/update-docs/scripts/update-docs.js --force
+  pnpm run check:chunks
   ```
 
-- **Tag Sync Only** (focuses only on updating and synchronizing tags based on `tags.txt`):
+- **Force Regenerate**:
   ```bash
-  node .agents/skills/update-docs/scripts/update-docs.js --tags
+  pnpm run index:chunks -- --force
   ```

@@ -1,7 +1,16 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { ChevronRight, ChevronDown, Folder, FolderOpen, Info, FileText, FileJson, FileCode, Tag, Link } from 'lucide-react';
-import type { FileNode, OutlineItem as OutlineItemType } from '../types';
+import { ChevronRight, ChevronDown, Folder, FolderOpen, Info, FileText, FileJson, FileCode, Tag, Link, Search as SearchIcon, X } from 'lucide-react';
+import type { FileNode, OutlineItem as OutlineItemType, RelatedPostItem } from '../types';
 import Outline from './Outline';
+
+const naturalCollator = new Intl.Collator(undefined, {
+  numeric: true,
+  sensitivity: 'base',
+});
+
+function naturalCompare(a: string, b: string): number {
+  return naturalCollator.compare(a, b);
+}
 
 interface ExplorerProps {
   fileTree?: FileNode[];
@@ -9,12 +18,11 @@ interface ExplorerProps {
   onFileClick: (postId: string) => void;
   activePostId: string | null;
   tags?: string[];
-  relatedPosts?: { id: string; title: string }[];
+  relatedPosts?: RelatedPostItem[];
   className?: string;
   defaultOpen?: boolean;
 }
 
-// Improved Icon logic with Theme support
 const FileIcon = ({ name }: { name: string }) => {
   if (name.endsWith('.md')) return <Info size={16} className="text-[var(--icon-md)]" />;
   if (name.endsWith('.json')) return <FileJson size={16} className="text-[var(--icon-json)]" />;
@@ -30,6 +38,28 @@ const containsActivePost = (node: FileNode, activePostId: string | null): boolea
   }
   return false;
 };
+
+function collectFlatMatchingFiles(nodes: FileNode[], query: string): FileNode[] {
+  const q = query.trim().toLowerCase();
+  const matches: FileNode[] = [];
+
+  function walk(list: FileNode[]) {
+    for (const node of list) {
+      if (node.type === 'file') {
+        const hay = `${node.name} ${node.postId || ''} ${node.title || ''}`.toLowerCase();
+        if (hay.includes(q)) {
+          matches.push(node);
+        }
+      } else if (node.children && node.children.length > 0) {
+        walk(node.children);
+      }
+    }
+  }
+
+  walk(nodes);
+  matches.sort((a, b) => naturalCompare(a.postId || a.name, b.postId || b.name));
+  return matches;
+}
 
 const ExplorerItem: React.FC<{
   node: FileNode;
@@ -50,7 +80,6 @@ const ExplorerItem: React.FC<{
 
   useEffect(() => {
     if (node.postId === activePostId && itemRef.current) {
-      // Small delay to ensure parents are expanded and layout has settled
       const timeoutId = setTimeout(() => {
         itemRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }, 100);
@@ -168,6 +197,7 @@ const Explorer: React.FC<ExplorerProps> = ({
   const [fileTree, setFileTree] = useState<FileNode[]>(initialFileTree);
   const [loading, setLoading] = useState(initialFileTree.length === 0);
   const [isOpen, setIsOpen] = useState(defaultOpen);
+  const [filterQuery, setFilterQuery] = useState('');
   const [sections, setSections] = useState({
     folders: true,
     outline: true,
@@ -185,12 +215,10 @@ const Explorer: React.FC<ExplorerProps> = ({
     }
   }, [hasActivePostInTree]);
 
-  // Update isOpen when defaultOpen changes (e.g. navigation)
   React.useEffect(() => {
     setIsOpen(defaultOpen);
   }, [defaultOpen]);
 
-  // Listen for settings open event to close drawer
   React.useEffect(() => {
     const handleOpenSettings = () => {
       if (window.innerWidth < 768) {
@@ -201,7 +229,6 @@ const Explorer: React.FC<ExplorerProps> = ({
     return () => window.removeEventListener('open-settings', handleOpenSettings);
   }, []);
 
-  // Listen for explorer toggle event (from ActivityBar)
   React.useEffect(() => {
     const handleToggleExplorer = () => {
       setIsOpen(prev => !prev);
@@ -210,7 +237,6 @@ const Explorer: React.FC<ExplorerProps> = ({
     return () => window.removeEventListener('toggle-explorer', handleToggleExplorer);
   }, []);
 
-  // Handle responsive section visibility
   React.useEffect(() => {
     const handleResize = () => {
       const h = window.innerHeight;
@@ -218,13 +244,11 @@ const Explorer: React.FC<ExplorerProps> = ({
         let changed = false;
         const next = { ...prev };
 
-        // Close Tags and Related if height is too small (< 600px)
         if (h < 600) {
           if (next.tags) { next.tags = false; changed = true; }
           if (next.related) { next.related = false; changed = true; }
         }
 
-        // Close Outline if height is really small (< 400px)
         if (h < 400) {
           if (next.outline) { next.outline = false; changed = true; }
         }
@@ -233,7 +257,7 @@ const Explorer: React.FC<ExplorerProps> = ({
       });
     };
 
-    handleResize(); // Check on mount
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -263,30 +287,30 @@ const Explorer: React.FC<ExplorerProps> = ({
 
   const handleFileClick = (postId: string) => {
     onFileClick(postId);
-    // Close drawer on mobile when a file is clicked
     if (window.innerWidth < 768) {
       setIsOpen(false);
     }
   };
 
-  function getChildTree() {
+  const childTree = useMemo(() => {
     if (fileTree.length === 0) return [];
     return fileTree[0].children ?? [];
-  }
+  }, [fileTree]);
+
+  // When a local search/filter query is active, recursively search descendants and display matching files in a flat list
+  const flatFilteredFiles = useMemo(() => {
+    if (!filterQuery.trim()) return [];
+    return collectFlatMatchingFiles(childTree, filterQuery);
+  }, [childTree, filterQuery]);
 
   const getSectionClass = (section: keyof typeof sections) => {
     if (!sections[section]) return 'flex-none';
-
-    // Folders section always expands to fill space if open
     if (section === 'folders') return 'flex-1 min-h-0';
 
-    // Count open sections among (outline, related, tags)
     const otherOpen = Object.entries(sections)
       .filter(([key, value]) => key !== 'folders' && value)
       .length;
 
-    // If folders is closed and only one other section is open, that one expands.
-    // Otherwise, these sections default to content height (flex-none).
     if (!sections.folders && otherOpen === 1) {
       return 'flex-1 min-h-0';
     }
@@ -315,10 +339,33 @@ const Explorer: React.FC<ExplorerProps> = ({
         <div className="h-[35px] px-5 flex items-center justify-between text-[11px] text-[var(--fg-secondary)] uppercase tracking-wider select-none shrink-0">
           <span>Explorer</span>
           <div className="flex items-center gap-2">
-            {/* <MoreHorizontal size={16} className="cursor-pointer hover:text-[var(--fg-primary)]" /> */}
             <div className="md:hidden cursor-pointer hover:text-[var(--fg-primary)]" onClick={() => setIsOpen(false)}>
               <ChevronRight size={16} className="rotate-180" />
             </div>
+          </div>
+        </div>
+
+        {/* Local Recursive Filter Input */}
+        <div className="px-2 pb-1.5 shrink-0 border-b border-[var(--border-main)]">
+          <div className="relative flex items-center">
+            <SearchIcon size={12} className="absolute left-2 text-[var(--fg-secondary)] pointer-events-none" />
+            <input
+              type="text"
+              value={filterQuery}
+              onChange={(e) => setFilterQuery(e.target.value)}
+              placeholder="Filter files..."
+              className="w-full bg-[var(--input-bg)] border border-transparent focus:border-[#007acc] text-[var(--fg-primary)] pl-6 pr-6 py-1 outline-none text-xs placeholder-gray-500 rounded-sm"
+            />
+            {filterQuery && (
+              <button
+                type="button"
+                onClick={() => setFilterQuery('')}
+                className="absolute right-1.5 text-[var(--fg-secondary)] hover:text-[var(--fg-primary)]"
+                aria-label="Clear filter"
+              >
+                <X size={12} />
+              </button>
+            )}
           </div>
         </div>
 
@@ -326,7 +373,7 @@ const Explorer: React.FC<ExplorerProps> = ({
 
           {/* Folders Section */}
           <SidebarSection
-            title="Content"
+            title={filterQuery.trim() ? `Matches (${flatFilteredFiles.length})` : 'Content'}
             isOpen={sections.folders}
             onToggle={() => toggleSection('folders')}
             className={getSectionClass('folders')}
@@ -334,8 +381,39 @@ const Explorer: React.FC<ExplorerProps> = ({
             <div className="py-1">
               {loading ? (
                 <div className="p-4 text-xs text-[var(--fg-secondary)]">Loading...</div>
+              ) : filterQuery.trim() ? (
+                flatFilteredFiles.length > 0 ? (
+                  flatFilteredFiles.map((node) => {
+                    const href = node.postId === 'welcome' ? '/' : `/${node.postId}`;
+                    const isActive = node.postId === activePostId;
+                    return (
+                      <a
+                        key={node.id}
+                        href={href}
+                        onClick={() => node.postId && handleFileClick(node.postId)}
+                        className={`flex items-center justify-between py-1 px-3 cursor-pointer hover:bg-[var(--hover-bg)] transition-colors no-underline ${
+                          isActive ? 'bg-[var(--selection-bg)] text-[var(--fg-primary)]' : 'text-[var(--fg-primary)]'
+                        }`}
+                      >
+                        <div className="flex items-center min-w-0">
+                          <span className="mr-1.5 shrink-0">
+                            <FileIcon name={node.name} />
+                          </span>
+                          <span className="truncate text-[12px]">{node.name}</span>
+                        </div>
+                        <span className="text-[10px] text-[var(--fg-secondary)] font-mono truncate ml-2 max-w-[95px]">
+                          {node.postId}
+                        </span>
+                      </a>
+                    );
+                  })
+                ) : (
+                  <div className="px-3 py-2 text-xs text-[var(--fg-secondary)]">
+                    No matching files.
+                  </div>
+                )
               ) : (
-                getChildTree().map((node) => (
+                childTree.map((node) => (
                   <ExplorerItem
                     key={node.id}
                     node={node}
@@ -364,9 +442,9 @@ const Explorer: React.FC<ExplorerProps> = ({
               title="Related"
               isOpen={sections.related}
               onToggle={() => toggleSection('related')}
-              className={`${getSectionClass('related')} max-h-[200px] lg:hidden`}
+              className={`${getSectionClass('related')} max-h-[220px] lg:hidden`}
             >
-              <div className="py-1">
+              <div className="py-1 divide-y divide-[var(--border-main)]/40">
                 {relatedPosts.map(post => {
                   const href = post.id === 'welcome' ? '/' : `/${post.id}`;
                   const isActive = post.id === activePostId;
@@ -375,12 +453,19 @@ const Explorer: React.FC<ExplorerProps> = ({
                       key={post.id}
                       href={href}
                       onClick={() => handleFileClick(post.id)}
-                      className={`flex items-center py-[3px] px-3 cursor-pointer hover:bg-[var(--hover-bg)] transition-colors text-decoration-none no-underline block ${isActive ? 'bg-[var(--selection-bg)] text-[var(--fg-primary)]' : 'text-[var(--fg-primary)]'}`}
+                      className={`flex items-center justify-between py-1 px-3 cursor-pointer hover:bg-[var(--hover-bg)] transition-colors text-decoration-none no-underline ${isActive ? 'bg-[var(--selection-bg)] text-[var(--fg-primary)]' : 'text-[var(--fg-primary)]'}`}
                     >
-                      <span className="mr-1.5 flex-shrink-0">
-                        <Link size={16} className="text-[var(--icon-default)]" />
-                      </span>
-                      <span className="truncate text-[13px]">{post.title}</span>
+                      <div className="flex items-center min-w-0">
+                        <span className="mr-1.5 flex-shrink-0">
+                          <Link size={14} className="text-[var(--icon-default)]" />
+                        </span>
+                        <span className="truncate text-[12px]">{post.title}</span>
+                      </div>
+                      {typeof post.score === 'number' && (
+                        <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-1 rounded shrink-0 ml-1">
+                          {Math.round(post.score * 100)}%
+                        </span>
+                      )}
                     </a>
                   );
                 })}

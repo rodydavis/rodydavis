@@ -1,6 +1,6 @@
 ---
 import ExplorerLayout from "../layouts/ExplorerLayout.astro";
-import { getCollection, getEntry } from "astro:content";
+import { getCollection, getEntry, render } from "astro:content";
 import {
     Github,
     Youtube,
@@ -20,14 +20,14 @@ const welcomeDoc = await getEntry("docs", "welcome");
 if (!welcomeDoc) {
     throw new Error("Welcome doc not found");
 }
-const { Content } = await welcomeDoc.render();
+const { Content } = await render(welcomeDoc);
 
 // Fetch all docs for computing posts, tags, videos, and table of contents
 const allDocs = await getCollection("docs");
 
 // Exclude standalone files like 'welcome', 'about', and 'privacy' from blog posts list
 const blogPosts = allDocs.filter(
-    (doc) => doc.slug !== "welcome" && doc.slug !== "about" && doc.slug !== "privacy"
+    (doc) => doc.id !== "welcome" && doc.id !== "about" && doc.id !== "privacy"
 );
 
 // 1. Tags section: all tags as chips with counts
@@ -73,7 +73,7 @@ function getYoutubeId(content: string): string | null {
 }
 
 const recentVideosWithMetadata = videoPosts.map((post) => {
-    const ytId = getYoutubeId(post.body);
+    const ytId = getYoutubeId(post.body || "");
     const thumbnail = ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : null;
     return {
         ...post,
@@ -196,7 +196,7 @@ function formatHeaderName(name: string): string {
 }
 
 blogPosts.forEach((post) => {
-    const segments = post.slug.split("/");
+    const segments = post.id.split("/");
     let currentLevel = postsTree;
 
     for (let i = 0; i < segments.length - 1; i++) {
@@ -242,10 +242,10 @@ function renderTreeHtml(nodeMap: Record<string, TreeNode>, depth = 0): string {
                     <li class="flex items-center gap-2">
                         <span class="text-[var(--fg-secondary)] text-xs">📄</span>
                         <a 
-                            href="/${post.slug}" 
+                            href="/${post.id}" 
                             class="text-sm text-[var(--fg-primary)] hover:text-[var(--header-h1)] hover:underline transition-colors no-underline"
                         >
-                            ${post.data.title || post.slug}
+                            ${post.data.title || post.id}
                         </a>
                     </li>
                 `;
@@ -318,7 +318,7 @@ function renderTreeHtml(nodeMap: Record<string, TreeNode>, depth = 0): string {
                     <div class="grid gap-6">
                         {recentPosts.map((post) => (
                             <a
-                                href={`/${post.slug}`}
+                                href={`/${post.id}`}
                                 class="group block p-6 rounded-xl bg-[var(--bg-sidebar)] border border-[var(--border-main)] hover:border-[var(--header-h1)] transition-all duration-300 relative overflow-hidden shadow-sm no-underline"
                             >
                                 <div class="absolute inset-0 bg-gradient-to-r from-sky-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -366,7 +366,7 @@ function renderTreeHtml(nodeMap: Record<string, TreeNode>, depth = 0): string {
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {recentVideosWithMetadata.map((video) => (
                             <a
-                                href={`/${video.slug}`}
+                                href={`/${video.id}`}
                                 class="group block bg-[var(--bg-sidebar)] border border-[var(--border-main)] hover:border-red-500/50 rounded-xl overflow-hidden shadow-sm transition-all duration-300 no-underline"
                             >
                                 <div class="aspect-video relative overflow-hidden bg-black flex items-center justify-center">

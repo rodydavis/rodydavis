@@ -1,0 +1,24 @@
+{
+  "name": "rodydavis",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-01-01",
+  "compatibility_flags": ["nodejs_compat", "sqlite_vec"],
+  "assets": {
+    "directory": "./dist/client",
+    "binding": "ASSETS"
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "CONTENT_INDEX",
+        "class_name": "ContentIndex"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["ContentIndex"]
+    }
+  ]
+}

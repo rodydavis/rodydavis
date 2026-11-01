@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build and Deploy to celld
 
 on:
   push:
@@ -9,42 +9,57 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  REGISTRY: git.rodydavis.dev
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Login to registry
-        uses: docker/login-action@v4
+      - name: Setup Node.js and pnpm
+        uses: actions/setup-node@v4
         with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ gitea.actor }}
-          password: ${{ secrets.GIT_TOKEN }}
+          node-version: "24"
 
-      - name: Build and push image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: Dockerfile
-          push: true
-          tags: ${{ env.REGISTRY }}/${{ gitea.repository }}:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+      - name: Enable Corepack
+        run: corepack enable
 
-      - name: Deploy to TrueNAS
-        uses: https://git.rodydavis.dev/rodydavis/shared-actions/truenas-deploy@main
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Sync & Prune Content Chunks (Incremental Delta Check)
+        env:
+          OLLAMA_HOST: ${{ vars.OLLAMA_HOST || 'http://127.0.0.1:11434' }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          EMBEDDING_GEMMA_MODEL: embeddinggemma-2:latest
+          OLLAMA_MODEL: ${{ vars.OLLAMA_MODEL || 'gemma4:31b' }}
+          EMBEDDING_MRL_DIM: ${{ vars.EMBEDDING_MRL_DIM || '768' }}
+        run: |
+          pnpm run index:chunks
+          pnpm run check:chunks
+
+      - name: Build Astro SSR Bundle for celld
+        env:
+          CI: "true"
+          OLLAMA_HOST: ${{ vars.OLLAMA_HOST || 'http://127.0.0.1:11434' }}
+          EMBEDDING_GEMMA_MODEL: embeddinggemma-2:latest
+          OLLAMA_MODEL: ${{ vars.OLLAMA_MODEL || 'gemma4:31b' }}
+          EMBEDDING_MRL_DIM: ${{ vars.EMBEDDING_MRL_DIM || '768' }}
+        run: pnpm run build
+
+      - name: Deploy to TrueNAS celld Fleet
+        uses: https://git.rodydavis.dev/rodydavis/shared-actions/celld-deploy@main
         with:
           ssh_key: ${{ secrets.TRUENAS_SSH_KEY }}
-          app_name: rodydavis
+          s3_access_key: ${{ secrets.CELLD_S3_ACCESS_KEY }}
+          s3_secret_key: ${{ secrets.CELLD_S3_SECRET_KEY }}
+          domain: rodydavis.com
+          env_file_content: |
+            OLLAMA_HOST=${{ vars.OLLAMA_HOST }}
+            GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
+            EMBEDDING_GEMMA_MODEL=embeddinggemma-2:latest
+            OLLAMA_MODEL=${{ vars.OLLAMA_MODEL || 'gemma4:31b' }}
+            EMBEDDING_MRL_DIM=${{ vars.EMBEDDING_MRL_DIM || '768' }}
