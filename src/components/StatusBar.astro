@@ -1,6 +1,7 @@
 ---
 import ViewStatus from "./ViewStatus.astro";
 import NotificationCenter from "./NotificationCenter";
+import SwUpdateButton from "./SwUpdateButton";
 import { Code2 } from "lucide-react";
 
 import githubIcon from "../assets/svg/github.svg?raw";
@@ -105,6 +106,7 @@ const socialLinks = [
             >
                 <ViewStatus />
             </div>
+            <SwUpdateButton client:load />
             <div
                 class="flex items-center pl-1 ml-1 border-l border-white/20 h-full"
             >

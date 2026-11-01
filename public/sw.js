@@ -18,7 +18,14 @@ self.addEventListener("install", (event) => {
       .open(CACHE_NAME)
       .then((cache) => cache.addAll(PRECACHE_URLS))
       .catch(() => {})
-      .then(() => self.skipWaiting())
+      .then(() => {
+        // Only skipWaiting automatically on the very first install.
+        // When updating an already-controlled app, stay in "waiting" state
+        // so the VS Code Status Bar "Restart to Update" button can trigger activation.
+        if (!self.registration.active) {
+          return self.skipWaiting();
+        }
+      })
   );
 });
 
@@ -218,7 +225,9 @@ self.addEventListener("periodicsync", (event) => {
 // Handle messages from the client / RSS Worker
 self.addEventListener("message", (event) => {
   const data = event.data || {};
-  if (data.type === "SHOW_NOTIFICATION" && data.post) {
+  if (data.type === "SKIP_WAITING") {
+    event.waitUntil(self.skipWaiting());
+  } else if (data.type === "SHOW_NOTIFICATION" && data.post) {
     event.waitUntil(showPostNotification(data.post, data.tagPrefix || "rss-worker"));
   } else if (data.type === "SYNC_SEEN_LINKS" && Array.isArray(data.links)) {
     event.waitUntil(
